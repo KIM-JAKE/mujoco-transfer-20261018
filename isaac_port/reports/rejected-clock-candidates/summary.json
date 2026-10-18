@@ -10,6 +10,15 @@
     {
       "run": "contact-trim-02",
       "failure": "Reduced right return reserve exceeded actual right joint3 acceleration at7.4604167s,10.5896rad/s2. Never promoted."
+    },
+    {
+      "run": "contact-trim-04",
+      "failure": "Pin approach0.2s and right return2.5s: actual left joint6 jerk5119.9104rad/s3 at8.166667s; rejected"
+    },
+    {
+      "run": "contact-trim-03-strict",
+      "failure": "Strict clamp interlock with9.467s clocks/left damping600: actual acceleration10.2177rad/s2 and jerk7218.536rad/s3 at8.427083s; rejected"
     }
-  ]
+  ],
+  "field_implication": "Nominal command caps and repeated initial-condition episodes do not establish actual-motion robustness under changed contact/interlock timing; do not transfer9.467s as a certified hardware cycle."
 }
