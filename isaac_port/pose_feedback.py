@@ -7,7 +7,8 @@ from scipy.spatial.transform import Rotation,Slerp
 
 class PoseFeedback:
  def __init__(self,root,recording,names,speed):
-  self.model=mujoco.MjModel.from_xml_path(str(root/'generated/cap_button/cap_button.xml'));self.data=mujoco.MjData(self.model)
+  from source_model import load_model
+  self.model=load_model(root);self.data=mujoco.MjData(self.model)
   self.names=names;self.qadr=np.array([self.model.joint(n).qposadr[0]for n in names]);self.speed=speed;self.motion_limited=False;self.tracking_data=mujoco.MjData(self.model)
   archive=np.load(recording/'trajectory.npz');self.source={key:archive[key].copy()for key in archive.files};archive.close();self.ts=self.source['time_s']
   if(recording/'retiming.json').exists():
@@ -134,10 +135,14 @@ class PoseFeedback:
    pe,re=self.errors(active,t,positions,quaternions);raw_pe=pe.copy();i=self.parts.index(active);seat_pe,seat_re=self.errors(active,self.windows[active][2],positions,quaternions)
    if self.motion_limited and not(active=='pin'and t>=self.pin_alignment_start):pe,re=self.compensated_errors(active,t,positions,quaternions,side)
    at_seat=t>=self.insertion[active]and np.linalg.norm(seat_pe)<.00045 and np.linalg.norm(seat_re)<.025
+   terminal_hold=t>=self.windows[active][2]-2e-7
    if getattr(self,'fast_cycle',False)and active=='pin'and t>=self.pin_alignment_start and not at_seat:
     # Track real transverse alignment without integrating vertical motor lag.
     compensated,_=self.compensated_errors(active,t,positions,quaternions,side);pe[2]=compensated[2]
-   if at_seat:pe,re=seat_pe,seat_re
+   # Once the planned arm is stationary at the release boundary, following-lag
+   # compensation must not hide the real remaining seating error. Clamp/release
+   # still require their unchanged measured pose and contact conditions.
+   if at_seat or terminal_hold:pe,re=seat_pe,seat_re
    if np.linalg.norm(raw_pe)>.025:raise RuntimeError('Carried-part tracking error exceeds 25 mm: '+active)
    if t>=self.insertion[active]:
     pe=np.clip(pe,-.0002,.0002)

@@ -18,8 +18,8 @@ else:
 clock=source_time if(args.retimed or args.fast)else lambda side,t:t
 ROOT=HERE;RUN=ROOT/'generated/contact_task/fast'if args.fast else ROOT/'generated/contact_task/retimed'if args.retimed else SOURCES['cap_button'].parent.parent/'cap_button_parallel_alt_20261016'
 class Checker:
- def __init__(self,run=None,layout="physical",source_clock=None):
-  self.layout=layout;run=RUN if run is None else Path(run);self.source_clock=source_clock or clock
+ def __init__(self,run=None,layout="physical",source_clock=None,include_cross_arm=True):
+  self.layout=layout;run=RUN if run is None else Path(run);self.source_clock=source_clock or clock;self.include_cross_arm=include_cross_arm
   self.source=json.loads((ROOT/'generated/contact_task/contact-source.json').read_text());self.arr=np.load(ROOT/'generated/contact_task/collision.npz');self.cache={};self.static=[];self.robot=[];self.static_names={};self.side='right'
   for row in self.source['geoms']:
    if row['body']=='m80'and row['name']!='instance_0159':
@@ -83,6 +83,7 @@ class Checker:
     if not detail:return False,reason
   for i,(ra,oa)in enumerate(objects):
    for rb,ob in objects[i+1:]:
+    if not self.include_cross_arm and ((ra['body'].startswith('left_')and rb['body'].startswith('right_'))or(ra['body'].startswith('right_')and rb['body'].startswith('left_'))):continue
     if self.side!='both'and not(ra['body'].startswith(self.side+'_')or rb['body'].startswith(self.side+'_')):continue
     if ra['body']==rb['body']or tuple(sorted((ra['body'],rb['body'])))in self.excludes:continue
     if fcl.collide(oa,ob,fcl.CollisionRequest(),fcl.CollisionResult()):

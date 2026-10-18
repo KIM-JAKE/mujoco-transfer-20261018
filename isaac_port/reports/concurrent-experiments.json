@@ -1,0 +1,51 @@
+{
+  "under_10_verified": false,
+  "latest_verified_original_cycle_s": 15.129166666666666,
+  "experiments": [
+    {
+      "run": "contact-concurrent-01",
+      "state": "failed",
+      "error": "RuntimeError('Measured FR3 kinematic limit exceeded at 5.514583333333333s: acceleration=12.522125244140625, jerk=3209.2987060546875')",
+      "layout": "original_cad",
+      "physical_simulation_pass": false,
+      "hardware_ready": false,
+      "notes": "Pin-head strike during the discarded empty return shortcut"
+    },
+    {
+      "run": "contact-concurrent-02",
+      "state": "failed",
+      "error": "RuntimeError('Measured FR3 kinematic limit exceeded at 5.847916666666666s: acceleration=283.4592819213867, jerk=138206.38732910156')",
+      "layout": "original_cad",
+      "physical_simulation_pass": false,
+      "hardware_ready": false,
+      "notes": "Pin-head strike during the discarded empty return shortcut"
+    },
+    {
+      "run": "contact-concurrent-03",
+      "state": "failed",
+      "error": "RuntimeError('Measured FR3 kinematic limit exceeded at 9.25s: acceleration=10.098094940185547, jerk=1305.7725593447685')",
+      "layout": "original_cad",
+      "physical_simulation_pass": false,
+      "hardware_ready": false,
+      "notes": "Right empty-return joint acceleration exceeded actual native guard; no full assembly pass"
+    },
+    {
+      "run": "contact-concurrent-04",
+      "state": "failed",
+      "error": "RuntimeError('Measured FR3 kinematic limit exceeded at 7.65s: acceleration=10.336532592773438, jerk=1318.5335978865623')",
+      "layout": "original_cad",
+      "physical_simulation_pass": false,
+      "hardware_ready": false,
+      "notes": "Right empty-return joint acceleration exceeded actual native guard; no full assembly pass"
+    }
+  ],
+  "scope": "Failed prototypes retained honestly; nominal clocks are not physical success",
+  "real_robot_screen": {
+    "run": "contact-concurrent-04 incomplete prototype",
+    "command_1khz_kinematic_pass": true,
+    "model_gravity_excluded_torque_rate_peak_nm_s": 6327.1638296279,
+    "model_rate_limit_nm_s": 1000,
+    "hardware_ready": false,
+    "scope": "Imported-model warning, no measured robot torque, no contacts or carried payload"
+  }
+}

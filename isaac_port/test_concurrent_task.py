@@ -5,39 +5,43 @@ Fork of test_contact_task.py for the changed simultaneous path.
 from pathlib import Path
 import argparse,json,time,sys,traceback,math,hashlib,shutil
 import numpy as np
-p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True);p.add_argument('--until',type=float);p.add_argument('--speed',type=float,default=4);p.add_argument('--settle',type=float,default=.5);p.add_argument('--partial-env',action='store_true');p.add_argument('--direct-gripper',action='store_true');p.add_argument('--feedback',action='store_true');p.add_argument('--precision',action='store_true');p.add_argument('--start-source',type=float,default=0);p.add_argument('--only-pin',action='store_true');p.add_argument('--posture',action='store_true');p.add_argument('--retimed',action='store_true');p.add_argument('--fast',action='store_true');p.add_argument('--control-decimation',type=int,default=4);p.add_argument('--clamps',action='store_true');p.add_argument('--cpu-threads',type=int,default=16);p.add_argument('--pin-preload',type=float,default=0);p.add_argument('--cycle-deadline',type=float);p.add_argument('--fr3-limits',action='store_true');p.add_argument('--device',default='cpu');p.add_argument('--efficient-timing',action='store_true');p.add_argument('--target-15',action='store_true');p.add_argument('--arm-damping',type=float,default=600.);p.add_argument('--right-arm-damping',type=float,default=1800.);p.add_argument('--target-10',action='store_true');p.add_argument('--respect-cutoff',action='store_true');p.add_argument('--physical-sensors',action='store_true',help='Exclude proven optical-axis CAD solids while preserving all sensor mounts and head/tail geometry');p.add_argument('--trial-layout',action='store_true',help='Reproduce the previous shifted-rail experiment; never a real-cell claim');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True);p.add_argument('--until',type=float);p.add_argument('--speed',type=float,default=4);p.add_argument('--settle',type=float,default=.5);p.add_argument('--partial-env',action='store_true');p.add_argument('--direct-gripper',action='store_true');p.add_argument('--feedback',action='store_true');p.add_argument('--precision',action='store_true');p.add_argument('--start-source',type=float,default=0);p.add_argument('--only-pin',action='store_true');p.add_argument('--posture',action='store_true');p.add_argument('--retimed',action='store_true');p.add_argument('--fast',action='store_true');p.add_argument('--control-decimation',type=int,default=4);p.add_argument('--clamps',action='store_true');p.add_argument('--cpu-threads',type=int,default=16);p.add_argument('--pin-preload',type=float,default=0);p.add_argument('--cycle-deadline',type=float);p.add_argument('--fr3-limits',action='store_true');p.add_argument('--device',default='cpu');p.add_argument('--efficient-timing',action='store_true');p.add_argument('--target-15',action='store_true');p.add_argument('--arm-damping',type=float,default=600.);p.add_argument('--right-arm-damping',type=float,default=1800.);p.add_argument('--reference-dir');p.add_argument('--plan-root');p.add_argument('--target-10',action='store_true');p.add_argument('--respect-cutoff',action='store_true');p.add_argument('--physical-sensors',action='store_true',help='Exclude proven optical-axis CAD solids while preserving all sensor mounts and head/tail geometry');p.add_argument('--trial-layout',action='store_true',help='Reproduce the previous shifted-rail experiment; never a real-cell claim');a=p.parse_args()
 if not(a.feedback and a.precision and a.posture and a.fast and a.clamps and a.fr3_limits and a.efficient_timing and a.physical_sensors):p.error('Concurrent test requires complete physical contact/FR3/sensor configuration')
 a.target_15=True
 if a.target_15 and not a.efficient_timing:p.error('--target-15 requires --efficient-timing')
 if a.efficient_timing and not(a.fr3_limits and a.posture and a.fast):p.error('--efficient-timing requires --fr3-limits --posture --fast')
 def arm_damping(name):return (a.right_arm_damping if name.startswith('right_')else a.arm_damping)if a.target_15 else 220
+if a.respect_cutoff:
+ from optimization_clock import install_cutoff_alarm
+ install_cutoff_alarm()
 out=a.output.resolve();out.mkdir(parents=True,exist_ok=True);started=time.monotonic()
 def save(**x):
  t=out/'status.tmp';t.write_text(json.dumps(x,indent=2)+'\n');t.replace(out/'status.json')
 posture_prefix='arm-posture-fr3'if a.fr3_limits else'arm-posture'
 profile_prefix='fr3-concurrent-profile'
-recording_root=Path(__file__).parent/'generated/contact_task/fast'if a.fast else Path(__file__).parent/'generated/contact_task/retimed'if a.retimed else Path(__file__).parent.parent/'keti_m80_mujoco_20261013/duo_fr3_2f85_20261013/cap_button_parallel_alt_20261016'
+plan_root=Path(a.plan_root)if a.plan_root else Path(__file__).parent/'generated/contact_task'
+recording_root=Path(a.reference_dir)if a.reference_dir else (Path(__file__).parent/'generated/contact_task/fast'if a.fast else Path(__file__).parent/'generated/contact_task/retimed'if a.retimed else Path(__file__).parent.parent/'keti_m80_mujoco_20261013/duo_fr3_2f85_20261013/cap_button_parallel_alt_20261016')
 # Freeze the complete reference per run before opening any lazy NPZ reader.
 frozen_recording=out/'recording';frozen_recording.mkdir(exist_ok=True)
 for filename in ['trajectory.npz','independent_schedule.json','config.json','retiming.json']:
  if(recording_root/filename).exists():shutil.copy2(recording_root/filename,frozen_recording/filename)
 recording_root=frozen_recording
 if a.until is None:a.until=float(np.load(recording_root/'trajectory.npz')['time_s'][-1])
-manifest=dict(arguments=vars(a)|{'output':str(out)},arm_drive_stiffness_nm_rad=12000,arm_drive_damping_nm_s_rad={side:arm_damping(side+'_arm_1')for side in ['left','right']},code_sha256={f:hashlib.sha256((Path(__file__).parent/f).read_bytes()).hexdigest()for f in ['test_concurrent_task.py','concurrent_profile.py','contact_scene.py','pose_feedback.py','precision_collisions.py','fixture_clamps.py','robot_collision_filters.py','button_contact_control.py','task_path_offsets.py','task_timing.py','task_timing_fast.py','stock_fixture_geometry.py','fr3_motion_control.py','fr3_motion_worker.py','fr3_reference_profile.py','prepare_fr3_timing.py','sensor_geometry.py','optimization_clock.py']},layout='trial_rail_offsets'if a.trial_layout else'original_cad',hardware_execution_certified=False,sensor_geometry='physical_head_tail'if a.physical_sensors else'full_cad_including_optical_axis',part_pose_writes='initial conditions only',part_attachments=False,physics_hz=480)
+manifest=dict(arguments=vars(a)|{'output':str(out)},arm_drive_stiffness_nm_rad=12000,arm_drive_damping_nm_s_rad={side:arm_damping(side+'_arm_1')for side in ['left','right']},code_sha256={f:hashlib.sha256((Path(__file__).parent/f).read_bytes()).hexdigest()for f in ['test_concurrent_task.py','concurrent_profile.py','contact_scene.py','pose_feedback.py','precision_collisions.py','fixture_clamps.py','robot_collision_filters.py','button_contact_control.py','task_path_offsets.py','task_timing.py','task_timing_fast.py','stock_fixture_geometry.py','fr3_motion_control.py','fr3_motion_worker.py','fr3_reference_profile.py','prepare_fr3_timing.py','sensor_geometry.py','optimization_clock.py','source_model.py','prepare_concurrent_timing.py','prepare_shortcut_candidate.py','model_torque_screen.py']},layout='trial_rail_offsets'if a.trial_layout else'original_cad',hardware_execution_certified=False,sensor_geometry='physical_head_tail'if a.physical_sensors else'full_cad_including_optical_axis',part_pose_writes='initial conditions only',part_attachments=False,physics_hz=480)
 manifest['input_sha256']={f:hashlib.sha256((Path(__file__).parent/'generated/contact_task'/f).read_bytes()).hexdigest()for f in ['contact-source.json','collision.npz','precision-cad.npz','precision-pin-main.npz','robot-filters.json']}
 manifest['recording_sha256']={f:hashlib.sha256((recording_root/f).read_bytes()).hexdigest()for f in ['trajectory.npz','independent_schedule.json','config.json']}
 if(recording_root/'retiming.json').exists():manifest['recording_sha256']['retiming.json']=hashlib.sha256((recording_root/'retiming.json').read_bytes()).hexdigest()
 if a.efficient_timing:
- for f in [profile_prefix+'.npz',profile_prefix+'.json']:manifest['input_sha256'][f]=hashlib.sha256((Path(__file__).parent/'generated/contact_task'/f).read_bytes()).hexdigest()
+ for f in [profile_prefix+'.npz',profile_prefix+'.json']:manifest['input_sha256'][f]=hashlib.sha256((plan_root/f).read_bytes()).hexdigest()
 if a.posture:
- for f in [posture_prefix+'.npz',posture_prefix+'.json']:manifest['input_sha256'][f]=hashlib.sha256((Path(__file__).parent/'generated/contact_task'/f).read_bytes()).hexdigest()
+ for f in [posture_prefix+'.npz',posture_prefix+'.json']:manifest['input_sha256'][f]=hashlib.sha256((plan_root/f).read_bytes()).hexdigest()
 (out/'run-manifest.json').write_text(json.dumps(manifest,indent=2))
 (out/'implementation').mkdir(exist_ok=True)
 for filename in manifest['code_sha256']:shutil.copy2(Path(__file__).parent/filename,out/'implementation'/filename)
 if a.posture:
- for filename in [posture_prefix+'.npz',posture_prefix+'.json']:shutil.copy2(Path(__file__).parent/'generated/contact_task'/filename,out/filename)
+ for filename in [posture_prefix+'.npz',posture_prefix+'.json']:shutil.copy2(plan_root/filename,out/filename)
 if a.efficient_timing:
- for filename in [profile_prefix+'.npz',profile_prefix+'.json']:shutil.copy2(Path(__file__).parent/'generated/contact_task'/filename,out/filename)
+ for filename in [profile_prefix+'.npz',profile_prefix+'.json']:shutil.copy2(plan_root/filename,out/filename)
 # Import task modules from the audited immutable snapshot, preserving the
 # project __file__ location used to resolve the immutable assets.
 import importlib.abc,importlib.util
@@ -220,7 +224,7 @@ try:
  ref_clock={side:a.start_source for side in ['left','right']};held_since={side:None for side in ref_clock};done_time=None;offset=np.zeros(n);offset_v=np.zeros(n);previous_hold=None;hold=None
  from optimization_clock import require_optimization_window
  for step in range(steps):
-  if a.respect_cutoff and step%240==0:require_optimization_window()
+  if a.respect_cutoff and step%a.control_decimation==0:require_optimization_window()
   physical_t=step/480;clock[0]=(step+1)/480
   if step%a.control_decimation==0:
    hold=None
@@ -237,6 +241,7 @@ try:
      feedback.clamped=clamps.verified
     control_forces={name:float(np.linalg.norm(vector))for name,vector in env_vectors.items()}
     ref_t,hold=feedback.gate(ref_clock,proposed,current_p,current_q,control_forces,clamps.verified if a.clamps else None)
+    ref_t,hold=profile.coordinate(ref_clock,ref_t,hold)
     for side in ['left','right']:
      if hold[side]:
       if held_since[side] is None:held_since[side]=physical_t
@@ -317,11 +322,12 @@ try:
     save(state='running',phase='physics',step=step,steps=steps,time_s=physical_t,source_t=ref_t,last=trace[-1])
    assert np.isfinite(pos).all() and np.isfinite(measured).all()
    if np.any(pos[:,2]<.5):raise RuntimeError('Workpiece dropped below 0.5 m')
-  if a.cycle_deadline is not None and physical_t>a.settle+a.cycle_deadline and min(ref_t.values())<a.until:raise RuntimeError('Physical cycle deadline exceeded before completing the motion')
-  if a.feedback and min(ref_t.values())>=a.until:
+  complete=all(ref_t[side]>=profile.arms[side].bounds[-1]-1e-8 for side in ['left','right'])
+  if a.cycle_deadline is not None and physical_t>a.settle+a.cycle_deadline and not complete:raise RuntimeError('Physical cycle deadline exceeded before completing the motion')
+  if a.feedback and complete:
    if done_time is None:done_time=physical_t
    if physical_t-done_time>=1.5:break
- if a.feedback and min(ref_t.values())<a.until-1e-8:raise RuntimeError('Simulation step budget exhausted before completing reference')
+ if a.feedback and not complete:raise RuntimeError('Simulation step budget exhausted before completing reference')
  if limiter is not None:np.savez_compressed(out/'joint-motion.npz',time_s=motion_time,actual_position=motion_q,actual_velocity=motion_v,command_position=command_q,command_velocity=command_v,command_acceleration=command_a,dof_indices=limiter.indices)
  np.savez_compressed(out/'physics-tape.npz',time_s=pose_times,body_positions=poses,body_quaternions=quats,joint_positions=tape_q)
  (out/'button-trace.json').write_text(json.dumps(button_samples,indent=2)+'\n')

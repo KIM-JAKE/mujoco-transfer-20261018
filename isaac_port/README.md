@@ -129,3 +129,5 @@ cd /home/gpuadmin/workspace/jake/mujoco/isaac_port
 2026-10-18 최신 검증: `runs/contact-fr3-09/`에서 `physical_simulation_pass: true`, `fr3_kinematic_limits_pass: true`. 측정 최대 관절 가속도 7.104rad/s², jerk 4940.120rad/s³이며 의도치 않은 접촉은 0N이다. 세 부품의 양측 파지·고정·손 해제 후 유지와 버튼 100ms 누름을 통과했다. 초기 안정화를 뺀 공정 시간은 44.535초다. 보수적인 최초 검증본이며 최단 시간 최적화·실기 인증과 구분한다.
 
 고리의 `purpose=guide`로 렌더에서 빠지던 문제를 수정했다. `runs/contact-fr3-09/render/m80-physx-contact.mp4`는 측정한 PhysX 상태를 1배속·30fps로 보여 준다. 파랑/주황 고리와 초록 핀을 구분하고, 오른쪽은 X-ray 확대 화면이다. `render/status.json`은 모든 영상 프레임의 디코딩·측정 자세 일치와 재생 속도를 확인한다. `recording-audit.json`은 코드·입력 SHA-256, 테이프/상태 기록 일치, 독립 FK와 native 관절 속도 대비 timestep 일치를 검사한다. 원본 CAD 간섭과 실측 전 모델 가정은 계속 남아 있다.
+
+양팔 독립 시간축·접촉 인터록을 사용하는 10초 미만 실험과 재현 방법은 [CONCURRENT_TASK.md](CONCURRENT_TASK.md)에 정리했다. 해당 실험은 별도 PhysX 판정이 필요하며 실기 성능을 인증하지 않는다.

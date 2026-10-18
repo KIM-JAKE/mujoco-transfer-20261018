@@ -4,30 +4,70 @@ import argparse, hashlib, json
 import numpy as np
 from scipy.interpolate import CubicSpline, PchipInterpolator
 from scipy.ndimage import gaussian_filter1d
-from scipy.optimize import linprog
+from scipy.optimize import linprog, minimize_scalar
 from scipy.sparse import coo_matrix
 from fr3_motion_control import position_velocity_bounds
 from fr3_reference_profile import EfficientReferenceProfile as ArcProfile, reference_fingerprint
 
+CONTACT_MINIMUMS={'insert_last_pin_approach':.85,'insert_last_pin_last5mm':.65,'press_button':.5}
+GRIPPER_TRAVEL_CAP=.6
+PIN_EARLY_CLOSE_CAP=.25
+MAX_PHASE_RATE=3.
+MINIMUM_TIME_OBJECTIVE=False
+
+
+def minimize_traversal_time(initial,ds,matrix,rhs,bounds,iterations=60):
+    """Convex time objective on the same acceleration/speed polytope.
+
+    Maximizing sum(sdot²) is a useful seed but can sacrifice a slow section to
+    gain speed elsewhere. Frank-Wolfe uses sparse LPs plus exact line searches
+    to minimize the actual trapezoidal traversal time instead.
+    """
+    tiny=np.full(len(initial),1e-8);tiny[0]=tiny[-1]=0
+    tiny[1:-1]=np.minimum(tiny[1:-1],np.array([b[1]for b in bounds[1:-1]]))
+    x=.99999*initial+.00001*tiny
+    def objective(value):
+        v=np.sqrt(np.maximum(value,0.))
+        return float(np.sum(2*ds/np.maximum(v[:-1]+v[1:],1e-20)))
+    before=objective(x)
+    for k in range(iterations):
+        v=np.sqrt(np.maximum(x,1e-30));pair=(v[:-1]+v[1:])**2
+        g=np.zeros(len(x));g[:-1]-=ds/(v[:-1]*pair);g[1:]-=ds/(v[1:]*pair)
+        g[0]=g[-1]=0
+        result=linprog(g/max(1.,float(abs(g).max())),A_ub=matrix,b_ub=rhs,bounds=bounds,method='highs')
+        if not result.success:raise RuntimeError(result.message)
+        direction=result.x-x
+        line=minimize_scalar(lambda alpha:objective(x+alpha*direction),bounds=(0.,1.),method='bounded',options={'xatol':1e-9})
+        previous=objective(x)
+        if line.fun>=previous-1e-8:break
+        x=x+line.x*direction
+        if (previous-line.fun)/max(previous,1e-12)<1e-6:break
+    return x,dict(iterations=k+1,seed_time_s=before,optimized_time_s=objective(x))
+
 
 def driver_caps(s,schedule):
-    cap=np.full((len(s),2),.6)
+    cap=np.full((len(s),2),GRIPPER_TRAVEL_CAP)
     for side,lane in schedule['lanes'].items():
         for row in lane:
             if row['stage']['label']in ['grasp_two_parts','grasp_last_pin']:
                 a=row['start_s']+schedule['delays'][side];b=row['end_s']+schedule['delays'][side]
-                cap[(s>=a)&(s<=b),:]=.14 if row['stage']['label']=='grasp_two_parts'else .25
+                active=(s>=a)&(s<=b)
+                if row['stage']['label']=='grasp_two_parts':cap[active,:]=.14
+                else:
+                    u=np.clip((s[active]-a)/(b-a),0,1)
+                    w=np.clip((u-.5)/.25,0,1);w=w*w*(3-2*w)
+                    cap[active,:]=((1-w)*PIN_EARLY_CLOSE_CAP+w*.25)[:,None]
     return cap
 
 
 def fine_rate_cap(s,schedule,target_15=False):
-    cap=np.full(len(s),3.)
+    cap=np.full(len(s),MAX_PHASE_RATE)
     for side,lane in schedule['lanes'].items():
         for row in lane:
             label=row['stage']['label']
             if label not in ['insert_two_parts_last5mm','insert_last_pin_last5mm']:continue
             a=row['start_s']+schedule['delays'][side];b=row['end_s']+schedule['delays'][side]
-            cap[(s>=a)&(s<=b)]=np.minimum(cap[(s>=a)&(s<=b)],(b-a)/((.65 if target_15 else 1.)if label=='insert_last_pin_last5mm'else .5))
+            cap[(s>=a)&(s<=b)]=np.minimum(cap[(s>=a)&(s<=b)],(b-a)/((CONTACT_MINIMUMS['insert_last_pin_last5mm'] if target_15 else 1.)if label=='insert_last_pin_last5mm'else .5))
     return cap
 
 
@@ -37,7 +77,7 @@ def retime_segment(profile,begin,end,schedule,sigma,target_15=False):
     lo,_=position_velocity_bounds((p-.015).reshape(-1,2,7));_,hi=position_velocity_bounds((p+.015).reshape(-1,2,7))
     cap=.95*np.where(qs>=0,hi.reshape(-1,14),-lo.reshape(-1,14))-.025
     if np.any((cap<0)&(abs(qs)>1e-7)):raise RuntimeError('No reserved FR3 velocity envelope')
-    vmax=np.min(np.where(abs(qs)>1e-8,np.maximum(cap,.0001)/np.maximum(abs(qs),1e-8),3.),axis=1)
+    vmax=np.min(np.where(abs(qs)>1e-8,np.maximum(cap,.0001)/np.maximum(abs(qs),1e-8),MAX_PHASE_RATE),axis=1)
     gs=profile.full_path(s,1)[:,profile.driver_indices]
     vmax=np.minimum(vmax,np.min(driver_caps(s,schedule)/np.maximum(abs(gs),1e-8),axis=1))
     vmax=np.minimum(vmax,fine_rate_cap(s,schedule,target_15))
@@ -48,8 +88,11 @@ def retime_segment(profile,begin,end,schedule,sigma,target_15=False):
             for j in range(14):
                 row=len(rhs);rows.extend([row,row]);cols.extend([k,k+1]);values.extend([sign*a[j],sign*b[j]]);rhs.append(9.1)
     bounds=[(1e-10,float(max(v*v,1e-10)))for v in vmax];bounds[0]=bounds[-1]=(0,0)
-    result=linprog(-np.ones(n),A_ub=coo_matrix((values,(rows,cols)),shape=(len(rhs),n)).tocsr(),b_ub=rhs,bounds=bounds,method='highs')
+    matrix=coo_matrix((values,(rows,cols)),shape=(len(rhs),n)).tocsr()
+    result=linprog(-np.ones(n),A_ub=matrix,b_ub=rhs,bounds=bounds,method='highs')
     if not result.success:raise RuntimeError(result.message)
+    if MINIMUM_TIME_OBJECTIVE:
+        result.x,_=minimize_traversal_time(result.x,ds,matrix,rhs,bounds)
     # Tiny derivatives in exactly stationary reference intervals can leave an
     # arbitrary LP basis. Give these points finite phase speed; the full analytic
     # derivative check below still certifies every candidate after smoothing.
@@ -70,15 +113,17 @@ def retime_segment(profile,begin,end,schedule,sigma,target_15=False):
     cap=.95*np.where(qv>=0,hi.reshape(-1,14),-lo.reshape(-1,14))-.025
     gv=profile.full_path(phase,1)[:,profile.driver_indices]*d1[:,None]
     ratios=dict(velocity=float(np.max(abs(qv)/np.maximum(cap,.001))),acceleration=float(np.sqrt(np.max(abs(qa))/9.1)),jerk=float(np.cbrt(np.max(abs(qj))/4700)),gripper=float(np.max(abs(gv)/driver_caps(phase,schedule))),fine_insertion=float(np.max(abs(d1)/fine_rate_cap(phase,schedule,target_15))))
+    if getattr(profile,'model_torque_screen',None) is not None:
+        ratios['model_torque_rate']=float(np.max(profile.model_torque_screen.ratios(phase,d1,d2,d3)))
     factor=max(1.,*ratios.values())*1.015
     # The final precision insertion has its own measured 25um alignment gate.
     # Budget time separately for pin approach, fine insertion and button contact.
     pin_approach=next(row['start_s']+schedule['delays']['left']for row in schedule['lanes']['left']if row['stage']['label']=='insert_last_pin_approach')
     pin_fine=next(row['start_s']+schedule['delays']['left']for row in schedule['lanes']['left']if row['stage']['label']=='insert_last_pin_last5mm')
-    if abs(begin-pin_approach)<1e-7:factor=max(factor,(.85 if target_15 else 4.)/tt[-1])
-    if abs(begin-pin_fine)<1e-7:factor=max(factor,(.65 if target_15 else 2.)/tt[-1])
+    if abs(begin-pin_approach)<1e-7:factor=max(factor,(CONTACT_MINIMUMS['insert_last_pin_approach'] if target_15 else 4.)/tt[-1])
+    if abs(begin-pin_fine)<1e-7:factor=max(factor,(CONTACT_MINIMUMS['insert_last_pin_last5mm'] if target_15 else 2.)/tt[-1])
     button_press=next(row for row in schedule['lanes']['right']if row['stage']['label']=='press_button')
-    if abs(begin-button_press['start_s']-schedule['delays']['right'])<1e-7:factor=max(factor,(.5 if target_15 else 1.2)/tt[-1])
+    if abs(begin-button_press['start_s']-schedule['delays']['right'])<1e-7:factor=max(factor,(CONTACT_MINIMUMS['press_button'] if target_15 else 1.2)/tt[-1])
     return clock, factor, dict(reference_begin_s=float(begin),reference_end_s=float(end),duration_s=float(tt[-1]*factor),raw_duration_s=float(tt[-1]),time_scale=factor,smoothing_s=sigma,limiting_constraint=max(ratios,key=ratios.get),peak_acceleration_rad_s2=float(np.max(abs(qa))/factor**2),peak_jerk_rad_s3=float(np.max(abs(qj))/factor**3),minimum_phase_rate=float(d1.min()/factor))
 
 
@@ -90,13 +135,15 @@ def planning_ratios(profile,clock,t,begin,end,schedule):
     p=profile.path(s);lo,_=position_velocity_bounds((p-.015).reshape(-1,2,7));_,hi=position_velocity_bounds((p+.015).reshape(-1,2,7))
     cap=.95*np.where(v>=0,hi.reshape(-1,14),-lo.reshape(-1,14))-.025
     ratios=np.maximum.reduce([np.max(abs(v)/np.maximum(cap,.001),axis=1),np.sqrt(np.max(abs(a),axis=1)/9.1),np.cbrt(np.max(abs(j),axis=1)/4700),np.max(abs(profile.full_path(s,1)[:,profile.driver_indices]*d1[:,None])/driver_caps(s,schedule),axis=1),abs(d1)/fine_rate_cap(s,schedule,True),np.ones(len(t))])
+    if getattr(profile,'model_torque_screen',None) is not None:
+        ratios=np.maximum(ratios,profile.model_torque_screen.ratios(s,d1,d2,d3))
     return ratios,a,j
 
 
 def contact_minimum(begin,schedule):
-    for side,label,duration in [('left','insert_last_pin_approach',.85),('left','insert_last_pin_last5mm',.65),('right','press_button',.5)]:
+    for side,label in [('left','insert_last_pin_approach'),('left','insert_last_pin_last5mm'),('right','press_button')]:
         row=next(r for r in schedule['lanes'][side]if r['stage']['label']==label)
-        if abs(begin-row['start_s']-schedule['delays'][side])<1e-7:return duration
+        if abs(begin-row['start_s']-schedule['delays'][side])<1e-7:return CONTACT_MINIMUMS[label]
     return 0.
 
 

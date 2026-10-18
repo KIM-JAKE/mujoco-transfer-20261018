@@ -96,6 +96,17 @@ class ConcurrentProfile:
         for side in SIDES:
             self.arms[side].gate(references[side], holds.get(side), started)
 
+    def coordinate(self, previous, proposed, holds):
+        """Reserve crossing zones using preplanned, zero-speed wait points."""
+        proposed,holds=dict(proposed),dict(holds)
+        for rule in self.metadata.get('coordination_rules',[]):
+            side,other=rule['side'],rule['wait_for_side']
+            gate=rule['reference']-1e-8
+            if previous[side]<=gate and proposed[side]>gate and previous[other]<rule['minimum_reference']:
+                proposed[side]=gate
+                holds[side]='cross_arm_zone_wait_for_'+other
+        return proposed,holds
+
     def advance(self, dt):
         p, v, a = [], [], []
         for side in SIDES:

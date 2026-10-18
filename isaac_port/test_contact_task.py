@@ -6,6 +6,9 @@ p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True);p
 if a.target_15 and not a.efficient_timing:p.error('--target-15 requires --efficient-timing')
 if a.efficient_timing and not(a.fr3_limits and a.posture and a.fast):p.error('--efficient-timing requires --fr3-limits --posture --fast')
 def arm_damping(name):return (a.right_arm_damping if name.startswith('right_')else a.arm_damping)if a.target_15 else 220
+if a.respect_cutoff:
+ from optimization_clock import install_cutoff_alarm
+ install_cutoff_alarm()
 out=a.output.resolve();out.mkdir(parents=True,exist_ok=True);started=time.monotonic()
 def save(**x):
  t=out/'status.tmp';t.write_text(json.dumps(x,indent=2)+'\n');t.replace(out/'status.json')
@@ -18,7 +21,7 @@ for filename in ['trajectory.npz','independent_schedule.json','config.json','ret
  if(recording_root/filename).exists():shutil.copy2(recording_root/filename,frozen_recording/filename)
 recording_root=frozen_recording
 if a.until is None:a.until=float(np.load(recording_root/'trajectory.npz')['time_s'][-1])
-manifest=dict(arguments=vars(a)|{'output':str(out)},arm_drive_stiffness_nm_rad=12000,arm_drive_damping_nm_s_rad={side:arm_damping(side+'_arm_1')for side in ['left','right']},code_sha256={f:hashlib.sha256((Path(__file__).parent/f).read_bytes()).hexdigest()for f in ['test_contact_task.py','contact_scene.py','pose_feedback.py','precision_collisions.py','fixture_clamps.py','robot_collision_filters.py','button_contact_control.py','task_path_offsets.py','task_timing.py','task_timing_fast.py','stock_fixture_geometry.py','fr3_motion_control.py','fr3_motion_worker.py','fr3_reference_profile.py','prepare_fr3_timing.py','sensor_geometry.py','optimization_clock.py']},layout='trial_rail_offsets'if a.trial_layout else'original_cad',hardware_execution_certified=False,sensor_geometry='physical_head_tail'if a.physical_sensors else'full_cad_including_optical_axis',part_pose_writes='initial conditions only',part_attachments=False,physics_hz=480)
+manifest=dict(arguments=vars(a)|{'output':str(out)},arm_drive_stiffness_nm_rad=12000,arm_drive_damping_nm_s_rad={side:arm_damping(side+'_arm_1')for side in ['left','right']},code_sha256={f:hashlib.sha256((Path(__file__).parent/f).read_bytes()).hexdigest()for f in ['test_contact_task.py','contact_scene.py','pose_feedback.py','precision_collisions.py','fixture_clamps.py','robot_collision_filters.py','button_contact_control.py','task_path_offsets.py','task_timing.py','task_timing_fast.py','stock_fixture_geometry.py','fr3_motion_control.py','fr3_motion_worker.py','fr3_reference_profile.py','prepare_fr3_timing.py','sensor_geometry.py','optimization_clock.py','source_model.py']},layout='trial_rail_offsets'if a.trial_layout else'original_cad',hardware_execution_certified=False,sensor_geometry='physical_head_tail'if a.physical_sensors else'full_cad_including_optical_axis',part_pose_writes='initial conditions only',part_attachments=False,physics_hz=480)
 manifest['input_sha256']={f:hashlib.sha256((Path(__file__).parent/'generated/contact_task'/f).read_bytes()).hexdigest()for f in ['contact-source.json','collision.npz','precision-cad.npz','precision-pin-main.npz','robot-filters.json']}
 manifest['recording_sha256']={f:hashlib.sha256((recording_root/f).read_bytes()).hexdigest()for f in ['trajectory.npz','independent_schedule.json','config.json']}
 if(recording_root/'retiming.json').exists():manifest['recording_sha256']['retiming.json']=hashlib.sha256((recording_root/'retiming.json').read_bytes()).hexdigest()
@@ -215,7 +218,7 @@ try:
  ref_clock=a.start_source;held_since=None;done_time=None;offset=np.zeros(n);offset_v=np.zeros(n);previous_hold=None;hold=None
  from optimization_clock import require_optimization_window
  for step in range(steps):
-  if a.respect_cutoff and step%240==0:require_optimization_window()
+  if a.respect_cutoff and step%a.control_decimation==0:require_optimization_window()
   physical_t=step/480;clock[0]=(step+1)/480
   if step%a.control_decimation==0:
    hold=None
