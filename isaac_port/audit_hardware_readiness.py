@@ -8,7 +8,7 @@ from pathlib import Path
 import argparse,json,hashlib
 import numpy as np
 import mujoco
-from scipy.interpolate import BPoly
+from scipy.interpolate import BPoly,PPoly
 from fr3_motion_control import LOWER,UPPER,position_velocity_bounds
 from source_model import load_model,model_xml
 
@@ -16,10 +16,20 @@ def reconstruct_commands(z):
     t=z['time_s'];values=np.stack([z['command_position'],z['command_velocity'],z['command_acceleration']],axis=1)
     return BPoly.from_derivatives(t,values)
 
+def continuous_jerk_peak(clock):
+    polynomial=PPoly.from_bernstein_basis(clock).derivative(3)
+    c=polynomial.c;h=np.diff(polynomial.x)[:,None]
+    values=[c[2],c[0]*h*h+c[1]*h+c[2]]
+    root=np.divide(-c[1],2*c[0],out=np.zeros_like(c[1]),where=abs(c[0])>1e-20)
+    values.append(np.where((root>0)&(root<h),c[0]*root**2+c[1]*root+c[2],0.))
+    return float(np.max(abs(np.stack(values))))
+
 def audit(run,output=None):
     run=Path(run);out=Path(output)if output else run/'hardware-readiness.json';z=np.load(run/'joint-motion.npz');t=np.arange(np.ceil(z['time_s'][0]*1000),np.floor(z['time_s'][-1]*1000)+1)/1000;clock=reconstruct_commands(z)
     q,v,a,j=[clock(t,k)for k in range(4)];lo,hi=position_velocity_bounds(q.reshape(-1,2,7));lo=lo.reshape(-1,14);hi=hi.reshape(-1,14)
     command=dict(sample_rate_hz=1000,samples=len(t),position_pass=bool(np.all(q>=np.tile(LOWER,2))and np.all(q<=np.tile(UPPER,2))),velocity_pass=bool(np.all(v>=lo-1e-6)and np.all(v<=hi+1e-6)),acceleration_max_rad_s2=float(abs(a).max()),jerk_max_rad_s3=float(abs(j).max()),acceleration_pass=bool(abs(a).max()<=10+1e-6),jerk_pass=bool(abs(j).max()<=5000+1e-3),interpolation='C2 quintic Hermite reconstruction from recorded command q/dq/ddq; not a tested FCI execution loop')
+    continuous_peak=continuous_jerk_peak(clock)
+    continuous=dict(method='Exact extrema of piecewise quadratic third derivatives',maximum_rad_s3=continuous_peak,FR3_limit_rad_s3=5000.,FR3_limit_pass=bool(continuous_peak<=5000.001),budget_95_percent_pass=bool(continuous_peak<=4750.001),uniform_time_scale_for_95_percent_jerk=max(1.,(continuous_peak/4750.)**(1/3)),scope='Post-hoc C2 interpolation of recorded command states; does not recover Ruckig internal substep switches or measure motor jerk')
     model=load_model();model.body_gravcomp[:]=0;model.opt.gravity[:]=[0,0,-9.81];data=mujoco.MjData(model)
     names=json.loads((run/'dof-names.json').read_text());arms=[names[int(i)]for i in z['dof_indices']];qa=[int(model.joint(n).qposadr[0])for n in arms];va=[int(model.joint(n).dofadr[0])for n in arms];allqa=[int(model.joint(n).qposadr[0])for n in names];tape=np.load(run/'physics-tape.npz');fullq=np.array([np.interp(t,tape['time_s'],tape['joint_positions'][:,i])for i in range(len(names))]).T
     torque=np.empty((len(t),14));gravity=np.empty_like(torque);tau=np.zeros(model.nv)
@@ -34,6 +44,9 @@ def audit(run,output=None):
     m=json.loads((run/'run-manifest.json').read_text());trial=m.get('layout')=='trial_rail_offsets'or(m.get('layout')is None and m['arguments'].get('clamps'))
     blockers=[dict(id='layout',status='failed'if trial else'unverified',detail='Shifted sensor experiment differs from user-confirmed original CAD; separate optical-axis CAD solids were incorrectly treated as rigid rails.'if trial else'Original sensor mounts retained; verify the optical-axis semantic correction and physical head/tail clearance. No hardware assembly pass implied.'),dict(id='controller',status='unverified',detail='480Hz implicit PhysX position/velocity drives: '+str(dict(stiffness=m.get('arm_drive_stiffness_nm_rad'),damping=m.get('arm_drive_damping_nm_s_rad')))+'; internal FR3 damping/controller response and FCI filtering not replicated.'),dict(id='sensing',status='unverified',detail='120Hz exact zero-latency workpiece pose, individual pad contacts and fixture impulses; no real sensor/calibration/latency model. Alignment gate is 25um.'),dict(id='gravity_payload',status='unverified',detail='Robot gravity disabled in PhysX; real FR3 gravity compensation exists but motor torque/load calibration and contact torque budget remain unverified.'),dict(id='gripper',status='unverified',detail='Robotiq 2F-85 direct joint motor/mimic model is not the real position/speed/force register interface; command latency, force/position resolution and compliance not calibrated.'),dict(id='fixture',status='unverified',detail='Added clamp jaws, 80ms closure ramp, pin supply sleeve and spring button are assumed; no measured mechanical stroke, response, placement or PLC I/O.'),dict(id='fci',status='unverified',detail='No executed 1kHz libfranka loop, network jitter test, robot-specific limits, collision thresholds or measured torque-rate trace.'),dict(id='repeatability',status='unverified',detail='One deterministic episode; no tolerance, friction, perception-noise or delay robustness distribution; cycle omits ready-pose initialization and return to start.')]
     report=dict(state='not_hardware_ready',hardware_execution_certified=False,run=str(run),joint_command_1khz_screen=command,inverse_dynamics_screen=dict(joint_position_mode_condition='Torque and torque rate are recommended conditions; the robot may adjust execution, so a model violation warns against claiming identical hardware timing. Torque rate is necessary for torque control.',scope='Model-only arm + imported gripper, no contacts, carried workpiece or motor friction; frozen finger velocity/acceleration; torque rate uses gravity-excluded torque as FCI convention',model_scene_sha256=hashlib.sha256(model_xml()[0].read_bytes()).hexdigest(),all_total_torque_within_limits=all(x['model_total_torque_within_limit']for x in rows),all_without_gravity_rate_within_limits=all(x['model_without_gravity_rate_within_limit']for x in rows),joints=rows),blockers=blockers,sources=dict(fr3_limits='https://frankarobotics.github.io/docs/robot_specifications.html',fci='https://frankarobotics.github.io/docs/overview.html',robot_state='https://frankarobotics.github.io/libfranka/latest/structfranka_1_1RobotState.html',impedance='https://frankarobotics.github.io/libfranka/latest/classfranka_1_1Robot.html',gripper='https://robotiq.com/products/adaptive-grippers'))
+    report['interpolated_command_continuous_jerk']=continuous
+    if not continuous['budget_95_percent_pass']:
+        report['blockers'].append(dict(id='interpolated_command_jerk',status='warning',detail='The reconstructed C2 curve exceeds the 95% jerk budget between samples. Validate/replan the field curve continuously; exporting states alone does not preserve the native generator substeps.'))
     out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(report,indent=2)+'\n');np.savez_compressed(out.with_suffix('.npz'),time_s=t,position=q,velocity=v,acceleration=a,jerk=j,model_total_torque=torque,model_gravity=gravity,model_torque_without_gravity=dynamic)
     print(json.dumps(dict(state=report['state'],command_1khz=command,model_max_total_torque_nm=float(abs(torque).max()),model_max_without_gravity_rate_nm_s=float(abs(rate).max()),model_total_torque_pass=report['inverse_dynamics_screen']['all_total_torque_within_limits'],model_torque_rate_pass=report['inverse_dynamics_screen']['all_without_gravity_rate_within_limits'],output=str(out)),indent=2));return report
 if __name__=='__main__':
