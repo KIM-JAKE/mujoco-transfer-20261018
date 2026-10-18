@@ -1,6 +1,6 @@
 {
   "under_10_verified": false,
-  "latest_verified_original_cycle_s": 15.129166666666666,
+  "latest_verified_original_cycle_s": 10.141666666666667,
   "experiments": [
     {
       "run": "contact-concurrent-01",
@@ -37,6 +37,24 @@
       "physical_simulation_pass": false,
       "hardware_ready": false,
       "notes": "Right empty-return joint acceleration exceeded actual native guard; no full assembly pass"
+    },
+    {
+      "run": "contact-concurrent-05",
+      "state": "functional_pass_time_fail",
+      "cycle_time_s": 10.141666666666667,
+      "fr3_kinematic_limits_pass": true,
+      "all_parts_and_button_pass": true,
+      "peak_unintended_robot_contact_n": 0,
+      "physical_simulation_pass": false,
+      "hardware_ready": false
+    },
+    {
+      "run": "contact-concurrent-06",
+      "state": "failed",
+      "error": "RuntimeError('Measured FR3 kinematic limit exceeded at 3.54375s: acceleration=6.612672060728073, jerk=5348.329067230225')",
+      "notes": "Contact-induced left joint6 jerk during ring2 clamping; numerical near-identical spatial input does not establish repeatability",
+      "physical_simulation_pass": false,
+      "hardware_ready": false
     }
   ],
   "scope": "Failed prototypes retained honestly; nominal clocks are not physical success",
@@ -47,5 +65,6 @@
     "model_rate_limit_nm_s": 1000,
     "hardware_ready": false,
     "scope": "Imported-model warning, no measured robot torque, no contacts or carried payload"
-  }
+  },
+  "latest_functional_run": "contact-concurrent-05"
 }

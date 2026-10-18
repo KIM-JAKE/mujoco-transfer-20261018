@@ -1,8 +1,8 @@
 {
   "target_cycle_s": 10.0,
   "strictly_less_than": true,
-  "deadline_kst": "2026-10-19T14:00:00+09:00",
-  "deadline_utc": "2026-10-19T05:00:00Z",
+  "deadline_kst": "2026-10-19T12:00:00+09:00",
+  "deadline_utc": "2026-10-19T03:00:00Z",
   "after_deadline": "Stop optimization; finish CaP-style field package and push; do not mislabel unverified hardware readiness",
   "repository": "KIM-JAKE/mujoco-transfer-20261018",
   "geometry_policy": "Original CAD head mount positions fixed; long units identified as E32-T11N fiber sensor. No arbitrary rigid-rail relocation.",
@@ -15,9 +15,10 @@
     "branch": "main",
     "repo": "KIM-JAKE/mujoco-transfer-20261018",
     "status": "pushed",
-    "contents": "PhysX port, optical-axis correction, original-layout 15.129s evidence, self-contained seed, field integration preflight"
+    "contents": "PhysX port, optical-axis correction, original-layout 15.129s evidence, self-contained seed, field integration preflight",
+    "latest_commit": "9c9b466"
   },
-  "latest_original_layout_cycle_s": 15.129166666666666,
+  "latest_original_layout_cycle_s": 10.141666666666667,
   "under_10_verified": false,
   "fieldkit_push": {
     "commit": "bbf0f97",
@@ -27,5 +28,11 @@
     "live_robot_tested": false
   },
   "latest_experimental_nominal_s": 9.483333333333333,
-  "nominal_only": true
+  "nominal_only": true,
+  "latest_user_instruction": "Continue reducing as far as possible until 2026-10-19 12:00 Asia/Seoul, even if under 10 seconds is achieved; publish final at noon",
+  "publish_at_deadline": true,
+  "no_more_intermediate_pushes": true,
+  "latest_original_functional_run": "contact-concurrent-05",
+  "final_publish_ref": "refs/heads/m80-noon-release",
+  "intermediate_pushes_complete": true
 }

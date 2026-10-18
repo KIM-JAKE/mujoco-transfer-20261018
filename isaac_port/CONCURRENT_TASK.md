@@ -2,7 +2,7 @@
 
 이 경로는 원본 CAD의 센서 장착 위치를 유지한다. 광축 표시 solid만 제외하며 센서 본체와 tail은 강체다. 왼팔의 핀 파지 방향을 원통 목 둘레로 -60° 바꾸고, 접촉이 없는 이동 구간을 줄인다. 작업물은 PhysX 동역학으로 움직이며 파지 후 pose를 강제하거나 손에 고정 joint를 만들지 않는다.
 
-현재 **실험 경로**다. 오프라인 9초대 계산은 실제 접촉 성공이나 실기 성능을 뜻하지 않는다. 검증된 원본 배치 기준 결과는 여전히 `reports/original-sensors-01/acceptance.json`의 15.129167초다. 최신 실험 근거는 `reports/concurrent-experiments.json`을 확인한다. 실기 준비는 [fieldkit/README.md](fieldkit/README.md)를 따른다.
+현재 **실험 경로**다. 오프라인 9초대 계산은 실제 접촉 성공이나 실기 성능을 뜻하지 않는다. 최신 원본 배치 전체 기능·FR3 한도 통과 기록은 `reports/concurrent-05/acceptance.json`의 **10.141667초**이며 엄격한 10초 미만 목표는 미달이다. 최신 실험 근거는 `reports/concurrent-experiments.json`을 확인한다. 실기 준비는 [fieldkit/README.md](fieldkit/README.md)를 따른다.
 
 ## 경로와 시계
 
@@ -58,4 +58,4 @@ python isaac_port/audit_hardware_readiness.py isaac_port/runs/concurrent-reprodu
 
 `acceptance.json`의 전체 조립·접촉·FR3 한도·엄격한 10초 미만 판정을 함께 확인한다. `hardware-readiness.json`은 별도의 모델 토크·토크 변화율과 현장 미검증 조건을 기록한다. 시뮬레이션에서 통과해도 `hardware_execution_certified`는 false다.
 
-이번 최적화 작업은 각 실행에 `--respect-cutoff`를 사용하고 한국 시간 2026-10-19 14:00에 중단한다. 마감 이후 같은 기록을 재현할 때는 이 옵션을 생략할 수 있다.
+이번 최적화 작업은 각 실행에 `--respect-cutoff`를 사용하고 한국 시간 2026-10-19 낮 12시에 중단하고 준비된 최종본의 GitHub 푸시를 시작한다. 10초 미만을 달성해도 마감까지 계속 단축한다. 마감 이후 같은 기록을 재현할 때는 이 옵션을 생략할 수 있다.
