@@ -30,12 +30,21 @@ python3 isaac_port/bundle_assets.py restore
 
 ## 2. Code as Policies 방식의 연결 지점
 
+`policy.py`의 `assemble_concurrent(cell)`은 왼팔 링2→핀, 오른팔 링1→버튼 접근을 독립적으로 진행한다. 왼팔의 핀 작업은 오른팔 링 삽입이 끝나기 전에 시작할 수 있다. 각 부품의 파지·삽입·클램프·손 해제는 측정 상태를 확인하고, 마지막 버튼은 세 부품 해제와 실제 1.8mm/100ms 확인을 요구한다. `assemble(cell)`은 단계별 barrier를 둔 기본 계약 예제다.
+
+```bash
+python3 -m isaac_port.fieldkit dry-run --concurrent
+python3 -m unittest isaac_port.fieldkit.test_fieldkit -v
+```
+
+Python의 두 작업 lane은 작업 의존성을 표현한다. `Cell`은 동일한 보정·검사된 현장 계획을 바인딩하고, 1kHz 서보의 양팔 교차 구간 인터록과 공통 중단을 구현해야 한다. 동시 호출에 안전하고 모든 동작이 제한 시간 안에 반환하며 `stop()`이 진행 중인 두 동작을 중단해야 한다. dry run에는 물리 시간 예측이나 실기 운동이 없다.
+
 `policy.py`의 `assemble(cell)`은 양팔 링 파지 → 삽입 → 클램프 확인 → 손 해제 → 핀 조립 → 버튼 순서의 Python 작업 정책이다. `Cell` 인터페이스를 현장 제어기에 연결한다.
 
 | 함수 | 현장 어댑터가 해야 할 일 |
 |---|---|
 | `execute_parallel(actions)` | 두 팔의 충돌을 검사한 동시 동작 또는 그리퍼·PLC 명령을 실행한다. 각 동작에 시간 제한과 실패 상태를 둔다. |
-| `observe()` | 실제 파지·삽입·클램프·해제 피드백과 fault를 반환한다. 명령 전송 성공을 센서 확인으로 대체하지 않는다. |
+| `observe()` | 현재 주기의 실제 파지·삽입·클램프·해제, `button_verified`와 fault를 반환한다. 명령 전송 성공을 센서 확인으로 대체하지 않는다. |
 | `press_button(...)` | 세 부품 해제 확인 후 실제 버튼 신호·변위와 유지 시간을 확인한다. |
 | `stop()` | FR3 및 주변 액추에이터를 현장 제어기의 정지 절차로 전환한다. |
 

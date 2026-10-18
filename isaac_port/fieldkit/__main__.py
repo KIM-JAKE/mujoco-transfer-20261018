@@ -3,7 +3,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-from .policy import DryRunCell, assemble
+from .policy import DryRunCell, assemble, assemble_concurrent
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -42,15 +42,17 @@ def main():
     parser.add_argument('command', choices=['preflight', 'dry-run'])
     parser.add_argument('--config', type=Path)
     parser.add_argument('--output', type=Path)
+    parser.add_argument('--concurrent', action='store_true', help='Exercise independent two-arm task lanes in a dry run')
     args = parser.parse_args()
     if args.command == 'preflight':
         result = preflight(args.config)
         code = 2  # Explicitly incomplete; useful for automated commissioning gates.
     else:
         cell = DryRunCell()
-        assemble(cell)
+        (assemble_concurrent if args.concurrent else assemble)(cell)
         result = dict(state='dry_run_passed', hardware_ready=False,
-                      physical_simulation=False, cycle_time_s=None, events=cell.events)
+                      physical_simulation=False, cycle_time_s=None,
+                      concurrent_lanes=bool(args.concurrent),events=cell.events)
         code = 0
     text = json.dumps(result, indent=2)
     print(text)

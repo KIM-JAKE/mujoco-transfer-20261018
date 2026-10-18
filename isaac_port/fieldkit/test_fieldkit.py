@@ -1,10 +1,46 @@
 import unittest
+from threading import Event
 from dataclasses import replace
-from .policy import DryRunCell, assemble
+from .policy import DryRunCell, assemble, assemble_concurrent
 from .__main__ import preflight
 
 
 class FieldContractTests(unittest.TestCase):
+    def test_left_pin_can_start_while_right_ring_is_still_being_inserted(self):
+        class OverlapCell(DryRunCell):
+            def __init__(self):
+                super().__init__();self.right_inserting=Event();self.left_pin_started=Event()
+            def execute_parallel(self,actions):
+                if ('right','insert','ring1')in actions:
+                    self.right_inserting.set()
+                    if not self.left_pin_started.wait(2):raise RuntimeError('Unwanted global ring barrier')
+                if ('left','grasp','pin')in actions:
+                    if not self.right_inserting.wait(2):raise RuntimeError('Right lane did not run')
+                    self.left_pin_started.set()
+                super().execute_parallel(actions)
+        cell=OverlapCell();assemble_concurrent(cell)
+        self.assertTrue(cell.left_pin_started.is_set())
+        self.assertTrue(cell.observe().button_verified)
+        self.assertEqual(cell.events[-1]['action'],'press_button')
+
+    def test_button_command_return_without_measured_confirmation_stops(self):
+        class NoButtonAck(DryRunCell):
+            def press_button(self,**parameters):
+                self.events.append(dict(action='button_command_only'))
+        cell=NoButtonAck()
+        with self.assertRaisesRegex(RuntimeError,'button travel'):
+            assemble_concurrent(cell)
+        self.assertTrue(cell.stopped)
+        self.assertFalse(cell.observe().button_verified)
+
+    def test_concurrent_clamp_fault_stops_both_lanes_without_press(self):
+        class FailedClamp(DryRunCell):
+            def observe(self):return replace(super().observe(),clamped=frozenset())
+        cell=FailedClamp()
+        with self.assertRaises(RuntimeError):assemble_concurrent(cell)
+        self.assertTrue(cell.stopped)
+        self.assertFalse(any(x['action']=='press_button'for x in cell.events))
+
     def test_normal_contract_orders_clamp_before_release_and_button_last(self):
         cell = DryRunCell()
         assemble(cell)
