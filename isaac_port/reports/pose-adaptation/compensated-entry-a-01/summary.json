@@ -7,5 +7,23 @@
   "hypothesis_for_next_trial": "Switch to raw measured pin pose only at zero-speed entry while retaining free-motion lag compensation and measured velocity settling. No acceptance relaxation.",
   "archive": "measured-evidence.zip",
   "restored_checksums_passed": true,
-  "production_best_cycle_s": 9.466666666666667
+  "production_best_cycle_s": 9.466666666666667,
+  "companion_negative_cases": [
+    {
+      "run": "contact-adaptive-compensated-b-01",
+      "same_frozen_implementation": true,
+      "transverse_error_m": 0.00019614550700629093,
+      "gate_xy_m": 2.5e-05,
+      "status": "failed_gate_timeout",
+      "scope": "Companion diagnostics only; full tapes are not included in this report. No successful assembly claim."
+    },
+    {
+      "run": "contact-stationary-entry-nominal-04",
+      "same_frozen_implementation": true,
+      "transverse_error_m": 0.00015148601987504198,
+      "gate_xy_m": 2.5e-05,
+      "status": "failed_gate_timeout",
+      "scope": "Companion diagnostics only; full tapes are not included in this report. No successful assembly claim."
+    }
+  ]
 }
