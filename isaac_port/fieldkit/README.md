@@ -1,5 +1,7 @@
 # M80 현장 연결 준비
 
+현장 엔지니어는 **[FR3 온보딩 순서](ONBOARDING_FR3.md)**부터 읽는다. 복제·상태 읽기·좌표/TCP/하중 보정·카메라 입력·그리퍼/PLC 계약·첫 저속 움직임·기록과 문제 해결을 한 문서에 정리했다.
+
 현재 배포본은 **실기 통합 준비본**이다. `git clone` 후 사전 점검과 작업 정책의 dry run을 실행하고 FR3의 상태를 읽는 도구를 빌드할 수 있다. 실제 두 팔·그리퍼·PLC를 연결한 자동 조립은 아직 검증하지 않았다. 시뮬레이션 좌표를 실기 관절 명령으로 바로 재생하지 않는다.
 
 ## 1. 가벼운 복제와 오프라인 점검
@@ -24,7 +26,7 @@ python3 -m unittest isaac_port.fieldkit.test_fieldkit -v
 python3 isaac_port/bundle_assets.py restore
 ```
 
-별도 빈 폴더에 758개 파일을 복원하고 MuJoCo 모델(30 DOF)을 로딩하는 검사를 통과했다. 실행 환경과 실기 보정값을 담은 패키지는 아니다. `run_contact.sh`는 AIDAS의 공용 `isaac-run` 및 개인 패키지 환경을 이용한다. 최신 기록의 15초 판정 실패도 그대로 재현·기록하며, 결과는 `acceptance.json`에서 확인한다.
+별도 빈 폴더에 758개 파일을 복원하고 MuJoCo 모델(30 DOF)을 로딩하는 검사를 통과했다. 실행 환경과 실기 보정값을 담은 패키지는 아니다. `run_contact.sh`는 AIDAS의 공용 `isaac-run` 및 개인 패키지 환경을 이용한다. 현재 양팔 독립 경로의 9.625초 결과는 `../CONCURRENT_TASK.md`의 별도 절차로 재현하며, 전체 판정은 각 실행의 `acceptance.json`에서 확인한다.
 
 ## 2. Code as Policies 방식의 연결 지점
 
