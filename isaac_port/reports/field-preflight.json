@@ -1,0 +1,103 @@
+{
+  "state": "integration_required",
+  "hardware_ready": false,
+  "live_motion_enabled": false,
+  "blockers": [
+    {
+      "id": "layout",
+      "status": "unverified",
+      "detail": "Original sensor mounts retained; verify the optical-axis semantic correction and physical head/tail clearance. No hardware assembly pass implied."
+    },
+    {
+      "id": "controller",
+      "status": "unverified",
+      "detail": "480Hz implicit PhysX position/velocity drives with K=12000, D=600/1800; internal FR3 damping/controller response and FCI filtering not replicated."
+    },
+    {
+      "id": "sensing",
+      "status": "unverified",
+      "detail": "120Hz exact zero-latency workpiece pose, individual pad contacts and fixture impulses; no real sensor/calibration/latency model. Alignment gate is 25um."
+    },
+    {
+      "id": "gravity_payload",
+      "status": "unverified",
+      "detail": "Robot gravity disabled in PhysX; real FR3 gravity compensation exists but motor torque/load calibration and contact torque budget remain unverified."
+    },
+    {
+      "id": "gripper",
+      "status": "unverified",
+      "detail": "Robotiq 2F-85 direct joint motor/mimic model is not the real position/speed/force register interface; command latency, force/position resolution and compliance not calibrated."
+    },
+    {
+      "id": "fixture",
+      "status": "unverified",
+      "detail": "Added clamp jaws, 80ms closure ramp, pin supply sleeve and spring button are assumed; no measured mechanical stroke, response, placement or PLC I/O."
+    },
+    {
+      "id": "fci",
+      "status": "unverified",
+      "detail": "No executed 1kHz libfranka loop, network jitter test, robot-specific limits, collision thresholds or measured torque-rate trace."
+    },
+    {
+      "id": "repeatability",
+      "status": "unverified",
+      "detail": "One deterministic episode; no tolerance, friction, perception-noise or delay robustness distribution; cycle omits ready-pose initialization and return to start."
+    },
+    {
+      "id": "model_torque_rate",
+      "status": "warning",
+      "detail": "Imported-model screening exceeds 1000 Nm/s; not measured robot torque."
+    },
+    {
+      "id": "robot_system_versions",
+      "status": "missing",
+      "detail": "Site-specific configuration/evidence required."
+    },
+    {
+      "id": "robot_ips",
+      "status": "missing",
+      "detail": "Site-specific configuration/evidence required."
+    },
+    {
+      "id": "base_to_cell_transforms",
+      "status": "missing",
+      "detail": "Site-specific configuration/evidence required."
+    },
+    {
+      "id": "tool_calibration",
+      "status": "missing",
+      "detail": "Site-specific configuration/evidence required."
+    },
+    {
+      "id": "payloads",
+      "status": "missing",
+      "detail": "Site-specific configuration/evidence required."
+    },
+    {
+      "id": "robotiq_interface",
+      "status": "missing",
+      "detail": "Site-specific configuration/evidence required."
+    },
+    {
+      "id": "clamp_plc_io",
+      "status": "missing",
+      "detail": "Site-specific configuration/evidence required."
+    },
+    {
+      "id": "part_pose_sensor",
+      "status": "missing",
+      "detail": "Site-specific configuration/evidence required."
+    },
+    {
+      "id": "button_feedback",
+      "status": "missing",
+      "detail": "Site-specific configuration/evidence required."
+    },
+    {
+      "id": "commissioning_evidence",
+      "status": "missing",
+      "detail": "Site-specific configuration/evidence required."
+    }
+  ],
+  "evidence_sha256": "8dd43d0d5de015cd6c37cddcb19e7f1df6257b01e292254a383b2501d804625c"
+}

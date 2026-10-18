@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(m80_field_probe LANGUAGES CXX)
+find_package(Franka CONFIG REQUIRED)
+add_executable(m80_read_state read_state.cpp)
+target_compile_features(m80_read_state PRIVATE cxx_std_17)
+target_link_libraries(m80_read_state PRIVATE Franka::Franka)

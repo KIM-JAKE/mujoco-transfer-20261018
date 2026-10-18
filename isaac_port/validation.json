@@ -1,0 +1,110 @@
+{
+  "completed_at_kst": "2026-10-18T13:16:57.720015+09:00",
+  "scope": "Initial Isaac Sim / PhysX port of the integrated M80 + FR3 DUO + G2 scene",
+  "passed": true,
+  "physical_assembly_pass": false,
+  "image_id": "sha256:24731957113a5c8b61ad29ad1da15bfa7a9ac3768408087306eeba4871a54256",
+  "source_scene_sha256": "6f3048e4a2831acafbca6b871174b52a217aeefac42e2e7d0e8c8201ef85e06e",
+  "source_asset_digest": "5c37066e1d35110078761e32357bb66bb015701522627725f24889130b0d03e3",
+  "source_counts": {
+    "nbody": 114,
+    "njnt": 78,
+    "nq": 144,
+    "nv": 133,
+    "nu": 53,
+    "ngeom": 3512,
+    "nmesh": 800
+  },
+  "fresh_usd_conversion_passed": true,
+  "cached_pipeline_passed": true,
+  "original_mujoco_preparation_parity": {
+    "passed": true,
+    "compared_arrays": [
+      "body_pos",
+      "body_quat",
+      "body_mass",
+      "body_inertia",
+      "geom_pos",
+      "geom_quat",
+      "geom_size",
+      "geom_contype",
+      "geom_conaffinity",
+      "jnt_pos",
+      "jnt_axis",
+      "jnt_range",
+      "mesh_vert",
+      "mesh_face"
+    ],
+    "rtol": 1e-06,
+    "atol": 1e-07
+  },
+  "initial_usd_body_pose_parity": {
+    "body_count": 113,
+    "max_position_error_m": 2.1754626115690703e-07,
+    "max_angle_error_rad": 4.298152059869762e-07,
+    "passed": true
+  },
+  "tracking": {
+    "left_arm_fr3v2_joint1": {
+      "measured_motion_rad": 0.11980391436372884,
+      "max_tracking_error_rad": 0.004343378566785169
+    },
+    "right_arm_fr3v2_joint1": {
+      "measured_motion_rad": 0.11980388339725323,
+      "max_tracking_error_rad": 0.004343142403752928
+    },
+    "idx21_arm_l_joint1": {
+      "measured_motion_rad": 0.07997368037467822,
+      "max_tracking_error_rad": 0.0011397051041217993
+    },
+    "idx61_arm_r_joint1": {
+      "measured_motion_rad": 0.0799743853349355,
+      "max_tracking_error_rad": 0.0011386655317415437
+    }
+  },
+  "base_tracking": {
+    "measured_motion_m": 0.0799417495727539,
+    "max_error_m": 0.006825347949661165,
+    "world_axis": [
+      2.220446049250313e-16,
+      0.9999999999999998,
+      0.0
+    ]
+  },
+  "planar_constraint": {
+    "max_height_error_m": 1.9490718841663757e-07,
+    "max_tilt_rad": 2.475566823160081e-07,
+    "passed": true
+  },
+  "mimic_max_errors_rad": {
+    "left_grip_right_driver_joint": 1.4901161193847656e-08,
+    "right_grip_right_driver_joint": 1.4901161193847656e-08
+  },
+  "physics_engine": "PhysX",
+  "physics_device": "CPU",
+  "physics_hz": 120,
+  "controlled_steps": 480,
+  "renderer": "RTX",
+  "video": {
+    "path": "runs/20261018T041408Z-102388/physx-joint-control.mp4",
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "frames": 180,
+    "seconds": 6,
+    "codec": "H.264/yuv420p"
+  },
+  "evidence": "runs/20261018T041408Z-102388",
+  "visual_review": {
+    "passed": true,
+    "review": "Inspected native initial/final camera frames: complete cell is visible, G2 remains upright. Full 180-frame H.264 video decoded successfully. Planar height/tilt are also asserted numerically on every controlled step."
+  },
+  "known_limits": [
+    "No complete magazine grasp/transfer/insertion episode was validated.",
+    "No Isaac Lab training task or live SAM3.1 perception adapter is provided yet.",
+    "No claim of identical MuJoCo/PhysX contact/filter/friction behavior.",
+    "Original upstream CAD interference remains unresolved; original historical reports were not changed."
+  ],
+  "run_command": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/run.sh --gpu auto",
+  "code_state": "Local files, not committed or pushed to GitHub."
+}
