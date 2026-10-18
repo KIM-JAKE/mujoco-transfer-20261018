@@ -1,0 +1,53 @@
+{
+  "state": "experimental_nominal_episode_passed_shifted_cases_failed",
+  "hardware_ready": false,
+  "nominal_cycle_time_s": 9.59375,
+  "source": "contact-stationary-entry-nominal-01",
+  "change": "Raw pin correction begins at the existing stationary entry point; no altered geometry or relaxed alignment/motion limits",
+  "promoted_as_fastest": false,
+  "repeatability_verified": false,
+  "scope": "One original-layout episode only. Changed stock poses failed actual native motion limits; not a replacement for the validated9.467s baseline or9.956s cachedshift-b V1.",
+  "cases": [
+    {
+      "run": "contact-adaptive-fast-api-a-01",
+      "status": {
+        "state": "failed",
+        "error": "RuntimeError('Measured FR3 kinematic limit exceeded at 11.322916666666666s: acceleration=22.1339750289917, jerk=10778.813552856445')",
+        "seconds": 224.14638491504593
+      }
+    },
+    {
+      "run": "contact-adaptive-fast-api-a-02",
+      "status": {
+        "state": "failed",
+        "error": "RuntimeError('Measured FR3 kinematic limit exceeded at 10.489583333333334s: acceleration=14.730443358421326, jerk=6388.864803314209')",
+        "seconds": 218.51287568401312
+      }
+    },
+    {
+      "run": "contact-adaptive-fast-api-b-02",
+      "status": {
+        "state": "failed",
+        "error": "RuntimeError('Measured FR3 kinematic limit exceeded at 8.735416666666667s: acceleration=9.22659695148468, jerk=7360.916233062744')",
+        "seconds": 206.49506924499292
+      }
+    },
+    {
+      "run": "contact-stationary-entry-nominal-02",
+      "status": {
+        "state": "failed",
+        "error": "RuntimeError('Measured FR3 kinematic limit exceeded at 8.195833333333333s: acceleration=9.21626329421997, jerk=5765.089416503906')",
+        "seconds": 200.42639542400138
+      }
+    },
+    {
+      "run": "contact-stationary-entry-nominal-03",
+      "status": {
+        "state": "failed",
+        "error": "RuntimeError('Measured FR3 kinematic limit exceeded at 9.44375s: acceleration=10.10442650411278, jerk=8085.638695210218')",
+        "seconds": 278.5640298690414
+      }
+    }
+  ],
+  "archive": "measured-evidence.zip"
+}
