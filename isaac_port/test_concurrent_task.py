@@ -179,6 +179,13 @@ try:
   if profile.metadata.get('pin_prealignment_reference') is not None:
    feedback.pin_prealignment_reference=float(profile.metadata['pin_prealignment_reference'])
   feedback.strict_clamp_alignment=bool(profile.metadata.get('strict_clamp_alignment',False))
+  feedback.settled_handoff_checkpoints=profile.metadata.get('settled_handoff_checkpoints',{})
+  pin_gain=float(profile.metadata.get('pin_pose_feedback_gain',.12))
+  if not math.isfinite(pin_gain)or not 0<pin_gain<=.12:raise ValueError('Pin pose-feedback gain must be finite and in (0,0.12]')
+  feedback.limited_pin_gain=pin_gain
+  feedback_report=json.loads((out/'feedback-parameters.json').read_text())
+  feedback_report['motion_limited_pin_pose_gain']=pin_gain
+  (out/'feedback-parameters.json').write_text(json.dumps(feedback_report,indent=2)+'\n')
  parts=RigidPrim([body_paths['workpiece_'+name]for name in ['ring1','ring2','pin']])
  parts.set_world_poses(positions=[source['parts'][name]['position']for name in ['ring1','ring2','pin']],orientations=[source['parts'][name]['quaternion']for name in ['ring1','ring2','pin']]);parts.set_velocities(linear_velocities=[0,0,0],angular_velocities=[0,0,0])
  if a.only_pin:

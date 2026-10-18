@@ -1,0 +1,19 @@
+{
+  "state": "rejected_timeout",
+  "hardware_ready": false,
+  "source": "contact-adaptive-conservative-b-02",
+  "status": {
+    "state": "failed",
+    "error": "RuntimeError(\"Insertion gate timeout: {'left': 'cross_arm_zone_wait_for_right', 'right': 'crossing_checkpoint_settling'}\")",
+    "seconds": 231.18166559800738
+  },
+  "last_gate": {
+    "left": "cross_arm_zone_wait_for_right",
+    "right": "crossing_checkpoint_settling"
+  },
+  "right_nominal_joint_error_rad": 0.01695962149716962,
+  "right_maximum_speed_rad_s": 0.00011290445399936289,
+  "cause": "Seating correction stayed frozen while holding just before release endpoint; physically released and clamped ring, but nominal joint settling could not finish",
+  "fix_under_test": "Decay seating correction only at a measured release checkpoint after three clear-pad samples, verified open gripper and verified clamp. Stationarity, alignment, force and all native FR3 limits unchanged.",
+  "unit_tests": "release-handoff-unit-tests.log"
+}

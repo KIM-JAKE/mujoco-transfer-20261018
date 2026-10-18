@@ -54,6 +54,8 @@ python3 isaac_port/archive_run.py restore isaac_port/reports/contact-trim-03/mea
 
 후속 시간 최적화에서는 오른팔 정지 확인 지점을 기준 2.82로 앞당겨 **11.947917초**에 기능·FR3·기록 검사를 통과했다. 왼팔 대기 자세 2.4와 원본 공간 경로를 유지했다. 10초 미만 조건은 미달이며, [별도 근거](../reports/conservative-early-handoff-01/summary.json)에 남겼다. 선택적 시간 준비 옵션은 `--conservative-ring-handoff --handoff-right-clear 2.82`다. 관측 기반 기본 API는 검증된 기존 해제 후 대기를 사용하므로 이 수치를 기본 API 성능으로 취급하지 않는다.
 
+위치 변경 `shift-b`에서 해제 종료점의 보정값이 남아 정지 확인을 막던 문제도 검사했다. 클램프 확인·패드 접촉 해제 3회·실제 그리퍼 열림을 확인한 뒤에만 보정값을 서서히 정리하도록 수정했다. 관절 오차 0.006rad와 정지 속도 0.03rad/s 기준은 유지했다. 수정 후 같은 관측 기반 계획은 **14.78125초**에 세 부품·버튼·실제 FR3·기록 검사를 통과했다. 10초 미만은 미달이다. [실패와 수정 근거](../reports/conservative-release-checkpoint-fix/summary.json). `run_physx()`의 기본 왼팔 damping은 위치 변경 검증과 같은 800으로 맞췄다.
+
 관측 기반 계획에서는 `skill.prepare(..., conservative_ring_handoff=True)` 또는 명령행 `--conservative-ring-handoff`를 선택한다. 새 위치 조건마다 이 설정의 PhysX 검사를 별도로 실행한다. 빠른 경로의 기능 통과를 보수적 경로의 지연 내성이나 실기 인증으로 바꾸지 않는다. 두 설정 모두 실제 로봇 연결 기능은 현장 어댑터에 구현해야 한다.
 
 ## 2. 제어 PC와 로봇 연결

@@ -135,7 +135,7 @@ class M80Skill:
 
     def run_physx(self, run_directory, *, initial_scene, command_prefix=None,
                   mounted_repo=None, respect_cutoff=False,
-                  arm_damping=600.,right_arm_damping=1800.):
+                  arm_damping=800.,right_arm_damping=1800.):
         """Execute a NEW native test with separately supplied true initial poses.
 
         command_prefix can be an Isaac Python executable or docker-exec argv.

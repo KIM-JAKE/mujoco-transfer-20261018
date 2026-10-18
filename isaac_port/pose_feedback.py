@@ -17,7 +17,7 @@ class PoseFeedback:
    self.clock=import_module(module).source_time
   else:self.clock=lambda side,t:t
   self.parts=['ring1','ring2','pin'];self.slerp=[Slerp(self.ts,Rotation.from_quat(self.source['mocap_quat'][:,i][:,[1,2,3,0]]))for i in range(3)]
-  self.force_limits={'ring1':20.,'ring2':20.,'pin':50.};self.pin_insert_gain=.25
+  self.force_limits={'ring1':20.,'ring2':20.,'pin':50.};self.pin_insert_gain=.25;self.limited_pin_gain=.12
   self.button=None;self.button_hold=False;self.offset=np.zeros(len(names));self.previous=np.zeros(len(names));self.held=None
   pub=json.loads((recording/'independent_schedule.json').read_text());self.windows={};self.insertion={};self.arrivals={};self.grip_counts={};self.clear_counts={}
   self.pin_alignment_start=next(r['end_s']for r in pub['lanes']['left']if r['stage']['label']=='transfer_last_pin')+pub['delays']['left']
@@ -112,6 +112,19 @@ class PoseFeedback:
   target,R=self.target(name,t);re=(R*predicted_R.inv()).as_rotvec()
   if name!='pin':axis=R.apply([0,0,1]);re-=axis*np.dot(re,axis)
   return target-predicted_position,re
+ def relax_released_handoff(self,name,t,indices,dt):
+  # A checkpoint sits just before the release endpoint. Once release is
+  # physically confirmed, keeping the seating correction frozen there can
+  # prevent the nominal measured-joint settling check from ever completing.
+  side,_,_,end=self.windows[name]
+  points=getattr(self,'settled_handoff_checkpoints',{}).get(side,[])
+  if not any(abs(point-end)<2e-7 for point in points)or abs(t-end)>2e-7:return False
+  if not getattr(self,'clamped',{}).get(name,False)or self.clear_counts[name]<3:return False
+  driver=self.names.index(side+'_grip_left_driver_joint')
+  desired=float(np.interp(end,self.ts,self.planned_q[:,driver]));actual=float(self.measured_q[driver])
+  if not np.isfinite([desired,actual]).all()or abs(actual-desired)>.01:return False
+  self.offset[indices]*=np.exp(-dt/.35)
+  return True
  def update(self,t,actual,positions,quaternions,forces,dt=1/120):
   reference=t
   self.data.qpos[self.qadr]=actual;mujoco.mj_kinematics(self.model,self.data);mujoco.mj_comPos(self.model,self.data)
@@ -137,7 +150,9 @@ class PoseFeedback:
      keep=(side=='right'and 5.7503333333<=own_clock<6.1)or(side=='left'and(3.2443333333<=own_clock<3.3943333333 or own_clock>=7.153))
      if not keep:self.offset[indices]*=np.exp(-dt/.35)
     continue
-   if getattr(self,'clamped',{}).get(active,False):continue
+   if getattr(self,'clamped',{}).get(active,False):
+    self.relax_released_handoff(active,t,indices,dt)
+    continue
    pe,re=self.errors(active,t,positions,quaternions);raw_pe=pe.copy();i=self.parts.index(active);seat_pe,seat_re=self.errors(active,self.windows[active][2],positions,quaternions)
    if self.motion_limited and not(active=='pin'and t>=self.pin_alignment_start):pe,re=self.compensated_errors(active,t,positions,quaternions,side)
    at_seat=t>=self.insertion[active]and np.linalg.norm(seat_pe)<.00045 and np.linalg.norm(seat_re)<.025
@@ -162,7 +177,7 @@ class PoseFeedback:
    J=np.r_[jp[:,dofs],.15*jr[:,dofs]];e=np.r_[pe,.15*re]
    dq=J.T@np.linalg.solve(J@J.T+.005**2*np.eye(6),e)
    gain=self.pin_insert_gain if active=='pin'and self.clock('left',t)>=5.8 else .25
-   if self.motion_limited:gain=(.12 if active=='pin'and t>=self.pin_alignment_start else .24 if t>=self.insertion[active]else .04)if getattr(self,'fast_cycle',False)else .04
+   if self.motion_limited:gain=(self.limited_pin_gain if active=='pin'and t>=self.pin_alignment_start else .24 if t>=self.insertion[active]else .04)if getattr(self,'fast_cycle',False)else .04
    if prealignment_hold:gain=.08
    cap=(.00024 if getattr(self,'fast_cycle',False)else .00012)if self.motion_limited else .0015
    self.offset[indices]+=np.clip(gain*dq,-cap,cap)
