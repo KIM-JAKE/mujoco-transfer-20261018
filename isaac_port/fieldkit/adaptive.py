@@ -63,13 +63,16 @@ class M80Skill:
             subprocess.run([self.python, str(PORT/script), *map(str, arguments)],
                            cwd=REPO, stdout=stream, stderr=subprocess.STDOUT, check=check)
 
-    def prepare(self, snapshot, camera_config, *, replay=False, respect_cutoff=False, conservative_ring_handoff=False):
+    def prepare(self, snapshot, camera_config, *, replay=False, respect_cutoff=False,
+                conservative_ring_handoff=False, timing_mode='guarded'):
         """No ground-truth argument: only camera data and calibrated priors.
 
         Returns an offline-screened plan. Preparing a path is separate from
         production cycle timing and from real-robot commissioning.
         """
         started = time.monotonic()
+        if timing_mode not in ('guarded','fast_v1'):
+            raise ValueError('timing_mode must be guarded or fast_v1')
         if self.output.exists() and any(self.output.iterdir()):
             raise FileExistsError('Use a new plan directory; measured plans are immutable')
         self.output.mkdir(parents=True, exist_ok=True)
@@ -98,11 +101,20 @@ class M80Skill:
             '--aggressive-contact-timing', '--coordinated',
             '--left-ring-clear', '1.96', '--right-ring-clear', '3.4',
             '--left-pin-time-reserve', '1.04', '--right-return-time-reserve', '1.1',
-            '--pin-approach-min', '.45', '--pin-fine-min', '.35', '--button-min', '.2',
-            '--pin-prealignment',
+            '--pin-approach-min', '.3' if timing_mode=='fast_v1' else '.45',
+            '--pin-fine-min', '.35', '--button-min', '.2',
+            *(['--pin-prealignment'] if timing_mode=='guarded' else []),
             '--strict-clamp-alignment',
             *(['--conservative-ring-handoff'] if conservative_ring_handoff else []),
             *cutoff], self.output/'timing.log')
+        expected_controller=None
+        if timing_mode=='fast_v1':
+            expected_controller=dict(pin_feedback_mode='legacy',pin_entry_settled=False,
+                                     pin_entry_raw_pose=False)
+            profile_path=self.output/'fr3-concurrent-profile.json'
+            profile=json.loads(profile_path.read_text())
+            profile.update(expected_controller)
+            profile_path.write_text(json.dumps(profile,indent=2)+'\n')
         checks = [
             ('audit_pin_pickup.py', ['--recording', self.output,
              '--plan', self.output/'arm-posture-fr3.npz',
@@ -145,12 +157,18 @@ class M80Skill:
         names+=product_names
         result = dict(state='offline_screened_requires_PhysX', hardware_ready=False,
                       conservative_ring_handoff=bool(conservative_ring_handoff),
+                      timing_mode=timing_mode,
+                      pin_alignment_strategy='legacy_moving_alignment' if timing_mode=='fast_v1' else 'prealignment_then_entry',
+                      simulation_drive_damping_nm_s_rad={'left':800.,'right':1800.},
                       live_motion_enabled=False, replay=bool(replay),
                       output=str(self.output), planning_seconds=time.monotonic()-started,
                       files={n:sha(self.output/n) for n in names},
                       requires=['Native PhysX grasp/contact and actual FR3 motion acceptance',
                                 'Fresh calibrated observation before cached-plan execution',
                                 'Field base/TCP/payload and gripper/PLC/bimanual stop integration'])
+        if timing_mode=='fast_v1':
+            result['experimental_controller']=expected_controller
+            result['requires'].append('Fast V1 has a recorded shifted-scene-A actual-limit failure; every new condition needs Native acceptance, with guarded replanning on rejection.')
         (self.output/'skill-plan.json').write_text(json.dumps(result, indent=2)+'\n')
         return result
 
@@ -241,11 +259,13 @@ def main(argv=None):
     p.add_argument('--camera-config', type=Path, required=True)
     p.add_argument('--replay', action='store_true')
     p.add_argument('--conservative-ring-handoff', action='store_true')
+    p.add_argument('--timing-mode', choices=['guarded','fast_v1'], default='guarded')
     p.add_argument('--respect-cutoff', action='store_true')
     a = p.parse_args(argv)
     print(json.dumps(M80Skill(a.baseline,a.output).prepare(a.snapshot,a.camera_config,
           replay=a.replay,respect_cutoff=a.respect_cutoff,
-          conservative_ring_handoff=a.conservative_ring_handoff),indent=2))
+          conservative_ring_handoff=a.conservative_ring_handoff,
+          timing_mode=a.timing_mode),indent=2))
 
 
 if __name__ == '__main__':

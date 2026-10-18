@@ -120,6 +120,52 @@ class ArtifactTests(unittest.TestCase):
             self.assertTrue(cls.return_value.prepare.call_args.kwargs['conservative_ring_handoff'])
             self.assertTrue(cls.return_value.prepare.call_args.kwargs['replay'])
 
+    def test_unknown_timing_mode_rejected_before_creating_a_plan(self):
+        with TemporaryDirectory()as directory:
+            root=Path(directory)/'new-plan'
+            with patch('subprocess.run')as backend:
+                with self.assertRaisesRegex(ValueError,'timing_mode'):
+                    M80Skill(root/'baseline',root).prepare(root/'capture.npz',root/'camera.json',timing_mode='turbo')
+                backend.assert_not_called()
+            self.assertFalse(root.exists())
+
+    def test_fast_v1_recipe_preserves_the_validated_moving_alignment_controller(self):
+        with TemporaryDirectory()as directory:
+            root=Path(directory);plan=root/'plan';capture=root/'snapshot.npz';capture.write_bytes(b'fixture')
+            capture.with_suffix('.json').write_text('{}');camera=root/'camera.json';camera.write_text('{"pin_holder_tracks_pin":false}')
+            calls=[]
+            def backend(script,args,log,**kwargs):
+                calls.append((script,list(map(str,args))))
+                for name in ['estimated-scene.json','trajectory.npz','config.json','independent_schedule.json','retiming.json',
+                             'arm-posture-fr3.npz','arm-posture-fr3.json','fr3-concurrent-profile.npz',
+                             'fr3-concurrent-profile.json','pickup-contract.json']:
+                    path=plan/name
+                    if not path.exists():path.write_bytes(b'{}')
+                if script in ['audit_pin_pickup.py','audit_spatial_candidate.py','audit_concurrent_nominal.py']:
+                    target=Path(args[args.index('--output')+1])
+                    target.write_text(json.dumps(dict(preclosure_triangle_clear=True,sampled_spatial_pass=True,sampled_cross_arm_pass=True)))
+            def observation(*args,**kwargs):Path(args[2]).write_text('{}')
+            with patch('isaac_port.fieldkit.adaptive.detect',side_effect=observation),patch.object(M80Skill,'_run',side_effect=backend):
+                result=M80Skill(root/'baseline',plan).prepare(capture,camera,replay=True,timing_mode='fast_v1')
+            timing=next(args for script,args in calls if script=='prepare_concurrent_timing.py')
+            self.assertEqual(timing[timing.index('--pin-approach-min')+1],'.3')
+            self.assertIn('--strict-clamp-alignment',timing)
+            self.assertNotIn('--pin-prealignment',timing)
+            self.assertNotIn('--pin-align-at-entry',timing)
+            self.assertEqual(result['pin_alignment_strategy'],'legacy_moving_alignment')
+            self.assertEqual(result['timing_mode'],'fast_v1')
+            self.assertEqual(result['experimental_controller'],dict(pin_feedback_mode='legacy',
+                             pin_entry_settled=False,pin_entry_raw_pose=False))
+            self.assertFalse(result['hardware_ready'])
+            self.assertTrue(any('actual-limit failure'in item for item in result['requires']))
+
+    def test_cli_propagates_fast_v1_recipe(self):
+        with patch('isaac_port.fieldkit.adaptive.M80Skill')as cls,redirect_stdout(io.StringIO()):
+            cls.return_value.prepare.return_value={'hardware_ready':False}
+            main(['--baseline','baseline','--output','new-plan','--snapshot','capture.npz',
+                  '--camera-config','camera.json','--replay','--timing-mode','fast_v1'])
+            self.assertEqual(cls.return_value.prepare.call_args.kwargs['timing_mode'],'fast_v1')
+
     def test_prepare_cannot_overwrite_an_existing_plan(self):
         with TemporaryDirectory()as directory:
             root=Path(directory);(root/'record.txt').write_text('previous measured result')

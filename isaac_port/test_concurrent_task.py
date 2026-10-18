@@ -185,6 +185,9 @@ try:
   feedback.limited_pin_gain=pin_gain
   feedback_report=json.loads((out/'feedback-parameters.json').read_text())
   feedback_report['motion_limited_pin_pose_gain']=pin_gain
+  # The released controller is legacy; copied unsupported metadata is not an acknowledgement.
+  feedback_report.update(pin_feedback_mode='legacy',pin_entry_settled=False,pin_entry_raw_pose=False)
+  feedback_report['pin_raw_alignment_active_from_reference_s']=feedback.pin_alignment_start
   (out/'feedback-parameters.json').write_text(json.dumps(feedback_report,indent=2)+'\n')
  parts=RigidPrim([body_paths['workpiece_'+name]for name in ['ring1','ring2','pin']])
  parts.set_world_poses(positions=[source['parts'][name]['position']for name in ['ring1','ring2','pin']],orientations=[source['parts'][name]['quaternion']for name in ['ring1','ring2','pin']]);parts.set_velocities(linear_velocities=[0,0,0],angular_velocities=[0,0,0])
