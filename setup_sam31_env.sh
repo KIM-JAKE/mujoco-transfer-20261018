@@ -12,7 +12,7 @@ if ! "$ENV/bin/python" -c 'import torch, torchvision' >/dev/null 2>&1; then
  exit 2
 fi
 "$ENV/bin/python" -m pip install --upgrade pip setuptools wheel
-"$ENV/bin/python" -m pip install -e "$RUNTIME/sam31_source" opencv-python-headless
+"$ENV/bin/python" -m pip install -e "$RUNTIME/sam31_source" 'opencv-python-headless<4.12' einops pycocotools
 PYTHONPATH="$RUNTIME/sam31_source" "$ENV/bin/python" - <<'PY'
 import torch
 from sam3 import model_builder
