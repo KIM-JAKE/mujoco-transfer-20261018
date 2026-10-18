@@ -18,9 +18,13 @@ else:
 clock=source_time if(args.retimed or args.fast)else lambda side,t:t
 ROOT=HERE;RUN=ROOT/'generated/contact_task/fast'if args.fast else ROOT/'generated/contact_task/retimed'if args.retimed else SOURCES['cap_button'].parent.parent/'cap_button_parallel_alt_20261016'
 class Checker:
- def __init__(self,run=None,layout="physical",source_clock=None,include_cross_arm=True):
+ def __init__(self,run=None,layout="physical",source_clock=None,include_cross_arm=True,initial_scene=None):
   self.layout=layout;run=RUN if run is None else Path(run);self.source_clock=source_clock or clock;self.include_cross_arm=include_cross_arm
-  self.source=json.loads((ROOT/'generated/contact_task/contact-source.json').read_text());self.arr=np.load(ROOT/'generated/contact_task/collision.npz');self.cache={};self.static=[];self.robot=[];self.static_names={};self.side='right'
+  self.source=json.loads((ROOT/'generated/contact_task/contact-source.json').read_text());self.stock_support_delta=np.eye(4)
+  if initial_scene is not None:
+   from stock_scene_variation import prepare_source
+   self.source,self.stock_support_delta,_=prepare_source(self.source,initial_scene)
+  self.arr=np.load(ROOT/'generated/contact_task/collision.npz');self.cache={};self.static=[];self.robot=[];self.static_names={};self.side='right'
   for row in self.source['geoms']:
    if row['body']=='m80'and row['name']!='instance_0159':
     pos=np.array(row['position']).copy()
@@ -31,7 +35,7 @@ class Checker:
    elif row['body'].startswith(('left_','right_','official_FR3_Duo')):self.robot.append((row,fcl.CollisionObject(self.shape(row,True))))
   self.static.append(fcl.CollisionObject(fcl.Cylinder(.018,.004),fcl.Transform(Rotation.from_euler('x',90,degrees=True).as_matrix(),np.array([.355969,-.2395,1.527]))))
   from stock_fixture_geometry import pin_stock_sleeve
-  vertices,faces,center=pin_stock_sleeve();sleeve=fcl.BVHModel();sleeve.beginModel(len(vertices),len(faces));sleeve.addSubModel(vertices,faces);sleeve.endModel();self.stock_sleeve=fcl.CollisionObject(sleeve,fcl.Transform(np.eye(3),center));self.static.append(self.stock_sleeve)
+  vertices,faces,center=pin_stock_sleeve();sleeve=fcl.BVHModel();sleeve.beginModel(len(vertices),len(faces));sleeve.addSubModel(vertices,faces);sleeve.endModel();self.stock_sleeve=fcl.CollisionObject(sleeve,fcl.Transform(self.stock_support_delta[:3,:3],self.stock_support_delta[:3,:3]@center+self.stock_support_delta[:3,3]));self.static.append(self.stock_sleeve)
   precise=np.load(ROOT/'generated/contact_task/precision-cad.npz');cfg=json.loads((run/'config.json').read_text());targets=np.load(run/'trajectory.npz');self.installed=[];self.current_t=0.
   for name,identifier,side,end,index in [('ring1',542,'right',5.750333333333333,0),('ring2',549,'left',3.244333333333333,1)]:
    key=f'instance_{identifier:04d}';v=precise[key+'_vertices'];f=precise[key+'_faces'];pos=next(part['goal_origin_m']for part in cfg['parts']if part['name']==name);q=targets['mocap_quat'][-1,index];centroids=v[f].mean(axis=1);bins=np.floor((np.arctan2(centroids[:,1],centroids[:,0])+np.pi)/(2*np.pi)*64).astype(int)%64;objects=[]

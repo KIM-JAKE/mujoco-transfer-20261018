@@ -77,6 +77,12 @@ class PoseFeedback:
     target=np.array([np.interp(gate,self.ts,self.planned_q[:,i])for i in indices])+self.offset[indices]
     if np.max(abs(self.measured_q[indices]-target))>.0015 or np.max(abs(self.measured_qv[indices]))>.03:return gate,name+'_arrival'
   if self.motion_limited and 'pin'in self.insertion and getattr(self,'_gate_side','left')=='left':
+   prealignment=getattr(self,'pin_prealignment_reference',None)
+   if prealignment is not None:
+    gate=prealignment-1e-8
+    if previous<=gate and proposed>gate:
+     pe,re=self.errors('pin',prealignment,positions,quaternions)
+     if np.linalg.norm(pe[:2])>.00005 or abs(pe[2])>.0003 or np.linalg.norm(re)>.0015:return gate,'pin_clearance_alignment'
    gate=self.insertion['pin']-1e-8
    if previous<=gate and proposed>gate:
     pe,re=self.errors('pin',self.insertion['pin'],positions,quaternions)
@@ -136,6 +142,7 @@ class PoseFeedback:
    if self.motion_limited and not(active=='pin'and t>=self.pin_alignment_start):pe,re=self.compensated_errors(active,t,positions,quaternions,side)
    at_seat=t>=self.insertion[active]and np.linalg.norm(seat_pe)<.00045 and np.linalg.norm(seat_re)<.025
    terminal_hold=t>=self.windows[active][2]-2e-7
+   prealignment_hold=active=='pin' and abs(t-getattr(self,'pin_prealignment_reference',-100.))<2e-7
    if getattr(self,'fast_cycle',False)and active=='pin'and t>=self.pin_alignment_start and not at_seat:
     # Track real transverse alignment without integrating vertical motor lag.
     compensated,_=self.compensated_errors(active,t,positions,quaternions,side);pe[2]=compensated[2]
@@ -143,6 +150,7 @@ class PoseFeedback:
    # compensation must not hide the real remaining seating error. Clamp/release
    # still require their unchanged measured pose and contact conditions.
    if at_seat or terminal_hold:pe,re=seat_pe,seat_re
+   if prealignment_hold:pe,re=self.errors(active,t,positions,quaternions)
    if np.linalg.norm(raw_pe)>.025:raise RuntimeError('Carried-part tracking error exceeds 25 mm: '+active)
    if t>=self.insertion[active]:
     pe=np.clip(pe,-.0002,.0002)
@@ -155,6 +163,7 @@ class PoseFeedback:
    dq=J.T@np.linalg.solve(J@J.T+.005**2*np.eye(6),e)
    gain=self.pin_insert_gain if active=='pin'and self.clock('left',t)>=5.8 else .25
    if self.motion_limited:gain=(.12 if active=='pin'and t>=self.pin_alignment_start else .24 if t>=self.insertion[active]else .04)if getattr(self,'fast_cycle',False)else .04
+   if prealignment_hold:gain=.08
    cap=(.00024 if getattr(self,'fast_cycle',False)else .00012)if self.motion_limited else .0015
    self.offset[indices]+=np.clip(gain*dq,-cap,cap)
    self.offset[indices]=np.clip(self.offset[indices],-.25,.25)

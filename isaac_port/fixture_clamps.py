@@ -7,11 +7,11 @@ This hypothetical test layout does not certify the original CAD or hardware.
 import math
 from collections import deque
 import numpy as np
-from pxr import UsdGeom,UsdPhysics,UsdShade,PhysxSchema,Gf
 
 PARTS=['ring1','ring2','pin']
 
 def apply(stage,body_paths,trial_layout=False):
+    from pxr import UsdGeom,UsdPhysics,UsdShade,PhysxSchema,Gf
     # Legacy experiment only. Explicit hypothetical layout corrections
     # affect complete visual and collision instances in this task layer only.
     shifted=[]
@@ -79,7 +79,13 @@ class Controller:
             end=feedback.windows[name][2]
             pe,re=feedback.errors(name,end,positions,quats)
             eligible=ref>=feedback.insertion[name]if getattr(feedback,'fast_cycle',False)else ref>=end-.002
-            if not self.requested[name] and eligible and np.linalg.norm(pe)<.00045 and np.linalg.norm(re)<.025:
+            position_tolerance,rotation_tolerance=.00045,.025
+            if getattr(feedback,'strict_clamp_alignment',False):
+                side=feedback.windows[name][0]
+                indices=[feedback.names.index(side+'_arm_fr3v2_joint'+str(j))for j in range(1,8)]
+                eligible=ref>=end-2e-7 and np.max(abs(feedback.measured_qv[indices]))<.03
+                position_tolerance,rotation_tolerance=.00015,.01
+            if not self.requested[name] and eligible and np.linalg.norm(pe)<position_tolerance and np.linalg.norm(re)<rotation_tolerance:
                 self.requested[name]=True;self.close_started[name]=t;self.events.append(dict(time_s=t,part=name,event='close_requested',position_error_m=float(np.linalg.norm(pe))))
             if self.requested[name]:
                 ramp=.08 if getattr(feedback,'fast_cycle',False)else(.1 if name=='pin'else .2)

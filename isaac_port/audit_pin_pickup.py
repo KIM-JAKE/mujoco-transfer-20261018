@@ -8,9 +8,12 @@ from plan_right_posture import Checker
 from source_model import load_model
 
 
-def audit(recording,plan_path,output):
+def audit(recording,plan_path,output,initial_scene=None):
     root=Path(__file__).resolve().parent
     source=json.loads((root/'generated/contact_task/contact-source.json').read_text())
+    if initial_scene is not None:
+        from stock_scene_variation import prepare_source
+        source,_,_=prepare_source(source,initial_scene)
     z=np.load(recording/'trajectory.npz');plan=np.load(plan_path)
     model=load_model();data=mujoco.MjData(model)
     geometry=Checker.__new__(Checker);geometry.arr=np.load(root/'generated/contact_task/collision.npz');geometry.cache={};geometry.layout='physical'
@@ -47,4 +50,5 @@ def audit(recording,plan_path,output):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--recording',type=Path,required=True);p.add_argument('--plan',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
-    a=p.parse_args();audit(a.recording,a.plan,a.output)
+    p.add_argument('--initial-scene',type=Path)
+    a=p.parse_args();audit(a.recording,a.plan,a.output,a.initial_scene)

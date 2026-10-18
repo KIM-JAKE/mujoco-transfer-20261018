@@ -16,13 +16,13 @@ from task_path_offsets import pin_clearance_z
 from optimization_clock import require_optimization_window,install_cutoff_alarm
 
 
-def audit(candidate,output,respect_cutoff=False):
+def audit(candidate,output,respect_cutoff=False,initial_scene=None):
     if respect_cutoff:
         require_optimization_window(120);install_cutoff_alarm()
     root=Path(__file__).resolve().parent
     z=np.load(candidate/'trajectory.npz');plan=np.load(candidate/'arm-posture-fr3.npz');ts=z['time_s']
     model=load_model();data=mujoco.MjData(model)
-    checker=Checker(candidate,source_clock=source_time,include_cross_arm=False)
+    checker=Checker(candidate,source_clock=source_time,include_cross_arm=False,initial_scene=initial_scene)
     armids={s:np.array([int(model.joint(f'{s}_arm_fr3v2_joint{j}').qposadr[0])for j in range(1,8)])for s in ['left','right']}
     curves={s:CubicSpline(ts,plan[s+'_qpos'],axis=0)for s in armids}
     schedule=json.loads((candidate/'independent_schedule.json').read_text())
@@ -74,4 +74,5 @@ def audit(candidate,output,respect_cutoff=False):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--candidate',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--respect-cutoff',action='store_true')
-    a=p.parse_args();audit(a.candidate,a.output,a.respect_cutoff)
+    p.add_argument('--initial-scene',type=Path)
+    a=p.parse_args();audit(a.candidate,a.output,a.respect_cutoff,a.initial_scene)
