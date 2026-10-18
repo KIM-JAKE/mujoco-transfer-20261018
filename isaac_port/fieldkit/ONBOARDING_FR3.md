@@ -265,6 +265,8 @@ Robotiq는 Franka Hand API와 다른 장치다. 실제 연결 방식(Modbus TCP/
 
 `libfranka_stage.hpp`의 `run_joint_stage(robot, trajectory, site, gates)`를 현장 애플리케이션에서 호출한다. `m80_joint_stage`가 빌드 대상이다. 실측 좌표·실제 시작 자세로 계획한 `Trajectory`를 사용한다. 시뮬레이션 NPZ의 관절 값을 그대로 전달하지 않는다.
 
+이 C++ 단계 API는 미리 검사한 고정 관절 곡선을 실행·감시한다. Isaac의 120Hz 물체 자세 보정과 접촉 탐색은 실기 제어기로 포팅되지 않았다. 현장 `Cell`에서 관측 기반 보정·저속 접촉 탐색과 그리퍼·지그 신호를 연결하고 검증해야 전체 조립을 실행할 수 있다.
+
 1. 실제 공구·하중·충돌 설정과 현장 정지 기능을 확인한다. 첫 시험은 단일 팔·비접촉 단계로 한다.
 2. `FieldContext`에 현장 계획·TCP/I/O·토크 예산 확인, 보정 기록과 commissioning 기록, 기대 tool/load 질량을 넣는다. 초기 `command_fraction` 기본값은 0.1이며 이 값으로 새 궤적을 계획한다.
 3. 시작 자세는 로봇의 정지 상태와 일치해야 한다. API는 자동 홈 이동을 하지 않으며 시작 불일치를 거부한다. 접근/복귀 경로도 따로 계획한다.
