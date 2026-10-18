@@ -18,13 +18,16 @@ The archive also includes the three existing FR3 cube ZIP/checksum files. The ar
 ```bash
 mkdir -p /home/gpuadmin/workspace/jake
 cd /home/gpuadmin/workspace/jake
+# Authenticate to GitHub on AIDAS first (for example, gh auth login).
 git lfs install
-git clone git@github.com:KIM-JAKE/mujoco-transfer-20261018.git mujoco
+git clone https://github.com/KIM-JAKE/mujoco-transfer-20261018.git mujoco
 cd mujoco
 git lfs pull
 ./restore.sh
 ./setup_main_env.sh
 ```
+
+The repository is private. GitHub authentication must be configured on AIDAS before cloning; do not copy the Kakao server's private SSH keys or tokens. If AIDAS already has a GitHub SSH key with repository access, `git@github.com:KIM-JAKE/mujoco-transfer-20261018.git` is also usable.
 
 `./restore.sh` checks SHA-256, extracts to the clone directory, and rewrites active Python, shell, and XML paths for the new root. It does not modify the archive. The copied `.venv`, `.venv-curobo`, and SAM3 environment directories are source snapshots; their Python symlinks and compiled packages may not run on AIDAS. `setup_main_env.sh` preserves the copied `.venv` as `.venv-source-snapshot` and creates the main Python 3.13 environment from `docs/requirements-main-snapshot.txt`. The CuRobo and SAM3 package snapshots are in `docs/requirements-curobo-snapshot.txt` and `docs/requirements-sam3-snapshot.txt`; configure those against AIDAS GPU drivers separately.
 
