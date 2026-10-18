@@ -1,0 +1,52 @@
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/m80-build
+[ 20%] Built target m80_joint_stage
+[ 40%] Built target test_servo_core
+Scanning dependencies of target m80_model_audit
+Scanning dependencies of target m80_read_state
+[ 50%] Building CXX object CMakeFiles/m80_read_state.dir/read_state.cpp.o
+[ 60%] Building CXX object CMakeFiles/m80_model_audit.dir/model_audit.cpp.o
+[ 70%] Linking CXX executable m80_read_state
+[ 70%] Built target m80_read_state
+Scanning dependencies of target test_stage_link
+[ 80%] Building CXX object CMakeFiles/test_stage_link.dir/test_stage_link.cpp.o
+[ 90%] Linking CXX executable m80_model_audit
+[100%] Linking CXX executable test_stage_link
+[100%] Built target m80_model_audit
+[100%] Built target test_stage_link
+Test project /tmp/m80-build
+    Start 1: servo_core
+1/3 Test #1: servo_core .......................   Passed    0.00 sec
+    Start 2: stage_sdk_link
+2/3 Test #2: stage_sdk_link ...................   Passed    0.00 sec
+    Start 3: readonly_model_input_guards
+3/3 Test #3: readonly_model_input_guards ......   Passed    0.02 sec
+
+100% tests passed, 0 tests failed out of 3
+
+Total Test time (real) =   0.03 sec
+{"read_only":true,"robot_connected":false,"motion_executed":false,"hardware_ready":false,"continuous_kinematic_screen_pass":true,"fraction":0.95,"waypoints":2,"duration_s":1}
+{"read_only":true,"robot_connected":false,"motion_executed":false,"hardware_ready":false,"continuous_kinematic_screen_pass":true,"fraction":0.95,"waypoints":5485,"duration_s":11.6535}
+{"read_only":true,"robot_connected":false,"motion_executed":false,"hardware_ready":false,"continuous_kinematic_screen_pass":true,"fraction":0.95,"waypoints":5485,"duration_s":11.6535}
+-- The CXX compiler identification is GNU 9.4.0
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Looking for C++ include pthread.h
+-- Looking for C++ include pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Check if compiler accepts -pthread
+-- Check if compiler accepts -pthread - yes
+-- Found Threads: TRUE  
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/m80-probe-only
+Scanning dependencies of target m80_read_state
+[ 50%] Building CXX object CMakeFiles/m80_read_state.dir/read_state.cpp.o
+[100%] Linking CXX executable m80_read_state
+[100%] Built target m80_read_state

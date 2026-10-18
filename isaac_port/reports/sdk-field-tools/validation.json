@@ -1,0 +1,36 @@
+{
+  "state": "offline_checks_pass",
+  "hardware_ready": false,
+  "robot_connected": false,
+  "SDK_version": "0.18.1",
+  "build_environment": "Ubuntu 20.04, GCC 9.4, CMake Release",
+  "ctest_count": 3,
+  "input_guards": "Missing, malformed and out-of-range files rejected before robot connection",
+  "continuous_motion_checks": [
+    {
+      "input": "stationary",
+      "passed": true
+    },
+    {
+      "input": "contact-trim-01 left, original knots, time_scale 1.02",
+      "passed": true
+    },
+    {
+      "input": "contact-trim-01 right, original knots, time_scale 1.02",
+      "passed": true
+    }
+  ],
+  "probe_only_build_pass": true,
+  "limitations": [
+    "No hardware network connection or live SDK model evaluation",
+    "No motion executed",
+    "SDK model screen excludes contact, friction, tracking and changing payload"
+  ],
+  "source_sha256": {
+    "model_audit.cpp": "4c96167333d73c95d31fa7d1bae4a78335cd2d298ef5c6d419f7b671b422a268",
+    "read_state.cpp": "9786032a8aa58bf3fd20c9ba277468263fcef29a9c8084e9899fdd47d38328e4",
+    "CMakeLists.txt": "e2e80618f8799dab0f9a33181162b9353c020ea0b4935a13c31a4e199f4d3c59",
+    "export_model_audit_csv.py": "eb756bb589980a7f6e5e75c21149a87e108b1d8e474a4011ca576d72532fd7fd",
+    "check_model_cli.cmake": "7f61f1d05ab65043fc31ceecac26d8996c5910115c6e49ae9dbcf148267dbbfc"
+  }
+}

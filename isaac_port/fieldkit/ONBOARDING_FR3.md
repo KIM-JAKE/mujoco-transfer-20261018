@@ -64,6 +64,26 @@ ctest --output-on-failure
 
 이 도구는 상태 읽기만 수행한다. 관절 q/dq, 토크, TCP 변환, 설정된 tool/load 질량, 로봇 모드와 서버 프로토콜을 확인한다. 좌우 배선을 실제 로봇과 대조하고 로그를 보관한다. 통신 실패 시 IP·직접 연결·FCI 상태·SDK 호환성을 먼저 확인한다.
 
+추가로 `q_d/dq_d/ddq_d`, 외력 추정, 전체 tool/load 관성·무게중심과 중력 벡터를 기록한다. 실제 q와 제어기 desired q_d를 구분해 시작 자세를 계획한다. 전체 motion/model 도구 빌드는 libfranka 0.18 이상을 요구한다. 더 오래된 System Image의 호환 SDK로 상태 탐침만 빌드할 때는 `-DM80_STATE_PROBE_ONLY=ON`을 사용한다. 이 옵션의 빌드는 0.18.1에서 확인했으며 구버전 SDK 자체의 실행 검증은 별도다.
+
+### 로봇을 움직이지 않고 SDK 모델 확인
+
+`m80_model_audit`는 로봇의 `loadModel()`과 보고된 tool/load를 사용해 주어진 관절 곡선의 토크·토크 변화율을 계산한다. `control()`, error recovery, payload·충돌 설정 변경을 호출하지 않는다. 먼저 위 상태 파일로 정지 곡선을 만들어 확인한다.
+
+```bash
+python3 -m isaac_port.fieldkit.export_model_audit_csv \
+  --state /tmp/m80-left-state.json --output /tmp/m80-left-stationary.csv
+/tmp/m80-field-build/m80_model_audit --validate-only /tmp/m80-left-stationary.csv
+/tmp/m80-field-build/m80_model_audit LEFT_ROBOT_IP /tmp/m80-left-stationary.csv \
+  > /tmp/m80-left-sdk-model.json
+```
+
+`--validate-only`는 로봇 연결 없이 연속 C2 곡선의 위치·위치별 속도·가속도·jerk를 95% 예산으로 검사한다. 로봇 IP를 주면 검사 뒤 모델을 읽고 같은 곡선을 내부에서 1kHz로 샘플링한다. 입력은 `time_s,q1..q7,dq1..dq7,ddq1..ddq7` 22열 CSV이며 시작 시각 0, 양 끝 속도·가속도 0이 필요하다. 원래 waypoint 시각을 보존하고, 1kHz로 다시 보간한 데이터를 또 보간하는 방식은 피한다.
+
+저장된 시뮬레이션 명령도 `--run RUN_DIRECTORY --side left|right`로 **수학 검사 입력만** 내보낼 수 있다. `--time-scale 1.02`는 시각·속도·가속도를 일관되게 조정해 2% 늦춘다. 9.566667초 기록의 원래 knot를 보존한 양팔 파일은 이 여유로 C++의 연속 95% 검사를 통과했다. 원래 시뮬레이션 주기를 실기에서 보장한다는 뜻은 아니다. 보간 곡선의 순간 jerk는 1kHz 표본 사이에서 더 클 수 있어, 각 계획을 다시 검사한다.
+
+SDK 모델 출력은 현재 설정된 일정한 tool/load의 계산이다. 실제 접촉·마찰·추종 오차·작업 중 하중 변경을 제외하며, PASS여도 `hardware_ready: false`다. 현장 로봇에 연결한 모델 수치 확인은 아직 하지 못했다. 여기서는 공식 0.18.1로 빌드·링크, 잘못된 입력의 연결 전 거부, 정지 곡선과 양팔 내보내기 파일의 연속 한도 검사를 확인했다.
+
 ## 3. 좌표·TCP·하중 기록
 
 저장소의 CAD 좌표를 실측 보정값으로 사용하지 않는다. 현장 설정은 저장소 밖에 보관한다.
