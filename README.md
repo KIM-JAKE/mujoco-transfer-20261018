@@ -13,6 +13,8 @@ Private migration snapshot for `/home/gpuadmin/workspace/jake/mujoco`. It contai
 
 The archive also includes the three existing FR3 cube ZIP/checksum files. The archive is split into Git LFS parts; `archives/SHA256SUMS` validates every part before extraction. `relocation_report.json` records code/XML path edits made after restore. Original byte content remains in the archive. Historical reports may still name the old server path as provenance.
 
+The other-session SAM3.1 checkpoint was stored outside those source trees in the Kakao Hugging Face cache. It is included separately as `archives/sam31-checkpoint.zst.part-*` and restored to `robotics_agent/mujoco_duo_fr3/runtime/sam31_checkpoint/sam3.1_multiplex.pt` with its own SHA-256 check.
+
 ## On AIDAS
 
 ```bash
@@ -29,7 +31,7 @@ git lfs pull
 
 The repository is private. GitHub authentication must be configured on AIDAS before cloning; do not copy the Kakao server's private SSH keys or tokens. If AIDAS already has a GitHub SSH key with repository access, `git@github.com:KIM-JAKE/mujoco-transfer-20261018.git` is also usable.
 
-`./restore.sh` checks SHA-256, extracts to the clone directory, and rewrites active Python, shell, and XML paths for the new root. It does not modify the archive. The copied `.venv`, `.venv-curobo`, and SAM3 environment directories are source snapshots; their Python symlinks and compiled packages may not run on AIDAS. `setup_main_env.sh` preserves the copied `.venv` as `.venv-source-snapshot` and creates the main Python 3.13 environment from `docs/requirements-main-snapshot.txt`. The CuRobo and SAM3 package snapshots are in `docs/requirements-curobo-snapshot.txt` and `docs/requirements-sam3-snapshot.txt`; see `docs/ENVIRONMENTS.md` and configure those against AIDAS GPU drivers separately.
+`./restore.sh` checks SHA-256, extracts to the clone directory, restores the SAM3.1 checkpoint, and rewrites active Python, shell, and XML paths for the new root. It does not modify the archive. The copied `.venv`, `.venv-curobo`, and SAM3 environment directories are source snapshots; their Python symlinks and compiled packages may not run on AIDAS. `setup_main_env.sh` preserves the copied `.venv` as `.venv-source-snapshot` and creates the main Python 3.13 environment from `docs/requirements-main-snapshot.txt`. The CuRobo and SAM3 package snapshots are in `docs/requirements-curobo-snapshot.txt` and `docs/requirements-sam3-snapshot.txt`; see `docs/ENVIRONMENTS.md` and configure those against AIDAS GPU drivers separately.
 
 ## First checks
 
