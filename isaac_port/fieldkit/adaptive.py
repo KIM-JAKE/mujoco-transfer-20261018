@@ -33,7 +33,7 @@ class M80Skill:
             subprocess.run([self.python, str(PORT/script), *map(str, arguments)],
                            cwd=REPO, stdout=stream, stderr=subprocess.STDOUT, check=check)
 
-    def prepare(self, snapshot, camera_config, *, replay=False, respect_cutoff=False):
+    def prepare(self, snapshot, camera_config, *, replay=False, respect_cutoff=False, conservative_ring_handoff=False):
         """No ground-truth argument: only camera data and calibrated priors.
 
         Returns an offline-screened plan. Preparing a path is separate from
@@ -71,6 +71,7 @@ class M80Skill:
             '--pin-approach-min', '.45', '--pin-fine-min', '.35', '--button-min', '.2',
             '--pin-prealignment',
             '--strict-clamp-alignment',
+            *(['--conservative-ring-handoff'] if conservative_ring_handoff else []),
             *cutoff], self.output/'timing.log')
         checks = [
             ('audit_pin_pickup.py', ['--recording', self.output,
@@ -86,13 +87,34 @@ class M80Skill:
             report = json.loads(result.read_text())
             if not report.get(key):
                 raise RuntimeError(f'{name} screen failed; see {result}')
+        product_names=[]
+        if conservative_ring_handoff:
+            schedule=json.loads((self.output/'independent_schedule.json').read_text())
+            release={side:next(r['end_s']for r in schedule['lanes'][side]
+                         if r['stage']['label']==label)for side,label in
+                         [('left','release_last_pin'),('right','release_two_parts')]}
+            final=max(r['end_s']for r in schedule['lanes']['right'])
+            products=[('before',[0.,2.4],[0.,2.1]),
+                      ('right_ring',[2.4,2.4],[2.1,release['right']]),
+                      ('after',[2.4,release['left']],[release['right'],release['left']]),
+                      ('button',[release['left'],release['left']],[release['left'],final])]
+            for name,left,right in products:
+                result=self.output/('delay-product-'+name+'.json')
+                self._run('audit_crossing_product.py',['--candidate',self.output,
+                          '--left',*left,'--right',*right,'--samples','101',
+                          '--output',result,*cutoff],self.output/('delay-product-'+name+'.log'))
+                if not json.loads(result.read_text())['sampled_cross_reference_product_pass']:
+                    raise RuntimeError('Sampled delay product failed: '+str(result))
+                product_names.append(result.name)
         names = ['capture.npz','capture.json','camera-config.json',
                  'observations.json', 'estimated-scene.json', 'pickup-contract.json', 'trajectory.npz',
                  'config.json', 'independent_schedule.json', 'retiming.json',
                  'arm-posture-fr3.npz', 'arm-posture-fr3.json',
                  'fr3-concurrent-profile.npz', 'fr3-concurrent-profile.json',
                  'pickup-audit.json', 'spatial-audit.json', 'simultaneous-audit.json']
+        names+=product_names
         result = dict(state='offline_screened_requires_PhysX', hardware_ready=False,
+                      conservative_ring_handoff=bool(conservative_ring_handoff),
                       live_motion_enabled=False, replay=bool(replay),
                       output=str(self.output), planning_seconds=time.monotonic()-started,
                       files={n:sha(self.output/n) for n in names},
@@ -150,14 +172,20 @@ class M80Skill:
         return result
 
 
-if __name__ == '__main__':
+def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--baseline', type=Path, required=True)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--snapshot', type=Path, required=True)
     p.add_argument('--camera-config', type=Path, required=True)
     p.add_argument('--replay', action='store_true')
+    p.add_argument('--conservative-ring-handoff', action='store_true')
     p.add_argument('--respect-cutoff', action='store_true')
-    a = p.parse_args()
+    a = p.parse_args(argv)
     print(json.dumps(M80Skill(a.baseline,a.output).prepare(a.snapshot,a.camera_config,
-          replay=a.replay,respect_cutoff=a.respect_cutoff),indent=2))
+          replay=a.replay,respect_cutoff=a.respect_cutoff,
+          conservative_ring_handoff=a.conservative_ring_handoff),indent=2))
+
+
+if __name__ == '__main__':
+    main()

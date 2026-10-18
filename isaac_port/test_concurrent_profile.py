@@ -72,6 +72,29 @@ class ConcurrentClockTests(unittest.TestCase):
         self.assertEqual(proposed['right'],1.01)
         self.assertIsNone(holds['right'])
 
+    def test_measured_handoff_waits_for_stationary_actual_arm(self):
+        p=self.profile
+        p.metadata.update(conservative_ring_handoff=True,
+            settled_handoff_checkpoints={'left':[1.]},
+            coordination_rules=[dict(side='right',reference=1.,wait_for_side='left',minimum_reference=1.)])
+        previous={'left':1.-1e-8,'right':1.-1e-8};proposed={'left':1.01,'right':1.01}
+        with self.assertRaisesRegex(ValueError,'actual joint state'):
+            p.coordinate(previous,proposed,{'left':None,'right':None})
+        self.assertFalse(p.settled_handoffs)
+        q=p.full_path({'left':1.,'right':1.});v=np.zeros_like(q);q[0]+=.01
+        with self.assertRaisesRegex(ValueError,'Non-finite'):
+            p.coordinate(previous,proposed,{'left':None,'right':None},q*np.nan,v,1.9)
+        refs,holds=p.coordinate(previous,proposed,{'left':None,'right':None},q,v,2.)
+        self.assertIsNotNone(holds['right']);self.assertFalse(p.settled_handoffs)
+        q[0]-=.01;v[0]=.04
+        refs,holds=p.coordinate(previous,proposed,{'left':None,'right':None},q,v,2.1)
+        self.assertIsNotNone(holds['right']);self.assertFalse(p.settled_handoffs)
+        v[0]=0.
+        refs,holds=p.coordinate(previous,proposed,{'left':None,'right':None},q,v,2.2)
+        self.assertIsNone(holds['right']);self.assertEqual(refs['right'],1.01)
+        self.assertTrue(p.handoff_events[-1]['measured'])
+        self.assertEqual(p.handoff_events[-1]['time_s'],2.2)
+
 
 if __name__=='__main__':
     unittest.main()

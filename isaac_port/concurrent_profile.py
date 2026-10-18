@@ -72,6 +72,8 @@ class ConcurrentProfile:
         self.metadata = json.loads(archive.with_suffix('.json').read_text())
         self.last_reference = {side: float(arm.bounds[0]) for side, arm in self.arms.items()}
         self.last_rate = {side: 0. for side in SIDES}
+        self.settled_handoffs=set()
+        self.handoff_events=[]
 
     def path(self, references, derivative=0):
         return np.concatenate([self.arm_splines[side](references[side], derivative) for side in SIDES])
@@ -96,13 +98,41 @@ class ConcurrentProfile:
         for side in SIDES:
             self.arms[side].gate(references[side], holds.get(side), started)
 
-    def coordinate(self, previous, proposed, holds):
+    def coordinate(self, previous, proposed, holds,actual_position=None,actual_velocity=None,physical_time_s=None,*,nominal_only=False):
         """Reserve crossing zones using preplanned, zero-speed wait points."""
         proposed,holds=dict(proposed),dict(holds)
+        checkpoints=self.metadata.get('settled_handoff_checkpoints',{})
+        if checkpoints:
+            if (actual_position is None)!=(actual_velocity is None):
+                raise ValueError('Measured handoffs need both position and velocity')
+            if actual_position is None and not nominal_only:
+                raise ValueError('Measured handoffs require actual joint state; nominal_only is offline screening only')
+            if actual_position is not None and (not np.isfinite(actual_position).all() or not np.isfinite(actual_velocity).all()):
+                raise ValueError('Non-finite measured handoff state')
+        for side,points in checkpoints.items():
+            indices=self.indices[:7]if side=='left'else self.indices[7:]
+            for point in points:
+                key=(side,point);gate=point-1e-8
+                if key in self.settled_handoffs:continue
+                if previous[side]>=point-2e-7:
+                    error=speed=0.
+                    if actual_position is not None:
+                        error=float(abs(actual_position[indices]-self.arm_splines[side](point)).max())
+                        speed=float(abs(actual_velocity[indices]).max())
+                    if error<=.006 and speed<=.03:
+                        self.settled_handoffs.add(key)
+                        self.handoff_events.append(dict(side=side,reference=point,time_s=physical_time_s,source_references=dict(previous),measured=actual_position is not None,maximum_nominal_joint_error_rad=error,maximum_joint_speed_rad_s=speed))
+                if key not in self.settled_handoffs and previous[side]<=point+2e-7 and proposed[side]>gate:
+                    proposed[side]=gate;holds[side]='crossing_checkpoint_settling'
         for rule in self.metadata.get('coordination_rules',[]):
             side,other=rule['side'],rule['wait_for_side']
             gate=rule['reference']-1e-8
-            if previous[side]<=gate and proposed[side]>gate and previous[other]<rule['minimum_reference']:
+            ready=previous[other]>=rule['minimum_reference']
+            if rule['minimum_reference']in checkpoints.get(other,[]):
+                ready=previous[other]>=rule['minimum_reference']-2e-7 and (other,rule['minimum_reference'])in self.settled_handoffs
+            before=previous[side]<=gate
+            if self.metadata.get('conservative_ring_handoff'):before=previous[side]<=rule['reference']+2e-7
+            if before and proposed[side]>gate and not ready:
                 proposed[side]=gate
                 holds[side]='cross_arm_zone_wait_for_'+other
         return proposed,holds

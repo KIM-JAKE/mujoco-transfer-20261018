@@ -20,7 +20,7 @@ def audit(candidate,left_interval,right_interval,samples,output,respect_cutoff=F
             vertices=geometry.arr[row['mesh']+'_vertices']if row['kind']==7 else np.array([row.get('size',[.1]*3),-np.array(row.get('size',[.1]*3))])
             robots[side].append((row,fcl.CollisionObject(geometry.shape(row,True)),float(np.linalg.norm(vertices,axis=1).max()),int(model.body(row['body']).id)))
     radius=(np.array([r[2]for r in robots['left']])[:,None]+np.array([r[2]for r in robots['right']])[None,:])**2
-    poses={};times={s:np.linspace(*interval,samples)for s,interval in [('left',left_interval),('right',right_interval)]}
+    poses={};times={s:np.unique(np.linspace(*interval,samples))for s,interval in [('left',left_interval),('right',right_interval)]}
     for side in robots:
         spline=CubicSpline(plan['time_s'],plan[side+'_qpos'],axis=0);poses[side]=[]
         for t in times[side]:
@@ -44,7 +44,7 @@ def audit(candidate,left_interval,right_interval,samples,output,respect_cutoff=F
                     break
             if failures:break
         if failures:break
-    result=dict(sampled_cross_reference_product_pass=not failures,left_interval=list(left_interval),right_interval=list(right_interval),samples_per_axis=samples,checked_combinations=count,failures=failures,hardware_ready=False,scope='Sampled convex robot hulls only, no tracking-error reserve or carried-part pair proof; arbitrary waiting within the stated reference intervals')
+    result=dict(sampled_cross_reference_product_pass=not failures,left_interval=list(left_interval),right_interval=list(right_interval),samples_per_axis=samples,actual_axis_counts={s:len(t)for s,t in times.items()},checked_combinations=count,failures=failures,hardware_ready=False,scope='Sampled convex robot hulls only, no tracking-error reserve or carried-part pair proof; arbitrary waiting within the stated reference intervals')
     output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2));return result
 
 

@@ -80,3 +80,15 @@ python3 isaac_port/archive_run.py restore isaac_port/reports/contact-trim-01/mea
 ```
 
 재실행 시 `--reference-dir`와 `--plan-root`에 복원된 `isaac_port/runs/contact-trim-01`을 모두 지정하고, 기존 공통 옵션에 `--right-arm-damping 1800`을 추가한다. 새 출력 폴더를 사용한다. 대형 USD를 중복 포함하지 않은 약 5MB의 근거이며 형상은 seed에서 재생성한다. 당시 입력·clock을 사용한 측정 재현이며 실기 모션 파일이 아니다.
+
+## 측정된 정지 상태를 사용하는 양팔 대기
+
+`--conservative-ring-handoff`는 왼팔 기준 2.4에서 정지 상태를 확인한 뒤 오른팔의 기준 2.1 이후 이동을 허용하고, 오른팔 링 해제 후 정지 상태를 확인한 뒤 왼팔이 계속 진행하게 한다. 관절 실제 위치·속도가 없으면 기본 실행은 거부한다. `audit_concurrent_nominal.py`만 `nominal_only=True`로 명시하여 정적인 경로 검사를 수행한다. 이 오프라인 결과는 측정된 정지 상태가 아니다.
+
+원래 배치의 `contact-conservative-handoff-01`은 실제 PhysX 조립·버튼·FR3·기록을 13.53125초에 통과했고 10초 미만 조건은 미달이다. 왼팔 damping 800, 오른팔 1800, `--strict-clamp-alignment`, `--left-pin-lift-time-reserve 1.15`를 사용했다. [근거](reports/conservative-handoff-01/summary.json)와 네 구간 20,604개 자세 조합의 표본 검사를 함께 제공한다. 추종 오차 여유나 현장 안전 인증을 포함하지 않는다.
+
+```bash
+python3 isaac_port/archive_run.py restore isaac_port/reports/conservative-handoff-01/measured-evidence.zip
+```
+
+복원된 run을 `--reference-dir`와 `--plan-root`에 지정하고 공통 native 옵션에 `--arm-damping 800 --right-arm-damping 1800`을 더해 새 출력 폴더에서 실행한다. 다른 시간 정책·초기 위치는 별도 재검증한다.

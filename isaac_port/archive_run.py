@@ -5,7 +5,7 @@ import argparse, hashlib, io, json, zipfile
 FILES = ['acceptance.json','fr3-limits.json','hardware-readiness.json','run-manifest.json',
          'status.json','dynamics-audit.json','feedback-parameters.json','reference-profile.json',
          'recording-audit.json','dof-names.json','body-paths.json','tape-bodies.json',
-         'clamp-events.json','button-trace.json','contacts.json','trace.json',
+         'clamp-events.json','handoff-events.json','button-trace.json','contacts.json','trace.json',
          'physics-tape.npz','joint-motion.npz','arm-posture-fr3.npz','arm-posture-fr3.json',
          'fr3-concurrent-profile.npz','fr3-concurrent-profile.json','initial-scene.json','configuration.usda','scene.usda']
 

@@ -45,7 +45,7 @@ def audit(base, plan_root, output, respect_cutoff=False):
     for step in range(120*30):
         if respect_cutoff and step%120==0:require_optimization_window()
         proposed=profile.peek(dt)
-        proposed,holds=profile.coordinate(references,proposed,{'left':None,'right':None})
+        proposed,holds=profile.coordinate(references,proposed,{'left':None,'right':None},nominal_only=True)
         gate=release-1e-8
         if references['right']<=gate and proposed['right']>gate and references['left']<release-1e-8:
             proposed['right']=gate;holds['right']='button_wait_for_all_releases'

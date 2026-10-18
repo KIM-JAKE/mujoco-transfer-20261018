@@ -13,12 +13,14 @@ from optimization_clock import require_optimization_window
 
 
 def prepare(base, output, aggressive_contact=False, coordinated=False,
-            right_crossing_stop=2.1, left_ring_clear=2.2, right_ring_clear=4., left_pin_time_reserve=1., right_return_time_reserve=1.1, respect_cutoff=False, model_torque_rate=None, contact_minimums=None, pin_prealignment=False, strict_clamp_alignment=False, left_pin_lift_time_reserve=1.):
+            right_crossing_stop=2.1, left_ring_clear=2.2, right_ring_clear=4., left_pin_time_reserve=1., right_return_time_reserve=1.1, respect_cutoff=False, model_torque_rate=None, contact_minimums=None, pin_prealignment=False, strict_clamp_alignment=False, left_pin_lift_time_reserve=1.,conservative_ring_handoff=False,continuous_pin_insertion=False,continuous_button_approach=False,button_total_minimum=.5,handoff_right_clear=None):
     from optimization_clock import install_cutoff_alarm
     if respect_cutoff:
         require_optimization_window(120)
         install_cutoff_alarm()
     import prepare_fr3_timing as timing
+    if not np.isfinite(button_total_minimum) or button_total_minimum<=0:
+        raise ValueError('Positive finite combined button duration required')
     if aggressive_contact:
         timing.CONTACT_MINIMUMS.update(insert_last_pin_approach=.65,insert_last_pin_last5mm=.5,press_button=.3)
         timing.GRIPPER_TRAVEL_CAP=1.
@@ -42,12 +44,20 @@ def prepare(base, output, aggressive_contact=False, coordinated=False,
     schedule = json.loads((base/'recording/independent_schedule.json').read_text())
     pin_prealignment_reference=next(r['end_s']for r in schedule['lanes']['left']if r['stage']['label']=='transfer_last_pin') if pin_prealignment else None
     pin_lift_begin=next(r['end_s']for r in schedule['lanes']['left']if r['stage']['label']=='grasp_last_pin')
+    if conservative_ring_handoff:
+        coordinated=True;left_ring_clear=2.4;right_crossing_stop=2.1
+        ring_release=next(r['end_s']for r in schedule['lanes']['right']if r['stage']['label']=='release_two_parts')
+        right_ring_clear=ring_release if handoff_right_clear is None else float(handoff_right_clear)
+        if not np.isfinite(right_ring_clear) or not right_crossing_stop<right_ring_clear<=ring_release:
+            raise ValueError('Right handoff checkpoint must follow the crossing stop and precede ring release')
+    elif handoff_right_clear is not None:
+        raise ValueError('Right handoff checkpoint requires conservative-ring-handoff')
     data = dict(fingerprint=np.array(reference_fingerprint(z['time_s'],q,names,schedule)))
     records = {}
     if any(not np.isfinite(value) or value<1. for value in [left_pin_time_reserve,right_return_time_reserve,left_pin_lift_time_reserve]):
         raise ValueError('Time reserve may only slow a segment')
     rules=[dict(side='right',reference=right_crossing_stop,wait_for_side='left',minimum_reference=left_ring_clear),
-           dict(side='left',reference=3.357916666666667,wait_for_side='right',minimum_reference=right_ring_clear)]if coordinated else[]
+           dict(side='left',reference=left_ring_clear if conservative_ring_handoff else 3.357916666666667,wait_for_side='right',minimum_reference=right_ring_clear)]if coordinated else[]
     for side in ['left', 'right']:
         lane = schedule['lanes'][side]
         boundaries = [0., float(z['time_s'][-1])]
@@ -59,6 +69,16 @@ def prepare(base, output, aggressive_contact=False, coordinated=False,
                 boundaries.extend([row['start_s'],row['end_s']])
         bounds = np.unique(boundaries)
         bounds=np.unique(np.r_[bounds,[r['reference']for r in rules if r['side']==side]])
+        if conservative_ring_handoff:
+            bounds=np.unique(np.r_[bounds,left_ring_clear if side=='left'else right_ring_clear])
+        if side=='left' and continuous_pin_insertion:
+            fine_begin=next(r['start_s']for r in lane if r['stage']['label']=='insert_last_pin_last5mm')
+            bounds=bounds[abs(bounds-fine_begin)>1e-7]
+        if side=='right' and continuous_button_approach:
+            press=next(r for r in lane if r['stage']['label']=='press_button')
+            bounds=bounds[(abs(bounds-press['start_s'])>1e-7)&(abs(bounds-press['end_s'])>1e-7)]
+        if side=='left' and conservative_ring_handoff:
+            bounds=np.unique(np.r_[bounds,next(r['end_s']for r in lane if r['stage']['label']=='lift_last_pin_30mm')])
         if side=='left' and pin_prealignment_reference is not None:
             bounds=np.unique(np.r_[bounds,pin_prealignment_reference])
         if side=='left':
@@ -108,6 +128,10 @@ def prepare(base, output, aggressive_contact=False, coordinated=False,
                 report['peak_acceleration_rad_s2']/=reserve**2
                 report['peak_jerk_rad_s3']/=reserve**3
                 report['dynamic_time_reserve']=reserve
+            if side=='right' and continuous_button_approach and abs(begin-release)<1e-7 and report['duration_s']<button_total_minimum:
+                extra=button_total_minimum/report['duration_s'];factor*=extra
+                report['duration_s']*=extra;report['time_scale']*=extra
+                report['peak_acceleration_rad_s2']/=extra**2;report['peak_jerk_rad_s3']/=extra**3
             data[f'{prefix}clock_{i}_x']=clock.x
             data[f'{prefix}clock_{i}_c']=clock.c
             data[f'{prefix}clock_{i}_scale']=np.array(factor)
@@ -135,6 +159,11 @@ def prepare(base, output, aggressive_contact=False, coordinated=False,
                 model_torque_rate_planning_limit_nm_s=model_torque_rate,
                 pin_prealignment_reference=pin_prealignment_reference,
                 strict_clamp_alignment=bool(strict_clamp_alignment),
+                conservative_ring_handoff=bool(conservative_ring_handoff),
+                continuous_pin_insertion=bool(continuous_pin_insertion),
+                continuous_button_approach=bool(continuous_button_approach),
+                combined_button_minimum_s=button_total_minimum if continuous_button_approach else None,
+                settled_handoff_checkpoints={'left':[left_ring_clear],'right':[right_ring_clear]}if conservative_ring_handoff else{},
                 model_torque_scope='Imported arm/gripper, no carried payload, contact or friction; not physical robot certification'if model_torque_rate else None,
                 archive_sha256=hashlib.sha256(output.read_bytes()).hexdigest(),
                 input_fingerprint=str(data['fingerprint']))
@@ -161,6 +190,11 @@ if __name__=='__main__':
     p.add_argument('--button-min',type=float)
     p.add_argument('--pin-prealignment',action='store_true',help='Add a zero-speed alignment gate above the pin insertion fixture')
     p.add_argument('--strict-clamp-alignment',action='store_true',help='Wait for stationary, tightly aligned parts before closing clamps')
+    p.add_argument('--conservative-ring-handoff',action='store_true',help='Left waits clear of the fixture until the right ring is released, with measured settling checkpoints')
+    p.add_argument('--handoff-right-clear',type=float,help='Experimental earlier measured right-arm checkpoint; requires independent cross-product and native acceptance')
+    p.add_argument('--continuous-pin-insertion',action='store_true',help='Remove the ungated approach/fine stop; keep fine-motion rate and seat/alignment gates')
+    p.add_argument('--continuous-button-approach',action='store_true',help='Remove ungated button substage stops; keep all-releases and actual button-dwell gates')
+    p.add_argument('--button-total-minimum',type=float,default=.5)
     a=p.parse_args();prepare(a.base,a.output,a.aggressive_contact_timing,a.coordinated,
                             a.right_crossing_stop,a.left_ring_clear,a.right_ring_clear,a.left_pin_time_reserve,a.right_return_time_reserve,a.respect_cutoff,a.model_torque_rate,
-                            dict(insert_last_pin_approach=a.pin_approach_min,insert_last_pin_last5mm=a.pin_fine_min,press_button=a.button_min),a.pin_prealignment,a.strict_clamp_alignment,a.left_pin_lift_time_reserve)
+                            dict(insert_last_pin_approach=a.pin_approach_min,insert_last_pin_last5mm=a.pin_fine_min,press_button=a.button_min),a.pin_prealignment,a.strict_clamp_alignment,a.left_pin_lift_time_reserve,a.conservative_ring_handoff,a.continuous_pin_insertion,a.continuous_button_approach,a.button_total_minimum,a.handoff_right_clear)

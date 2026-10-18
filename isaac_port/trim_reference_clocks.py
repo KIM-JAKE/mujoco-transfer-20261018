@@ -48,7 +48,7 @@ def prepare(base,output,changes,minimums,respect_cutoff=False):
         updates.append(update);print(json.dumps(update),flush=True)
     output.mkdir(parents=True)
     np.savez_compressed(output/'fr3-concurrent-profile.npz',**data)
-    metadata.update(state='selected_clocks_trimmed_requires_new_PhysX',hardware_ready=False,clock_trims=updates,contact_minimum_s=dict(timing.CONTACT_MINIMUMS),side_nominal_s={s:float(data[s+'_durations'].sum())for s in ['left','right']},generator_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+    metadata.update(state='selected_clocks_trimmed_requires_new_PhysX',hardware_ready=False,archive_sha256=hashlib.sha256((output/'fr3-concurrent-profile.npz').read_bytes()).hexdigest(),clock_trims=updates,contact_minimum_s=dict(timing.CONTACT_MINIMUMS),side_nominal_s={s:float(data[s+'_durations'].sum())for s in ['left','right']},generator_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
     (output/'fr3-concurrent-profile.json').write_text(json.dumps(metadata,indent=2)+'\n')
     for n in ['arm-posture-fr3.npz','arm-posture-fr3.json']:shutil.copy2(base/n,output/n)
     for n in ['trajectory.npz','config.json','independent_schedule.json','retiming.json']:shutil.copy2(recording/n,output/n)

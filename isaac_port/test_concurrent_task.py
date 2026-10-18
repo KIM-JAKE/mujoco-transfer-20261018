@@ -250,7 +250,7 @@ try:
      feedback.clamped=clamps.verified
     control_forces={name:float(np.linalg.norm(vector))for name,vector in env_vectors.items()}
     ref_t,hold=feedback.gate(ref_clock,proposed,current_p,current_q,control_forces,clamps.verified if a.clamps else None)
-    ref_t,hold=profile.coordinate(ref_clock,ref_t,hold)
+    ref_t,hold=profile.coordinate(ref_clock,ref_t,hold,actual,feedback.measured_qv,physical_t)
     for side in ['left','right']:
      if hold[side]:
       if held_since[side] is None:held_since[side]=physical_t
@@ -343,12 +343,14 @@ try:
  (out/'trace.json').write_text(json.dumps(trace,indent=2)+'\n');(out/'contacts.json').write_text(json.dumps(all_contacts,indent=2)+'\n')
  (out/'tape-bodies.json').write_text(json.dumps(body_names,indent=2)+'\n')
  if a.clamps:(out/'clamp-events.json').write_text(json.dumps(clamps.events,indent=2))
+ if 'profile'in globals():(out/'handoff-events.json').write_text(json.dumps(profile.handoff_events,indent=2)+'\n')
  save(state='completed_probe',seconds=time.monotonic()-started,adaptations=adapt,final=trace[-1],contact_pairs=list(contacts),physical_assembly_pass=False)
 except Exception as exc:
  traceback.print_exc();save(state='failed',error=repr(exc),seconds=time.monotonic()-started);code=1
  try:
   if 'limiter'in globals()and limiter is not None and motion_time:np.savez_compressed(out/'joint-motion.npz',time_s=motion_time,actual_position=motion_q,actual_velocity=motion_v,command_position=command_q,command_velocity=command_v,command_acceleration=command_a,dof_indices=limiter.indices)
   if 'clamps' in globals():(out/'clamp-events.json').write_text(json.dumps(clamps.events,indent=2))
+  if 'profile'in globals():(out/'handoff-events.json').write_text(json.dumps(profile.handoff_events,indent=2)+'\n')
   if 'button_samples'in globals():(out/'button-trace.json').write_text(json.dumps(button_samples,indent=2)+'\n')
   if 'trace' in globals():(out/'trace.json').write_text(json.dumps(trace,indent=2)+'\n')
   if 'all_contacts' in globals():(out/'contacts.json').write_text(json.dumps(all_contacts,indent=2)+'\n')

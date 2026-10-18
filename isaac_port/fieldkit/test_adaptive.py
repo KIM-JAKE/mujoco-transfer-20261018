@@ -2,7 +2,9 @@
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
-import hashlib,json,unittest
+import hashlib,json,unittest,io
+from contextlib import redirect_stdout
+from .adaptive import main
 from .adaptive import M80Skill
 
 
@@ -19,6 +21,14 @@ class ArtifactTests(unittest.TestCase):
                 with self.assertRaisesRegex(RuntimeError,'Plan changed'):
                     skill.run_physx(root/'new-run',initial_scene=root/'truth.json')
                 backend.assert_not_called()
+
+    def test_cli_propagates_conservative_handoff_to_callable_skill(self):
+        with patch('isaac_port.fieldkit.adaptive.M80Skill')as cls,redirect_stdout(io.StringIO()):
+            cls.return_value.prepare.return_value={'hardware_ready':False}
+            main(['--baseline','baseline','--output','new-plan','--snapshot','capture.npz',
+                  '--camera-config','camera.json','--replay','--conservative-ring-handoff'])
+            self.assertTrue(cls.return_value.prepare.call_args.kwargs['conservative_ring_handoff'])
+            self.assertTrue(cls.return_value.prepare.call_args.kwargs['replay'])
 
     def test_prepare_cannot_overwrite_an_existing_plan(self):
         with TemporaryDirectory()as directory:
