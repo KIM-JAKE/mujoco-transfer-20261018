@@ -17,7 +17,7 @@ def sha(b): return hashlib.sha256(b).hexdigest()
 
 def main(root):
     mapping=[('/home/jovyan/data/.cache/huggingface/hub/models--facebook--sam3.1/snapshots/daa63191845a41281374e725f4c9e51c7a824460/sam3.1_multiplex.pt',str(root/'robotics_agent/mujoco_duo_fr3/runtime/sam31_checkpoint/sam3.1_multiplex.pt')),
-             ('/home/jovyan/data-1/jake/ego-scale-compiler/.venv/bin/python',str(root/'robotics_agent/mujoco_duo_fr3/runtime/sam3_venv/bin/python')),
+             ('/home/jovyan/data-1/jake/ego-scale-compiler/.venv/bin/python',str(root/'robotics_agent/mujoco_duo_fr3/runtime/sam31_venv/bin/python')),
              ('/home/jovyan/data/wjkim/robotics_agent',str(root/'robotics_agent')),
              ('/home/jovyan/data-1/jake',str(root))]
     changed=[];links=[];skipped=[]

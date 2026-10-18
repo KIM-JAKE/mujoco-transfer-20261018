@@ -15,7 +15,7 @@ trap 'status failed "inspect logs/publish.log, then rerun ./publish.sh to resume
 status checking 'verify local archive checksums'
 (cd archives && sha256sum -c SHA256SUMS)
 status staging 'stage main and SAM3 archive parts through Git LFS'
-git add .gitattributes .gitignore README.md restore.sh relocate.py publish.sh build_sam31_checkpoint.sh docs/ENVIRONMENTS.md archives/SHA256SUMS archives/sam31_checkpoint.sha256 archives/archive_manifest.json archives/mujoco-snapshot.tar.zst.part-* archives/sam31-checkpoint.zst.part-*
+git add .gitattributes .gitignore README.md restore.sh relocate.py publish.sh build_sam31_checkpoint.sh setup_sam31_env.sh docs/ENVIRONMENTS.md docs/requirements-sam31-active.txt archives/SHA256SUMS archives/sam31_checkpoint.sha256 archives/archive_manifest.json archives/mujoco-snapshot.tar.zst.part-* archives/sam31-checkpoint.zst.part-*
 status committing 'commit archive pointers and restore instructions'
 if ! git diff --cached --quiet; then
  git commit -m 'Publish complete private MuJoCo migration archive'
