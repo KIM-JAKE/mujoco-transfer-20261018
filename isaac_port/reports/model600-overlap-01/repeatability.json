@@ -1,0 +1,56 @@
+{
+  "state": "two_native_functional_and_model_budget_passes_under10_failed",
+  "episodes": [
+    {
+      "run": "contact-model600-overlap-01",
+      "cycle_s": 11.889583333333333,
+      "functional_FR3_recording_pass": true,
+      "model_torque_rate_peak_nm_s": 840.5715981854414,
+      "strict_under10_pass": false
+    },
+    {
+      "run": "contact-model600-overlap-01-repeat1",
+      "cycle_s": 11.889583333333333,
+      "functional_FR3_recording_pass": true,
+      "model_torque_rate_peak_nm_s": 840.5715981854414,
+      "strict_under10_pass": false
+    }
+  ],
+  "same_initial_condition": true,
+  "same_frozen_source_and_inputs": true,
+  "joint_motion_array_comparison": {
+    "time_s": {
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "actual_position": {
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "actual_velocity": {
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "command_position": {
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "command_velocity": {
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "command_acceleration": {
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "dof_indices": {
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    }
+  },
+  "sdk_continuous95_validation_reused_for_identical_CSVs": true,
+  "additional_time_scale": 1.0,
+  "hardware_ready": false,
+  "conservative_measured_handoffs": false,
+  "scope": "Deterministic repetition at the same condition; no arbitrary-delay, sensor-noise, hardware or changing-payload certification."
+}
