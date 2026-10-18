@@ -22,6 +22,36 @@ def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def feedback_contract(prepared, frozen):
+    """Bind explicitly requested controller options to the frozen profile."""
+    requested = prepared.get('experimental_controller', {})
+    if not isinstance(requested, dict):
+        raise ValueError('experimental_controller must be an object')
+    if not requested:
+        return {}
+    allowed = {'pin_feedback_mode', 'pin_alignment_step_cap_rad',
+               'pin_entry_settled', 'pin_entry_raw_pose'}
+    if set(requested)-allowed:
+        raise ValueError('Unsupported experimental controller option')
+    if 'fr3-concurrent-profile.json' not in frozen:
+        raise ValueError('Controller contract requires a frozen profile')
+    profile = json.loads(frozen['fr3-concurrent-profile.json'])
+    if not isinstance(profile, dict):
+        raise ValueError('Controller profile must be an object')
+    for name, expected in requested.items():
+        if name in {'pin_entry_settled', 'pin_entry_raw_pose'}:
+            if type(expected) is not bool:
+                raise ValueError('Controller boolean required: '+name)
+        elif name == 'pin_feedback_mode':
+            if type(expected) is not str or expected not in {'legacy', 'grasp_compensated'}:
+                raise ValueError('Unknown pin feedback mode')
+        elif type(expected) not in (float, int) or not math.isfinite(expected) or not 0 < expected <= .0012:
+            raise ValueError('Invalid pin alignment step cap')
+        if name not in profile or type(profile[name]) is not type(expected) or profile[name] != expected:
+            raise ValueError('Controller contract differs from frozen profile: '+name)
+    return requested.copy()
+
+
 class M80Skill:
     def __init__(self, baseline, output, *, python=sys.executable):
         self.baseline = Path(baseline).resolve()
@@ -149,6 +179,7 @@ class M80Skill:
         frozen={name:(self.output/name).read_bytes() for name in prepared['files']}
         if any(hashlib.sha256(data).hexdigest()!=prepared['files'][name] for name,data in frozen.items()):
             raise RuntimeError('Plan changed while freezing execution inputs')
+        controller = feedback_contract(prepared, frozen)
         if any(not math.isfinite(x) or x<=0 for x in [arm_damping,right_arm_damping]):
             raise ValueError('Positive finite simulation drive damping required')
         run = Path(run_directory).resolve()
@@ -186,6 +217,14 @@ class M80Skill:
             native=run/name if (run/name).exists() else run/'recording'/name
             if not native.exists() or sha(native)!=prepared['files'][name]:
                 raise RuntimeError('Native input differs from screened plan: '+name)
+        if controller:
+            acknowledgement = run/'feedback-parameters.json'
+            if not acknowledgement.exists():
+                raise RuntimeError('Native did not acknowledge requested controller options')
+            actual = json.loads(acknowledgement.read_text())
+            for name, expected in controller.items():
+                if name not in actual or type(actual[name]) is not type(expected) or actual[name] != expected:
+                    raise RuntimeError('Native controller differs from screened plan: '+name)
         for script in ['evaluate_fr3_limits.py', 'evaluate_contact.py',
                        'verify_contact_recording.py', 'audit_hardware_readiness.py']:
             self._run(script, [run], run/(Path(script).stem+'.log'),

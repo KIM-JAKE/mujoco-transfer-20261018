@@ -214,6 +214,8 @@ python3 isaac_port/archive_run.py restore isaac_port/reports/pose-adaptation/fas
 
 복원한 `runs/contact-adaptive-fast-api-b-01/observed-plan`은 `M80Skill`의 `output`으로 열어 `verify_plan()`하고 `run_physx()`로 별도 초기 장면에서 다시 시험할 수 있다. 이는 기록된 합성 장면의 **시뮬레이션 캐시**이며 실기 운동 파일이 아니다. API는 실행 전에 입력을 고정하고, 실제 실행기가 복사한 경로·시간 파일의 SHA와 대조한다. 실패한 실행에도 관측 입력을 남긴다.
 
+캐시에 선택적 제어 변형을 `experimental_controller`로 명시했다면, 고정된 profile과 실행기의 `feedback-parameters.json`에 같은 옵션·값이 있어야 결과를 인정한다. 이전 실행기가 새 옵션을 무시하거나 값·자료형이 다르면 거부한다. 이 검사는 옵션 적용 여부의 계약 검사이며 조립 성공 판정은 별도로 수행한다.
+
 두 조건은 시뮬레이션 drive damping 왼팔 800/오른팔 1800Nm·s/rad, 추가 핀 정렬과 정지 후 클램프 인터록을 사용한다. 실제 FR3 제어기 설정과의 동등성은 미검증이다. 원래 배치의 최단 9.466667초와 구분한다. 합성 카메라 보정은 정확하다고 가정하며, 실제 금속 부품의 RGB-D 성능을 증명한 결과가 아니다. 합성 위치 추정만의 12장면·36회 검사는 별도 [보고서](../reports/perception-perturbation-benchmark.json)에 있다.
 
 ```bash

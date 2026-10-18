@@ -15,6 +15,57 @@ class ArtifactTests(unittest.TestCase):
         (root/'skill-plan.json').write_text(json.dumps(dict(state='offline_screened_requires_PhysX',
             hardware_ready=False,files={n:hashlib.sha256(b).hexdigest()for n,b in files.items()})))
 
+    def controller_plan(self, root, requested, profile):
+        self.write_plan(root, {'fr3-concurrent-profile.json': json.dumps(profile).encode()})
+        path = root/'skill-plan.json'
+        report = json.loads(path.read_text())
+        report['experimental_controller'] = requested
+        path.write_text(json.dumps(report))
+
+    def test_unknown_or_inconsistent_controller_contract_never_launches_native(self):
+        for requested, profile in [({'unimplemented_feature':True}, {'unimplemented_feature':True}),
+                                   ({'pin_entry_raw_pose':True}, {'pin_entry_raw_pose':False}),
+                                   ({'pin_entry_raw_pose':1}, {'pin_entry_raw_pose':1})]:
+            with self.subTest(requested=requested), TemporaryDirectory() as directory:
+                root=Path(directory);plan=root/'plan'
+                self.controller_plan(plan,requested,profile)
+                with patch('subprocess.run') as backend:
+                    with self.assertRaises(ValueError):
+                        M80Skill(root/'baseline',plan).run_physx(root/'run',initial_scene=root/'truth.json')
+                    backend.assert_not_called()
+
+    def test_older_native_ignoring_a_requested_controller_option_cannot_be_credited(self):
+        for reported in [{}, {'pin_entry_raw_pose':False}, {'pin_entry_raw_pose':1}, None]:
+            with self.subTest(reported=reported), TemporaryDirectory() as directory:
+                root=Path(directory);plan=root/'plan';run=root/'run'
+                self.controller_plan(plan,{'pin_entry_raw_pose':True},{'pin_entry_raw_pose':True})
+                def native(*args,**kwargs):
+                    run.mkdir();(run/'fr3-concurrent-profile.json').write_bytes((plan/'fr3-concurrent-profile.json').read_bytes())
+                    if reported is not None:(run/'feedback-parameters.json').write_text(json.dumps(reported))
+                    return subprocess.CompletedProcess(args[0],0)
+                with patch('isaac_port.fieldkit.adaptive.REPO',root),patch('isaac_port.fieldkit.adaptive.PORT',root/'isaac_port'),patch('subprocess.run',side_effect=native) as backend:
+                    with self.assertRaisesRegex(RuntimeError,'Native (controller|did not acknowledge)'):
+                        M80Skill(root/'baseline',plan).run_physx(run,initial_scene=root/'truth.json')
+                    self.assertEqual(backend.call_count,1)
+                self.assertTrue((run/'observed-plan/skill-plan.json').exists())
+
+    def test_matching_native_controller_options_reach_independent_audits(self):
+        with TemporaryDirectory() as directory:
+            root=Path(directory);plan=root/'plan';run=root/'run'
+            requested={'pin_entry_raw_pose':True,'pin_feedback_mode':'grasp_compensated'}
+            self.controller_plan(plan,requested,requested)
+            def native(*args,**kwargs):
+                run.mkdir();(run/'fr3-concurrent-profile.json').write_bytes((plan/'fr3-concurrent-profile.json').read_bytes())
+                (run/'feedback-parameters.json').write_text(json.dumps(requested))
+                return subprocess.CompletedProcess(args[0],0)
+            def audit(script,*args,**kwargs):
+                if script=='evaluate_contact.py':(run/'acceptance.json').write_text('{"state":"test_audit_result","hardware_ready":false}')
+            with patch('isaac_port.fieldkit.adaptive.REPO',root),patch('isaac_port.fieldkit.adaptive.PORT',root/'isaac_port'),patch('subprocess.run',side_effect=native),patch.object(M80Skill,'_run',side_effect=audit) as audits:
+                result=M80Skill(root/'baseline',plan).run_physx(run,initial_scene=root/'truth.json')
+                self.assertEqual(audits.call_count,4)
+                self.assertEqual(result['state'],'test_audit_result')
+                self.assertFalse(result['hardware_ready'])
+
     def test_plan_cannot_hash_or_archive_a_member_outside_its_directory(self):
         with TemporaryDirectory()as directory:
             root=Path(directory);external=root/'external.json';external.write_text('{}')
