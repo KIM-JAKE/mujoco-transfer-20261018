@@ -2,6 +2,8 @@
 
 ## M80 Isaac Sim / 현장 연결 준비
 
+현장 엔지니어는 **[FR3 온보딩](isaac_port/fieldkit/ONBOARDING_FR3.md)**부터 읽는다. 원본 배치의 최신 검증은 동일 초기 조건 2회에서 **9.466667초**이며, [1배속 영상과 측정 근거](isaac_port/reports/contact-trim-03/summary.json)를 제공한다. 실제 양팔·그리퍼·PLC 통합 어댑터와 현장 동작은 아직 미검증이다.
+
 새 PhysX 포팅과 현장용 점검 도구는 [isaac_port](isaac_port/README.md), 실기 연결 절차와 미검증 조건은 [fieldkit 안내](isaac_port/fieldkit/README.md)에 있다. Python만으로 `python3 -m isaac_port.fieldkit preflight`와 `dry-run`을 실행할 수 있다. 이 점검에는 아래 전체 아카이브·SAM3 복원이 필요 없다. 현재 실기 자동 조립은 미검증이며, 10초 미만 최적화 목표와 실제 로봇의 가동 가능 여부를 구분한다.
 
 Private migration snapshot for `/home/gpuadmin/workspace/jake/mujoco`. It contains the M80 CAD model, FR3 Duo and G2 exchange experiments, local robot learning MuJoCo work from the other session, code, vendor assets, saved trajectories, validation reports, playbooks, and environment snapshots. SSH keys, tokens, and account configuration are outside the snapshot.

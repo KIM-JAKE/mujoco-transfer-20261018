@@ -2,7 +2,7 @@
 
 이 경로는 원본 CAD의 센서 장착 위치를 유지한다. 광축 표시 solid만 제외하며 센서 본체와 tail은 강체다. 왼팔의 핀 파지 방향을 원통 목 둘레로 -60° 바꾸고, 접촉이 없는 이동 구간을 줄인다. 작업물은 PhysX 동역학으로 움직이며 파지 후 pose를 강제하거나 손에 고정 joint를 만들지 않는다.
 
-현재 **실험 경로**다. 오프라인 9초대 계산은 실제 접촉 성공이나 실기 성능을 뜻하지 않는다. 최신 원본 배치 전체 기능·FR3 한도·엄격한 10초 미만 통과 기록은 `reports/concurrent-08/acceptance.json`의 **9.625초**다. 같은 조건의 독립 실행 2회에서 9.625초를 확인했다. 위치·센서·I/O 지연을 포함한 현장 반복 성공률과 안전한 동시 제어는 아직 검증하지 않았다. 근거는 `reports/concurrent-08-repeatability.json`이다. 최신 실험 근거는 `reports/concurrent-experiments.json`을 확인한다. 실기 준비는 [fieldkit/README.md](fieldkit/README.md)를 따른다.
+현재 **실험 경로**다. 오프라인 9초대 계산은 실제 접촉 성공이나 실기 성능을 뜻하지 않는다. 최신 원본 배치 전체 기능·FR3 한도·엄격한 10초 미만 통과 기록은 `reports/contact-trim-03/acceptance.json`의 **9.466667초**다. 같은 초기 조건의 독립 실행 2회에서 확인했다. 위치·센서·I/O 지연을 포함한 현장 반복 성공률과 안전한 동시 제어는 아직 검증하지 않았다. 근거는 `reports/contact-trim-03/repeatability.json`이다. 최신 실험 근거는 `reports/concurrent-experiments.json`을 확인한다. 실기 준비는 [fieldkit/README.md](fieldkit/README.md)를 따른다.
 
 ## 경로와 시계
 
@@ -63,7 +63,7 @@ python isaac_port/audit_hardware_readiness.py isaac_port/runs/concurrent-reprodu
 
 `--soft-clamps`는 링 클램프 각 jaw의 힘 상한을 초기 2N에서 접촉 후 80ms 동안 5N으로 높이는 가정이다. 핀 jaw는 기존 3N을 유지한다. 실물에 비례 압력 제어가 있는지 미확인이다. 링 교차 구간은 임의 지연의 모든 자세 조합에서 안전하지 않으므로 실제 어댑터에는 추가 진행도 인터록 또는 동시 정지가 필요하다. 핀 이송·삽입 교차 조합 3,721개는 충돌 없이 통과했지만 추종 오차 여유를 포함한 연속 증명은 아니다.
 
-`prepare_concurrent_timing.py --strict-clamp-alignment`는 팔이 계획된 착좌 정지점에 도달하고 실제 관절 속도가 0.03rad/s 미만이며 부품 위치/각도 오차가 150µm/0.01rad 안에 있을 때 클램프를 시작한다. 힘·스트로크·성공 기준은 그대로다. 원래 배치의 `contact-strict-clamps-01`은 전체 기능·실제 관절 한도·기록 검사를 **9.764583초**에 통과했다. 가장 빠른 9.566667초 후보와 구분하며, 단일 에피소드다. 근거는 `reports/strict-clamps-01/`에 있다.
+`prepare_concurrent_timing.py --strict-clamp-alignment`는 팔이 계획된 착좌 정지점에 도달하고 실제 관절 속도가 0.03rad/s 미만이며 부품 위치/각도 오차가 150µm/0.01rad 안에 있을 때 클램프를 시작한다. 힘·스트로크·성공 기준은 그대로다. 원래 배치의 `contact-strict-clamps-01`은 전체 기능·실제 관절 한도·기록 검사를 **9.764583초**에 통과했다. 가장 빠른 9.466667초 후보와 구분하며, 단일 에피소드다. 근거는 `reports/strict-clamps-01/`에 있다.
 
 `--pin-prealignment`는 핀 지그 진입 전에 정지 가능한 정렬 지점을 추가한다. `--left-pin-lift-time-reserve`는 공급 슬리브에서 들어 올리는 구간에 시간 여유를 둔다. 위치 변경 시험을 위한 선택 사항이며 각 새 동시 경로의 PhysX 검사가 필요하다. 공급 위치 변경은 `test_concurrent_task.py --initial-scene`으로 초기 부품과 선택한 공급 홀더에만 적용한다. M80 삽입 지그는 옮기지 않는다.
 
@@ -71,15 +71,15 @@ python isaac_port/audit_hardware_readiness.py isaac_port/runs/concurrent-reprodu
 
 원시 기록과 실행 당시 구현 snapshot은 두 개의 `reports/concurrent-08/measured-run.zip.part-*`에 들어 있다. `python3 isaac_port/archive_run.py restore isaac_port/reports/concurrent-08/measured-run.zip`은 조각과 50개 내부 파일의 SHA-256을 확인한 뒤 기본 `isaac_port/runs`에 복원한다. 이미 다른 내용이 있으면 덮어쓰지 않는다.
 
-## 최신 9.566667초 기록
+## 최신 9.466667초 기록
 
-같은 공간 경로에서 일부 접촉 clock만 줄인 `contact-trim-01`은 동일 초기 조건 2회에서 전체 PhysX/FR3/기록 검사를 통과했다. [요약·실기 제한](reports/contact-trim-01/summary.json), [1배속 영상](reports/contact-trim-01/m80-9p567-1x.mp4)을 참조한다. 저장소 루트에서 측정 입력과 당시 구현을 복원한다.
+같은 공간 경로에서 일부 접촉 clock만 줄인 `contact-trim-03`은 동일 초기 조건 2회에서 전체 PhysX/FR3/기록 검사를 통과했다. [요약·실기 제한](reports/contact-trim-03/summary.json), [1배속 영상](reports/contact-trim-03/m80-9p467-1x.mp4)을 참조한다. 저장소 루트에서 측정 입력과 당시 구현을 복원한다.
 
 ```bash
-python3 isaac_port/archive_run.py restore isaac_port/reports/contact-trim-01/measured-evidence.zip
+python3 isaac_port/archive_run.py restore isaac_port/reports/contact-trim-03/measured-evidence.zip
 ```
 
-재실행 시 `--reference-dir`와 `--plan-root`에 복원된 `isaac_port/runs/contact-trim-01`을 모두 지정하고, 기존 공통 옵션에 `--right-arm-damping 1800`을 추가한다. 새 출력 폴더를 사용한다. 대형 USD를 중복 포함하지 않은 약 5MB의 근거이며 형상은 seed에서 재생성한다. 당시 입력·clock을 사용한 측정 재현이며 실기 모션 파일이 아니다.
+재실행 시 `--reference-dir`와 `--plan-root`에 복원된 `isaac_port/runs/contact-trim-03`을 모두 지정하고, 기존 공통 옵션에 `--right-arm-damping 1800`을 추가한다. 새 출력 폴더를 사용한다. 대형 USD를 중복 포함하지 않은 약 5MB의 근거이며 형상은 seed에서 재생성한다. 당시 입력·clock을 사용한 측정 재현이며 실기 모션 파일이 아니다.
 
 ## 측정된 정지 상태를 사용하는 양팔 대기
 

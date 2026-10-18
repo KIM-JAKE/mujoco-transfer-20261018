@@ -8,9 +8,9 @@
 
 | 항목 | 현재 근거와 의미 |
 |---|---|
-| 원본 M80 배치의 조립 | [최신 근거](../reports/contact-trim-01/summary.json): PhysX에서 링 2개와 핀 1개 파지·삽입·클램프·해제 후 버튼 유지까지 9.566667초, 동일 초기 조건 2회 |
+| 원본 M80 배치의 조립 | [최신 근거](../reports/contact-trim-03/summary.json): PhysX에서 링 2개와 핀 1개 파지·삽입·클램프·해제 후 버튼 유지까지 9.466667초, 동일 초기 조건 2회 |
 | FR3 운동학 | 95% 명령 예산, 실제 시뮬레이션 관절 위치·위치별 속도·가속도·jerk 검사 통과 |
-| 실물 같은 시간 | 미확인. 수입 모델 토크 변화율 최대 약 6810Nm/s, 실제 제어기·하중·접촉·통신 응답 미측정 |
+| 실물 같은 시간 | 미확인. 수입 모델 토크 변화율 최대 약 6491Nm/s, 실제 제어기·하중·접촉·통신 응답 미측정 |
 | 양팔 지연 | 최단 경로는 임의 지연 시 충돌 가능한 자세 조합이 있음. 측정된 정지 상태를 요구하는 보수적 대안은 13.531초에 기능 검사 통과 |
 | 클램프 | 링 jaw 힘을 접촉 후 80ms 동안 2→5N으로 올린 시뮬레이션 가정. 실물의 비례 압력 제어·지연 확인 필요 |
 | 현장 연결 도구 | 공식 libfranka 0.18.1로 빌드·링크 및 오프라인 CTest 3개 통과. 실제 로봇 연결은 미실시 |
@@ -38,10 +38,10 @@ Isaac 재현용 CAD·모델만 필요하면 `python3 isaac_port/bundle_assets.py
 python3 isaac_port/archive_run.py restore isaac_port/reports/concurrent-08/measured-run.zip
 ```
 
-최신 9.566667초의 명령·측정·당시 실행 코드만 별도로 복원하려면 다음을 실행한다. 대형 USD는 위 9.625초 형상 아카이브와 같은 공간 계획을 사용하므로 중복 저장하지 않았다. 새 실행은 반드시 이 최신 clock 파일과 해당 검증 옵션으로 준비한다.
+최신 9.466667초의 명령·측정·당시 실행 코드만 별도로 복원하려면 다음을 실행한다. 대형 USD는 위 9.625초 형상 아카이브와 같은 공간 계획을 사용하므로 중복 저장하지 않았다. 새 실행은 반드시 이 최신 clock 파일과 해당 검증 옵션으로 준비한다.
 
 ```bash
-python3 isaac_port/archive_run.py restore isaac_port/reports/contact-trim-01/measured-evidence.zip
+python3 isaac_port/archive_run.py restore isaac_port/reports/contact-trim-03/measured-evidence.zip
 ```
 
 실행 당시 코드·입력·실제 관절 및 부품 기록을 SHA-256으로 확인해 복원한다. 기존 파일 내용이 다르면 중단한다. `../CONCURRENT_TASK.md`의 재현 절차로 새 PhysX 실행을 검사한다.
@@ -96,7 +96,16 @@ python3 -m isaac_port.fieldkit.export_model_audit_csv \
 
 `--validate-only`는 로봇 연결 없이 연속 C2 곡선의 위치·위치별 속도·가속도·jerk를 95% 예산으로 검사한다. 로봇 IP를 주면 검사 뒤 모델을 읽고 같은 곡선을 내부에서 1kHz로 샘플링한다. 입력은 `time_s,q1..q7,dq1..dq7,ddq1..ddq7` 22열 CSV이며 시작 시각 0, 양 끝 속도·가속도 0이 필요하다. 원래 waypoint 시각을 보존하고, 1kHz로 다시 보간한 데이터를 또 보간하는 방식은 피한다.
 
-저장된 시뮬레이션 명령도 `--run RUN_DIRECTORY --side left|right`로 **수학 검사 입력만** 내보낼 수 있다. `--time-scale 1.02`는 시각·속도·가속도를 일관되게 조정해 2% 늦춘다. 9.566667초 기록의 원래 knot를 보존한 양팔 파일은 이 여유로 C++의 연속 95% 검사를 통과했다. 원래 시뮬레이션 주기를 실기에서 보장한다는 뜻은 아니다. 보간 곡선의 순간 jerk는 1kHz 표본 사이에서 더 클 수 있어, 각 계획을 다시 검사한다.
+저장된 시뮬레이션 명령도 `--run RUN_DIRECTORY --side left|right`로 **수학 검사 입력만** 내보낼 수 있다. `--time-scale 1.01`는 시각·속도·가속도를 일관되게 조정해 1% 늦춘다. 9.466667초 기록의 원래 knot를 보존한 양팔 파일은 이 여유로 C++의 연속 95% 검사를 통과했다. 원래 시뮬레이션 주기를 실기에서 보장한다는 뜻은 아니다. 보간 곡선의 순간 jerk는 1kHz 표본 사이에서 더 클 수 있어, 각 계획을 다시 검사한다.
+
+`--run` 내보내기는 NumPy가 필요하므로 아래 계획 환경의 Python으로 실행한다. `--state` 정지 곡선 내보내기는 표준 Python만으로 가능하다.
+
+```bash
+/tmp/m80-plan-venv/bin/python -m isaac_port.fieldkit.export_model_audit_csv \
+  --run isaac_port/runs/contact-trim-03 --side left --time-scale 1.01 \
+  --output /tmp/m80-left-model.csv
+/tmp/m80-field-build/m80_model_audit --validate-only /tmp/m80-left-model.csv
+```
 
 SDK 모델 출력은 현재 설정된 일정한 tool/load의 계산이다. 실제 접촉·마찰·추종 오차·작업 중 하중 변경을 제외하며, PASS여도 `hardware_ready: false`다. 현장 로봇에 연결한 모델 수치 확인은 아직 하지 못했다. 여기서는 공식 0.18.1로 빌드·링크, 잘못된 입력의 연결 전 거부, 정지 곡선과 양팔 내보내기 파일의 연속 한도 검사를 확인했다.
 
@@ -172,7 +181,7 @@ plan = skill.prepare(
 
 매번 빈 출력 폴더를 사용한다. `skill-plan.json`은 모든 계획·검사 파일의 SHA와 별도 계획 시간을 기록한다. `skill.verify_plan()`은 검사 이후 파일이 바뀌면 거부한다. 저장 촬영 재현에서는 `replay=True`를 명시한다. `skill.run_physx(...)`는 별도 초기 장면으로 **시뮬레이션 시험**을 실행하는 API이며, 개인 GPU 세션의 Isaac Python 실행 경로를 지정해야 한다. 실제 로봇 실행은 다음 절의 `Cell`/C++ 현장 어댑터에 연결해야 한다.
 
-현재 서버의 합성 예시는 충돌 검사를 포함한 준비에 약 4분이 걸렸다. 이는 새 공급 배치의 사전 계획 절차이며 매 생산 주기 안의 실시간 비전 제어가 아니다. 9.566667초 공정 시간에 촬영·위치 추정·이 준비 시간을 포함하지 않는다. 실제 카메라 지연과 공급 부품이 정지해 있다는 조건도 현장 인터록으로 확인해야 한다.
+현재 서버의 합성 예시는 충돌 검사를 포함한 준비에 약 4분이 걸렸다. 이는 새 공급 배치의 사전 계획 절차이며 매 생산 주기 안의 실시간 비전 제어가 아니다. 9.466667초 공정 시간에 촬영·위치 추정·이 준비 시간을 포함하지 않는다. 실제 카메라 지연과 공급 부품이 정지해 있다는 조건도 현장 인터록으로 확인해야 한다.
 
 ### 위치 변경 시험과 재현 데이터
 
@@ -183,7 +192,7 @@ plan = skill.prepare(
 | shift-a | 통과, 의도하지 않은 로봇 접촉 0N | 11.847917초 | 미달 |
 | shift-b | 통과, 의도하지 않은 로봇 접촉 0N | 10.514583초 | 미달 |
 
-두 조건은 시뮬레이션 drive damping 왼팔 800/오른팔 1800Nm·s/rad, 추가 핀 정렬과 정지 후 클램프 인터록을 사용한다. 실제 FR3 제어기 설정과의 동등성은 미검증이다. 원래 배치의 최단 9.566667초와 구분한다. 합성 카메라 보정은 정확하다고 가정하며, 실제 금속 부품의 RGB-D 성능을 증명한 결과가 아니다. 합성 위치 추정만의 12장면·36회 검사는 별도 [보고서](../reports/perception-perturbation-benchmark.json)에 있다.
+두 조건은 시뮬레이션 drive damping 왼팔 800/오른팔 1800Nm·s/rad, 추가 핀 정렬과 정지 후 클램프 인터록을 사용한다. 실제 FR3 제어기 설정과의 동등성은 미검증이다. 원래 배치의 최단 9.466667초와 구분한다. 합성 카메라 보정은 정확하다고 가정하며, 실제 금속 부품의 RGB-D 성능을 증명한 결과가 아니다. 합성 위치 추정만의 12장면·36회 검사는 별도 [보고서](../reports/perception-perturbation-benchmark.json)에 있다.
 
 ```bash
 python -m isaac_port.fieldkit.adaptive \

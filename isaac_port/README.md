@@ -2,7 +2,7 @@
 
 **현장 연결 준비:** 엔지니어용 [FR3 온보딩](fieldkit/ONBOARDING_FR3.md)부터 읽는다. 코드와 API 개요는 [fieldkit/README.md](fieldkit/README.md)에 있다. 현재 실기 자동 실행은 미검증이다. 이전 14.729초는 센서를 이동한 시험 배치 결과이며 원본 설비 실기 성능을 뜻하지 않는다. 원본 CAD의 센서 광축을 강체 레일로 취급한 오류를 수정하고, 두 팔 독립 스케줄로 10초 미만을 최적화 중이다. 한국 시간 2026-10-19 낮 12시까지 달성 후에도 계속 단축하고, 낮 12시에 검증된 최종본의 GitHub 푸시를 시작한다. `python3 -m isaac_port.fieldkit preflight`로 현장 통합 잔여 항목을 확인한다.
 
-**최신 원본 배치 검사:** `contact-trim-01`에서 **9.566667초**를 독립 2회 확인했다. 세 부품의 실제 PhysX 파지·삽입·유한 힘 클램프·손 해제·버튼 100ms 유지, 95% 명령 생성 상한과 실제 FR3 관절 한도·기록 검사를 통과했다. 의도하지 않은 로봇 접촉 0N. [검증·반복·영상](reports/contact-trim-01/summary.json), [1배속 MP4](reports/contact-trim-01/m80-9p567-1x.mp4). 공간 경로와 원본 센서 장착 위치를 유지하고 접촉 단계의 시각만 조정했다. **실기 시간은 미검증이다.** 기록을 재보간한 연속 C2 곡선은 jerk 최대 4911/5000rad/s³로 공식 상한 이내지만 95% 예산을 넘는다. 별도 실기 모델 검사 입력은 2% 늦춰 연속 95% 검사를 통과시켰다. 모델 토크 변화율 최대 6810/1000Nm/s, 임의 지연 시 양팔 간섭과 실제 주변 장치 응답은 남은 문제다. [실기 온보딩과 SDK 검사](fieldkit/ONBOARDING_FR3.md), [전체 형상 포함 이전 9.625초 재현](CONCURRENT_TASK.md).
+**최신 원본 배치 검사:** `contact-trim-03`에서 **9.466667초**를 독립 2회 확인했다. 세 부품의 실제 PhysX 파지·삽입·유한 힘 클램프·손 해제·버튼 100ms 유지, 95% 명령 생성 상한과 실제 FR3 관절 한도·기록 검사를 통과했다. 의도하지 않은 로봇 접촉 0N. [검증·반복·영상](reports/contact-trim-03/summary.json), [1배속 MP4](reports/contact-trim-03/m80-9p467-1x.mp4). 공간 경로와 원본 센서 장착 위치를 유지하고 접촉 단계의 시각만 조정했다. **실기 시간은 미검증이다.** 기록을 재보간한 연속 C2 곡선은 jerk 최대 4806/5000rad/s³로 공식 상한 이내지만 95% 예산을 넘는다. 별도 실기 모델 검사 입력은 1% 늦춰 연속 95% 검사를 통과시켰다. 모델 토크 변화율 최대 6491/1000Nm/s, 임의 지연 시 양팔 간섭과 실제 주변 장치 응답은 남은 문제다. [실기 온보딩과 SDK 검사](fieldkit/ONBOARDING_FR3.md), [전체 형상 포함 이전 9.625초 재현](CONCURRENT_TASK.md).
 
 
 **이전 위치 변경 시험 기록: 95% 명령 상한을 적용한 전체 PhysX 작업을 14.729초에 통과했다. 15초 미만 달성.** 이전 22.881초보다 35.6% 줄였다. 두 링·핀의 파지→삽입→클램프→손 해제→버튼 누름과 실제 FR3 관절 위치·속도·가속도·jerk 검사를 통과했다. 최대 실제 가속도 9.592/10rad/s², 의도치 않은 설비 접촉 0N이다. 수정된 시험 설비와 가정한 액추에이터의 단일 에피소드 결과이며 실기 인증이 아니다. 기본 실행은 `run_contact.sh`, 상세 조건은 [CONTACT_TASK.md](CONTACT_TASK.md), 근거는 `runs/contact-under15-07/acceptance.json`과 `fr3-limits.json`이다. 렌더 영상과 GIF는 측정 시각의 1배속이다.
@@ -126,7 +126,7 @@ cd /home/gpuadmin/workspace/jake/mujoco/isaac_port
 
 실제 동적 부품, 힘 제한 클램프, 스프링 버튼, 성공 조건, 원본 CAD 간섭과 실측 전 가정은 [CONTACT_TASK.md](CONTACT_TASK.md)에 정리했다. 새 작업의 최종 판정은 `acceptance.json`의 `physical_simulation_pass`다. 원본 CAD와 실물 조립의 인증 여부는 별도 필드로 계속 `false`를 유지한다.
 
-2026-10-18 최신 검증: `runs/contact-fr3-09/`에서 `physical_simulation_pass: true`, `fr3_kinematic_limits_pass: true`. 측정 최대 관절 가속도 7.104rad/s², jerk 4940.120rad/s³이며 의도치 않은 접촉은 0N이다. 세 부품의 양측 파지·고정·손 해제 후 유지와 버튼 100ms 누름을 통과했다. 초기 안정화를 뺀 공정 시간은 44.535초다. 보수적인 최초 검증본이며 최단 시간 최적화·실기 인증과 구분한다.
+2026-10-18 최초 보수적 검증: `runs/contact-fr3-09/`에서 `physical_simulation_pass: true`, `fr3_kinematic_limits_pass: true`. 측정 최대 관절 가속도 7.104rad/s², jerk 4940.120rad/s³이며 의도치 않은 접촉은 0N이다. 세 부품의 양측 파지·고정·손 해제 후 유지와 버튼 100ms 누름을 통과했다. 초기 안정화를 뺀 공정 시간은 44.535초다. 보수적인 최초 검증본이며 최단 시간 최적화·실기 인증과 구분한다.
 
 고리의 `purpose=guide`로 렌더에서 빠지던 문제를 수정했다. `runs/contact-fr3-09/render/m80-physx-contact.mp4`는 측정한 PhysX 상태를 1배속·30fps로 보여 준다. 파랑/주황 고리와 초록 핀을 구분하고, 오른쪽은 X-ray 확대 화면이다. `render/status.json`은 모든 영상 프레임의 디코딩·측정 자세 일치와 재생 속도를 확인한다. `recording-audit.json`은 코드·입력 SHA-256, 테이프/상태 기록 일치, 독립 FK와 native 관절 속도 대비 timestep 일치를 검사한다. 원본 CAD 간섭과 실측 전 모델 가정은 계속 남아 있다.
 
