@@ -26,7 +26,7 @@ python3 -m unittest isaac_port.fieldkit.test_fieldkit -v
 python3 isaac_port/bundle_assets.py restore
 ```
 
-별도 빈 폴더에 758개 파일을 복원하고 MuJoCo 모델(30 DOF)을 로딩하는 검사를 통과했다. 실행 환경과 실기 보정값을 담은 패키지는 아니다. `run_contact.sh`는 AIDAS의 공용 `isaac-run` 및 개인 패키지 환경을 이용한다. 현재 양팔 독립 경로의 9.625초 결과는 `../CONCURRENT_TASK.md`의 별도 절차로 재현하며, 전체 판정은 각 실행의 `acceptance.json`에서 확인한다.
+별도 빈 폴더에 758개 파일을 복원하고 MuJoCo 모델(30 DOF)을 로딩하는 검사를 통과했다. 실행 환경과 실기 보정값을 담은 패키지는 아니다. `run_contact.sh`는 AIDAS의 공용 `isaac-run` 및 개인 패키지 환경을 이용한다. 전체 형상을 포함한 이전 양팔 독립 경로의 9.625초 결과는 `../CONCURRENT_TASK.md`의 별도 절차로 재현하며, 전체 판정은 각 실행의 `acceptance.json`에서 확인한다.
 
 ## 2. Code as Policies 방식의 연결 지점
 
@@ -60,7 +60,7 @@ cmake --build /tmp/m80-field-build --parallel 2
 
 출력은 관절 상태, 토크, TCP 변환, 설정된 tool/load 질량, 로봇 모드, 서버 프로토콜 버전이다. 서버 프로토콜 번호는 System Image 전체 버전 문자열이 아니므로 Desk 기록과 함께 보관한다. 이 테스트만으로 1kHz 제어 네트워크 품질을 입증하지 않는다.
 
-검증 범위: 별도 Ubuntu 20.04 빌드 환경에서 공식 libfranka 0.18.1 패키지로 상태 읽기 도구와 단계 실행 라이브러리의 전체 빌드·링크를 통과했다. Release 빌드에서 궤적 검사와 SDK 링크 테스트 2개도 통과했다. 로봇 상태 읽기와 동작 실행은 현장 로봇에 연결하지 않아 확인하지 못했다.
+검증 범위: 별도 Ubuntu 20.04 빌드 환경에서 공식 libfranka 0.18.1 패키지로 상태 읽기 도구와 단계 실행 라이브러리의 전체 빌드·링크를 통과했다. Release 빌드에서 궤적 검사·SDK 링크·모델 도구 입력 거부 테스트 3개도 통과했다. 로봇 상태 읽기와 동작 실행은 현장 로봇에 연결하지 않아 확인하지 못했다.
 
 ### libfranka 단계 실행 API
 
@@ -95,7 +95,7 @@ python3 -m isaac_port.fieldkit preflight --config /tmp/m80-site.json
 
 ## 5. 현재 성능과 시뮬레이션 가정
 
-최신 원본 배치 `contact-concurrent-08`는 전체 조립·버튼·FR3 운동학·기록 검사를 **9.625초**에 통과했다. 같은 조건의 독립 PhysX 실행 2회에서 9.625초를 확인했으며 실물의 같은 시간 실행을 뜻하지 않는다. 반복 근거는 `../reports/concurrent-08-repeatability.json`이다. 광축만 제외했으며 센서 위치 이동은 0이다. 근거: `../reports/concurrent-08/acceptance.json`. 이전 단일 시간축 결과는 15.129167초다. 실기 준비 상태는 `../reports/latest-readiness.json`을 참조한다.
+최신 원본 배치 `contact-trim-01`은 전체 조립·버튼·FR3 운동학·기록 검사를 **9.566667초**에 통과했다. 같은 초기 조건의 독립 PhysX 실행 2회에서 확인했으며 실물의 같은 시간 실행을 뜻하지 않는다. [반복·영상·근거](../reports/contact-trim-01/summary.json)를 함께 제공한다. 광축 표시만 제외했으며 센서 위치 이동은 0이다. 원래 명령 생성기는 95% 한도를 사용하지만, 저장 상태를 연속 C2 곡선으로 다시 구성하면 순간 jerk가 4911rad/s³로 95% 예산을 초과한다. 공식 5000rad/s³ 한도 이내이며, 현장 모델 검사용 파일은 2% 늦춰 C++의 연속 95% 검사를 통과시켰다. 실제 하드웨어 응답은 미검증이다. 실기 준비 상태는 `../reports/latest-readiness.json`을 참조한다.
 
 - 이전 **14.729초**는 센서 6개를 12–60mm 이동한 시험 배치의 단일 PhysX 에피소드다. 원본 배치 실기 성능으로 사용할 수 없다.
 - 원본 CAD의 `E32-T11N-BASE`는 OMRON 투과형 광섬유 센서다. 정밀 BRep에서 본체/짧은 tail과 렌즈 앞에서 반대편 센서까지 이어지는 지름 0.3mm, 길이 754.2mm 광축 표시 solid를 분리했다. 광축을 강체 레일로 처리한 것이 이전 간섭 판정의 원인이었다. 새 모델은 광축만 접촉에서 제외하고 본체·tail·장착 위치를 유지한다. [OMRON 제품](https://industrial.omron.eu/en/products/E32-T11N-2M)
@@ -108,4 +108,4 @@ python3 -m isaac_port.fieldkit preflight --config /tmp/m80-site.json
 
 최적화 목표는 전체 동적 조립·버튼 주기 **10.0초 미만**이다. 한국 시간 **2026-10-19 12:00**에 새 최적화와 실행 중인 최적화를 중단하고 준비된 최종본의 GitHub 푸시를 시작한다. 10초 미만을 달성해도 마감까지 계속 단축한다. 그때의 검증된 결과, 실패 근거, 현장 연결 코드와 이 문서를 정리해 GitHub에 올린다. 미달한 결과를 배속하거나 실기 가능한 10초로 표시하지 않는다.
 
-9.625초 후보는 링 클램프 jaw의 힘을 2→5N으로 ramp하는 가정을 추가했다. 실제 비례 압력 제어가 있는지 확인해야 한다. 링 교차 구간은 임의 I/O 지연의 모든 자세 조합에서 안전하지 않아 실제 `Cell` 어댑터의 추가 인터록과 동시 정지가 필요하다. 수입 모델 토크 변화율은 최대 약 6714Nm/s이며 실측이 아니다. JointPositions 모드에서 토크·변화율은 권장 조건이고 로봇이 궤적을 보정할 수 있으므로 동일한 실기 시간을 보장하지 않는다. [Franka 공식 조건](https://frankarobotics.github.io/docs/robot_specifications.html)
+최단 후보는 링 클램프 jaw의 힘을 2→5N으로 ramp하는 가정을 추가했다. 실제 비례 압력 제어가 있는지 확인해야 한다. 링 교차 구간은 임의 I/O 지연의 모든 자세 조합에서 안전하지 않아 실제 `Cell` 어댑터의 추가 인터록과 동시 정지가 필요하다. 수입 모델 토크 변화율은 최대 약 6810Nm/s이며 실측이 아니다. JointPositions 모드에서 토크·변화율은 권장 조건이고 로봇이 궤적을 보정할 수 있으므로 동일한 실기 시간을 보장하지 않는다. [Franka 공식 조건](https://frankarobotics.github.io/docs/robot_specifications.html)

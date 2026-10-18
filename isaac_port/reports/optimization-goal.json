@@ -18,7 +18,7 @@
     "contents": "PhysX port, optical-axis correction, original-layout 15.129s evidence, self-contained seed, field integration preflight",
     "latest_commit": "9c9b466"
   },
-  "latest_original_layout_cycle_s": 9.625,
+  "latest_original_layout_cycle_s": 9.566666666666666,
   "under_10_verified": true,
   "fieldkit_push": {
     "commit": "bbf0f97",
@@ -32,11 +32,11 @@
   "latest_user_instruction": "Continue reducing as far as possible until 2026-10-19 12:00 Asia/Seoul, even if under 10 seconds is achieved; publish final at noon",
   "publish_at_deadline": true,
   "no_more_intermediate_pushes": true,
-  "latest_original_functional_run": "contact-concurrent-08",
+  "latest_original_functional_run": "contact-trim-01",
   "final_publish_ref": "refs/heads/m80-noon-release",
   "intermediate_pushes_complete": true,
   "continue_optimizing_until_noon": true,
-  "repeatability_verified": false,
+  "repeatability_verified": true,
   "additional_field_requirements": {
     "camera_model": "undecided",
     "observe_shifted_ring_and_pin_poses": true,
@@ -44,5 +44,7 @@
     "perturbed_position_native_tests_required": true,
     "cap_style_skill_call_required": true,
     "fr3_field_onboarding_required": true
-  }
+  },
+  "repeatability_scope": "Two independent deterministic episodes at the same initial condition, not tolerance/delay robustness",
+  "robustness_distribution_verified": false
 }
