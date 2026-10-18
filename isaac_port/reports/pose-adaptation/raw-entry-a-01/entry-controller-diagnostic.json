@@ -1,0 +1,21 @@
+{
+  "state": "failed_unchanged_measured_velocity_settling_gate",
+  "source": "contact-adaptive-compensated-raw-entry-a-01",
+  "error": "RuntimeError(\"Insertion gate timeout: {'left': 'pin_precision_alignment_settling', 'right': 'button_wait_for_all_releases'}\")",
+  "last_recorded_t": 20.002083333333335,
+  "last_recorded_raw_pin_error_m": [
+    -1.0081935747419113e-05,
+    2.1820593514021436e-06,
+    -5.142229342780524e-06
+  ],
+  "last_recorded_transverse_error_m": 1.0315367731115016e-05,
+  "last_recorded_orientation_error_rad": 4.6492298953811686e-05,
+  "peak_pending_correction": {
+    "t": 8.56875,
+    "maximum_target_minus_applied_rad": 0.020583819693891177,
+    "pin_speed_m_s": 0.03627676254128243
+  },
+  "hypothesis": "Raw measured error integration can outrun the applied offset limiter at entry. Test anti-windup anchored to actually applied command offset; keep all pose/velocity/FR3 gates.",
+  "scope": "Diagnostic differences at recorded ticks while the base path is stationary; not a hardware measurement or full motion success.",
+  "hardware_ready": false
+}
