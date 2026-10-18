@@ -1,0 +1,41 @@
+{
+  "state": "functional_PhysX_FR3_and_imported_model_budget_pass_under10_failed",
+  "source": "contact-conservative-model600-release-01",
+  "cycle_time_s": 14.833333333333334,
+  "independent_episodes": 1,
+  "repeat": "queued, not credited",
+  "layout": "original_cad",
+  "hardware_ready": false,
+  "physical_simulation_pass": false,
+  "parts_button_and_actual_FR3_pass": true,
+  "planning_model_rate_ceiling_nm_s": 600,
+  "measured_imported_model_max_gravity_excluded_rate_nm_s": 915.1857699735189,
+  "model_total_torque_pass": true,
+  "model_gravity_excluded_rate_under1000_pass": true,
+  "continuous_C2_jerk_95_pass": true,
+  "motion": "Conservative measured left2.4/right-ring-release handoff, pin prealignment, strict clamps, left damping800/right1800",
+  "scope": "Imported-model inverse dynamics excludes carried payload, contact and friction. No real FR3 SDK model/network/motor test. Not a hardware timing certificate.",
+  "archive": "measured-evidence.zip",
+  "restore_verified": "/tmp/m80-model600-evidence-check",
+  "best_fast_cycle_s": 9.466666666666667,
+  "sdk_continuous95": {
+    "left": {
+      "passed": true,
+      "time_scale": 1.0,
+      "csv_sha256": "a03bb07e1948bb5a37f833e1f11f7f3fee39f54869b7a152cbff3aa8c8f98233",
+      "waypoints": 8117,
+      "duration_with_initialization_and_hold_s": 16.9083,
+      "robot_connected": false,
+      "motion_executed": false
+    },
+    "right": {
+      "passed": true,
+      "time_scale": 1.0,
+      "csv_sha256": "7ec588b39064c45c1a980fb5734300539413f5ea26596b9c41953c00ec3cf3f0",
+      "waypoints": 8117,
+      "duration_with_initialization_and_hold_s": 16.9083,
+      "robot_connected": false,
+      "motion_executed": false
+    }
+  }
+}
