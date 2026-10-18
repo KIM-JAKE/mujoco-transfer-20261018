@@ -1,0 +1,63 @@
+{
+  "state": "two_native_functional_and_model_budget_passes_under10_failed",
+  "episodes": [
+    {
+      "run": "contact-conservative-model600-release-01",
+      "cycle_time_s": 14.833333333333334,
+      "functional_and_actual_FR3_and_recording_pass": true,
+      "strict_under10_pass": false,
+      "imported_model_total_torque_pass": true,
+      "imported_model_rate_under1000_pass": true,
+      "model_peak_rate_nm_s": 915.1857699735189,
+      "continuous_C2_jerk_95_pass": true,
+      "unintended_robot_contact_peak_n": 0
+    },
+    {
+      "run": "contact-conservative-model600-release-01-repeat1",
+      "cycle_time_s": 14.833333333333334,
+      "functional_and_actual_FR3_and_recording_pass": true,
+      "strict_under10_pass": false,
+      "imported_model_total_torque_pass": true,
+      "imported_model_rate_under1000_pass": true,
+      "model_peak_rate_nm_s": 915.1857699735189,
+      "continuous_C2_jerk_95_pass": true,
+      "unintended_robot_contact_peak_n": 0
+    }
+  ],
+  "same_initial_condition": true,
+  "same_frozen_source_and_inputs": true,
+  "joint_motion_array_comparison": {
+    "time_s": {
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "actual_position": {
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "actual_velocity": {
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "command_position": {
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "command_velocity": {
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "command_acceleration": {
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    },
+    "dof_indices": {
+      "exactly_equal": true,
+      "maximum_absolute_difference": 0.0
+    }
+  },
+  "sdk_continuous95_validation_reused_for_identical_CSVs": true,
+  "additional_time_scale": 1.0,
+  "hardware_ready": false,
+  "scope": "Two independent deterministic episodes; no hardware, sensor delay or tolerance distribution certification."
+}

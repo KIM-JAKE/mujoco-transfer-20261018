@@ -12,13 +12,15 @@
 | FR3 운동학 | 95% 명령 예산, 실제 시뮬레이션 관절 위치·위치별 속도·가속도·jerk 검사 통과 |
 | 실물 같은 시간 | 미확인. 수입 모델 토크 변화율 최대 약 6491Nm/s, 실제 제어기·하중·접촉·통신 응답 미측정 |
 | 양팔 지연 | 최단 경로는 임의 지연 시 충돌 가능한 자세 조합이 있음. 측정된 정지 상태를 요구하는 보수적 대안은 13.531초에 기능 검사 통과 |
-| 모델 토크 예산을 추가한 대안 | 원본 배치에서 14.833초에 전체 기능·실제 관절 한도·기록 및 수입 모델의 토크/변화율 검사 통과. 단일 에피소드이며 실물 모델 검사는 아님 |
+| 모델 토크 예산을 추가한 대안 | 원본 배치에서 14.833초에 전체 기능·실제 관절 한도·기록 및 수입 모델의 토크/변화율 검사 통과. 같은 초기 조건의 독립 2회 확인이며 실물 모델 검사는 아님 |
 | 클램프 | 링 jaw 힘을 접촉 후 80ms 동안 2→5N으로 올린 시뮬레이션 가정. 실물의 비례 압력 제어·지연 확인 필요 |
 | 현장 연결 도구 | 공식 libfranka 0.18.1로 빌드·링크 및 오프라인 CTest 4개 통과. 실제 로봇 연결은 미실시 |
 
 시간은 초기 자세 이동·보정·촬영·재계획을 제외한 공정 시간이다. 위치 추정과 경로 생성 소요 시간은 따로 측정한다. 95%는 계획 상한이며 첫 실기 시험 속도를 뜻하지 않는다.
 
 실기 모델 검토용 대안으로 [14.833초 기록](../reports/conservative-model600-release-01/summary.json)을 제공한다. 계획 시 수입 모델의 중력 제외 토크 변화율 예산을 600Nm/s로 낮췄고, 기록된 명령을 재검사한 최대값은 약 915Nm/s였다. 원본 배치의 측정된 양팔 정지 확인과 엄격한 클램프 정렬을 유지했다. 연속 C2 명령 곡선도 추가 감속 없이 SDK와 연결된 검사 도구의 95% 운동학 검사를 통과했다. 이 모델은 파지 부품·접촉·마찰을 제외하므로 실제 FR3 모델과 하중으로 다시 검사해야 한다. 10초 미만 판정은 미달로 남아 있으며 빠른 9.466667초 경로를 대체하는 실기 인증이 아니다.
+
+[반복 근거](../reports/conservative-model600-release-01/repeatability.json)의 두 실행은 같은 코드·입력을 고정했고 명령 및 실제 관절 기록이 일치했다. 결정적인 동일 초기 조건의 반복 검사이며 지연·공급 오차·마찰 변화에 대한 성공률을 측정한 결과는 아니다.
 
 ## 1. 가져오기와 오프라인 확인
 
@@ -114,6 +116,20 @@ python3 -m isaac_port.fieldkit.export_model_audit_csv \
   --output /tmp/m80-left-model.csv
 /tmp/m80-field-build/m80_model_audit --validate-only /tmp/m80-left-model.csv
 ```
+
+토크 예산을 추가한 14.833초 대안의 기록도 같은 방법으로 비교할 수 있다. 다음 예시는 추가 시간 배율 없이 왼팔 곡선을 내보내 검사한다. 오른팔은 `--side right`와 별도 출력 파일을 사용한다.
+
+```bash
+python3 isaac_port/archive_run.py restore isaac_port/reports/conservative-model600-release-01/measured-evidence.zip
+/tmp/m80-plan-venv/bin/python -m isaac_port.fieldkit.export_model_audit_csv \
+  --run isaac_port/runs/contact-conservative-model600-release-01 --side left \
+  --output /tmp/m80-left-model600.csv
+/tmp/m80-field-build/m80_model_audit --validate-only /tmp/m80-left-model600.csv
+/tmp/m80-field-build/m80_model_audit LEFT_ROBOT_IP /tmp/m80-left-model600.csv \
+  > /tmp/m80-left-model600-sdk.json
+```
+
+마지막 명령도 모델을 읽는 검사이며 운동을 실행하지 않는다. 저장된 시뮬레이션 곡선과 실제 로봇·공구 모델의 차이를 확인하기 위한 입력이다.
 
 SDK 모델 출력은 현재 설정된 일정한 tool/load의 계산이다. 실제 접촉·마찰·추종 오차·작업 중 하중 변경을 제외하며, PASS여도 `hardware_ready: false`다. 현장 로봇에 연결한 모델 수치 확인은 아직 하지 못했다. 여기서는 공식 0.18.1로 빌드·링크, 잘못된 입력의 연결 전 거부, 정지 곡선과 양팔 내보내기 파일의 연속 한도 검사를 확인했다.
 
