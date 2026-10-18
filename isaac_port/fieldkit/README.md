@@ -95,7 +95,7 @@ python3 -m isaac_port.fieldkit preflight --config /tmp/m80-site.json
 
 ## 5. 현재 성능과 시뮬레이션 가정
 
-최신 원본 배치 `contact-concurrent-08`는 전체 조립·버튼·FR3 운동학·기록 검사를 **9.625초**에 통과했다. 단일 PhysX 에피소드이며 실물의 같은 시간 실행을 뜻하지 않는다. 광축만 제외했으며 센서 위치 이동은 0이다. 근거: `../reports/concurrent-08/acceptance.json`. 이전 단일 시간축 결과는 15.129167초다. 실기 준비 상태는 `../reports/latest-readiness.json`을 참조한다.
+최신 원본 배치 `contact-concurrent-08`는 전체 조립·버튼·FR3 운동학·기록 검사를 **9.625초**에 통과했다. 같은 조건의 독립 PhysX 실행 2회에서 9.625초를 확인했으며 실물의 같은 시간 실행을 뜻하지 않는다. 반복 근거는 `../reports/concurrent-08-repeatability.json`이다. 광축만 제외했으며 센서 위치 이동은 0이다. 근거: `../reports/concurrent-08/acceptance.json`. 이전 단일 시간축 결과는 15.129167초다. 실기 준비 상태는 `../reports/latest-readiness.json`을 참조한다.
 
 - 이전 **14.729초**는 센서 6개를 12–60mm 이동한 시험 배치의 단일 PhysX 에피소드다. 원본 배치 실기 성능으로 사용할 수 없다.
 - 원본 CAD의 `E32-T11N-BASE`는 OMRON 투과형 광섬유 센서다. 정밀 BRep에서 본체/짧은 tail과 렌즈 앞에서 반대편 센서까지 이어지는 지름 0.3mm, 길이 754.2mm 광축 표시 solid를 분리했다. 광축을 강체 레일로 처리한 것이 이전 간섭 판정의 원인이었다. 새 모델은 광축만 접촉에서 제외하고 본체·tail·장착 위치를 유지한다. [OMRON 제품](https://industrial.omron.eu/en/products/E32-T11N-2M)

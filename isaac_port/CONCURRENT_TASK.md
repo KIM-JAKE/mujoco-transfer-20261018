@@ -2,7 +2,7 @@
 
 이 경로는 원본 CAD의 센서 장착 위치를 유지한다. 광축 표시 solid만 제외하며 센서 본체와 tail은 강체다. 왼팔의 핀 파지 방향을 원통 목 둘레로 -60° 바꾸고, 접촉이 없는 이동 구간을 줄인다. 작업물은 PhysX 동역학으로 움직이며 파지 후 pose를 강제하거나 손에 고정 joint를 만들지 않는다.
 
-현재 **실험 경로**다. 오프라인 9초대 계산은 실제 접촉 성공이나 실기 성능을 뜻하지 않는다. 최신 원본 배치 전체 기능·FR3 한도·엄격한 10초 미만 통과 기록은 `reports/concurrent-08/acceptance.json`의 **9.625초**다. 단일 에피소드로 반복 성공률과 임의 I/O 지연에 대한 안전한 동시 제어는 아직 검증하지 않았다. 최신 실험 근거는 `reports/concurrent-experiments.json`을 확인한다. 실기 준비는 [fieldkit/README.md](fieldkit/README.md)를 따른다.
+현재 **실험 경로**다. 오프라인 9초대 계산은 실제 접촉 성공이나 실기 성능을 뜻하지 않는다. 최신 원본 배치 전체 기능·FR3 한도·엄격한 10초 미만 통과 기록은 `reports/concurrent-08/acceptance.json`의 **9.625초**다. 같은 조건의 독립 실행 2회에서 9.625초를 확인했다. 위치·센서·I/O 지연을 포함한 현장 반복 성공률과 안전한 동시 제어는 아직 검증하지 않았다. 근거는 `reports/concurrent-08-repeatability.json`이다. 최신 실험 근거는 `reports/concurrent-experiments.json`을 확인한다. 실기 준비는 [fieldkit/README.md](fieldkit/README.md)를 따른다.
 
 ## 경로와 시계
 
