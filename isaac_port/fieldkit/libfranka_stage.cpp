@@ -39,9 +39,25 @@ ServoReport run_joint_stage(franka::Robot& robot,const Trajectory& path,
          std::abs(initial.q_d[j]-start[j])>1e-6 || std::abs(initial.q[j]-start[j])>.005 || std::abs(initial.dq[j])>.01)
         throw std::runtime_error("Robot is not stationary at the field-planned stage start; no automatic jump or homing");
     ServoReport report;
+    const auto dropped_before=site.telemetry?site.telemetry->dropped_samples():0;
     double time=0.;Joints previous_torque=initial.tau_J_d;bool first=true;
     robot.control([&](const franka::RobotState& state,franka::Duration period)->franka::JointPositions {
       const double dt=period.toSec();
+      if(site.telemetry) {
+        TelemetrySample sample;
+        sample.sample_index=report.samples;sample.elapsed_s=first?0.:time+dt;
+        sample.robot_time_s=state.time.toSec();sample.period_s=dt;
+        sample.q=state.q;sample.dq=state.dq;sample.q_d=state.q_d;
+        sample.dq_d=state.dq_d;sample.ddq_d=state.ddq_d;
+        sample.tau_J=state.tau_J;sample.tau_J_d=state.tau_J_d;
+        sample.tau_ext_hat_filtered=state.tau_ext_hat_filtered;
+        sample.O_F_ext_hat_K=state.O_F_ext_hat_K;sample.O_T_EE=state.O_T_EE;
+        sample.robot_mode=static_cast<int>(state.robot_mode);
+        sample.current_errors=bool(state.current_errors);
+        sample.io_ready=gates.io_ready.load(std::memory_order_relaxed);
+        sample.abort_requested=gates.abort_requested.load(std::memory_order_relaxed);
+        site.telemetry->try_push(sample);
+      }
       if(gates.abort_requested.load(std::memory_order_relaxed) || !gates.io_ready.load(std::memory_order_relaxed))
         throw std::runtime_error("Field interlock lost");
       if(!first && (dt<.0005 || dt>.0015))throw std::runtime_error("FCI update did not meet the 1kHz stage timing contract");
@@ -74,6 +90,7 @@ ServoReport run_joint_stage(franka::Robot& robot,const Trajectory& path,
       return target;
     },franka::ControllerMode::kJointImpedance,true,100.);
     report.completed=true;
+    if(site.telemetry)report.telemetry_dropped_samples=site.telemetry->dropped_samples()-dropped_before;
     return report;
   });
 }

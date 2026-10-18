@@ -1,0 +1,60 @@
+-- The CXX compiler identification is GNU 9.4.0
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Looking for C++ include pthread.h
+-- Looking for C++ include pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Check if compiler accepts -pthread
+-- Check if compiler accepts -pthread - yes
+-- Found Threads: TRUE
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/telemetry-build
+Scanning dependencies of target m80_joint_stage
+Scanning dependencies of target test_telemetry
+[  7%] Building CXX object CMakeFiles/test_telemetry.dir/test_telemetry.cpp.o
+[ 14%] Building CXX object CMakeFiles/m80_joint_stage.dir/libfranka_stage.cpp.o
+[ 21%] Linking CXX executable test_telemetry
+[ 21%] Built target test_telemetry
+Scanning dependencies of target test_servo_core
+[ 28%] Building CXX object CMakeFiles/test_servo_core.dir/test_servo_core.cpp.o
+[ 35%] Linking CXX static library libm80_joint_stage.a
+[ 35%] Built target m80_joint_stage
+Scanning dependencies of target m80_model_audit
+[ 42%] Building CXX object CMakeFiles/m80_model_audit.dir/model_audit.cpp.o
+[ 50%] Linking CXX executable test_servo_core
+[ 50%] Built target test_servo_core
+Scanning dependencies of target m80_read_state
+[ 57%] Building CXX object CMakeFiles/m80_read_state.dir/read_state.cpp.o
+[ 64%] Linking CXX executable m80_model_audit
+[ 71%] Linking CXX executable m80_read_state
+[ 71%] Built target m80_read_state
+Scanning dependencies of target test_field_context
+[ 71%] Built target m80_model_audit
+[ 78%] Building CXX object CMakeFiles/test_field_context.dir/test_field_context.cpp.o
+Scanning dependencies of target test_stage_link
+[ 85%] Building CXX object CMakeFiles/test_stage_link.dir/test_stage_link.cpp.o
+[ 92%] Linking CXX executable test_stage_link
+[ 92%] Built target test_stage_link
+[100%] Linking CXX executable test_field_context
+[100%] Built target test_field_context
+Test project /tmp/telemetry-build
+    Start 1: servo_core
+1/5 Test #1: servo_core .......................   Passed    0.00 sec
+    Start 2: stage_sdk_link
+2/5 Test #2: stage_sdk_link ...................   Passed    0.00 sec
+    Start 3: field_context_abort_guards
+3/5 Test #3: field_context_abort_guards .......   Passed    0.00 sec
+    Start 4: telemetry_spsc
+4/5 Test #4: telemetry_spsc ...................   Passed    0.06 sec
+    Start 5: readonly_model_input_guards
+5/5 Test #5: readonly_model_input_guards ......   Passed    0.02 sec
+
+100% tests passed, 0 tests failed out of 5
+
+Total Test time (real) =   0.09 sec

@@ -80,7 +80,9 @@ cmake --build /tmp/m80-field-build --parallel 2
 - 1kHz 콜백에서는 관절 명령과 원자적 인터록을 처리한다. SDK 속도 제한과 100Hz 필터를 유지하고, 통신 주기·추종 오차·측정된 `tau_J_d` 변화율이 계약을 벗어나면 예외를 통해 동작을 취소한다.
 - 양팔 시작 동기화와 상호 정지, PLC·Robotiq 통신, 외력 기반 삽입·복구, Python `Cell` 연결은 현장 어댑터의 구현 항목이다. 현재 라이브러리만으로 자동 조립을 실행할 수 없다.
 
-빌드 후 `ctest --test-dir /tmp/m80-field-build --output-on-failure`로 오프라인 검사를 실행한다. 오래된 CMake에서는 빌드 폴더로 이동해 `ctest --output-on-failure`를 실행한다. 테스트는 로봇 연결이나 운동을 호출하지 않는다.
+빌드 후 `cmake -E chdir /tmp/m80-field-build ctest --output-on-failure`로 오프라인 검사를 실행한다. 저장소의 현재 폴더를 바꾸지 않으며 CMake 3.16에서도 동작한다. 테스트는 로봇 연결이나 운동을 호출하지 않는다. 실행 목록과 총 검사 수가 출력되는지 확인한다.
+
+실행 중 상태는 팔별 `StageTelemetry` 큐로 기록 스레드에 전달할 수 있다. `FieldContext.telemetry`에 큐를 연결하며, 파일 저장은 제어 콜백 밖에서 수행한다. 실제/desired 관절 상태·토크·외력·시각과 기록 누락 수를 확인하는 방법은 [온보딩의 기록 절차](ONBOARDING_FR3.md#7-기록과-문제-발생-시)를 따른다.
 
 ## 4. 현장 설정
 

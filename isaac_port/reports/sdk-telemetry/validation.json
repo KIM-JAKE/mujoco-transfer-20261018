@@ -1,0 +1,28 @@
+{
+  "state": "offline_sdk_and_queue_tests_passed",
+  "SDK": "0.18.1",
+  "CMake": "3.16.3",
+  "ctest_count": 5,
+  "queue_tests": [
+    "bounded overflow/drop counter",
+    "raw incident values preserved",
+    "100000 records with concurrent producer and consumer; no torn or reordered payloads"
+  ],
+  "default_queue_disabled": true,
+  "stage_api_signature_unchanged": true,
+  "real_robot_connected": false,
+  "motion_executed": false,
+  "real_1kHz_timing_verified": false,
+  "hardware_ready": false,
+  "source_sha256": {
+    "telemetry.hpp": "4d14962f0412ae2f1490e698b3c0f8fc7afb232b0c16bb4b6762ba0037d08184",
+    "test_telemetry.cpp": "986e17c137ad2b0a1f90bcc1fe52cb43bb435be4942ea9cd8107fb67e0c89566",
+    "libfranka_stage.hpp": "9bb1ff6af73bf0a5b78b984be19436dd27572cc5e37b974169f3a5ad156a1090",
+    "libfranka_stage.cpp": "ab77706d45a7e0c16da7550fd00a2ed365781011ec9c8d9eec57f524dddff6e3",
+    "CMakeLists.txt": "5af31004cf9cfcf4fb658aca49462300f4aaabf95f55bbb2eee6dbf365169081",
+    "servo_core.hpp": "76dd01497695db66c78f1da043064ac27e772c19ef6155926c335b5f02b18879",
+    "robot_mode.hpp": "e6d8fb2dd423f36878cc72ccfcaa4510b4d6a7e42fc066efc08478c05eb7082b"
+  },
+  "scope": "Optional per-arm SPSC diagnostic queue, no file I/O or allocation in producer. Offline build/link and queue tests; live logging, FCI scheduling and site integration remain untested.",
+  "compatible_test_command": "cmake -E chdir /tmp/m80-field-build ctest --output-on-failure"
+}

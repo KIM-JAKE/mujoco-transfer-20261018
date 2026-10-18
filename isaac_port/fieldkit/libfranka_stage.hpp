@@ -1,5 +1,6 @@
 #pragma once
 #include "servo_core.hpp"
+#include "telemetry.hpp"
 #include <atomic>
 #include <string>
 #include <utility>
@@ -12,6 +13,7 @@ struct FieldContext {
   bool field_planned=false,tool_verified=false,io_verified=false,torque_budget_verified=false;
   double expected_tool_mass_kg=-1.,expected_load_mass_kg=-1.;
   double command_fraction=.1;
+  StageTelemetry* telemetry=nullptr;
 };
 struct AtomicGates {
   std::atomic<bool> io_ready{false};
@@ -21,6 +23,7 @@ struct ServoReport {
   unsigned long samples=0;
   double maximum_period_s=0.,maximum_tracking_error_rad=0.,maximum_torque_rate_nm_s=0.;
   bool completed=false;
+  std::uint64_t telemetry_dropped_samples=0;
 };
 void validate_field_context(const FieldContext&);
 
