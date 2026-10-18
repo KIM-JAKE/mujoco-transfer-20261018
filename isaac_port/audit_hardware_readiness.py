@@ -18,7 +18,7 @@ def reconstruct_commands(z):
 
 def continuous_jerk_peak(clock):
     polynomial=PPoly.from_bernstein_basis(clock).derivative(3)
-    c=polynomial.c;h=np.diff(polynomial.x)[:,None]
+    c=polynomial.c;h=np.diff(polynomial.x).reshape((-1,)+(1,)*(polynomial.c.ndim-2))
     values=[c[2],c[0]*h*h+c[1]*h+c[2]]
     root=np.divide(-c[1],2*c[0],out=np.zeros_like(c[1]),where=abs(c[0])>1e-20)
     values.append(np.where((root>0)&(root<h),c[0]*root**2+c[1]*root+c[2],0.))
