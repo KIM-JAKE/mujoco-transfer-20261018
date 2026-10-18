@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <iostream>
 #include <stdexcept>
+#include "robot_mode.hpp"
 
 template <std::size_t N>
 void array_json(const std::array<double, N>& a) {
@@ -44,6 +45,7 @@ int main(int argc, char** argv) {
               << ",\"m_load_kg\":" << state.m_load
               << ",\"m_total_kg\":" << state.m_total
               << ",\"robot_mode\":" << static_cast<int>(state.robot_mode)
+              << ",\"robot_mode_name\":\"" << m80::robot_mode_name(state.robot_mode) << '"'
               << ",\"control_command_success_rate\":" << state.control_command_success_rate
               << "}\n";
     return 0;

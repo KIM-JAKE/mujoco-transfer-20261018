@@ -1,4 +1,5 @@
 #include "libfranka_stage.hpp"
+#include "robot_mode.hpp"
 #include <limits>
 #include <stdexcept>
 
@@ -24,6 +25,18 @@ void rejected_before_motion(const m80::FieldContext& site) {
 }
 
 int main() {
+  m80::require_idle_mode(franka::RobotMode::kIdle);
+  for(auto mode:{franka::RobotMode::kOther,franka::RobotMode::kMove,
+                franka::RobotMode::kGuiding,franka::RobotMode::kReflex,
+                franka::RobotMode::kUserStopped,franka::RobotMode::kAutomaticErrorRecovery,
+                static_cast<franka::RobotMode>(999)}) {
+    m80::AtomicGates gates;bool caught=false;
+    try {
+      m80::with_shared_abort(gates,[&] { m80::require_idle_mode(mode); });
+    } catch(const std::exception&) { caught=true; }
+    if(!caught || !gates.abort_requested.load())
+      throw std::runtime_error("Non-idle mode did not reject the stage and share its abort");
+  }
   rejected_before_motion(m80::FieldContext{});
   for(double value : {std::numeric_limits<double>::quiet_NaN(),
                       std::numeric_limits<double>::infinity(),-1.}) {

@@ -1,4 +1,5 @@
 #include "libfranka_stage.hpp"
+#include "robot_mode.hpp"
 #include <franka/robot.h>
 #include <franka/robot_state.h>
 #include <franka/control_types.h>
@@ -24,6 +25,7 @@ ServoReport run_joint_stage(franka::Robot& robot,const Trajectory& path,
     if(robot.serverVersion()!=10)
       throw std::runtime_error("This motion envelope requires FR3 protocol 10 / System Image >=5.9; replan for other firmware");
     const auto initial=robot.readOnce();
+    require_idle_mode(initial.robot_mode);
     if(initial.current_errors || !gates.io_ready.load() || gates.abort_requested.load())
       throw std::runtime_error("Robot or field I/O is not ready");
     if(!std::isfinite(initial.m_ee) || !std::isfinite(initial.m_load) ||

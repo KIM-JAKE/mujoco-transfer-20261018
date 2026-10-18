@@ -82,6 +82,8 @@ ctest --output-on-failure
 
 이 도구는 상태 읽기만 수행한다. 관절 q/dq, 토크, TCP 변환, 설정된 tool/load 질량, 로봇 모드와 서버 프로토콜을 확인한다. 좌우 배선을 실제 로봇과 대조하고 로그를 보관한다. 통신 실패 시 IP·직접 연결·FCI 상태·SDK 호환성을 먼저 확인한다.
 
+상태 파일의 `robot_mode_name`으로 `idle`, `guiding`, `reflex`, `user_stopped` 등을 구분한다. 단계 실행 API는 `idle`만 허용하고 다른 모드와 알 수 없는 값은 공통 중단으로 전파한다. 상태 읽기 도구는 모드를 변경하지 않는다.
+
 추가로 `q_d/dq_d/ddq_d`, 외력 추정, 전체 tool/load 관성·무게중심과 중력 벡터를 기록한다. 실제 q와 제어기 desired q_d를 구분해 시작 자세를 계획한다. 전체 motion/model 도구 빌드는 libfranka 0.18 이상을 요구한다. 더 오래된 System Image의 호환 SDK로 상태 탐침만 빌드할 때는 `-DM80_STATE_PROBE_ONLY=ON`을 사용한다. 이 옵션의 빌드는 0.18.1에서 확인했으며 구버전 SDK 자체의 실행 검증은 별도다.
 
 ### 로봇을 움직이지 않고 SDK 모델 확인
@@ -116,6 +118,8 @@ SDK 모델 출력은 현재 설정된 일정한 tool/load의 계산이다. 실�
 고수준 동시 작업은 `policy.assemble_concurrent(cell)`을 사용한다. 왼팔 링2→핀과 오른팔 링1→버튼 접근을 독립적으로 진행하고 마지막 눌림만 전체 해제 후 확인한다. 실제 `Cell`은 검사된 field plan·서보 교차 구간 인터록·현재 주기의 센서 상태를 연결해야 한다. `python3 -m isaac_port.fieldkit dry-run --concurrent`는 이 순서만 운동 없이 확인한다. Python 작업 스레드 자체가 1kHz 동기화나 실기 공정 시간을 보장하지 않는다.
 
 ## 3. 좌표·TCP·하중 기록
+
+SDK 상태의 `O_T_EE_column_major`와 `F_T_EE_column_major`는 열 우선 16개 원소다. NumPy에서는 `np.array(values).reshape(4, 4, order="F")`로 변환한다. 카메라 설정의 4×4 행렬과 혼동하지 않는다. `base_gravity_m_s2`의 방향도 실측 base→cell 회전과 대조한다. cell의 z축이 위라면 기대 중력은 `R_cell_base.T @ [0, 0, -9.81]`이다. 경사진 설치에서 이 방향을 확인한 뒤 SDK 모델 수치를 해석한다.
 
 저장소의 CAD 좌표를 실측 보정값으로 사용하지 않는다. 현장 설정은 저장소 밖에 보관한다.
 

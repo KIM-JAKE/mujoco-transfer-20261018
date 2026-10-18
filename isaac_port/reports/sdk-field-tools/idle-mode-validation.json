@@ -1,0 +1,16 @@
+{
+  "state": "official_SDK_build_and_four_tests_passed",
+  "SDK": "libfranka0.18.1",
+  "hardware_ready": false,
+  "robot_connected": false,
+  "motion_executed": false,
+  "changes": [
+    "Human-readable robot_mode_name in state probe",
+    "Idle-only stage entry, non-idle and unknown modes share abort"
+  ],
+  "test_cases": [
+    "idle accepted",
+    "move/guiding/reflex/user_stopped/automatic_error_recovery/other/unknown rejected before control"
+  ],
+  "scope": "Offline mode/preflight and link tests only; no live mode transition or dual-arm stop verified"
+}
