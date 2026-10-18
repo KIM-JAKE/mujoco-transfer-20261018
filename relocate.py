@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 
 SKIP_DIRS={'.git','.venv','.venv-curobo','sam3_venv','site-packages',
@@ -20,6 +21,12 @@ def main(root):
              ('/home/jovyan/data-1/jake/ego-scale-compiler/.venv/bin/python',str(root/'robotics_agent/mujoco_duo_fr3/runtime/sam31_venv/bin/python')),
              ('/home/jovyan/data/wjkim/robotics_agent',str(root/'robotics_agent')),
              ('/home/jovyan/data-1/jake',str(root))]
+    # Replace against the original string once: the test root may itself live
+    # below a source prefix, so sequential replacements can duplicate it.
+    pattern=re.compile('|'.join([re.escape(str(root))]+[re.escape(old) for old,_ in mapping]))
+    replacements=dict(mapping)
+    def rewrite(value):
+        return pattern.sub(lambda match: replacements.get(match.group(0),match.group(0)),value)
     changed=[];links=[];skipped=[]
     for dirname in SOURCE_DIRS:
         parent=root/dirname
@@ -29,8 +36,7 @@ def main(root):
             for name in list(dirs):
                 p=here/name
                 if p.is_symlink():
-                    target=os.readlink(p);new=target
-                    for old,replacement in mapping: new=new.replace(old,replacement)
+                    target=os.readlink(p);new=rewrite(target)
                     if new!=target:
                         p.unlink();p.symlink_to(new,target_is_directory=True)
                         links.append({'path':str(p.relative_to(root)),'old':target,'new':new})
@@ -39,8 +45,7 @@ def main(root):
             for name in files:
                 p=here/name
                 if p.is_symlink():
-                    target=os.readlink(p);new=target
-                    for old,replacement in mapping: new=new.replace(old,replacement)
+                    target=os.readlink(p);new=rewrite(target)
                     if new!=target:
                         p.unlink();p.symlink_to(new)
                         links.append({'path':str(p.relative_to(root)),'old':target,'new':new})
@@ -52,8 +57,7 @@ def main(root):
                 if b'\0' in data:continue
                 try: text=data.decode('utf-8')
                 except UnicodeDecodeError:continue
-                new=text
-                for old,replacement in mapping:new=new.replace(old,replacement)
+                new=rewrite(text)
                 if new==text:continue
                 b=new.encode('utf-8');p.write_bytes(b)
                 changed.append({'path':str(p.relative_to(root)),
