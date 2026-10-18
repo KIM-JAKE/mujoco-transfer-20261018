@@ -91,9 +91,12 @@ python3 -m isaac_port.fieldkit preflight --config /tmp/m80-site.json
 
 카메라 모델은 아직 미정이다. 제공 인터페이스는 이미 보정된 metric point cloud 또는 rectified·registered depth의 NPZ와 동명 JSON이다. 카메라 SDK에서 이 형식으로 저장하는 어댑터와 실제 금속 부품 검출 성능 검증이 필요하다. RGB 영상만으로 미터 좌표를 얻었다고 간주하지 않는다.
 
+`camera-config.example.json`을 현장 폴더로 복사해 채운다. 예제의 null은 의도적으로 실행할 수 없는 값이다. 실측한 camera/cell 좌표와 공급 부품 기준 자세, 핀 홀더의 실제 이동 방식을 넣는다.
+
 - NPZ: `points_camera_m`은 Nx3 m. 또는 `depth`와 설정의 intrinsics·depth_scale_m을 사용한다. 선택적인 `labels`는 cloud 길이 또는 depth 해상도와 일치해야 한다.
 - 동명 JSON: `camera_frame`, `calibration_id`, `capture_id`, timezone을 포함한 `captured_at_utc`.
 - 카메라 설정: 같은 frame·calibration ID, `T_cell_camera`, 세 부품의 실측 `nominal_stock_poses`. depth 입력은 rectified/registered 여부와 명시적인 미터 변환 계수를 포함한다.
+- 공급 홀더 설정: `pin_holder_tracks_pin`이 true이면 추정한 핀 이동·회전을 핀 공급 홀더·바닥·슬리브에도 적용해 충돌 검사한다. 기본 false는 홀더 고정이다. 합성 위치 변경 시험은 true를 사용하며 M80 지그는 고정한다. 현장에서 부품만 움직이는지 홀더도 움직이는지 확인해 설정한다.
 
 저장소 루트의 NumPy·SciPy 환경에서:
 
@@ -105,6 +108,57 @@ python -m isaac_port.fieldkit.vision /path/to/snapshot.npz \
 기본 실행은 2초보다 오래되거나 미래 시각인 촬영, 다른 보정 ID를 거부한다. `--replay`는 저장 데이터 재현 전용이다. 이 옵션으로 생성한 결과를 실기 실행 승인으로 사용하지 않는다. 현재 CAD 등록은 보정된 공급 위치 주변의 작은 이동을 가정한다. 원형 링의 축 둘레 회전은 관측했다고 주장하지 않고 기준 방향을 유지한다. 적은 가시 면적·반사·깊이 누락·잘못된 보정은 별도 현장 검증 대상이다.
 
 동작 적응은 **공급 접근·파지·들어 올리기만 수정한 뒤 기존 최적 경로에 합류**한다. M80 삽입점과 버튼을 관측한 공급 이동량만큼 옮기지 않는다. 새 경로에는 공급 홀더 형상, 로봇·설비·양팔 충돌, 95% 한도 재타이밍과 PhysX 접촉 검사가 다시 필요하다. 저장 계획을 실행하기 직전 새 관측으로 부품 이동 여부를 재확인한다. 촬영 이후 부품이 움직이면 계획을 폐기한다.
+
+### 최적 경로를 함수로 준비하기
+
+측정 기록 복원 후 다음 API로 위치 추정 → 파지 경로 적응 → 재타이밍 → 공급 핀·설비·양팔의 샘플 충돌 검사를 묶어 호출할 수 있다. NumPy, SciPy, MuJoCo, python-fcl, trimesh 환경과 seed 복원이 필요하다. CPU 계획 단계이며 1kHz 제어 루프 밖에서 실행한다.
+
+오프라인 계획 환경은 Python 3.13에서 검사했다. 아래 고정 버전은 Python 3.12 이상이 필요하다. 이 환경을 Isaac Kit의 Python이나 C++ 제어 PC의 시스템 Python에 덮어 설치하지 않는다.
+
+```bash
+python3.13 -m venv /tmp/m80-plan-venv
+/tmp/m80-plan-venv/bin/python -m pip install -r isaac_port/fieldkit/requirements-planning.txt
+/tmp/m80-plan-venv/bin/python -m unittest isaac_port.fieldkit.test_perception -v
+```
+
+```python
+from isaac_port.fieldkit.adaptive import M80Skill
+
+skill = M80Skill(
+    baseline="isaac_port/runs/contact-concurrent-08",
+    output="isaac_port/generated/contact_task/site-plan-001",
+)
+plan = skill.prepare(
+    "/path/to/snapshot.npz",
+    "/path/to/camera-config.json",
+)
+```
+
+매번 빈 출력 폴더를 사용한다. `skill-plan.json`은 모든 계획·검사 파일의 SHA와 별도 계획 시간을 기록한다. `skill.verify_plan()`은 검사 이후 파일이 바뀌면 거부한다. 저장 촬영 재현에서는 `replay=True`를 명시한다. `skill.run_physx(...)`는 별도 초기 장면으로 **시뮬레이션 시험**을 실행하는 API이며, 개인 GPU 세션의 Isaac Python 실행 경로를 지정해야 한다. 실제 로봇 실행은 다음 절의 `Cell`/C++ 현장 어댑터에 연결해야 한다.
+
+현재 서버의 합성 예시는 충돌 검사를 포함한 준비에 약 4분이 걸렸다. 이는 새 공급 배치의 사전 계획 절차이며 매 생산 주기 안의 실시간 비전 제어가 아니다. 9.625초 공정 시간에 촬영·위치 추정·이 준비 시간을 포함하지 않는다. 실제 카메라 지연과 공급 부품이 정지해 있다는 조건도 현장 인터록으로 확인해야 한다.
+
+### 위치 변경 시험과 재현 데이터
+
+[합성 촬영 예시](../reports/pose-adaptation/examples/)와 [위치 적응 검증 기록](../reports/pose-adaptation/validation.json)을 함께 제공한다. 링을 최대 5mm, 핀과 공급 홀더를 3mm씩 서로 반대 방향으로 옮기고 yaw도 변경한 두 조건에서, 촬영 점군으로 계획하고 별도 정답 초기 장면에서 실제 PhysX 파지·삽입·클램프·해제·버튼을 검사했다. 지그와 M80 센서 장착 위치는 유지했다.
+
+| 조건 | 조립·버튼·실제 관절 한도·기록 | 공정 시간 | 10초 미만 |
+|---|---|---:|---|
+| shift-a | 통과, 의도하지 않은 로봇 접촉 0N | 11.847917초 | 미달 |
+| shift-b | 통과, 의도하지 않은 로봇 접촉 0N | 10.514583초 | 미달 |
+
+두 조건은 시뮬레이션 drive damping 왼팔 800/오른팔 1800Nm·s/rad, 추가 핀 정렬과 정지 후 클램프 인터록을 사용한다. 실제 FR3 제어기 설정과의 동등성은 미검증이다. 원래 배치의 최단 9.625초와 구분한다. 합성 카메라 보정은 정확하다고 가정하며, 실제 금속 부품의 RGB-D 성능을 증명한 결과가 아니다. 합성 위치 추정만의 12장면·36회 검사는 별도 [보고서](../reports/perception-perturbation-benchmark.json)에 있다.
+
+```bash
+python -m isaac_port.fieldkit.adaptive \
+  --baseline isaac_port/runs/contact-concurrent-08 \
+  --output isaac_port/generated/contact_task/replay-plan-001 \
+  --snapshot isaac_port/reports/pose-adaptation/examples/shift-b/snapshot.npz \
+  --camera-config isaac_port/reports/pose-adaptation/examples/shift-b/camera-config.json \
+  --replay
+```
+
+두 실행의 `measured-evidence.zip`은 각각 약 6MB이며 관절·물체·접촉 측정, 실행 당시 코드, 초기 장면과 관측 기반 계획을 포함한다. `archive_run.py restore`로 복원할 수 있다. 원래 `acceptance.json`은 10초 조건이 미달하여 false이며 그 판정을 유지했다. 실제 카메라·PLC·로봇 연결을 검증한 자료는 아니다.
 
 ## 5. 그리퍼·클램프·버튼 연결 계약
 
