@@ -1,0 +1,30 @@
+{
+  "state": "both_rejected",
+  "hardware_ready": false,
+  "final_command_fraction": 0.95,
+  "command_and_actual_acceptance_unchanged": true,
+  "candidates": [
+    {
+      "plan": "path-budget935-01",
+      "nominal_path_acceleration_rad_s2": 9.35,
+      "nominal_cycle_s": 9.458333333333334,
+      "sampled_cross_arm_pass": true,
+      "native_state": "failed",
+      "native_error": "RuntimeError('Measured FR3 kinematic limit exceeded at 3.2645833333333334s: acceleration=9.044795036315918, jerk=6050.7273226976395')",
+      "physical_simulation_pass": false,
+      "promoted": false
+    },
+    {
+      "plan": "path-budget950-01",
+      "nominal_path_acceleration_rad_s2": 9.5,
+      "nominal_cycle_s": 9.341666666666667,
+      "sampled_cross_arm_pass": true,
+      "native_state": "failed",
+      "native_error": "RuntimeError('FR3 command acceleration/jerk budget exceeded')",
+      "physical_simulation_pass": false,
+      "promoted": false
+    }
+  ],
+  "scope": "Cold clock regeneration on the existing spatial path; sampled nominal checks passed, but Native command/actual guards rejected both. No faster-cycle success claim. Existing repeated9.466667s remains best.",
+  "next": "Do not remove native guards or increase their ceilings; evaluate pending damping and stationary raw-pose entry candidates independently."
+}
