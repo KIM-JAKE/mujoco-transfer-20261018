@@ -26,5 +26,8 @@ add_test(NAME servo_core COMMAND test_servo_core)
 add_executable(test_stage_link test_stage_link.cpp)
 target_link_libraries(test_stage_link PRIVATE m80_joint_stage)
 add_test(NAME stage_sdk_link COMMAND test_stage_link)
+add_executable(test_field_context test_field_context.cpp)
+target_link_libraries(test_field_context PRIVATE m80_joint_stage)
+add_test(NAME field_context_abort_guards COMMAND test_field_context)
 add_test(NAME readonly_model_input_guards COMMAND ${CMAKE_COMMAND}
   -DPROGRAM=$<TARGET_FILE:m80_model_audit> -P ${CMAKE_CURRENT_SOURCE_DIR}/check_model_cli.cmake)

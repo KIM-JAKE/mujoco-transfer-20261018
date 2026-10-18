@@ -1,0 +1,37 @@
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/m80-build
+Scanning dependencies of target m80_joint_stage
+[  8%] Building CXX object CMakeFiles/m80_joint_stage.dir/libfranka_stage.cpp.o
+[ 25%] Built target test_servo_core
+Scanning dependencies of target m80_model_audit
+[ 33%] Building CXX object CMakeFiles/m80_model_audit.dir/model_audit.cpp.o
+[ 41%] Linking CXX static library libm80_joint_stage.a
+[ 41%] Built target m80_joint_stage
+Scanning dependencies of target m80_read_state
+[ 50%] Building CXX object CMakeFiles/m80_read_state.dir/read_state.cpp.o
+[ 58%] Linking CXX executable m80_model_audit
+[ 58%] Built target m80_model_audit
+Scanning dependencies of target test_field_context
+[ 66%] Building CXX object CMakeFiles/test_field_context.dir/test_field_context.cpp.o
+[ 75%] Linking CXX executable m80_read_state
+[ 75%] Built target m80_read_state
+Scanning dependencies of target test_stage_link
+[ 83%] Building CXX object CMakeFiles/test_stage_link.dir/test_stage_link.cpp.o
+[ 91%] Linking CXX executable test_field_context
+[ 91%] Built target test_field_context
+[100%] Linking CXX executable test_stage_link
+[100%] Built target test_stage_link
+Test project /tmp/m80-build
+    Start 1: servo_core
+1/4 Test #1: servo_core .......................   Passed    0.00 sec
+    Start 2: stage_sdk_link
+2/4 Test #2: stage_sdk_link ...................   Passed    0.01 sec
+    Start 3: field_context_abort_guards
+3/4 Test #3: field_context_abort_guards .......   Passed    0.00 sec
+    Start 4: readonly_model_input_guards
+4/4 Test #4: readonly_model_input_guards ......   Passed    0.03 sec
+
+100% tests passed, 0 tests failed out of 4
+
+Total Test time (real) =   0.05 sec

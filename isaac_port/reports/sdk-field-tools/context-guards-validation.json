@@ -1,0 +1,19 @@
+{
+  "state": "official_SDK_build_and_four_offline_tests_passed",
+  "SDK": "libfranka0.18.1",
+  "hardware_ready": false,
+  "changes": [
+    "Reject NaN/Inf and negative payload masses",
+    "Reject invalid or nonfinite command fractions",
+    "Reject nonfinite initial/callback joint and desired-torque states",
+    "Share validation/state-read/control exceptions through common abort gate",
+    "Never automatically clear shared abort"
+  ],
+  "tests": [
+    "servo_core",
+    "stage_sdk_link",
+    "field_context_abort_guards",
+    "readonly_model_input_guards"
+  ],
+  "hardware_scope": "No robot connected or motion executed; initial Robot construction and actual dual-arm stop integration remain caller responsibilities"
+}
