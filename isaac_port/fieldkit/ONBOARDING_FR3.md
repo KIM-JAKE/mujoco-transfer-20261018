@@ -69,9 +69,10 @@ python3 isaac_port/archive_run.py restore isaac_port/reports/contact-trim-03/mea
 ```bash
 cmake -S isaac_port/fieldkit -B /tmp/m80-field-build -DCMAKE_BUILD_TYPE=Release
 cmake --build /tmp/m80-field-build --parallel 2
-cd /tmp/m80-field-build
-ctest --output-on-failure
+ctest --test-dir /tmp/m80-field-build --output-on-failure
 ```
+
+이 문서의 상대 경로 명령은 모두 저장소 루트에서 실행한다. 현장에서는 [설정·시험 기록 양식](COMMISSIONING_RECORD.md)을 별도 작업 폴더로 복사하고 실제 측정값과 로그 위치를 채운다. 값이 비어 있는 항목은 미확인으로 인계한다.
 
 로봇의 실제 IP를 넣어 각각 읽는다. 서버 접속 IP는 로봇 IP가 아니다.
 
@@ -225,7 +226,7 @@ python -m isaac_port.fieldkit.adaptive \
 
 ## 5. 그리퍼·클램프·버튼 연결 계약
 
-현장 개발자가 `policy.py`의 `Cell`을 구현한다. `assemble(cell)`은 CaP처럼 호출하는 작업 정책이며 1kHz 서보는 C++ 제어기가 담당한다.
+현장 개발자가 `policy.py`의 `Cell`을 구현한다. 최적화된 양팔 공정의 호출 진입점은 `assemble_concurrent(cell)`이며 1kHz 서보는 C++ 제어기가 담당한다. `assemble(cell)`은 단계별 확인용 순차 barrier 예제다. 두 함수 모두 실제 장치 어댑터를 자동 생성하지 않는다.
 
 | 신호/함수 | 실제로 연결할 내용 | 다음 단계 조건 |
 |---|---|---|
