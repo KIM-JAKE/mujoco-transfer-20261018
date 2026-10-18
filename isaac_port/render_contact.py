@@ -25,6 +25,15 @@ try:
  if manifest['arguments'].get('retimed'):
   from task_timing import LEFT_RELEASED
   button_view_start=LEFT_RELEASED+.05
+ def focus_for_row(row):
+  refs=row.get('source_times')
+  if refs is not None:
+   if refs['left']<release2:return 'ring2'
+   if refs['right']<release1:return 'ring1'
+   if refs['left']<button_view_start-.03:return 'pin'
+   return 'button'
+  ref=row['source_t']
+  return ('ring2'if ref<release2 else'ring1'if ref<release1 else'pin')if ref<button_view_start else'button'
  assert len(trace)==len(times)==len(positions)
  stage=Usd.Stage.CreateNew(str(out/'measured.usda'));stage.GetRootLayer().subLayerPaths=[os.path.relpath(run/'configuration.usda',out),os.path.relpath(run/'scene.usda',out)]
  UsdGeom.SetStageUpAxis(stage,UsdGeom.Tokens.z);UsdGeom.SetStageMetersPerUnit(stage,1);stage.SetTimeCodesPerSecond(30);stage.SetStartTimeCode(0);stage.SetEndTimeCode(float(times[-1])*30)
@@ -67,14 +76,15 @@ try:
  camera=UsdGeom.Xformable(stage.GetPrimAtPath('/RenderButton'));op=camera.GetOrderedXformOps()[0]
  for f,t in enumerate(times):
   ref=trace[f]['source_t']
-  if ref>=button_view_start:continue
-  name='ring2'if ref<release2 else'ring1'if ref<release1 else'pin';i=names.index('workpiece_'+name);look=positions[f,i]
+  name=focus_for_row(trace[f])
+  if name=='button':continue
+  i=names.index('workpiece_'+name);look=positions[f,i]
   if manifest['arguments'].get('retimed')and 5.7504<=ref<7.4:look=positions[f,names.index('right_grip_base')]+np.array([-.06,0,.05])
   dz=.10-.18*float(np.clip((look[2]-1.43)/.07,0,1));eye=look+np.array([-.08,-.11,.065])if a.xray else look+np.array([-.15,-.20,dz])
   op.Set(Gf.Matrix4d().SetLookAt(Gf.Vec3d(*map(float,eye)),Gf.Vec3d(*map(float,look)),Gf.Vec3d(0,0,1)).GetInverse(),float(t)*30)
  # A final camera key restores the fixed physical button view at the transition.
- if trace[-1]['source_t']>=button_view_start:
-  first_button=next(f for f,r in enumerate(trace)if r['source_t']>=button_view_start);n,look,dist,az,el,res=cameras[1];az=math.radians(az);el=math.radians(el);eye=np.array(look)-dist*np.array([math.cos(az)*math.cos(el),math.sin(az)*math.cos(el),math.sin(el)])
+ if focus_for_row(trace[-1])=='button':
+  first_button=next(f for f,r in enumerate(trace)if focus_for_row(r)=='button');n,look,dist,az,el,res=cameras[1];az=math.radians(az);el=math.radians(el);eye=np.array(look)-dist*np.array([math.cos(az)*math.cos(el),math.sin(az)*math.cos(el),math.sin(el)])
   op.Set(Gf.Matrix4d().SetLookAt(Gf.Vec3d(*eye),Gf.Vec3d(*look),Gf.Vec3d(0,0,1)).GetInverse(),float(times[first_button])*30)
  stage.GetRootLayer().Save()
  maxerr=0
@@ -112,14 +122,17 @@ try:
   if manifest['arguments'].get('efficient_timing'):title='FR3 PLAN 95% | '+('X-RAY PART VIEW'if a.xray else'GRASP -> INSERT -> CLAMP -> BUTTON')
   draw.text((14,9),title,font=big,fill='white')
   draw.text((1080,13),f'{t-(manifest["arguments"]["settle"]if a.cycle_only else 0):.2f} s | 1x',font=font,fill='white')
-  ref=row['source_t'];part='RING2'if ref<release2 else'RING1'if ref<release1 else'PIN';detail=f'FOLLOW CAMERA | {part} | MEASURED POSE'if ref<button_view_start else f'ACTUAL BUTTON STROKE: {stroke:.2f} mm'
+  ref=row['source_t'];focus=focus_for_row(row);part=focus.upper();detail=f'FOLLOW CAMERA | {part} | MEASURED POSE'if focus!='button' else f'ACTUAL BUTTON STROKE: {stroke:.2f} mm'
   if manifest['arguments'].get('retimed')and 5.7504<=ref<7.4:detail='RIGHT HAND RETURN | PIN HELD CLEAR'
   for y,label in [(52,detail),(372,f'CONTACT-VERIFIED CLAMPS: {clamped}/3')]:draw.rectangle((900,y,1340,y+28),fill=(18,24,32));draw.text((906,y+3),label,font=font,fill='white')
   if green:draw.ellipse((1307,88,1334,115),fill=(35,245,95))
   draw.rectangle((10,648,337,681),fill=(18,24,32))
   for name,x,color in [('RING1',18,(40,130,255)),('RING2',127,(255,125,35)),('PIN',236,(65,230,90))]:draw.ellipse((x,657,x+10,667),fill=color);draw.text((x+16,652),name,font=font,fill='white')
-  draw.rectangle((0,688,1344,720),fill=(18,24,32));draw.text((12,695),'Measured PhysX states | finite-force fixture model | SIMULATED LAYOUT: rails Y -30 / -60 / +12 mm; original CAD fails',font=font,fill=(225,234,245))
-  if not passed:draw.text((900,650),'INCOMPLETE / FAILED TEST',font=big,fill=(255,130,90))
+  layout_label='LEGACY SHIFTED SENSOR EXPERIMENT'if manifest.get('layout')=='trial_rail_offsets'else'ORIGINAL CAD MOUNTS | optical-axis display excluded'if manifest.get('sensor_geometry')=='physical_head_tail'else'ORIGINAL CAD GEOMETRY'
+  draw.rectangle((0,688,1344,720),fill=(18,24,32));draw.text((12,695),'Measured PhysX states | assumed finite-force clamps | '+layout_label,font=font,fill=(225,234,245))
+  if not passed:
+   functional=all(v['passed']for v in accept.get('parts',{}).values())and accept.get('button',{}).get('passed',False)and accept.get('fr3_kinematic_limits_pass',False)
+   draw.text((900,650),'ASSEMBLY PASS | TIME FAIL'if functional else'INCOMPLETE / FAILED TEST',font=big,fill=(255,130,90))
   writer.append_data(np.array(canvas))
   if a.preview_time is not None:canvas.save(out/'preview.png')
   if j in checkpoints:

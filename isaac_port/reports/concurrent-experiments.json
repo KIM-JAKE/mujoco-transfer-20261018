@@ -1,6 +1,6 @@
 {
-  "under_10_verified": false,
-  "latest_verified_original_cycle_s": 10.141666666666667,
+  "under_10_verified": true,
+  "latest_verified_original_cycle_s": 9.625,
   "experiments": [
     {
       "run": "contact-concurrent-01",
@@ -55,6 +55,18 @@
       "notes": "Contact-induced left joint6 jerk during ring2 clamping; numerical near-identical spatial input does not establish repeatability",
       "physical_simulation_pass": false,
       "hardware_ready": false
+    },
+    {
+      "run": "contact-concurrent-08",
+      "state": "passed_single_episode",
+      "cycle_time_s": 9.625,
+      "all_parts_and_button_pass": true,
+      "fr3_kinematic_limits_pass": true,
+      "peak_unintended_robot_contact_n": 0,
+      "physical_simulation_pass": true,
+      "hardware_ready": false,
+      "additional_assumption": "Ring clamps start at 2N per jaw and ramp to 5N over 80ms after measured jaw contact; real proportional pressure control unverified",
+      "remaining": "Repeatability and delay-robust crossing gates; imported-model torque rate and field sensing/controller/IO"
     }
   ],
   "scope": "Failed prototypes retained honestly; nominal clocks are not physical success",
@@ -66,5 +78,5 @@
     "hardware_ready": false,
     "scope": "Imported-model warning, no measured robot torque, no contacts or carried payload"
   },
-  "latest_functional_run": "contact-concurrent-05"
+  "latest_functional_run": "contact-concurrent-08"
 }

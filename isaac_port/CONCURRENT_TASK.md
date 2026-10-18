@@ -2,7 +2,7 @@
 
 이 경로는 원본 CAD의 센서 장착 위치를 유지한다. 광축 표시 solid만 제외하며 센서 본체와 tail은 강체다. 왼팔의 핀 파지 방향을 원통 목 둘레로 -60° 바꾸고, 접촉이 없는 이동 구간을 줄인다. 작업물은 PhysX 동역학으로 움직이며 파지 후 pose를 강제하거나 손에 고정 joint를 만들지 않는다.
 
-현재 **실험 경로**다. 오프라인 9초대 계산은 실제 접촉 성공이나 실기 성능을 뜻하지 않는다. 최신 원본 배치 전체 기능·FR3 한도 통과 기록은 `reports/concurrent-05/acceptance.json`의 **10.141667초**이며 엄격한 10초 미만 목표는 미달이다. 최신 실험 근거는 `reports/concurrent-experiments.json`을 확인한다. 실기 준비는 [fieldkit/README.md](fieldkit/README.md)를 따른다.
+현재 **실험 경로**다. 오프라인 9초대 계산은 실제 접촉 성공이나 실기 성능을 뜻하지 않는다. 최신 원본 배치 전체 기능·FR3 한도·엄격한 10초 미만 통과 기록은 `reports/concurrent-08/acceptance.json`의 **9.625초**다. 단일 에피소드로 반복 성공률과 임의 I/O 지연에 대한 안전한 동시 제어는 아직 검증하지 않았다. 최신 실험 근거는 `reports/concurrent-experiments.json`을 확인한다. 실기 준비는 [fieldkit/README.md](fieldkit/README.md)를 따른다.
 
 ## 경로와 시계
 
@@ -23,7 +23,8 @@ python isaac_port/prepare_concurrent_timing.py \
   --output isaac_port/generated/contact_task/concurrent-reproduction/fr3-concurrent-profile.npz \
   --aggressive-contact-timing --coordinated \
   --left-ring-clear 1.96 --right-ring-clear 3.4 \
-  --left-pin-time-reserve 1.04 --right-return-time-reserve 1.1
+  --left-pin-time-reserve 1.04 --right-return-time-reserve 1.1 \
+  --pin-approach-min .45 --pin-fine-min .35 --button-min .2
 python isaac_port/audit_pin_pickup.py \
   --recording isaac_port/generated/contact_task/concurrent-reproduction \
   --plan isaac_port/generated/contact_task/concurrent-reproduction/arm-posture-fr3.npz \
@@ -44,7 +45,7 @@ python /workspace/project/mujoco/isaac_port/test_concurrent_task.py \
   --reference-dir /workspace/project/mujoco/isaac_port/generated/contact_task/concurrent-reproduction \
   --plan-root /workspace/project/mujoco/isaac_port/generated/contact_task/concurrent-reproduction \
   --feedback --precision --posture --fast --clamps --fr3-limits \
-  --efficient-timing --physical-sensors --target-10 --cycle-deadline 20
+  --efficient-timing --physical-sensors --target-10 --cycle-deadline 20 --soft-clamps
 ```
 
 실행 후 동일한 환경에서 아래 검사를 수행한다. 프로세스 종료 성공만으로 조립 성공을 판단하지 않는다.
@@ -59,3 +60,7 @@ python isaac_port/audit_hardware_readiness.py isaac_port/runs/concurrent-reprodu
 `acceptance.json`의 전체 조립·접촉·FR3 한도·엄격한 10초 미만 판정을 함께 확인한다. `hardware-readiness.json`은 별도의 모델 토크·토크 변화율과 현장 미검증 조건을 기록한다. 시뮬레이션에서 통과해도 `hardware_execution_certified`는 false다.
 
 이번 최적화 작업은 각 실행에 `--respect-cutoff`를 사용하고 한국 시간 2026-10-19 낮 12시에 중단하고 준비된 최종본의 GitHub 푸시를 시작한다. 10초 미만을 달성해도 마감까지 계속 단축한다. 마감 이후 같은 기록을 재현할 때는 이 옵션을 생략할 수 있다.
+
+`--soft-clamps`는 링 클램프 각 jaw의 힘 상한을 초기 2N에서 접촉 후 80ms 동안 5N으로 높이는 가정이다. 핀 jaw는 기존 3N을 유지한다. 실물에 비례 압력 제어가 있는지 미확인이다. 링 교차 구간은 임의 지연의 모든 자세 조합에서 안전하지 않으므로 실제 어댑터에는 추가 진행도 인터록 또는 동시 정지가 필요하다. 핀 이송·삽입 교차 조합 3,721개는 충돌 없이 통과했지만 추종 오차 여유를 포함한 연속 증명은 아니다.
+
+원시 기록과 실행 당시 구현 snapshot은 두 개의 `reports/concurrent-08/measured-run.zip.part-*`에 들어 있다. `python3 isaac_port/archive_run.py restore isaac_port/reports/concurrent-08/measured-run.zip`은 조각과 50개 내부 파일의 SHA-256을 확인한 뒤 기본 `isaac_port/runs`에 복원한다. 이미 다른 내용이 있으면 덮어쓰지 않는다.

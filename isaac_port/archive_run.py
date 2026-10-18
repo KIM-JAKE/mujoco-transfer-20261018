@@ -1,6 +1,6 @@
 """Archive/restore a measured run with SHA-256 and no unrelated workspace files."""
 from pathlib import Path, PurePosixPath
-import argparse, hashlib, json, zipfile
+import argparse, hashlib, io, json, zipfile
 
 FILES = ['acceptance.json','fr3-limits.json','hardware-readiness.json','run-manifest.json',
          'status.json','dynamics-audit.json','feedback-parameters.json','reference-profile.json',
@@ -26,13 +26,33 @@ def pack(run, archive):
             z.writestr(name,data);records.append(dict(path=name,bytes=len(data),sha256=sha(data)))
     report=dict(format='m80-measured-run-v1',run_name=run.name,archive_bytes=archive.stat().st_size,
                 archive_sha256=sha(archive.read_bytes()),files=records,hardware_ready=False)
+    if report['archive_bytes']>64*1024*1024:
+        chunks=[]
+        with archive.open('rb') as stream:
+            index=0
+            while data:=stream.read(64*1024*1024):
+                part=archive.with_name(archive.name+f'.part-{index:02d}')
+                part.write_bytes(data)
+                chunks.append(dict(path=part.name,bytes=len(data),sha256=sha(data)))
+                index+=1
+        report['chunks']=chunks
     archive.with_suffix('.manifest.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(dict(run=run.name,files=len(records),archive_bytes=report['archive_bytes'])))
 
 
 def restore(archive,destination):
     report=json.loads(archive.with_suffix('.manifest.json').read_text())
-    data=archive.read_bytes()
+    if report.get('chunks'):
+        pieces=[]
+        for chunk in report['chunks']:
+            name=chunk['path']
+            if Path(name).name!=name or name in ['.','..']:raise RuntimeError('Unsafe chunk path')
+            piece=(archive.parent/name).read_bytes()
+            if len(piece)!=chunk['bytes'] or sha(piece)!=chunk['sha256']:
+                raise RuntimeError('Run chunk checksum mismatch: '+name)
+            pieces.append(piece)
+        data=b''.join(pieces)
+    else:data=archive.read_bytes()
     if len(data)!=report['archive_bytes'] or sha(data)!=report['archive_sha256']:
         raise RuntimeError('Run archive checksum mismatch')
     destination=destination.resolve()
@@ -42,7 +62,7 @@ def restore(archive,destination):
         p=PurePosixPath(name)
         if p.is_absolute() or '..' in p.parts or not p.parts or p.parts[0]!=report['run_name']:
             raise RuntimeError('Unsafe member path')
-    with zipfile.ZipFile(archive) as z:
+    with zipfile.ZipFile(io.BytesIO(data)) as z:
         if len(z.infolist())!=len(expected) or set(z.namelist())!=set(expected):
             raise RuntimeError('Run archive inventory mismatch')
         # Check every member and destination conflict before writing anything.

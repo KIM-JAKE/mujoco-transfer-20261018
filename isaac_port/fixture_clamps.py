@@ -61,12 +61,16 @@ def apply(stage,body_paths,trial_layout=False):
         filt=UsdPhysics.FilteredPairsAPI.Apply(body).CreateFilteredPairsRel()
         for identifier in ({'ring1':[538,539,540,541],'ring2':[545,546,547,548],'pin':[550,551,552,553,554]}[name]):
           filt.AddTarget(f'/World/Environment/m80/instance_{identifier:04d}')
-        rows.append(dict(name=name,path=path,drive=drive,closed=cfg['stroke']*cfg['sign'],initial=position,direction=direction))
+        rows.append(dict(name=name,path=path,drive=drive,max_force=cfg['force'],closed=cfg['stroke']*cfg['sign'],initial=position,direction=direction))
     return rows,dict(layout='trial_rail_offsets' if trial_layout else 'original_cad',pin_stock_support=dict(model='passive hollow tip sleeve, assumed',inner_radius_m=.0026,outer_radius_m=.005,height_m=.006,center_m=center.tolist(),part_attachment=False),clamp_pad_material='rubber, assumed',clamp_contact_stiffness_n_m=1e6,clamp_contact_damping_n_s_m=100,fixture_model='finite-force internal expanding ring jaws + external pin jaws',clamp_parameters=specs,clamp_close_ramp_s={'ring1':.2,'ring2':.2,'pin':.1},clamp_drive_damping_n_s_m=80,rail_clearance_translation_m=({'0369,0380':[0,.012,0],'0373,0382':[0,-.030,0],'0371,0384':[0,-.060,0]} if trial_layout else {}),shifted_instances=shifted)
 
 class Controller:
-    def __init__(self,rows):
+    def __init__(self,rows,soft_contact=False):
         self.rows=rows;self.requested={n:False for n in PARTS};self.verified={n:False for n in PARTS};self.events=[];self.since={n:None for n in PARTS};self.contact_history={n:deque(maxlen=24)for n in PARTS};self.close_started={}
+        self.soft_contact=soft_contact;self.first_jaw_contact={}
+        if soft_contact:
+            for row in rows:
+                if row['name']!='pin':row['drive'].GetMaxForceAttr().Set(2.)
     def update(self,t,ref,feedback,positions,quats,forces):
         reference=ref
         for name in PARTS:
@@ -81,7 +85,15 @@ class Controller:
                 ramp=.08 if getattr(feedback,'fast_cycle',False)else(.1 if name=='pin'else .2)
                 fraction=min(1.,(t-self.close_started[name])/ramp)
                 for row in self.rows:
-                    if row['name']==name:row['drive'].GetTargetPositionAttr().Set(row['closed']*fraction)
+                    if row['name']==name:
+                        row['drive'].GetTargetPositionAttr().Set(row['closed']*fraction)
+                        if self.soft_contact and name!='pin':
+                            if forces.get(row['path'],0)>.1 and row['path']not in self.first_jaw_contact:
+                                self.first_jaw_contact[row['path']]=t
+                                self.events.append(dict(time_s=t,part=name,event='soft_jaw_contact',jaw=row['path']))
+                            elapsed=t-self.first_jaw_contact.get(row['path'],t)
+                            u=float(np.clip(elapsed/.08,0,1));weight=u**3*(10-15*u+6*u*u)
+                            row['drive'].GetMaxForceAttr().Set(2.+(row['max_force']-2.)*weight)
             count=sum(v>.5 for k,v in forces.items()if k.startswith('/World/Clamps/'+name+'/'))
             if self.requested[name]:
                 history=self.contact_history[name];history.append((t,count>=2))

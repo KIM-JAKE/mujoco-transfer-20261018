@@ -25,7 +25,9 @@ def ease(u):
     return u**3 * (10.-15.*u+6.*u*u)
 
 
-def prepare(output, respect_cutoff=False):
+def prepare(output, respect_cutoff=False, pin_angle=-60.):
+    if not np.isfinite(pin_angle) or abs(pin_angle)>180:
+        raise ValueError('Pin grasp angle must be finite and within +/-180 degrees')
     if respect_cutoff:
         require_optimization_window(120)
         install_cutoff_alarm()
@@ -58,7 +60,7 @@ def prepare(output, respect_cutoff=False):
         part=z['mocap_pos'][k,2].copy()
         part[2]+=pin_clearance_z(source_time('left',float(t)))
         pr=pin_rotation(float(t))
-        delta=pr*Rotation.from_rotvec([0,0,np.deg2rad(-60.)*ease((t-2.0277)/.85)])*pr.inv()
+        delta=pr*Rotation.from_rotvec([0,0,np.deg2rad(pin_angle)*ease((t-2.0277)/.85)])*pr.inv()
         goal_p=part+delta.apply(p-part)
         goal_r=delta*r
         def residual(q):
@@ -120,7 +122,7 @@ def prepare(output, respect_cutoff=False):
     np.savez_compressed(output/'arm-posture-fr3.npz',time_s=ts,**{s+'_qpos':rows[s] for s in rows})
     np.savez_compressed(output/'trajectory.npz',time_s=ts,qpos=z['qpos'],mocap_pos=mp,mocap_quat=mq)
     for f in ['config.json','independent_schedule.json','retiming.json']:shutil.copy2(recording/f,output/f)
-    report=dict(state='experimental_spatial_candidate_unvalidated',hardware_ready=False,pin_grasp_angle_deg=-60.,maximum_weighted_ik_error=max(errors),segments=[dict(side=s,part=n,begin=b,end=e,midpoints=m)for s,n,b,e,m,i in segments],requires=['robot/static/carried-part geometry screen','stock-pin preclosure screen','new simultaneous-path collision audit','native PhysX contact and FR3 acceptance'],archive_sha256=hashlib.sha256((output/'arm-posture-fr3.npz').read_bytes()).hexdigest())
+    report=dict(state='experimental_spatial_candidate_unvalidated',hardware_ready=False,pin_grasp_angle_deg=pin_angle,maximum_weighted_ik_error=max(errors),segments=[dict(side=s,part=n,begin=b,end=e,midpoints=m)for s,n,b,e,m,i in segments],requires=['robot/static/carried-part geometry screen','stock-pin preclosure screen','new simultaneous-path collision audit','native PhysX contact and FR3 acceptance'],archive_sha256=hashlib.sha256((output/'arm-posture-fr3.npz').read_bytes()).hexdigest())
     (output/'arm-posture-fr3.json').write_text(json.dumps(report,indent=2)+'\n')
     base=output/'planning-base';(base/'recording').mkdir(parents=True,exist_ok=True)
     for f in ['arm-posture-fr3.npz','arm-posture-fr3.json']:shutil.copy2(output/f,base/f)
@@ -133,5 +135,6 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--respect-cutoff',action='store_true',help='Enforce the optimization deadline; omit for later reproduction')
+    parser.add_argument('--pin-angle',type=float,default=-60.)
     args=parser.parse_args()
-    prepare(args.output,args.respect_cutoff)
+    prepare(args.output,args.respect_cutoff,args.pin_angle)

@@ -27,7 +27,7 @@ attempts=[]
 for attempt in range(4):
     began=datetime.now(timezone.utc).isoformat()
     try:
-        result=git('-c','credential.helper=','push','origin',ref+':refs/heads/main',env=env,timeout=60)
+        result=git('-c','credential.helper=','push','origin',commit+':refs/heads/main',env=env,timeout=60)
         attempts.append(dict(started_at_utc=began,returncode=result.returncode,output=result.stdout[-2000:],error=result.stderr[-2000:]))
         if result.returncode==0:
             save(state='published',deadline_utc=DEADLINE.isoformat(),commit=commit,release_ref=ref,completed_at_utc=datetime.now(timezone.utc).isoformat(),attempts=attempts)

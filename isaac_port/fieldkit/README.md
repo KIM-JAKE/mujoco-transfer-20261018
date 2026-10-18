@@ -93,7 +93,7 @@ python3 -m isaac_port.fieldkit preflight --config /tmp/m80-site.json
 
 ## 5. 현재 성능과 시뮬레이션 가정
 
-최신 원본 배치 `contact-concurrent-05`는 전체 조립·버튼 기능과 FR3 운동학 검사를 통과했지만 **10.141667초**로 엄격한 10초 미만 목표를 실패했다. 광축만 제외했으며 센서 위치 이동은 0이다. 근거: `../reports/concurrent-05/acceptance.json`. 이전 단일 시간축 결과는 15.129167초다. 실기 준비 상태는 `../reports/latest-readiness.json`을 참조한다.
+최신 원본 배치 `contact-concurrent-08`는 전체 조립·버튼·FR3 운동학·기록 검사를 **9.625초**에 통과했다. 단일 PhysX 에피소드이며 실물의 같은 시간 실행을 뜻하지 않는다. 광축만 제외했으며 센서 위치 이동은 0이다. 근거: `../reports/concurrent-08/acceptance.json`. 이전 단일 시간축 결과는 15.129167초다. 실기 준비 상태는 `../reports/latest-readiness.json`을 참조한다.
 
 - 이전 **14.729초**는 센서 6개를 12–60mm 이동한 시험 배치의 단일 PhysX 에피소드다. 원본 배치 실기 성능으로 사용할 수 없다.
 - 원본 CAD의 `E32-T11N-BASE`는 OMRON 투과형 광섬유 센서다. 정밀 BRep에서 본체/짧은 tail과 렌즈 앞에서 반대편 센서까지 이어지는 지름 0.3mm, 길이 754.2mm 광축 표시 solid를 분리했다. 광축을 강체 레일로 처리한 것이 이전 간섭 판정의 원인이었다. 새 모델은 광축만 접촉에서 제외하고 본체·tail·장착 위치를 유지한다. [OMRON 제품](https://industrial.omron.eu/en/products/E32-T11N-2M)
@@ -105,3 +105,5 @@ python3 -m isaac_port.fieldkit preflight --config /tmp/m80-site.json
 ## 마감 규칙
 
 최적화 목표는 전체 동적 조립·버튼 주기 **10.0초 미만**이다. 한국 시간 **2026-10-19 12:00**에 새 최적화와 실행 중인 최적화를 중단하고 준비된 최종본의 GitHub 푸시를 시작한다. 10초 미만을 달성해도 마감까지 계속 단축한다. 그때의 검증된 결과, 실패 근거, 현장 연결 코드와 이 문서를 정리해 GitHub에 올린다. 미달한 결과를 배속하거나 실기 가능한 10초로 표시하지 않는다.
+
+9.625초 후보는 링 클램프 jaw의 힘을 2→5N으로 ramp하는 가정을 추가했다. 실제 비례 압력 제어가 있는지 확인해야 한다. 링 교차 구간은 임의 I/O 지연의 모든 자세 조합에서 안전하지 않아 실제 `Cell` 어댑터의 추가 인터록과 동시 정지가 필요하다. 수입 모델 토크 변화율은 최대 약 6714Nm/s이며 실측이 아니다. JointPositions 모드에서 토크·변화율은 권장 조건이고 로봇이 궤적을 보정할 수 있으므로 동일한 실기 시간을 보장하지 않는다. [Franka 공식 조건](https://frankarobotics.github.io/docs/robot_specifications.html)

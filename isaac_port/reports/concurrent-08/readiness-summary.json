@@ -1,0 +1,23 @@
+{
+  "state": "single_episode_pass",
+  "cycle_time_s": 9.625,
+  "original_cad_mounts": true,
+  "physical_simulation_pass": true,
+  "hardware_ready": false,
+  "repeatability_verified": false,
+  "assumptions": [
+    "2N initial per-ring-jaw motor force ramps to 5N over 80ms after simulated contact; actual pneumatic pressure control unverified",
+    "480Hz implicit motor drives, 120Hz exact zero-latency part/contact feedback",
+    "Field calibration, payload, gripper and PLC I/O remain unverified"
+  ],
+  "delay_robustness": {
+    "pin_crossing_product_pass": true,
+    "ring_crossing_product_pass": false,
+    "detail": "Left delayed at reference 1.96 while right reaches 2.295 produces wrist-hull collision. Nominal native run has zero unintended contact; arbitrary I/O delay or release fault requires stronger coordination/stop in field adapter."
+  },
+  "model_torque_rate_peak_nm_s": 6713.686252274424,
+  "model_torque_rate_nominal_limit_nm_s": 1000,
+  "torque_condition": "Recommended for joint position control; physical robot may adjust trajectory and time. Necessary rate limit for torque control.",
+  "reproduction_archive": "measured-run.zip",
+  "restore": "python3 isaac_port/archive_run.py restore isaac_port/reports/concurrent-08/measured-run.zip"
+}
