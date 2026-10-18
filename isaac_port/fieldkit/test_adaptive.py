@@ -2,13 +2,52 @@
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
-import hashlib,json,unittest,io
+import hashlib,json,unittest,io,subprocess
 from contextlib import redirect_stdout
 from .adaptive import main
 from .adaptive import M80Skill
 
 
 class ArtifactTests(unittest.TestCase):
+    def write_plan(self,root,files):
+        root.mkdir(parents=True,exist_ok=True)
+        for name,data in files.items():(root/name).write_bytes(data)
+        (root/'skill-plan.json').write_text(json.dumps(dict(state='offline_screened_requires_PhysX',
+            hardware_ready=False,files={n:hashlib.sha256(b).hexdigest()for n,b in files.items()})))
+
+    def test_plan_cannot_hash_or_archive_a_member_outside_its_directory(self):
+        with TemporaryDirectory()as directory:
+            root=Path(directory);external=root/'external.json';external.write_text('{}')
+            plan=root/'plan';plan.mkdir()
+            (plan/'skill-plan.json').write_text(json.dumps(dict(state='offline_screened_requires_PhysX',
+                files={'../external.json':hashlib.sha256(external.read_bytes()).hexdigest()})))
+            with self.assertRaisesRegex(RuntimeError,'Unsafe plan member'):
+                M80Skill(root/'baseline',plan).verify_plan()
+
+    def test_native_input_mutation_cannot_be_credited_as_a_screened_run(self):
+        with TemporaryDirectory()as directory:
+            root=Path(directory);plan=root/'plan';run=root/'run'
+            self.write_plan(plan,{'arm-posture-fr3.npz':b'original screened arm path'})
+            def native(*args,**kwargs):
+                run.mkdir();(run/'arm-posture-fr3.npz').write_bytes(b'different native input')
+                return subprocess.CompletedProcess(args[0],0)
+            with patch('isaac_port.fieldkit.adaptive.REPO',root),patch('isaac_port.fieldkit.adaptive.PORT',root/'isaac_port'),patch('subprocess.run',side_effect=native)as backend:
+                with self.assertRaisesRegex(RuntimeError,'Native input differs'):
+                    M80Skill(root/'baseline',plan).run_physx(run,initial_scene=root/'truth.json')
+                self.assertEqual(backend.call_count,1)
+            self.assertEqual((run/'observed-plan/arm-posture-fr3.npz').read_bytes(),b'original screened arm path')
+
+    def test_failed_native_run_retains_frozen_observation_inputs(self):
+        with TemporaryDirectory()as directory:
+            root=Path(directory);plan=root/'plan';run=root/'run'
+            self.write_plan(plan,{'observations.json':b'{"capture":"test"}'})
+            def native(*args,**kwargs):
+                run.mkdir();raise subprocess.CalledProcessError(1,args[0])
+            with patch('isaac_port.fieldkit.adaptive.REPO',root),patch('isaac_port.fieldkit.adaptive.PORT',root/'isaac_port'),patch('subprocess.run',side_effect=native):
+                with self.assertRaises(subprocess.CalledProcessError):
+                    M80Skill(root/'baseline',plan).run_physx(run,initial_scene=root/'truth.json')
+            self.assertEqual((run/'observed-plan/observations.json').read_bytes(),b'{"capture":"test"}')
+
     def test_modified_observation_blocks_execution_before_any_subprocess(self):
         with TemporaryDirectory()as directory:
             root=Path(directory);observations=root/'observations.json';observations.write_text('{}\n')

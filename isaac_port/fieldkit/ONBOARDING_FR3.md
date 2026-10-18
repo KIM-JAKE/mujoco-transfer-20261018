@@ -198,6 +198,14 @@ plan = skill.prepare(
 | shift-a | 통과, 의도하지 않은 로봇 접촉 0N | 11.847917초 | 미달 |
 | shift-b | 통과, 의도하지 않은 로봇 접촉 0N | 10.514583초 | 미달 |
 
+후속 **shift-b V1 단축 조건**은 독립 2회에서 **9.95625초**에 전체 조립·버튼·실제 FR3·기록 검사를 통과했다. 관측 기반 계획을 실제 API로 실행한 결과와 촬영·계획 입력을 함께 보존했다. [캐시·반복 근거](../reports/pose-adaptation/fast-v1-b/summary.json). 같은 V1 조건은 shift-a에서 삽입 중 한도를 초과했으므로, 이 수치를 모든 위치 변경에 적용하지 않는다. 새로운 정지점 정렬 방식은 별도 시험 중이다.
+
+```bash
+python3 isaac_port/archive_run.py restore isaac_port/reports/pose-adaptation/fast-v1-b/measured-evidence.zip
+```
+
+복원한 `runs/contact-adaptive-fast-api-b-01/observed-plan`은 `M80Skill`의 `output`으로 열어 `verify_plan()`하고 `run_physx()`로 별도 초기 장면에서 다시 시험할 수 있다. 이는 기록된 합성 장면의 **시뮬레이션 캐시**이며 실기 운동 파일이 아니다. API는 실행 전에 입력을 고정하고, 실제 실행기가 복사한 경로·시간 파일의 SHA와 대조한다. 실패한 실행에도 관측 입력을 남긴다.
+
 두 조건은 시뮬레이션 drive damping 왼팔 800/오른팔 1800Nm·s/rad, 추가 핀 정렬과 정지 후 클램프 인터록을 사용한다. 실제 FR3 제어기 설정과의 동등성은 미검증이다. 원래 배치의 최단 9.466667초와 구분한다. 합성 카메라 보정은 정확하다고 가정하며, 실제 금속 부품의 RGB-D 성능을 증명한 결과가 아니다. 합성 위치 추정만의 12장면·36회 검사는 별도 [보고서](../reports/perception-perturbation-benchmark.json)에 있다.
 
 ```bash

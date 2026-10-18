@@ -129,6 +129,9 @@ class M80Skill:
         if report['state'] != 'offline_screened_requires_PhysX':
             raise RuntimeError('Not a screened skill plan')
         for name, expected in report['files'].items():
+            relative=Path(name)
+            if relative.is_absolute() or '..' in relative.parts or not (self.output/relative).resolve().is_relative_to(self.output):
+                raise RuntimeError('Unsafe plan member: '+name)
             if sha(self.output/name) != expected:
                 raise RuntimeError('Plan changed after screening: '+name)
         return report
@@ -142,7 +145,10 @@ class M80Skill:
         mounted_repo maps this repository to its path in that runtime. The
         caller reserves its own GPU session. No shell interpolation is used.
         """
-        self.verify_plan()
+        prepared=self.verify_plan()
+        frozen={name:(self.output/name).read_bytes() for name in prepared['files']}
+        if any(hashlib.sha256(data).hexdigest()!=prepared['files'][name] for name,data in frozen.items()):
+            raise RuntimeError('Plan changed while freezing execution inputs')
         if any(not math.isfinite(x) or x<=0 for x in [arm_damping,right_arm_damping]):
             raise ValueError('Positive finite simulation drive damping required')
         run = Path(run_directory).resolve()
@@ -161,9 +167,25 @@ class M80Skill:
         if respect_cutoff:
             args.append('--respect-cutoff')
         run.parent.mkdir(parents=True, exist_ok=True)
-        with run.with_suffix('.log').open('w') as stream:
-            subprocess.run([*(command_prefix or [self.python]), *args], cwd=REPO,
-                           stdout=stream, stderr=subprocess.STDOUT, check=True)
+        try:
+            with run.with_suffix('.log').open('w') as stream:
+                subprocess.run([*(command_prefix or [self.python]), *args], cwd=REPO,
+                               stdout=stream, stderr=subprocess.STDOUT, check=True)
+        finally:
+            if run.exists():
+                observed=run/'observed-plan';observed.mkdir()
+                for name,data in frozen.items():
+                    target=observed/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data)
+                (observed/'skill-plan.json').write_text(json.dumps(prepared,indent=2)+'\n')
+        # Credit a measured episode only when native's own frozen q/clock and
+        # reference files match the screened plan, even if the source changed.
+        for name in ['arm-posture-fr3.npz','fr3-concurrent-profile.npz',
+                     'fr3-concurrent-profile.json','trajectory.npz','config.json',
+                     'independent_schedule.json','retiming.json']:
+            if name not in frozen:continue
+            native=run/name if (run/name).exists() else run/'recording'/name
+            if not native.exists() or sha(native)!=prepared['files'][name]:
+                raise RuntimeError('Native input differs from screened plan: '+name)
         for script in ['evaluate_fr3_limits.py', 'evaluate_contact.py',
                        'verify_contact_recording.py', 'audit_hardware_readiness.py']:
             self._run(script, [run], run/(Path(script).stem+'.log'),
