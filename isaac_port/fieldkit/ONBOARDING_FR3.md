@@ -52,6 +52,8 @@ python3 isaac_port/archive_run.py restore isaac_port/reports/contact-trim-01/mea
 
 원래 배치의 전체 PhysX 검사는 **13.53125초**, 세 부품·버튼·실제 FR3 한도·기록 검사는 통과했다. 엄격한 10초 미만 판정은 미달로 유지한다. 네 구간의 로봇 hull 자세 조합 20,604개도 충돌 없이 통과했다. 이는 표본 검사이며 추종 오차 여유·실제 하중·모든 부품 조합에 대한 연속 안전 증명은 아니다. [근거와 복원 자료](../reports/conservative-handoff-01/summary.json).
 
+후속 시간 최적화에서는 오른팔 정지 확인 지점을 기준 2.82로 앞당겨 **11.947917초**에 기능·FR3·기록 검사를 통과했다. 왼팔 대기 자세 2.4와 원본 공간 경로를 유지했다. 10초 미만 조건은 미달이며, [별도 근거](../reports/conservative-early-handoff-01/summary.json)에 남겼다. 선택적 시간 준비 옵션은 `--conservative-ring-handoff --handoff-right-clear 2.82`다. 관측 기반 기본 API는 검증된 기존 해제 후 대기를 사용하므로 이 수치를 기본 API 성능으로 취급하지 않는다.
+
 관측 기반 계획에서는 `skill.prepare(..., conservative_ring_handoff=True)` 또는 명령행 `--conservative-ring-handoff`를 선택한다. 새 위치 조건마다 이 설정의 PhysX 검사를 별도로 실행한다. 빠른 경로의 기능 통과를 보수적 경로의 지연 내성이나 실기 인증으로 바꾸지 않는다. 두 설정 모두 실제 로봇 연결 기능은 현장 어댑터에 구현해야 한다.
 
 ## 2. 제어 PC와 로봇 연결

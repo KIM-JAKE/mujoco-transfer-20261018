@@ -1,0 +1,54 @@
+{
+  "state": "passed",
+  "samples": 415,
+  "unique_joint_rows": 415,
+  "max_part_tape_trace_error_m": 0.0,
+  "max_wrist_fk_error_m": 1.2891152624646064e-06,
+  "max_wrist_fk_angle_error_rad": 1.800971561627969e-06,
+  "max_quaternion_norm_error": 2.384185791015625e-07,
+  "implementation_hashes_match": {
+    "test_concurrent_task.py": true,
+    "concurrent_profile.py": true,
+    "contact_scene.py": true,
+    "pose_feedback.py": true,
+    "precision_collisions.py": true,
+    "fixture_clamps.py": true,
+    "robot_collision_filters.py": true,
+    "button_contact_control.py": true,
+    "task_path_offsets.py": true,
+    "task_timing.py": true,
+    "task_timing_fast.py": true,
+    "stock_fixture_geometry.py": true,
+    "fr3_motion_control.py": true,
+    "fr3_motion_worker.py": true,
+    "fr3_reference_profile.py": true,
+    "prepare_fr3_timing.py": true,
+    "sensor_geometry.py": true,
+    "optimization_clock.py": true,
+    "source_model.py": true,
+    "prepare_concurrent_timing.py": true,
+    "prepare_shortcut_candidate.py": true,
+    "model_torque_screen.py": true,
+    "stock_scene_variation.py": true
+  },
+  "reference_hashes_match": {
+    "trajectory.npz": true,
+    "independent_schedule.json": true,
+    "config.json": true,
+    "retiming.json": true
+  },
+  "tape_sha256": "a991758154ee3674489d024ebfc247b22c2196899885b556cfe3e5b1ecc713bd",
+  "scope": "Recording integrity only; physical task acceptance is independent",
+  "native_timestep_consistency": {
+    "checked": true,
+    "median_position_derivative_to_native_velocity_ratio": 1.002712536036479,
+    "rms_velocity_difference_rad_s": 0.0022971076922338983,
+    "semantics": "Independent consistency of declared timestep with native joint position and velocity; finite-step integration adds a small discretization error"
+  },
+  "frozen_input_hashes_match": {
+    "fr3-concurrent-profile.npz": true,
+    "fr3-concurrent-profile.json": true,
+    "arm-posture-fr3.npz": true,
+    "arm-posture-fr3.json": true
+  }
+}

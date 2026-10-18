@@ -1,0 +1,242 @@
+{
+  "state": "not_hardware_ready",
+  "hardware_execution_certified": false,
+  "run": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/contact-conservative-early-handoff-01",
+  "joint_command_1khz_screen": {
+    "sample_rate_hz": 1000,
+    "samples": 13800,
+    "position_pass": true,
+    "velocity_pass": true,
+    "acceleration_max_rad_s2": 9.230865656580335,
+    "jerk_max_rad_s3": 3722.090460799521,
+    "acceleration_pass": true,
+    "jerk_pass": true,
+    "interpolation": "C2 quintic Hermite reconstruction from recorded command q/dq/ddq; not a tested FCI execution loop"
+  },
+  "inverse_dynamics_screen": {
+    "joint_position_mode_condition": "Torque and torque rate are recommended conditions; the robot may adjust execution, so a model violation warns against claiming identical hardware timing. Torque rate is necessary for torque control.",
+    "scope": "Model-only arm + imported gripper, no contacts, carried workpiece or motor friction; frozen finger velocity/acceleration; torque rate uses gravity-excluded torque as FCI convention",
+    "model_scene_sha256": "e41c4ce800f4cb04c057fe0939b140fb44f6eadf161119cd9b2a6cdfe4a3038a",
+    "all_total_torque_within_limits": true,
+    "all_without_gravity_rate_within_limits": false,
+    "joints": [
+      {
+        "joint": "left_arm_fr3v2_joint1",
+        "max_total_inverse_dynamics_nm": 55.05002467206829,
+        "max_gravity_nm": 39.52194437123097,
+        "max_without_gravity_nm": 21.111726041776333,
+        "max_without_gravity_rate_nm_s": 6603.673665916603,
+        "torque_limit_nm": 87.0,
+        "rate_limit_nm_s": 1000.0,
+        "model_total_torque_within_limit": true,
+        "model_without_gravity_rate_within_limit": false
+      },
+      {
+        "joint": "left_arm_fr3v2_joint2",
+        "max_total_inverse_dynamics_nm": 45.05842024641773,
+        "max_gravity_nm": 29.425908540295605,
+        "max_without_gravity_nm": 18.593283200277288,
+        "max_without_gravity_rate_nm_s": 3518.372571070655,
+        "torque_limit_nm": 87.0,
+        "rate_limit_nm_s": 1000.0,
+        "model_total_torque_within_limit": true,
+        "model_without_gravity_rate_within_limit": false
+      },
+      {
+        "joint": "left_arm_fr3v2_joint3",
+        "max_total_inverse_dynamics_nm": 33.97744213704672,
+        "max_gravity_nm": 24.247370457306815,
+        "max_without_gravity_nm": 12.478814902459916,
+        "max_without_gravity_rate_nm_s": 4483.115760789293,
+        "torque_limit_nm": 87.0,
+        "rate_limit_nm_s": 1000.0,
+        "model_total_torque_within_limit": true,
+        "model_without_gravity_rate_within_limit": false
+      },
+      {
+        "joint": "left_arm_fr3v2_joint4",
+        "max_total_inverse_dynamics_nm": 37.78953795548781,
+        "max_gravity_nm": 24.597749537002123,
+        "max_without_gravity_nm": 14.577686872761936,
+        "max_without_gravity_rate_nm_s": 4169.687041057845,
+        "torque_limit_nm": 87.0,
+        "rate_limit_nm_s": 1000.0,
+        "model_total_torque_within_limit": true,
+        "model_without_gravity_rate_within_limit": false
+      },
+      {
+        "joint": "left_arm_fr3v2_joint5",
+        "max_total_inverse_dynamics_nm": 3.6010769047568996,
+        "max_gravity_nm": 3.4448178482893663,
+        "max_without_gravity_nm": 1.472868889471954,
+        "max_without_gravity_rate_nm_s": 440.3801847290918,
+        "torque_limit_nm": 12.0,
+        "rate_limit_nm_s": 1000.0,
+        "model_total_torque_within_limit": true,
+        "model_without_gravity_rate_within_limit": true
+      },
+      {
+        "joint": "left_arm_fr3v2_joint6",
+        "max_total_inverse_dynamics_nm": 4.892624994236623,
+        "max_gravity_nm": 3.5988042717692093,
+        "max_without_gravity_nm": 1.7722010533351527,
+        "max_without_gravity_rate_nm_s": 806.4157790237232,
+        "torque_limit_nm": 12.0,
+        "rate_limit_nm_s": 1000.0,
+        "model_total_torque_within_limit": true,
+        "model_without_gravity_rate_within_limit": true
+      },
+      {
+        "joint": "left_arm_fr3v2_joint7",
+        "max_total_inverse_dynamics_nm": 0.0827885147136389,
+        "max_gravity_nm": 0.054677691234777726,
+        "max_without_gravity_nm": 0.03608843284371277,
+        "max_without_gravity_rate_nm_s": 9.317047917692722,
+        "torque_limit_nm": 12.0,
+        "rate_limit_nm_s": 1000.0,
+        "model_total_torque_within_limit": true,
+        "model_without_gravity_rate_within_limit": true
+      },
+      {
+        "joint": "right_arm_fr3v2_joint1",
+        "max_total_inverse_dynamics_nm": 56.71209017897607,
+        "max_gravity_nm": 37.391456986521305,
+        "max_without_gravity_nm": 19.335351822275697,
+        "max_without_gravity_rate_nm_s": 6368.634759377763,
+        "torque_limit_nm": 87.0,
+        "rate_limit_nm_s": 1000.0,
+        "model_total_torque_within_limit": true,
+        "model_without_gravity_rate_within_limit": false
+      },
+      {
+        "joint": "right_arm_fr3v2_joint2",
+        "max_total_inverse_dynamics_nm": 31.97204806790991,
+        "max_gravity_nm": 19.461518372970026,
+        "max_without_gravity_nm": 17.659938507222773,
+        "max_without_gravity_rate_nm_s": 5623.5019911533,
+        "torque_limit_nm": 87.0,
+        "rate_limit_nm_s": 1000.0,
+        "model_total_torque_within_limit": true,
+        "model_without_gravity_rate_within_limit": false
+      },
+      {
+        "joint": "right_arm_fr3v2_joint3",
+        "max_total_inverse_dynamics_nm": 35.03506974830426,
+        "max_gravity_nm": 27.2682136497685,
+        "max_without_gravity_nm": 16.39027941313588,
+        "max_without_gravity_rate_nm_s": 2166.7447226637223,
+        "torque_limit_nm": 87.0,
+        "rate_limit_nm_s": 1000.0,
+        "model_total_torque_within_limit": true,
+        "model_without_gravity_rate_within_limit": false
+      },
+      {
+        "joint": "right_arm_fr3v2_joint4",
+        "max_total_inverse_dynamics_nm": 35.08654197099543,
+        "max_gravity_nm": 24.008435467699456,
+        "max_without_gravity_nm": 11.899453178649168,
+        "max_without_gravity_rate_nm_s": 4519.42907942076,
+        "torque_limit_nm": 87.0,
+        "rate_limit_nm_s": 1000.0,
+        "model_total_torque_within_limit": true,
+        "model_without_gravity_rate_within_limit": false
+      },
+      {
+        "joint": "right_arm_fr3v2_joint5",
+        "max_total_inverse_dynamics_nm": 3.1903182770441134,
+        "max_gravity_nm": 2.540157149708719,
+        "max_without_gravity_nm": 1.0543848263321713,
+        "max_without_gravity_rate_nm_s": 324.1935804868525,
+        "torque_limit_nm": 12.0,
+        "rate_limit_nm_s": 1000.0,
+        "model_total_torque_within_limit": true,
+        "model_without_gravity_rate_within_limit": true
+      },
+      {
+        "joint": "right_arm_fr3v2_joint6",
+        "max_total_inverse_dynamics_nm": 4.443248517360295,
+        "max_gravity_nm": 2.591962220515144,
+        "max_without_gravity_nm": 2.059437109129086,
+        "max_without_gravity_rate_nm_s": 517.8258529019821,
+        "torque_limit_nm": 12.0,
+        "rate_limit_nm_s": 1000.0,
+        "model_total_torque_within_limit": true,
+        "model_without_gravity_rate_within_limit": true
+      },
+      {
+        "joint": "right_arm_fr3v2_joint7",
+        "max_total_inverse_dynamics_nm": 0.07221663569062109,
+        "max_gravity_nm": 0.049276606059485584,
+        "max_without_gravity_nm": 0.03105312475758293,
+        "max_without_gravity_rate_nm_s": 8.890277137562741,
+        "torque_limit_nm": 12.0,
+        "rate_limit_nm_s": 1000.0,
+        "model_total_torque_within_limit": true,
+        "model_without_gravity_rate_within_limit": true
+      }
+    ]
+  },
+  "blockers": [
+    {
+      "id": "layout",
+      "status": "unverified",
+      "detail": "Original sensor mounts retained; verify the optical-axis semantic correction and physical head/tail clearance. No hardware assembly pass implied."
+    },
+    {
+      "id": "controller",
+      "status": "unverified",
+      "detail": "480Hz implicit PhysX position/velocity drives: {'stiffness': 12000, 'damping': {'left': 800.0, 'right': 1800.0}}; internal FR3 damping/controller response and FCI filtering not replicated."
+    },
+    {
+      "id": "sensing",
+      "status": "unverified",
+      "detail": "120Hz exact zero-latency workpiece pose, individual pad contacts and fixture impulses; no real sensor/calibration/latency model. Alignment gate is 25um."
+    },
+    {
+      "id": "gravity_payload",
+      "status": "unverified",
+      "detail": "Robot gravity disabled in PhysX; real FR3 gravity compensation exists but motor torque/load calibration and contact torque budget remain unverified."
+    },
+    {
+      "id": "gripper",
+      "status": "unverified",
+      "detail": "Robotiq 2F-85 direct joint motor/mimic model is not the real position/speed/force register interface; command latency, force/position resolution and compliance not calibrated."
+    },
+    {
+      "id": "fixture",
+      "status": "unverified",
+      "detail": "Added clamp jaws, 80ms closure ramp, pin supply sleeve and spring button are assumed; no measured mechanical stroke, response, placement or PLC I/O."
+    },
+    {
+      "id": "fci",
+      "status": "unverified",
+      "detail": "No executed 1kHz libfranka loop, network jitter test, robot-specific limits, collision thresholds or measured torque-rate trace."
+    },
+    {
+      "id": "repeatability",
+      "status": "unverified",
+      "detail": "One deterministic episode; no tolerance, friction, perception-noise or delay robustness distribution; cycle omits ready-pose initialization and return to start."
+    },
+    {
+      "id": "interpolated_command_jerk",
+      "status": "warning",
+      "detail": "The reconstructed C2 curve exceeds the 95% jerk budget between samples. Validate/replan the field curve continuously; exporting states alone does not preserve the native generator substeps."
+    }
+  ],
+  "sources": {
+    "fr3_limits": "https://frankarobotics.github.io/docs/robot_specifications.html",
+    "fci": "https://frankarobotics.github.io/docs/overview.html",
+    "robot_state": "https://frankarobotics.github.io/libfranka/latest/structfranka_1_1RobotState.html",
+    "impedance": "https://frankarobotics.github.io/libfranka/latest/classfranka_1_1Robot.html",
+    "gripper": "https://robotiq.com/products/adaptive-grippers"
+  },
+  "interpolated_command_continuous_jerk": {
+    "method": "Exact extrema of piecewise quadratic third derivatives",
+    "maximum_rad_s3": 4849.706248283386,
+    "FR3_limit_rad_s3": 5000.0,
+    "FR3_limit_pass": true,
+    "budget_95_percent_pass": false,
+    "uniform_time_scale_for_95_percent_jerk": 1.0069485357252932,
+    "scope": "Post-hoc C2 interpolation of recorded command states; does not recover Ruckig internal substep switches or measure motor jerk"
+  }
+}

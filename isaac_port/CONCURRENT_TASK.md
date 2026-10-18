@@ -92,3 +92,5 @@ python3 isaac_port/archive_run.py restore isaac_port/reports/conservative-handof
 ```
 
 복원된 run을 `--reference-dir`와 `--plan-root`에 지정하고 공통 native 옵션에 `--arm-damping 800 --right-arm-damping 1800`을 더해 새 출력 폴더에서 실행한다. 다른 시간 정책·초기 위치는 별도 재검증한다.
+
+같은 공간 경로에서 `--conservative-ring-handoff --handoff-right-clear 2.82`를 사용한 후속 시험은 11.947917초에 전체 기능·실제 FR3·기록 검사를 통과했다. 엄격한 10초 미만 조건은 미달이다. 왼팔2.4/오른팔2.82에서 실제 정지 상태를 측정했으며, 후반 자세 조합151×151개 표본도 통과했다. [별도 근거와 복원](reports/conservative-early-handoff-01/summary.json)을 참조한다.

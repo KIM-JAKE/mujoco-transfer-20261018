@@ -1,0 +1,78 @@
+{
+  "sampled_cross_arm_pass": true,
+  "complete": true,
+  "nominal_cycle_s": 10.683333333333334,
+  "failures": [],
+  "coordination_events": [
+    {
+      "t_s": 0.0,
+      "holds": {
+        "left": null,
+        "right": null
+      },
+      "references": {
+        "left": 3.6363081585917286e-05,
+        "right": 1.59208804214463e-06
+      }
+    },
+    {
+      "t_s": 2.5,
+      "holds": {
+        "left": null,
+        "right": "cross_arm_zone_wait_for_left"
+      },
+      "references": {
+        "left": 1.7630393072944153,
+        "right": 2.09999999
+      }
+    },
+    {
+      "t_s": 4.008333333333333,
+      "holds": {
+        "left": "cross_arm_zone_wait_for_right",
+        "right": null
+      },
+      "references": {
+        "left": 2.39999999,
+        "right": 2.10000000034088
+      }
+    },
+    {
+      "t_s": 5.491666666666666,
+      "holds": {
+        "left": null,
+        "right": null
+      },
+      "references": {
+        "left": 2.4000000002857726,
+        "right": 2.82
+      }
+    },
+    {
+      "t_s": 9.625,
+      "holds": {
+        "left": null,
+        "right": "button_wait_for_all_releases"
+      },
+      "references": {
+        "left": 5.936877663465501,
+        "right": 6.447975136198832
+      }
+    },
+    {
+      "t_s": 9.975,
+      "holds": {
+        "left": null,
+        "right": null
+      },
+      "references": {
+        "left": 6.447975146198832,
+        "right": 6.4479751469312765
+      }
+    }
+  ],
+  "profile_sha256": "e20aacff88ee888d65d188b4d3298e503a4e1bad6527168987b012e617a895a1",
+  "scope": "Nominal robot hull cross-arm collisions at 120Hz; no actual contact delays, dynamics, carried-part or static-environment proof",
+  "hardware_ready": false,
+  "physical_simulation_pass": false
+}
