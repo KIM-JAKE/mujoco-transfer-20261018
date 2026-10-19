@@ -1,0 +1,149 @@
+{
+  "state": "offline_onboarding_commands_passed",
+  "validated_at_utc": "2026-10-19T00:00:46.404611+00:00",
+  "source_commit": "020098c8627e9f350a95367676ddbd2f8e88f833",
+  "source_export": "/tmp/m80-first-day-production-check",
+  "independent_committed_source": true,
+  "python_regression_tests": {
+    "modules": [
+      "isaac_port.fieldkit.test_fieldkit",
+      "isaac_port.fieldkit.test_adaptive",
+      "isaac_port.fieldkit.test_perception"
+    ],
+    "count": 24,
+    "failures": 0,
+    "observed_duration_s": 15.231
+  },
+  "command_checks": [
+    {
+      "command": "python3 -m isaac_port.fieldkit dry-run",
+      "exit_code": 0,
+      "state": "dry_run_passed"
+    },
+    {
+      "command": "python3 -m isaac_port.fieldkit dry-run --concurrent",
+      "exit_code": 0,
+      "state": "dry_run_passed"
+    },
+    {
+      "command": "python3 -m isaac_port.fieldkit preflight",
+      "exit_code": 2,
+      "state": "integration_required"
+    }
+  ],
+  "relative_document_links_checked": [
+    {
+      "document": "isaac_port/fieldkit/ONBOARDING_FR3.md",
+      "target": "RUN_PROFILES.md"
+    },
+    {
+      "document": "isaac_port/fieldkit/ONBOARDING_FR3.md",
+      "target": "COMMISSIONING_RECORD.md"
+    },
+    {
+      "document": "isaac_port/fieldkit/ONBOARDING_FR3.md",
+      "target": "../reports/contact-trim-03/summary.json"
+    },
+    {
+      "document": "isaac_port/fieldkit/ONBOARDING_FR3.md",
+      "target": "../reports/conservative-model600-release-01/summary.json"
+    },
+    {
+      "document": "isaac_port/fieldkit/ONBOARDING_FR3.md",
+      "target": "../reports/conservative-model600-release-01/repeatability.json"
+    },
+    {
+      "document": "isaac_port/fieldkit/ONBOARDING_FR3.md",
+      "target": "../reports/conservative-handoff-01/summary.json"
+    },
+    {
+      "document": "isaac_port/fieldkit/ONBOARDING_FR3.md",
+      "target": "../reports/conservative-early-handoff-01/summary.json"
+    },
+    {
+      "document": "isaac_port/fieldkit/ONBOARDING_FR3.md",
+      "target": "../reports/conservative-release-checkpoint-fix/summary.json"
+    },
+    {
+      "document": "isaac_port/fieldkit/ONBOARDING_FR3.md",
+      "target": "COMMISSIONING_RECORD.md"
+    },
+    {
+      "document": "isaac_port/fieldkit/ONBOARDING_FR3.md",
+      "target": "../reports/pose-adaptation/fast-v1-api-b-03/summary.json"
+    },
+    {
+      "document": "isaac_port/fieldkit/ONBOARDING_FR3.md",
+      "target": "../reports/pose-adaptation/examples/"
+    },
+    {
+      "document": "isaac_port/fieldkit/ONBOARDING_FR3.md",
+      "target": "../reports/pose-adaptation/validation.json"
+    },
+    {
+      "document": "isaac_port/fieldkit/ONBOARDING_FR3.md",
+      "target": "../reports/pose-adaptation/fast-v1-b/summary.json"
+    },
+    {
+      "document": "isaac_port/fieldkit/ONBOARDING_FR3.md",
+      "target": "../reports/perception-perturbation-benchmark.json"
+    },
+    {
+      "document": "isaac_port/fieldkit/ONBOARDING_FR3.md",
+      "target": "telemetry.hpp"
+    },
+    {
+      "document": "isaac_port/fieldkit/README.md",
+      "target": "ONBOARDING_FR3.md"
+    },
+    {
+      "document": "isaac_port/fieldkit/README.md",
+      "target": "RUN_PROFILES.md"
+    },
+    {
+      "document": "isaac_port/fieldkit/README.md",
+      "target": "ONBOARDING_FR3.md#7-\uae30\ub85d\uacfc-\ubb38\uc81c-\ubc1c\uc0dd-\uc2dc"
+    },
+    {
+      "document": "isaac_port/fieldkit/README.md",
+      "target": "../reports/contact-trim-03/summary.json"
+    },
+    {
+      "document": "isaac_port/fieldkit/RUN_PROFILES.md",
+      "target": "../reports/contact-trim-03/summary.json"
+    },
+    {
+      "document": "isaac_port/fieldkit/RUN_PROFILES.md",
+      "target": "../reports/model600-free800-01/summary.json"
+    },
+    {
+      "document": "isaac_port/fieldkit/RUN_PROFILES.md",
+      "target": "../reports/model600-overlap-01/summary.json"
+    },
+    {
+      "document": "isaac_port/fieldkit/RUN_PROFILES.md",
+      "target": "../reports/conservative-model600-release-01/summary.json"
+    },
+    {
+      "document": "isaac_port/fieldkit/RUN_PROFILES.md",
+      "target": "../CONCURRENT_TASK.md"
+    },
+    {
+      "document": "isaac_port/fieldkit/RUN_PROFILES.md",
+      "target": "ONBOARDING_FR3.md"
+    },
+    {
+      "document": "isaac_port/fieldkit/RUN_PROFILES.md",
+      "target": "COMMISSIONING_RECORD.md"
+    }
+  ],
+  "document_sha256": {
+    "isaac_port/fieldkit/ONBOARDING_FR3.md": "5a93c5763da4e2a4cdc16038d9946aa24c5dce8f40555fc8f7403f781a67a0a9",
+    "isaac_port/fieldkit/README.md": "c89645e8252af548106686caf31ad8c626421b0534c2e0b9601c1fb577ecfde7",
+    "isaac_port/fieldkit/RUN_PROFILES.md": "376fbde663938a20671f229ab08e74f01cebe58cb1aa59e1a9c442d0b0e3a872",
+    "isaac_port/fieldkit/COMMISSIONING_RECORD.md": "02f5d7127ebe67a76a1f14a354f7155f39ffe1c44c57a2313cb9dfb876562854"
+  },
+  "hardware_ready": false,
+  "live_hardware_connected": false,
+  "scope": "Documentation links, offline task policy, immutable observed-plan/controller contracts and synthetic noisy point-cloud perception. No physical robot motion or real camera/PLC/Robotiq validation."
+}
