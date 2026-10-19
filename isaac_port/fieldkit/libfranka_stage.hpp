@@ -13,6 +13,7 @@ struct FieldContext {
   bool field_planned=false,tool_verified=false,io_verified=false,torque_budget_verified=false;
   double expected_tool_mass_kg=-1.,expected_load_mass_kg=-1.;
   double command_fraction=.1;
+  double maximum_external_force_n=0.,maximum_external_torque_nm=0.;
   StageTelemetry* telemetry=nullptr;
 };
 struct AtomicGates {
@@ -26,6 +27,7 @@ struct ServoReport {
   std::uint64_t telemetry_dropped_samples=0;
 };
 void validate_field_context(const FieldContext&);
+void validate_external_wrench(const std::array<double,6>&,const FieldContext&);
 
 // Share every failure, including validation/readiness/state-read failures
 // before control() begins. Never clear a previous stop automatically.

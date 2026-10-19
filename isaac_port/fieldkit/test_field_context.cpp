@@ -25,6 +25,14 @@ void rejected_before_motion(const m80::FieldContext& site) {
 }
 
 int main() {
+  auto guarded=valid_context();guarded.maximum_external_force_n=5.;guarded.maximum_external_torque_nm=1.;
+  m80::validate_external_wrench({3.,4.,0.,0.,0.,.5},guarded);
+  for(const auto& wrench:std::vector<std::array<double,6>>{{3.,4.1,0.,0.,0.,0.},{0.,0.,0.,0.,0.,1.01},
+       {std::numeric_limits<double>::quiet_NaN(),0.,0.,0.,0.,0.}}) {
+    bool rejected=false;try {m80::validate_external_wrench(wrench,guarded);}catch(const std::exception&) {rejected=true;}
+    if(!rejected)throw std::runtime_error("External wrench guard failed open");
+  }
+  auto bad_guard=valid_context();bad_guard.maximum_external_force_n=-1.;rejected_before_motion(bad_guard);
   m80::require_idle_mode(franka::RobotMode::kIdle);
   for(auto mode:{franka::RobotMode::kOther,franka::RobotMode::kMove,
                 franka::RobotMode::kGuiding,franka::RobotMode::kReflex,

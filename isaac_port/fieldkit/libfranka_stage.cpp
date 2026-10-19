@@ -15,6 +15,21 @@ void validate_field_context(const FieldContext& site) {
     throw std::runtime_error("Verified payload masses are required");
   if(!std::isfinite(site.command_fraction) || site.command_fraction<=0 || site.command_fraction>.95)
     throw std::runtime_error("Command fraction must be finite and in (0,0.95]");
+  for(double limit:{site.maximum_external_force_n,site.maximum_external_torque_nm})
+    if(!std::isfinite(limit) || limit<0)throw std::runtime_error("Invalid external wrench guard");
+}
+
+void validate_external_wrench(const std::array<double,6>& wrench,const FieldContext& site) {
+  for(std::size_t first:{0u,3u}) {
+    const double limit=first==0?site.maximum_external_force_n:site.maximum_external_torque_nm;
+    if(limit==0)continue;
+    double squared=0.;
+    for(std::size_t i=first;i<first+3;++i) {
+      if(!std::isfinite(wrench[i]))throw std::runtime_error("Nonfinite external wrench");
+      squared+=wrench[i]*wrench[i];
+    }
+    if(std::sqrt(squared)>limit)throw std::runtime_error("External wrench guard exceeded");
+  }
 }
 
 ServoReport run_joint_stage(franka::Robot& robot,const Trajectory& path,
@@ -60,6 +75,7 @@ ServoReport run_joint_stage(franka::Robot& robot,const Trajectory& path,
       }
       if(gates.abort_requested.load(std::memory_order_relaxed) || !gates.io_ready.load(std::memory_order_relaxed))
         throw std::runtime_error("Field interlock lost");
+      validate_external_wrench(state.O_F_ext_hat_K,site);
       if(!first && (dt<.0005 || dt>.0015))throw std::runtime_error("FCI update did not meet the 1kHz stage timing contract");
       for(std::size_t j=0;j<7;++j)
         if(!std::isfinite(state.q[j]) || !std::isfinite(state.q_d[j]) ||

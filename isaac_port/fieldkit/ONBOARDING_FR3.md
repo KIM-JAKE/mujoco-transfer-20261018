@@ -1,3 +1,5 @@
+> **Franka Hand 현장 실행:** [전용 빠른 시작](FRANKA_HAND_QUICKSTART.md)의 native Hand·기록 경로·순차 CaP 절차를 먼저 따른다. 아래 Robotiq 설정은 기존 구성에 해당한다.
+
 # M80 · 두 대의 Franka Research 3 현장 온보딩
 
 대상은 libfranka를 다루는 로봇 엔지니어다. **저장소 복제 → 오프라인 점검 → 상태 읽기 → 좌표·주변 장치 연결 → 저속 단일 단계 → 양팔 공정** 순서로 진행한다. 서버용 Isaac Sim과 로봇 옆 실시간 제어 PC는 역할이 다르다.
