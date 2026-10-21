@@ -1,0 +1,307 @@
+{
+  "run": "native-roas-table-scatter-stable-v298-perpendicular-receiver-all3-445",
+  "scope": "Online RGB-D and robot encoder evidence only; not real hardware proof",
+  "selected_receiver": [
+    {
+      "event": "approved_handover",
+      "part": "ring1",
+      "incoming": [
+        [
+          0.9999937619455376,
+          0.0,
+          0.00353214807330119,
+          -0.049957699668810196
+        ],
+        [
+          0.0003072873270450292,
+          0.9962085477979098,
+          -0.086996752059365,
+          -0.14983522890501141
+        ],
+        [
+          -0.0035187561027105636,
+          0.08699729475322776,
+          0.9962023333947325,
+          1.400117938512025
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "receiver_parameters": [
+        0.0,
+        0.0,
+        0.0051883790850085765,
+        0.005
+      ],
+      "right_q": [
+        -1.2755737932595184,
+        -0.45849094050691064,
+        1.9662878186999566,
+        -1.1665054906028958,
+        -0.3731583873464363,
+        0.7095009433781088,
+        -3.0308
+      ],
+      "left_q": [
+        -0.21736949811115952,
+        0.9115999764803829,
+        -0.6340028559822417,
+        -1.985478248664521,
+        -2.7235911246401883,
+        1.1561402406307124,
+        -0.20076433441823238
+      ],
+      "approach_order": "donor_first",
+      "elapsed_s": 5.687918131938204,
+      "source": "RGB-D grasp + robot model; no free-body pose"
+    }
+  ],
+  "binding": {
+    "event": "loaded_receiver_encoder_geometry_bound",
+    "side": "left",
+    "part": "ring1",
+    "measured_grasp": [
+      [
+        0.21423452555098757,
+        -0.795292721191292,
+        0.5671097054216381,
+        -0.00037640339156230773
+      ],
+      [
+        0.9660846741678197,
+        0.2582101152152879,
+        -0.0028497056214508896,
+        -3.160554057599074e-05
+      ],
+      [
+        -0.1441671533255772,
+        0.548486406267642,
+        0.8236375241218309,
+        0.0026479359432649563
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "measured_finger_samples_m": [
+      [
+        0.037360042333602905,
+        0.037360042333602905
+      ],
+      [
+        0.037360042333602905,
+        0.037360042333602905
+      ],
+      [
+        0.037360042333602905,
+        0.037360042333602905
+      ],
+      [
+        0.037360042333602905,
+        0.037360042333602905
+      ],
+      [
+        0.037360064685344696,
+        0.03736007213592529
+      ]
+    ],
+    "sample_times_s": [
+      34.47708333333333,
+      34.50208333333333,
+      34.52708333333333,
+      34.552083333333336,
+      34.577083333333334
+    ],
+    "finger_lower_bounds_m": [
+      0.037110042333602905,
+      0.037110042333602905
+    ],
+    "finger_upper_bounds_m": [
+      0.037610064685344696,
+      0.03761007213592529
+    ],
+    "aperture_bounds_m": [
+      0.07422008466720581,
+      0.07522013682126999
+    ],
+    "minimum_total_aperture_interval_m": 0.001,
+    "encoder_lookahead_s": 0.0020833333333333333,
+    "per_finger_speed_cap_m_s": 0.0475,
+    "fresh_bilateral_CAD_contact": {
+      "opposed_contact_compatible": true,
+      "both_hulls_near_CAD": true,
+      "actual_opening_m": 0.07472013682126999,
+      "contact_tolerance_m": 0.0008,
+      "jaws": [
+        {
+          "sign": -1,
+          "minimum_hull_clearance_m": -0.0001214913881013556,
+          "near_hull_samples": 325,
+          "distal_contact_samples": 315,
+          "opposed_wall_samples": 300,
+          "opposed_wall_normal_fraction": 0.9523809523809523,
+          "all_contact_normal": [
+            0.0002769184574724276,
+            -0.9997484411868742,
+            -0.022427163453791837
+          ],
+          "mean_finger_surface_normal_opposition": 0.9447501169756566,
+          "opposed_finger_facet_fraction": 0.9206349206349206,
+          "contact_compatible": true
+        },
+        {
+          "sign": 1,
+          "minimum_hull_clearance_m": -5.3009376074368255e-05,
+          "near_hull_samples": 320,
+          "distal_contact_samples": 311,
+          "opposed_wall_samples": 301,
+          "opposed_wall_normal_fraction": 0.9678456591639871,
+          "all_contact_normal": [
+            -0.0009208520858358982,
+            0.9992873877712606,
+            -0.03773418440521078
+          ],
+          "mean_finger_surface_normal_opposition": 0.9480533486878886,
+          "opposed_finger_facet_fraction": 0.9356913183279743,
+          "contact_compatible": true
+        }
+      ],
+      "source": "Fresh RGB-D ring-to-receiver pose + actual finger encoder opening + fixed native finger CAD",
+      "uses_free_body_poses": false,
+      "force_contact_measured": false
+    },
+    "capture_age_physics_s": 0.23541666666666666,
+    "geometry_scope": "carrier native fingers against current held CAD only",
+    "spring_target_is_not_measured_geometry": true,
+    "uses_free_body_poses": false
+  },
+  "observations": [
+    {
+      "observation": 73,
+      "captured_wall_s": 313.1574697259348,
+      "measured_G": [
+        [
+          0.21422158497332286,
+          -0.7952836451650954,
+          0.5671273213007465,
+          -0.0003751666803100129
+        ],
+        [
+          0.9660847700955861,
+          0.2582099514171747,
+          -0.002831971409184847,
+          -3.3073532402311256e-05
+        ],
+        [
+          -0.14418573861993647,
+          0.5484996431721215,
+          0.8236254557252415,
+          0.0026468301165942787
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "axis_closing_component": -0.002831971409184847,
+      "grip_translation_change_from_binding_m": 2.2152443091628625e-06,
+      "grip_axis_change_from_binding_rad": 0.0,
+      "actual_fingers_m": [
+        0.037360042333602905,
+        0.0373600497841835
+      ]
+    },
+    {
+      "observation": 75,
+      "captured_wall_s": 313.6246555550024,
+      "measured_G": [
+        [
+          0.21423452555098757,
+          -0.795292721191292,
+          0.5671097054216381,
+          -0.00037640339156230773
+        ],
+        [
+          0.9660846741678197,
+          0.2582101152152879,
+          -0.0028497056214508896,
+          -3.160554057599074e-05
+        ],
+        [
+          -0.1441671533255772,
+          0.548486406267642,
+          0.8236375241218309,
+          0.0026479359432649563
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "axis_closing_component": -0.0028497056214508896,
+      "grip_translation_change_from_binding_m": 0.0,
+      "grip_axis_change_from_binding_rad": 0.0,
+      "actual_fingers_m": [
+        0.0373600497841835,
+        0.0373600497841835
+      ]
+    },
+    {
+      "observation": 77,
+      "captured_wall_s": 381.9390177070163,
+      "measured_G": [
+        [
+          0.21433255002549068,
+          -0.7980619467241968,
+          0.563168767839445,
+          -0.00034586895015553676
+        ],
+        [
+          0.9659861836295106,
+          0.25859129008633763,
+          -0.0011904154769016625,
+          -2.2785617063050823e-05
+        ],
+        [
+          -0.1446804580028622,
+          0.544268289127636,
+          0.8263412507958815,
+          0.0024313177409347464
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "axis_closing_component": -0.0011904154769016625,
+      "grip_translation_change_from_binding_m": 0.00021893740827818664,
+      "grip_axis_change_from_binding_rad": 0.00499435178905226,
+      "actual_fingers_m": [
+        0.03734973073005676,
+        0.037349727004766464
+      ]
+    }
+  ],
+  "prealignment_log": [
+    "LOOSE_LEFT_PREALIGN ring1 0.0005527324896055636 0.006067037098959414"
+  ],
+  "elapsed_wall_s": 383.38817720499355,
+  "full_task_pass": false,
+  "terminal_error": [
+    "                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+    "RuntimeError: Loaded LEFT issued curve blocked with payload/current RIGHT {'opening_index': 0, 'opening_m': 0.07212797552347183, 'segment': 0, 'fraction': 0.0, 'collision': {'kind': 'carried_payload_vs_own_robot', 'query': '/World/Cell/Geometry/workpiece_ring1/CPUConvexContact/ring1_3', 'actor': '/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/left_right_finger', 'collider': '/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/left_right_finger/tip', 'distance_m': 0.0009866052815410576, 'required_clearance_m': 0.001, 'intended_contact_exemption': 'official native distal pad only; proximal clipped CAD remains checked'}}"
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-21T19:09:54.976742+00:00",
+  "updated_utc": "2026-10-21T19:27:51.071957+00:00",
   "active_goal": true,
   "deadline_local": "2026-10-22T11:00:00+09:00",
   "deadline_utc": "2026-10-22T02:00:00Z",
@@ -7,7 +7,7 @@
   "priority": "Fast parallel CaP generalization; RGBD and actual SDK only; hardware/basiccollisionstop unchanged; no excess fine inspections",
   "GPU2": "Persistent cuRobo exactFR3 IK, RIGHTroute and LEFT dualroute live.273/286 continuous and issued commands exact original guard verified; installed completed parts added to proposal obstacles.",
   "GPU3": "WarpCUDA real RGB-D camera; frozen289 centered6mm large receiver actualphysics ongoing.",
-  "field_copy": "/home/gpuadmin/workspace/jake/field-demo-random-adaptive-20261022",
+  "field_copy": "/home/gpuadmin/workspace/jake/field-demo-random-scenelease-integration-20261022",
   "sealed_originals_preserved": true,
   "real_hardware_tested": false,
   "random_reliability_validated": false,
@@ -28,10 +28,10 @@
     "hardware_readiness": "NEWselfsurface optin knownrobot-envelope + actualSDK/imagebrackets; residualboundaryUNKNOWN stillblocks, no fieldreadyclaim"
   },
   "next_actions": [
-    "294 seed445 and296 seed3491 actual5mm loaded aperture measured interval and perstepmonitor; no sameforce-setpoint geometry confusion",
-    "295 seed447 tests typed BEFOREcarry direct-plan failure -> checkedhandover fallback",
-    "Stable297boundedlocalrim physicalrearrangement prototype + optionalGPUhookIK installed",
-    "Hardware sealing opt-in knownrobot-envelope assumption withhonest residualUNKNOWNboundary blocker, then NEWshortlivedscenelease prototype"
+    "299 actualtrueaxialouter receiverGaxis[0,0,1], Gz2/1.5mm sixyaw/depthchoices, allactualguards",
+    "300 boundedlocalrim finitecloseproposal, nobypassedactualcontact/stock/collision; 302boundedreachableleanstage onlyifneeded",
+    "301 FCL worldcoverage ->303 conservativefullCADfixedguardprototype onlyifcompletecoverageinclclamps/otherbase",
+    "484SDK-shaped localfakecommandintegration protectsoneuseadmission+revokesallmapcopies beforedispatch; actualSDK fieldvalidationstillfalse; publishnow"
   ],
   "trials": [
     {
@@ -39,28 +39,28 @@
       "state": "failed",
       "full_task_pass": false,
       "wall_s": 471.60558576497715,
-      "error": "'collision': {'segment': 31, 'fraction': 1.0, 'collision': {'query': '/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/Contact/left_arm_fr3v2_link3_collision', 'actor': '/World/Environment/m80/instance_0286', 'collider': '/World/Environment/m80/instance_0286'}}}\n"
+      "error": "lision': {'query': '/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/Contact/left_arm_fr3v2_link3_collision', 'actor': '/World/Environment/m80/instance_0286', 'collider': '/World/Environment/m80/instance_0286'}}}\n"
     },
     {
       "run": "native-roas-table-scatter-stable-v275-full-bin-gpu-route-all3-445",
       "state": "failed",
       "full_task_pass": false,
       "wall_s": 305.1418617289746,
-      "error": "/project/mujoco/isaac_port/native_hand_layout/roas-table/loose_bin_task.py\", line 727, in insert_program\n    if alignment==7:raise RuntimeError('Free-space ring alignment not confirmed by RGB-D')\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Free-space ring alignment not confirmed by RGB-D\n"
+      "error": "-table/loose_bin_task.py\", line 727, in insert_program\n    if alignment==7:raise RuntimeError('Free-space ring alignment not confirmed by RGB-D')\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Free-space ring alignment not confirmed by RGB-D\n"
     },
     {
       "run": "native-roas-table-scatter-stable-v276-large-deep-pad-gpu-all3-445",
       "state": "failed",
       "full_task_pass": false,
       "wall_s": 51.772408738033846,
-      "error": "arge-deep-pad-gpu-all3-445/isaac_port/native_hand_layout/roas-table/probe_tilted_ring_hook.py\", line 198, in _plan\n    if solution is None:raise RuntimeError('No RGB-D single-finger rearrangement route')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No RGB-D single-finger rearrangement route\n"
+      "error": "layout/roas-table/probe_tilted_ring_hook.py\", line 198, in _plan\n    if solution is None:raise RuntimeError('No RGB-D single-finger rearrangement route')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No RGB-D single-finger rearrangement route\n"
     },
     {
       "run": "native-roas-table-scatter-stable-v277-rim-pick-self-guard-gpu-all3-446",
       "state": "failed",
       "full_task_pass": false,
       "wall_s": 160.5027084699832,
-      "error": "-rim-pick-self-guard-gpu-all3-446/isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py\", line 148, in update_motor_speed_limits\n    raise RuntimeError('Actual robot motor velocity exceeded reserved limit '+str((ratio,finger_ratio)))\nRuntimeError: Actual robot motor velocity exceeded reserved limit (0.785516226995705, 1.5836900786349648)\n"
+      "error": "e_hand_layout/roas-table/run_realtime_recipe.py\", line 148, in update_motor_speed_limits\n    raise RuntimeError('Actual robot motor velocity exceeded reserved limit '+str((ratio,finger_ratio)))\nRuntimeError: Actual robot motor velocity exceeded reserved limit (0.785516226995705, 1.5836900786349648)\n"
     },
     {
       "run": "native-roas-table-scatter-stable-v278-self-clear-park-camera-446",
@@ -74,7 +74,7 @@
       "state": "failed",
       "full_task_pass": false,
       "wall_s": 313.83940048492514,
-      "error": "/project/mujoco/isaac_port/native_hand_layout/roas-table/loose_bin_task.py\", line 750, in insert_program\n    if alignment==7:raise RuntimeError('Free-space ring alignment not confirmed by RGB-D')\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Free-space ring alignment not confirmed by RGB-D\n"
+      "error": "-table/loose_bin_task.py\", line 750, in insert_program\n    if alignment==7:raise RuntimeError('Free-space ring alignment not confirmed by RGB-D')\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Free-space ring alignment not confirmed by RGB-D\n"
     },
     {
       "run": "native-roas-table-scatter-stable-v280-park-single-initial-gpu-all3-446",
@@ -95,28 +95,28 @@
       "state": "failed",
       "full_task_pass": false,
       "wall_s": 164.1572350129718,
-      "error": "\"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/probe_tilted_ring_hook.py\", line 198, in _plan\n    if solution is None:raise RuntimeError('No RGB-D single-finger rearrangement route')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No RGB-D single-finger rearrangement route\n"
+      "error": "layout/roas-table/probe_tilted_ring_hook.py\", line 198, in _plan\n    if solution is None:raise RuntimeError('No RGB-D single-finger rearrangement route')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No RGB-D single-finger rearrangement route\n"
     },
     {
       "run": "native-roas-table-scatter-stable-v283-live-large-depth-all3-445",
       "state": "failed",
       "full_task_pass": false,
       "wall_s": 322.3366585030453,
-      "error": "_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/left_left_finger/tip', 'distance_m': 0.0006444712720817876, 'required_clearance_m': 0.001, 'intended_contact_exemption': 'official native distal pad only; proximal clipped CAD remains checked'}}\n"
+      "error": "ink4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/left_left_finger/tip', 'distance_m': 0.0006444712720817876, 'required_clearance_m': 0.001, 'intended_contact_exemption': 'official native distal pad only; proximal clipped CAD remains checked'}}\n"
     },
     {
       "run": "native-roas-table-scatter-stable-v284-rearrange-hand-surface-all3-448",
       "state": "failed",
       "full_task_pass": false,
       "wall_s": 220.73929540102836,
-      "error": "ange-hand-surface-all3-448/isaac_port/native_hand_layout/roas-table/probe_tilted_ring_hook.py\", line 204, in _plan\n    if solution is None:raise RuntimeError('No RGB-D single-finger rearrangement route')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No RGB-D single-finger rearrangement route\n"
+      "error": "layout/roas-table/probe_tilted_ring_hook.py\", line 204, in _plan\n    if solution is None:raise RuntimeError('No RGB-D single-finger rearrangement route')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No RGB-D single-finger rearrangement route\n"
     },
     {
       "run": "native-roas-table-scatter-stable-v285-left-gpu-route-static-445",
       "state": "failed",
       "full_task_pass": false,
       "wall_s": 0.017684144084341824,
-      "error": ", line 13, in execute\n    if model_sha256(source_arm)!=model_sha256(arm):raise RuntimeError('Saved robot calibration differs from current LEFT model')\n                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Saved robot calibration differs from current LEFT model\n"
+      "error": "rm)!=model_sha256(arm):raise RuntimeError('Saved robot calibration differs from current LEFT model')\n                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Saved robot calibration differs from current LEFT model\n"
     },
     {
       "run": "native-roas-table-scatter-stable-v286-left-gpu-live-model-static-445",
@@ -137,21 +137,21 @@
       "state": "failed",
       "full_task_pass": false,
       "wall_s": 424.26598462695256,
-      "error": "\"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/probe_tilted_ring_hook.py\", line 204, in _plan\n    if solution is None:raise RuntimeError('No RGB-D single-finger rearrangement route')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No RGB-D single-finger rearrangement route\n"
+      "error": "layout/roas-table/probe_tilted_ring_hook.py\", line 204, in _plan\n    if solution is None:raise RuntimeError('No RGB-D single-finger rearrangement route')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No RGB-D single-finger rearrangement route\n"
     },
     {
       "run": "native-roas-table-scatter-stable-v289-admitted-depth6-all3-445",
       "state": "failed",
       "full_task_pass": false,
       "wall_s": 608.6899565280182,
-      "error": "ell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger/tip', 'predictive_pair_box': True, 'minimum_pair_clearance_m': 0.001}}\n"
+      "error": "_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger/tip', 'predictive_pair_box': True, 'minimum_pair_clearance_m': 0.001}}\n"
     },
     {
       "run": "native-roas-table-scatter-stable-v290-admitted-depth6-dual-gpu-all3-447",
       "state": "failed",
       "full_task_pass": false,
       "wall_s": 185.61847436300013,
-      "error": " payload-carry and right-arm fixed-CAD insertion/release/withdraw route')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Current camera grasp has no complete payload-carry and right-arm fixed-CAD insertion/release/withdraw route\n"
+      "error": "elease/withdraw route')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Current camera grasp has no complete payload-carry and right-arm fixed-CAD insertion/release/withdraw route\n"
     },
     {
       "run": "native-roas-table-scatter-stable-v291-self-broadphase-static",
@@ -165,18 +165,46 @@
       "state": "failed",
       "full_task_pass": false,
       "wall_s": 329.3229695080081,
-      "error": "fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/left_left_finger/tip', 'distance_m': 0.00028461638253685144, 'required_clearance_m': 0.001, 'intended_contact_exemption': 'official native distal pad only; proximal clipped CAD remains checked'}}\n"
+      "error": "nk4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/left_left_finger/tip', 'distance_m': 0.00028461638253685144, 'required_clearance_m': 0.001, 'intended_contact_exemption': 'official native distal pad only; proximal clipped CAD remains checked'}}\n"
     },
     {
       "run": "native-roas-table-scatter-stable-v293-generalization-all3-7829",
       "state": "failed",
       "full_task_pass": false,
       "wall_s": 93.1399524260778,
-      "error": "ble-v293-generalization-all3-7829/isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py\", line 148, in update_motor_speed_limits\n    raise RuntimeError('Actual robot motor velocity exceeded reserved limit '+str((ratio,finger_ratio)))\nRuntimeError: Actual robot motor velocity exceeded reserved limit (0.303825133773111, 1.1104579034604525)\n"
+      "error": "e_hand_layout/roas-table/run_realtime_recipe.py\", line 148, in update_motor_speed_limits\n    raise RuntimeError('Actual robot motor velocity exceeded reserved limit '+str((ratio,finger_ratio)))\nRuntimeError: Actual robot motor velocity exceeded reserved limit (0.303825133773111, 1.1104579034604525)\n"
+    },
+    {
+      "run": "native-roas-table-scatter-stable-v294-measured-loaded-gap-all3-445",
+      "state": "failed",
+      "full_task_pass": false,
+      "wall_s": 450.4510057970183,
+      "error": "-table/loose_bin_task.py\", line 823, in insert_program\n    if alignment==7:raise RuntimeError('Free-space ring alignment not confirmed by RGB-D')\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Free-space ring alignment not confirmed by RGB-D\n"
+    },
+    {
+      "run": "native-roas-table-scatter-stable-v295-precarry-handover-fallback-all3-447",
+      "state": "failed",
+      "full_task_pass": false,
+      "wall_s": 595.1318506050156,
+      "error": "nk4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/left_left_finger/tip', 'distance_m': 0.00031898950849622315, 'required_clearance_m': 0.001, 'intended_contact_exemption': 'official native distal pad only; proximal clipped CAD remains checked'}}\n"
+    },
+    {
+      "run": "native-roas-table-scatter-stable-v296-contact-envelope-all3-3491",
+      "state": "failed",
+      "full_task_pass": false,
+      "wall_s": 110.79099838703405,
+      "error": "nk4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/left_right_finger/tip', 'distance_m': 0.0009843620706860266, 'required_clearance_m': 0.001, 'intended_contact_exemption': 'official native distal pad only; proximal clipped CAD remains checked'}}\n"
+    },
+    {
+      "run": "native-roas-table-scatter-stable-v297-local-rim-rearrange-7829",
+      "state": "failed",
+      "full_task_pass": false,
+      "wall_s": 27.265018820995465,
+      "error": "(attempts))\nRuntimeError: No geometrically valid bounded local-rim pickup: [{\"part\": \"ring2\", \"error\": \"No structure-clear grasp among RGB-D instances\", \"robot_and_hand_unchanged\": true}, {\"part\": \"ring1\", \"error\": \"No structure-clear grasp among RGB-D instances\", \"robot_and_hand_unchanged\": true}]\n"
     }
   ],
-  "field_published_commit": "690c146",
-  "field_published_files_verified": 452,
+  "field_published_commit": "7464603 (484integration queued next commit)",
+  "field_published_files_verified": 484,
   "field_publish_branch": "main and codex/rgbd-random-field-20261022",
   "current_pin_success": "260pin single axial stroke31.7s; samefulltask latercrossarmabort",
   "GPU_route_component": {
@@ -188,16 +216,17 @@
     "full_issued_commands_checked": 862,
     "robot_motion_executed": false
   },
-  "latest_failure_summary": "288wallsmallpalm0670;289/292force-setpoint incorrectly treated as achievedjawgeometry;290directplan unavailable beforecarry now typedfallback;293random7829takeup actualfinger1.11xreservedlimit aborted.",
+  "latest_failure_summary": "294 SMALLfinaldepth192\u00b5m stable/releasewithdrawPASS,LARGE5mmhandover+measuredloadedcarryPASS,8prealign ends169\u00b5m/.00245rad but100\u00b5m criterionnotmet;296actualroll~2.74deg andpositiveprox.984mm<1mm reserve;295smallRIGHTretained butoldforcecommandgeometrylargefail;297noadmittedlocalrimroute/no motion.",
   "same_arm_defect": "272 native link7 vs link5 collision before impulse; exact authored-filter guard now installed; initialPASS/preimpactREJECT/273all862commandsPASS",
   "single_camera_component": "278 real physical selfclear emptypark1.4083s \u2192one768overhead RGBD; largeclass approach+40/70mm lift geometriccomponent accepted; fullHand basket8.238mm min/ring sidewalls3.034mm; no fullgrasp or hardware claim",
   "active_trials": [
-    294,
-    295,
-    296
+    299,
+    300,
+    301
   ],
   "latest_fulltask": "280all3skills finished butlargefell nextsmallapproach. Completed observed parts registry added/287regression blocks recorded badapproach.288stops safely no smallpalmclear pose (fixedbasket0670), NOTall3success.",
-  "field_starter": "Sealed adaptive452 relocated manifest verified.275Python+27fieldkit+11nativePASS. SDK-aperture Hand/current-to-command sweep +stoppedSDKwrench +boundedalternatecandidate. OwnimageHand association next copy; no hardware execution.",
+  "field_starter": "Sealed470 andbothremote refs verified.290Python+27fieldkitPASS; nativeCPP unchanged prior11PASS. SDKimagebracket/optionalknownrobotenvelope; boundaryUNKNOWN stillblocks so fieldreadyfalse.",
   "field_profile_dependencies_verified": 91,
-  "reverse_withdraw_fix": "274 originalworld80mmreproducedlink3machinecollision; actualpreinsert66.15mm target fulloriginalfixed/pair/self/289commands+5widthsPASS. Canonical installed; physics281+282 testing."
+  "reverse_withdraw_fix": "274 originalworld80mmreproducedlink3machinecollision; actualpreinsert66.15mm target fulloriginalfixed/pair/self/289commands+5widthsPASS. Canonical installed; physics281+282 testing.",
+  "canonical_hold": "Primary1251/v299 active; H dynamic sources held. Nextprimary1252."
 }

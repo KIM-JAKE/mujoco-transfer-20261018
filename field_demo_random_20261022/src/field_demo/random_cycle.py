@@ -174,7 +174,7 @@ def check_observation(runtime,observation):
         age=(datetime.now(timezone.utc)-utc_stamp(observation['captured_at_utc'])).total_seconds()
         if metadata.get('source')!='realsense_live' or metadata.get('replay') is not False or not 0<=age<=runtime.recipe['max_observation_age_s']:
             raise RuntimeError('Live image unavailable, stale or from replay')
-    if observation.get('_scope')=='basket' and observation.get('ring_pose_seed_used') is not False:
+    if observation.get('_scope')in ('basket','contact_target') and observation.get('ring_pose_seed_used') is not False:
         raise RuntimeError('Random basket image must not use ring pose seeds')
     return observation
 
@@ -251,7 +251,7 @@ def screen_pickup(runtime,entry,observation,carried,*,rejected_targets=None):
                 if any(equivalent(pre,p)and equivalent(tcp,t)for p,t in rejected_targets):continue
                 if plans>=maximum:raise RuntimeError('No screened pickup candidate: bounded planning budget exhausted '+repr(failures))
                 observed=select_observation(observation,instance);plans+=1
-                try:plan=runtime.plan('pickup',part,side,[pre.tolist(),tcp.tolist()],observed,carried,contact='grasp')
+                try:plan=runtime.plan('pickup',part,side,[pre.tolist(),tcp.tolist()],observed,carried,contact=runtime.pickup_contact(part)if hasattr(runtime,'pickup_contact')else'grasp')
                 except (RuntimeError,ValueError)as error:
                     if old()and not isinstance(error,CollisionError)and not str(error).startswith('Read-only candidate unavailable:'):
                         expired=True;break  # stale information is not a failed physical target
@@ -459,6 +459,10 @@ class LiveRuntime:
         if planner_settings.get('scene',{}).get('require_residual_occupancy')is not True:raise ValueError('Live RGB-D/SDK cycle requires conservative residual occupancy in every basket plan')
         self.require_basket_observation=planner_settings.get('scene',{}).get('require_basket_observation',True)
         self.width_aware=any(v.get('native_hand_aperture_geometry')for v in planner_settings['robots'].values())
+        self.static_scene_options=planner_settings['scene'].get('static_scene_lease');self._static_scene_lease=None
+        if self.static_scene_options is not None:
+            from .static_scene_lease import options
+            options(self.static_scene_options)
         self.known_hand_surface=planner_settings['scene'].get('known_hand_surface')
         if self.known_hand_surface is not None:
             from .known_hand_capture import settings
@@ -555,13 +559,16 @@ class LiveRuntime:
             raise ValueError('Field native grasp must close from a measured larger opening; simulated outward expansion is not enabled')
         if mode=='release' and parameters['width_m']<=g.status()['width_m']+self.recipe['release_width_tolerance_m']:
             raise ValueError('Release must open beyond the measured held width')
-        proof=None
+        proof=None;closure_admission=None
         if getattr(self,'width_aware',False):
             if self._active_aperture_binding is not None:raise RuntimeError('Hand commands cannot overlap checked arm motion or another Hand sweep')
             proof=self._check_hand_sweep(side,part,mode,parameters)
             self._active_aperture_binding=proof['aperture_binding']
         try:
             if proof is not None:
+                if proof.get('leased_scene_closure')is True:
+                    from .static_scene_lease import ClosureAdmission
+                    closure_admission=ClosureAdmission(proof)
                 from .stopped_arm_monitor import StoppedArmMonitor
                 settings=json.loads((self.root/self.recipe['planner_config']).read_text())
                 for arm in ['left','right']:
@@ -569,6 +576,9 @@ class LiveRuntime:
                     self._stopped_arm_monitors[arm]=StoppedArmMonitor(lambda arm=arm:self.sdk_state(arm),sdk['state']['q_d'],settings.get('joint_tracking_error_limit_rad',.02))
 
             with self.site.control_lock():
+                self.ready()
+                if closure_admission is not None:closure_admission.consume()
+                self.invalidate_scene_lease('Actual Hand command begins; stock interaction may occur')
                 result=self.site.guarded(lambda cancel:g.move(**parameters,grasp=mode=='grasp',cancelled=cancel))
                 self.hand_monitors[side].publish(result)
                 if proof is not None:
@@ -620,13 +630,22 @@ class LiveRuntime:
             self.facts.confirm_held(part,owner,fresh,G,self.hand_status(owner))
             if self.payload.owner[owner]==part:self.payload.refresh_held(owner,part,self.flange_frame(owner),G)
         else:
-            original=plan['_runtime_observation'];fresh=check_observation(self,self.observe(original['_scope'],part,side=side,previous=original))
-            old=rigid(original['selected_instance']['T_cell_part']);matches=[]
+            original=plan['_runtime_observation']
+            use_lease=mode=='grasp'and getattr(self,'_static_scene_lease',None)is not None and plan.get('proof',{}).get('contact')=='strict_empty_approach'
+            fresh=check_observation(self,self.observe('contact_target'if use_lease else original['_scope'],part,side=side,previous=original))
+            reference=self._static_scene_lease['selected_instance']if use_lease else original['selected_instance']
+            old=rigid(reference['T_cell_part']);matches=[]
             for value in instances(fresh,part):
                 current=rigid(value['T_cell_part']);angle=np.arccos(np.clip((np.trace(current[:3,:3]@old[:3,:3].T)-1)/2,-1,1))
                 if np.linalg.norm(current[:3,3]-old[:3,3])<=self.recipe['target_position_tolerance_m']and angle<=self.recipe['target_angle_tolerance_rad']:matches.append(value)
             if len(matches)!=1:raise RuntimeError('Fresh target changed before Hand aperture sweep')
             fresh=select_observation(fresh,matches[0])
+            if use_lease:
+                from .static_scene_lease import validate,target_agrees
+                settings=json.loads((self.root/self.recipe['planner_config']).read_text());lease=self._static_scene_lease
+                validate(lease,maximum_age_s=self.static_scene_options['maximum_scene_age_s']);target_agrees(lease,fresh,settings)
+                source=json.loads(Path(lease['source_observation_file']).read_text());source['_sha256']=lease['source_observation_sha256']
+                fresh.update(static_scene_lease=copy.deepcopy(lease),scene_observations=[source])
         fresh=self._selected_record(fresh)
         samples={s:self.hand_status(s)for s in ['left','right']};aperture=binding(samples,sweep_side=side,target_width_m=parameters['width_m'],epsilon_inner_m=parameters.get('epsilon_inner_m',0.),epsilon_outer_m=parameters.get('epsilon_outer_m',0.))
         phase=plan['phase'];contact=None
@@ -689,7 +708,8 @@ class LiveRuntime:
     def observe(self,scope,part,*,side=None,previous=None):
         from .random_perception import detect_packet
         from .camera import save_capture
-        stream,config,camera_path=self._camera(scope,side)
+        camera_role=('contact_target'if self.recipe.get('camera_configs',{}).get('contact_target')else'basket')if scope=='contact_target'else scope
+        stream,config,camera_path=self._camera(camera_role,side)
         sdk_before=None
         if scope=='basket'and self.known_hand_surface is not None:
             from .known_hand_capture import read_sample
@@ -718,7 +738,7 @@ class LiveRuntime:
             for arm,mount in mounts.items():measured(mount['measurement'],self.root,subject=mount)
             sdk_bracket=bind_states(sdk_before,after,metadata,self.site.config['robots'],mounts,self.known_hand_surface)
         path=self.output/('capture-'+uuid.uuid4().hex+'.npz');save_capture(path,packet,metadata)
-        result=detect_packet(packet,config,metadata,replay=False,scope=scope,part=part,
+        result=detect_packet(packet,config,metadata,replay=False,scope='basket'if scope=='contact_target'else scope,part=part,
             held_tcp_pose=self.tcp(side) if scope=='held' else None,
             held_roi_radius_m=self.recipe['held_roi_radius_m'],previous_observation=previous,
             held_robot=side if scope=='held' else None,held_grasp_transform=(previous or {}).get('T_tcp_part') if scope=='held' else None,
@@ -736,10 +756,11 @@ class LiveRuntime:
                 from .known_hand_capture import associate
                 _,surface_proof=associate(snapshot,camera_packet,occupancy_metadata,sdk_bracket)
                 result['known_hand_surface']=dict(sdk_bracket,association_proof=surface_proof)
+        if scope=='contact_target':result['scope']='contact_target'
         result.update(_scope=scope,_part=part,_side=side,source_packet=str(path),source_packet_sha256=sha(path),source_metadata_file=str(path.with_suffix('.json')),
             source_metadata_sha256=sha(path.with_suffix('.json')),_camera_config_path=str(camera_path.resolve()))
         result=self._record(result)
-        if scope!='basket' and self.require_basket_observation:
+        if scope not in ('basket','contact_target') and self.require_basket_observation:
             scene=self.observe('basket',None)
             # Only an independently matched currently-held image may identify a
             # body already represented by its measured carried geometry.
@@ -944,6 +965,15 @@ class LiveRuntime:
         if not proof['verified']:raise RuntimeError('Bin return release not optically confirmed; load remains conservative: '+proof['reason'])
         self.payload.after_bin_return_release(side,entry['part'],self.flange_frame(side),proof)
 
+    def invalidate_scene_lease(self,reason):
+        current=getattr(self,'_static_scene_lease',None)
+        try:
+            if current is not None:
+                from .static_scene_lease import revoke
+                revoke(current,reason);self.event('static_scene_lease_invalidated',reason=reason)
+        finally:self._static_scene_lease=None;self.scene_epoch=uuid.uuid4().hex
+    def pickup_contact(self,part):
+        return 'strict_empty_approach'if getattr(self,'static_scene_options',None)is not None and part.startswith('ring')else'grasp'
     def plan(self,phase,part,side,targets,observation,held_parts,*,contact=None):
         self.ready()
         self._profile_check()
@@ -953,6 +983,10 @@ class LiveRuntime:
             from .hand_aperture import binding
             options['aperture_binding']=binding({s:self.hand_status(s)for s in ['left','right']})
         plan=self.planner.plan(phase,part,side,targets,observation,held_parts=held_parts,contact=contact,**options)
+        if contact=='strict_empty_approach':
+            model=json.loads(Path(plan['proof']['native_model']['path']).read_text());duration=model['knots'][-1]['time_s']
+            age=(datetime.now(timezone.utc)-utc_stamp(observation['captured_at_utc'])).total_seconds()
+            if age+duration+self.recipe['max_observation_age_s']>=self.static_scene_options['maximum_scene_age_s']:raise RuntimeError('Strict approach exceeds original map-age budget; choose nearer candidate or unoccluded view')
         self._latest_plan_context=plan
 
         plan['_runtime_observation']=observation;plan['_runtime_side']=side
@@ -987,7 +1021,15 @@ class LiveRuntime:
             aperture=plan.get('proof',{}).get('aperture_binding')
             if getattr(self,'width_aware',False)and aperture is None:raise RuntimeError('Width-aware arm motion lacks actual Hand geometry binding')
             self._active_aperture_binding=aperture
-            try:self.site.motion(plan['_runtime_side'],'csv',[Path(plan['csv'])]);self.ready()
+            strict=plan.get('proof',{}).get('contact')=='strict_empty_approach'and getattr(self,'static_scene_options',None)is not None
+            self.invalidate_scene_lease('New arm motion starts')
+            try:
+                result=self.site.motion(plan['_runtime_side'],'csv',[Path(plan['csv'])]);self.ready()
+                if strict:
+                    from .static_scene_lease import create
+                    settings=json.loads((self.root/self.recipe['planner_config']).read_text())
+                    self._static_scene_lease=create(fresh,plan,result,settings,validity_file=self.output/('scene-lease-validity-'+uuid.uuid4().hex+'.json'))
+                    self.event('static_scene_lease_created',capture_id=fresh['capture_id'],original_captured_at_utc=fresh['captured_at_utc'],expires_at_utc=self._static_scene_lease['expires_at_utc'],physical_no_contact_certified=False)
             finally:self._active_aperture_binding=None
     def verify_clearance(self,recipe):
         import numpy as np
@@ -1007,7 +1049,9 @@ class LiveRuntime:
             measurement=dict(verified=True,by='live_rgbd_and_fixture_feedback',at_utc=observation['captured_at_utc'],evidence_file=observation['_path']),
             verified_by=['seated','clamped','retained']))
     def event(self,name,**values):self.site.event(name,**values)
-    def stop(self):return self.site.stop()
+    def stop(self):
+        try:self.invalidate_scene_lease('STOP or runtime fault')
+        finally:self.site.stop()
     def close(self):
         self.site.require_ready=self._base_ready
         for side,monitor in getattr(self,'hand_monitors',{}).items():
@@ -1032,6 +1076,10 @@ class ReplayRuntime(LiveRuntime):
         self.hands={s:dict(part=None,width_m=bounded(m['initial_hand_width_m'][s],0,.08,'fake initial width')) for s in ('left','right')}
         self.site=SimpleNamespace(config=json.loads((self.root/recipe['site_config']).read_text()),expected_held={})
         self.width_aware=any(v.get('native_hand_aperture_geometry')for v in planner_settings['robots'].values())
+        self.static_scene_options=planner_settings['scene'].get('static_scene_lease');self._static_scene_lease=None
+        if self.static_scene_options is not None:
+            from .static_scene_lease import options
+            options(self.static_scene_options)
         self.known_hand_surface=planner_settings['scene'].get('known_hand_surface')
         if self.known_hand_surface is not None:
             from .known_hand_capture import settings

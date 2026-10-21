@@ -10,7 +10,7 @@ from .calibration import load_config, rigid, utc_stamp
 
 
 def validate_observation(metadata, config, *, replay=False, now=None, max_age_s=None,
-                         previous_frame=None):
+                         previous_frame=None, static_scene_lease=None):
     """UTC is portable; monotonic counters are deliberately never cross-host clocks.
 
     Call again immediately before accepting a proposal for planning/execution.
@@ -40,7 +40,11 @@ def validate_observation(metadata, config, *, replay=False, now=None, max_age_s=
     age = (current-utc_stamp(metadata['captured_at_utc'])).total_seconds()
     if not replay:
         limit = max_age_s if max_age_s is not None else config.get('max_observation_age_s', .5)
-        if type(limit) not in (float, int) or not 0 < limit <= 2:
+        ceiling=2
+        if static_scene_lease is not None:
+            from .static_scene_lease import validate
+            limit=validate(static_scene_lease,now=current,expected_capture_id=metadata['capture_id']);ceiling=15
+        if type(limit) not in (float, int) or not 0 < limit <= ceiling:
             raise ValueError('Observation age limit must be in (0, 2] seconds')
         exposure = metadata.get('exposure_s', {})
         if set(exposure) != {'rgb', 'depth'}:
@@ -57,7 +61,7 @@ def validate_observation(metadata, config, *, replay=False, now=None, max_age_s=
             oldstamp, stamp = previous_frame.get('hardware_timestamp_ms'), metadata.get('hardware_timestamp_ms')
             if stamp is not None and oldstamp is not None and stamp <= oldstamp:
                 raise RuntimeError('Repeated or out-of-order hardware frame rejected')
-    return dict(age_s=age, replay=bool(replay), execution_allowed=False)
+    return dict(age_s=age, replay=bool(replay), static_scene_assumption=static_scene_lease is not None, original_exposure_timestamp_preserved=True, execution_allowed=False)
 
 
 def target_proposals(estimates, config, metadata, *, replay=False):

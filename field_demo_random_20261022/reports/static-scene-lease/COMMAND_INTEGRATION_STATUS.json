@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "updated_utc": "2026-10-21T19:26:20.943249+00:00",
+  "scope": "Composed controller integration with MOCK SDK/camera protocol and a local fake Hand executable only",
+  "hardware_tested": false,
+  "network_device_connections": 0,
+  "production_python_Hand_adapter_exercised": true,
+  "simplified_unit_geometry_fixture": true,
+  "complete_factory_arm_geometry_or_physical_grasp_validated": false,
+  "passed": true,
+  "tests": {
+    "composed_live_adapter_command": 1,
+    "lease_boundaries": 5,
+    "cycle_regressions": 11
+  },
+  "pipeline": [
+    "LiveRuntime strict empty approach planning and real C2 geometry revalidation",
+    "MOCK completed arm SDK-shaped result and undropped two-sample native-format telemetry",
+    "Revocable immutable lease record bound to mutable validity nonce/file",
+    "Fresh MOCK target observation and real stopped SDK/aperture geometry consumer",
+    "Fresh stopped SDK/wrench/aperture monitors and one-use ClosureAdmission",
+    "Lease validity atomically revoked before local Hand executor preflight",
+    "Production FrankaHand parser/heartbeat dispatch to local fake SDK exactly once"
+  ],
+  "mock_arm_dispatch_count": 1,
+  "mock_Hand_preflight_count": 1,
+  "mock_Hand_dispatch_count": 1,
+  "lease_active_at_mock_Hand_preflight": false,
+  "admitted_closure_completes_after_revocation": true,
+  "second_admission_consume_rejected": true,
+  "old_lease_copies_rejected": true,
+  "old_observation_preflight_rejected": true,
+  "old_stopped_geometry_entry_rejected_before_any_new_SDK_read": true,
+  "new_admission_from_old_proof_rejected": true,
+  "concrete_bug_fixed": "478 cleared only the runtime pointer; copied lease observations remained acceptable until TTL. New schema2 revocation state is checked by every lease-observation consumer; consumed tickets cannot be reused.",
+  "STOP_even_if_revocation_fails": true,
+  "default_enabled": false,
+  "field_ready": false
+}

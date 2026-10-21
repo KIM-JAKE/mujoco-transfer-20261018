@@ -45,8 +45,13 @@ def _hex(value, name):
     return value
 
 
-def _fresh(sources, max_age_s, now_utc):
-    if not np.isfinite(max_age_s) or not 0 < max_age_s <= 2:
+def _fresh(sources, max_age_s, now_utc, static_scene_lease=None):
+    ceiling=2
+    if static_scene_lease is not None:
+        from .static_scene_lease import validate
+        if len(sources)!=1:raise ValueError('Static scene lease currently requires one exact initial camera source')
+        max_age_s=validate(static_scene_lease,now=_utc(now_utc or datetime.now(timezone.utc)),expected_capture_id=sources[0]['capture_id'],expected_packet_sha256=sources[0]['source_packet_sha256']);ceiling=15
+    if not np.isfinite(max_age_s) or not 0 < max_age_s <= ceiling:
         raise ValueError('Occupancy maximum observation age must be in (0,2] seconds')
     now = _utc(now_utc or datetime.now(timezone.utc))
     for source in sources:
@@ -235,7 +240,7 @@ class OccupancySnapshot:
         return json.loads(_canonical(row))
 
     @classmethod
-    def from_record(cls, record, *, expected_capture_id=None, expected_calibration_sha256=None, max_age_s=2., now_utc=None):
+    def from_record(cls, record, *, expected_capture_id=None, expected_calibration_sha256=None, max_age_s=2., now_utc=None, static_scene_lease=None):
         row = json.loads(_canonical(record)); checksum = row.pop('record_sha256', None)
         if checksum != _sha(_canonical(row).encode()) or row.get('schema_version') != 1 or row.get('kind') != 'ray_residual_stock_occupancy' or row.get('uses_simulator_object_poses') is not False:
             raise ValueError('Invalid or modified residual occupancy record')
@@ -265,7 +270,7 @@ class OccupancySnapshot:
             raise ValueError('Occupancy belongs to a different current image')
         if expected_calibration_sha256 is not None and sources[-1]['calibration_sha256'] != expected_calibration_sha256:
             raise ValueError('Occupancy calibration does not match current image')
-        _fresh(sources, max_age_s, now_utc)
+        _fresh(sources, max_age_s, now_utc,static_scene_lease)
         return cls(tuple(map(tuple, bounds)), shape, row['voxel_size_m'], row['depth_margin_m'], *arrays, _canonical(sources), row.get('selected_contact_instance_id'))
 
 

@@ -202,9 +202,12 @@ def dependencies_valid(dependencies):
             raise ValueError('Planning dependency changed: ' + name)
 
 
-def observation_valid(observation, config, root, dependencies, now, *, require_fresh=True):
+def observation_valid(observation, config, root, dependencies, now, *, require_fresh=True,static_scene_lease=None):
     if observation.get('replay') is not False or observation.get('units') != 'm' or not observation.get('capture_id'):
         raise ValueError('A real current metric RGB-D capture is required; replay cannot authorize live motion')
+    if observation.get('static_scene_lease')is not None:
+        from .static_scene_lease import validate
+        validate(observation['static_scene_lease'],now=now)
     age = (now-utc_stamp(observation['captured_at_utc'])).total_seconds()
     if age < 0 or (require_fresh and age > config['max_observation_age_s']):
         raise ValueError('Stale/future camera observation; capture again before moving')
@@ -217,6 +220,7 @@ def observation_valid(observation, config, root, dependencies, now, *, require_f
             raise ValueError('Immutable sensor packet metadata differs: '+key)
     if raw.get('residual_occupancy')!=observation.get('residual_occupancy'):raise ValueError('Immutable residual occupancy record differs from saved observation')
     if raw.get('known_hand_surface')!=observation.get('known_hand_surface'):raise ValueError('Immutable actual SDK Hand surface record differs from saved observation')
+    if raw.get('static_scene_lease')!=observation.get('static_scene_lease'):raise ValueError('Immutable scene lease differs from actual observation')
     selected = observation.get('selected_instance')
     if selected is not None:
         if not any(value.get('instance_id') == selected.get('instance_id') and value.get('part') == selected.get('part') and
@@ -268,7 +272,7 @@ def observation_valid(observation, config, root, dependencies, now, *, require_f
             from .observations import validate_observation
             calibrated['_calibration_sha256'] = digest(path)
             validate_observation(observation['source_metadata'], calibrated, replay=False, now=now,
-                                 max_age_s=config['max_observation_age_s'])
+                                 max_age_s=config['max_observation_age_s'],static_scene_lease=static_scene_lease)
             if observation.get('output_frame') != calibrated.get('cell_frame'):
                 raise ValueError('Observation and commissioned cell frame differ')
             matching.append(role)
@@ -278,18 +282,27 @@ def observation_valid(observation, config, root, dependencies, now, *, require_f
 
 
 def scene_packets(observation, config, root, dependencies, now):
-    packets = [observation] + list(observation.get('scene_observations', []))
-    for index, packet in enumerate(packets[1:]):
-        bound = {}
-        observation_valid(packet, config, root, bound, now)
-        dependencies.update({'scene_packet_'+str(index)+'_'+key: value for key, value in bound.items()})
+    lease=observation.get('static_scene_lease')
+    if lease is not None:
+        from .static_scene_lease import validate,target_agrees,options
+        cfg=options(config['scene']['static_scene_lease']);validate(lease,now=now,maximum_age_s=cfg['maximum_scene_age_s']);target_agrees(lease,observation,config)
+        attached=list(observation.get('scene_observations',[]))
+        if observation.get('scope')!='contact_target'or len(attached)!=1 or attached[0].get('_path')!=lease['source_observation_file']or attached[0].get('_sha256')!=lease['source_observation_sha256']:raise ValueError('Contact target requires its exact original untouched map')
+        packets=[dict(attached[0],_static_scene_lease=lease)]
+        bound={};observation_valid(packets[0],config,root,bound,now,require_fresh=False,static_scene_lease=lease);dependencies.update({'leased_scene_'+k:v for k,v in bound.items()})
+    else:
+        packets = [observation] + list(observation.get('scene_observations', []))
+        for index, packet in enumerate(packets[1:]):
+            bound = {}
+            observation_valid(packet, config, root, bound, now)
+            dependencies.update({'scene_packet_'+str(index)+'_'+key: value for key, value in bound.items()})
     scene = config['scene']
     for packet in packets:
         if packet.get('scope')=='basket' and scene.get('require_residual_occupancy') is True:
             from .residual_occupancy import OccupancySnapshot
             record=packet.get('residual_occupancy')
             if not record:raise ValueError('Fresh conservative residual occupancy required; partial ring detection is not empty space')
-            snapshot=OccupancySnapshot.from_record(record,expected_capture_id=packet['capture_id'],expected_calibration_sha256=packet['calibration_sha256'],max_age_s=config['max_observation_age_s'],now_utc=now)
+            snapshot=OccupancySnapshot.from_record(record,expected_capture_id=packet['capture_id'],expected_calibration_sha256=packet['calibration_sha256'],max_age_s=config['max_observation_age_s'],now_utc=now,static_scene_lease=packet.get('_static_scene_lease'))
             if not any(src['source_packet_sha256']==packet.get('source_packet_sha256')for src in snapshot.sources):raise ValueError('Residual occupancy is not bound to actual saved camera bytes')
         if packet.get('scope') == 'basket' and not packet.get('instances') and scene.get('require_residual_occupancy') is not True:
             if packet.get('basket_scene_status') != 'unknown_treated_fully_occupied' or not packet.get('conservative_scene_obstacles'):
@@ -338,8 +351,16 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
         measured(phase.get('contact_measurement'), root, dependencies, 'payload_fixture_contact_review', now)
     phase['_phase_name']=phase_name
     phase['_contact'] = contact
+    if contact=='strict_empty_approach':
+        if phase_name!='pickup'or held:raise ValueError('Strict empty approach requires pickup with no held stock')
+        phase.pop('bounded_loose_stock_contact',None);phase['target_contact_tool_capsules']=[]
+    if observation.get('static_scene_lease')is not None:
+        if not stopped_aperture or phase_name!='pickup'or contact!='grasp':raise ValueError('Static scene lease authorizes only stopped pickup closure, never arm transport')
     phase['_active_part'] = part
     phase['_target_instance_id'] = observation.get('selected_instance', {}).get('instance_id')
+    if observation.get('static_scene_lease')is not None:
+        from .static_scene_lease import target_agrees
+        phase['_target_instance_id']=target_agrees(observation['static_scene_lease'],observation,config)
     phase['_tcp_sweep_m'] = trace['speeds'][-1]*trace['gap']/2
     base = collision.transform(site_config['robots'][side]['T_cell_base'])
     other_side = 'right' if side == 'left' else 'left'
@@ -466,7 +487,7 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
         packet_residual_boxes=[]
         if packet.get('scope')=='basket' and config['scene'].get('require_residual_occupancy') is True:
             from .residual_occupancy import OccupancySnapshot
-            snapshot=OccupancySnapshot.from_record(packet['residual_occupancy'],expected_capture_id=packet['capture_id'],expected_calibration_sha256=packet['calibration_sha256'],max_age_s=config['max_observation_age_s'],now_utc=now)
+            snapshot=OccupancySnapshot.from_record(packet['residual_occupancy'],expected_capture_id=packet['capture_id'],expected_calibration_sha256=packet['calibration_sha256'],max_age_s=config['max_observation_age_s'],now_utc=now,static_scene_lease=packet.get('_static_scene_lease'))
             from .known_hand_capture import planner_boxes
             packet_residual_boxes,association_hash=planner_boxes(snapshot,packet,config,site_config,root,dependencies)
             if association_hash is not None:phase.setdefault('_known_hand_association_hashes',[]).append(association_hash)
@@ -769,5 +790,6 @@ def check_stopped_aperture(config_path,site,phase,part,side,observation,held_par
     current_within(aperture_binding,{s:site.grippers[s].status()for s in ['left','right']})
     final=datetime.now(timezone.utc);observation_valid(observation,config,root,dependencies,final);scene_packets(observation,config,root,dependencies,final);dependencies_valid(dependencies)
     return dict(scope='actual_stopped_SDK_pose_full_commanded_Hand_aperture_sweep',arm_motion_issued=False,physical_execution_certified=False,
+                config_file=str(config_path),config_sha256=digest(config_path),leased_scene_closure=observation.get('static_scene_lease')is not None,
                 geometry=result,aperture_binding=aperture_binding,active_SDK=active,other_SDK=other,
                 observation_file=observation['_path'],observation_sha256=observation['_sha256'],dependencies=dependencies)

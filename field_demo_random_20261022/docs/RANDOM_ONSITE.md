@@ -104,3 +104,5 @@ Hand 단독 명령은 `./field-demo hand --help`를 참고한다. 현재 실기 
 `reports/PAYLOAD_INTEGRATION_STATUS.json`은 구현/검사/미검증 범위를 구분한다. 저장 RGB-D 재생, 가짜 SDK/Hand/클램프 경계의 상태머신 검사, 실제 SDK 렌즈 함수 검사는 각각 다른 증거다. 실제 로봇의 파지·조립 성공으로 합치지 않는다.
 
 `stabilization inspect/import`는 완료한 시뮬 run의 원본 manifest와 스냅샷을 확인해 새 참고 폴더에 복사한다. 검출기가 달라지면 별도 포팅/회귀 검사가 필요하며 경로·속도 개선이 실기에 자동 적용되지 않는다. 기존 봉인 패키지는 수정하지 않았다.
+
+실험 옵션: [STATIC_SCENE_LEASE.md](STATIC_SCENE_LEASE.md)는 엄격한 빈 손 접근 뒤 원래 바구니 지도를 정지 파지 검사에만 잠시 유지합니다. 실제 Hand 명령 전에 폐기하며, 원래 촬영 시각·실제 SDK 근거를 유지합니다. 기본은 비활성이고 전체 현장 성공은 미검증입니다.

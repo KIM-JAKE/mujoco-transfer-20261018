@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "scope": "Recorded SIM RGB-D perception/unchanged-target association component ONLY",
+  "run": "native-roas-table-scatter-stable-v280-park-single-initial-gpu-all3-446",
+  "uses_object_ground_truth": false,
+  "actual_native_SDK_lease_created": false,
+  "actual_native_SDK_telemetry_or_wrench_available": false,
+  "hardware_tested": false,
+  "field_ready": false,
+  "source_camera_frames": [
+    {
+      "index": 0,
+      "capture_wall_s": 7.020404767012224,
+      "packet": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-scatter-stable-v280-park-single-initial-gpu-all3-446/rgb-perception/observation-001-initial/rgbd.npz",
+      "packet_sha256": "88b2932363040aaf1ee959b764fe9788d4d1d1f30f5a0e7d51da9c4068a179fb",
+      "K": [
+        [
+          1082.1818181818182,
+          0.0,
+          383.5
+        ],
+        [
+          0.0,
+          1082.1818181818182,
+          383.5
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_cell_camera": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.5516386926284014
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          -0.7255239198752155
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          1.889881666854589
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "index": 2,
+      "capture_wall_s": 14.846706355921924,
+      "packet": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-scatter-stable-v280-park-single-initial-gpu-all3-446/rgb-perception/observation-003-pregrasp_ring/rgbd.npz",
+      "packet_sha256": "04970f28ff5aaf2bb309eb047fc1cd8dd8e7af0f28c47e783148221fd8d2f3a1",
+      "K": [
+        [
+          2118.6223448269393,
+          0.0,
+          191.5
+        ],
+        [
+          0.0,
+          2118.6223448269393,
+          191.5
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "T_cell_camera": [
+        [
+          -0.014987550899844094,
+          0.7249180019126235,
+          -0.6886721018169926,
+          0.9058304531490671
+        ],
+        [
+          0.9998876803511605,
+          0.010865965913354413,
+          -0.010322667617686696,
+          -0.7252979432017784
+        ],
+        [
+          0.0,
+          -0.6887494619146932,
+          -0.7249994335944137,
+          1.5097864322583976
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  ],
+  "original_scene_age_at_target_capture_s": 7.8263015889097005,
+  "illustrative_configured_map_age_s": 12,
+  "original_exposure_timestamp_rewritten": false,
+  "center_delta_m": [
+    0.00017467272660576239,
+    9.198174039437568e-05,
+    -6.731734528298006e-05
+  ],
+  "center_error_m": 0.0002085733131582698,
+  "axis_error_rad": 1.6600321605155352e-05,
+  "target_association_passed": true,
+  "actual_SIM_empty_descent_completed_wall_s": 14.845678110956214,
+  "target_capture_after_empty_descent_s": 0.0010282449657097459,
+  "later_contact_authorized_descent_completed_wall_s": 16.794249029946513,
+  "reuse_after_contact_authorized_descent_allowed": false,
+  "view_scope": "Two actual archived virtual SIM viewpoints: initial fixed overhead and fresh slanted target view. Not one physical-camera validation. Field uses the same actual basket camera by default; optional separate fixed calibrated contact_target camera supported.",
+  "limitations": [
+    "No native SDK telemetry/driver acknowledgement manufactured from SIM trace; this report cannot authorize hardware motion",
+    "This records target agreement after declared free descent, not independent proof that no physical stock contact happened",
+    "Exact whole-arm native SDK strict approach and stopped closure still require actual site configuration/guarded tests"
+  ]
+}

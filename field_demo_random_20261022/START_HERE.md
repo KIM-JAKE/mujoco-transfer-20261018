@@ -79,3 +79,5 @@ scripts/offline-check.sh
 검증 범위는 [기능과 남은 현장 확인](docs/CAPABILITIES.md), 시험 결과는 `reports/release-validation.json`에 기록합니다.
 
 추가 실험 기능: [자기 Hand RGB-D 표면 연결](docs/KNOWN_HAND_SURFACE.md). 기본 비활성, 실제 in-bin 파지 통과 미확인입니다.
+
+손 진입 후 자기 점유 때문에 닫기가 막히는 경우의 새 opt-in: [짧은 정적 바구니 지도 유지](docs/STATIC_SCENE_LEASE.md). 실제 접촉 전 엄격한 빈 손 접근과 새 목표 촬영이 필요하며, SDK/현장 검증은 미완료입니다.

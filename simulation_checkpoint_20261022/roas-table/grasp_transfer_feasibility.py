@@ -5,7 +5,7 @@ transfer frame are used. No free-body state or scene seed is an input.
 This is a cheap necessary check, not an arm reachability or path guarantee.
 """
 import numpy as np
-from isaac_kinematics import frame, exp
+from isaac_kinematics import frame, exp, log
 from rgbd_geometry import axis_frame
 from predictive_pair_clearance import shape_overlap, transform_proxy, proxy
 
@@ -416,6 +416,35 @@ def receiving_poses(c, part, incoming):
         # nominal IK miss must not suppress physically admissible new branches.
         centered=[(0.,0.,centered_chord,float(depth)) for depth in depths]
         rows=centered+[r for r in rows if not any(np.allclose(r,p,atol=1e-9) for p in centered)]
+    if part=='ring1' and c.get('config',{}).get('large_receiver_tool_axis_aligned'):
+        # A native Hand diameter grip with tool Z parallel to the measured
+        # ring axis avoids inheriting the tilted taught gripper posture.
+        # The offsets below are actual proposed ring COM in TCP coordinates,
+        # not an assignment of a physical part or an assumed contact.
+        for axial_com in [.002,.0015]:
+            for yaw in [0.,np.pi/4,np.pi/2]:
+                local_tcp=frame([0,0,-axial_com],exp(np.array([0.,0.,yaw])))
+                target=incoming@local_tcp
+                if receiver_aperture(c,part,np.linalg.inv(target)@incoming) is not None:
+                    yield target,(0.,float(yaw),0.,float(axial_com))
+    if part=='ring1' and balanced and c.get('config',{}).get('project_large_receiver_closing_axis'):
+        # The real native pads oppose a diameter only when their closing
+        # direction lies in the observed ring plane. Correct the taught
+        # frame's small axial closing component by physically rotating the
+        # receiver target, never by altering the measured object transform.
+        axis=np.asarray(incoming[:3,2],float).copy();axis/=np.linalg.norm(axis)
+        y=base[:3,1]-axis*(base[:3,1]@axis)
+        if np.linalg.norm(y)>1e-6:
+            y/=np.linalg.norm(y);z=base[:3,2]-y*(base[:3,2]@y);z/=np.linalg.norm(z)
+            rotation=np.column_stack([np.cross(y,z),y,z])
+            # This is a small alignment proposal, not another whole-hand
+            # orientation family. Original candidates remain available below.
+            correction=float(np.linalg.norm(log(rotation@base[:3,:3].T)))
+            if correction<=.035:
+                for depth in depths:
+                    target=frame(incoming[:3,3]-rotation@taught_grasp[:3,3]+rotation[:,0]*centered_chord+rotation[:,2]*depth,rotation)
+                    if receiver_aperture(c,part,np.linalg.inv(target)@incoming) is not None:
+                        yield target,(0.,0.,centered_chord,float(depth))
     for angle,yaw,chord,depth in rows:
         rotation=exp(incoming[:3,2]*yaw)@base[:3,:3]@exp(np.array([0.,angle,0.]))
         target=frame(incoming[:3,3]-rotation@taught_grasp[:3,3]+rotation[:,0]*chord+rotation[:,2]*depth,rotation)
@@ -434,7 +463,7 @@ def compatible(c, part, pose, pickup_tcp):
     elif pose.get('grasp_type')!='inner' and pad_aperture(c,part,grasp) is None:return False
     donor_release=float(pose.get('release_width_m',.001 if pose.get('grasp_type')=='inner' else .08))
     compatibility_cache=c.setdefault('_grasp_transfer_cache',{})
-    cache_key=(part,pose.get('grasp_type'),pose.get('planned_grip_width_m'),donor_release,receiver_opening(c,part),bool(c.get('config',{}).get('balanced_large_receiver_grasp')),bool(c.get('config',{}).get('exact_axis_large_receiver_grasp')),np.round(grasp,9).tobytes())
+    cache_key=(bool(c.get('config',{}).get('large_receiver_tool_axis_aligned')),bool(c.get('config',{}).get('project_large_receiver_closing_axis')),part,pose.get('grasp_type'),pose.get('planned_grip_width_m'),donor_release,receiver_opening(c,part),bool(c.get('config',{}).get('balanced_large_receiver_grasp')),bool(c.get('config',{}).get('exact_axis_large_receiver_grasp')),np.round(grasp,9).tobytes())
     if cache_key in compatibility_cache:return compatibility_cache[cache_key]
     reference = c['handoff_reference'][part]
     incoming = np.asarray(reference['part_H'])

@@ -1,0 +1,62 @@
+{
+  "state": "no_admitted_bounded_local_rim_route",
+  "scene_seed": 7829,
+  "physical_arm_motion_issued": false,
+  "physical_gripper_command_changed": false,
+  "physics_scene_and_RGBD_actually_run": true,
+  "full_task_pass": false,
+  "local_rearrangement_pass": false,
+  "hardware_caps_relaxed": false,
+  "source_uses_free_body_poses": false,
+  "elapsed_wall_s": 27.261016183998436,
+  "parts": {
+    "ring2": {
+      "planning_wall_s": 5.3189158090390265,
+      "rejections": {
+        "No two-pad native finger contact on this local rim": 996,
+        "fixed hand pose: {'query': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm', 'actor': '/World/Environment/m80/instance_0670', 'collider': '/World/Environment/m80/instance_0670'}": 265,
+        "fixed hand pose: {'query': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm', 'actor': '/World/Environment/m80/instance_0642', 'collider': '/World/Environment/m80/instance_0642'}": 5,
+        "fixed hand pose: {'query': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger/tip', 'actor': '/World/Environment/m80/instance_0670', 'collider': '/World/Environment/m80/instance_0670'}": 1,
+        "fixed hand pose: {'query': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm', 'actor': '/World/Environment/m80/instance_0671', 'collider': '/World/Environment/m80/instance_0671'}": 5,
+        "fixed hand pose: {'query': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm', 'actor': '/World/Environment/m80/instance_0644', 'collider': '/World/Environment/m80/instance_0644'}": 4
+      }
+    },
+    "ring1": {
+      "planning_wall_s": 9.526659067953005,
+      "rejections": {
+        "No two-pad native finger contact on this local rim": 1023,
+        "fixed hand pose: {'query': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm', 'actor': '/World/Environment/m80/instance_0670', 'collider': '/World/Environment/m80/instance_0670'}": 504,
+        "pregrasp IK": 2,
+        "fixed hand pose: {'query': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm', 'actor': '/World/Environment/m80/instance_0636', 'collider': '/World/Environment/m80/instance_0636'}": 15,
+        "fixed hand pose: {'query': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm', 'actor': '/World/Environment/m80/instance_0671', 'collider': '/World/Environment/m80/instance_0671'}": 54
+      }
+    }
+  },
+  "events": [
+    {
+      "event": "local_rim_pickup_rejected",
+      "wall_s": 11.74616323900409,
+      "part": "ring2",
+      "error": "No structure-clear grasp among RGB-D instances",
+      "robot_and_hand_unchanged": true
+    },
+    {
+      "event": "local_rim_pickup_rejected",
+      "wall_s": 27.261016183998436,
+      "part": "ring1",
+      "error": "No structure-clear grasp among RGB-D instances",
+      "robot_and_hand_unchanged": true
+    }
+  ],
+  "conclusion": "No route was admitted by the original predictive local-rim contact policy in297. This is not a physical-impossibility result: a subsequent narrow CAD/RGB-D audit found an exposed-large proposal rejected only by the6-sample pregrasp rule, justifying a separately guarded actual finite-close experiment.",
+  "timing_comparison_eligible": false,
+  "admission_result_is_not_physical_impossibility_proof": true,
+  "followup_admission_audit": {
+    "exposed_large_pregrasp_contact_rule_failure": "5inner first-contact CAD samples vs6 required; other normals/span/opening/selected native swept approach/stock/basket checks pass",
+    "finite_closing_trial_justified": true,
+    "hand_position_source": "Saved297 RGB-D plus actual class/native/fixed CAD only",
+    "evidence": "/tmp/verify300_rim_approaches.json",
+    "staged_trial": "/tmp/local-rim-close-trial-300-ready/frozen-overrides",
+    "physical_trial_completed": false
+  }
+}

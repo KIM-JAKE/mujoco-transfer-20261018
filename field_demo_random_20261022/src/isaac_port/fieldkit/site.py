@@ -252,7 +252,9 @@ class Site:
                     if not results or results[-1].get('stage_completed') is not True:
                         raise RuntimeError('Missing completed-stage acknowledgement')
                     self.event('motion_completed',side=side,result=results[-1])
-                    return results[-1]
+                    result=dict(results[-1],actual_driver_file=str(self.path(self.config['motion_binary'])),actual_driver_sha256=hashlib.sha256(self.path(self.config['motion_binary']).read_bytes()).hexdigest(),actual_completed_at_utc=datetime.now(timezone.utc).isoformat())
+                    if output.with_suffix('.csv').is_file():result.update(actual_telemetry_file=str(output.with_suffix('.csv')),actual_telemetry_sha256=hashlib.sha256(output.with_suffix('.csv').read_bytes()).hexdigest())
+                    return result
                 except BaseException:
                     self.stop()
                     try:self.process.wait(timeout=5)
