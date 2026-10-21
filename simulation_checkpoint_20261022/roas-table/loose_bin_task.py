@@ -82,14 +82,21 @@ def execute(c):
         else:template=c['part_collision_templates'][part]
         completed_geometry.register(checkers['right'],part,template,T,uncertainty_m=.0035)
         c['planning_diagnostics'].append(dict(event='completed_part_added_to_both_arm_collision_worlds',part=part,source=source,pose_from_RGBD=pose,uncertainty_m=.0035,uses_free_body_poses=False))
+    loaded_contact_bindings={}
+    last_annular_observation_steps={}
+    def check_loaded_contact_bindings():
+        for carrier,binding in loaded_contact_bindings.items():
+            binding.check(art.get_dof_positions()[0,fingers[carrier]])
     def step(label=None):
         nonlocal left_program,control_steps,left_finished_step,pin_retention_start
+        check_loaded_contact_bindings()
         if label=='pin_retention' and pin_retention_start is None:pin_retention_start=control_steps
         if left_program is not None:
             try:next(left_program)
             except StopIteration:left_program=None;left_finished_step=control_steps
         c['step'](label or phase)
         control_steps+=1
+        check_loaded_contact_bindings()
     def wait(t,label):
         for _ in range(int(np.ceil(t/dt))):step(label)
     def trajectory(side,qs,requested,width=None,checked_edges=False):
@@ -134,6 +141,7 @@ def execute(c):
         if c['config'].get('robust_annular_camera_view_bank'):
             views+=_annular_cap_camera_view_bank(H,G)
         for view_index,offset in enumerate(views):
+            observed_request_step=control_steps
             e=dict(mode='held' if side=='right' else 'held_left',part=part,tracked_grasp=G.tolist(),camera_eye_offset=offset.tolist(),label=label,require_annular_face=True,view_index=view_index);v=vision.request(e,arms[side].fk(art.get_dof_positions()[0,indices[side]]));deadline=time.perf_counter()+3
             while not v.done():
                 vision.poll()
@@ -144,7 +152,9 @@ def execute(c):
                 if time.perf_counter()>deadline:raise RuntimeError('Dual-arm camera timeout')
             value=v.result();e['delivered_wall_s']=time.perf_counter()-c['started']
             if value['result'].get('error'):continue
-            p=value['result']['pose'];Gobs=np.linalg.inv(value['H'])@frame(p['center_m'],axis_frame(p['axis']));return Gobs,p
+            p=value['result']['pose'];Gobs=np.linalg.inv(value['H'])@frame(p['center_m'],axis_frame(p['axis']))
+            last_annular_observation_steps[(side,part)]=observed_request_step
+            return Gobs,p
         raise RuntimeError('No directly measured annular face in transfer camera views')
     ref=c['handoff_reference'];results=[];next_initial=None;pin_initial=None;left_standby_q=cmd[0,indices['left']].copy()
     transfer_path=HERE/'grasp_transfer_feasibility.py';transfer=types.ModuleType('grasp_transfer_feasibility');transfer.__file__=str(transfer_path);sys.modules['grasp_transfer_feasibility']=transfer;exec(compile(transfer_path.read_text(),str(transfer_path),'exec'),transfer.__dict__)
@@ -367,16 +377,27 @@ def execute(c):
             while left_program is not None:step('receiver_finishes_before_right_insertion')
             direct_path=HERE/'native_right_ring_insert.py';direct=types.ModuleType('native_right_ring_insert');direct.__file__=str(direct_path);exec(compile(direct_path.read_text(),str(direct_path),'exec'),direct.__dict__)
             direct_context=dict(c,left_hand_known_empty=c.get('left_hand_known_empty',False),step=step,config=dict(c['config'],pick_part=part,right_direct_empty_left_parking=bool(part=='ring2' and c['config'].get('right_direct_empty_left_parking'))))
-            placed=direct.execute(direct_context,pickup=p)
-            retained=placed['native_ring_result'].get('retention_RGBD')
-            if retained is None:raise RuntimeError('Released ring retention must be visible before planning the next part')
-            register_completed(part,retained['pose'],'Fresh RGB-D after release and withdrawal')
-            results.append(dict(part=part,pickup=p,right_direct=placed,insertion_fresh_RGBD=placed['native_ring_result']['full_depth_pose']))
-            events.append(dict(event=part+'_right_direct_insertion_complete',wall_s=time.perf_counter()-c['started']))
-            if c['config'].get('pin_between_rings') and part==ring_order[0] and not c['config'].get('one_ring_only'):
-                pin_report=run_pin()
-                next_initial=vision.request(dict(mode='initial',part=None),arms['right'].fk(art.get_dof_positions()[0,indices['right']]))
-            continue
+            try:
+                placed=direct.execute(direct_context,pickup=p)
+            except direct.PrecarryPlanUnavailable as unavailable:
+                # A geometric planning failure before any loaded RIGHT move
+                # selects the already checked handover skill. An execution or
+                # sensing failure has no catch here and still stops the task.
+                G=unavailable.measured_grasp.copy()
+                p=dict(p,measured_grasp=G.tolist(),direct_precarry_unavailable=str(unavailable))
+                evidence=dict(event=part+'_right_precarry_select_handover',reason=str(unavailable),current_RGBD_pose=unavailable.observed_pose,loaded_right_motion_issued=False,uses_free_body_poses=False,wall_s=time.perf_counter()-c['started'])
+                events.append(evidence);c['planning_diagnostics'].append(evidence)
+                print('LOOSE_PRE_CARRY_HANDOVER_FALLBACK',evidence,flush=True)
+            else:
+                retained=placed['native_ring_result'].get('retention_RGBD')
+                if retained is None:raise RuntimeError('Released ring retention must be visible before planning the next part')
+                register_completed(part,retained['pose'],'Fresh RGB-D after release and withdrawal')
+                results.append(dict(part=part,pickup=p,right_direct=placed,insertion_fresh_RGBD=placed['native_ring_result']['full_depth_pose']))
+                events.append(dict(event=part+'_right_direct_insertion_complete',wall_s=time.perf_counter()-c['started']))
+                if c['config'].get('pin_between_rings') and part==ring_order[0] and not c['config'].get('one_ring_only'):
+                    pin_report=run_pin()
+                    next_initial=vision.request(dict(mode='initial',part=None),arms['right'].fk(art.get_dof_positions()[0,indices['right']]))
+                continue
         while left_program is not None:step('await_receiver_clear')
         receiver_opening=transfer.receiver_opening(c,part)
         if abs(float(cmd[0,fingers['left']].sum())-receiver_opening)>.0005:
@@ -613,6 +634,28 @@ def execute(c):
             pin_event=dict(mode='pin_initial',part='pin',label='pin_initial');pin_initial=(pin_event,vision.request(pin_event,arms['right'].fk(art.get_dof_positions()[0,indices['right']])))
         for _ in clearing:step(part+'_donor_leave_receiver_corridor')
         if c.get('set_empty_donor_contact_guard'):c['set_empty_donor_contact_guard']('right',True,part)
+        if part=='ring1' and c['config'].get('measured_loaded_contact_geometry'):
+            # A finite-force target deliberately lies inside the rigid ring.
+            # Certify actual encoder geometry, never replace the force target.
+            from loaded_contact_aperture import LoadedContactAperture
+            left_G,pose=observe('left',part,left_G,part+'_loaded_contact_fresh_RGBD')
+            finger_window=[];window_times=[]
+            for sample in range(5):
+                if sample:wait(.025,part+'_loaded_contact_encoder_window')
+                finger_window.append(art.get_dof_positions()[0,fingers['left']].copy())
+                window_times.append(control_steps*dt)
+            gap=float(np.asarray(finger_window)[-1].sum())
+            contact=receiver_contact_state(c,part,left_G,gap,contact_tolerance_m=.0008)
+            if transfer.receiver_aperture(c,part,left_G) is None:
+                raise RuntimeError('Fresh loaded receiver pose lacks stable native pad geometry')
+            binding=LoadedContactAperture(side='left',part=part,
+                payload_path=c['part_collision_templates'][part],
+                encoder_samples=finger_window,sample_times_s=window_times,
+                contact=contact,measured_grasp=left_G,control_dt_s=dt,
+                capture_age_physics_s=(control_steps-last_annular_observation_steps[('left',part)])*dt)
+            checkers['left'].loaded_contact_aperture=binding;loaded_contact_bindings['left']=binding
+            evidence=dict(event='loaded_receiver_encoder_geometry_bound',**binding.record)
+            c['planning_diagnostics'].append(evidence);print('LOOSE_LOADED_APERTURE_BOUND',evidence,flush=True)
         if part=='ring2':
             previous_G=left_G.copy();wait(.15,part+'_receiver_stable_hold')
             left_G,pose=observe('left',part,left_G,part+'_receiver_stable_hold_RGBD')
@@ -698,7 +741,7 @@ def execute(c):
                     try:verify_loaded_left_issued(c,part,left_G,issued)
                     except RuntimeError as error:
                         if not str(error).startswith('Loaded LEFT issued curve'):raise
-                        c['planning_diagnostics'].append(dict(event='large_left_carry_candidate_rejected',reason=str(error)));continue
+                        rejection=dict(event='large_left_carry_candidate_rejected',reason=str(error));c['planning_diagnostics'].append(rejection);print('LOOSE_LEFT_CARRY_CANDIDATE_REJECTED',rejection,flush=True);continue
                     route=candidate_route;break
         finally:carry_scope.__exit__(*sys.exc_info())
         if free_yaw:
@@ -806,7 +849,11 @@ def execute(c):
                     yield from cartesian(aligned_hand(goal),.8,pose_feedback=True,allow_fixture_contact=True);yield from hold(.12)
                     continue
                 H=arm.fk(cmd[0,ids]);H[2,3]+=remaining;yield from cartesian(H,.30,allow_fixture_contact=True);yield from hold(.12)
-            c['close_clamp'](part);yield from hold(.12);c['set_grip_hold']('left',False);holding_ring=False
+            c['close_clamp'](part);yield from hold(.12)
+            binding=loaded_contact_bindings.pop('left',None)
+            if binding is not None:
+                binding.release();checkers['left'].loaded_contact_aperture=None
+            c['set_grip_hold']('left',False);holding_ring=False
             # Release with clearance around the measured 62 mm ring rather
             # than spreading to 80 mm inside its narrow fixture. Reverse the
             # insertion direction before a later empty-hand reposition.

@@ -75,6 +75,11 @@ class SameArmClearance:
                           backend='FCL convex CAD' if fcl else 'conservative convex supporting planes',
                           semantic_exclusions='same rigid body, direct joint collision=false, exact authored FilteredPairs')
         self.geometries = None
+        self.broadphase_enabled = True
+        self._row_centers = np.asarray([r[2][0] for r in self.rows])
+        self._row_axes = np.asarray([r[2][1] for r in self.rows])
+        self._row_half = np.asarray([r[2][2] for r in self.rows])
+        self._pair_indices = np.asarray(self.pairs, dtype=int).reshape(-1, 2)
         if fcl:
             from fcl_transport import convex
             self.geometries = [convex(row[2][3]) for row in self.rows]
@@ -96,7 +101,23 @@ class SameArmClearance:
                                                np.ascontiguousarray(t[:3, 3])))
         else:
             placed = [transform_proxy(row[2], transforms[row[0]]) for row in self.rows]
-        for i, j in self.pairs:
+        candidate_pairs = self.pairs
+        if self.geometries is not None and self.broadphase_enabled:
+            # Each transformed authored convex hull is contained by this OBB.
+            # Inflate BOTH boxes by the original per-shape margin, and retain
+            # boundary cases with a numerical guard. Exact FCL distance still
+            # decides every remaining pair; no collision pair is exempted.
+            matrices = np.asarray([transforms[body] for body, _, _ in self.rows])
+            rotations = matrices[:, :3, :3]
+            centers = np.einsum('nij,nj->ni', rotations, self._row_centers) + matrices[:, :3, 3]
+            axes = np.matmul(rotations, self._row_axes)
+            extents = np.einsum('nij,nj->ni', abs(axes), self._row_half + self.margin_m) + 1e-9
+            low, high = centers - extents, centers + extents
+            a, b = self._pair_indices.T
+            active = np.all(high[a] >= low[b], axis=1) & np.all(high[b] >= low[a], axis=1)
+            candidate_pairs = self._pair_indices[active]
+            self.stats['broadphase_skipped_pairs'] = self.stats.get('broadphase_skipped_pairs', 0) + int((~active).sum())
+        for i, j in candidate_pairs:
             if changed_bodies is not None and self.rows[i][0] not in changed_bodies and self.rows[j][0] not in changed_bodies:
                 continue
             if self.geometries is not None:

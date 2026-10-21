@@ -17,6 +17,14 @@ from probe_native_right_ring import fixture_clear
 from aperture_path_check import path_openings
 
 
+class PrecarryPlanUnavailable(RuntimeError):
+    """Only first fixture preflight failed; no loaded RIGHT move was issued."""
+    def __init__(self, reason, measured_grasp, observed_pose):
+        super().__init__(reason)
+        self.measured_grasp=np.asarray(measured_grasp,float).copy()
+        self.observed_pose=dict(observed_pose)
+
+
 def execute(c,pickup=None):
     here=Path(__file__).resolve().parent
     arm,art,cmd,ids,fi,dt,vision,checker=[c[k]for k in ['arm','art','cmd','ids','fi','dt','vision','checker']]
@@ -198,7 +206,13 @@ def execute(c,pickup=None):
         if approved is None:raise RuntimeError('Current camera grasp has no complete payload-carry and right-arm fixed-CAD insertion/release/withdraw route')
         record('fixture_approved',fixture=approved)
         return approved
-    approved=plan_current_fixture(G,width)
+    try:
+        approved=plan_current_fixture(G,width)
+    except RuntimeError as error:
+        if str(error)!='Current camera grasp has no complete payload-carry and right-arm fixed-CAD insertion/release/withdraw route':raise
+        # No RIGHT carry has started. A stopped empty LEFT parking motion may
+        # have completed; downstream handover uses its CURRENT encoder state.
+        raise PrecarryPlanUnavailable(str(error),G,pose) from error
     route=approved.get('carry_route')
     if route is None:raise RuntimeError('Carry-aware fixture approval omitted its checked current-start route')
     move(route,.05 if c['config'].get('optimized_motion_timing') else 1.4,'carry_to_preinsert',G=G)

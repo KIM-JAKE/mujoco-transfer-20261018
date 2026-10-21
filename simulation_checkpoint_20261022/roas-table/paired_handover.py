@@ -116,15 +116,38 @@ def plan(c, part, grasp,donor_release_width=.08):
                     if not receiver_solutions:
                         counts['receiver_ik'] += 1
                         continue
+                    if part=='ring1':
+                        self_guard=getattr(lc,'same_arm_clearance',None)
+                        if self_guard is None:raise RuntimeError('Large receiver requires carrier-payload self-clearance admission')
+                        saved_payload=(lc.payload_path,lc.payload_rows,lc.payload_boxes,lc.payload_relative)
+                        lc.attach_payload(c['part_collision_templates'][part],frame([0,0,.1034],np.eye(3))@new_grasp)
+                        try:
+                            admitted=[]
+                            for candidate in receiver_solutions:
+                                clear,why=self_guard.clear(candidate,receiver_width)
+                                if clear:admitted.append(candidate)
+                                else:
+                                    counts['receiver_payload_self_collision']=counts.get('receiver_payload_self_collision',0)+1
+                            receiver_solutions=admitted
+                        finally:
+                            lc.payload_path,lc.payload_rows,lc.payload_boxes,lc.payload_relative=saved_payload
+                        if not receiver_solutions:continue
                     lq=receiver_solutions[0]
                     insertion_hand = np.asarray(row['approach_ring_poses'])[-1] @ np.linalg.inv(new_grasp)
                     key=np.round(new_grasp,8).tobytes()
                     insertion_q=insertion_cache.get(key)
                     if key not in insertion_cache:
                         for insertion_hand,_ in insertion_pose_options(c,part,new_grasp):
-                            for insertion_seed in [row['left_insert_seed'],lq,lq0]:
-                                insertion_q=left.solve(insertion_hand[:3,3],insertion_hand[:3,:3],insertion_seed)
-                                if insertion_q is not None:break
+                            insertion_seeds=[row['left_insert_seed'],lq,lq0]
+                            insertion_seeds+=list(np.random.default_rng(36109).uniform(left.bounds[:,0],left.bounds[:,1],(4,7)))
+                            for insertion_seed in insertion_seeds:
+                                candidate_q=left.solve(insertion_hand[:3,3],insertion_hand[:3,:3],insertion_seed)
+                                if candidate_q is None:continue
+                                # Newly proposed depths have no nominal catalog
+                                # fixture certificate. Check actual candidate
+                                # full robot/fixed/self geometry before grasp.
+                                if not lc.clear(candidate_q,max(receiver_width,receiver_opening))[0]:continue
+                                insertion_q=candidate_q;break
                             if insertion_q is not None:break
                         insertion_cache[key]=insertion_q
                     if insertion_q is None:

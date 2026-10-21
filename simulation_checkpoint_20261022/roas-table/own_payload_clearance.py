@@ -34,7 +34,7 @@ def _proximal_hull(vertices, pad_start_z_m=.036):
 
 class OwnPayloadClearance:
     def __init__(self,guard):
-        self.guard=guard;self.cache={};self.robot_rows=[]
+        self.guard=guard;self.cache={};self.loaded_robot_cache={};self.robot_rows=[]
         for body,source,geometry in guard.rows:
             if body.endswith('_finger') and source.endswith('/tip'):
                 geometry=proxy(_proximal_hull(geometry[3]))
@@ -64,11 +64,33 @@ class OwnPayloadClearance:
                 self.cache[key]=(tuple(payload),geometries,[fcl.CollisionObject(g)for g in geometries])
             else:self.cache[key]=None
         payload_objects=self.cache[key][2]if fcl else None
-        placed_robot=[transform_proxy(g,transforms[b])for b,_,g in self.robot_rows]
+        # A finite-force spring setpoint is not achieved finger geometry.
+        # Only certified held-CAD/carrier-finger tests use the measured swept
+        # encoder interval. All other query consumers retain requested widths.
+        binding=getattr(checker,'loaded_contact_aperture',None)
+        query_rows=[];query_objects=[];query_transforms=[]
+        for i,(body,source,geometry) in enumerate(self.robot_rows):
+            swept=None if binding is None else binding.finger_swept_proxy(checker,body,geometry)
+            if swept is None:
+                query_rows.append((body,source,geometry));query_transforms.append(transforms[body])
+                if fcl:query_objects.append(self.robot_objects[i])
+            else:
+                key=(id(binding),body,source)
+                if key not in self.loaded_robot_cache:
+                    if len(self.loaded_robot_cache)>8:self.loaded_robot_cache.clear()
+                    shape=None;obj=None
+                    if fcl:
+                        from fcl_transport import convex
+                        shape=convex(swept[3]);obj=fcl.CollisionObject(shape)
+                    self.loaded_robot_cache[key]=(binding,swept,shape,obj)
+                _,swept,_,obj=self.loaded_robot_cache[key]
+                query_rows.append((body,source,swept));query_transforms.append(transforms[self.guard.arm.hand_path])
+                if fcl:query_objects.append(obj)
+        placed_robot=[transform_proxy(row[2],t)for row,t in zip(query_rows,query_transforms)]
         placed_payload=[transform_proxy(g,transform)for _,_,g in payload]
         if fcl:
-            for obj,(body,_,_)in zip(self.robot_objects,self.robot_rows):
-                t=transforms[body];obj.setTransform(fcl.Transform(np.ascontiguousarray(t[:3,:3]),np.ascontiguousarray(t[:3,3])))
+            for obj,t in zip(query_objects,query_transforms):
+                obj.setTransform(fcl.Transform(np.ascontiguousarray(t[:3,:3]),np.ascontiguousarray(t[:3,3])))
             for obj in payload_objects:obj.setTransform(fcl.Transform(np.ascontiguousarray(transform[:3,:3]),np.ascontiguousarray(transform[:3,3])))
         margin=self.guard.margin_m
         def limits(placed):
@@ -78,7 +100,7 @@ class OwnPayloadClearance:
         for i,j in np.argwhere(candidates):
             if changed_bodies is not None and self.robot_rows[i][0]not in changed_bodies:continue
             if fcl:
-                distance=float(fcl.distance(self.robot_objects[i],payload_objects[j],fcl.DistanceRequest(),fcl.DistanceResult()))
+                distance=float(fcl.distance(query_objects[i],payload_objects[j],fcl.DistanceRequest(),fcl.DistanceResult()))
                 collision=not np.isfinite(distance)or distance<=2*margin
             else:
                 distance=None;collision=shape_overlap(placed_robot[i],placed_payload[j],margin=margin)

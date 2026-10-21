@@ -1,0 +1,2454 @@
+{
+  "full_task_pass": false,
+  "vision_end_to_end_pass": false,
+  "end_to_end_under30": false,
+  "hardware_tested": false,
+  "part_attachments": false,
+  "workpiece_teleports_after_initialization": 0,
+  "physics_hz": 1920,
+  "python_thread_switch_interval_s": 0.005,
+  "timing_basis": "Monotonic wall time from first camera snapshot through >=0.5s verified retention",
+  "CPU_camera_waits_omitted": false,
+  "finger_effort_caps_n": {
+    "left_per_finger": 30.0,
+    "right_per_finger": 30.0,
+    "left_final_insertion_per_finger": 15.0
+  },
+  "clamp_target_update_hz": 30,
+  "wall_pacing": "Each 480 Hz control step advances two 960 Hz PhysX substeps and takes at least 1/480 s wall time; no catch-up fast-forward",
+  "native_finger_target_speed_cap_m_s": 0.0475,
+  "native_force_hold": "Scattered controller: single motor + coupled passive finger, velocity preload, finite force; no attachment",
+  "initial_big_ring_aperture_m": 0.076,
+  "neural_mask_cache_used": false,
+  "CPU_fast_kinematics": {
+    "enabled": true,
+    "device": "CPU",
+    "algorithm": "Same USD frames, joint bounds, DLS damping and 220-iteration limit; Eigen C++ implementation",
+    "library_sha256": "efaaa4965137f12bd60de206612217e3271a7b702c02ca6105479e9fbf470234",
+    "source_sha256": "b513b9dc1d624c79473fe5836cdc78bd13aaaf670e48cc7b024fc3866691835a"
+  },
+  "pin_clamp_assumed_center_z_m": 1.515,
+  "pin_clamp_hardware_calibrated": false,
+  "pin_method": "Tail grasp, uninterrupted axial insertion, release only after fresh full-depth RGB-D confirmation",
+  "clamp_tensor_drives": false,
+  "solver_iterations": {
+    "position": 16,
+    "velocity": 16
+  },
+  "physics_hz_range": [
+    1920,
+    1920
+  ],
+  "physics_worker_threads": 0,
+  "physics_cpu_dispatcher": true,
+  "continuous_collision_detection": true,
+  "controller_hz": 480,
+  "physics_substeps_per_command": 4,
+  "randomized_bin_config": {
+    "seed": 446,
+    "tensor_clamps": false,
+    "correction_joint7_weight": 0.05,
+    "width_guard": true,
+    "digital_clamps": true,
+    "digital_clamp_threshold": 0.95,
+    "fixed_visual_application": true,
+    "direct_pin": true,
+    "ring_seat_hold_s": 0.35,
+    "motion_time_scale": 1.01,
+    "early_width_guard": true,
+    "held_correction_ramp_s": 0.35,
+    "physics_substeps": 4,
+    "physics_substep_window_s": [
+      13.0,
+      16.5
+    ],
+    "pin_tail_candidate": 0,
+    "enforce_motor_speed_limits": true,
+    "randomization_mode": "full_bin_drop",
+    "randomization_settle_s": 3.0,
+    "scatter_probe_only": false,
+    "native_mimic_frequency_hz": 0.0,
+    "deadline_s": 600,
+    "scattered_control": true,
+    "pick_part": "ring2",
+    "native_motor_speed_cap_m_s": 0.032,
+    "scattered_full_task": true,
+    "handover_only": false,
+    "scattered_physics_substeps": 4,
+    "native_finger_convex_decomposition": false,
+    "solver_velocity_iterations": 16,
+    "shuffle_drop_order": true,
+    "randomization_protocol": "full_bin_drop_shuffled_v2",
+    "start_above_bin": true,
+    "experimental_sim_only": true,
+    "full_random_task_validated": false,
+    "allow_fingertip_nudging": true,
+    "allow_internal_grasp": false,
+    "allow_single_finger_rearrangement": true,
+    "native_shared_motor_drive": true,
+    "native_grip_pad_force_n": 30,
+    "optimization_report": "scatter-optimization-20261021.json",
+    "one_ring_only": false,
+    "fast_transport": true,
+    "allow_chord_grasp": true,
+    "allow_side_entry": true,
+    "optimized_motion_timing": true,
+    "tracking_image_width_px": 384,
+    "native_contact_offset_m": 0.0005,
+    "gentle_descent": true,
+    "handover_plan_budget_s": 60.0,
+    "stability_time_scale": 1.0,
+    "grasp_settle_s": 0.2,
+    "ring_contact_debug": false,
+    "optimization_phase": "randomized_reliability_first",
+    "stable_small_grasp": true,
+    "prefer_internal_small_grasp": false,
+    "ring_yaw_free": true,
+    "reliability_handover_hint": true,
+    "stability_finish_rings_before_pin": true,
+    "continuous_force_hold": true,
+    "stability_serial": true,
+    "pin_first": false,
+    "descent_contact_speed_m_s": 0.03,
+    "shortcut_checked_routes": true,
+    "parallel_transfer_approach": false,
+    "pregrasp_floor_m": 1.235,
+    "prefer_near_handover_branch": true,
+    "pregrasp_floor_small_m": 1.235,
+    "path_local_timing": true,
+    "warm_spline_routes": false,
+    "center_large_receiver_grasp": true,
+    "sort_donor_orientations": true,
+    "handover_offsets_override": [
+      [
+        0.1,
+        -0.1,
+        0.0
+      ]
+    ],
+    "pin_between_rings": false,
+    "local_left_park": true,
+    "wait_for_ring_transport_clear": true,
+    "small_receiver_opening_m": 0.074,
+    "receiver_approach_standoff_m": 0.02,
+    "receiver_approach_step_m": 0.002,
+    "receiver_approach_resolution_rad": 0.002,
+    "pickup_multiview": true,
+    "require_fresh_preclose_rgbd": true,
+    "small_ring_repick_on_unstable_hold": true,
+    "small_ring_com_x_limit_m": 0.0025,
+    "pickup_retry_limit": 3,
+    "initial_eye_offset_m": [
+      0,
+      0,
+      0.8
+    ],
+    "stable_receiver_grasp": true,
+    "rim_only_pickup": false,
+    "allow_local_rim_grasp": false,
+    "prefer_local_rim_grasp": true,
+    "initial_pickup_multiview": false,
+    "native_loaded_preload_ramp_s": 0.3,
+    "native_loaded_initial_preload_m_s": 0.003,
+    "native_loaded_preload_m_s": 0.0075,
+    "rim_encoder_recenter": true,
+    "strict_rim_clutter": true,
+    "native_loaded_preload_after_contact_m_s": 0.015,
+    "inner_only_pickup": false,
+    "native_inner_bore_grasp": false,
+    "operation_solver_position_iterations": 128,
+    "operation_solver_velocity_iterations": 64,
+    "inner_bore_friction_reserve_mu": 0.6,
+    "allow_bin_release_retry": true,
+    "verify_receiver_pad_contact": true,
+    "inner_bore_x_tilt_candidates_deg": [
+      0,
+      10,
+      -10,
+      15,
+      -15
+    ],
+    "inner_bore_center_correction_limit_m": 0.0025,
+    "right_ring_insert_probe": false,
+    "receiver_axial_only": false,
+    "axial_receiver_probe": false,
+    "right_insertion_fixture_probe": false,
+    "rearrange_probe": false,
+    "rearrange_then_pick": false,
+    "require_front_up_pickup": false,
+    "rearrange_front_up_only": false,
+    "allow_partial_preclose_tracking": true,
+    "preclose_occlusion_max_age_s": 2.0,
+    "verify_lifted_pad_contact": true,
+    "right_direct_empty_left_parking": true,
+    "right_left_park_fixture_probe": false,
+    "reuse_aperture_invariant_checks": true,
+    "axial_receiver_fixture_budget_s": 90.0,
+    "allow_direct_right_insert": true,
+    "prefer_right_carry_small_posture": true,
+    "right_carry_vertical_escape": false,
+    "avoid_other_stock_finger_contact": true,
+    "stable_outer_donor_grasp": true,
+    "allow_tilted_bore_hook": true,
+    "timing_comparison_eligible": false,
+    "rearrangement_retry_limit": 3,
+    "bin_axial_pick_probe": false,
+    "tilted_ring_hook_probe": false,
+    "broaden_tilted_bore_hook_proposals": true,
+    "rearrangement_pickup_extra_eye_offsets_m": [
+      [
+        0.28,
+        0.28,
+        0.5
+      ],
+      [
+        -0.28,
+        -0.28,
+        0.5
+      ]
+    ],
+    "donor_release_opening_cap_m": 0.078,
+    "adaptive_initial_ring_order": true,
+    "pickup_diagonal_offsets_m": [
+      [
+        -0.08,
+        0.0,
+        0.0
+      ]
+    ],
+    "receiver_depth_options_m": [
+      0.002
+    ],
+    "right_fixture_replan_on_alignment_failure": true,
+    "close_empty_left_for_pin": true,
+    "large_receiver_depth_options_m": [
+      0.004
+    ],
+    "large_encoder_pose_bias_compensation": true,
+    "require_broad_large_donor_support": true,
+    "right_fixture_oblique_camera_views": true,
+    "defer_handover_until_visible_clearance": true,
+    "verify_large_lift_grasp_retention": true,
+    "large_lift_grasp_translation_limit_m": 0.002,
+    "large_lift_grasp_axis_limit_rad": 0.05,
+    "verify_large_donor_after_carry": true,
+    "robust_annular_camera_view_bank": true,
+    "timing_metadata_correction": "Parallel CPU reliability experiment; measured wall time is not an eligible optimization comparison.",
+    "balanced_large_receiver_grasp": true,
+    "pin_visual_preinsert_alignment": true,
+    "pin_axis_goal_world_m": [
+      -0.30203095784,
+      0.22724999619,
+      1.52875
+    ],
+    "exact_axis_large_receiver_grasp": true,
+    "verify_selected_outer_approach": true,
+    "robust_pin_cap_circle": true,
+    "pin_precision_image_width_px": 768,
+    "pin_grasp_catalog_run": "native-roas-table-scatter-stable-v251-corrected-pin-catalog",
+    "pin_grasp_catalog_candidate": 0,
+    "pin_grasp_catalog_probe": false,
+    "pin_axis_frame_consistent_geometry": true,
+    "verify_native_pin_hold": true,
+    "ray_image_backend": "embree_cpu",
+    "gpu_ik_proposals": true,
+    "gpu_ik_socket": "/workspace/project/mujoco/.local/curobo-gpu2/ik.sock",
+    "pin_rgbd_sdk_hold_confirmation": true,
+    "pin_terminal_stroke_preflight": true,
+    "pin_axial_yaw_free": true,
+    "gpu_route_proposals": true,
+    "gpu_route_socket": "/workspace/project/mujoco/.local/curobo-gpu2/route.sock",
+    "gpu_route_timeout_s": 2.0,
+    "sequential_initial_ring_selection": true,
+    "initial_camera_width_px": 768,
+    "initial_camera_height_px": 768,
+    "initial_camera_span_m": 0.55,
+    "park_before_bin_pick": true,
+    "empty_park_known_empty": true,
+    "empty_park_preshape_m": 0.07,
+    "empty_park_planning_budget_s": 20.0,
+    "gpu_dual_arm_reference": true,
+    "gpu_left_route_proposals": true,
+    "gpu_left_route_socket": "/workspace/project/mujoco/.local/curobo-gpu2/route-dual.sock"
+  },
+  "randomized_ring_count": 10,
+  "setup_depenetration_cap_m_s": 0.2,
+  "operation_depenetration_cap_m_s": 1000.0,
+  "fixed_standby_TCP_world_m": [
+    0.515,
+    -0.715,
+    1.255
+  ],
+  "standby_independent_of_images_or_object_poses": true,
+  "contact_material_audit": {
+    "steel": {
+      "static_friction": 0.6000000238418579,
+      "dynamic_friction": 0.5099999904632568,
+      "authored_friction_combine_mode": null,
+      "default_combine_mode": "average",
+      "hardware_friction_measured": false
+    },
+    "rubber": {
+      "static_friction": 1.0,
+      "dynamic_friction": 0.8500000238418579,
+      "authored_friction_combine_mode": null,
+      "default_combine_mode": "average",
+      "hardware_friction_measured": false
+    }
+  },
+  "initial_RGBD_camera_eye_offset_m": [
+    0,
+    0,
+    0.8
+  ],
+  "clamp_control": "Finite-force open/close commands, same jaw strokes and force caps",
+  "pickup_depth_increase_m": {
+    "ring1": 0.0,
+    "ring2": 0.0
+  },
+  "diagnostic_rings_only": false,
+  "pin_grasp_catalog_selection": {
+    "run": "native-roas-table-scatter-stable-v251-corrected-pin-catalog",
+    "candidate_index": 0,
+    "tilt_deg": -40,
+    "contact_z_m": 0.0,
+    "pickup_center_from_RGBD": [
+      0.19000387111393577,
+      -0.7897289286242213,
+      0.9160499607069958
+    ],
+    "physical_grasp_previously_tested": false
+  },
+  "usd_clamp_targets_batched": true,
+  "dof_names": [
+    "left_arm_fr3v2_joint1",
+    "right_arm_fr3v2_joint1",
+    "left_arm_fr3v2_joint2",
+    "right_arm_fr3v2_joint2",
+    "left_arm_fr3v2_joint3",
+    "right_arm_fr3v2_joint3",
+    "left_arm_fr3v2_joint4",
+    "right_arm_fr3v2_joint4",
+    "left_arm_fr3v2_joint5",
+    "right_arm_fr3v2_joint5",
+    "left_arm_fr3v2_joint6",
+    "right_arm_fr3v2_joint6",
+    "left_arm_fr3v2_joint7",
+    "right_arm_fr3v2_joint7",
+    "left_native_left",
+    "left_native_right",
+    "right_native_left",
+    "right_native_right"
+  ],
+  "link_names": [
+    "official_FR3_Duo",
+    "left_arm_base",
+    "right_arm_base",
+    "left_arm_fr3v2_link0",
+    "right_arm_fr3v2_link0",
+    "left_arm_fr3v2_link1",
+    "right_arm_fr3v2_link1",
+    "left_arm_fr3v2_link2",
+    "right_arm_fr3v2_link2",
+    "left_arm_fr3v2_link3",
+    "right_arm_fr3v2_link3",
+    "left_arm_fr3v2_link4",
+    "right_arm_fr3v2_link4",
+    "left_arm_fr3v2_link5",
+    "right_arm_fr3v2_link5",
+    "left_arm_fr3v2_link6",
+    "right_arm_fr3v2_link6",
+    "left_arm_fr3v2_link7",
+    "right_arm_fr3v2_link7",
+    "left_arm_fr3v2_link8",
+    "right_arm_fr3v2_link8",
+    "left_NativeHand",
+    "right_NativeHand",
+    "left_left_finger",
+    "left_right_finger",
+    "right_left_finger",
+    "right_right_finger"
+  ],
+  "camera_preparation_s": 0.0023839479545131326,
+  "reference_motion": "live RGB-D scattered controller; no taught pickup path",
+  "stationary_trim_s": 0.0,
+  "joint_headroom_retiming_saved_s": 0.0,
+  "retimed_free_motion_windows": [],
+  "starts_with_rings_already_installed": false,
+  "scene_ring_color": "same steel material",
+  "pin_collision_approximation": {
+    "model": "Four coaxial convex cylinders, approximate CAD outer dimensions",
+    "length_m": 0.0355,
+    "tail_diameter_m": 0.0105,
+    "collar_diameter_m": 0.013,
+    "shaft_diameter_m": 0.0076,
+    "CAD_nominal_shaft_diameter_m": 0.008,
+    "radial_clearance_allowance_m": 0.0002,
+    "tip_diameter_m": 0.005,
+    "parts": 4,
+    "original_slits_and_reliefs_not_simulated": true,
+    "hardware_validated": false
+  },
+  "grasp_obstacles_from_RGBD_cloud": true,
+  "loose_stock_contact_policy": "Fingertip nudging allowed; RGB-D palm sweep, fixed-structure queries and all physical contacts retained",
+  "fixed_receiver_catalog": {
+    "key": "adb20cf631848ecff138c850c3b001e76e3b3b64d229f60757899d2583e705f1",
+    "cached": false,
+    "balanced_large_receiver_grasp": true,
+    "exact_axis_large_receiver_grasp": true,
+    "preparation_s": 9.308244881103747,
+    "counts": {
+      "ring1|depths=0.0040000000000000001|balanced-X=0.0051883790850085765|exact-axis-Y=0.60889605905295219": 60,
+      "ring2|depths=0.002": 60
+    },
+    "uses_free_body_poses": false,
+    "preparation_excluded_from_operation_clock": true
+  },
+  "fast_transport_planner": {
+    "enabled": true,
+    "version": "0.7.0.8",
+    "static_objects": 2793,
+    "skipped_static_colliders": [],
+    "preparation_s": 1.3706698620226234,
+    "uses_free_body_poses": false,
+    "proposal_only": true,
+    "live_PhysX_path_verification_required": true
+  },
+  "native_contact_generation": {
+    "contact_offset_m": 0.0005,
+    "rest_offset_m": 0.0,
+    "colliders": 4,
+    "applied_after_random_setup": true,
+    "collision_geometry_unchanged": true,
+    "friction_unchanged": true
+  },
+  "operation_solver_iterations": {
+    "position": 128,
+    "velocity": 64,
+    "applied_after_random_setup": true
+  },
+  "standby_preparation_wall_s": 26.058308362029493,
+  "automatic_gc_deferred_during_cycle": true,
+  "first_capture_wall_epoch_s": 1792608533.0841475,
+  "motor_velocity_cap_policy": "Signed position-dependent FR3 bounds at encoder position plus one-step margin; 93% drive cap and unchanged 95% actual velocity acceptance",
+  "CPU_planning_advances_physics": false,
+  "hard_realtime_controller_validated": false,
+  "native_gripper_control": "One scalar width/velocity command + hard mechanical coupling; same reference on both pads; total effort cap 60.0 N and total damping 4000 N s/m, distributed equally; no additional motor capability; loaded grasp maintains closing force at 15 mm/s velocity preload instead of relaxing at a fixed minimum width; configured loaded preload 7.5 mm/s with 0.3 s force ramp",
+  "native_single_motor_coupling_validated": true,
+  "native_shared_motor_drive": true,
+  "native_loaded_preload_ramp": {
+    "duration_s": 0.3,
+    "initial_m_s": 0.003,
+    "final_m_s": 0.0075,
+    "motor_force_cap_n": 60.0,
+    "arm_timing_unchanged": true
+  },
+  "planning_diagnostics": [
+    {
+      "event": "empty_right_stationary_intermediate_preshape",
+      "requested_width_m": 0.07,
+      "actual_width_m": 0.07001341134309769,
+      "encoder_settled": true,
+      "arm_trajectory_unchanged": true,
+      "force_and_velocity_caps_unchanged": true,
+      "duration_s": 0.2,
+      "progress_law": "bounded_jerk_with_cruise",
+      "ramp_fraction": 0.3,
+      "velocity_fraction": 0.91,
+      "acceleration_rad_s2": 9.2,
+      "jerk_rad_s3": 4400.0
+    },
+    {
+      "event": "empty_right_park_exact_curve",
+      "target_world_m": [
+        0.0,
+        -0.25,
+        1.4
+      ],
+      "whole_robot_fixed_and_pair_checked": true,
+      "same_arm_nonadjacent_CAD_checked": true,
+      "same_arm_query_statistics": {
+        "queries": 4868,
+        "rejected": 25,
+        "candidate_pairs": 43,
+        "geometry_rows": 11,
+        "backend": "FCL convex CAD",
+        "semantic_exclusions": "same rigid body, direct joint collision=false, exact authored FilteredPairs",
+        "last_rejection": {
+          "kind": "same_arm_self_collision",
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/Contact/right_arm_fr3v2_link7_collision",
+          "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5",
+          "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/Contact/right_arm_fr3v2_link5_collision",
+          "distance_m": 0.000891736694811893,
+          "required_clearance_m": 0.001
+        }
+      },
+      "whole_robot_conservative_stock_volume_checked": true,
+      "stock_bounds_world_m": [
+        [
+          0.4184210007614178,
+          -0.9195032009690306,
+          1.0741296470997765
+        ],
+        [
+          0.6746590756058829,
+          -0.5315031965223335,
+          1.2359182066678929
+        ]
+      ],
+      "checked_openings_m": [
+        0.07000000029802322,
+        0.07000335305929184,
+        0.07000670582056046,
+        0.07001005858182907,
+        0.07001341134309769
+      ],
+      "duration_s": 1.4083333333333332,
+      "progress_law": "checked_joint_edges_with_corner_stops",
+      "corner_stops": 1,
+      "velocity_fraction": 0.91,
+      "acceleration_rad_s2": 9.2,
+      "jerk_rad_s3": 4400.0,
+      "geometry_overshoot_avoided": true,
+      "full_concatenated_command_check": true,
+      "peak_velocity_fraction_of_reserved_bound": 0.6259869917513051,
+      "max_acceleration_rad_s2": 8.5693359375,
+      "max_jerk_rad_s3": 672.36328125,
+      "aperture_query_diagnostics": {
+        "apertures_m": [
+          0.07000000029802322,
+          0.07000335305929184,
+          0.07000670582056046,
+          0.07001005858182907,
+          0.07001341134309769
+        ],
+        "reference_full_paths": 1,
+        "dependent_configurations": 2712,
+        "invariant_configurations_reused": 0,
+        "fallback_full_configurations": 0,
+        "changed_body_names": [
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger",
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger"
+        ],
+        "path_sample_count": 678
+      }
+    },
+    {
+      "event": "right_ring_fixture_search",
+      "part": "ring1",
+      "fresh_RGBD_alignment_replan": false,
+      "approved": true,
+      "counts": {},
+      "examples": {},
+      "carry_route_counts": {
+        "attempts": 1,
+        "accepted": 1
+      },
+      "current_measured_grasp": [
+        [
+          0.9052320348055931,
+          -0.000246008486473781,
+          -0.4249178155427359,
+          -0.002348296419707463
+        ],
+        [
+          0.00029578720006033705,
+          1.0000000778094502,
+          5.113639248500816e-05,
+          3.047584263837777e-07
+        ],
+        [
+          0.4249178199590847,
+          -0.00017201655847898673,
+          0.9052320946190351,
+          0.0047835067402655085
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "checked_width_m": 0.07499867318130454
+    },
+    {
+      "event": "right_ring_checked_executed_curve",
+      "part": "ring1",
+      "label": "carry_to_preinsert",
+      "checked_openings_m": [
+        0.07199863344430923,
+        0.07268655113875866,
+        0.07337446883320808,
+        0.07406238652765751,
+        0.07475030422210693
+      ],
+      "payload_checked": true,
+      "aperture_invariants_reused": true,
+      "aperture_query_diagnostics": {
+        "apertures_m": [
+          0.07199863344430923,
+          0.07268655113875866,
+          0.07337446883320808,
+          0.07406238652765751,
+          0.07475030422210693
+        ],
+        "reference_full_paths": 1,
+        "dependent_configurations": 11608,
+        "invariant_configurations_reused": 0,
+        "fallback_full_configurations": 0,
+        "changed_body_names": [
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger",
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger"
+        ],
+        "path_sample_count": 2902
+      },
+      "duration_s": 6.041666666666667,
+      "progress_law": "checked_joint_edges_with_corner_stops",
+      "corner_stops": 23,
+      "velocity_fraction": 0.9,
+      "acceleration_rad_s2": 9.2,
+      "jerk_rad_s3": 4400.0,
+      "geometry_overshoot_avoided": true,
+      "full_concatenated_command_check": true,
+      "peak_velocity_fraction_of_reserved_bound": 0.8547397060248688,
+      "max_acceleration_rad_s2": 8.8165283203125,
+      "max_jerk_rad_s3": 4086.9140625
+    },
+    {
+      "event": "right_ring_checked_executed_curve",
+      "part": "ring1",
+      "label": "preinsert_visual_correction",
+      "checked_openings_m": [
+        0.07199863344430923,
+        0.07267758250236511,
+        0.07335653156042099,
+        0.07403548061847687,
+        0.07471442967653275
+      ],
+      "payload_checked": true,
+      "aperture_invariants_reused": true,
+      "aperture_query_diagnostics": {
+        "apertures_m": [
+          0.07199863344430923,
+          0.07267758250236511,
+          0.07335653156042099,
+          0.07403548061847687,
+          0.07471442967653275
+        ],
+        "reference_full_paths": 1,
+        "dependent_configurations": 860,
+        "invariant_configurations_reused": 0,
+        "fallback_full_configurations": 0,
+        "changed_body_names": [
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger",
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger"
+        ],
+        "path_sample_count": 215
+      },
+      "duration_s": 0.44375,
+      "progress_law": "checked_joint_edges_with_corner_stops",
+      "corner_stops": 7,
+      "velocity_fraction": 0.9,
+      "acceleration_rad_s2": 9.2,
+      "jerk_rad_s3": 4400.0,
+      "geometry_overshoot_avoided": true,
+      "full_concatenated_command_check": true,
+      "peak_velocity_fraction_of_reserved_bound": 0.02780409330766547,
+      "max_acceleration_rad_s2": 6.48193359375,
+      "max_jerk_rad_s3": 949.21875
+    },
+    {
+      "event": "right_ring_checked_executed_curve",
+      "part": "ring1",
+      "label": "axial_insert",
+      "checked_openings_m": [
+        0.07199863344430923,
+        0.07267755642533302,
+        0.07335647940635681,
+        0.0740354023873806,
+        0.07471432536840439
+      ],
+      "payload_checked": false,
+      "aperture_invariants_reused": true,
+      "aperture_query_diagnostics": {
+        "apertures_m": [
+          0.07199863344430923,
+          0.07267755642533302,
+          0.07335647940635681,
+          0.0740354023873806,
+          0.07471432536840439
+        ],
+        "reference_full_paths": 1,
+        "dependent_configurations": 1572,
+        "invariant_configurations_reused": 0,
+        "fallback_full_configurations": 0,
+        "changed_body_names": [
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger",
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger"
+        ],
+        "path_sample_count": 393
+      },
+      "duration_s": 0.8145833333333333,
+      "progress_law": "checked_joint_edges_with_corner_stops",
+      "corner_stops": 7,
+      "velocity_fraction": 0.9,
+      "acceleration_rad_s2": 9.2,
+      "jerk_rad_s3": 4400.0,
+      "geometry_overshoot_avoided": true,
+      "full_concatenated_command_check": true,
+      "peak_velocity_fraction_of_reserved_bound": 0.16959872257921835,
+      "max_acceleration_rad_s2": 8.7615966796875,
+      "max_jerk_rad_s3": 3651.85546875
+    },
+    {
+      "event": "right_ring_checked_executed_curve",
+      "part": "ring1",
+      "label": "release_after_full_depth",
+      "checked_openings_m": [
+        0.07199863344430923,
+        0.07399897508323193,
+        0.07599931672215463,
+        0.0779996583610773,
+        0.08
+      ],
+      "payload_checked": false,
+      "aperture_invariants_reused": true,
+      "aperture_query_diagnostics": {
+        "apertures_m": [
+          0.07199863344430923,
+          0.07399897508323193,
+          0.07599931672215463,
+          0.0779996583610773,
+          0.08
+        ],
+        "reference_full_paths": 1,
+        "dependent_configurations": 392,
+        "invariant_configurations_reused": 0,
+        "fallback_full_configurations": 0,
+        "changed_body_names": [
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger",
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger"
+        ],
+        "path_sample_count": 98
+      },
+      "duration_s": 0.2,
+      "progress_law": "minimum_jerk",
+      "ramp_fraction": null,
+      "velocity_fraction": 0.9,
+      "acceleration_rad_s2": 9.2,
+      "jerk_rad_s3": 4400.0
+    },
+    {
+      "event": "right_ring_checked_executed_curve",
+      "part": "ring1",
+      "label": "world_down_withdraw",
+      "checked_openings_m": [
+        0.0799868255853653,
+        0.07999011918902398,
+        0.07999341279268266,
+        0.07999670639634132,
+        0.08
+      ],
+      "payload_checked": false,
+      "aperture_invariants_reused": true,
+      "aperture_query_diagnostics": {
+        "apertures_m": [
+          0.0799868255853653,
+          0.07999011918902398,
+          0.07999341279268266,
+          0.07999670639634132,
+          0.08
+        ],
+        "reference_full_paths": 1,
+        "dependent_configurations": 1976,
+        "invariant_configurations_reused": 0,
+        "fallback_full_configurations": 0,
+        "changed_body_names": [
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger",
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger"
+        ],
+        "path_sample_count": 494
+      },
+      "duration_s": 1.025,
+      "progress_law": "checked_joint_edges_with_corner_stops",
+      "corner_stops": 7,
+      "velocity_fraction": 0.9,
+      "acceleration_rad_s2": 9.2,
+      "jerk_rad_s3": 4400.0,
+      "geometry_overshoot_avoided": true,
+      "full_concatenated_command_check": true,
+      "peak_velocity_fraction_of_reserved_bound": 0.22516905806446802,
+      "max_acceleration_rad_s2": 8.8165283203125,
+      "max_jerk_rad_s3": 3757.32421875
+    },
+    {
+      "event": "completed_part_added_to_both_arm_collision_worlds",
+      "part": "ring1",
+      "source": "Fresh RGB-D after release and withdrawal",
+      "pose_from_RGBD": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          -0.12320271270711677,
+          0.2400036945136739,
+          1.5307502679149043
+        ],
+        "initial_plane_axis": [
+          0.00347121971259306,
+          -0.0014485315435172443,
+          0.9999929261700176
+        ],
+        "center_m": [
+          -0.12326580789534536,
+          0.2399300986689063,
+          1.5307503803270581
+        ],
+        "axis": [
+          0.00347121971259306,
+          -0.0014485315435172443,
+          0.9999929261700176
+        ],
+        "visible_face_inner_radius_m": 0.03192496040164567,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.002075039598354332,
+        "front_back_from_RGBD": true,
+        "rms_m": 9.737251337498159e-05,
+        "depth_points": 11221,
+        "measured_classification_diameter_m": 0.07303865588394533,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          -6.309518822858462e-05,
+          -7.359584476759884e-05,
+          1.1241215380763947e-07
+        ],
+        "lateral_CAD_registration_rms_m": 0.0003332825920660704,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "uncertainty_m": 0.0035,
+      "uses_free_body_poses": false
+    },
+    {
+      "event": "live_tilted_bore_hook_planned",
+      "part": "ring2",
+      "source": "fresh live RGB-D and current robot encoders",
+      "left_hand_known_empty": true,
+      "left_actual_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "left_actual_opening_m": 0.07999999821186066,
+      "proposal": {
+        "approved": true,
+        "selected_inner_wall_contact_proof": {
+          "supported": true,
+          "reason": "inner_wall_supports_pull",
+          "first_contact_stroke_m": 0.014,
+          "minimum_hull_clearance_m": 0.0004761613735721898,
+          "first_patch_count": 3,
+          "inner_wall_samples": 3,
+          "cap_samples": 0,
+          "opposing_normal_to_pull_cosine": 0.9487374320683577,
+          "normal_direction_component": -8.048554522431644e-17,
+          "mean_native_facet_normal_opposition": 0.6985059117942618,
+          "first_patch_world_normal": [
+            0.29932339942262864,
+            -0.7131400590972908,
+            0.6339059541200053
+          ],
+          "force_contact_measured": false,
+          "uses_free_body_poses": false
+        },
+        "pose": {
+          "part": "ring2",
+          "initial_arc_center_m": [
+            0.5858695390782876,
+            -0.7762529521874422,
+            1.1100719334962943
+          ],
+          "initial_plane_axis": [
+            -0.2759497550912775,
+            0.2920275200740739,
+            0.9157355842078271
+          ],
+          "center_m": [
+            0.5858695390782876,
+            -0.7762529521874422,
+            1.1100719334962943
+          ],
+          "axis": [
+            -0.2759497550912775,
+            0.2920275200740739,
+            0.9157355842078271
+          ],
+          "visible_face_inner_radius_m": 0.0294842720199893,
+          "visible_CAD_end_sign": 1,
+          "front_back_orientation_margin_m": 0.0019842720199893006,
+          "front_back_from_RGBD": true,
+          "rms_m": 0.0004974019224504082,
+          "depth_points": 557,
+          "measured_classification_diameter_m": 0.0604076440905577,
+          "visible_arc_coverage_deg": 360,
+          "size_classification": "RGB-D observed annular arc metric diameter",
+          "uses_depth_sensor": true,
+          "uses_simulator_body_poses": false,
+          "annular_cap_free_space_gate": {
+            "backend": "RGB-D annular CAD cap observed-free-space veto",
+            "uses_simulator_body_poses": false,
+            "support_count": 700,
+            "seen_count": 720,
+            "occluded_count": 0,
+            "contradiction_count": 20,
+            "contradiction_angle_bins": 20,
+            "free_fraction": 0.027777777777777776,
+            "rejected": false
+          }
+        },
+        "contact_TCP": [
+          [
+            0.9659258262886847,
+            -9.226981004209161e-07,
+            0.2588190451023078,
+            0.5853466484540506
+          ],
+          [
+            -8.912579250644525e-07,
+            -0.9999999999995743,
+            -2.388118412687565e-07,
+            -0.7287528886668215
+          ],
+          [
+            0.25881904510241793,
+            0.0,
+            -0.9659258262890958,
+            1.116049101684865
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "pre_TCP": [
+          [
+            0.9659258262886847,
+            -9.226981004209161e-07,
+            0.2588190451023078,
+            0.5581706487183082
+          ],
+          [
+            -8.912579250644525e-07,
+            -0.9999999999995743,
+            -2.388118412687565e-07,
+            -0.7287528635915782
+          ],
+          [
+            0.25881904510241793,
+            0.0,
+            -0.9659258262890958,
+            1.2174713134452202
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "pre_route": [
+          [
+            -2.5158987045288086,
+            -0.15150980651378632,
+            2.6393470764160156,
+            -1.6477378606796265,
+            2.135854721069336,
+            2.099776268005371,
+            1.3367613554000854
+          ],
+          [
+            -2.5158987045288086,
+            -0.15150980651378632,
+            2.6393473148345947,
+            -1.647737979888916,
+            2.135854721069336,
+            2.099776268005371,
+            1.3367613554000854
+          ],
+          [
+            -2.5158989429473877,
+            -0.15150980651378632,
+            2.6393473148345947,
+            -1.6477378606796265,
+            2.135854721069336,
+            2.099776268005371,
+            1.3367613554000854
+          ],
+          [
+            -2.5158989429473877,
+            -0.1515098214149475,
+            2.6393470764160156,
+            -1.6477378606796265,
+            2.135854959487915,
+            2.099776268005371,
+            1.336761474609375
+          ],
+          [
+            -2.5158989429473877,
+            -0.1515098214149475,
+            2.6393470764160156,
+            -1.647737979888916,
+            2.135854721069336,
+            2.099776268005371,
+            1.3367613554000854
+          ],
+          [
+            -2.515713691711426,
+            -0.15153861045837402,
+            2.6391866207122803,
+            -1.647709608078003,
+            2.135540246963501,
+            2.0997047424316406,
+            1.3367233276367188
+          ],
+          [
+            -2.514417886734009,
+            -0.1517401784658432,
+            2.6380624771118164,
+            -1.6475101709365845,
+            2.13333797454834,
+            2.0992040634155273,
+            1.3364567756652832
+          ],
+          [
+            -2.5109009742736816,
+            -0.1522873342037201,
+            2.6350109577178955,
+            -1.6469693183898926,
+            2.1273608207702637,
+            2.0978450775146484,
+            1.3357336521148682
+          ],
+          [
+            -2.50405216217041,
+            -0.15335281193256378,
+            2.6290688514709473,
+            -1.6459159851074219,
+            2.115720510482788,
+            2.095198392868042,
+            1.3343251943588257
+          ],
+          [
+            -2.493032693862915,
+            -0.15507715940475464,
+            2.6195061206817627,
+            -1.6442185640335083,
+            2.097010850906372,
+            2.090935230255127,
+            1.3320574760437012
+          ],
+          [
+            -2.4780921936035156,
+            -0.15747180581092834,
+            2.6065263748168945,
+            -1.6419004201889038,
+            2.071746587753296,
+            2.085127592086792,
+            1.3289735317230225
+          ],
+          [
+            -2.4597525596618652,
+            -0.1605159342288971,
+            2.5905675888061523,
+            -1.6390247344970703,
+            2.040924310684204,
+            2.0779478549957275,
+            1.3251707553863525
+          ],
+          [
+            -2.43853497505188,
+            -0.1641887128353119,
+            2.5720674991607666,
+            -1.635654091835022,
+            2.005539655685425,
+            2.069568157196045,
+            1.3207464218139648
+          ],
+          [
+            -2.4148879051208496,
+            -0.16847825050354004,
+            2.551400899887085,
+            -1.6318341493606567,
+            1.966461181640625,
+            2.0601377487182617,
+            1.315783977508545
+          ],
+          [
+            -2.3889658451080322,
+            -0.17340825498104095,
+            2.528690814971924,
+            -1.6275403499603271,
+            1.9240456819534302,
+            2.0497117042541504,
+            1.3103103637695312
+          ],
+          [
+            -2.3608503341674805,
+            -0.17901140451431274,
+            2.503997564315796,
+            -1.6227308511734009,
+            1.8785229921340942,
+            2.0383224487304688,
+            1.3043391704559326
+          ],
+          [
+            -2.3306221961975098,
+            -0.18532033264636993,
+            2.477381706237793,
+            -1.6173642873764038,
+            1.8301221132278442,
+            2.0260019302368164,
+            1.2978832721710205
+          ],
+          [
+            -2.2983791828155518,
+            -0.19236654043197632,
+            2.4489126205444336,
+            -1.6113964319229126,
+            1.7790952920913696,
+            2.012786626815796,
+            1.2909585237503052
+          ],
+          [
+            -2.2642815113067627,
+            -0.20017684996128082,
+            2.4186947345733643,
+            -1.6047749519348145,
+            1.7257860898971558,
+            1.9987289905548096,
+            1.2835898399353027
+          ],
+          [
+            -2.2285053730010986,
+            -0.20877692103385925,
+            2.386842966079712,
+            -1.5974446535110474,
+            1.6705600023269653,
+            1.9838858842849731,
+            1.2758049964904785
+          ],
+          [
+            -2.1912269592285156,
+            -0.218192458152771,
+            2.353470802307129,
+            -1.5893510580062866,
+            1.613783597946167,
+            1.9683136940002441,
+            1.2676312923431396
+          ],
+          [
+            -2.152621030807495,
+            -0.22845737636089325,
+            2.3186862468719482,
+            -1.5804520845413208,
+            1.5557855367660522,
+            1.952065110206604,
+            1.259095549583435
+          ],
+          [
+            -2.112855911254883,
+            -0.23963838815689087,
+            2.2825675010681152,
+            -1.5707587003707886,
+            1.4967471361160278,
+            1.9351744651794434,
+            1.2502201795578003
+          ],
+          [
+            -2.072098731994629,
+            -0.25181058049201965,
+            2.245187520980835,
+            -1.560294508934021,
+            1.436812400817871,
+            1.9176722764968872,
+            1.2410262823104858
+          ],
+          [
+            -2.030515670776367,
+            -0.26504892110824585,
+            2.206618070602417,
+            -1.5490831136703491,
+            1.3761252164840698,
+            1.8995883464813232,
+            1.2315354347229004
+          ],
+          [
+            -1.98828125,
+            -0.2794419825077057,
+            2.166923999786377,
+            -1.5371636152267456,
+            1.3148226737976074,
+            1.8809521198272705,
+            1.2217676639556885
+          ],
+          [
+            -1.9456002712249756,
+            -0.2951323688030243,
+            2.1261401176452637,
+            -1.5246351957321167,
+            1.2530138492584229,
+            1.8617864847183228,
+            1.2117388248443604
+          ],
+          [
+            -1.9026850461959839,
+            -0.312276154756546,
+            2.0842931270599365,
+            -1.511611819267273,
+            1.190800666809082,
+            1.8421142101287842,
+            1.2014638185501099
+          ],
+          [
+            -1.8597478866577148,
+            -0.3310295045375824,
+            2.041410446166992,
+            -1.4982078075408936,
+            1.12828528881073,
+            1.8219568729400635,
+            1.1909570693969727
+          ],
+          [
+            -1.816983699798584,
+            -0.35152262449264526,
+            1.9975215196609497,
+            -1.484523892402649,
+            1.0655571222305298,
+            1.80133855342865,
+            1.1802328824996948
+          ],
+          [
+            -1.7745182514190674,
+            -0.37378180027008057,
+            1.9526644945144653,
+            -1.4706066846847534,
+            1.0026558637619019,
+            1.7802895307540894,
+            1.1693031787872314
+          ],
+          [
+            -1.7324601411819458,
+            -0.39780735969543457,
+            1.906880497932434,
+            -1.456489086151123,
+            0.9396084547042847,
+            1.7588422298431396,
+            1.1581791639328003
+          ],
+          [
+            -1.690917730331421,
+            -0.4235997200012207,
+            1.8602097034454346,
+            -1.4422041177749634,
+            0.8764418959617615,
+            1.7370283603668213,
+            1.1468724012374878
+          ],
+          [
+            -1.6499782800674438,
+            -0.4511382579803467,
+            1.8126980066299438,
+            -1.4277896881103516,
+            0.8131782412528992,
+            1.7148836851119995,
+            1.1353933811187744
+          ],
+          [
+            -1.6096426248550415,
+            -0.48031890392303467,
+            1.764411211013794,
+            -1.4133018255233765,
+            0.7498190402984619,
+            1.692455768585205,
+            1.123749852180481
+          ],
+          [
+            -1.5698906183242798,
+            -0.5110166072845459,
+            1.715419888496399,
+            -1.3988016843795776,
+            0.6863611340522766,
+            1.669796109199524,
+            1.1119492053985596
+          ],
+          [
+            -1.530701756477356,
+            -0.5431062579154968,
+            1.6657949686050415,
+            -1.3843505382537842,
+            0.6228008270263672,
+            1.6469553709030151,
+            1.0999982357025146
+          ],
+          [
+            -1.4920628070831299,
+            -0.5764452219009399,
+            1.6156002283096313,
+            -1.3700014352798462,
+            0.5591380000114441,
+            1.623985767364502,
+            1.087903618812561
+          ],
+          [
+            -1.4539871215820312,
+            -0.6108202338218689,
+            1.564871907234192,
+            -1.3557753562927246,
+            0.49538469314575195,
+            1.600942611694336,
+            1.0756698846817017
+          ],
+          [
+            -1.416495680809021,
+            -0.6460002064704895,
+            1.513639211654663,
+            -1.34168541431427,
+            0.43155595660209656,
+            1.5778822898864746,
+            1.0633009672164917
+          ],
+          [
+            -1.3796088695526123,
+            -0.6817542910575867,
+            1.4619314670562744,
+            -1.3277448415756226,
+            0.3676668703556061,
+            1.5548605918884277,
+            1.0508008003234863
+          ],
+          [
+            -1.3433467149734497,
+            -0.7178670167922974,
+            1.4097832441329956,
+            -1.3139686584472656,
+            0.30373281240463257,
+            1.5319314002990723,
+            1.0381742715835571
+          ],
+          [
+            -1.3077266216278076,
+            -0.7541847229003906,
+            1.3572500944137573,
+            -1.3003793954849243,
+            0.23977021872997284,
+            1.5091378688812256,
+            1.0254287719726562
+          ],
+          [
+            -1.272764801979065,
+            -0.7905692458152771,
+            1.3043932914733887,
+            -1.2870020866394043,
+            0.175795778632164,
+            1.4865211248397827,
+            1.0125728845596313
+          ],
+          [
+            -1.2384775876998901,
+            -0.826882541179657,
+            1.25127375125885,
+            -1.273861289024353,
+            0.11182615160942078,
+            1.4641218185424805,
+            0.9996151328086853
+          ],
+          [
+            -1.2048845291137695,
+            -0.8629854917526245,
+            1.1979507207870483,
+            -1.2609837055206299,
+            0.04788712412118912,
+            1.4419808387756348,
+            0.9865641593933105
+          ],
+          [
+            -1.1720157861709595,
+            -0.8987345695495605,
+            1.1444755792617798,
+            -1.2484042644500732,
+            -0.01595914550125599,
+            1.4201405048370361,
+            0.973430335521698
+          ],
+          [
+            -1.139904260635376,
+            -0.9339855313301086,
+            1.0908976793289185,
+            -1.2361596822738647,
+            -0.07964140176773071,
+            1.398642659187317,
+            0.9602243900299072
+          ],
+          [
+            -1.1085832118988037,
+            -0.9685938358306885,
+            1.0372668504714966,
+            -1.2242865562438965,
+            -0.14308840036392212,
+            1.3775290250778198,
+            0.9469568133354187
+          ],
+          [
+            -1.0780856609344482,
+            -1.0024135112762451,
+            0.9836294651031494,
+            -1.212815284729004,
+            -0.20624291896820068,
+            1.3568447828292847,
+            0.9336387515068054
+          ],
+          [
+            -1.048443078994751,
+            -1.035292148590088,
+            0.930019736289978,
+            -1.2017489671707153,
+            -0.2691039741039276,
+            1.3366434574127197,
+            0.9202818274497986
+          ],
+          [
+            -1.019687533378601,
+            -1.0670758485794067,
+            0.8764688372612,
+            -1.191084861755371,
+            -0.33168458938598633,
+            1.3169819116592407,
+            0.9068982005119324
+          ],
+          [
+            -0.9918504357337952,
+            -1.0976104736328125,
+            0.8230081796646118,
+            -1.1808193922042847,
+            -0.39399781823158264,
+            1.297916293144226,
+            0.8934999108314514
+          ],
+          [
+            -0.9649654626846313,
+            -1.1267584562301636,
+            0.7696850895881653,
+            -1.1709519624710083,
+            -0.45604294538497925,
+            1.2794984579086304,
+            0.8801020383834839
+          ],
+          [
+            -0.9390735030174255,
+            -1.15444815158844,
+            0.7166122198104858,
+            -1.1614909172058105,
+            -0.517764151096344,
+            1.261759638786316,
+            0.8667320609092712
+          ],
+          [
+            -0.9142172336578369,
+            -1.1806249618530273,
+            0.6639183759689331,
+            -1.1524474620819092,
+            -0.5790918469429016,
+            1.244726300239563,
+            0.8534204959869385
+          ],
+          [
+            -0.8904393911361694,
+            -1.2052333354949951,
+            0.6117323637008667,
+            -1.1438326835632324,
+            -0.6399564743041992,
+            1.2284246683120728,
+            0.8401976823806763
+          ],
+          [
+            -0.8677725791931152,
+            -1.2282345294952393,
+            0.5601945519447327,
+            -1.1356546878814697,
+            -0.7002751231193542,
+            1.212876558303833,
+            0.8270975947380066
+          ],
+          [
+            -0.846208393573761,
+            -1.2496533393859863,
+            0.5094917416572571,
+            -1.1279096603393555,
+            -0.7599121332168579,
+            1.1980842351913452,
+            0.8141669034957886
+          ],
+          [
+            -0.8257280588150024,
+            -1.2695306539535522,
+            0.4598221778869629,
+            -1.120591402053833,
+            -0.8187182545661926,
+            1.1840449571609497,
+            0.801456093788147
+          ],
+          [
+            -0.8063129782676697,
+            -1.2879071235656738,
+            0.4113842248916626,
+            -1.113693118095398,
+            -0.8765445947647095,
+            1.1707563400268555,
+            0.7890152931213379
+          ],
+          [
+            -0.7879488468170166,
+            -1.3048263788223267,
+            0.3643849194049835,
+            -1.1072067022323608,
+            -0.9332047700881958,
+            1.1582187414169312,
+            0.7768974900245667
+          ],
+          [
+            -0.7706378698348999,
+            -1.3203424215316772,
+            0.31906643509864807,
+            -1.1011161804199219,
+            -0.9883631467819214,
+            1.1464437246322632,
+            0.7651662826538086
+          ],
+          [
+            -0.7543869018554688,
+            -1.334511399269104,
+            0.27567949891090393,
+            -1.0954041481018066,
+            -1.041646957397461,
+            1.135446548461914,
+            0.7538883090019226
+          ],
+          [
+            -0.7392022013664246,
+            -1.3473904132843018,
+            0.23447498679161072,
+            -1.090052604675293,
+            -1.0926834344863892,
+            1.1252416372299194,
+            0.7431299686431885
+          ],
+          [
+            -0.7250919342041016,
+            -1.3590333461761475,
+            0.19568179547786713,
+            -1.0850454568862915,
+            -1.1411210298538208,
+            1.115842342376709,
+            0.7329537272453308
+          ],
+          [
+            -0.7120689153671265,
+            -1.3694865703582764,
+            0.1594410091638565,
+            -1.0803698301315308,
+            -1.1866930723190308,
+            1.1072555780410767,
+            0.723406195640564
+          ],
+          [
+            -0.7001474499702454,
+            -1.3787938356399536,
+            0.12587176263332367,
+            -1.0760146379470825,
+            -1.2291545867919922,
+            1.099486231803894,
+            0.7145297527313232
+          ],
+          [
+            -0.6893419623374939,
+            -1.3869993686676025,
+            0.09509319067001343,
+            -1.07196843624115,
+            -1.26826012134552,
+            1.092539668083191,
+            0.7063670754432678
+          ],
+          [
+            -0.6797002553939819,
+            -1.3941255807876587,
+            0.06732837110757828,
+            -1.0682437419891357,
+            -1.3036412000656128,
+            1.0864365100860596,
+            0.6989875435829163
+          ],
+          [
+            -0.6714051365852356,
+            -1.4001115560531616,
+            0.04321614280343056,
+            -1.0649484395980835,
+            -1.334437370300293,
+            1.0812592506408691,
+            0.6925676465034485
+          ],
+          [
+            -0.6646727919578552,
+            -1.4048742055892944,
+            0.02349931187927723,
+            -1.0622146129608154,
+            -1.3596651554107666,
+            1.0771056413650513,
+            0.6873106956481934
+          ],
+          [
+            -0.6597198247909546,
+            -1.4083311557769775,
+            0.008920667693018913,
+            -1.0601739883422852,
+            -1.3783408403396606,
+            1.0740735530853271,
+            0.6834201812744141
+          ],
+          [
+            -0.6566432118415833,
+            -1.4104713201522827,
+            -0.0001458381157135591,
+            -1.0589020252227783,
+            -1.3899585008621216,
+            1.0721936225891113,
+            0.6810001730918884
+          ],
+          [
+            -0.6550633311271667,
+            -1.4115705490112305,
+            -0.004801612813025713,
+            -1.05824875831604,
+            -1.3959242105484009,
+            1.0712283849716187,
+            0.6797574758529663
+          ],
+          [
+            -0.6544812321662903,
+            -1.411975383758545,
+            -0.006516896653920412,
+            -1.0580081939697266,
+            -1.3981221914291382,
+            1.0708726644515991,
+            0.6792995929718018
+          ],
+          [
+            -0.6543981432914734,
+            -1.4120333194732666,
+            -0.0067619383335113525,
+            -1.0579737424850464,
+            -1.3984363079071045,
+            1.0708218812942505,
+            0.6792341470718384
+          ],
+          [
+            -0.6543980836868286,
+            -1.412033200263977,
+            -0.006761937867850065,
+            -1.057973861694336,
+            -1.398436188697815,
+            1.0708218812942505,
+            0.6792342066764832
+          ],
+          [
+            -0.6543981432914734,
+            -1.4120333194732666,
+            -0.006761937867850065,
+            -1.0579737424850464,
+            -1.398436188697815,
+            1.0708218812942505,
+            0.6792342066764832
+          ],
+          [
+            -0.6543980836868286,
+            -1.412033200263977,
+            -0.006761937867850065,
+            -1.0579737424850464,
+            -1.398436188697815,
+            1.0708218812942505,
+            0.6792341470718384
+          ],
+          [
+            -0.6543980759911773,
+            -1.4120331429734472,
+            -0.006761938005112926,
+            -1.05797378395984,
+            -1.3984361825581326,
+            1.0708219066490159,
+            0.679234170047575
+          ]
+        ],
+        "descent": [
+          [
+            -0.6543980759911773,
+            -1.4120331429734472,
+            -0.006761938005112926,
+            -1.05797378395984,
+            -1.3984361825581326,
+            1.0708219066490159,
+            0.679234170047575
+          ],
+          [
+            -0.6274173950219104,
+            -1.462861598774177,
+            -0.01882372788162357,
+            -1.1384503992755495,
+            -1.4050825065207941,
+            1.0955880374983102,
+            0.7088862725392424
+          ],
+          [
+            -0.6022425497925475,
+            -1.5076885669854938,
+            -0.03261780292211475,
+            -1.207854904119584,
+            -1.4140003772647087,
+            1.1202579470411278,
+            0.7329736580685414
+          ],
+          [
+            -0.5785012706959916,
+            -1.5479904621423466,
+            -0.047777768718453406,
+            -1.2686853378283167,
+            -1.4248820963870725,
+            1.1448827016275829,
+            0.7528564223305894
+          ],
+          [
+            -0.5559189635590166,
+            -1.5846685214521945,
+            -0.06407215536353884,
+            -1.322480411824933,
+            -1.437502248993054,
+            1.1694970241647549,
+            0.7694077771312082
+          ],
+          [
+            -0.5342836476818262,
+            -1.6183110572099075,
+            -0.08133863872206894,
+            -1.3702530108689048,
+            -1.4516815244884858,
+            1.194124717085266,
+            0.7832287927034265
+          ]
+        ],
+        "pull_direction": [
+          -0.5085145143902859,
+          0.7641158872238702,
+          -0.3969129621799841
+        ],
+        "pull_TCP": [
+          [
+            0.9659258262886847,
+            -9.226981004209161e-07,
+            0.2588190451023078,
+            0.5675486404503906
+          ],
+          [
+            -8.912579250644525e-07,
+            -0.9999999999995743,
+            -2.388118412687565e-07,
+            -0.7020088326139861
+          ],
+          [
+            0.25881904510241793,
+            0.0,
+            -0.9659258262890958,
+            1.1021571480085657
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "contact_stage_routes": [
+          [
+            [
+              -0.5342836476818262,
+              -1.6183110572099075,
+              -0.08133863872206894,
+              -1.3702530108689048,
+              -1.4516815244884858,
+              1.194124717085266,
+              0.7832287927034265
+            ],
+            [
+              -0.5342056844067828,
+              -1.6286618100235575,
+              -0.0799836598897807,
+              -1.3893300816087706,
+              -1.4493346503784452,
+              1.1940322243284835,
+              0.7927367578634507
+            ],
+            [
+              -0.5341081230238384,
+              -1.6388047421808987,
+              -0.07866090441783323,
+              -1.4080638622321058,
+              -1.4470027349484524,
+              1.1939535914418333,
+              0.8020990075058096
+            ],
+            [
+              -0.5339914141535161,
+              -1.648748437671707,
+              -0.07736894116132892,
+              -1.426469425396163,
+              -1.4446852040983982,
+              1.1938898143867405,
+              0.8113222971518333
+            ],
+            [
+              -0.5338568697419757,
+              -1.6585033279610752,
+              -0.07610594976064965,
+              -1.4445645976638697,
+              -1.442380959334809,
+              1.1938408579396278,
+              0.8204144247815446
+            ],
+            [
+              -0.5337056810708682,
+              -1.668078935176102,
+              -0.07487027055912741,
+              -1.462365668855397,
+              -1.4400890113048048,
+              1.1938066904259528,
+              0.829382522738317
+            ]
+          ],
+          [
+            [
+              -0.5337056810708682,
+              -1.668078935176102,
+              -0.07487027055912741,
+              -1.462365668855397,
+              -1.4400890113048048,
+              1.1938066904259528,
+              0.829382522738317
+            ],
+            [
+              -0.5335487631823618,
+              -1.6769657978383727,
+              -0.07372713268502973,
+              -1.4789212201420057,
+              -1.437934695479694,
+              1.1937881223035176,
+              0.8377443943781274
+            ],
+            [
+              -0.5333788058175984,
+              -1.6857072870791825,
+              -0.07260582346907808,
+              -1.4952393605819891,
+              -1.435789871723286,
+              1.1937826994906267,
+              0.8460065609781126
+            ],
+            [
+              -0.5331965793433563,
+              -1.69430965098002,
+              -0.07150525665798164,
+              -1.511330817020082,
+              -1.433653916312005,
+              1.1937904026116615,
+              0.8541737337710157
+            ],
+            [
+              -0.5330027945080104,
+              -1.7027786812182446,
+              -0.070424425955888,
+              -1.5272055458248326,
+              -1.4315262588683442,
+              1.1938112145545365,
+              0.8622502906545575
+            ],
+            [
+              -0.5327981084165793,
+              -1.7111197561155589,
+              -0.06936239715962376,
+              -1.5428728057458043,
+              -1.4294063769005296,
+              1.193845120203827,
+              0.8702403077967423
+            ]
+          ],
+          [
+            [
+              -0.5327981084165793,
+              -1.7111197561155589,
+              -0.06936239715962376,
+              -1.5428728057458043,
+              -1.4294063769005296,
+              1.193845120203827,
+              0.8702403077967423
+            ],
+            [
+              -0.5329402046958608,
+              -1.7052452073226365,
+              -0.07010659896800997,
+              -1.5318345887547151,
+              -1.430905434532376,
+              1.193816896037027,
+              0.864609452675713
+            ],
+            [
+              -0.5330769758796305,
+              -1.699307669676999,
+              -0.07086000857355854,
+              -1.5206943118258343,
+              -1.4324083570234014,
+              1.1937952019793836,
+              0.8589360471701654
+            ],
+            [
+              -0.533208199043545,
+              -1.6933053089507886,
+              -0.07162294332040926,
+              -1.5094488152782688,
+              -1.433915322688502,
+              1.193780043359272,
+              0.8532186993361653
+            ],
+            [
+              -0.5333336388297175,
+              -1.6872361973220324,
+              -0.07239573712465715,
+              -1.498094781590149,
+              -1.4354265209075705,
+              1.1937714263315309,
+              0.8474559490330518
+            ],
+            [
+              -0.5334530464309385,
+              -1.6810983032308577,
+              -0.07317874194175988,
+              -1.486628718155257,
+              -1.436942153153205,
+              1.1937693575767983,
+              0.8416462603885422
+            ]
+          ],
+          [
+            [
+              -0.5334530464309385,
+              -1.6810983032308577,
+              -0.07317874194175988,
+              -1.486628718155257,
+              -1.436942153153205,
+              1.1937693575767983,
+              0.8416462603885422
+            ],
+            [
+              -0.5551987915400673,
+              -1.6224923905454542,
+              -0.05491343057782446,
+              -1.4077715587936799,
+              -1.4217412295118954,
+              1.167937004583159,
+              0.8218681423398942
+            ],
+            [
+              -0.5786378635289396,
+              -1.5588935904461911,
+              -0.0383956898833957,
+              -1.3188116884228398,
+              -1.4094917469899522,
+              1.1420569352860657,
+              0.7969541156364115
+            ],
+            [
+              -0.6041992142274965,
+              -1.4885580329200132,
+              -0.02392460156275493,
+              -1.2168056942441334,
+              -1.4005210824539454,
+              1.116055119081573,
+              0.7653222693211092
+            ],
+            [
+              -0.6325274497997355,
+              -1.4082230122331234,
+              -0.012098838612392944,
+              -1.0962730201960103,
+              -1.3953865063148452,
+              1.0897939707926958,
+              0.7241549779127822
+            ],
+            [
+              -0.6648053776383006,
+              -1.3107356492247746,
+              -0.004346506142800329,
+              -0.945242299096954,
+              -1.3951930880682302,
+              1.0629190059021139,
+              0.6674938486284101
+            ]
+          ]
+        ],
+        "counts": {
+          "native_bore_geometry": 2,
+          "pregrasp_IK": 1,
+          "descent_robot_fixed": 1,
+          "planned_pull_fingers_observed_other_stock": 3
+        },
+        "examples": {
+          "native_bore_geometry": [
+            {
+              "inside_bore": false,
+              "jaws": [
+                {
+                  "jaw_sign": -1.0,
+                  "midplane_intersection_points": 0,
+                  "maximum_midplane_radius_m": null,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": 0.052201857154379264,
+                  "inside_bore": false
+                },
+                {
+                  "jaw_sign": 1.0,
+                  "midplane_intersection_points": 12,
+                  "maximum_midplane_radius_m": 0.01639003407027079,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": -0.0010549845661487686,
+                  "inside_bore": false
+                }
+              ],
+              "source": "RGB-D signed ring plane, class CAD and actual unmodified native finger hull"
+            },
+            {
+              "inside_bore": false,
+              "jaws": [
+                {
+                  "jaw_sign": -1.0,
+                  "midplane_intersection_points": 12,
+                  "maximum_midplane_radius_m": 0.01639003407027079,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": -0.0010549845661487686,
+                  "inside_bore": false
+                },
+                {
+                  "jaw_sign": 1.0,
+                  "midplane_intersection_points": 0,
+                  "maximum_midplane_radius_m": null,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": 0.052201857154379264,
+                  "inside_bore": false
+                }
+              ],
+              "source": "RGB-D signed ring plane, class CAD and actual unmodified native finger hull"
+            }
+          ],
+          "pregrasp_IK": [
+            {
+              "image_center_m": [
+                0.5858695390782876,
+                -0.7762529521874422,
+                1.1100719334962943
+              ],
+              "target": [
+                0.5581706487183082,
+                -0.7287528635915782,
+                1.2174713134452202
+              ],
+              "seed_index": 0
+            }
+          ],
+          "descent_robot_fixed": [
+            {
+              "image_center_m": [
+                0.5858695390782876,
+                -0.7762529521874422,
+                1.1100719334962943
+              ],
+              "progress": 0.6000000000000001,
+              "collision": {
+                "segment": 0,
+                "fraction": 1.0,
+                "collision": {
+                  "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision",
+                  "actor": "/World/Environment/m80/instance_0641",
+                  "collider": "/World/Environment/m80/instance_0641"
+                }
+              }
+            }
+          ]
+        },
+        "pose_trials": [
+          {
+            "tool_tilt_about_bin_Y_deg": 15.0,
+            "TCP_basket_normal_offset_m": 0.006,
+            "TCP_transverse_offset_m": 0.0,
+            "TCP_transverse_axis": [
+              0.9999999999995743,
+              -9.226981004209161e-07,
+              0.0
+            ],
+            "image_center_m": [
+              0.48030929401937533,
+              -0.8494373869297612,
+              1.114436771417335
+            ],
+            "image_axis": [
+              -0.3858496439691858,
+              -0.46288141211076395,
+              -0.7980356198636739
+            ],
+            "contact_TCP_world_m": [
+              0.47978640339513823,
+              -0.8019373234091406,
+              1.1204139396059059
+            ],
+            "pregrasp_TCP_world_m": [
+              0.4526104036593959,
+              -0.8019372983338973,
+              1.221836151366261
+            ],
+            "pull_TCP_world_m": [
+              0.504716983365903,
+              -0.751311339596121,
+              1.078995635134511
+            ],
+            "rotation": [
+              [
+                0.9659258262886847,
+                -9.226981004209161e-07,
+                0.2588190451023078
+              ],
+              [
+                -8.912579250644525e-07,
+                -0.9999999999995743,
+                -2.388118412687565e-07
+              ],
+              [
+                0.25881904510241793,
+                0.0,
+                -0.9659258262890958
+              ]
+            ],
+            "pregrasp_ik_attempts": 0,
+            "bore_proof": {
+              "inside_bore": false,
+              "jaws": [
+                {
+                  "jaw_sign": -1.0,
+                  "midplane_intersection_points": 0,
+                  "maximum_midplane_radius_m": null,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": 0.052201857154379264,
+                  "inside_bore": false
+                },
+                {
+                  "jaw_sign": 1.0,
+                  "midplane_intersection_points": 12,
+                  "maximum_midplane_radius_m": 0.01639003407027079,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": -0.0010549845661487686,
+                  "inside_bore": false
+                }
+              ],
+              "source": "RGB-D signed ring plane, class CAD and actual unmodified native finger hull"
+            }
+          },
+          {
+            "tool_tilt_about_bin_Y_deg": 15.0,
+            "TCP_basket_normal_offset_m": 0.006,
+            "TCP_transverse_offset_m": 0.0,
+            "TCP_transverse_axis": [
+              0.9999999999995743,
+              -9.226981004209161e-07,
+              0.0
+            ],
+            "image_center_m": [
+              0.48030929401937533,
+              -0.8494373869297612,
+              1.114436771417335
+            ],
+            "image_axis": [
+              -0.3858496439691858,
+              -0.46288141211076395,
+              -0.7980356198636739
+            ],
+            "contact_TCP_world_m": [
+              0.47978640339513823,
+              -0.8019373234091406,
+              1.1204139396059059
+            ],
+            "pregrasp_TCP_world_m": [
+              0.4526104036593959,
+              -0.8019372983338973,
+              1.221836151366261
+            ],
+            "pull_TCP_world_m": [
+              0.504716983365903,
+              -0.751311339596121,
+              1.078995635134511
+            ],
+            "rotation": [
+              [
+                -0.9659258262886847,
+                9.226981004209161e-07,
+                0.2588190451023078
+              ],
+              [
+                8.912579250644525e-07,
+                0.9999999999995743,
+                -2.388118412687565e-07
+              ],
+              [
+                -0.25881904510241793,
+                0.0,
+                -0.9659258262890958
+              ]
+            ],
+            "pregrasp_ik_attempts": 0,
+            "bore_proof": {
+              "inside_bore": false,
+              "jaws": [
+                {
+                  "jaw_sign": -1.0,
+                  "midplane_intersection_points": 12,
+                  "maximum_midplane_radius_m": 0.01639003407027079,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": -0.0010549845661487686,
+                  "inside_bore": false
+                },
+                {
+                  "jaw_sign": 1.0,
+                  "midplane_intersection_points": 0,
+                  "maximum_midplane_radius_m": null,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": 0.052201857154379264,
+                  "inside_bore": false
+                }
+              ],
+              "source": "RGB-D signed ring plane, class CAD and actual unmodified native finger hull"
+            }
+          },
+          {
+            "tool_tilt_about_bin_Y_deg": 15.0,
+            "TCP_basket_normal_offset_m": 0.006,
+            "TCP_transverse_offset_m": 0.0,
+            "TCP_transverse_axis": [
+              0.9999999999995743,
+              -9.226981004209161e-07,
+              0.0
+            ],
+            "image_center_m": [
+              0.5858695390782876,
+              -0.7762529521874422,
+              1.1100719334962943
+            ],
+            "image_axis": [
+              -0.2759497550912775,
+              0.2920275200740739,
+              0.9157355842078271
+            ],
+            "contact_TCP_world_m": [
+              0.5853466484540506,
+              -0.7287528886668215,
+              1.116049101684865
+            ],
+            "pregrasp_TCP_world_m": [
+              0.5581706487183082,
+              -0.7287528635915782,
+              1.2174713134452202
+            ],
+            "pull_TCP_world_m": [
+              0.5497506324467306,
+              -0.6752647765611506,
+              1.088265194332266
+            ],
+            "rotation": [
+              [
+                0.9659258262886847,
+                -9.226981004209161e-07,
+                0.2588190451023078
+              ],
+              [
+                -8.912579250644525e-07,
+                -0.9999999999995743,
+                -2.388118412687565e-07
+              ],
+              [
+                0.25881904510241793,
+                0.0,
+                -0.9659258262890958
+              ]
+            ],
+            "pregrasp_ik_attempts": 3,
+            "bore_proof": {
+              "inside_bore": true,
+              "jaws": [
+                {
+                  "jaw_sign": -1.0,
+                  "midplane_intersection_points": 0,
+                  "maximum_midplane_radius_m": null,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": 0.0509527063035982,
+                  "inside_bore": false
+                },
+                {
+                  "jaw_sign": 1.0,
+                  "midplane_intersection_points": 14,
+                  "maximum_midplane_radius_m": 0.01232601548321958,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": 0.00898471921328959,
+                  "inside_bore": true
+                }
+              ],
+              "source": "RGB-D signed ring plane, class CAD and actual unmodified native finger hull"
+            },
+            "planned_stroke_m": 0.035,
+            "planned_pull_TCP_world_m": [
+              0.5675486404503906,
+              -0.7020088326139861,
+              1.1021571480085657
+            ],
+            "selected_inner_wall_contact_proof": {
+              "supported": true,
+              "reason": "inner_wall_supports_pull",
+              "first_contact_stroke_m": 0.014,
+              "minimum_hull_clearance_m": 0.0004761613735721898,
+              "first_patch_count": 3,
+              "inner_wall_samples": 3,
+              "cap_samples": 0,
+              "opposing_normal_to_pull_cosine": 0.9487374320683577,
+              "normal_direction_component": -8.048554522431644e-17,
+              "mean_native_facet_normal_opposition": 0.6985059117942618,
+              "first_patch_world_normal": [
+                0.29932339942262864,
+                -0.7131400590972908,
+                0.6339059541200053
+              ],
+              "force_contact_measured": false,
+              "uses_free_body_poses": false
+            }
+          }
+        ],
+        "robot_motion_executed": false,
+        "physical_hook_validated": false
+      },
+      "archived_execute_called": false
+    }
+  ],
+  "empty_donor_contact_guard_events": [
+    {
+      "side": "right",
+      "armed": false,
+      "carried_part": null,
+      "physics_s": 2.6500000000000097,
+      "force_threshold_n": 12.0
+    },
+    {
+      "side": "right",
+      "armed": false,
+      "carried_part": null,
+      "physics_s": 18.24583333333437,
+      "force_threshold_n": 12.0
+    }
+  ],
+  "selected_actor_ids_for_validation_only": {
+    "ring1": "/World/BinStock/ring1_loose0"
+  },
+  "state": "failed",
+  "error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/loose_bin_task.py\", line 321, in execute\n    try:p=pick.execute(pickup_ctx)\n          ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/loose_ring_pick.py\", line 80, in execute\n    return _execute(c)\n           ^^^^^^^^^^^\n  File \"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/loose_ring_pick.py\", line 557, in _execute\n    if not routes:raise RuntimeError('No structure-clear grasp among RGB-D instances')\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No structure-clear grasp among RGB-D instances\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/probe_tilted_ring_hook.py\", line 213, in plan\n    try:return _plan(c,measurements)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/probe_tilted_ring_hook.py\", line 204, in _plan\n    if solution is None:raise RuntimeError('No RGB-D single-finger rearrangement route')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No RGB-D single-finger rearrangement route\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py\", line 482, in <module>\n    result=plugin.execute(task_ctx)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/loose_bin_task.py\", line 347, in execute\n    rearranged=rearrange.execute(pickup_ctx);history.append(rearranged);pickup_ctx.pop('prefetched_initial',None)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/loose_bin_rearrange.py\", line 162, in execute\n    tilted_proposal=module.plan(live,measurements)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/probe_tilted_ring_hook.py\", line 221, in plan\n    result=_plan(alternate,measurements,broader=True)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/probe_tilted_ring_hook.py\", line 204, in _plan\n    if solution is None:raise RuntimeError('No RGB-D single-finger rearrangement route')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No RGB-D single-finger rearrangement route\n",
+  "end_to_end_under20": false,
+  "one_ring_component_accepted": false,
+  "wall_verified_elapsed_s": 424.26598462695256,
+  "observation_driven_corrections": [],
+  "CPU_operation_profile": {
+    "control_s": 4.057285301736556,
+    "physics_s": 90.70570070121903,
+    "clamp_flush_s": 0.0
+  },
+  "GPU_route_statistics": {
+    "right": {
+      "queries": 3,
+      "proposals": 3,
+      "CPU_fallbacks": 0,
+      "last_server_s": 0.26032525196205825,
+      "last_obstacle_boxes": 146,
+      "last_payload": false,
+      "last_wall_s": 0.2957971839932725,
+      "PhysX_rejected_proposals": 1,
+      "last_PhysX_rejection": {
+        "segment": 60,
+        "fraction": 0.6666666666666666,
+        "collision": {
+          "kind": "same_arm_self_collision",
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/Contact/right_arm_fr3v2_link7_collision",
+          "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5",
+          "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/Contact/right_arm_fr3v2_link5_collision",
+          "distance_m": 0.0009473643468167273,
+          "required_clearance_m": 0.001
+        }
+      },
+      "PhysX_verified_continuous_proposals": 2
+    }
+  },
+  "fast_transport_statistics": {
+    "right": {
+      "routes": 1,
+      "proposals": 1,
+      "clear_calls": 209,
+      "seconds": 0.07362819998525083,
+      "static_objects": 2793,
+      "static_skipped": 0,
+      "backend": "FCL CPU proposals + live PhysX verification",
+      "PhysX_rejected_proposals": 1,
+      "last_PhysX_rejection": {
+        "segment": 0,
+        "fraction": 0.881720430107527,
+        "collision": {
+          "kind": "same_arm_self_collision",
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/Contact/right_arm_fr3v2_link7_collision",
+          "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5",
+          "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/Contact/right_arm_fr3v2_link5_collision",
+          "distance_m": 0.000941073405299489,
+          "required_clearance_m": 0.001
+        }
+      }
+    },
+    "left": {
+      "routes": 0,
+      "proposals": 0,
+      "clear_calls": 0,
+      "seconds": 0.0,
+      "static_objects": 2793,
+      "static_skipped": 0,
+      "backend": "FCL CPU proposals + live PhysX verification"
+    }
+  },
+  "encoder_motor_speed_audit": {
+    "samples": 14182,
+    "max_fraction_of_95_percent_PBV": 0.9051579076537841,
+    "max_finger_fraction_of_47p5_mm_s": 0.6785800582484195,
+    "max_coupled_finger_difference_m": 1.1175870895385742e-07,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  }
+}

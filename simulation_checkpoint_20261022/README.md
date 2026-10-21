@@ -1,35 +1,34 @@
-# Isaac PhysX research source checkpoint
+# Isaac PhysX research checkpoint
 
-This directory captures the current research scripts and honest failure reports. It is **not** the field executable. Start with `../FIELD_RGBD_20261022.md` and `../field_demo_random_20261022/`.
+This is the current research source and recorded evidence, **not a standalone Isaac scene or the field executable**. Start the field setup with [FIELD_RGBD_20261022.md](../FIELD_RGBD_20261022.md) and `../field_demo_random_20261022/`. These scripts also need the existing server CAD, generated query meshes, model/calibration files and earlier run inputs; those large assets are not duplicated here.
 
-The scripts use the existing server scene/CAD, generated query meshes, models, calibration and previous run inputs. Those server assets are not duplicated here; copying these scripts alone does not recreate a runnable Isaac scene. Historical experiments remain in the source folder and are not deployment defaults. Exact trial source hashes/configuration accompany each report.
+The current random-bin policy has **no accepted full three-part result or real-hardware validation**. It uses10 physically dropped mixed rings, native Franka Hands and image-estimated poses. Private actor state serves only image formation/evaluation, never pose-control input. The current scene also uses a7.6mm pin-shaft collision approximation against a nominal8mm bore; real part tolerance/insertion feasibility must be established at the actual machine. This is not evidence of original CAD real-world assembly clearance.
 
-GPU2 supplies cuRobo IK proposals, validated against exact exported USD FK/joint limits and the original PhysX/pair/payload checker. GPU3 uses Warp ray tracing for RGB-D images. Warp is not RTX photoreal rendering. CPU PhysX remains unchanged. Only RGB-D and robot encoder observations enter pose control. Free actor state is retained privately for image generation/evaluation.
+## Runtime integration
 
-Current-policy random full-task reliability is NOT demonstrated. v260: deep pin grasp remained stable through direct insertion/release/withdraw, then ring pregrasp cross-arm contact aborted. v261: near-COM pin grip rolled and was rejected. v262: deep pin hold remained measurable, but axial insertion IK failed. None is a complete three-part success. v258/259 expose respectively a transient camera timeout and a subsequently fixed end-tip radius classification bug. Their failed outcomes are preserved.
+- GPU2 runs exact-reference cuRobo IK, RIGHT routes and isolated LEFT-reference routes. Proposals use8mm ESDF/current RGB-D and encoder obstacle envelopes, then original full native CAD/self/payload/pair/installed-part checks and FR3 command retiming. Rejected/unavailable GPU proposals retain CPU branches. Portable service source/reference data are in `roas-table/gpu_planning/`; sockets, CUDA binaries and mesh caches are excluded.
+- GPU2/3 run Warp RGB-D ray-camera workers with unchanged CPU PhysX. Warp rendering is not RTX photoreal rendering. The field runner uses actual RealSense RGB-D/SDK inputs rather than these simulation image workers.
+- Known Hand surface returns use captured robot TCP/aperture and a narrow official-CAD surface band. Unobserved stock is not replaced with actor truth. A separate conservative residual-occupancy implementation exists in the field package; its remaining Hand/UNKNOWN pre-close blockers are not hidden by the simulation point-cloud result.
+- Authored same-arm collision exclusions replace the earlier broad own-prefix omission. Only same-body/direct authored joint/FilteredPairs exemptions apply. Proximal native fingers, palm and arm are checked against held CAD; intended distal pad contact alone is exempt. The current AABB broadphase matched840 original FCL queries including first rejection identities, reducing that isolated self-check cost by about1.4x.
+- Released parts are registered from fresh RGB-D into a shared completed-part query world, protecting subsequent motion of both arms/payloads. No actor attachments or object teleports create successful assembly.
+- A typed direct-insertion planning failure **before RIGHT carry starts** may choose the existing checked handover skill with the freshest measured grasp. Sensor/execution failures are not caught as planning alternatives.
+- The experimental `measured_loaded_contact_geometry` option distinguishes a finite-force finger spring target from actual held encoder geometry. It requires fresh bilateral RGB-D/CAD contact and100ms stationary encoders, checks the exact continuous per-finger interval, monitors encoders before/after every control step with47.5mm/s lookahead, and disarms before release. Only carrier-finger/held-CAD queries use it; palm/arm/fixed/other-arm/installed-part and ordinary opening sweeps remain checked. New physical294/296 trials use5/4mm receiver candidates; their results are pending.
 
-The next change adds explicit predictive other-arm geometry and checks the actual issued pregrasp curve/aperture; new trials263/264 are in progress. Actual field hardware has not been connected/tested.
+## Evidence and current failures
 
-## Next source checkpoint
+Component records are under `component-evidence/`; exact configurations/source hashes accompany tests. Physical success is separate from a static query or an expected failed full-task wrapper.
 
-The Hand surface self-filter uses recorded capture TCP/encoder aperture and official native Hand mesh surfaces only (1.2mm surface band); it never erases the enclosing Hand volume or uses loose actor poses. Four archived late-close false palm-obstacle cases are resolved. The newest445 physical run266 picked/transferred both rings, but failed its large-ring prealignment. Run268 rejects a pin terminal branch before carry; full-task failure reports are retained. Direct class selection also avoids duplicate preview/replanning.
+| Record | Verified scope |
+| --- | --- |
+|273 | One continuous RIGHT route:256ms GPU/286ms round trip,862 issued commands checked,1.794s planned movement; no motion in this static diagnostic. |
+|278 | Actual empty-arm park1.408s and one overhead RGB-D frame; large-ring approach/40–70mm lift geometric component, no full grasp/task/hardware certificate. |
+|286 | One loaded LEFT static route:178ms GPU,429 issued commands checked,0.892s planned movement. Prior installed part was absent from this particular static proof. |
+|287 | Completed-part regression rejects the recorded approaching palm before it kicks the placed large ring, while accepting its clear release pose. |
+|291 |840 original/broadphase FCL queries give identical pass/fail and first rejection results. |
+|274/280/281 | All or most insertion commands were reached, but withdrawal collision or later loss of an installed ring made overall assembly fail. These are not three-part successes. |
+|288 | After large-ring placement, no small-ring grasp/hook passed the native palm versus basket0670 check. |
+|289/292 | Large-ring handover succeeded; carry was rejected because the force spring command was treated as achieved aperture. The measured-interval fix is under physical test. |
+|290 | A directly insertable carry/fixture route was unavailable before motion. The new typed handover alternative is under physical295 test. |
+|293 | New random seed7829 reached a physical hook but the actual finger velocity exceeded the reserved limit; execution stopped. |
 
-Portable cuRobo GPU2 service sources and exact USD-derived reference model are under `roas-table/gpu_planning/`. GPU route proposals use approximate cached8mm ESDF plus current encoder/RGB-D obstacle envelopes; all original PhysX/native Hand/other-arm/payload checks and FR3 retiming remain authoritative. Default-off route support is being tested, not presented as an accepted physical route. CUDA binaries, mesh caches and runtime sockets are excluded.
-
-## GPU continuous-route checkpoint (v273)
-
-One recorded carry query passed the original full PhysX checks for the continuous cubic and the geometry of the final float32 command curve; all 862 issued commands were checked against the existing FR3 limits. GPU proposal 0.256s, round trip 0.286s, planned physical duration 1.79375s, complete static diagnostic 8.4366s. This trial did not command physical robot motion. Native self-collision exclusions and empty-arm actuator impulses are under investigation; do not treat this as a complete physical-cycle or hardware certificate.
-
-`direct_pin_skill.py` optionally explores axially symmetric pin orientations without moving the calibrated physical axis goal. Full-bin initial images can use explicit bounded pixel/field-of-view configuration. These are research integrations under physical testing. Full task/hardware success remains false where recorded. The unchanged field release remains under `field_demo_random_20261022/`.
-
-## Authored same-arm clearance and actual overhead capture
-
-The omitted nonadjacent link5/link7 pair caused the empty-arm impulse in272. Added authored-CAD same-arm clearance (exact authored filtered pairs/direct joint exclusions only), including aperture sweeps and intended-fixture robot checks. It rejects the archived pre-impact/impact states and retains all862 states of273. Trial278 physically parks successfully in1.40833s and captures one fixed overhead RGB-D frame. That single frame supports a large-ring approach/40–70mm lift geometric component; whole-task/real-hardware acceptance remains unproven.
-
-LEFT GPU IK uses strictly matched intrinsic-chain/base/TCP reference transforms and independently validates all returned joints against originalLEFT FK/bounds. Frozen current-policy physical runs are still testing grasp generalization and post-insertion withdrawal. Earlier274 confirms pin/large-ring retention and small-ring depth, but stops on an empty-arm withdrawal collision, so its full-task pass remains false.
-
-## Completed-part protection and LEFT route integration
-
-Run280 executed all three insertion skills, but the returning RIGHT palm struck the previously installed large ring during the next bin approach. Final retention failed; this is not an all-three success. A shared completed-part CAD query world now registers released RGB-D poses (never actor truth) and protects them against both arms and carried parts, including aperture and intended-fixture robot checks. Static regression287 retains the clear post-release pose and rejects the recorded approaching palm at236.534s, before the observed kick. Existing camera uncertainty is enclosed rather than removing unseen stock.
-
-LEFT cuRobo component286 independently passed current fixed/native self/own-payload/opposite-arm checks and FR3 command validation:178ms GPU,0.892s planned motion,429 issued commands. That recorded static query did not include its prior installed part; new live execution inherits the completed-part registry. LEFT uses an isolated socket and optional reference gauge; unavailable/rejected proposals retain the CPU fallback. Carry geometry/object caches change allocation cost only. New physical288/289 trials are ongoing; no full-task or hardware certificate is claimed.
+End-to-end timing includes camera/recognition/planning waits and retention. Parallel reliability runs are explicitly ineligible for speed comparisons; planned subsecond route durations are not a20/30-second whole-task result. Historical failed experiments are preserved for diagnosis, not deployment defaults.

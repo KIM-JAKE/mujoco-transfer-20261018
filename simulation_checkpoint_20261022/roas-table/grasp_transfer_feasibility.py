@@ -410,6 +410,12 @@ def receiving_poses(c, part, incoming):
     if part=='ring2' and c.get('config',{}).get('reliability_handover_hint'):
         preferred_depth=depths[0] if c.get('config',{}).get('receiver_depth_options_m') is not None else .004
         rows=sorted(rows,key=lambda r:0 if np.allclose(r,[0.,0.,0.,preferred_depth],atol=1e-9) else 1 if np.allclose(r,[np.pi/2,np.pi,.012,0],atol=1e-9) else 2)
+    if part=='ring1' and balanced and c.get('config',{}).get('large_receiver_depth_options_m') is not None:
+        # The nominal two-seed catalog only proposes candidates. Retain a
+        # bounded centered depth bank for live RGB-D/model revalidation; a
+        # nominal IK miss must not suppress physically admissible new branches.
+        centered=[(0.,0.,centered_chord,float(depth)) for depth in depths]
+        rows=centered+[r for r in rows if not any(np.allclose(r,p,atol=1e-9) for p in centered)]
     for angle,yaw,chord,depth in rows:
         rotation=exp(incoming[:3,2]*yaw)@base[:3,:3]@exp(np.array([0.,angle,0.]))
         target=frame(incoming[:3,3]-rotation@taught_grasp[:3,3]+rotation[:,0]*chord+rotation[:,2]*depth,rotation)

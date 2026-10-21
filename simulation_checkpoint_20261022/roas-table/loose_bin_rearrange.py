@@ -87,10 +87,19 @@ def execute(c):
             clear,why=checker.hand_clear(H,.070)
             if not clear:reject('contact_hand_fixed',dict(trial=trial,collision=why));continue
             if not c['observed_grasp_clearance'].palm_clear(points,pose,pre,H):reject('approach_palm_observed_stock',trial);continue
-            seeds=[cmd[0,ids],c['pickup_seed']]+list(np.random.default_rng(9127).uniform(arm.bounds[:,0],arm.bounds[:,1],size=(32,7)));seen=[]
-            for seed_index,seed in enumerate(seeds):
+            def endpoint_candidates():
+                from fr3_gpu_ik import propose_ik
+                # Independent original-arm FK/bounds verification lives in
+                # propose_ik. All original geometry and contact checks follow.
+                for candidate in propose_ik(c,arm,pre[:3,3],rotation,cmd[0,ids],'hook_pregrasp'):
+                    yield candidate,True
+                # Lazy fallback retains the complete original CPU seed order.
+                for seed in [cmd[0,ids],c['pickup_seed']]+list(np.random.default_rng(9127).uniform(arm.bounds[:,0],arm.bounds[:,1],size=(32,7))):yield seed,False
+            seen_gpu=[];seen_cpu=[]
+            for seed_index,(seed,gpu_solved) in enumerate(endpoint_candidates()):
+                seen=seen_gpu if gpu_solved else seen_cpu
                 trial['pregrasp_ik_attempts']+=1
-                preq=arm.solve(pre[:3,3],rotation,seed)
+                preq=seed.copy()if gpu_solved else arm.solve(pre[:3,3],rotation,seed)
                 if preq is None:reject('pregrasp_IK',dict(image_center_m=P.tolist(),target=pre[:3,3].tolist(),seed_index=seed_index));continue
                 if any(np.linalg.norm(preq-old)<.05 for old in seen):reject('duplicate_pregrasp_IK_branch');continue
                 seen.append(preq.copy());clear,why=checker.clear(preq,.070)

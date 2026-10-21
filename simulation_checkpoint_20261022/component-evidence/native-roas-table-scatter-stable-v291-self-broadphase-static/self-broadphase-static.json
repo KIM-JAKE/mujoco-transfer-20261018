@@ -1,0 +1,60 @@
+{
+  "state": "same_arm_exact_FCL_broadphase_component",
+  "approved": true,
+  "robot_motion_executed": false,
+  "full_task_pass": false,
+  "rows": [
+    {
+      "side": "right",
+      "queries": 420,
+      "original_s": 0.17375776497647166,
+      "broadphase_s": 0.12353124399669468,
+      "speedup": 1.4065896153455792,
+      "same_decisions_and_first_rejections": true,
+      "rejected": 16,
+      "stats": {
+        "queries": 845,
+        "rejected": 32,
+        "candidate_pairs": 43,
+        "geometry_rows": 11,
+        "backend": "FCL convex CAD",
+        "semantic_exclusions": "same rigid body, direct joint collision=false, exact authored FilteredPairs",
+        "broadphase_skipped_pairs": 14650,
+        "last_rejection": {
+          "kind": "same_arm_self_collision",
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm",
+          "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5",
+          "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/Contact/right_arm_fr3v2_link5_collision",
+          "distance_m": -1.0,
+          "required_clearance_m": 0.001
+        }
+      }
+    },
+    {
+      "side": "left",
+      "queries": 420,
+      "original_s": 0.1731816530227661,
+      "broadphase_s": 0.12221186491660774,
+      "speedup": 1.417060881453188,
+      "same_decisions_and_first_rejections": true,
+      "rejected": 16,
+      "stats": {
+        "queries": 840,
+        "rejected": 32,
+        "candidate_pairs": 43,
+        "geometry_rows": 11,
+        "backend": "FCL convex CAD",
+        "semantic_exclusions": "same rigid body, direct joint collision=false, exact authored FilteredPairs",
+        "last_rejection": {
+          "kind": "same_arm_self_collision",
+          "query": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/Palm",
+          "actor": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5",
+          "collider": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/Contact/left_arm_fr3v2_link5_collision",
+          "distance_m": -1.0,
+          "required_clearance_m": 0.001
+        },
+        "broadphase_skipped_pairs": 14586
+      }
+    }
+  ]
+}

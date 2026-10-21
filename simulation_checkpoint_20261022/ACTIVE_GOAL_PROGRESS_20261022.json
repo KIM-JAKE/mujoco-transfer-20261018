@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-21T18:57:28.487662+00:00",
+  "updated_utc": "2026-10-21T19:09:54.976742+00:00",
   "active_goal": true,
   "deadline_local": "2026-10-22T11:00:00+09:00",
   "deadline_utc": "2026-10-22T02:00:00Z",
@@ -23,15 +23,15 @@
     "normalabortkeepscompletedHandgrasp command; noautomaticresume"
   ],
   "agents": {
-    "hardware_readiness": "Sealed adaptive452; NEW ownHand surface/eroded physicalsolid filter copy",
-    "vision_pick": "289 actual6mm ownpayload-admitted large receiver with latestguards",
-    "stable_transfer": "Recorded264 ownHand fixture; then hookGPU IK/fixture proposal bottleneck"
+    "vision_pick": "294 actual5mm measuredloadedcontact geometry, explicitbounded aperture monitor",
+    "stable_transfer": "GPUhook IK integrated;297boundedlocalrim rearrangement next",
+    "hardware_readiness": "NEWselfsurface optin knownrobot-envelope + actualSDK/imagebrackets; residualboundaryUNKNOWN stillblocks, no fieldreadyclaim"
   },
   "next_actions": [
-    "Vision289 live 6mm receiver mechanics; no 1mm ownpayload margin relaxation",
-    "Stable source264 SIM-only own-Hand association fixture; then GPU hookIK/endpointroute bottleneck",
-    "Hardware NEWcopy observedHand surface plus strictly eroded true watertight solid classification study; no unknownshadow or enclosing volume deletion",
-    "Next root physical290/primary1249; canonical free after1248 done, coordinate v33 install."
+    "294 seed445 and296 seed3491 actual5mm loaded aperture measured interval and perstepmonitor; no sameforce-setpoint geometry confusion",
+    "295 seed447 tests typed BEFOREcarry direct-plan failure -> checkedhandover fallback",
+    "Stable297boundedlocalrim physicalrearrangement prototype + optionalGPUhookIK installed",
+    "Hardware sealing opt-in knownrobot-envelope assumption withhonest residualUNKNOWNboundary blocker, then NEWshortlivedscenelease prototype"
   ],
   "trials": [
     {
@@ -138,9 +138,44 @@
       "full_task_pass": false,
       "wall_s": 424.26598462695256,
       "error": "\"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/probe_tilted_ring_hook.py\", line 204, in _plan\n    if solution is None:raise RuntimeError('No RGB-D single-finger rearrangement route')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No RGB-D single-finger rearrangement route\n"
+    },
+    {
+      "run": "native-roas-table-scatter-stable-v289-admitted-depth6-all3-445",
+      "state": "failed",
+      "full_task_pass": false,
+      "wall_s": 608.6899565280182,
+      "error": "ell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger/tip', 'predictive_pair_box': True, 'minimum_pair_clearance_m': 0.001}}\n"
+    },
+    {
+      "run": "native-roas-table-scatter-stable-v290-admitted-depth6-dual-gpu-all3-447",
+      "state": "failed",
+      "full_task_pass": false,
+      "wall_s": 185.61847436300013,
+      "error": " payload-carry and right-arm fixed-CAD insertion/release/withdraw route')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Current camera grasp has no complete payload-carry and right-arm fixed-CAD insertion/release/withdraw route\n"
+    },
+    {
+      "run": "native-roas-table-scatter-stable-v291-self-broadphase-static",
+      "state": "physical_acceptance_failed",
+      "full_task_pass": false,
+      "wall_s": 0.610942700994201,
+      "error": ""
+    },
+    {
+      "run": "native-roas-table-scatter-stable-v292-generalization-all3-3491",
+      "state": "failed",
+      "full_task_pass": false,
+      "wall_s": 329.3229695080081,
+      "error": "fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/left_left_finger/tip', 'distance_m': 0.00028461638253685144, 'required_clearance_m': 0.001, 'intended_contact_exemption': 'official native distal pad only; proximal clipped CAD remains checked'}}\n"
+    },
+    {
+      "run": "native-roas-table-scatter-stable-v293-generalization-all3-7829",
+      "state": "failed",
+      "full_task_pass": false,
+      "wall_s": 93.1399524260778,
+      "error": "ble-v293-generalization-all3-7829/isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py\", line 148, in update_motor_speed_limits\n    raise RuntimeError('Actual robot motor velocity exceeded reserved limit '+str((ratio,finger_ratio)))\nRuntimeError: Actual robot motor velocity exceeded reserved limit (0.303825133773111, 1.1104579034604525)\n"
     }
   ],
-  "field_published_commit": "0fef594 (adaptive452 queued next commit)",
+  "field_published_commit": "690c146",
   "field_published_files_verified": 452,
   "field_publish_branch": "main and codex/rgbd-random-field-20261022",
   "current_pin_success": "260pin single axial stroke31.7s; samefulltask latercrossarmabort",
@@ -153,11 +188,13 @@
     "full_issued_commands_checked": 862,
     "robot_motion_executed": false
   },
-  "latest_failure_summary": "288 seed446 afterlargeplacement no structureclear small grasp/hook because Palm vs fixed0670. Original hardware/self/placedpart guards retained.",
+  "latest_failure_summary": "288wallsmallpalm0670;289/292force-setpoint incorrectly treated as achievedjawgeometry;290directplan unavailable beforecarry now typedfallback;293random7829takeup actualfinger1.11xreservedlimit aborted.",
   "same_arm_defect": "272 native link7 vs link5 collision before impulse; exact authored-filter guard now installed; initialPASS/preimpactREJECT/273all862commandsPASS",
   "single_camera_component": "278 real physical selfclear emptypark1.4083s \u2192one768overhead RGBD; largeclass approach+40/70mm lift geometriccomponent accepted; fullHand basket8.238mm min/ring sidewalls3.034mm; no fullgrasp or hardware claim",
   "active_trials": [
-    289
+    294,
+    295,
+    296
   ],
   "latest_fulltask": "280all3skills finished butlargefell nextsmallapproach. Completed observed parts registry added/287regression blocks recorded badapproach.288stops safely no smallpalmclear pose (fixedbasket0670), NOTall3success.",
   "field_starter": "Sealed adaptive452 relocated manifest verified.275Python+27fieldkit+11nativePASS. SDK-aperture Hand/current-to-command sweep +stoppedSDKwrench +boundedalternatecandidate. OwnimageHand association next copy; no hardware execution.",

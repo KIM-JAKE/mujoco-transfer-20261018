@@ -9,6 +9,8 @@ from predictive_pair_clearance import pair_clear
 def current_query(c,part,G=None):
     lc=c['checkers']['left'];rc=c['checkers']['right'];art=c['art']
     other_q=art.get_dof_positions()[0,c['ids']].copy();other_width=float(art.get_dof_positions()[0,c['fi']].sum())
+    binding=getattr(lc,'loaded_contact_aperture',None)
+    if binding is not None:binding.check(art.get_dof_positions()[0,c['left_fi']])
     saved=(lc.payload_path,lc.payload_rows,lc.payload_boxes,lc.payload_relative)
     lc.detach_payload()
     if G is not None:lc.attach_payload(c['part_collision_templates'][part],frame([0,0,.1034],np.eye(3))@G)
