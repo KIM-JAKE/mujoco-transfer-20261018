@@ -1,0 +1,3780 @@
+{
+  "state": "read_only_crossarm_counterexample",
+  "robot_motion_executed": false,
+  "uses_free_body_poses_for_control": false,
+  "source_run": "native-roas-table-scatter-stable-v387-final-direct-priority-GPU3-all3-450",
+  "approach_order": "donor_first",
+  "indices": {
+    "right": [
+      1,
+      3,
+      5,
+      7,
+      9,
+      11,
+      13
+    ],
+    "left": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12
+    ],
+    "right_fingers": [
+      16,
+      17
+    ],
+    "left_fingers": [
+      14,
+      15
+    ]
+  },
+  "pair_results": [
+    {
+      "label": "abort_command",
+      "right_clear": false,
+      "right_why": {
+        "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision",
+        "actor": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7",
+        "collider": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/Contact/left_arm_fr3v2_link7_collision",
+        "predictive_pair_box": true,
+        "minimum_pair_clearance_m": 0.001
+      },
+      "left_clear": false,
+      "left_why": {
+        "query": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/Contact/left_arm_fr3v2_link7_collision",
+        "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4",
+        "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision",
+        "predictive_pair_box": true,
+        "minimum_pair_clearance_m": 0.001
+      },
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.174459218978882,
+        -0.35549911856651306,
+        -2.7162466049194336,
+        -1.0478157997131348,
+        -0.6437093615531921,
+        0.5471088886260986,
+        0.0005555629031732678
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ]
+    },
+    {
+      "label": "abort_encoder",
+      "right_clear": false,
+      "right_why": {
+        "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision",
+        "actor": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7",
+        "collider": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/Contact/left_arm_fr3v2_link7_collision",
+        "predictive_pair_box": true,
+        "minimum_pair_clearance_m": 0.001
+      },
+      "left_clear": false,
+      "left_why": {
+        "query": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/Contact/left_arm_fr3v2_link7_collision",
+        "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4",
+        "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision",
+        "predictive_pair_box": true,
+        "minimum_pair_clearance_m": 0.001
+      },
+      "right_width_m": 0.07478780299425125,
+      "left_width_m": 0.079998929053545,
+      "right_q": [
+        -2.175266742706299,
+        -0.3560596704483032,
+        -2.715524435043335,
+        -1.0468522310256958,
+        -0.6443389654159546,
+        0.5467573404312134,
+        0.00062615453498438
+      ],
+      "left_q": [
+        -0.18301941454410553,
+        0.9114096164703369,
+        -0.6009881496429443,
+        -2.0690548419952393,
+        -2.692197322845459,
+        1.0912907123565674,
+        -0.20140521228313446
+      ]
+    },
+    {
+      "label": "last_trace",
+      "right_clear": false,
+      "right_why": {
+        "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision",
+        "actor": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7",
+        "collider": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/Contact/left_arm_fr3v2_link7_collision",
+        "predictive_pair_box": true,
+        "minimum_pair_clearance_m": 0.001
+      },
+      "left_clear": false,
+      "left_why": {
+        "query": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/Contact/left_arm_fr3v2_link7_collision",
+        "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4",
+        "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision",
+        "predictive_pair_box": true,
+        "minimum_pair_clearance_m": 0.001
+      },
+      "right_width_m": 0.07478722184896469,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.171515703201294,
+        -0.3570787012577057,
+        -2.7110466957092285,
+        -1.0464123487472534,
+        -0.6414170861244202,
+        0.5492379665374756,
+        -0.0001438823965145275
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ]
+    },
+    {
+      "label": "last_saved_encoder",
+      "right_clear": false,
+      "right_why": {
+        "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision",
+        "actor": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7",
+        "collider": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/Contact/left_arm_fr3v2_link7_collision",
+        "predictive_pair_box": true,
+        "minimum_pair_clearance_m": 0.001
+      },
+      "left_clear": false,
+      "left_why": {
+        "query": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/Contact/left_arm_fr3v2_link7_collision",
+        "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4",
+        "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision",
+        "predictive_pair_box": true,
+        "minimum_pair_clearance_m": 0.001
+      },
+      "right_width_m": 0.07478747889399529,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.174123525619507,
+        -0.35594695806503296,
+        -2.7154412269592285,
+        -1.0475109815597534,
+        -0.643334150314331,
+        0.5474984645843506,
+        0.0004314714460633695
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ]
+    },
+    {
+      "label": "last_saved_command",
+      "right_clear": false,
+      "right_why": {
+        "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision",
+        "actor": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7",
+        "collider": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/Contact/left_arm_fr3v2_link7_collision",
+        "predictive_pair_box": true,
+        "minimum_pair_clearance_m": 0.001
+      },
+      "left_clear": false,
+      "left_why": {
+        "query": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/Contact/left_arm_fr3v2_link7_collision",
+        "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4",
+        "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision",
+        "predictive_pair_box": true,
+        "minimum_pair_clearance_m": 0.001
+      },
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.173556089401245,
+        -0.35587018728256226,
+        -2.71475887298584,
+        -1.0474720001220703,
+        -0.6430822610855103,
+        0.5476875305175781,
+        0.0003653783060144633
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ]
+    }
+  ],
+  "carry_history": [
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.2819468975067139,
+        -0.7221211194992065,
+        -1.2463505268096924,
+        -0.7081462144851685,
+        -0.02410557121038437,
+        1.1188403367996216,
+        -0.18735185265541077
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3332,
+      "wall_s": 29.064049215987325,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07481475174427032,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.2817453145980835,
+        -0.722128689289093,
+        -1.2464019060134888,
+        -0.7078515887260437,
+        -0.024109479039907455,
+        1.1187242269515991,
+        -0.18734745681285858
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3332,
+      "wall_s": 29.064049215987325,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.2820931673049927,
+        -0.722061038017273,
+        -1.246591329574585,
+        -0.7082018852233887,
+        -0.024207064881920815,
+        1.1187466382980347,
+        -0.18732108175754547
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3347,
+      "wall_s": 29.216393779031932,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07481466233730316,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.2818325757980347,
+        -0.7220853567123413,
+        -1.2465803623199463,
+        -0.7081036567687988,
+        -0.024204833433032036,
+        1.1187242269515991,
+        -0.1873195767402649
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3347,
+      "wall_s": 29.216393779031932,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.2829594612121582,
+        -0.7217051386833191,
+        -1.2480182647705078,
+        -0.7085316181182861,
+        -0.024808526039123535,
+        1.1181917190551758,
+        -0.18713867664337158
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3362,
+      "wall_s": 29.369207190000452,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07481450587511063,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.282771110534668,
+        -0.7216275930404663,
+        -1.247974157333374,
+        -0.7085604071617126,
+        -0.02480199933052063,
+        1.118061900138855,
+        -0.1871408373117447
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3362,
+      "wall_s": 29.369207190000452,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.2847753763198853,
+        -0.7209592461585999,
+        -1.2510088682174683,
+        -0.709222674369812,
+        -0.02606918103992939,
+        1.1170284748077393,
+        -0.18675635755062103
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3377,
+      "wall_s": 29.517001360072754,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07481010258197784,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.2846418619155884,
+        -0.7208185791969299,
+        -1.2510228157043457,
+        -0.7093021273612976,
+        -0.026067525148391724,
+        1.1169781684875488,
+        -0.18675005435943604
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3377,
+      "wall_s": 29.517001360072754,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.287542700767517,
+        -0.7198224663734436,
+        -1.2555664777755737,
+        -0.7102758884429932,
+        -0.027990322560071945,
+        1.1152557134628296,
+        -0.18617373704910278
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3392,
+      "wall_s": 29.664733987068757,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07481071352958679,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.2874385118484497,
+        -0.7196582555770874,
+        -1.2555938959121704,
+        -0.7103622555732727,
+        -0.027998508885502815,
+        1.1151471138000488,
+        -0.186161607503891
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3392,
+      "wall_s": 29.664733987068757,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.2912614345550537,
+        -0.7182949185371399,
+        -1.2616908550262451,
+        -0.71169114112854,
+        -0.03057195618748665,
+        1.1128735542297363,
+        -0.18539080023765564
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3407,
+      "wall_s": 29.817299299989827,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0748080238699913,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.2912073135375977,
+        -0.7181200981140137,
+        -1.2617143392562866,
+        -0.7117581963539124,
+        -0.03059307485818863,
+        1.1126952171325684,
+        -0.1853765845298767
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3407,
+      "wall_s": 29.817299299989827,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.2959315776824951,
+        -0.716376543045044,
+        -1.2693822383880615,
+        -0.7134684920310974,
+        -0.03381407633423805,
+        1.10988187789917,
+        -0.1844075620174408
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3422,
+      "wall_s": 29.975517968065105,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07480936497449875,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.2959024906158447,
+        -0.7162050008773804,
+        -1.2694571018218994,
+        -0.713585376739502,
+        -0.033850010484457016,
+        1.10979163646698,
+        -0.1843942403793335
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3422,
+      "wall_s": 29.975517968065105,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.3015531301498413,
+        -0.7140673398971558,
+        -1.2786405086517334,
+        -0.7156078815460205,
+        -0.037716686725616455,
+        1.10628080368042,
+        -0.18322400748729706
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3437,
+      "wall_s": 30.127054115058854,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07480882108211517,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.3015581369400024,
+        -0.7139031887054443,
+        -1.278774619102478,
+        -0.7157557606697083,
+        -0.037767063826322556,
+        1.10612952709198,
+        -0.183202862739563
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3437,
+      "wall_s": 30.127054115058854,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.3081260919570923,
+        -0.7113673686981201,
+        -1.2894655466079712,
+        -0.7181094288825989,
+        -0.04227978736162186,
+        1.1020703315734863,
+        -0.18184016644954681
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3452,
+      "wall_s": 30.2758692339994,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07480718940496445,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.3081499338150024,
+        -0.7111678719520569,
+        -1.2896077632904053,
+        -0.718272864818573,
+        -0.04234479367733002,
+        1.101852297782898,
+        -0.1818131059408188
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3452,
+      "wall_s": 30.2758692339994,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.315650463104248,
+        -0.7082765102386475,
+        -1.301857590675354,
+        -0.720973014831543,
+        -0.04750337824225426,
+        1.0972503423690796,
+        -0.18025599420070648
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3467,
+      "wall_s": 30.432696408010088,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.074805848300457,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.3157035112380981,
+        -0.7080458402633667,
+        -1.3020107746124268,
+        -0.7211284637451172,
+        -0.047583844512701035,
+        1.0971213579177856,
+        -0.18022578954696655
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3467,
+      "wall_s": 30.432696408010088,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.3241262435913086,
+        -0.7047948837280273,
+        -1.3158165216445923,
+        -0.7241986989974976,
+        -0.05338745564222336,
+        1.0918208360671997,
+        -0.17847153544425964
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3482,
+      "wall_s": 30.591998084099032,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07480484992265701,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.3242006301879883,
+        -0.7045426964759827,
+        -1.316049575805664,
+        -0.7243338823318481,
+        -0.053482718765735626,
+        1.091628909111023,
+        -0.17844069004058838
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3482,
+      "wall_s": 30.591998084099032,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.333553433418274,
+        -0.700922429561615,
+        -1.3313422203063965,
+        -0.7277864217758179,
+        -0.05993202328681946,
+        1.0857819318771362,
+        -0.1764867603778839
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3497,
+      "wall_s": 30.74762417608872,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07480353862047195,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.3336498737335205,
+        -0.7006530165672302,
+        -1.3316073417663574,
+        -0.7279687523841858,
+        -0.060042109340429306,
+        1.0855286121368408,
+        -0.17645050585269928
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3497,
+      "wall_s": 30.74762417608872,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.3439319133758545,
+        -0.6966592073440552,
+        -1.3484349250793457,
+        -0.7317363023757935,
+        -0.06713707745075226,
+        1.0791335105895996,
+        -0.17430168390274048
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3512,
+      "wall_s": 30.908373299986124,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07480265945196152,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.3440539836883545,
+        -0.6963829398155212,
+        -1.3486963510513306,
+        -0.7319554090499878,
+        -0.06726221740245819,
+        1.0789693593978882,
+        -0.17425863444805145
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3512,
+      "wall_s": 30.908373299986124,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.3552619218826294,
+        -0.6920050978660583,
+        -1.3670945167541504,
+        -0.7360482215881348,
+        -0.07500262558460236,
+        1.0718756914138794,
+        -0.17191629111766815
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3527,
+      "wall_s": 31.06917496502865,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07480308040976524,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.3553919792175293,
+        -0.6917381882667542,
+        -1.3674108982086182,
+        -0.7362791895866394,
+        -0.07514215260744095,
+        1.071645736694336,
+        -0.1718715876340866
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3527,
+      "wall_s": 31.06917496502865,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.367543339729309,
+        -0.6869602203369141,
+        -1.387320876121521,
+        -0.7407222390174866,
+        -0.08352866023778915,
+        1.0640084743499756,
+        -0.16933059692382812
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3542,
+      "wall_s": 31.230177339049987,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07480474561452866,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.3676849603652954,
+        -0.686689555644989,
+        -1.387693166732788,
+        -0.7409232258796692,
+        -0.08368130773305893,
+        1.0637184381484985,
+        -0.16928477585315704
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3542,
+      "wall_s": 31.230177339049987,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.380776047706604,
+        -0.6815245151519775,
+        -1.4091142416000366,
+        -0.7457582950592041,
+        -0.09271518141031265,
+        1.055531620979309,
+        -0.1665446013212204
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3557,
+      "wall_s": 31.39065786404535,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07480441406369209,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.3809196949005127,
+        -0.6812289953231812,
+        -1.4094936847686768,
+        -0.745956540107727,
+        -0.09288147836923599,
+        1.0553351640701294,
+        -0.16649320721626282
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3557,
+      "wall_s": 31.39065786404535,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.3949602842330933,
+        -0.6756980419158936,
+        -1.4324744939804077,
+        -0.7511565089225769,
+        -0.10256219655275345,
+        1.0464454889297485,
+        -0.16355828940868378
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3572,
+      "wall_s": 31.55084711802192,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07480235397815704,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.395107626914978,
+        -0.6753713488578796,
+        -1.4328665733337402,
+        -0.7514094710350037,
+        -0.10274236649274826,
+        1.0461816787719727,
+        -0.16350103914737701
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3572,
+      "wall_s": 31.55084711802192,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.4100959300994873,
+        -0.6694806814193726,
+        -1.4574016332626343,
+        -0.7569167613983154,
+        -0.11306969821453094,
+        1.0367498397827148,
+        -0.16037167608737946
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3587,
+      "wall_s": 31.71087021101266,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07480272650718689,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.4102586507797241,
+        -0.6691304445266724,
+        -1.4578628540039062,
+        -0.7572047114372253,
+        -0.11326277256011963,
+        1.036430835723877,
+        -0.16031262278556824
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3587,
+      "wall_s": 31.71087021101266,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.4261828660964966,
+        -0.6628725528717041,
+        -1.4838956594467163,
+        -0.7630391120910645,
+        -0.12423769384622574,
+        1.026444673538208,
+        -0.15698476135730743
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3602,
+      "wall_s": 31.870941122993827,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.074801504611969,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.4263474941253662,
+        -0.6625173687934875,
+        -1.4843825101852417,
+        -0.7633225321769714,
+        -0.12444256246089935,
+        1.0262153148651123,
+        -0.15692387521266937
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3602,
+      "wall_s": 31.870941122993827,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.4432213306427002,
+        -0.6558735966682434,
+        -1.5119565725326538,
+        -0.7695235013961792,
+        -0.13606616854667664,
+        1.0155301094055176,
+        -0.15339753031730652
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3617,
+      "wall_s": 32.031044034985825,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07480171322822571,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.4433832168579102,
+        -0.6555261015892029,
+        -1.5124483108520508,
+        -0.7697857022285461,
+        -0.13628345727920532,
+        1.015234351158142,
+        -0.15333357453346252
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3617,
+      "wall_s": 32.031044034985825,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.461211085319519,
+        -0.6484838128089905,
+        -1.5415842533111572,
+        -0.7763700485229492,
+        -0.14855514466762543,
+        1.004006028175354,
+        -0.1496099978685379
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3632,
+      "wall_s": 32.190819760086015,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07480272650718689,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.4613600969314575,
+        -0.6481400728225708,
+        -1.5421264171600342,
+        -0.7766490578651428,
+        -0.14878295361995697,
+        1.003661870956421,
+        -0.14954175055027008
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3632,
+      "wall_s": 32.190819760086015,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.4801523685455322,
+        -0.6407032012939453,
+        -1.5727789402008057,
+        -0.783578634262085,
+        -0.16170459985733032,
+        0.9918725490570068,
+        -0.1456221640110016
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3647,
+      "wall_s": 32.35114515200257,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07480225712060928,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.4802981615066528,
+        -0.6403597593307495,
+        -1.5733617544174194,
+        -0.7839081883430481,
+        -0.1619427353143692,
+        0.9915597438812256,
+        -0.14555144309997559
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3647,
+      "wall_s": 32.35114515200257,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.5000449419021606,
+        -0.6325318217277527,
+        -1.6055405139923096,
+        -0.7911493182182312,
+        -0.17551454901695251,
+        0.9791296124458313,
+        -0.14143401384353638
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3662,
+      "wall_s": 32.51105432002805,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07480131089687347,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.5001780986785889,
+        -0.632178783416748,
+        -1.6061323881149292,
+        -0.7915071249008179,
+        -0.17576493322849274,
+        0.9788523316383362,
+        -0.1413620561361313
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3662,
+      "wall_s": 32.51105432002805,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.5208890438079834,
+        -0.6239696145057678,
+        -1.639868974685669,
+        -0.7990820407867432,
+        -0.189984992146492,
+        0.9657772183418274,
+        -0.13704556226730347
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3677,
+      "wall_s": 32.670514818048105,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07479911297559738,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.5210191011428833,
+        -0.6236035823822021,
+        -1.6404703855514526,
+        -0.7994304895401001,
+        -0.19024428725242615,
+        0.965489387512207,
+        -0.13697195053100586
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3677,
+      "wall_s": 32.670514818048105,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.5426844358444214,
+        -0.6150165796279907,
+        -1.6757643222808838,
+        -0.8073769211769104,
+        -0.2051159143447876,
+        0.9518153667449951,
+        -0.13245679438114166
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3692,
+      "wall_s": 32.830552000086755,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07479827478528023,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.5427933931350708,
+        -0.6146554350852966,
+        -1.6764259338378906,
+        -0.8077176213264465,
+        -0.20538313686847687,
+        0.9515272974967957,
+        -0.13237904012203217
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3692,
+      "wall_s": 32.830552000086755,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.5654313564300537,
+        -0.6056727170944214,
+        -1.713226556777954,
+        -0.8160338401794434,
+        -0.2209073305130005,
+        0.9372439980506897,
+        -0.12766773998737335
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3707,
+      "wall_s": 32.99022521509323,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07479995489120483,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.5655218362808228,
+        -0.6053319573402405,
+        -1.7139045000076294,
+        -0.8163952231407166,
+        -0.22118531167507172,
+        0.9369655847549438,
+        -0.1275884509086609
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3707,
+      "wall_s": 32.99022521509323,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.5891295671463013,
+        -0.5959380865097046,
+        -1.7522556781768799,
+        -0.8250528573989868,
+        -0.23735924065113068,
+        0.9220632314682007,
+        -0.12267836183309555
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3722,
+      "wall_s": 33.14958408602979,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07479804754257202,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.5892075300216675,
+        -0.595617949962616,
+        -1.752947449684143,
+        -0.8254537582397461,
+        -0.23764397203922272,
+        0.9217705130577087,
+        -0.1225980594754219
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3722,
+      "wall_s": 33.14958408602979,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.6137793064117432,
+        -0.5858126282691956,
+        -1.7928516864776611,
+        -0.834433913230896,
+        -0.25447162985801697,
+        0.9062730073928833,
+        -0.11748868227005005
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3737,
+      "wall_s": 33.30928484001197,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0747973844408989,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.613836407661438,
+        -0.5855143070220947,
+        -1.7935806512832642,
+        -0.8348429799079895,
+        -0.25476279854774475,
+        0.9059787392616272,
+        -0.11740704625844955
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3737,
+      "wall_s": 33.30928484001197,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.6393803358078003,
+        -0.5752963423728943,
+        -1.8350145816802979,
+        -0.8441770672798157,
+        -0.27224451303482056,
+        0.8898732662200928,
+        -0.11209869384765625
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3752,
+      "wall_s": 33.46857287408784,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07479628920555115,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.6394139528274536,
+        -0.5750261545181274,
+        -1.8357772827148438,
+        -0.8445808291435242,
+        -0.272541344165802,
+        0.8895849585533142,
+        -0.11201569437980652
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3752,
+      "wall_s": 33.46857287408784,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.6659327745437622,
+        -0.5643892288208008,
+        -1.87874436378479,
+        -0.8542823195457458,
+        -0.29067790508270264,
+        0.8728641271591187,
+        -0.10650839656591415
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3767,
+      "wall_s": 33.62788297899533,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07479661703109741,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.665964961051941,
+        -0.564142644405365,
+        -1.8795149326324463,
+        -0.8546855449676514,
+        -0.2909814715385437,
+        0.872561514377594,
+        -0.10642513632774353
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3767,
+      "wall_s": 33.62788297899533,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.693436622619629,
+        -0.5530913472175598,
+        -1.9240410327911377,
+        -0.8647496700286865,
+        -0.30977174639701843,
+        0.8552455306053162,
+        -0.10071779787540436
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3782,
+      "wall_s": 33.78764633706305,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07479627057909966,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.6934667825698853,
+        -0.5528725981712341,
+        -1.9248210191726685,
+        -0.865165114402771,
+        -0.3100805878639221,
+        0.8549429774284363,
+        -0.10063377767801285
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3782,
+      "wall_s": 33.78764633706305,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.72189199924469,
+        -0.5414025783538818,
+        -1.9709045886993408,
+        -0.8755791187286377,
+        -0.3295260965824127,
+        0.8370174169540405,
+        -0.09472689032554626
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3797,
+      "wall_s": 33.94710509106517,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07479730993509293,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.7219327688217163,
+        -0.5412329435348511,
+        -1.9717321395874023,
+        -0.8760162591934204,
+        -0.3298387825489044,
+        0.8367179036140442,
+        -0.09464211016893387
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3797,
+      "wall_s": 33.94710509106517,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.7512850761413574,
+        -0.5293286442756653,
+        -2.019312858581543,
+        -0.8867654800415039,
+        -0.349931538105011,
+        0.8181886076927185,
+        -0.0885385274887085
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3812,
+      "wall_s": 34.10621738003101,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.074797123670578,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.7513338327407837,
+        -0.5292111039161682,
+        -2.02030873298645,
+        -0.8872035145759583,
+        -0.35024723410606384,
+        0.8178786635398865,
+        -0.08845338970422745
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3812,
+      "wall_s": 34.10621738003101,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.781264066696167,
+        -0.5170140266418457,
+        -2.068685531616211,
+        -0.8981747627258301,
+        -0.37074363231658936,
+        0.7989844679832458,
+        -0.08222683519124985
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3827,
+      "wall_s": 34.26554589602165,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07479653507471085,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.7815462350845337,
+        -0.516986072063446,
+        -2.06974720954895,
+        -0.8986282348632812,
+        -0.3710739016532898,
+        0.7986726760864258,
+        -0.0821416974067688
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3827,
+      "wall_s": 34.26554589602165,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.8111224174499512,
+        -0.5047489404678345,
+        -2.1178600788116455,
+        -0.9095381498336792,
+        -0.39147210121154785,
+        0.7798575758934021,
+        -0.07594051212072372
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3842,
+      "wall_s": 34.42473184806295,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07479598373174667,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.8115509748458862,
+        -0.5048512816429138,
+        -2.1191394329071045,
+        -0.9099749326705933,
+        -0.39181557297706604,
+        0.779530942440033,
+        -0.07585350424051285
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3842,
+      "wall_s": 34.42473184806295,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.8402116298675537,
+        -0.4927998185157776,
+        -2.1657676696777344,
+        -0.9206088185310364,
+        -0.41166648268699646,
+        0.7612234354019165,
+        -0.06981614977121353
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3857,
+      "wall_s": 34.58368981699459,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07479505240917206,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.8407082557678223,
+        -0.4930207133293152,
+        -2.166929006576538,
+        -0.9209842085838318,
+        -0.4120291471481323,
+        0.7609115242958069,
+        -0.06972642242908478
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3857,
+      "wall_s": 34.58368981699459,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.8683497905731201,
+        -0.4812413454055786,
+        -2.212108850479126,
+        -0.9313175678253174,
+        -0.43120068311691284,
+        0.7431985139846802,
+        -0.06389201432466507
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3872,
+      "wall_s": 34.74304444505833,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07479698583483696,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.8688827753067017,
+        -0.48152029514312744,
+        -2.213193655014038,
+        -0.9316311478614807,
+        -0.43156635761260986,
+        0.7428835034370422,
+        -0.06380114704370499
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3872,
+      "wall_s": 34.74304444505833,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.8955365419387817,
+        -0.47007372975349426,
+        -2.256883144378662,
+        -0.9416642189025879,
+        -0.45007437467575073,
+        0.7257830500602722,
+        -0.05816818028688431
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3887,
+      "wall_s": 34.90175433899276,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07479667291045189,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.8960916996002197,
+        -0.4703781306743622,
+        -2.2579188346862793,
+        -0.941949725151062,
+        -0.4504387676715851,
+        0.7254648208618164,
+        -0.058077871799468994
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3887,
+      "wall_s": 34.90175433899276,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.9217718839645386,
+        -0.4592968821525574,
+        -2.300090789794922,
+        -0.9516487717628479,
+        -0.4682875871658325,
+        0.7089770436286926,
+        -0.05264465510845184
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3902,
+      "wall_s": 35.06021253904328,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07479600608348846,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.922347903251648,
+        -0.45960912108421326,
+        -2.3011412620544434,
+        -0.9519348740577698,
+        -0.468644380569458,
+        0.7086836099624634,
+        -0.052555132657289505
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3902,
+      "wall_s": 35.06021253904328,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.9470558166503906,
+        -0.4489108622074127,
+        -2.341731309890747,
+        -0.9612712264060974,
+        -0.4858403205871582,
+        0.6927804946899414,
+        -0.04732143506407738
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3917,
+      "wall_s": 35.21896326402202,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07479582726955414,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.9476573467254639,
+        -0.44922277331352234,
+        -2.342820882797241,
+        -0.9615346193313599,
+        -0.4861917793750763,
+        0.6924833059310913,
+        -0.047232918441295624
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3917,
+      "wall_s": 35.21896326402202,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.971388339996338,
+        -0.4389156699180603,
+        -2.381804943084717,
+        -0.9705316424369812,
+        -0.502732515335083,
+        0.6771934628486633,
+        -0.04219852387905121
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3932,
+      "wall_s": 35.37803701707162,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0747946947813034,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.9719951152801514,
+        -0.4392170011997223,
+        -2.382958173751831,
+        -0.9707557559013367,
+        -0.5030626654624939,
+        0.6768964529037476,
+        -0.042111143469810486
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3932,
+      "wall_s": 35.37803701707162,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.9947694540023804,
+        -0.4293113052845001,
+        -2.42031192779541,
+        -0.9794299602508545,
+        -0.5189642906188965,
+        0.6622158288955688,
+        -0.03727591782808304
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3947,
+      "wall_s": 35.53635407309048,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07479389756917953,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -1.995371699333191,
+        -0.4295947849750519,
+        -2.421398639678955,
+        -0.9796234965324402,
+        -0.5192953944206238,
+        0.6619426012039185,
+        -0.03718985244631767
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3947,
+      "wall_s": 35.53635407309048,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.0171990394592285,
+        -0.4200977087020874,
+        -2.457251787185669,
+        -0.9879661798477173,
+        -0.5345355272293091,
+        0.6478476524353027,
+        -0.032553620636463165
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3962,
+      "wall_s": 35.69536688004155,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07479139417409897,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.0175294876098633,
+        -0.4203595519065857,
+        -2.4582161903381348,
+        -0.9881592392921448,
+        -0.5348629951477051,
+        0.6475734114646912,
+        -0.03246880695223808
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3962,
+      "wall_s": 35.69536688004155,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.038677453994751,
+        -0.4112749695777893,
+        -2.4926247596740723,
+        -0.9961403012275696,
+        -0.5494462847709656,
+        0.634088933467865,
+        -0.02803162857890129
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3977,
+      "wall_s": 35.85366182704456,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0747898668050766,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.0393948554992676,
+        -0.4115249812602997,
+        -2.493494749069214,
+        -0.9963366985321045,
+        -0.5497565269470215,
+        0.633812665939331,
+        -0.027948714792728424
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3977,
+      "wall_s": 35.85366182704456,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.059204339981079,
+        -0.40284302830696106,
+        -2.526431083679199,
+        -1.0039523839950562,
+        -0.563696563243866,
+        0.6209396719932556,
+        -0.023709943518042564
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3992,
+      "wall_s": 36.01178920001257,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07478830590844154,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.0595364570617676,
+        -0.4030701220035553,
+        -2.5272445678710938,
+        -1.0040351152420044,
+        -0.5640072226524353,
+        0.6206915378570557,
+        -0.02362877130508423
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 3992,
+      "wall_s": 36.01178920001257,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.078779935836792,
+        -0.39480188488960266,
+        -2.5586702823638916,
+        -1.0114023685455322,
+        -0.5772863626480103,
+        0.6083998680114746,
+        -0.019588565453886986
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 4007,
+      "wall_s": 36.169844963005744,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07478898018598557,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.0794389247894287,
+        -0.395003080368042,
+        -2.559492588043213,
+        -1.0113593339920044,
+        -0.5775741338729858,
+        0.60814368724823,
+        -0.019509144127368927
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 4007,
+      "wall_s": 36.169844963005744,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.0974040031433105,
+        -0.3871515691280365,
+        -2.5893425941467285,
+        -1.0184903144836426,
+        -0.5902156829833984,
+        0.596469521522522,
+        -0.015667494386434555
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 4022,
+      "wall_s": 36.32783148798626,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07478806376457214,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.0977494716644287,
+        -0.3873356282711029,
+        -2.5902035236358643,
+        -1.0186666250228882,
+        -0.5905110239982605,
+        0.5962124466896057,
+        -0.015590067021548748
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 4022,
+      "wall_s": 36.32783148798626,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.1150765419006348,
+        -0.3798920810222626,
+        -2.61844801902771,
+        -1.0252161026000977,
+        -0.6024844646453857,
+        0.5851486325263977,
+        -0.011946730315685272
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 4037,
+      "wall_s": 36.48592561506666,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07478778064250946,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.1156976222991943,
+        -0.3800591230392456,
+        -2.619398832321167,
+        -1.0251621007919312,
+        -0.6027565598487854,
+        0.5849195122718811,
+        -0.01187128759920597
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 4037,
+      "wall_s": 36.48592561506666,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.1317977905273438,
+        -0.3730233907699585,
+        -2.645986795425415,
+        -1.031579852104187,
+        -0.6140927672386169,
+        0.5744372010231018,
+        -0.008426272310316563
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 4052,
+      "wall_s": 36.64420387707651,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07478754967451096,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.1321771144866943,
+        -0.3731604516506195,
+        -2.646864652633667,
+        -1.0315707921981812,
+        -0.6143720746040344,
+        0.5742045640945435,
+        -0.008353113196790218
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 4052,
+      "wall_s": 36.64420387707651,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.1475677490234375,
+        -0.36654552817344666,
+        -2.6719584465026855,
+        -1.037581443786621,
+        -0.625040590763092,
+        0.5643352270126343,
+        -0.005106120835989714
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 4067,
+      "wall_s": 36.8030730279861,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07478727400302887,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.148078203201294,
+        -0.3666630983352661,
+        -2.672710657119751,
+        -1.0376232862472534,
+        -0.6252939701080322,
+        0.5641043186187744,
+        -0.005035359412431717
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 4067,
+      "wall_s": 36.8030730279861,
+      "kind": "encoder"
+    },
+    {
+      "label": "issued",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.0721096321940422,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.162386178970337,
+        -0.36045846343040466,
+        -2.6963632106781006,
+        -1.0432209968566895,
+        -0.635327935218811,
+        0.5548427104949951,
+        -0.0019862763583660126
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 4082,
+      "wall_s": 36.96180216909852,
+      "kind": "command"
+    },
+    {
+      "label": "actual",
+      "right_clear": true,
+      "right_why": null,
+      "left_clear": true,
+      "left_why": null,
+      "right_width_m": 0.07478779554367065,
+      "left_width_m": 0.07999999821186066,
+      "right_q": [
+        -2.162726640701294,
+        -0.36055004596710205,
+        -2.697014570236206,
+        -1.0431164503097534,
+        -0.6355751752853394,
+        0.5546471476554871,
+        -0.001918109366670251
+      ],
+      "left_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "index": 4082,
+      "wall_s": 36.96180216909852,
+      "kind": "encoder"
+    }
+  ],
+  "FK_vs_recorded_actor": [
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 1.1876158942318111e-07,
+      "rotation_error_rad": 1.7901688003736218e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 1.257774277779888e-07,
+      "rotation_error_rad": 3.4321332472406e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 4.6550050045574184e-08,
+      "rotation_error_rad": 3.648278072362749e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 8.729740785752165e-08,
+      "rotation_error_rad": 3.852971517596291e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 2.7793983570432933e-07,
+      "rotation_error_rad": 5.891361956769644e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 2.7793983587955054e-07,
+      "rotation_error_rad": 4.1195830168618374e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 2.1821529423767698e-07,
+      "rotation_error_rad": 5.204563159362191e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 6.877171149246425e-08,
+      "rotation_error_rad": 5.421960626849542e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 1.0197404732907345e-07,
+      "rotation_error_rad": 5.421960626849542e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 9.530572180327317e-08,
+      "rotation_error_rad": 5.421960626849542e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 9.106238268869444e-08,
+      "rotation_error_rad": 2.9034242190546174e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 9.210582515641707e-08,
+      "rotation_error_rad": 1.419688061943316e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 1.772766645700991e-07,
+      "rotation_error_rad": 4.96982480248012e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 1.577332624907156e-07,
+      "rotation_error_rad": 4.4021720760013887e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 1.8214476108739667e-07,
+      "rotation_error_rad": 2.4874758036456405e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 1.6567056891307973e-07,
+      "rotation_error_rad": 2.2823067294630876e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 1.7265754944151165e-07,
+      "rotation_error_rad": 3.567587277193163e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 1.8724251923085373e-07,
+      "rotation_error_rad": 4.381625069913865e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/left_left_finger",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 1.9059563291044695e-07,
+      "rotation_error_rad": 4.381625069913865e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/left_right_finger",
+      "trace_index": 0,
+      "wall_s": 0.0,
+      "position_error_m": 1.8356075982733804e-07,
+      "rotation_error_rad": 4.3816250699145147e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 1.1094684960833169e-07,
+      "rotation_error_rad": 3.773734275617242e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 1.2540741897315847e-07,
+      "rotation_error_rad": 5.061925822814604e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 1.3587623892599538e-07,
+      "rotation_error_rad": 8.647900238014253e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 1.4406244346851e-07,
+      "rotation_error_rad": 8.66589964067915e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 4.4825432297858115e-07,
+      "rotation_error_rad": 8.100568529051916e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 4.1959851198169273e-07,
+      "rotation_error_rad": 9.252332639917038e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 4.0211512069211754e-07,
+      "rotation_error_rad": 8.188136469781182e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 3.4736790242737665e-07,
+      "rotation_error_rad": 8.267051357054685e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 2.9348936389973977e-07,
+      "rotation_error_rad": 8.267051357054685e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 2.8712749557104094e-07,
+      "rotation_error_rad": 8.267051357000887e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 9.106238268869444e-08,
+      "rotation_error_rad": 2.9034242190546174e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 9.210582515641707e-08,
+      "rotation_error_rad": 1.419688061943316e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 1.772766645700991e-07,
+      "rotation_error_rad": 4.96982480248012e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 1.577332624907156e-07,
+      "rotation_error_rad": 4.4021720760013887e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 1.8214476108739667e-07,
+      "rotation_error_rad": 2.4874758036456405e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 1.6567056891307973e-07,
+      "rotation_error_rad": 2.2823067294630876e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 1.7265754944151165e-07,
+      "rotation_error_rad": 3.567587277193163e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 1.8724251923085373e-07,
+      "rotation_error_rad": 4.381625069913865e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/left_left_finger",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 1.9059563291044695e-07,
+      "rotation_error_rad": 4.381625069913865e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/left_right_finger",
+      "trace_index": 1014,
+      "wall_s": 36.67574778699782,
+      "position_error_m": 1.8356075982733804e-07,
+      "rotation_error_rad": 4.3816250699145147e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 5.6198420304951e-08,
+      "rotation_error_rad": 5.632521623249127e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 1.2504046256900166e-07,
+      "rotation_error_rad": 6.852700475878312e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 2.110558035540826e-07,
+      "rotation_error_rad": 9.813698389180432e-07
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 2.884698443329514e-07,
+      "rotation_error_rad": 1.056872454016389e-06
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 4.763930128839838e-07,
+      "rotation_error_rad": 1.041627071516972e-06
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 4.7590203722338996e-07,
+      "rotation_error_rad": 1.0896969612532735e-06
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 4.5572693356941764e-07,
+      "rotation_error_rad": 1.0488431865006824e-06
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 3.061637128784569e-07,
+      "rotation_error_rad": 1.0593675806840017e-06
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 2.7593223515013115e-07,
+      "rotation_error_rad": 1.0593675806840017e-06
+    },
+    {
+      "side": "right",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 3.025843344721818e-07,
+      "rotation_error_rad": 1.0593675806840017e-06
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 9.106238268869444e-08,
+      "rotation_error_rad": 2.9034242190546174e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 9.210582515641707e-08,
+      "rotation_error_rad": 1.419688061943316e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 1.772766645700991e-07,
+      "rotation_error_rad": 4.96982480248012e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 1.577332624907156e-07,
+      "rotation_error_rad": 4.4021720760013887e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 1.8214476108739667e-07,
+      "rotation_error_rad": 2.4874758036456405e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 1.6567056891307973e-07,
+      "rotation_error_rad": 2.2823067294630876e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 1.7265754944151165e-07,
+      "rotation_error_rad": 3.567587277193163e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 1.8724251923085373e-07,
+      "rotation_error_rad": 4.381625069913865e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/left_left_finger",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 1.9059563291044695e-07,
+      "rotation_error_rad": 4.381625069913865e-07
+    },
+    {
+      "side": "left",
+      "path": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/left_right_finger",
+      "trace_index": 1023,
+      "wall_s": 37.05668574909214,
+      "position_error_m": 1.8356075982733804e-07,
+      "rotation_error_rad": 4.3816250699145147e-07
+    }
+  ],
+  "pair_box_counts": {
+    "right": 10,
+    "left": 10
+  }
+}

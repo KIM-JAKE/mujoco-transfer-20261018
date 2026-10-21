@@ -1,0 +1,28 @@
+{
+  "scope": "Static original-checker counterexample, no actual actuator commands or actor pose writes in diagnostic",
+  "hardware_tested": false,
+  "source_run": "native-roas-table-scatter-stable-v387-final-direct-priority-GPU3-all3-450",
+  "static_run": "native-roas-table-scatter-stable-v391b-crossarm-model-counterexample",
+  "approach_order": "donor_first",
+  "collision_pair": [
+    "right_arm_fr3v2_link4",
+    "left_arm_fr3v2_link7"
+  ],
+  "abort_command_and_encoder_both_rejected": true,
+  "last_recorded_command_and_encoder_both_rejected": true,
+  "pair_margin_m": 0.001,
+  "max_FK_actor_position_error_m": 4.763930128839838e-07,
+  "max_FK_actor_rotation_error_rad": 1.0896969612532735e-06,
+  "sampled_clear_until_wall_s": 36.96180216909852,
+  "last_trace_rejected_wall_s": 37.05668574909214,
+  "original_force_n": 22077.248347984558,
+  "conclusion": "Original model/pair checker already detects issued command collision; missing legacy exact-issued/current-other-arm admission allowed execution. Not FK/actor mismatch.",
+  "width_note": "Abort encoder is evaluated at actual native aperture. Abort command was evaluated at commanded aperture. The failed pair is arm link4 vs arm link7: Arm.bodies opening affects only finger transforms, so the same offending proxies and rejection are exactly invariant to replacing command aperture with actual aperture. No aperture tolerance change is needed.",
+  "first_attempt": "391 diagnostic lacked LEFT checker due setup config;391b corrected both checker setup. First attempt sent no motions.",
+  "sources_sha256": {
+    "isaac_port/runs/native-roas-table-scatter-stable-v387-final-direct-priority-GPU3-all3-450/pipeline-results.json": "19f20b7bc5144ed362b8eb01cc2b461118ff5cb881ed79c480313dec1d5fc26d",
+    "isaac_port/runs/native-roas-table-scatter-stable-v387-final-direct-priority-GPU3-all3-450/physx-sequence-trace.npz": "3051ccea6d804b76e221c600f292d310ee529923c430c5640b6e40aa1768aa4d",
+    "isaac_port/runs/native-roas-table-scatter-stable-v387-final-direct-priority-GPU3-all3-450/executed-actuator-commands.npz": "e1fe35eda988ed21357dec298c0e0c75cd7f0f1790de69975531af5f71a36371",
+    "isaac_port/runs/native-roas-table-scatter-stable-v387-final-direct-priority-GPU3-all3-450/camera-local-models.npz": "86791833dcfba5e01f25209abedb3f68e910d83289de8e08ba35c08e66cf64ab"
+  }
+}

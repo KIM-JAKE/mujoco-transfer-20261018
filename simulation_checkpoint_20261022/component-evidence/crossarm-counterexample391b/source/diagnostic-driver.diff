@@ -1,0 +1,11 @@
+--- 382/run_realtime_recipe.py
++++ 391b/run_realtime_recipe.py
+@@ -330,7 +330,7 @@
+                 if H[2,3]>1.25 and H[1,3]<-.30 and pre_scattered_checkers['right'].clear(q,.08)[0]:empty_return_waypoints.append(q)
+         report['grasp_obstacles_from_RGBD_cloud']=True;report['loose_stock_contact_policy']='Fingertip nudging allowed; RGB-D palm sweep, fixed-structure queries and all physical contacts retained' if startup_config.get('allow_fingertip_nudging') else 'Reject observed loose-stock fingertip approach contacts'
+     prepared_receiver_angles={};prepared_pad_contacts={}
+-    if scattered_refs and observed_grasp_clearance is not None and not (startup_config.get('empty_park_camera_probe')or startup_config.get('gpu_route_static_probe')or startup_config.get('gpu_left_route_static_probe')or startup_config.get('completed_part_static_probe')):
++    if scattered_refs and observed_grasp_clearance is not None and not (startup_config.get('small_right_carry_probe')or startup_config.get('empty_park_camera_probe')or startup_config.get('gpu_route_static_probe')or startup_config.get('gpu_left_route_static_probe')or startup_config.get('completed_part_static_probe')):
+         # Fixed workspace/CAD compilation, independent of loose-stock poses.
+         # Live image inference and all grasp/transport path planning remain
+         # inside the operation clock below.

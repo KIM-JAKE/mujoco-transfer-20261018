@@ -1,0 +1,127 @@
+{
+  "cross_arm_abort": {
+    "peak_force_n": 22077.248347984558,
+    "phase": "ring1_carry_to_handover",
+    "command": [
+      -0.1839800477027893,
+      -2.174459218978882,
+      0.9112180471420288,
+      -0.35549911856651306,
+      -0.5997387170791626,
+      -2.7162466049194336,
+      -2.069779872894287,
+      -1.0478157997131348,
+      -2.6931893825531006,
+      -0.6437093615531921,
+      1.090158224105835,
+      0.5471088886260986,
+      -0.20198294520378113,
+      0.0005555629031732678,
+      0.03999999910593033,
+      0.03999999910593033,
+      0.0360548160970211,
+      0.0360548160970211
+    ],
+    "encoder": [
+      -0.18301941454410553,
+      -2.175266742706299,
+      0.9114096164703369,
+      -0.3560596704483032,
+      -0.6009881496429443,
+      -2.715524435043335,
+      -2.0690548419952393,
+      -1.0468522310256958,
+      -2.692197322845459,
+      -0.6443389654159546,
+      1.0912907123565674,
+      0.5467573404312134,
+      -0.20140521228313446,
+      0.00062615453498438,
+      0.039999447762966156,
+      0.03999948129057884,
+      0.037393901497125626,
+      0.037393901497125626
+    ]
+  },
+  "error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v387-final-direct-priority-GPU3-all3-450/isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py\", line 484, in <module>\n    result=plugin.execute(task_ctx)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v387-final-direct-priority-GPU3-all3-450/isaac_port/native_hand_layout/roas-table/loose_bin_task.py\", line 449, in execute\n    if not parallel:move('right',handover['donor_route'],.8,part+'_carry_to_handover')\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v387-final-direct-priority-GPU3-all3-450/isaac_port/native_hand_layout/roas-table/loose_bin_task.py\", line 127, in move\n    for row in rows:cmd[0,indices[side]]=row[:7];cmd[0,fingers[side]]=row[7:];step()\n                                                                              ^^^^^^\n  File \"/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v387-final-direct-priority-GPU3-all3-450/isaac_port/native_hand_layout/roas-table/loose_bin_task.py\", line 98, in step\n    c['step'](label or phase)\n  File \"/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v387-final-direct-priority-GPU3-all3-450/isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py\", line 467, in scattered_step\n    raise RuntimeError('Cross-arm contact exceeded 12 N')\nRuntimeError: Cross-arm contact exceeded 12 N\n",
+  "wall_verified_elapsed_s": 37.102467206073925,
+  "dof_names": [
+    "left_arm_fr3v2_joint1",
+    "right_arm_fr3v2_joint1",
+    "left_arm_fr3v2_joint2",
+    "right_arm_fr3v2_joint2",
+    "left_arm_fr3v2_joint3",
+    "right_arm_fr3v2_joint3",
+    "left_arm_fr3v2_joint4",
+    "right_arm_fr3v2_joint4",
+    "left_arm_fr3v2_joint5",
+    "right_arm_fr3v2_joint5",
+    "left_arm_fr3v2_joint6",
+    "right_arm_fr3v2_joint6",
+    "left_arm_fr3v2_joint7",
+    "right_arm_fr3v2_joint7",
+    "left_native_left",
+    "left_native_right",
+    "right_native_left",
+    "right_native_right"
+  ],
+  "planning_diagnostics": [
+    {
+      "event": "approved_handover",
+      "part": "ring1",
+      "incoming": [
+        [
+          0.9999937619455376,
+          0.0,
+          0.00353214807330119,
+          -0.049957699668810196
+        ],
+        [
+          0.0003072873270450292,
+          0.9962085477979098,
+          -0.086996752059365,
+          -0.14983522890501141
+        ],
+        [
+          -0.0035187561027105636,
+          0.08699729475322776,
+          0.9962023333947325,
+          1.400117938512025
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "receiver_parameters": [
+        0.0,
+        0.0,
+        0.0051883790850085765,
+        0.005
+      ],
+      "right_q": [
+        -2.2705658713832,
+        -0.3160209504600779,
+        -2.8745263579552294,
+        -1.084391685041162,
+        -0.7104288821644935,
+        0.4855443090231494,
+        0.02078960247763509
+      ],
+      "left_q": [
+        -0.21328632558054292,
+        0.9020773516141869,
+        -0.6389378841727633,
+        -1.995974074065908,
+        -2.7361910907755833,
+        1.1686681188438284,
+        -0.19226024179178294
+      ],
+      "approach_order": "donor_first",
+      "elapsed_s": 2.3338772389106452,
+      "source": "RGB-D grasp + robot model; no free-body pose"
+    }
+  ]
+}

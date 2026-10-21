@@ -1,0 +1,173 @@
+{
+  "scope": "Corrected offline recorded-SIM endpoint diagnostic only; no live SDK/installation/commissioning approval or actual robot commands",
+  "hardware_tested": false,
+  "field_ready": false,
+  "immutable_runtime_package_596_changed": false,
+  "old_records_rewritten": false,
+  "source_run": "native-roas-table-scatter-stable-v278-self-clear-park-camera-446",
+  "source_dof_names": [
+    "left_arm_fr3v2_joint1",
+    "right_arm_fr3v2_joint1",
+    "left_arm_fr3v2_joint2",
+    "right_arm_fr3v2_joint2",
+    "left_arm_fr3v2_joint3",
+    "right_arm_fr3v2_joint3",
+    "left_arm_fr3v2_joint4",
+    "right_arm_fr3v2_joint4",
+    "left_arm_fr3v2_joint5",
+    "right_arm_fr3v2_joint5",
+    "left_arm_fr3v2_joint6",
+    "right_arm_fr3v2_joint6",
+    "left_arm_fr3v2_joint7",
+    "right_arm_fr3v2_joint7",
+    "left_native_left",
+    "left_native_right",
+    "right_native_left",
+    "right_native_right"
+  ],
+  "source_encoder_archive_sha256": "ffa951dcdb9d2c597353d4f5c3fc97fda15851dff688d6af428590835d7576a8",
+  "source_report_sha256": "17dd296fa50c82a564ab45738e12ff5b609df8b92b34c25248f77f946f149aa7",
+  "sample_index": 1208,
+  "sample_wall_s": 6.937380324001424,
+  "incorrect_old_fixture_indices": {
+    "left": [
+      14,
+      16
+    ],
+    "right": [
+      15,
+      17
+    ]
+  },
+  "correct_source_name_derived_indices": {
+    "left": [
+      14,
+      15
+    ],
+    "right": [
+      16,
+      17
+    ]
+  },
+  "before_wrong_widths_m": {
+    "left": 0.07500667870044708,
+    "right": 0.07500667870044708
+  },
+  "after_actual_named_widths_m": {
+    "left": 0.07999999821186066,
+    "right": 0.07001335173845291
+  },
+  "comparison": [
+    {
+      "mode": "original",
+      "tracking_rad": 0.0,
+      "baseline_before_wrong_aperture_fixture": {
+        "proposals": 12,
+        "geometry_rejections": 11,
+        "IK_rejections": 1,
+        "endpoint_survivors": 0,
+        "first_blocked_body": "right_link7_column_0_5"
+      },
+      "baseline_after_correct_aperture_fixture": {
+        "proposals": 12,
+        "geometry_rejections": 11,
+        "IK_rejections": 1,
+        "endpoint_survivors": 0,
+        "first_blocked_body": "right_link7_column_0_5"
+      },
+      "analytic_one_yaw_per_instance": {
+        "proposals": 4,
+        "geometry_rejections": 4,
+        "IK_rejections": 0,
+        "endpoint_survivors": 0,
+        "first_blocked_body": "right_link7_column_0_5"
+      },
+      "first_rigid_body_rejection_unchanged_by_correct_widths": true
+    },
+    {
+      "mode": "original",
+      "tracking_rad": 0.005,
+      "baseline_before_wrong_aperture_fixture": {
+        "proposals": 12,
+        "geometry_rejections": 11,
+        "IK_rejections": 1,
+        "endpoint_survivors": 0,
+        "first_blocked_body": "right_link7_column_0_2"
+      },
+      "baseline_after_correct_aperture_fixture": {
+        "proposals": 12,
+        "geometry_rejections": 11,
+        "IK_rejections": 1,
+        "endpoint_survivors": 0,
+        "first_blocked_body": "right_link7_column_0_2"
+      },
+      "analytic_one_yaw_per_instance": {
+        "proposals": 4,
+        "geometry_rejections": 4,
+        "IK_rejections": 0,
+        "endpoint_survivors": 0,
+        "first_blocked_body": "right_link7_column_0_2"
+      },
+      "first_rigid_body_rejection_unchanged_by_correct_widths": true
+    },
+    {
+      "mode": "swap",
+      "tracking_rad": 0.0,
+      "baseline_before_wrong_aperture_fixture": {
+        "proposals": 12,
+        "geometry_rejections": 11,
+        "IK_rejections": 1,
+        "endpoint_survivors": 0,
+        "first_blocked_body": "right_link7_column_0_4"
+      },
+      "baseline_after_correct_aperture_fixture": {
+        "proposals": 12,
+        "geometry_rejections": 11,
+        "IK_rejections": 1,
+        "endpoint_survivors": 0,
+        "first_blocked_body": "right_link7_column_0_4"
+      },
+      "analytic_one_yaw_per_instance": {
+        "proposals": 4,
+        "geometry_rejections": 1,
+        "IK_rejections": 3,
+        "endpoint_survivors": 0,
+        "first_blocked_body": "right_link5_column_7_3"
+      },
+      "first_rigid_body_rejection_unchanged_by_correct_widths": true
+    },
+    {
+      "mode": "swap",
+      "tracking_rad": 0.005,
+      "baseline_before_wrong_aperture_fixture": {
+        "proposals": 12,
+        "geometry_rejections": 11,
+        "IK_rejections": 1,
+        "endpoint_survivors": 0,
+        "first_blocked_body": "right_link5_column_5_3"
+      },
+      "baseline_after_correct_aperture_fixture": {
+        "proposals": 12,
+        "geometry_rejections": 11,
+        "IK_rejections": 1,
+        "endpoint_survivors": 0,
+        "first_blocked_body": "right_link5_column_5_3"
+      },
+      "analytic_one_yaw_per_instance": {
+        "proposals": 4,
+        "geometry_rejections": 1,
+        "IK_rejections": 3,
+        "endpoint_survivors": 0,
+        "first_blocked_body": "right_link5_column_5_3"
+      },
+      "first_rigid_body_rejection_unchanged_by_correct_widths": true
+    }
+  ],
+  "baseline_proposals_total": 48,
+  "analytic_proposals_total": 16,
+  "full_path_checked": false,
+  "approach_executed": false,
+  "closure_executed": false,
+  "production_input_unaffected": "LiveRuntime.hand_status(side) -> self.site.grippers[side].status() -> configured native FrankaHand status(IP). JSON width_m is named by side, no simulator DOF indices consumed.",
+  "conclusion": "Corrected 48 baseline endpoints and 16 analytic-yaw endpoints still have no survivors. The first baseline blocked shape is RIGHT link7 for original 0/5 and nominal swap, and RIGHT link5 for conditional 5 swap; all are unchanged by the aperture correction. No further field search in this checkpoint. Original default 20 mrad remains unchanged; 0/5 are NONEXEC diagnostic sensitivities only."
+}
