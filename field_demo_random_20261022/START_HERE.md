@@ -1,3 +1,5 @@
+> 새 선택 기능: [전체 링크·palm 대 원본 설비/UNKNOWN 상자 검사](docs/CONVEX_WORLD.md). 원본 전체 형상·모든 추종/케이블 여유·margin을 유지합니다. UNKNOWN과 접촉 규칙은 바뀌지 않으며 새48개 후보 검사도 전체 끝 자세 통과0개입니다. 기본 비활성, 실기 성공 미검증입니다.
+
 > 새 선택 기능: [전체 링크 convex-hull 자기 충돌 정밀 검사](docs/CONVEX_SELF.md). 원본 STL 전체·추종/케이블 여유·margin을 유지합니다. 실제 기록의 link5/link7 proxy 거부를 해결했으나 전체 field 접근은 UNKNOWN 등 기존 검사에서 계속 막혀 있으며 실기 성공은 검증하지 않았습니다. 기본 비활성입니다.
 
 > 새 선택 기능: [전체 링크 convex-hull 자기 충돌 정밀 검사](docs/CONVEX_SELF.md). 원본 STL 전체·추종/케이블 여유·margin을 유지합니다. 실제 기록의 link5/link7 proxy 거부를 해결했으나 전체 field 접근은 다음 검사에서 계속 막혀 있으며 실기 성공은 검증하지 않았습니다. 기본 비활성입니다.

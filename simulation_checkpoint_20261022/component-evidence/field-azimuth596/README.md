@@ -1,0 +1,9 @@
+# Bounded ring-axis azimuth coverage on the corrected model
+
+Using sealed596 unchanged, the actual348 measured25°LARGE relative grasp was expanded by exactly `G_phi=G@Rz(phi)` for0,45,...315degrees, retainingGtranslation/relative closing relation. All8variants pass the unchanged native finger/CAD opposed-contact certificate. The same8variants with a ToolZπfinger swap also pass. This is class-geometry evidence; only the original source348grip has the original physical execution proof.
+
+Same four exposed LARGE instances, same corrected single overhead image/detector, same original whole robot/palm CLOSED hull and UNKNOWN/stock/self/other-arm checks. Each condition first screens32original-family targets with ONE actual-q seed each before trying32finger-swapped fallback targets. Both nominal0and conditional5mrad remain NONEXECUTABLE numerical sensitivities; default20mrad is untouched.128total sensitivity checks, zero endpoint survivors. No full path was attempted because no endpoint survived. No actual arm/Hand/SDK connection or profile activation occurred.
+
+This covers16classfamilies/64targetposes, not arbitrary IK or all feasible physical grasps. Some failures are the one bounded DLS branch. It does not prove physical infeasibility. Scripts use authentic saved SIM pixels, calibrated robot model and class-only relative grasp; no source stock world pose or robot-q command replay. Installation/STOP/survey proof preconditions are explicitly assumed as a numerical counterfactual, not approved. The far static placeholder also prevents claiming complete site-geometry certification. Native contact sources/assets and upstream license/provenance are included.
+
+Replays require sealed596 and previous archived348/278/floor-corrected input artifacts. The optional second-camera render from an earlier task was not consumed. No extra camera-angle grid or geometry audit was added.

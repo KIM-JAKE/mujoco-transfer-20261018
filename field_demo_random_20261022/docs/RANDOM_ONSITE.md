@@ -129,3 +129,6 @@ Hand 단독 명령은 `./field-demo hand --help`를 참고한다. 현재 실기 
 
 
 같은 팔의 보수적 capsule 때문에 막히는 경우에만 [전체 원본 링크 hull 선택 검사](CONVEX_SELF.md)를 사용할 수 있습니다. 기본 20mrad, 실제 설치 증빙, 케이블 여유, SDK/STOP 및 UNKNOWN 조건은 그대로이며 이 기능만으로 실기 가능 판정을 하지 않습니다.
+
+
+설비/UNKNOWN 상자에서 보수적인 로봇 capsule이 막히는 경우 [닫힌 전체 hull 선택 검사](CONVEX_WORLD.md)를 검토할 수 있습니다. 상자·UNKNOWN·손가락 접촉·실기 한도는 그대로이며, 실제 SDK 시작 상태와 증빙으로 실행 직전 다시 검사합니다.

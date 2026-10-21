@@ -1,0 +1,10 @@
+from pathlib import Path
+import sys,json,importlib.util,numpy as np
+from pxr import Usd,UsdGeom,UsdPhysics
+H=Path('/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table');sys.path[:0]=[str(H/'bin-picking/realtime-deps-python312'),str(H)]
+import ast,types
+p=Path(__file__).with_name('staged_rgbd_batch_sensor.py');tree=ast.parse(p.read_text());functions=[x for x in tree.body if isinstance(x,ast.FunctionDef)and x.name in ['visible_plane','triangles']];ns=dict(UsdGeom=UsdGeom,UsdPhysics=UsdPhysics,np=np);exec(compile(ast.Module(body=functions,type_ignores=[]),str(p),'exec'),ns);m=types.SimpleNamespace(**ns)
+s=Usd.Stage.CreateInMemory();checks=[]
+for axis in ['X','Y','Z']:
+ plane=UsdGeom.Plane.Define(s,'/plane'+axis);plane.CreateAxisAttr(axis);plane.CreateWidthAttr(20);plane.CreateLengthAttr(12);v,f=m.triangles(plane.GetPrim());normal={'X':0,'Y':1,'Z':2}[axis];assert np.all(v[:,normal]==0)and len(v)==4 and len(f)==2;assert m.visible_plane(plane.GetPrim());checks.append('positive_dimensions_exact_'+axis)
+plane.CreateVisibilityAttr('invisible');assert not m.visible_plane(plane.GetPrim());checks.append('invisible_rejected');plane.CreateVisibilityAttr('inherited');plane.CreatePurposeAttr('guide');assert not m.visible_plane(plane.GetPrim());checks.append('guide_rejected');plane.CreatePurposeAttr('default');plane.CreateDisplayOpacityAttr([0]);assert not m.visible_plane(plane.GetPrim());checks.append('zero_opacity_rejected');mesh=UsdGeom.Mesh.Define(s,'/mesh');assert not m.visible_plane(mesh.GetPrim());checks.append('nonplane_visual_not_included');parent=UsdGeom.Xform.Define(s,'/parent');parent.CreatePurposeAttr('guide');child=UsdGeom.Plane.Define(s,'/parent/child');assert not m.visible_plane(child.GetPrim());checks.append('inherited_guide_rejected');parent.CreatePurposeAttr('default');parent.CreateVisibilityAttr('invisible');assert not m.visible_plane(child.GetPrim());checks.append('inherited_hidden_rejected');print(json.dumps(dict(checks=checks,passed=len(checks),physics_or_hardware_called=False)))

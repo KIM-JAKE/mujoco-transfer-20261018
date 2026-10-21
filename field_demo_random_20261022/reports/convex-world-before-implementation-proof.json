@@ -1,0 +1,145 @@
+{
+  "scope": "FOUR exact first endpoint counterfactuals; closed full original STL convex hull vs SAME UNKNOWN merged boxes + truecells, no occupancy or package changes",
+  "cases": [
+    {
+      "case": "original-0.005.json",
+      "first_original_capsule": "right_link7_column_0_2",
+      "whole_body_model_index": 7,
+      "tracking_budget_rad": 0.005,
+      "shape_model_sha256": "a50c465a4f3c21863194375d748d962af81d9b2ef68ef0b61d32adb2e6fe96b1",
+      "checked_FK_frame_sha256": "7f8c6bf384eff417dae9636ae523064c4fd57e9695397881149a7ec3bc69f473",
+      "results": [
+        {
+          "obstacle": "original_merged_UNKNOWN_AABB",
+          "original_capsule_clearance_m": -0.0027576444120999055,
+          "raw_FCL_distance_return": -1.0,
+          "whole_original_STL_closed_hull_distance_m": null,
+          "hull_collision": true,
+          "body_inflation_cable_tracking_time_m": 0.021938778249527613,
+          "extra_robot_numeric_padding_m": 0.0005,
+          "unchanged_collision_margin_m": 0.001,
+          "full_hull_clearance_after_ALL_allowances_m": null,
+          "conservative_hull_accepts": false
+        },
+        {
+          "obstacle": "closest_true_UNKNOWN_cell",
+          "original_capsule_clearance_m": -0.0027576444120999367,
+          "raw_FCL_distance_return": -1.0,
+          "whole_original_STL_closed_hull_distance_m": null,
+          "hull_collision": true,
+          "body_inflation_cable_tracking_time_m": 0.021938778249527613,
+          "extra_robot_numeric_padding_m": 0.0005,
+          "unchanged_collision_margin_m": 0.001,
+          "full_hull_clearance_after_ALL_allowances_m": null,
+          "conservative_hull_accepts": false
+        }
+      ]
+    },
+    {
+      "case": "original-0.json",
+      "first_original_capsule": "right_link7_column_0_5",
+      "whole_body_model_index": 7,
+      "tracking_budget_rad": 0.0,
+      "shape_model_sha256": "a50c465a4f3c21863194375d748d962af81d9b2ef68ef0b61d32adb2e6fe96b1",
+      "checked_FK_frame_sha256": "7f8c6bf384eff417dae9636ae523064c4fd57e9695397881149a7ec3bc69f473",
+      "results": [
+        {
+          "obstacle": "original_merged_UNKNOWN_AABB",
+          "original_capsule_clearance_m": -4.18847401286301e-05,
+          "raw_FCL_distance_return": -1.0,
+          "whole_original_STL_closed_hull_distance_m": null,
+          "hull_collision": true,
+          "body_inflation_cable_tracking_time_m": 0.002,
+          "extra_robot_numeric_padding_m": 0.0005,
+          "unchanged_collision_margin_m": 0.001,
+          "full_hull_clearance_after_ALL_allowances_m": null,
+          "conservative_hull_accepts": false
+        },
+        {
+          "obstacle": "closest_true_UNKNOWN_cell",
+          "original_capsule_clearance_m": -4.1884740128560714e-05,
+          "raw_FCL_distance_return": 0.00638590278064306,
+          "whole_original_STL_closed_hull_distance_m": 0.00638590278064306,
+          "hull_collision": false,
+          "body_inflation_cable_tracking_time_m": 0.002,
+          "extra_robot_numeric_padding_m": 0.0005,
+          "unchanged_collision_margin_m": 0.001,
+          "full_hull_clearance_after_ALL_allowances_m": 0.0028859027806430603,
+          "conservative_hull_accepts": true
+        }
+      ]
+    },
+    {
+      "case": "swap-0.005.json",
+      "first_original_capsule": "right_link5_column_5_3",
+      "whole_body_model_index": 5,
+      "tracking_budget_rad": 0.005,
+      "shape_model_sha256": "a50c465a4f3c21863194375d748d962af81d9b2ef68ef0b61d32adb2e6fe96b1",
+      "checked_FK_frame_sha256": "1faf87377b966eeea9e9a0aa7e0202810f970facee778f5c0c925c139c1ae27e",
+      "results": [
+        {
+          "obstacle": "original_merged_UNKNOWN_AABB",
+          "original_capsule_clearance_m": -0.0010357013749709076,
+          "raw_FCL_distance_return": 0.003872885423200294,
+          "whole_original_STL_closed_hull_distance_m": 0.003872885423200294,
+          "hull_collision": false,
+          "body_inflation_cable_tracking_time_m": 0.021337155141548027,
+          "extra_robot_numeric_padding_m": 0.0005,
+          "unchanged_collision_margin_m": 0.001,
+          "full_hull_clearance_after_ALL_allowances_m": -0.018964269718347734,
+          "conservative_hull_accepts": false
+        },
+        {
+          "obstacle": "closest_true_UNKNOWN_cell",
+          "original_capsule_clearance_m": -0.0010357013749709215,
+          "raw_FCL_distance_return": 0.003872885423200266,
+          "whole_original_STL_closed_hull_distance_m": 0.003872885423200266,
+          "hull_collision": false,
+          "body_inflation_cable_tracking_time_m": 0.021337155141548027,
+          "extra_robot_numeric_padding_m": 0.0005,
+          "unchanged_collision_margin_m": 0.001,
+          "full_hull_clearance_after_ALL_allowances_m": -0.018964269718347762,
+          "conservative_hull_accepts": false
+        }
+      ]
+    },
+    {
+      "case": "swap-0.json",
+      "first_original_capsule": "right_link5_column_7_3",
+      "whole_body_model_index": 5,
+      "tracking_budget_rad": 0.0,
+      "shape_model_sha256": "a50c465a4f3c21863194375d748d962af81d9b2ef68ef0b61d32adb2e6fe96b1",
+      "checked_FK_frame_sha256": "1faf87377b966eeea9e9a0aa7e0202810f970facee778f5c0c925c139c1ae27e",
+      "results": [
+        {
+          "obstacle": "original_merged_UNKNOWN_AABB",
+          "original_capsule_clearance_m": -0.002174633246880774,
+          "raw_FCL_distance_return": 0.010842348399889144,
+          "whole_original_STL_closed_hull_distance_m": 0.010842348399889144,
+          "hull_collision": false,
+          "body_inflation_cable_tracking_time_m": 0.002,
+          "extra_robot_numeric_padding_m": 0.0005,
+          "unchanged_collision_margin_m": 0.001,
+          "full_hull_clearance_after_ALL_allowances_m": 0.007342348399889145,
+          "conservative_hull_accepts": true
+        },
+        {
+          "obstacle": "closest_true_UNKNOWN_cell",
+          "original_capsule_clearance_m": -0.002174633246880781,
+          "raw_FCL_distance_return": 0.010842348399889144,
+          "whole_original_STL_closed_hull_distance_m": 0.010842348399889144,
+          "hull_collision": false,
+          "body_inflation_cable_tracking_time_m": 0.002,
+          "extra_robot_numeric_padding_m": 0.0005,
+          "unchanged_collision_margin_m": 0.001,
+          "full_hull_clearance_after_ALL_allowances_m": 0.007342348399889145,
+          "conservative_hull_accepts": true
+        }
+      ]
+    }
+  ],
+  "hardware_tested": false,
+  "unknown_erased": false,
+  "field_activation": false,
+  "proof_preconditions_assumed": true
+}

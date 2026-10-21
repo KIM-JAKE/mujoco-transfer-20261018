@@ -1,0 +1,38 @@
+{
+  "scope": "Exact same original scene/camera/rayclip; only authored visual Plane triangles appended to ray model",
+  "camera_K_equal": true,
+  "camera_T_equal": true,
+  "old_valid_pixels": 699626,
+  "new_valid_pixels": 1048576,
+  "old_valid_pixel_maximum_depth_change_m": 0.0,
+  "old_valid_pixel_bitwise_unchanged_fraction": 1.0,
+  "cases": [
+    {
+      "case": "original-0.005.json",
+      "old_invalid_pixels": 30,
+      "now_finite_pixels": 30,
+      "maximum_expected_authored_floor_depth_error_m": 2.758944348535408e-07
+    },
+    {
+      "case": "original-0.json",
+      "old_invalid_pixels": 48,
+      "now_finite_pixels": 48,
+      "maximum_expected_authored_floor_depth_error_m": 5.143130139551033e-07
+    },
+    {
+      "case": "swap-0.005.json",
+      "old_invalid_pixels": 7,
+      "now_finite_pixels": 7,
+      "maximum_expected_authored_floor_depth_error_m": 3.7475855751978315e-08
+    },
+    {
+      "case": "swap-0.json",
+      "old_invalid_pixels": 0,
+      "now_finite_pixels": 0,
+      "maximum_expected_authored_floor_depth_error_m": null
+    }
+  ],
+  "physics_changed": false,
+  "UNKNOWN_controller_modified": false,
+  "hardware_tested": false
+}

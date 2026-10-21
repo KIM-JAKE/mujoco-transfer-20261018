@@ -1,0 +1,75 @@
+--- a/rgbd_batch_sensor.py
++++ b/rgbd_batch_sensor.py
+@@ -6,7 +6,7 @@
+ Embree is an image ray tracer; all simulation/contact dynamics remain PhysX.
+ """
+ from pathlib import Path
+-import sys,time,numpy as np
++import sys,time,json,numpy as np
+ from pxr import UsdGeom,UsdPhysics,Usd
+ HERE=Path(__file__).resolve().parent;sys.path.insert(0,str(HERE/'bin-picking/realtime-deps-python312'))
+ from embreex import rtcore_scene,rtcore
+@@ -17,7 +17,23 @@
+ def rotation(q):
+     q=np.asarray(q);v=q[:3];w=q[3];K=np.array([[0,-v[2],v[1]],[v[2],0,-v[0]],[-v[1],v[0],0]]);return np.eye(3)+2*w*K+2*K@K
+ 
++def visible_plane(prim):
++    # Render visible authored planes even when they are non-colliding.
++    # No collider, stage, body pose or sensor inference is changed.
++    if not prim.IsA(UsdGeom.Plane):return False
++    image=UsdGeom.Imageable(prim)
++    if image.ComputeVisibility()=='invisible'or image.ComputePurpose()not in ['default','render']:return False
++    opacity=UsdGeom.Gprim(prim).GetDisplayOpacityAttr().Get()
++    return opacity is None or not len(opacity)or float(max(opacity))>0.
++
+ def triangles(prim):
++    if prim.IsA(UsdGeom.Plane):
++        plane=UsdGeom.Plane(prim);w=float(plane.GetWidthAttr().Get());h=float(plane.GetLengthAttr().Get());axis=plane.GetAxisAttr().Get()
++        if not np.isfinite([w,h]).all()or min(w,h)<=0 or axis not in ['X','Y','Z']:raise ValueError('Finite authored Plane dimensions/axis required')
++        v=np.array([[-w/2,-h/2,0],[w/2,-h/2,0],[w/2,h/2,0],[-w/2,h/2,0]])
++        if axis=='X':v=v[:,[2,0,1]]
++        elif axis=='Y':v=v[:,[0,2,1]]
++        return v,np.array([[0,1,2],[0,2,3]],np.int32)
+     if prim.IsA(UsdGeom.Mesh):
+         mesh=UsdGeom.Mesh(prim);v=np.asarray(mesh.GetPointsAttr().Get(),float)
+         if prim.HasAPI(UsdPhysics.MeshCollisionAPI)and UsdPhysics.MeshCollisionAPI(prim).GetApproximationAttr().Get()=='convexHull':
+@@ -62,7 +78,7 @@
+     v,f,c=assemble(rows);s=rtcore_scene.EmbreeScene(_DEVICE);TriangleMesh(s,v,f);s.run(np.array([[10,10,10]],np.float32),np.array([[1,0,0]],np.float32));return s,c
+ 
+ class BatchRGBDCamera:
+-    def __init__(self,stage,view,moving_paths=None,build_embree=True):
++    def __init__(self,stage,view,moving_paths=None,build_embree=True,include_visible_planes=False):
+         from quality_physx_camera import material
+         start=time.perf_counter();mesh_counter=0;anchored=set()
+         for pr in stage.Traverse():
+@@ -70,9 +86,10 @@
+                 joint=UsdPhysics.FixedJoint(pr);a=joint.GetBody0Rel().GetTargets();b=joint.GetBody1Rel().GetTargets()
+                 if not a and b:anchored.add(str(b[0]))
+                 elif a and not b:anchored.add(str(a[0]))
+-        cache=UsdGeom.XformCache(Usd.TimeCode.Default());static=[];groups={};self.body_views={};self.geometry={}
++        cache=UsdGeom.XformCache(Usd.TimeCode.Default());static=[];groups={};self.body_views={};self.geometry={};self.visual_planes=[]
+         for p in stage.Traverse():
+-            if not p.HasAPI(UsdPhysics.CollisionAPI)or not UsdPhysics.CollisionAPI(p).GetCollisionEnabledAttr().Get():continue
++            enabled=p.HasAPI(UsdPhysics.CollisionAPI)and UsdPhysics.CollisionAPI(p).GetCollisionEnabledAttr().Get()
++            if not enabled and not(include_visible_planes and visible_plane(p)):continue
+             if '/PlanningQueries/'in str(p.GetPath()):continue
+             v,f=triangles(p);mesh_counter+=1
+             if mesh_counter%100==0:print('BATCH_GEOMETRY',mesh_counter,flush=True)
+@@ -80,6 +97,8 @@
+             M=np.array(cache.GetLocalToWorldTransform(p)).T;body=p
+             while body and not body.HasAPI(UsdPhysics.RigidBodyAPI):body=body.GetParent()
+             color=material(stage,str(p.GetPath()))[0]
++            if not enabled and include_visible_planes and visible_plane(p):
++                plane=UsdGeom.Plane(p);self.visual_planes.append(dict(path=str(p.GetPath()),axis=plane.GetAxisAttr().Get(),width_m=float(plane.GetWidthAttr().Get()),length_m=float(plane.GetLengthAttr().Get()),world_transform=M.tolist(),display_color=color.tolist(),collision_enabled=False,visible=True,physics_changed=False))
+             if body and UsdPhysics.RigidBodyAPI(body).GetRigidBodyEnabledAttr().Get()and ((str(body.GetPath())in moving_paths)if moving_paths is not None else(not UsdPhysics.RigidBodyAPI(body).GetKinematicEnabledAttr().Get()and str(body.GetPath())not in anchored)):
+                 path=str(body.GetPath());B=np.array(cache.GetLocalToWorldTransform(body)).T;local=np.linalg.inv(B)@M;groups.setdefault(path,[]).append((v@local[:3,:3].T+local[:3,3],f,color))
+             else:static.append((v@M[:3,:3].T+M[:3,3],f,color))
+@@ -98,7 +117,7 @@
+             if path not in self.pose_indices:raise RuntimeError('Camera body tensor not bound: '+path)
+         self.preparation_s=time.perf_counter()-start;print('BATCH_CAMERA_PREPARED',len(static),len(groups),self.preparation_s,flush=True)
+     def export(self,path):
+-        payload=dict(static_vertices=self.static_vertices,static_faces=self.static_faces,static_colors=self.static_colors,paths=np.array(list(self.geometry)))
++        payload=dict(static_vertices=self.static_vertices,static_faces=self.static_faces,static_colors=self.static_colors,paths=np.array(list(self.geometry)),visible_plane_metadata_json=np.array(json.dumps(self.visual_planes,sort_keys=True)))
+         for i,name in enumerate(self.geometry):
+             v,f,c=self.geometry[name];payload[f'v{i}']=v;payload[f'f{i}']=f;payload[f'c{i}']=c;payload[f'b{i}']=self.local_bounds[name]
+         np.savez(path,**payload)

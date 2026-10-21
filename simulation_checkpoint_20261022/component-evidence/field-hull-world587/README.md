@@ -1,0 +1,7 @@
+# Exact full closed hull vs original UNKNOWN boxes
+
+Four bounded first-endpoint comparisons after exact authored visual-floor correction; no new grasp/view grid. Only existing full original STL/palm hulls from sealed587, unchanged original cable/tracking/time envelope,1mm margin and extra0.5mm robot numerical allowance. No UNKNOWN labels or obstacles were removed. Actual installation/SDK/commissioning proof preconditions remain explicitly assumed offline, not approved.
+
+Swapped nominal link5 hull clears both its full original merged UNKNOWN box and the exact closest unknown cell:10.84235mm distance minus3.5mm total allowance gives7.34235mm conservative clearance. Swapped5mrad fails with−18.96427mm conservative clearance after full22.83716mm inflation. Original nominal clears its closest cell by2.88590mm but overlaps a DIFFERENT portion of the full merged box, so full-box acceptance is not proved. Original5mrad overlaps both. FCL−1 overlap return is a sentinel, not signed penetration depth; numeric post-allowance clearance is null for actual overlap.
+
+This is only the proof that a narrow robot-vs-world full-hull refinement could safely resolve ONE of these original proxy rejections. It is not a full endpoint/path/field success. The one extra virtual camera had rendered under prior authorization but was NOT consumed/fused while this geometry diagnosis took priority. Sealed587 remains unchanged.

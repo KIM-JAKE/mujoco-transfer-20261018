@@ -212,6 +212,11 @@ def check_envelopes(active, other, scene, phase, envelope, *, payloads=(), dynam
                         raise ValueError('Measured payload contact region required')
                     allowed = inside_box(capsule['a'], capsule['b'], radius, region)
                     clearance = np.where(allowed, np.inf, clearance)
+                if not is_payload and np.any(clearance<=0):
+                    from .convex_self import refine_world
+                    refined=refine_world(envelope,capsule,obstacle,margin)
+                    if refined is not None:
+                        minimum=min(minimum,refined['clearance_m']);count+=refined['checked_FK_samples'];continue
                 minimum = min(minimum, float(np.min(clearance))); count += len(np.atleast_1d(clearance))
                 if np.any(clearance <= 0):
                     raise CollisionError(capsule['name'] + ' intersects measured obstacle ' + obstacle['name'])

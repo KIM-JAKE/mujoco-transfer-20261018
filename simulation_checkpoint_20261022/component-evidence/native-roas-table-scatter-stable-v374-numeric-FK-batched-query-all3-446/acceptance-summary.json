@@ -1,0 +1,46 @@
+{
+  "source_run": "native-roas-table-scatter-stable-v374-numeric-FK-batched-query-all3-446",
+  "seed": 446,
+  "full_task_pass": true,
+  "vision_end_to_end_pass": true,
+  "wall_s": 504.03718879795633,
+  "physics_s": 48.979166666663204,
+  "time_target_met": false,
+  "hardware_tested": false,
+  "generalized_reliability": false,
+  "final_checks": {
+    "ring1": {
+      "position_error_m": 0.0006184055395997532,
+      "axis_error_rad": 0.004600411687266324
+    },
+    "ring2": {
+      "position_error_m": 0.00028088486320654847,
+      "axis_error_rad": 0.006452655758334021
+    },
+    "pin": {
+      "position_error_m": 0.0007583855147830978,
+      "axis_error_rad": 0.020854812048190476
+    }
+  },
+  "limits": {
+    "samples": 23510,
+    "velocity_fraction_of_95_percent_PBV": 0.9677295007333452,
+    "max_acceleration_rad_s2": 8.89892578125,
+    "max_jerk_rad_s3": 4126.46484375,
+    "acceleration_limit_rad_s2": 9.5,
+    "jerk_limit_rad_s3": 4750,
+    "command_limit_checks": true,
+    "complete_issued_field_checked_at_end": true,
+    "validated_sample_count": 23510
+  },
+  "actual_velocity_audit": {
+    "samples": 23510,
+    "max_fraction_of_95_percent_PBV": 0.9646745144551379,
+    "max_finger_fraction_of_47p5_mm_s": 0.6778730373633535,
+    "max_coupled_finger_difference_m": 2.9802322387695312e-08,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  },
+  "CPU_planning_advances_physics": false,
+  "timing_comparison_eligible": false
+}

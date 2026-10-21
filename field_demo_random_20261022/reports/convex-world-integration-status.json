@@ -1,0 +1,68 @@
+{
+  "hardware_tested": false,
+  "field_ready": false,
+  "default_enabled": false,
+  "default_joint_tracking_error_limit_rad": 0.02,
+  "focused_python_tests": 59,
+  "world_specific_tests": 6,
+  "scope": "Opt-in original whole link/rigid palm CLOSED hull vs same original world/UNKNOWN merged boxes at ALL original SDK FK samples. No voxel labels, obstacle boxes, contact permissions or limits changed.",
+  "extra_numeric_robot_padding_m": 0.0005,
+  "full_original_cable_tracking_time_and_margin_retained": true,
+  "campaigns": [
+    {
+      "case": "original-0.json",
+      "tracking_budget_rad": 0.0,
+      "plans": 12,
+      "instances": 4,
+      "geometry_rejections": 11,
+      "IK_rejections": 1,
+      "endpoint_survivors": 0,
+      "first_reason": "right_link7_column_0_5 intersects measured obstacle residual_2f27cac59ae5_26",
+      "first_endpoint_clear_world_boxes": 0
+    },
+    {
+      "case": "original-0.005.json",
+      "tracking_budget_rad": 0.005,
+      "plans": 12,
+      "instances": 4,
+      "geometry_rejections": 11,
+      "IK_rejections": 1,
+      "endpoint_survivors": 0,
+      "first_reason": "right_link7_column_0_2 intersects measured obstacle residual_19a243d60b66_28",
+      "first_endpoint_clear_world_boxes": 0
+    },
+    {
+      "case": "swap-0.json",
+      "tracking_budget_rad": 0.0,
+      "plans": 12,
+      "instances": 4,
+      "geometry_rejections": 11,
+      "IK_rejections": 1,
+      "endpoint_survivors": 0,
+      "first_reason": "right_link7_column_0_4 intersects measured obstacle residual_6605a6feef4b_28",
+      "first_endpoint_clear_world_boxes": 11
+    },
+    {
+      "case": "swap-0.005.json",
+      "tracking_budget_rad": 0.005,
+      "plans": 12,
+      "instances": 4,
+      "geometry_rejections": 11,
+      "IK_rejections": 1,
+      "endpoint_survivors": 0,
+      "first_reason": "right_link5_column_5_3 intersects measured obstacle residual_0a699b9cf105_28",
+      "first_endpoint_clear_world_boxes": 0
+    }
+  ],
+  "total_proposals": 48,
+  "endpoint_survivors": 0,
+  "full_path_checked": false,
+  "approach_executed": false,
+  "Hand_closure_executed": false,
+  "first_swapped_nominal_original_proxy_world_rejections_cleared": 11,
+  "source_camera": "Same authored visual-floor corrected SINGLE virtual overhead RGB-D, production detector rerun. No new camera angle or second-view fusion used.",
+  "actual_installation_or_tighter_tracking_approved": false,
+  "diagnostic_proof_preconditions": "Explicitly assumed model-only, no verified records created",
+  "native_source_unchanged_files": 27,
+  "actual_dispatch_compatibility": "Native planner outputs collision_checked=false; shared Python geometry_check reexecutes before motion, inside cell lock and for stopped Hand sweeps. Native SDK start/CSV/tracking/wrench/STOP unchanged."
+}

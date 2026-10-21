@@ -1,9 +1,9 @@
-"""Opt-in whole-link convex-hull clearance after a self-capsule rejection.
+"""Opt-in whole-link/palm convex-hull refinement of original capsule rejections.
 
 Closed hulls enclose ALL original official STL vertices. The runtime retains
 both bodies' actual cable allowance, maximum original per-link tracking/time
 inflation and the unchanged collision margin, plus0.5mm numerical padding per
-body. No other-arm, finger, payload, obstacle or UNKNOWN exception is provided.
+body. No interarm-pair, finger, payload or UNKNOWN-label exception is provided.
 """
 import argparse
 from dataclasses import dataclass,field
@@ -17,6 +17,7 @@ from .model_records import validate as validate_model
 ASSETS=Path(__file__).resolve().parents[1]/'isaac_port/fieldkit/assets/convex-links'
 MODEL_SHA256='a50c465a4f3c21863194375d748d962af81d9b2ef68ef0b61d32adb2e6fe96b1'
 KEY='_validated_convex_self_context'
+WORLD_KEY='_validated_convex_world_contexts'
 FACTORY=ASSETS.parent/'fr3v2-factory'
 
 def digest(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
@@ -44,7 +45,8 @@ def _shapes():
     return result
 
 def validate_optin(config,root,dependencies,now):
-    spec=config.get('convex_self_narrowphase')
+    spec=config.get('convex_self_narrowphase');world=config.get('convex_world_narrowphase')
+    if world is not None and(world!={'model_sha256':MODEL_SHA256}or spec!=world):raise ValueError('World hull refinement requires the SAME explicit validated model as self refinement')
     if spec is None:return False
     if not isinstance(spec,dict)or spec!={'model_sha256':MODEL_SHA256}:raise ValueError('Explicit pinned convex-self model binding required')
     data=model()
@@ -73,6 +75,8 @@ class ConvexSelfContext:
     cache: dict=field(default_factory=dict)
     queries: int=0
     accepted_link_pairs: list=field(default_factory=list)
+    world_cache: dict=field(default_factory=dict)
+    accepted_world_boxes: list=field(default_factory=list)
     def refine(self,a,b,margin):
         # Actual whole-link shapes only; original tool/payload rules remain.
         def body(row):
@@ -96,8 +100,28 @@ class ConvexSelfContext:
             minimum=min(minimum,distance-threshold)
         proof=dict(clearance_m=float(minimum),whole_link_pair=[ia,ib],checked_FK_samples=len(self.frames),model_sha256=MODEL_SHA256,frame_sha256=self.frame_sha256,inflation_each_m=[self.inflation_m[ia],self.inflation_m[ib]],numeric_padding_each_m=self.padding_m,original_margin_m=float(margin))
         self.cache[key]=proof;self.accepted_link_pairs.append(proof);return proof
+    def refine_box(self,capsule,obstacle,margin):
+        i=capsule.get('link_index')
+        eligible=(capsule.get('geometry_role')=='arm'and type(i)is int and 0<=i<8)or(capsule.get('geometry_role')=='palm'and i==8 and capsule.get('hand_body')=='palm')
+        if not eligible or capsule.get('robot_side')!=self.side:return None
+        from .collision import box
+        import fcl
+        T,half=box(obstacle);margin=float(margin)
+        if not np.isfinite(margin)or margin<0:raise ValueError('Original nonnegative collision margin required')
+        box_sha=hashlib.sha256(np.r_[T.ravel(),half].tobytes()).hexdigest();key=(i,box_sha,margin)
+        if key in self.world_cache:return self.world_cache[key]
+        fixed=fcl.CollisionObject(fcl.Box(*(2*half)),fcl.Transform(T[:3,:3],T[:3,3]));robot=fcl.CollisionObject(_shapes()[i]);threshold=self.inflation_m[i]+self.padding_m+margin;minimum=np.inf
+        for row in self.frames:
+            robot.setTransform(fcl.Transform(row[i,:3,:3],row[i,:3,3]));self.queries+=1
+            contacts=fcl.CollisionResult();fcl.collide(robot,fixed,fcl.CollisionRequest(num_max_contacts=1),contacts)
+            if contacts.is_collision:self.world_cache[key]=None;return None
+            result=fcl.DistanceResult();distance=float(fcl.distance(robot,fixed,fcl.DistanceRequest(),result))
+            if not np.isfinite(distance)or distance<=threshold:self.world_cache[key]=None;return None
+            minimum=min(minimum,distance-threshold)
+        proof=dict(clearance_m=float(minimum),whole_body_index=i,robot_side=self.side,checked_FK_samples=len(self.frames),model_sha256=MODEL_SHA256,frame_sha256=self.frame_sha256,original_box_geometry_sha256=box_sha,body_inflation_m=self.inflation_m[i],numeric_padding_m=self.padding_m,original_margin_m=margin,occupancy_unchanged=True)
+        self.world_cache[key]=proof;self.accepted_world_boxes.append(proof);return proof
     def record(self):
-        return dict(model_sha256=MODEL_SHA256,frame_sha256=self.frame_sha256,FK_samples=len(self.frames),FCL_queries=self.queries,accepted_link_pairs=self.accepted_link_pairs,scope='Only original self-capsule rejections; closed original full-link and rigid native-palm convex hulls with full original uncertainty and unchanged margin',physical_execution_certified=False)
+        return dict(model_sha256=MODEL_SHA256,frame_sha256=self.frame_sha256,FK_samples=len(self.frames),FCL_queries=self.queries,accepted_link_pairs=self.accepted_link_pairs,accepted_world_boxes=self.accepted_world_boxes,scope='Original capsule rejections only; full closed link/palm hulls, all original uncertainty+margin; world boxes/occupancy unchanged',physical_execution_certified=False)
 
 def context(envelope,rows,link_frames,side):
     fs=np.asarray(link_frames,float).copy()
@@ -124,14 +148,19 @@ def refine(envelope,a,b,margin):
     value=envelope.get(KEY)
     return value.refine(a,b,margin)if isinstance(value,ConvexSelfContext)else None
 
-def prepare(motion,output):
+def refine_world(envelope,capsule,obstacle,margin):
+    contexts=envelope.get(WORLD_KEY);value=contexts.get(capsule.get('robot_side'))if isinstance(contexts,dict)else None
+    return value.refine_box(capsule,obstacle,margin)if isinstance(value,ConvexSelfContext)else None
+
+def prepare(motion,output,*,world_boxes=False):
     motion,output=Path(motion).resolve(),Path(output).resolve()
     if output.exists()or output.parent!=motion.parent:raise ValueError('Use a NEW motion profile beside its source')
     config=json.loads(motion.read_text());config['convex_self_narrowphase']=dict(model_sha256=MODEL_SHA256)
+    if world_boxes:config['convex_world_narrowphase']=dict(model_sha256=MODEL_SHA256)
     validate_optin(config,motion.parent,{},datetime.now(timezone.utc))
     output.write_text(json.dumps(config,indent=2)+'\n')
-    return dict(state='optin_convex_self_profile_written',profile=str(output),default20mrad_unchanged=config['joint_tracking_error_limit_rad']==.02,model_sha256=MODEL_SHA256,hardware_tested=False,full_task_verified=False)
+    return dict(state='optin_convex_world_profile_written'if config.get('convex_world_narrowphase')is not None else'optin_convex_self_profile_written',world_box_refinement_enabled=config.get('convex_world_narrowphase')is not None,profile=str(output),default20mrad_unchanged=config['joint_tracking_error_limit_rad']==.02,model_sha256=MODEL_SHA256,hardware_tested=False,full_task_verified=False)
 
 def main(argv=None):
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--motion',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args(argv);print(json.dumps(prepare(a.motion,a.output),indent=2));return 0
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--motion',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--include-world-boxes',action='store_true');a=p.parse_args(argv);print(json.dumps(prepare(a.motion,a.output,world_boxes=a.include_world_boxes),indent=2));return 0
 if __name__=='__main__':raise SystemExit(main())

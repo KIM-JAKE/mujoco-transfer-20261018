@@ -14,11 +14,11 @@ Typed RIGHT pre-carry planning failure can select a checked handover before load
 
 ## New-layout and computation follow-ups
 
-361(seed447) completed SMALL insertion, then released an uncertain LARGE grasp back into the bin, re-picked and handed it to LEFT; the loaded-finger geometry interval stopped its next carry (517.35s, fullFAIL).362(seed448) completed LARGE insertion but found no SMALL hook/rearrangement route (92.38s, fullFAIL). These do not extend accepted-layout reliability.371 is testing a larger, already permitted, continuously swept finger-uncertainty interval with all geometric and speed guards, plus [numeric FK368](experiments/numeric-fk368/README.md); no result yet.
+361(seed447) completed SMALL insertion, then released an uncertain LARGE grasp back into the bin, re-picked and handed it to LEFT; the loaded-finger geometry interval stopped its next carry (517.35s, fullFAIL).362(seed448) completed LARGE insertion but found no SMALL hook/rearrangement route (92.38s, fullFAIL). These do not extend accepted-layout reliability.371 also failed before the larger proposed finger interval was exercised (141.73s); it did not establish a fix.374 integrates exact numericFK368 and batched USD query updates and passes all3 again on SAME446 (504.04wall/48.98physics). It does not establish a causal speedup or new-layout reliability.376/379 still failed on447/448; the direct-priority ordering was overwritten by an old later sort and is corrected only in382.
 
 Stationary full-scene CPU-dispatch364/365 found4 worker threads slower than the existing0 (7.246s vs1.119s for one simulated second); the existing setting is retained. These are no-motion performance components, so their aggregate task verdict is intentionallyFALSE.
 
-587 field source adds an optional conservative whole-link/palm convex self check with all original uncertainty, not a field success. Recorded default20mrad/UNKNOWN admission is still blocked. Actual survey records already support known static NON-bin geometry; they do not erase uncertainty in unseen basket stock.
+596 field source adds an optional whole-link/palm convex world check with all original uncertainty and the SAME merged UNKNOWN boxes;59focused checks pass, but zero recorded complete endpoints survive.587 field source adds an optional conservative whole-link/palm convex self check with all original uncertainty, not a field success. Recorded default20mrad/UNKNOWN admission is still blocked. Actual survey records already support known static NON-bin geometry; they do not erase uncertainty in unseen basket stock.
 
 ## Accepted357 smooth-carry follow-up
 
@@ -69,3 +69,5 @@ The full-CAD FCL accept-only acceleration experiment303 also preserved outcomes 
 [PIN-only recorded video](media/pin-component308-recorded-physx-1x-captioned.mp4) shows actual recorded PhysX at1x monotonic wall time, including camera/compute waits. It is a separate component, not a three-part cycle. [Replay provenance](media/pin-component308-replay-manifest.json) and component records preserve that scope. Only text/reticle overlays were added; no robot/object poses or playback timing were changed.
 
 The PIN feedback experiment overrides are in `experiments/pin-feedback308/`; source/config hashes accompany component records. Canonical source may contain later default-off experiments and is not the exact source of every historical run. Parallel reliability runs are ineligible for cycle-time comparisons. Old policy results and planned subsecond routes do not establish20/30s current whole-task performance.
+
+[Accepted374 exact source and scope](experiments/full-pass374/README.md). [Authored-floor rendering correction](experiments/authored-floor379/README.md) affects camera pixels only; it does not clear unseen basket stock or establish a successful field path.
