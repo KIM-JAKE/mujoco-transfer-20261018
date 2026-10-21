@@ -1,0 +1,643 @@
+{
+  "parts": [
+    {
+      "part": "ring1",
+      "pickup_side": "right",
+      "insert_side": "left",
+      "grasp_families": [
+        {
+          "name": "measured",
+          "T_part_tcp": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              -0.01
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "actions": {
+            "open": {
+              "width_m": 0.07,
+              "speed_m_s": 0.005
+            },
+            "grasp": {
+              "width_m": 0.04,
+              "speed_m_s": 0.005,
+              "force_n": 5,
+              "epsilon_inner_m": 0.0005,
+              "epsilon_outer_m": 0.0005
+            },
+            "release": {
+              "width_m": 0.07,
+              "speed_m_s": 0.005
+            }
+          },
+          "measurement": {
+            "verified": true,
+            "by": "SYNTHETIC_CONTRACT_NOT_HARDWARE",
+            "at_utc": "2020-01-01T00:00:00Z",
+            "evidence_file": "SYNTHETIC_ONLY.txt"
+          }
+        }
+      ],
+      "pregrasp_offset_part_m": [
+        0,
+        0,
+        -0.07
+      ],
+      "lift_offsets_cell_m": [
+        [
+          0,
+          0,
+          0.05
+        ]
+      ],
+      "insert_entry_offset_part_m": [
+        0,
+        0,
+        -0.08
+      ],
+      "withdraw_offset_cell_m": [
+        0,
+        0,
+        0.08
+      ],
+      "min_tcp_clearance_m": 0.04,
+      "payload_dimensions": {
+        "radius_m": 0.0375,
+        "length_m": 0.016,
+        "measurement": {
+          "verified": true,
+          "by": "SYNTHETIC_CONTRACT_NOT_HARDWARE",
+          "at_utc": "2020-01-01T00:00:00Z",
+          "evidence_file": "SYNTHETIC_ONLY.txt"
+        }
+      },
+      "handover": {
+        "donor_T_cell_tcp": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0,
+            0.16
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "donor_waypoints_cell_tcp": [],
+        "receiver_T_part_tcp": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            -0.01
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "receiver_approach_offset_part_m": [
+          0,
+          0,
+          0.07
+        ],
+        "donor_retreat_offset_cell_m": [
+          0.1,
+          0,
+          0.06
+        ],
+        "donor_grasped_signal": "ring1_donor",
+        "receiver_grasped_signal": "ring1_receiver",
+        "receiver_open": {
+          "width_m": 0.07,
+          "speed_m_s": 0.005
+        },
+        "receiver_grasp": {
+          "width_m": 0.04,
+          "speed_m_s": 0.005,
+          "force_n": 5,
+          "epsilon_inner_m": 0.0005,
+          "epsilon_outer_m": 0.0005
+        },
+        "donor_release": {
+          "width_m": 0.07,
+          "speed_m_s": 0.005
+        },
+        "receiver_release": {
+          "width_m": 0.07,
+          "speed_m_s": 0.005
+        }
+      }
+    },
+    {
+      "part": "ring2",
+      "pickup_side": "right",
+      "insert_side": "left",
+      "grasp_families": [
+        {
+          "name": "measured",
+          "T_part_tcp": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              -0.01
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "actions": {
+            "open": {
+              "width_m": 0.07,
+              "speed_m_s": 0.005
+            },
+            "grasp": {
+              "width_m": 0.04,
+              "speed_m_s": 0.005,
+              "force_n": 5,
+              "epsilon_inner_m": 0.0005,
+              "epsilon_outer_m": 0.0005
+            },
+            "release": {
+              "width_m": 0.07,
+              "speed_m_s": 0.005
+            }
+          },
+          "measurement": {
+            "verified": true,
+            "by": "SYNTHETIC_CONTRACT_NOT_HARDWARE",
+            "at_utc": "2020-01-01T00:00:00Z",
+            "evidence_file": "SYNTHETIC_ONLY.txt"
+          }
+        }
+      ],
+      "pregrasp_offset_part_m": [
+        0,
+        0,
+        -0.07
+      ],
+      "lift_offsets_cell_m": [
+        [
+          0,
+          0,
+          0.05
+        ]
+      ],
+      "insert_entry_offset_part_m": [
+        0,
+        0,
+        -0.08
+      ],
+      "withdraw_offset_cell_m": [
+        0,
+        0,
+        0.08
+      ],
+      "min_tcp_clearance_m": 0.04,
+      "payload_dimensions": {
+        "radius_m": 0.031,
+        "length_m": 0.016,
+        "measurement": {
+          "verified": true,
+          "by": "SYNTHETIC_CONTRACT_NOT_HARDWARE",
+          "at_utc": "2020-01-01T00:00:00Z",
+          "evidence_file": "SYNTHETIC_ONLY.txt"
+        }
+      },
+      "handover": {
+        "donor_T_cell_tcp": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0,
+            0.16
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "donor_waypoints_cell_tcp": [],
+        "receiver_T_part_tcp": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            -0.01
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "receiver_approach_offset_part_m": [
+          0,
+          0,
+          0.07
+        ],
+        "donor_retreat_offset_cell_m": [
+          0.1,
+          0,
+          0.06
+        ],
+        "donor_grasped_signal": "ring2_donor",
+        "receiver_grasped_signal": "ring2_receiver",
+        "receiver_open": {
+          "width_m": 0.07,
+          "speed_m_s": 0.005
+        },
+        "receiver_grasp": {
+          "width_m": 0.04,
+          "speed_m_s": 0.005,
+          "force_n": 5,
+          "epsilon_inner_m": 0.0005,
+          "epsilon_outer_m": 0.0005
+        },
+        "donor_release": {
+          "width_m": 0.07,
+          "speed_m_s": 0.005
+        },
+        "receiver_release": {
+          "width_m": 0.07,
+          "speed_m_s": 0.005
+        }
+      }
+    },
+    {
+      "part": "pin",
+      "pickup_side": "right",
+      "insert_side": "right",
+      "grasp_families": [
+        {
+          "name": "measured",
+          "T_part_tcp": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              -0.01
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "actions": {
+            "open": {
+              "width_m": 0.07,
+              "speed_m_s": 0.005
+            },
+            "grasp": {
+              "width_m": 0.04,
+              "speed_m_s": 0.005,
+              "force_n": 5,
+              "epsilon_inner_m": 0.0005,
+              "epsilon_outer_m": 0.0005
+            },
+            "release": {
+              "width_m": 0.07,
+              "speed_m_s": 0.005
+            }
+          },
+          "measurement": {
+            "verified": true,
+            "by": "SYNTHETIC_CONTRACT_NOT_HARDWARE",
+            "at_utc": "2020-01-01T00:00:00Z",
+            "evidence_file": "SYNTHETIC_ONLY.txt"
+          }
+        }
+      ],
+      "pregrasp_offset_part_m": [
+        0,
+        0,
+        0.07
+      ],
+      "lift_offsets_cell_m": [
+        [
+          0,
+          0,
+          0.05
+        ]
+      ],
+      "insert_entry_offset_part_m": [
+        0,
+        0,
+        0.08
+      ],
+      "withdraw_offset_cell_m": [
+        0,
+        0,
+        0.08
+      ],
+      "min_tcp_clearance_m": 0.04,
+      "payload_dimensions": {
+        "radius_m": 0.004,
+        "length_m": 0.016,
+        "measurement": {
+          "verified": true,
+          "by": "SYNTHETIC_CONTRACT_NOT_HARDWARE",
+          "at_utc": "2020-01-01T00:00:00Z",
+          "evidence_file": "SYNTHETIC_ONLY.txt"
+        }
+      },
+      "handover": {
+        "donor_T_cell_tcp": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0,
+            0.16
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "donor_waypoints_cell_tcp": [],
+        "receiver_T_part_tcp": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            -0.01
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "receiver_approach_offset_part_m": [
+          0,
+          0,
+          0.07
+        ],
+        "donor_retreat_offset_cell_m": [
+          0.1,
+          0,
+          0.06
+        ],
+        "donor_grasped_signal": "pin_donor",
+        "receiver_grasped_signal": "pin_receiver",
+        "receiver_open": {
+          "width_m": 0.07,
+          "speed_m_s": 0.005
+        },
+        "receiver_grasp": {
+          "width_m": 0.04,
+          "speed_m_s": 0.005,
+          "force_n": 5,
+          "epsilon_inner_m": 0.0005,
+          "epsilon_outer_m": 0.0005
+        },
+        "donor_release": {
+          "width_m": 0.07,
+          "speed_m_s": 0.005
+        },
+        "receiver_release": {
+          "width_m": 0.07,
+          "speed_m_s": 0.005
+        }
+      }
+    }
+  ],
+  "insertion_targets": {
+    "ring1": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        -0.07
+      ],
+      [
+        0.0,
+        -1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0,
+        0.06
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "ring2": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.07
+      ],
+      [
+        0.0,
+        -1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0,
+        0.06
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "pin": [
+      [
+        0.8086075400626401,
+        0.0,
+        0.588348405414552,
+        0.0
+      ],
+      [
+        -0.1426954482463482,
+        0.9701425001453319,
+        0.19611613513818402,
+        -0.07
+      ],
+      [
+        -0.5707817929853928,
+        -0.24253562503633297,
+        0.7844645405527361,
+        0.06
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  },
+  "max_task_s": 300,
+  "max_observation_age_s": 1.0,
+  "feedback_timeout_s": 0.5,
+  "feedback_dwell_s": 0.1,
+  "release_width_tolerance_m": 0.001,
+  "insert_pose_confirmation_tolerance_m": 0.003,
+  "target_position_tolerance_m": 0.001,
+  "target_angle_tolerance_rad": 0.01,
+  "schema_version": 2,
+  "recognition": "seed_free_rgbd",
+  "replay_only": true,
+  "site_config": "site.json",
+  "camera_config": "camera.json",
+  "planner_config": "planner-contract-only.json",
+  "commissioning": {
+    "verified": true,
+    "by": "SYNTHETIC_CONTRACT_NOT_HARDWARE",
+    "at_utc": "2020-01-01T00:00:00Z",
+    "evidence_file": "SYNTHETIC_ONLY.txt"
+  },
+  "held_roi_radius_m": 0.048,
+  "stabilization_profile": {
+    "path": "../../stabilization/v128/field-profile.json",
+    "sha256": "8fd27b33cd3e2f45990f3c70c2d7222fe951520e863d24d300921718ad87ab3a"
+  }
+}

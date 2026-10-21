@@ -1,0 +1,596 @@
+{
+  "schema_version": 2,
+  "units": "m",
+  "site_config": "site.json",
+  "planner_binary": "../../build/m80_dynamic_plan",
+  "camera_configs": {
+    "basket": "camera.json",
+    "held_right": null,
+    "held_left": null,
+    "pin_holder": null
+  },
+  "measurement": {
+    "verified": null,
+    "by": null,
+    "at_utc": null,
+    "evidence_file": null
+  },
+  "collision_margin_m": null,
+  "max_observation_age_s": null,
+  "max_state_read_s": null,
+  "other_arm_q_tolerance_rad": null,
+  "target_position_tolerance_m": null,
+  "target_angle_tolerance_rad": null,
+  "scene": {
+    "measurement": {
+      "verified": null,
+      "by": null,
+      "at_utc": null,
+      "evidence_file": null
+    },
+    "complete_within_workspace": null,
+    "unobserved_geometry_enclosed": null,
+    "workspace": {
+      "T_cell_box": null,
+      "half_extents_m": null
+    },
+    "obstacles": [
+      {
+        "name": null,
+        "T_cell_box": null,
+        "half_extents_m": null
+      }
+    ],
+    "require_basket_observation": true,
+    "unseen_loose_objects_enclosure_names": [],
+    "require_residual_occupancy": true
+  },
+  "robots": {
+    "left": {
+      "measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "whole_robot_hand_tool_cables_enclosed": null,
+      "link_radii_m": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "tool_in_link_envelopes": null,
+      "tool_capsules_tcp_m": [],
+      "self_ignore_pairs": [],
+      "payload_robot_ignore_capsules": []
+    },
+    "right": {
+      "measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "whole_robot_hand_tool_cables_enclosed": null,
+      "link_radii_m": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "tool_in_link_envelopes": null,
+      "tool_capsules_tcp_m": [],
+      "self_ignore_pairs": [],
+      "payload_robot_ignore_capsules": []
+    }
+  },
+  "loose_part_envelopes": {
+    "ring1": {
+      "measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "capsules_part_m": [],
+      "payload_dimensions": {
+        "radius_m": null,
+        "length_m": null
+      }
+    },
+    "ring2": {
+      "measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "capsules_part_m": [],
+      "payload_dimensions": {
+        "radius_m": null,
+        "length_m": null
+      }
+    },
+    "pin": {
+      "measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "capsules_part_m": [],
+      "payload_dimensions": {
+        "radius_m": null,
+        "length_m": null
+      }
+    }
+  },
+  "phases": {
+    "pickup": {
+      "measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "corridors": [
+        {
+          "T_cell_box": null,
+          "half_extents_m": null
+        }
+      ],
+      "tcp_corridor_radius_m": null,
+      "force_monitor": {
+        "enabled": null,
+        "force_limit_n": 5,
+        "moment_limit_nm": 1,
+        "measurement": {
+          "verified": null,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        }
+      },
+      "allow_payload_contact_fixture": null,
+      "payload_contact_approved": null,
+      "payload_contact_region": null,
+      "contact_measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "target_contact_tool_capsules": [],
+      "handover_contact_tool_capsules": [],
+      "bounded_loose_stock_contact": null
+    },
+    "lift": {
+      "measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "corridors": [
+        {
+          "T_cell_box": null,
+          "half_extents_m": null
+        }
+      ],
+      "tcp_corridor_radius_m": null,
+      "force_monitor": {
+        "enabled": null,
+        "force_limit_n": 5,
+        "moment_limit_nm": 1,
+        "measurement": {
+          "verified": null,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        }
+      },
+      "allow_payload_contact_fixture": null,
+      "payload_contact_approved": null,
+      "payload_contact_region": null,
+      "contact_measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "target_contact_tool_capsules": [],
+      "handover_contact_tool_capsules": []
+    },
+    "donor_carry": {
+      "measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "corridors": [
+        {
+          "T_cell_box": null,
+          "half_extents_m": null
+        }
+      ],
+      "tcp_corridor_radius_m": null,
+      "force_monitor": {
+        "enabled": null,
+        "force_limit_n": 5,
+        "moment_limit_nm": 1,
+        "measurement": {
+          "verified": null,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        }
+      },
+      "allow_payload_contact_fixture": null,
+      "payload_contact_approved": null,
+      "payload_contact_region": null,
+      "contact_measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "target_contact_tool_capsules": [],
+      "handover_contact_tool_capsules": []
+    },
+    "receiver_approach": {
+      "measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "corridors": [
+        {
+          "T_cell_box": null,
+          "half_extents_m": null
+        }
+      ],
+      "tcp_corridor_radius_m": null,
+      "force_monitor": {
+        "enabled": null,
+        "force_limit_n": 5,
+        "moment_limit_nm": 1,
+        "measurement": {
+          "verified": null,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        }
+      },
+      "allow_payload_contact_fixture": null,
+      "payload_contact_approved": null,
+      "payload_contact_region": null,
+      "contact_measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "target_contact_tool_capsules": [],
+      "handover_contact_tool_capsules": []
+    },
+    "donor_retreat": {
+      "measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "corridors": [
+        {
+          "T_cell_box": null,
+          "half_extents_m": null
+        }
+      ],
+      "tcp_corridor_radius_m": null,
+      "force_monitor": {
+        "enabled": null,
+        "force_limit_n": 5,
+        "moment_limit_nm": 1,
+        "measurement": {
+          "verified": null,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        }
+      },
+      "allow_payload_contact_fixture": null,
+      "payload_contact_approved": null,
+      "payload_contact_region": null,
+      "contact_measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "target_contact_tool_capsules": [],
+      "handover_contact_tool_capsules": []
+    },
+    "preinsert": {
+      "measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "corridors": [
+        {
+          "T_cell_box": null,
+          "half_extents_m": null
+        }
+      ],
+      "tcp_corridor_radius_m": null,
+      "force_monitor": {
+        "enabled": null,
+        "force_limit_n": 5,
+        "moment_limit_nm": 1,
+        "measurement": {
+          "verified": null,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        }
+      },
+      "allow_payload_contact_fixture": null,
+      "payload_contact_approved": null,
+      "payload_contact_region": null,
+      "contact_measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "target_contact_tool_capsules": [],
+      "handover_contact_tool_capsules": []
+    },
+    "insert": {
+      "measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "corridors": [
+        {
+          "T_cell_box": null,
+          "half_extents_m": null
+        }
+      ],
+      "tcp_corridor_radius_m": null,
+      "force_monitor": {
+        "enabled": null,
+        "force_limit_n": 5,
+        "moment_limit_nm": 1,
+        "measurement": {
+          "verified": null,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        }
+      },
+      "allow_payload_contact_fixture": null,
+      "payload_contact_approved": null,
+      "payload_contact_region": null,
+      "contact_measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "target_contact_tool_capsules": [],
+      "handover_contact_tool_capsules": []
+    },
+    "withdraw": {
+      "measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "corridors": [
+        {
+          "T_cell_box": null,
+          "half_extents_m": null
+        }
+      ],
+      "tcp_corridor_radius_m": null,
+      "force_monitor": {
+        "enabled": null,
+        "force_limit_n": 5,
+        "moment_limit_nm": 1,
+        "measurement": {
+          "verified": null,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        }
+      },
+      "allow_payload_contact_fixture": null,
+      "payload_contact_approved": null,
+      "payload_contact_region": null,
+      "contact_measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "target_contact_tool_capsules": [],
+      "handover_contact_tool_capsules": []
+    },
+    "inventory_inspection": {
+      "measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "corridors": [
+        {
+          "T_cell_box": null,
+          "half_extents_m": null
+        }
+      ],
+      "tcp_corridor_radius_m": null,
+      "force_monitor": {
+        "enabled": null,
+        "force_limit_n": 5,
+        "moment_limit_nm": 1,
+        "measurement": {
+          "verified": null,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        }
+      },
+      "allow_payload_contact_fixture": null,
+      "payload_contact_approved": null,
+      "payload_contact_region": null,
+      "contact_measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "target_contact_tool_capsules": [],
+      "handover_contact_tool_capsules": []
+    },
+    "inventory_return": {
+      "measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "corridors": [
+        {
+          "T_cell_box": null,
+          "half_extents_m": null
+        }
+      ],
+      "tcp_corridor_radius_m": null,
+      "force_monitor": {
+        "enabled": null,
+        "force_limit_n": 5,
+        "moment_limit_nm": 1,
+        "measurement": {
+          "verified": null,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        }
+      },
+      "allow_payload_contact_fixture": null,
+      "payload_contact_approved": null,
+      "payload_contact_region": null,
+      "contact_measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "target_contact_tool_capsules": [],
+      "handover_contact_tool_capsules": []
+    },
+    "empty_hand_inspection": {
+      "measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "corridors": [
+        {
+          "T_cell_box": null,
+          "half_extents_m": null
+        }
+      ],
+      "tcp_corridor_radius_m": null,
+      "force_monitor": {
+        "enabled": null,
+        "force_limit_n": 5,
+        "moment_limit_nm": 1,
+        "measurement": {
+          "verified": null,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        }
+      },
+      "allow_payload_contact_fixture": null,
+      "payload_contact_approved": null,
+      "payload_contact_region": null,
+      "contact_measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "target_contact_tool_capsules": [],
+      "handover_contact_tool_capsules": []
+    }
+  },
+  "notes": "All geometry must conservatively enclose the ACTUAL robot, hand, tool, cables and complete scene within the measured workspace. Eight link radii enclose base/joint1/.../joint7/TCP segments. Self-exclusion indices and distal payload contact masks require actual field review. Capsule/box checks are conservative envelope checks, not inferred whole-body meshes. Unknown/empty geometry cannot authorize motion. Only payload-vs-named fixture contact in the measured insertion region can be exempted; robot-vs-fixture checks remain active. TCP corridors need measured enclosing radius and complete path review. 5N/1Nm are the native fixed stop thresholds, not certified insertion control. Every measurement needs real evidence. Real RGB-D observations and all installed parts are bound per phase; no simulator paths or scene identities are accepted. Held-only views require a fresh basket scene_observations packet by default. The alternative requires named measured static boxes enclosing every unseen loose object. The enforced native 0.02rad tracking-error budget is included in collision inflation and may conservatively reject tight insertion paths; no smaller unimplemented threshold is assumed. A tighter joint_tracking_error_limit_rad is accepted only with actual measured stop-test evidence and must be enforced by the native dynamic runner; it can never exceed 0.02rad. Measured ring-shell capsules_part_m may conservatively preserve real holes; solid cylinder/capsule fallback will reject some narrow ring/pin paths.",
+  "joint_tracking_error_limit_rad": 0.02,
+  "tracking_guard_measurement": {
+    "verified": null,
+    "by": null,
+    "at_utc": null,
+    "evidence_file": null
+  },
+  "bounded_loose_stock_contact_example": {
+    "schema_version": 1,
+    "inventory_contract": {
+      "parts": [
+        "ring1",
+        "ring2"
+      ],
+      "maximum_count": 10,
+      "measurement": {
+        "verified": false,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      }
+    },
+    "bin_interior": {
+      "T_cell_box": null,
+      "half_extents_m": null,
+      "measurement": {
+        "verified": false,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      }
+    },
+    "finger_capsules": [],
+    "monitoring": {
+      "wrench_source": "actual_fr3_sdk_aggregate_wrench",
+      "force_limit_n": 5,
+      "moment_limit_nm": 1,
+      "heartbeat_timeout_s": 0.25,
+      "native_driver_sha256": null,
+      "stop_test_sha256": null,
+      "measurement": {
+        "verified": false,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      }
+    }
+  }
+}

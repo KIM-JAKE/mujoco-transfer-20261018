@@ -1,0 +1,54 @@
+test_capture_rejects_moving_or_wrong_protocol (isaac_port.fieldkit.test_hand.HandTests) ... ok
+test_compile_registers_hash_and_invalidates_assembly_approval (isaac_port.fieldkit.test_hand.HandTests) ... ok
+test_empty_grasp_never_acknowledged (isaac_port.fieldkit.test_hand.HandTests) ... ok
+test_invalid_or_cancelled_commands_do_not_spawn (isaac_port.fieldkit.test_hand.HandTests) ... usage: python -m unittest [-h] --ip IP [--binary BINARY] [--execute]
+                          [--clear-hand-area] [--width-mm WIDTH_MM]
+                          [--speed-mm-s SPEED_MM_S] [--force-n FORCE_N]
+                          [--epsilon-mm EPSILON_MM]
+                          {status,homing,move,grasp,stop}
+python -m unittest: error: Finger motion requires --execute --clear-hand-area; homing opens and closes the fingers
+ok
+test_status_move_grasp_and_explicit_homing (isaac_port.fieldkit.test_hand.HandTests) ... ok
+test_timeout_and_interlock_loss_send_stop (isaac_port.fieldkit.test_hand.HandTests) ... ok
+test_cancelled_gripper_wait_never_credits_completion (isaac_port.fieldkit.test_devices.DeviceTests) ... ok
+test_fragmented_read_write_and_wrong_transaction (isaac_port.fieldkit.test_devices.DeviceTests) ... ok
+test_grasp_requires_object_not_full_closure_and_fault_rejects (isaac_port.fieldkit.test_devices.DeviceTests) ... ok
+test_gripper_activation_move_and_stop_do_not_auto_release (isaac_port.fieldkit.test_devices.DeviceTests) ... ok
+test_plc_dwell_fault_timeout_and_polarity (isaac_port.fieldkit.test_devices.DeviceTests) ... ok
+test_register_masks_and_invalid_address_types (isaac_port.fieldkit.test_devices.DeviceTests) ... ok
+test_stale_echo_cannot_complete_new_gripper_command (isaac_port.fieldkit.test_devices.DeviceTests) ... ok
+test_truncation_and_bad_write_ack_reject (isaac_port.fieldkit.test_devices.DeviceTests) ... ok
+test_explicit_execute_required_and_readonly_validation (isaac_port.fieldkit.test_devices.SiteTests) ... usage: python -m unittest [-h] --config CONFIG --log-dir LOG_DIR [--execute]
+                          [--side {left,right}] [--joint JOINT]
+                          [--delta DELTA] [--duration DURATION]
+                          [--axis {x,y,z}] [--distance-mm DISTANCE_MM]
+                          [--position POSITION] [--speed SPEED]
+                          [--force FORCE] [--width-mm WIDTH_MM]
+                          [--speed-mm-s SPEED_MM_S] [--stage STAGE]
+                          [--output-signal OUTPUT_SIGNAL]
+                          [--feedback-signal FEEDBACK_SIGNAL]
+                          {validate,status,jog,cartesian-jog,gripper-activate,gripper-move,plc-test,trajectory,assemble}
+python -m unittest: error: Actuation requires --execute; status and validate are read-only
+ok
+test_fault_prevents_motion_and_invalid_transform_rejected (isaac_port.fieldkit.test_devices.SiteTests) ... ok
+test_native_serial_cell_with_measured_grasp_and_stationary_release (isaac_port.fieldkit.test_devices.SiteTests) ... ok
+test_plc_fault_during_live_subprocess_sends_stop (isaac_port.fieldkit.test_devices.SiteTests) ... ok
+test_serial_cell_requires_fresh_seat_clamp_retention_and_button (isaac_port.fieldkit.test_devices.SiteTests) ... ok
+test_subprocess_handshake_success_and_telemetry_path (isaac_port.fieldkit.test_devices.SiteTests) ... ok
+test_button_command_return_without_measured_confirmation_stops (isaac_port.fieldkit.test_fieldkit.FieldContractTests) ... ok
+test_concurrent_clamp_fault_stops_both_lanes_without_press (isaac_port.fieldkit.test_fieldkit.FieldContractTests) ... ok
+test_left_pin_can_start_while_right_ring_is_still_being_inserted (isaac_port.fieldkit.test_fieldkit.FieldContractTests) ... ok
+test_missing_clamp_ack_stops_without_release_or_button (isaac_port.fieldkit.test_fieldkit.FieldContractTests) ... ok
+test_normal_contract_orders_clamp_before_release_and_button_last (isaac_port.fieldkit.test_fieldkit.FieldContractTests) ... ok
+test_observed_fault_stops_the_policy (isaac_port.fieldkit.test_fieldkit.FieldContractTests) ... ok
+test_preflight_does_not_certify_simulation (isaac_port.fieldkit.test_fieldkit.FieldContractTests) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 9.454s
+
+OK
+{
+  "state": "configuration_checked",
+  "hardware_ready": false,
+  "live_motion_enabled": false
+}

@@ -1,3 +1,5 @@
+> **2026-10-22 RGB-D/native Franka Hand 현장 시험:** [현재 온보딩과 구현 상태](FIELD_RGBD_20261022.md). 실험용 저속 패키지이며 전체 랜덤 조립 실기 성공은 아직 검증하지 않았습니다.
+
 # MuJoCo handoff for AIDAS GPU server
 
 ## M80 Isaac Sim / 현장 연결 준비

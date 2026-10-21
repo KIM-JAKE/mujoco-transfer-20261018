@@ -1,0 +1,88 @@
+Extracting cmake-data_3.22.1-1ubuntu1.22.04.2_all.deb
+Extracting cmake_3.22.1-1ubuntu1.22.04.2_amd64.deb
+Extracting jake-libfranka-0.18.1.deb
+Extracting libeigen3-dev_3.4.0-2ubuntu2_all.deb
+Extracting libfmt-dev_8.1.1+ds1-2_amd64.deb
+Extracting libfmt8_8.1.1+ds1-2_amd64.deb
+Extracting libjsoncpp25_1.9.5-3_amd64.deb
+Extracting libpcre3_2%3a8.39-13ubuntu0.22.04.1_amd64.deb
+Extracting libpocofoundation62_1.9.2-3ubuntu3_amd64.deb
+Extracting libpoconet62_1.9.2-3ubuntu3_amd64.deb
+Extracting librhash0_1.4.2-1ubuntu1_amd64.deb
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Looking for C++ include pthread.h
+-- Looking for C++ include pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/field-demo-v128-relocation-yftck5sv/field-demo-random-v128-20261022/build
+[  4%] Building CXX object CMakeFiles/m80_model_audit.dir/model_audit.cpp.o
+[  8%] Building CXX object CMakeFiles/m80_read_state.dir/read_state.cpp.o
+[ 12%] Linking CXX executable m80_read_state
+[ 12%] Built target m80_read_state
+[ 16%] Building CXX object CMakeFiles/m80_joint_stage.dir/libfranka_stage.cpp.o
+[ 20%] Linking CXX executable m80_model_audit
+[ 20%] Built target m80_model_audit
+[ 25%] Building CXX object CMakeFiles/m80_camera_plan.dir/camera_plan.cpp.o
+[ 29%] Linking CXX static library libm80_joint_stage.a
+[ 29%] Built target m80_joint_stage
+[ 33%] Building CXX object CMakeFiles/m80_dynamic_plan.dir/dynamic_plan.cpp.o
+[ 37%] Linking CXX executable m80_camera_plan
+[ 37%] Built target m80_camera_plan
+[ 41%] Building CXX object CMakeFiles/m80_franka_hand.dir/franka_hand.cpp.o
+[ 45%] Linking CXX executable m80_franka_hand
+[ 45%] Built target m80_franka_hand
+[ 50%] Building CXX object CMakeFiles/m80_site_motion.dir/site_motion.cpp.o
+[ 54%] Linking CXX executable m80_dynamic_plan
+[ 54%] Built target m80_dynamic_plan
+[ 58%] Building CXX object CMakeFiles/test_servo_core.dir/test_servo_core.cpp.o
+[ 62%] Linking CXX executable test_servo_core
+[ 62%] Built target test_servo_core
+[ 66%] Building CXX object CMakeFiles/test_site_watchdog.dir/test_site_watchdog.cpp.o
+[ 70%] Linking CXX executable test_site_watchdog
+[ 70%] Built target test_site_watchdog
+[ 75%] Building CXX object CMakeFiles/test_stage_link.dir/test_stage_link.cpp.o
+[ 79%] Linking CXX executable test_stage_link
+[ 79%] Built target test_stage_link
+[ 83%] Building CXX object CMakeFiles/test_field_context.dir/test_field_context.cpp.o
+[ 87%] Linking CXX executable test_field_context
+[ 87%] Built target test_field_context
+[ 91%] Building CXX object CMakeFiles/test_telemetry.dir/test_telemetry.cpp.o
+[ 95%] Linking CXX executable test_telemetry
+[ 95%] Built target test_telemetry
+[100%] Linking CXX executable m80_site_motion
+[100%] Built target m80_site_motion
+Test project /tmp/field-demo-v128-relocation-yftck5sv/field-demo-random-v128-20261022/build
+      Start  1: dynamic_plan_input_guards
+ 1/10 Test  #1: dynamic_plan_input_guards ........   Passed    0.02 sec
+      Start  2: camera_plan_input_guards
+ 2/10 Test  #2: camera_plan_input_guards .........   Passed    0.02 sec
+      Start  3: site_watchdog_latched_timeout
+ 3/10 Test  #3: site_watchdog_latched_timeout ....   Passed    0.00 sec
+      Start  4: native_hand_offline_guards
+ 4/10 Test  #4: native_hand_offline_guards .......   Passed    0.03 sec
+      Start  5: site_motion_offline_guards
+ 5/10 Test  #5: site_motion_offline_guards .......   Passed    0.04 sec
+      Start  6: servo_core
+ 6/10 Test  #6: servo_core .......................   Passed    0.00 sec
+      Start  7: stage_sdk_link
+ 7/10 Test  #7: stage_sdk_link ...................   Passed    0.00 sec
+      Start  8: field_context_abort_guards
+ 8/10 Test  #8: field_context_abort_guards .......   Passed    0.00 sec
+      Start  9: telemetry_spsc
+ 9/10 Test  #9: telemetry_spsc ...................   Passed    0.03 sec
+      Start 10: readonly_model_input_guards
+10/10 Test #10: readonly_model_input_guards ......   Passed    0.02 sec
+
+100% tests passed, 0 tests failed out of 10
+
+Total Test time (real) =   0.18 sec
+Source build finished: /tmp/field-demo-v128-relocation-yftck5sv/field-demo-random-v128-20261022/build. Hardware connection and motion remain unverified.
+Offline source build passed. Local SDK marker written; robot compatibility and execution still require onsite verification.

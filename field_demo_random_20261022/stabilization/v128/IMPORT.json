@@ -1,0 +1,96 @@
+{
+  "source_run": "native-roas-table-scatter-speed-v128-closer-transfer-445",
+  "source_directory": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-scatter-speed-v128-closer-transfer-445",
+  "full_task_pass": true,
+  "hardware_tested": false,
+  "original_modified": false,
+  "wall_verified_elapsed_s": 43.533158828970045,
+  "final_checks": {
+    "ring1": {
+      "position_error_m": 0.0002718280049670691,
+      "axis_error_rad": 0.0005497523330130589
+    },
+    "ring2": {
+      "position_error_m": 0.00019102756872772052,
+      "axis_error_rad": 0.0019255605679340858
+    },
+    "pin": {
+      "position_error_m": 0.0007037433024607502,
+      "axis_error_rad": 0.013134115305872949
+    }
+  },
+  "source_result_sha256": "2f41fe2411f9e7dc2423c91933df4092c7605ea95c6174584893a172eab1fbd0",
+  "source_manifest_sha256": "a71597c9e415bf7143482fcf70e78d368f5152d0451c19fc2bdf9b271c3afc6f",
+  "source_hashes": {
+    "rgbd_scattered_rings.py": "df996e6ea41a8e9d2a2d8069ea97dbe66a91f5d26c65b1af82715b3c9c2e2264",
+    "rgbd_geometry.py": "9423211123770a7155afaca3a71391ffc80a40854e654fe441e8a36ad05fb784",
+    "rgbd_initial_fast.py": "f8d88229c51aaaf9d64f889c1acb77ad5451abbcc92d5190dba133592454a8c5",
+    "rgbd_fast_tracker.py": "f50dc6e085a815b496592aa35cf98ca1a8ba23a151d5283e7f7ee2c46c1d59d4",
+    "loose_ring_pick.py": "266f244d9d6be7edf8e84b3f1c6230a1df40865f472ecf7d26f83a787ed02cbc",
+    "loose_bin_task.py": "edcba8513364b15903694b719c4b88abe2eb04a99a0cf83601e19baf255372f6",
+    "direct_pin_skill.py": "5de43ece17d2acfa2a9b91157bf33fbabe7c1f3963a5bb7af2b46f171a317a26",
+    "grasp_transfer_feasibility.py": "008623a11c15dcefc2344dabfae140d770a5e91049cefb0a2316aa1964913cbd",
+    "paired_handover.py": "653351bb20b7d6e91aa9ccc03f2a69ddcb36b6f6ccb498a0d1fe2e6c10907dbd",
+    "fr3_path_timing.py": "f73113d36469cc76d39cc9060bcfb26ca7a73e75bec6cd6a19572b3d26b24383",
+    "isaac_kinematics.py": "87345ba55e9cbc382925d8eba701e92e5c845837c5198e9a43894df81c76da99",
+    "fcl_transport.py": "ffeee4d11c2c4ca66eb7e4b8b76d073c4542c661ab9ff2e0d1b851a789becb24",
+    "run_realtime_recipe.py": "8f7b19a93fcd22edaecc91089a64d75725f15d44596bd44515058d5c0e81a85a",
+    "path_local_timing.py": "8acbc7db14f502b24e768a732b7d1e0ea5e046a41e6dd87867b1f5308187a35e",
+    "process_vision.py": "947b8e98596dcbbecc6d70e8b1b47ea6b2850b103f7cd0501beea3d3c92b47bb",
+    "realtime_camera_worker.py": "11805da1f71a8fd8a37ad9ad30c675673c1edd2cd2d09909aec8aab54ccfebfa",
+    "rgbd_ring_translation.py": "66faa329c9cbaed8f778ddf4cdad86b4ce38b59fde754017bec6396ed3fca05f"
+  },
+  "packaged_detector_matches": true,
+  "source_code_executed": false,
+  "simulator_joint_trace_used_for_robot_motion": false,
+  "changed_reference_files": [
+    "loose_ring_pick.py",
+    "loose_bin_task.py",
+    "direct_pin_skill.py",
+    "grasp_transfer_feasibility.py",
+    "paired_handover.py",
+    "fr3_path_timing.py",
+    "run_realtime_recipe.py",
+    "path_local_timing.py",
+    "process_vision.py",
+    "realtime_camera_worker.py",
+    "rgbd_ring_translation.py"
+  ],
+  "note": "New source is reference data. Different detector code requires a reviewed port and regression tests; no live activation.",
+  "copied_verified_source": {
+    "rgbd_scattered_rings.py": "df996e6ea41a8e9d2a2d8069ea97dbe66a91f5d26c65b1af82715b3c9c2e2264",
+    "rgbd_geometry.py": "9423211123770a7155afaca3a71391ffc80a40854e654fe441e8a36ad05fb784",
+    "rgbd_initial_fast.py": "f8d88229c51aaaf9d64f889c1acb77ad5451abbcc92d5190dba133592454a8c5",
+    "rgbd_fast_tracker.py": "f50dc6e085a815b496592aa35cf98ca1a8ba23a151d5283e7f7ee2c46c1d59d4",
+    "loose_ring_pick.py": "266f244d9d6be7edf8e84b3f1c6230a1df40865f472ecf7d26f83a787ed02cbc",
+    "loose_bin_task.py": "edcba8513364b15903694b719c4b88abe2eb04a99a0cf83601e19baf255372f6",
+    "direct_pin_skill.py": "5de43ece17d2acfa2a9b91157bf33fbabe7c1f3963a5bb7af2b46f171a317a26",
+    "grasp_transfer_feasibility.py": "008623a11c15dcefc2344dabfae140d770a5e91049cefb0a2316aa1964913cbd",
+    "paired_handover.py": "653351bb20b7d6e91aa9ccc03f2a69ddcb36b6f6ccb498a0d1fe2e6c10907dbd",
+    "fr3_path_timing.py": "f73113d36469cc76d39cc9060bcfb26ca7a73e75bec6cd6a19572b3d26b24383",
+    "isaac_kinematics.py": "87345ba55e9cbc382925d8eba701e92e5c845837c5198e9a43894df81c76da99",
+    "fcl_transport.py": "ffeee4d11c2c4ca66eb7e4b8b76d073c4542c661ab9ff2e0d1b851a789becb24",
+    "run_realtime_recipe.py": "8f7b19a93fcd22edaecc91089a64d75725f15d44596bd44515058d5c0e81a85a",
+    "path_local_timing.py": "8acbc7db14f502b24e768a732b7d1e0ea5e046a41e6dd87867b1f5308187a35e",
+    "process_vision.py": "947b8e98596dcbbecc6d70e8b1b47ea6b2850b103f7cd0501beea3d3c92b47bb",
+    "realtime_camera_worker.py": "11805da1f71a8fd8a37ad9ad30c675673c1edd2cd2d09909aec8aab54ccfebfa",
+    "rgbd_ring_translation.py": "66faa329c9cbaed8f778ddf4cdad86b4ce38b59fde754017bec6396ed3fca05f"
+  },
+  "copied_verified_records": {
+    "pipeline-results.json": "2f41fe2411f9e7dc2423c91933df4092c7605ea95c6174584893a172eab1fbd0",
+    "code-manifest.json": "a71597c9e415bf7143482fcf70e78d368f5152d0451c19fc2bdf9b271c3afc6f",
+    "trial-config.json": "12d129daee70722df116529555b8e4e86701e1f2ca1ca2a28921a876292a5c0d",
+    "rgb-observations.json": "d53a6d6dfc4f22651c1a5aa9489674734539ab61ad351426b352efa86713550a",
+    "fixed-receiver-catalog.json": "0bfdd96f72cf575f7f3b2c6fcdbbecabcd07736a4a2319b39073b7e6557c6a59",
+    "robot-kinematics.json": "4eab117dfad0e78aaa2b486f6ed25be7fd68594fde68ec21ecc82a33c9b0fade",
+    "replay-frames/observation-001-initial.npz": "40737c25ce289f58de7da2da504f4b7c293392573b28c2bfbf6f6f9924ea2a66",
+    "replay-frames/observation-008-initial.npz": "66dc3a68849cee87ef3d90ff859430dd07df05120b62458d5d865bf847384932"
+  },
+  "imported_at_utc": "2026-10-21T10:32:57.531116+00:00",
+  "derived_files": {
+    "replay-camera.json": "62f8416f3b47a704a34cdaf2cc351c28f5397c8b3e2031c77291d62d2174c2bd",
+    "replay-frames/observation-001-initial.json": "fa85204654cfbabb467a46b24a5b194820c9c8c6458c60bce6f28cfc766109d2",
+    "replay-frames/observation-008-initial.json": "f71dca379c938b5e5f50e06643b3aaa543ebd88a2612e78f3903ae58d8dc16d5"
+  },
+  "derived_files_note": "Replay-only calibration copied from matching frozen v119 camera extrinsics, named for v128. Never a measured field camera."
+}

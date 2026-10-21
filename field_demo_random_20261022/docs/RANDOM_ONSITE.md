@@ -1,0 +1,102 @@
+# RGB-D 무작위 바구니 → 링 2개·핀 1개: 현장 온보딩
+
+패키지 루트에서 실행한다. 현재 실기 경로는 **실제 RGB-D + Franka SDK**를 사용하고 양팔은 순차로 움직인다. `--execute`가 실제 동작을 허용하는 명시적 옵션이다. 실제 로봇의 랜덤 집기·조립 완주와 작업시간은 아직 검증하지 않았다. 인계 목표는 2026-10-22 오전 11시 KST다. [이번 연동 범위](../integration/PAYLOAD_EXPERIMENTAL.md)와 [상세 RGB-D/SDK 안내](../integration/RGBD_SDK_ONBOARDING.md)를 함께 본다.
+
+## 1. 설치·읽기 전용 확인
+
+[START_HERE](../START_HERE.md)의 호스트 설치·소스 빌드·오프라인 검사를 마친다. 새 설정은 실제 값을 넣기 전까지 null 상태다.
+
+```bash
+./field-demo verify
+./field-demo init-random --output site/random
+./field-demo camera list
+./field-demo doctor --config site/random/site.json --output reports/site-check.json
+./field-demo stabilization check --profile stabilization/v128/field-profile.json
+```
+
+`site/random/site.json`에 실제 서로 다른 양팔 IP를 넣는다. SDK 대상은 FR3 프로토콜 10이다. native Franka Hand를 선택하며 TCP/tool/load는 실제 Desk/SDK 설정과 일치시킨다. 상태 조회는 다음과 같다.
+
+```bash
+./field-demo run status --config site/random/site.json
+```
+
+이 단계는 로봇을 움직이지 않는다. 실제 SDK 상태를 읽는 성공과 실제 파지/조립 성공은 별개다. 보존한 v128 시뮬 성공·43.533초 기록은 참조 자료이며 시뮬 좌표·CSV를 실기에 재생하지 않는다. 최신 H의 GPU/cuRobo 시뮬 정책 전체가 이 패키지에 들어온 것도 아니다. 이 패키지는 현재 실제 SDK 모델로 경로를 생성한다.
+
+## 2. 실제 측정 입력
+
+모든 좌표는 같은 셀 좌표계, 길이는 m를 사용한다.
+
+| 파일 | 채울 실제 값 |
+|---|---|
+| `site.json` | 양팔 IP·기저 변환·tool/load, native Hand 폭/힘, 실제 셀 정지 모드, 보정/시운전 기록 |
+| `random-camera.json` | RealSense 일련번호·외부 보정, 바구니/관측 영역, 핀 홀더 탐색 범위, 지그 관측 영역, 실제 Depth 오차 상한 |
+| `random-motion.json` | 고정 바구니·테이블·설비·지그, 양팔/Hand/케이블의 보수적 형상, 단계별 통로, 실제 외력/정지 증빙, 잔여 RGB-D 점유 설정 |
+| `random-cycle.json` | 부품 순서/팔, 실측 파지 후보·접근/철수·전달 자세, 지그 목표, 클램프 방식, 선택적 적재물 접촉/관측/반환 설정 |
+| `payload-profile.json` | 각 팔의 별도 Hand/tool과 빈 load, 각 부품 질량·COM·관성·좌표계·실제 증빙 |
+
+`measurement`는 실제 측정의 확인자·시각·비어 있지 않은 증빙 파일을 가리킨다. boolean 변경이나 가짜 기록은 물리 측정을 대신하지 않는다. 하중 프로파일을 완성하면 정확한 SHA-256을 `random-cycle.json`의 `payload_profile_sha256`에 넣는다. Hand는 `m_ee`이고 물체는 `m_load`이므로 중복 합산하지 않는다. 실측과 실제 SDK 초기 tool/load가 다르면 자동 덮어쓰지 않고 거부한다.
+
+부품별 파지·착좌·유지용 PLC 센서는 필요 없다. `part_evidence_source=RGBD_SDK`, `abort_hand_policy=preserve_completed_grasp`를 사용한다. 실제 셀 PLC가 없으면 `cell_io_mode=SDK_stop`을 사용하며 실제 native 외력·추종·heartbeat 검사는 유지한다. 셀 PLC가 있으면 실제 주소/극성/준비·고장·정지를 연결해 `actual_PLC`를 선택할 수 있다.
+
+클램프는 실제 구동이 필요하다. `clamp_control.mode=actual_PLC`이면 실제 명령과 읽기 확인을 연결한다. `operator_manual`이면 사람이 실제 클램프를 고정하고 `CLAMP ring1` 같은 요청된 문구를 입력한다. 수동 확인을 자동 클램프나 압력 측정으로 표시하지 않는다.
+
+## 3. 카메라·인식부터 확인
+
+역할은 `basket`, `held_right`, `held_left`, `pin_holder`, `fixture`다. 한 고정 카메라가 모두 볼 수 있으면 같은 일련번호·같은 실측 외부 보정을 공유한다. 같은 카메라가 역할마다 다른 위치라고 선언할 수는 없다. 실제 손목 카메라의 동적 외부 보정은 이 실행기에 구현하지 않았다.
+
+```bash
+./field-demo random-vision observe --config site/random/random-camera.json \
+  --output reports/random-live.json --session-dir reports/random-camera --frames 3
+```
+
+새 RGB-D 픽셀과 실제 SDK XYZ로 크기·중심·축·앞뒤를 구한다. SAM이나 실행 중 LLM agent는 호출하지 않는다. 물체 ID는 해당 이미지 안에서만 유효하다. 물체 초기 좌표·시뮬 actor 위치를 넣지 않는다. 핀은 실측 홀더 ROI에서 현재 영상을 본다. 지그 목표도 실측 고정 ROI/삽입 목표일 뿐 현재 부품 위치를 대신하지 않는다.
+
+`residual_occupancy`는 미인식/가림/무효 깊이를 UNKNOWN 장애물로 남긴다. 실제 SDK 렌즈 보정은 관측을 정렬하되 Depth 보간이나 구멍 채우기를 하지 않는다. 명시적 `depth_uncertainty_m` 상한이 필요하다. 실패한 검출을 빈 바구니로 처리하거나 오래된 영상의 시각을 바꾸지 않는다. 재실행 시 새 빈 `session-dir`을 쓴다. `--frames 0`은 연속 관측이며 실패하면 이전 타깃을 제거한다.
+
+## 4. 첫 1mm 이동·STOP 시험
+
+실제 작업 공간, tool/load, 단일 팔 시험 영역, 보정값을 먼저 확인한다. 다음 경로는 **이전 `stop_tested` 통과를 요구하지 않고** 실제 시험 기록을 만든다.
+
+```bash
+./field-demo commissioning-test --config site/random/site.json --side right --axis z --direction 1 --execute
+./field-demo commissioning-test --config site/random/site.json --side left --axis z --direction 1 --execute
+```
+
+축과 방향은 **로봇 BASE 좌표** 기준이다. 위 z+는 예시이므로 실제 1mm 여유가 있는 방향을 고른다. native 10% 이하 경로에서 실제 CSV 이동이 관측된 뒤 명시적 STOP을 보내고, native 수락/SDK 반환과 실제 `idle/dq`를 대조한다. 손·클램프는 움직이지 않는다. 실제 PASS 기록만 정지 증빙과 `commissioning_record`/`stop_tested`에 사용한다. 실패 기록을 통과로 고치지 않는다. 이 소프트웨어 정지 시험은 현장 비상정지·안전 등급 인증의 대체물이 아니다.
+
+Hand 단독 명령은 `./field-demo hand --help`를 참고한다. 현재 실기 파지는 큰 실제 개방 폭에서 **닫아서 잡는 외경 파지**다. 시뮬에서 사용한 내경 확장 파지는 SDK 힘 제어 지원을 검증하지 않아 실행하지 않는다. 실제 폭·접촉·들고 유지하기를 저속으로 확인한다.
+
+## 5. 단품 집기 → 전체 조합
+
+```bash
+./field-demo random-cycle --recipe site/random/random-cycle.json --validate
+./field-demo random-cycle --recipe site/random/random-cycle.json \
+  --single-pick ring1 --execute --output-dir reports/pick-large
+./field-demo random-cycle --recipe site/random/random-cycle.json \
+  --single-pick ring2 --execute --output-dir reports/pick-small
+```
+
+설정 검사는 장치 동작 없이 실제 입력의 누락/불일치를 검사한다. `--single-pick`은 해당 링만 집고 들어 재관측한 뒤 **팔은 정지하고 손은 잡은 채** 끝난다. 자동 전달·삽입·개방은 하지 않는다. 결과의 실제 Hand 상태와 `single_item_inventory_proof`를 확인한다. 이 증거가 null이면 양면 광학 단일 개수 검증을 수행했다고 해석하지 않는다. 물체를 잡은 채 새 공정을 시작하면 초기 빈 손/빈 하중 검사에서 거부된다.
+
+엄격한 점유로 접근이 막히는 느슨한 링 재고는 선택적 `bounded_loose_stock_contact`를 사용할 수 있다. 기본은 비활성이다. 두 종류 링·최대 10개라는 실제 재고 조건, 실측 바구니 내부, 실제 손가락 이름/캡슐, native 실행 파일과 실제 STOP 시험 해시를 설정한다. 지정된 손가락 전체가 내부에 있는 샘플만 적재물 접촉을 허용하며 벽·손바닥·팔·반대 팔·운반 부품은 예외가 아니다. UNKNOWN을 지우거나 빈 공간으로 바꾸지 않는다. 5N/1Nm SDK 외력 중단과 250ms heartbeat를 유지한다.
+
+이 모드는 `inventory_inspection` 설정도 필요하다. 실제 SDK `F_T_EE`와 실측 `T_flange_hand`로 공식 Hand 표면을 배치하고, 실제 로봇을 검사된 자세로 회전해 같은 카메라에서 링 양면을 본다. 넓은 ROI의 모든 깊이를 단일 CAD와 대조해 추가 물체·숨은 적층·가림·불안정한 G를 거부한다. 선택한 부품만 잘라서 개수를 확인했다고 하지 않는다.
+
+검증 실패 시 측정한 불확실 적재물 외피를 포함해 전체 충돌 검사를 통과한 경로로 기존 바구니 위에 반환한다. 실제 반환 영역을 확인한 뒤 개방하고, 서로 다른 두 실제 뷰에서 빈 손을 확인한 후 빈 하중으로 바꾼다. 미확인 걸림 가능성은 빈 손 증명 전까지 운반 형상에 남긴다. 경로·시야가 없으면 반환을 강행하지 않고 파지를 유지하며 중단한다. 자동 재시도나 실패 무시를 구현한 것은 아니다. 첫 들기 전 숨은 추가 부품의 질량/COM은 알 수 없으므로 초기 선택 클래스 하중을 다중 부품 하중 검증으로 해석하지 않는다.
+
+단품의 접근·들기·유지·반환/놓기와 전달/삽입을 확인한 뒤 전체를 실행한다.
+
+```bash
+./field-demo random-cycle --recipe site/random/random-cycle.json \
+  --execute --output-dir reports/random-live-cycle
+```
+
+공정은 새 인식 → 경로 선택 → 이동 직전 재촬영 → 실제 파지/새 G → 들기 → 필요 시 양손 전달 → 새 G로 삽입 목표 계산 → 새 영상 안착 → 실제/수동 클램프 → SDK 개방 → 2회 이상 새 영상의 최소 0.3초 유지 → 철수 → 설치한 모든 부품 재관측 순서다. 받는 손은 주는 손이 아직 잡은 동안 실제 SDK와 새 영상으로 확인하고, 주는 손 개방 이후 받는 손을 다시 촬영한다. 부품별 PLC 파지 센서는 사용하지 않는다.
+
+카메라·SDK 오류, 물체 이탈, 파일 변경, 막힌 경로는 중단 사유다. 일반 중단은 팔 heartbeat를 중단하고 완료된 Hand 파지 명령을 무조건 취소하지 않는다. 실제 손 상태는 별도 SDK 읽기로 확인하며 200ms 이상 오래되면 사용할 수 없다. 파지 명령 보존과 물체 유지 보장은 다르다. 자동 재개는 없다. 실제 작업시간과 안정성은 현장 시험 결과로 기록한다. 현재 native 실기 상한은 10%이며 시뮬의 95% 속도 설정이 아니다.
+
+## 6. 기록과 참조
+
+`reports/PAYLOAD_INTEGRATION_STATUS.json`은 구현/검사/미검증 범위를 구분한다. 저장 RGB-D 재생, 가짜 SDK/Hand/클램프 경계의 상태머신 검사, 실제 SDK 렌즈 함수 검사는 각각 다른 증거다. 실제 로봇의 파지·조립 성공으로 합치지 않는다.
+
+`stabilization inspect/import`는 완료한 시뮬 run의 원본 manifest와 스냅샷을 확인해 새 참고 폴더에 복사한다. 검출기가 달라지면 별도 포팅/회귀 검사가 필요하며 경로·속도 개선이 실기에 자동 적용되지 않는다. 기존 봉인 패키지는 수정하지 않았다.

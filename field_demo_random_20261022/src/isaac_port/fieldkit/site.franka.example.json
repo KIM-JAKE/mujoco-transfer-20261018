@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "motion_binary": "/tmp/m80-field-build/m80_site_motion",
+  "state_binary": "/tmp/m80-field-build/m80_read_state",
+  "calibration_record": "calibration.md",
+  "commissioning_record": "commissioning.md",
+  "commissioning": {
+    "workspace_checked": false,
+    "stop_tested": false,
+    "tool_and_payload_checked": false,
+    "single_arm_test_area_clear": false
+  },
+  "robots": {
+    "left": {
+      "ip": null,
+      "T_cell_base": null,
+      "tool_mass_kg": null,
+      "load_mass_kg": null
+    },
+    "right": {
+      "ip": null,
+      "T_cell_base": null,
+      "tool_mass_kg": null,
+      "load_mass_kg": null
+    }
+  },
+  "grippers": {
+    "left": {
+      "type": "franka_hand",
+      "binary": "/tmp/m80-field-build/m80_franka_hand"
+    },
+    "right": {
+      "type": "franka_hand",
+      "binary": "/tmp/m80-field-build/m80_franka_hand"
+    }
+  },
+  "plc": {
+    "endpoint": {
+      "host": null,
+      "port": 502,
+      "unit": 1,
+      "timeout_s": 0.15
+    },
+    "signals": {
+      "cell_ready": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "cell_fault": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "cell_stop": {
+        "kind": "coil",
+        "address": null,
+        "active": true
+      },
+      "button_pressed": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "ring1_grasped": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "ring1_seated": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "ring1_clamped": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "ring1_retained": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "ring1_clamp_command": {
+        "kind": "coil",
+        "address": null,
+        "active": true
+      },
+      "ring2_grasped": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "ring2_seated": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "ring2_clamped": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "ring2_retained": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "ring2_clamp_command": {
+        "kind": "coil",
+        "address": null,
+        "active": true
+      },
+      "pin_grasped": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "pin_seated": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "pin_clamped": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "pin_retained": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "pin_clamp_command": {
+        "kind": "coil",
+        "address": null,
+        "active": true
+      }
+    }
+  },
+  "assembly_commissioned": false,
+  "button_verified_travel_m": null,
+  "stages": {},
+  "gripper_actions": {
+    "ring1": {
+      "open": {
+        "width_m": null,
+        "speed_m_s": 0.005
+      },
+      "grasp": {
+        "width_m": null,
+        "speed_m_s": 0.005,
+        "force_n": 5,
+        "epsilon_inner_m": 0.0005,
+        "epsilon_outer_m": 0.0005
+      },
+      "release": {
+        "width_m": null,
+        "speed_m_s": 0.005
+      }
+    },
+    "ring2": {
+      "open": {
+        "width_m": null,
+        "speed_m_s": 0.005
+      },
+      "grasp": {
+        "width_m": null,
+        "speed_m_s": 0.005,
+        "force_n": 5,
+        "epsilon_inner_m": 0.0005,
+        "epsilon_outer_m": 0.0005
+      },
+      "release": {
+        "width_m": null,
+        "speed_m_s": 0.005
+      }
+    },
+    "pin": {
+      "open": {
+        "width_m": null,
+        "speed_m_s": 0.005
+      },
+      "grasp": {
+        "width_m": null,
+        "speed_m_s": 0.005,
+        "force_n": 5,
+        "epsilon_inner_m": 0.0005,
+        "epsilon_outer_m": 0.0005
+      },
+      "release": {
+        "width_m": null,
+        "speed_m_s": 0.005
+      }
+    }
+  }
+}

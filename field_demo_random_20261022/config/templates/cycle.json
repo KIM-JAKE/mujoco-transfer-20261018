@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "site_config_sha256": null,
+  "feedback_timeout_s": null,
+  "feedback_dwell_s": null,
+  "release_width_tolerance_m": null,
+  "parts": [
+    {"part":"ring1","pickup_side":null,"insert_side":null,"pickup_stage":null,"insert_stage":null,"release_stage":null,"withdraw_stage":null,"handover_recipe":null,"handover_sha256":null,"T_cell_part":null,"min_tcp_clearance_m":null},
+    {"part":"ring2","pickup_side":null,"insert_side":null,"pickup_stage":null,"insert_stage":null,"release_stage":null,"withdraw_stage":null,"handover_recipe":null,"handover_sha256":null,"T_cell_part":null,"min_tcp_clearance_m":null},
+    {"part":"pin","pickup_side":null,"insert_side":null,"pickup_stage":null,"insert_stage":null,"release_stage":null,"withdraw_stage":null,"handover_recipe":null,"handover_sha256":null,"T_cell_part":null,"min_tcp_clearance_m":null}
+  ],
+  "stage_sha256": {},
+  "review_file": null,
+  "review_sha256": null,
+  "notes": "Fill actual taught stages and measured assembled fixture poses in metres. Different pickup/insert arms require an independently reviewed handover recipe and its SHA256. Full cycle review hashes the exact recipe excluding review_file/review_sha256. No defaults qualify as hardware measurement. Withdrawal checks measured TCP clearance >=0.04m; this does not establish whole-hand or swept-volume collision clearance."
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": 3,
+  "created_utc": "2026-10-21T10:45:14.274096+00:00",
+  "hardware_ready": false,
+  "robot_connected": false,
+  "physical_assembly_tested": false,
+  "tests": {
+    "python": {
+      "integration": 143,
+      "fieldkit_regression": 27
+    },
+    "native_ctest": 10,
+    "total": 180,
+    "all_passed": true
+  },
+  "reproducibility": {
+    "clean_directory": "/tmp/field-demo-v128-relocation-yftck5sv/field-demo-random-v128-20261022",
+    "network_free_install": true,
+    "source_build": true,
+    "ubuntu": "22.04",
+    "architecture": "x86_64",
+    "python": "3.10.12",
+    "libfranka": "0.18.1"
+  },
+  "stabilization": {
+    "selected_profile": "v128-closer-transfer-445",
+    "simulation_wall_elapsed_s": 43.533158828970045,
+    "hardware_tested": false,
+    "random_seed_coverage": [
+      445
+    ],
+    "reference_source_files": 17,
+    "runtime_bound_files": 20,
+    "profile_dependencies": 50,
+    "original_source_modified": false,
+    "v119_preserved": true,
+    "simulation_trajectory_replayed": false,
+    "simulation_timing_optimization_ported": false
+  },
+  "replay": {
+    "actual_v128_initial_capture_fixtures": 2,
+    "synthetic_full_cycle_frames": 24,
+    "selected_profile_full_cycle_contract_pass": true,
+    "physical_devices_used": false
+  },
+  "camera_guide": {
+    "path": "docs/CAMERA_INSTALLATION.html",
+    "markdown": "docs/CAMERA_INSTALLATION.md",
+    "original_simulation_captures": 9,
+    "embedded_figures": 13,
+    "actual_hardware_photos": false,
+    "source_camera_changes_between_frames": true
+  },
+  "previous_releases": {
+    "field-demo-20261022.tar.gz": {
+      "sha256": "cbd7e247d4e820a1c4243678938b91b46d275e72f15cffd2a1a1919679cb7328",
+      "unchanged": true
+    },
+    "field-demo-random-20261022.tar.gz": {
+      "sha256": "4caf65dfc69dfc4bf6fcd417d9e82c33aabbacae13bbcd14d0f90096b0535f2a",
+      "unchanged": true
+    }
+  },
+  "limitations": [
+    "Physical camera, FR3, Hand and PLC commissioning remains required",
+    "v128 simulation speed does not apply to serial low-speed field SDK planning; near-branch/timing optimizers are preserved reference data, not automatically ported",
+    "Two ring classes use random bin recognition; pin uses a measured holder fixture",
+    "Real metal depth, occlusion, calibration, collision envelopes, feedback signals and tracking/stop behavior need onsite verification",
+    "Full replay uses synthetic pixels and fake motion planner/robot/Hands/PLC; it certifies neither collision clearance nor physical assembly",
+    "Static camera roles require actual visibility at each stage; virtual camera movement/zoom is not physical multi-view coverage"
+  ]
+}

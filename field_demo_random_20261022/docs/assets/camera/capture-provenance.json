@@ -1,0 +1,809 @@
+[
+  {
+    "name": "basket-initial-001",
+    "source_file": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-scatter-speed-v128-closer-transfer-445/rgb-perception/observation-001-initial/rgbd.npz",
+    "source_sha256": "40737c25ce289f58de7da2da504f4b7c293392573b28c2bfbf6f6f9924ea2a66",
+    "observation": 1,
+    "mode": "initial",
+    "part": null,
+    "source_sim_time_s": 0.03496488090604544,
+    "width": 640,
+    "height": 400,
+    "K": [
+      [
+        1093.3548341633789,
+        0.0,
+        319.5
+      ],
+      [
+        0.0,
+        1093.3548341633789,
+        199.5
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_simworld_camera": [
+      [
+        0.2873478855663454,
+        0.7964030899896761,
+        -0.5321403113046842,
+        0.9516386926284014
+      ],
+      [
+        0.9578262852211513,
+        -0.23892092699690282,
+        0.15964209339140525,
+        -0.8455239198752155
+      ],
+      [
+        -0.0,
+        -0.5555707955767981,
+        -0.8314692364135691,
+        1.739881666854589
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "horizontal_fov_deg": 32.62709734783439,
+    "vertical_fov_deg": 20.732246338344755,
+    "source_result_summary": {},
+    "source_result_keys": [
+      "poses",
+      "instances",
+      "segmentation",
+      "depth_sensor_input",
+      "simulator_body_pose_input",
+      "both_sizes_visible"
+    ],
+    "source_type": "recorded_simulation_rgbd_not_real_hardware",
+    "variable_virtual_camera": true
+  },
+  {
+    "name": "donor-big-005",
+    "source_file": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-scatter-speed-v128-closer-transfer-445/rgb-perception/observation-005-held/rgbd.npz",
+    "source_sha256": "d1060869a6f4e46fd014286f507014aa1f10cdd9dd9bebc1fdeecb37f46213f2",
+    "observation": 5,
+    "mode": "held",
+    "part": "ring1",
+    "source_sim_time_s": 8.714727912913077,
+    "width": 192,
+    "height": 192,
+    "K": [
+      [
+        665.384587853235,
+        0.0,
+        95.5
+      ],
+      [
+        0.0,
+        665.384587853235,
+        95.5
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_simworld_camera": [
+      [
+        -0.5046821299485497,
+        0.5956574254526906,
+        0.6248905337846522,
+        -0.2665228885319109
+      ],
+      [
+        -0.8633052459649456,
+        -0.34821711046261833,
+        -0.3653065784659092,
+        -0.02316361478741283
+      ],
+      [
+        0.0,
+        -0.7238349780745174,
+        0.6899731331840849,
+        1.1609824525344734
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "horizontal_fov_deg": 16.41967441812727,
+    "vertical_fov_deg": 16.41967441812727,
+    "source_result_summary": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          -0.05003263857606635,
+          -0.149629193239446,
+          1.4001202962597652
+        ],
+        "initial_plane_axis": [
+          0.0036596651285834203,
+          -0.08689061307276966,
+          0.9962111363616575
+        ],
+        "center_m": [
+          -0.049957053885966246,
+          -0.1496922187825077,
+          1.400114521437019
+        ],
+        "axis": [
+          0.0036596651285834203,
+          -0.08689061307276966,
+          0.9962111363616575
+        ],
+        "visible_face_inner_radius_m": 0.03193001039441735,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0020699896055826547,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00018372272946701114,
+        "depth_points": 2636,
+        "measured_classification_diameter_m": 0.0727830159772878,
+        "visible_arc_coverage_deg": 315,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          7.55846901001056e-05,
+          -6.302554306170105e-05,
+          -5.774822746218433e-06
+        ],
+        "lateral_CAD_registration_rms_m": 6.087883758800874e-05,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      }
+    },
+    "source_result_keys": [
+      "pose",
+      "depth_sensor_input",
+      "simulator_body_pose_input"
+    ],
+    "source_type": "recorded_simulation_rgbd_not_real_hardware",
+    "variable_virtual_camera": true
+  },
+  {
+    "name": "receiver-big-007",
+    "source_file": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-scatter-speed-v128-closer-transfer-445/rgb-perception/observation-007-held_left/rgbd.npz",
+    "source_sha256": "211986fc14f841f6b3845a50daf8b2e47ea9141bd6b7afdded62b7883c41a2b0",
+    "observation": 7,
+    "mode": "held_left",
+    "part": "ring1",
+    "source_sim_time_s": 11.577858735923655,
+    "width": 192,
+    "height": 192,
+    "K": [
+      [
+        665.3845805246768,
+        0.0,
+        95.5
+      ],
+      [
+        0.0,
+        665.3845805246768,
+        95.5
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_simworld_camera": [
+      [
+        -0.36093027053814725,
+        -0.6969136361132571,
+        0.6197101932425015,
+        -0.26473451899387984
+      ],
+      [
+        -0.9325928049311016,
+        0.2697181727052515,
+        -0.23983904499326275,
+        -0.06659972938666746
+      ],
+      [
+        0.0,
+        -0.6645024387554487,
+        -0.7472860957411567,
+        1.6590969851331039
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "horizontal_fov_deg": 16.419674596508624,
+    "vertical_fov_deg": 16.419674596508624,
+    "source_result_summary": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          -0.050174243165163133,
+          -0.14982224207214065,
+          1.400110448449619
+        ],
+        "initial_plane_axis": [
+          0.005801992773298171,
+          -0.08719025985588003,
+          0.9961747815851005
+        ],
+        "center_m": [
+          -0.05003308602929275,
+          -0.14972982030862478,
+          1.400117715532694
+        ],
+        "axis": [
+          0.005801992773298171,
+          -0.08719025985588003,
+          0.9961747815851005
+        ],
+        "visible_face_inner_radius_m": 0.035645296747378236,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.0016452967473782332,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.0006278973462997895,
+        "depth_points": 1123,
+        "measured_classification_diameter_m": 0.07312285454249724,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          0.0001411571358703803,
+          9.242176351587084e-05,
+          7.267083075079839e-06
+        ],
+        "lateral_CAD_registration_rms_m": 7.436216651682133e-05,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      }
+    },
+    "source_result_keys": [
+      "pose",
+      "depth_sensor_input",
+      "simulator_body_pose_input"
+    ],
+    "source_type": "recorded_simulation_rgbd_not_real_hardware",
+    "variable_virtual_camera": true
+  },
+  {
+    "name": "receiver-big-fail-010",
+    "source_file": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-scatter-speed-v128-closer-transfer-445/rgb-perception/observation-010-held_left/rgbd.npz",
+    "source_sha256": "f6888d7d9e0ebfa696da97fb054b5ec41a88af45a90a4869b3d973c04a6981f7",
+    "observation": 10,
+    "mode": "held_left",
+    "part": "ring1",
+    "source_sim_time_s": 14.48888065200299,
+    "width": 192,
+    "height": 192,
+    "K": [
+      [
+        699.6812988782822,
+        0.0,
+        95.5
+      ],
+      [
+        0.0,
+        699.6812988782822,
+        95.5
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_simworld_camera": [
+      [
+        0.8574929257125442,
+        0.39531272103637405,
+        0.32929277996907097,
+        -0.2442462142439214
+      ],
+      [
+        -0.5144957554275265,
+        0.6588545350606234,
+        0.5488212999484516,
+        0.04105632459555095
+      ],
+      [
+        0.0,
+        -0.640030119773177,
+        0.7683498199278324,
+        1.1708479759779762
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "horizontal_fov_deg": 15.625011000396135,
+    "vertical_fov_deg": 15.625011000396135,
+    "source_result_summary": {
+      "error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 43, in <module>\n    found,masks=relocalize(packet,local_cal,estimator,desired_part=request['part'],seed=seed)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/rgbd_scattered_rings.py\", line 26, in detect\n    if not valid.any():raise RuntimeError('No visible annular surface in bin RGB-D')\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No visible annular surface in bin RGB-D\n"
+    },
+    "source_result_keys": [
+      "error"
+    ],
+    "source_type": "recorded_simulation_rgbd_not_real_hardware",
+    "variable_virtual_camera": true
+  },
+  {
+    "name": "receiver-big-success-011",
+    "source_file": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-scatter-speed-v128-closer-transfer-445/rgb-perception/observation-011-held_left/rgbd.npz",
+    "source_sha256": "04348d3967624864345b5606218b7d773c5016152897b8a88450ba67976b6a72",
+    "observation": 11,
+    "mode": "held_left",
+    "part": "ring1",
+    "source_sim_time_s": 14.58386801800225,
+    "width": 192,
+    "height": 192,
+    "K": [
+      [
+        709.3614029533887,
+        0.0,
+        95.5
+      ],
+      [
+        0.0,
+        709.3614029533887,
+        95.5
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_simworld_camera": [
+      [
+        -0.5881716976750462,
+        0.5472433640303914,
+        0.5954651581568435,
+        -0.34329319632064526
+      ],
+      [
+        -0.8087360843031886,
+        -0.39799517384028466,
+        -0.4330655695686134,
+        0.40004127858468636
+      ],
+      [
+        0.0,
+        -0.7362910716045267,
+        0.6766649524509585,
+        1.2010730218392989
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "horizontal_fov_deg": 15.414368803072039,
+    "vertical_fov_deg": 15.414368803072039,
+    "source_result_summary": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          -0.12333310111786788,
+          0.24015531252090433,
+          1.4510719234399687
+        ],
+        "initial_plane_axis": [
+          0.0009701189680852414,
+          -0.001883879941103922,
+          0.9999977549302574
+        ],
+        "center_m": [
+          -0.1232822518177335,
+          0.2400261839491297,
+          1.451071630846715
+        ],
+        "axis": [
+          0.0009701189680852414,
+          -0.001883879941103922,
+          0.9999977549302574
+        ],
+        "visible_face_inner_radius_m": 0.031913715111380914,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.002086284888619089,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00021799228079496583,
+        "depth_points": 2444,
+        "measured_classification_diameter_m": 0.07265225436100271,
+        "visible_arc_coverage_deg": 330,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          5.084930013438127e-05,
+          -0.00012912857177463377,
+          -2.925932536257392e-07
+        ],
+        "lateral_CAD_registration_rms_m": 5.5002219146696415e-05,
+        "lateral_CAD_iterations": 4,
+        "observed_cap_axis_and_depth_preserved": true
+      }
+    },
+    "source_result_keys": [
+      "pose",
+      "depth_sensor_input",
+      "simulator_body_pose_input"
+    ],
+    "source_type": "recorded_simulation_rgbd_not_real_hardware",
+    "variable_virtual_camera": true
+  },
+  {
+    "name": "receiver-small-fail-023",
+    "source_file": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-scatter-speed-v128-closer-transfer-445/rgb-perception/observation-023-held_left/rgbd.npz",
+    "source_sha256": "4541e4c23697b45c96d163554800b28e6827dbb7af3c579d3019598c5f7e2208",
+    "observation": 23,
+    "mode": "held_left",
+    "part": "ring2",
+    "source_sim_time_s": 33.057800368987955,
+    "width": 192,
+    "height": 192,
+    "K": [
+      [
+        699.6812988782822,
+        0.0,
+        95.5
+      ],
+      [
+        0.0,
+        699.6812988782822,
+        95.5
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_simworld_camera": [
+      [
+        0.8574929257125442,
+        0.39531272103637405,
+        0.32929277996907097,
+        -0.36054653055690644
+      ],
+      [
+        -0.5144957554275265,
+        0.6588545350606234,
+        0.5488212999484516,
+        0.08540246562117976
+      ],
+      [
+        0.0,
+        -0.640030119773177,
+        0.7683498199278324,
+        1.1717449361875374
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "horizontal_fov_deg": 15.625011000396135,
+    "vertical_fov_deg": 15.625011000396135,
+    "source_result_summary": {
+      "error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 43, in <module>\n    found,masks=relocalize(packet,local_cal,estimator,desired_part=request['part'],seed=seed)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/rgbd_scattered_rings.py\", line 26, in detect\n    if not valid.any():raise RuntimeError('No visible annular surface in bin RGB-D')\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No visible annular surface in bin RGB-D\n"
+    },
+    "source_result_keys": [
+      "error"
+    ],
+    "source_type": "recorded_simulation_rgbd_not_real_hardware",
+    "variable_virtual_camera": true
+  },
+  {
+    "name": "receiver-small-success-025",
+    "source_file": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-scatter-speed-v128-closer-transfer-445/rgb-perception/observation-025-held_left/rgbd.npz",
+    "source_sha256": "1e9b56e6a930bfcccc529f6faaa1f222d1aef99416aeb805afd7502629dec10d",
+    "observation": 25,
+    "mode": "held_left",
+    "part": "ring2",
+    "source_sim_time_s": 33.28838846401777,
+    "width": 192,
+    "height": 192,
+    "K": [
+      [
+        656.4603262955043,
+        0.0,
+        95.5
+      ],
+      [
+        0.0,
+        656.4603262955043,
+        95.5
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_simworld_camera": [
+      [
+        0.7808688094430304,
+        0.2192512375709812,
+        0.5849553805741233,
+        -0.4389643688757755
+      ],
+      [
+        -0.6246950475544242,
+        0.27406404696372655,
+        0.7311942257176542,
+        0.03427630443966023
+      ],
+      [
+        0.0,
+        -0.9363854937927314,
+        0.35097322834447436,
+        1.3318728311682153
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "horizontal_fov_deg": 16.63978785652195,
+    "vertical_fov_deg": 16.63978785652195,
+    "source_result_summary": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          -0.23896210808076385,
+          0.2840113477730895,
+          1.45188377780332
+        ],
+        "initial_plane_axis": [
+          0.00031710484981582857,
+          0.0007610175746855487,
+          0.999999660148325
+        ],
+        "center_m": [
+          -0.23895334433684168,
+          0.28427061064279036,
+          1.451883577720626
+        ],
+        "axis": [
+          0.00031710484981582857,
+          0.0007610175746855487,
+          0.999999660148325
+        ],
+        "visible_face_inner_radius_m": 0.025402763983387446,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.002097236016612554,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00033981033205756505,
+        "depth_points": 772,
+        "measured_classification_diameter_m": 0.059649257264953556,
+        "visible_arc_coverage_deg": 240,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          8.763743922168832e-06,
+          0.0002592628697008492,
+          -2.0008269396853962e-07
+        ],
+        "lateral_CAD_registration_rms_m": 4.986083244608319e-05,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      }
+    },
+    "source_result_keys": [
+      "pose",
+      "depth_sensor_input",
+      "simulator_body_pose_input"
+    ],
+    "source_type": "recorded_simulation_rgbd_not_real_hardware",
+    "variable_virtual_camera": true
+  },
+  {
+    "name": "pin-holder-021",
+    "source_file": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-scatter-speed-v128-closer-transfer-445/rgb-perception/observation-021-pin_initial/rgbd.npz",
+    "source_sha256": "55fef5587b3af18f892cafdbdff2d6fd40acd2455dda4e6041a46cf2e3e81d8a",
+    "observation": 21,
+    "mode": "pin_initial",
+    "part": "pin",
+    "source_sim_time_s": 29.34466766298283,
+    "width": 256,
+    "height": 256,
+    "K": [
+      [
+        1388.8000000000002,
+        0.0,
+        127.5
+      ],
+      [
+        0.0,
+        1388.8000000000002,
+        127.5
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_simworld_camera": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.19
+      ],
+      [
+        0.0,
+        -1.0,
+        0.0,
+        -0.79
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0,
+        1.35
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "horizontal_fov_deg": 10.531680623558207,
+    "vertical_fov_deg": 10.531680623558207,
+    "source_result_summary": {
+      "pose": {
+        "part": "pin",
+        "center_m": [
+          0.19000387111393577,
+          -0.7897289286242213,
+          0.9160499607069958
+        ],
+        "axis": [
+          1.1677198239620618e-05,
+          -6.075228613797047e-07,
+          -0.999999999931637
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.005152457969754513,
+        "cap_points": 953,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 1390,
+        "plane_rms_m": 2.307366374859615e-08,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 18.239966011606157,
+        "neural_inference_this_frame": false
+      }
+    },
+    "source_result_keys": [
+      "pose",
+      "depth_sensor_input",
+      "simulator_body_pose_input"
+    ],
+    "source_type": "recorded_simulation_rgbd_not_real_hardware",
+    "variable_virtual_camera": true
+  },
+  {
+    "name": "pin-held-030",
+    "source_file": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-scatter-speed-v128-closer-transfer-445/rgb-perception/observation-030-held/rgbd.npz",
+    "source_sha256": "05a7ed0b79efde8220b1da528a3de38d30fe96d3204b37762a8e3a481d23c20c",
+    "observation": 30,
+    "mode": "held",
+    "part": "pin",
+    "source_sim_time_s": 40.798325392999686,
+    "width": 192,
+    "height": 192,
+    "K": [
+      [
+        560.7583436739927,
+        0.0,
+        95.5
+      ],
+      [
+        0.0,
+        560.7583436739927,
+        95.5
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "T_simworld_camera": [
+      [
+        0.5633368246415098,
+        0.3394738249200795,
+        0.753265653137691,
+        -0.5223132646502318
+      ],
+      [
+        -0.8262273428075476,
+        0.23145942608187242,
+        0.5135902180484258,
+        0.07840522470581354
+      ],
+      [
+        0.0,
+        -0.911692961622487,
+        0.4108721744387402,
+        1.3626108259646847
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "horizontal_fov_deg": 19.429348534073153,
+    "vertical_fov_deg": 19.429348534073153,
+    "source_result_summary": {
+      "pose": {
+        "part": "pin",
+        "center_m": [
+          -0.3023132639902323,
+          0.2284052212197876,
+          1.4826084309417142
+        ],
+        "axis": [
+          -0.0002755709524525811,
+          0.001455527634113847,
+          0.9999989027493762
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.004022651807386864,
+        "cap_points": 74,
+        "lateral_from_previous_RGBD_grasp_and_encoders": true,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 1097,
+        "plane_rms_m": 7.368999115507939e-07,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 8.71333503164351,
+        "neural_inference_this_frame": false
+      }
+    },
+    "source_result_keys": [
+      "pose",
+      "depth_sensor_input",
+      "simulator_body_pose_input"
+    ],
+    "source_type": "recorded_simulation_rgbd_not_real_hardware",
+    "variable_virtual_camera": true
+  }
+]

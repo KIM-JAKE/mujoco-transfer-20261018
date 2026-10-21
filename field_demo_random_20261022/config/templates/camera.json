@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "units": "m",
+  "calibration_id": null,
+  "camera_frame": null,
+  "camera_serial": null,
+  "cell_frame": null,
+  "measured": {
+    "verified": false,
+    "by": null,
+    "at_utc": null,
+    "method": null,
+    "evidence_file": null,
+    "correspondences": null,
+    "residual_m": null
+  },
+  "T_cell_camera": null,
+  "robots": {
+    "left": {"base_frame": null, "T_cell_base": null},
+    "right": {"base_frame": null, "T_cell_base": null}
+  },
+  "nominal_stock_poses": {"ring1": null, "ring2": null, "pin": null},
+  "part_robot": {"ring1": null, "ring2": null, "pin": null},
+  "pin_holder_tracks_pin": null,
+  "roi_margin_m": 0.035,
+  "max_observation_age_s": 0.5,
+  "notes": "Fill real measured transforms. p_cell=T_cell_camera@p_camera and p_cell=T_cell_base@p_base. Camera uses RGB optical frame. No identity defaults. Actual hand relation T_part_tcp is supplied separately to the target planner. This supports seeded local CAD registration, not full random-bin initialization."
+}

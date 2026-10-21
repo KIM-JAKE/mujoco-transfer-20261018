@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+FIELD_DEMO_ROOT=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+FIELD_DEMO_INTERPRETER=${FIELD_DEMO_PYTHON:-$FIELD_DEMO_ROOT/.venv/bin/python}
+if [[ ! -x "$FIELD_DEMO_INTERPRETER" ]]; then FIELD_DEMO_INTERPRETER=python3; fi
+if [[ -f "$FIELD_DEMO_ROOT/.local-sdk/TESTED_HOST.json" ]]; then
+  if "$FIELD_DEMO_INTERPRETER" -c 'import platform,sys; d=platform.freedesktop_os_release(); sys.exit(0 if platform.machine()=="x86_64" and d.get("ID")=="ubuntu" and d.get("VERSION_ID")=="22.04" else 1)'; then
+    export PATH="$FIELD_DEMO_ROOT/.local-sdk/usr/bin:$PATH"
+    export LD_LIBRARY_PATH="$FIELD_DEMO_ROOT/.local-sdk/usr/lib/x86_64-linux-gnu:$FIELD_DEMO_ROOT/.local-sdk/usr/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+    export CMAKE_PREFIX_PATH="$FIELD_DEMO_ROOT/.local-sdk/usr${CMAKE_PREFIX_PATH:+:$CMAKE_PREFIX_PATH}"
+  fi
+fi
+export PYTHONPATH="$FIELD_DEMO_ROOT/src${PYTHONPATH:+:$PYTHONPATH}"
+export OPENBLAS_NUM_THREADS=${FIELD_DEMO_BLAS_THREADS:-1}
+export OMP_NUM_THREADS=${FIELD_DEMO_BLAS_THREADS:-1}
+exec "$FIELD_DEMO_INTERPRETER" -m field_demo "$@"

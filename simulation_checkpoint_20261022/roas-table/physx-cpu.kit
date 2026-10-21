@@ -1,0 +1,18 @@
+[package]
+title = "M80 native Hand CPU PhysX validation"
+version = "0.1.0"
+
+[dependencies]
+"omni.physx" = {}
+"omni.physx.tensors" = {}
+
+[settings]
+app.window.enabled = false
+app.renderer.enabled = false
+app.vulkan = false
+app.exts.folders = ["/isaac-sim/extscache", "/isaac-sim/exts", "/isaac-sim/kit/exts", "/isaac-sim/kit/extscore"]
+app.extensions.registryEnabled = false
+app.settings.persistent = false
+physics.updateToUsd = true
+physics.updateVelocitiesToUsd = true
+physics.cudaDevice = -1

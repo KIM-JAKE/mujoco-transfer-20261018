@@ -1,0 +1,288 @@
+"""One uninterrupted tail-grasp pin skill; fresh RGB-D plus encoders only.
+
+The caller advances the other arm and records the shared physical/wall clock.
+No scene initialization, pose resets or workpiece attachments occur here.
+"""
+from pathlib import Path
+import time,json,numpy as np
+from pxr import UsdPhysics
+from scipy.interpolate import CubicSpline
+from isaac_kinematics import frame,exp,log
+from rgbd_geometry import axis_frame
+from fr3_motion_control import position_velocity_bounds
+from fr3_path_timing import retime,retime_safe_polyline
+
+
+def _pin_visual_preinsert_target(command_H,actual_H,measured_G,goal,goal_axis,observed_z):
+    """Bounded geometric center/axis servo; only images, encoders and jig CAD."""
+    C,A,G=[np.asarray(x,float)for x in [command_H,actual_H,measured_G]]
+    goal=np.asarray(goal,float);goal_axis=np.asarray(goal_axis,float)
+    if any(T.shape!=(4,4)or not np.isfinite(T).all()for T in[C,A,G]) or goal.shape!=(3,) or goal_axis.shape!=(3,) or not np.isfinite(np.r_[goal,goal_axis,observed_z]).all():raise ValueError('Invalid pin visual-servo input')
+    goal_axis=goal_axis/max(np.linalg.norm(goal_axis),1e-12);axis=A[:3,:3]@G[:3,2];cross=np.cross(axis,goal_axis);length=np.linalg.norm(cross)
+    rotation=exp(cross/max(length,1e-12)*np.arctan2(length,axis@goal_axis))@A[:3,:3]
+    desired=frame(np.array([goal[0],goal[1],min(float(observed_z),float(goal[2]-.045))])-rotation@G[:3,3],rotation)
+    bias_translation=float(np.linalg.norm(C[:3,3]-A[:3,3]));bias_angle=float(np.linalg.norm(log(C[:3,:3]@A[:3,:3].T)))
+    if bias_translation>.002 or bias_angle>.01:raise RuntimeError('Pin encoder tracking bias exceeds bounded2mm/.01rad prealignment correction')
+    target=C@np.linalg.inv(A)@desired
+    if np.linalg.norm(target[:3,3]-C[:3,3])>.008 or np.linalg.norm(log(target[:3,:3]@C[:3,:3].T))>.1:raise RuntimeError('Pin prealignment correction exceeds8mm/.1rad local envelope')
+    return target,dict(command_vs_actual_translation_m=bias_translation,command_vs_actual_rotation_rad=bias_angle)
+
+def _pin_rgbd_sdk_hold_evidence(pose,reference_G,measured_G,opening,stationary=True):
+    """Confirm observed retention using circle/axis + encoder aperture, no yaw."""
+    A,B=[np.asarray(x,float)for x in [reference_G,measured_G]];gap=float(opening)
+    if A.shape!=(4,4)or B.shape!=(4,4)or not np.isfinite(A).all()or not np.isfinite(B).all()or not np.isfinite(gap):raise ValueError('Invalid pin RGB-D/SDK hold evidence')
+    translation=float(np.linalg.norm(B[:3,3]-A[:3,3]));a=A[:3,2]/max(np.linalg.norm(A[:3,2]),1e-12);b=B[:3,2]/max(np.linalg.norm(B[:3,2]),1e-12);axis=float(np.arccos(np.clip(a@b,-1,1)));radius=float(pose.get('visible_end_radius_m',float('nan')));expected=float(pose.get('cap_expected_radius_m',float('nan')))
+    direct=bool(pose.get('robust_cap_circle_from_pixels')and pose.get('lateral_from_previous_RGBD_grasp_and_encoders')is False and pose.get('uses_depth_sensor')and pose.get('cap_edge_coverage_deg',0)>=240 and np.isfinite(radius)and np.isfinite(expected)and min(abs(expected-.00525),abs(expected-.0025))<.0001 and abs(radius-expected)<=.0004)
+    aperture=bool(.0097<gap<.0135)
+    return dict(confirmed=bool(direct and aperture and stationary and translation<=.002 and axis<=.05),direct_class_end_circle=direct,actual_encoder_aperture_m=gap,required_aperture_band_m=[.0097,.0135],encoder_position_stationary=bool(stationary),relative_center_drift_m=translation,relative_axis_drift_rad=axis,center_drift_limit_m=.002,axis_drift_limit_rad=.05,unobservable_axial_yaw_used=False,native_sample_normals_advisory_only=True,source='Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose',uses_free_body_poses=False)
+
+def execute(ctx):
+    HERE=Path(__file__).resolve().parent
+    art=ctx['art'];arm=ctx['arm'];ids=ctx['ids'];fi=ctx['fi'];cmd=ctx['cmd'];idx=ctx['idx'];vision=ctx['vision'];checker=ctx['checker'];stage=ctx['stage'];sim=ctx['sim'];paths=ctx['paths'];goal=np.array(ctx['goal']);truth=ctx['truth'];started=ctx['started'];stiff=ctx['stiffness'];damping=ctx['damping'];DT=ctx['dt'];cand=ctx['candidate'];G=np.array(cand['grasp_transform']);pickupH=np.array(cand['pickup_H']);preH=pickupH.copy();preH[:3,3]+=[0,0,.07];preq=arm.solve(preH[:3,3],preH[:3,:3],cand['pickup_q']);phase='pin_start';report=ctx.setdefault('report',{});report.update(events=[],pin_single_stroke_pass=False)
+    body_goal=goal.copy();pin_config=ctx.get('config',{})
+    visual_preinsert=bool(pin_config.get('pin_visual_preinsert_alignment'))
+    pin_axis_geometry=bool(pin_config.get('pin_axis_frame_consistent_geometry') or cand.get('pose_origin')=='RGB-D physical symmetry-axis midpoint')
+    pin_sensor_hold=bool(pin_config.get('pin_rgbd_sdk_hold_confirmation'))
+    if pin_sensor_hold and not pin_axis_geometry:raise ValueError('RGB-D/SDK pin hold confirmation requires consistent physical-axis geometry')
+    if pin_axis_geometry:
+        from pin_native_contact import native_support,axis_to_body_grasp
+        report['pin_native_geometry_origin']='RGB-D physical axis; CADbody−[0,−.25mm,0]; no physical model change'
+    def payload_grasp():return axis_to_body_grasp(G) if pin_axis_geometry else G
+    def measured_grasp(value,prior):
+        p=value['result']['pose'];measured=np.linalg.inv(value['H'])@frame(p['center_m'],axis_frame(p['axis']));a=prior[:3,2];b=measured[:3,2];v=np.cross(a,b);measured[:3,:3]=exp(v/max(np.linalg.norm(v),1e-12)*np.arctan2(np.linalg.norm(v),a@b))@prior[:3,:3];return measured
+    if visual_preinsert:
+        axis_goal=np.asarray(pin_config.get('pin_axis_goal_world_m',[]),float)
+        if axis_goal.shape!=(3,) or not np.isfinite(axis_goal).all():raise ValueError('Pin visual servo requires a calibrated physical symmetry-axis midpoint goal')
+        goal=axis_goal
+        report.update(body_origin_goal_world_m=body_goal.tolist(),physical_axis_midpoint_goal_world_m=goal.tolist(),control_pose_origin='RGB-D physical symmetry-axis midpoint; fixed CAD jig calibration')
+    def endpoint_candidates(H,seeds,label):
+        from fr3_gpu_ik import propose_ik
+        seen=[]
+        for q in propose_ik(ctx,arm,H[:3,3],H[:3,:3],art.get_dof_positions()[0,ids].copy(),label):
+            seen.append(q);yield q
+        for seed in seeds:
+            if seed is None:continue
+            q=arm.solve(H[:3,3],H[:3,:3],seed)
+            if q is not None and all(np.linalg.norm(q-old)>.05 for old in seen):seen.append(q);yield q
+    def step():ctx['step'](phase)
+    def wait(seconds,label):
+        nonlocal phase
+        phase=label
+        for _ in range(round(seconds/DT)):step()
+    def observe(label,grasp=None,require_circle=False):
+        H=arm.fk(art.get_dof_positions()[0,ids]);prefetched=ctx.pop('prefetched_initial',None) if grasp is None else None
+        offsets=[None] if grasp is None else [([-.22,0,.12] if label=="pin_lift_RGBD" else [-.22,-.15,-.12])]
+        if grasp is not None and visual_preinsert:
+            # Virtual simulated views, not one fixed physical RealSense.
+            axis=(H@grasp)[:3,2];axis/=np.linalg.norm(axis);reference=np.eye(3)[int(np.argmin(abs(axis)))];u=reference-axis*(reference@axis);u/=np.linalg.norm(u);v=np.cross(axis,u)
+            offsets += [(.20*sign*axis+.23*(np.cos(angle)*u+np.sin(angle)*v)).tolist() for sign in [1.,-1.] for angle in np.arange(6)*np.pi/3]
+        errors=[]
+        for view_index,offset in enumerate(offsets):
+            e=dict(mode='pin_initial'if grasp is None else'held',part='pin',label=label,view_index=view_index,robust_pin_cap_circle=bool(require_circle and pin_config.get('robust_pin_cap_circle')))
+            if grasp is not None:e.update(tracked_grasp=grasp.tolist(),camera_eye_offset=offset)
+            if require_circle and visual_preinsert and pin_config.get('pin_precision_image_width_px') is not None:e['pin_precision_image_width_px']=int(pin_config['pin_precision_image_width_px'])
+            if prefetched is not None:e,f=prefetched;prefetched=None
+            else:f=vision.request(e,arm.fk(art.get_dof_positions()[0,ids]))
+            deadline=time.perf_counter()+1.
+            while not f.done():
+                vision.poll();step()
+                if time.perf_counter()>deadline:raise RuntimeError('RGB-D response timeout')
+            value=f.result();e['delivered_wall_s']=time.perf_counter()-started
+            error=value['result'].get('error');pose=value['result'].get('pose')
+            if not error and require_circle and (not pose or pose.get('lateral_from_previous_RGBD_grasp_and_encoders',True)):
+                error='Pin precision alignment needs directly observed end-circle XY, not propagated XY'
+            if error:
+                errors.append(str(error).splitlines()[-1]);continue
+            report['events'].append(dict(event=label,wall_s=e['delivered_wall_s'],result=value['result'],view_index=view_index));print('PIN_CONTACT_VISION',label,e['delivered_wall_s'],flush=True);return value
+        raise RuntimeError('No valid pin RGB-D view '+label+' '+str(errors))
+    def motion(qs,requested,label,checked_edges=True):
+        nonlocal phase
+        checked_edges=checked_edges and not getattr(qs,'verified_cubic',False);qs=np.array(qs);qs[0]=cmd[0,ids];T=requested
+        # Smooth joint spline sampled at the real control rate, checked against
+        # position-dependent bounds, acceleration and jerk before execution.
+        opening=cmd[0,fi].copy();preshape=label=='pin_tail_approach';optimized=ctx.get('optimized_motion_timing',False)
+        if optimized and any(name in label for name in ['approach','carry','orient_free','lift']):T=.05
+        scale=max(1.,float(ctx.get('stability_time_scale',1.)))
+        if checked_edges and len(qs)>2:
+            q,h,timing=retime_safe_polyline(qs,DT,opening,np.full(2,.007) if preshape else opening,scale=scale,velocity_fraction=.95,acceleration=9.5,jerk=4750.)
+        else:
+            q,h,timing=retime(qs,T,DT,opening,np.full(2,.007) if preshape else opening,velocity_fraction=.95,acceleration=9.5,jerk=4750.,finger_command_speed=.0475,optimize=optimized)
+            if scale>1:q,h,timing=retime(qs,timing['duration_s']*scale,DT,opening,np.full(2,.007) if preshape else opening,velocity_fraction=.95,acceleration=9.5,jerk=4750.,finger_command_speed=.0475,optimize=False)
+        phase=label
+        for row,hvalue in zip(q[1:],h[1:]):
+            cmd[0,ids]=row
+            if preshape:cmd[0,fi]=opening+(.007-opening)*hvalue
+            step()
+        report['events'].append(dict(event=label,wall_s=time.perf_counter()-started,physical_duration_s=(len(q)-1)*DT));print('PIN_CONTACT_MOVE',label,time.perf_counter()-started,flush=True)
+    def line(H0,H1,requested,label):
+        H0=arm.fk(cmd[0,ids]);rows=[cmd[0,ids].copy()];last=rows[0]
+        for u in np.linspace(0,1,7)[1:]:
+            T=H0.copy();T[:3,3]=H0[:3,3]*(1-u)+H1[:3,3]*u;T[:3,:3]=exp(log(H1[:3,:3]@H0[:3,:3].T)*u)@H0[:3,:3] if label in ['pin_preinsert_visual_correction','pin_holder_regrasp_alignment'] else H0[:3,:3];q=arm.solve(T[:3,3],T[:3,:3],last)
+            if q is None:raise RuntimeError('Axial IK failed '+label)
+            rows.append(q);last=q
+        opening=max(float(art.get_dof_positions()[0,fi].sum()),float(cmd[0,fi].sum()))
+        curve=CubicSpline(np.linspace(0,1,len(rows)),rows)(np.linspace(0,1,41));clear,why=checker.path(curve,opening,paths['workpiece_pin'])
+        if not clear:raise RuntimeError('Pin Cartesian robot path obstructed '+label+' '+str(why))
+        motion(rows,requested,label,checked_edges=False)
+    def fingers(width,label):
+        nonlocal phase
+        phase=label;start=cmd[0,fi].copy();target=np.array([width/2]*2);T=max(.14,float(abs(target-start).max())/.0475*1.875);N=int(np.ceil(T/DT))
+        for k in range(1,N+1):u=k/N;h=u**3*(10-15*u+6*u*u);cmd[0,fi]=start+(target-start)*h;step()
+    v=observe('pin_initial')
+    if ctx.get('handoff_withdraw'):
+        H=arm.fk(art.get_dof_positions()[0,ids]);withdraw=H@frame([0,0,-.07],np.eye(3));line(H,withdraw,.65,'pin_donor_handoff_withdraw')
+    # Empty stock pickup needs a narrow aperture near the existing holder.
+    # Preshape at the already clear transfer pose, before planning the route.
+    if float(cmd[0,fi].sum())>.0145:
+        H=arm.fk(cmd[0,ids]);opening=float(art.get_dof_positions()[0,fi].sum())
+        deadline=time.perf_counter()+2.5
+        while not all(checker.hand_clear(H,w)[0] for w in np.linspace(opening,.014,9)):
+            if time.perf_counter()>deadline:raise RuntimeError('No clear empty-hand preshape before pin pickup')
+            wait(.025,'pin_waits_for_receiving_arm_clearance')
+        fingers(.014,'pin_empty_preshape')
+    P=np.array(v['result']['pose']['center_m']);pickup_origin=np.asarray(cand.get('pickup_center_from_RGBD',json.load(open(HERE.parents[1]/'runs/native-roas-table-pin-tail01/pin-direct-probe.json'))['pickup_center_from_RGBD']),float)
+    if pickup_origin.shape!=(3,) or not np.isfinite(pickup_origin).all():raise ValueError('Pin candidate requires finite RGB-D pickup origin')
+    pickupH[:3,3]+=P-pickup_origin;report['pickup_retarget_origin_RGBD_m']=pickup_origin.tolist();report['pickup_retarget_delta_RGBD_m']=(P-pickup_origin).tolist()
+    newpre=pickupH.copy();newpre[:3,3]+=[0,0,.07]
+    robot_hint_data=json.loads((HERE/'bin-picking/direct-pin-robot-seeds.json').read_text());robot_seeds=robot_hint_data['seeds'];solutions=[];route=None;rejections=[];opening=max(.014,float(cmd[0,fi].sum()))
+    # Preserve the current elbow branch before considering a distant taught
+    # branch. Both satisfy the same fresh image target, bounds and geometry.
+    seeds=[robot_seeds.get('pin_tail_approach',cmd[0,ids]),cmd[0,ids],preq,cand['pickup_q']]+list(np.random.default_rng(4121).uniform(arm.bounds[:,0],arm.bounds[:,1],(32,7)))
+    from fr3_gpu_ik import propose_ik
+    GPU_pre=propose_ik(ctx,arm,newpre[:3,3],newpre[:3,:3],art.get_dof_positions()[0,ids].copy(),'pin_pregrasp')
+    next_goal=np.asarray(robot_seeds.get('pin_direct_preinsert',cmd[0,ids]));joint_speed=np.array([2.62,2.62,2.62,2.62,5.26,4.18,5.26]);seen=[]
+    for proposed in ([GPU_pre,None]if GPU_pre else[None]):
+        if proposed is None:
+            proposed=[]
+            for seed in seeds:
+                if seed is None:continue
+                q=arm.solve(newpre[:3,3],newpre[:3,:3],seed)
+                if q is not None and all(np.linalg.norm(q-old)>.05 for old in proposed+seen):proposed.append(q)
+            proposed.sort(key=lambda q:float(np.max(abs(q-cmd[0,ids])/joint_speed)+np.max(abs(q-next_goal)/joint_speed)) if ctx.get('goal_aware_pickup') else np.linalg.norm(q-cmd[0,ids]))
+        solutions.extend(proposed);seen.extend(proposed)
+        for q in proposed:
+            clear,why=checker.clear(q,opening,paths['workpiece_pin'])
+            if not clear:rejections.append(why);continue
+            route=checker.route(cmd[0,ids],q,opening,paths['workpiece_pin'],seconds=.75)
+            if route is not None:break
+        if route is not None:break
+    if route is None:raise RuntimeError('No pin pregrasp route across IK branches '+str(rejections[:3]))
+    report['pregrasp_IK_solutions']=len(solutions);motion(route,1.1,'pin_tail_approach')
+    H=arm.fk(art.get_dof_positions()[0,ids]);line(H,pickupH,.6,'pin_tail_descend')
+    planned_G=G.copy()
+    def release_inside_existing_holder(label):
+        Hactual=arm.fk(art.get_dof_positions()[0,ids]);current_opening=float(art.get_dof_positions()[0,fi].sum())
+        if not all(checker.clear(art.get_dof_positions()[0,ids],float(w),paths['workpiece_pin'])[0]for w in np.linspace(current_opening,.014,13)):raise RuntimeError('Pin holder release aperture sweep blocked; fingers remain closed')
+        if ctx.get('set_grip_hold'):ctx['set_grip_hold'](False)
+        fingers(.014,label);wait(.1,label+'_settle')
+    for grasp_attempt in range(2 if pin_axis_geometry else 1):
+        stiff[0,fi]=0. if ctx.get('set_grip_hold') else 30000.;damping[0,fi]=[4000.,.001] if ctx.get('set_grip_hold') else 300.;art.set_dof_stiffnesses(stiff,idx);art.set_dof_dampings(damping,idx);fingers(.0095,'pin_tail_close')
+        if ctx.get('set_grip_hold'):ctx['set_grip_hold'](True)
+        wait(.15,'pin_tail_grasp_hold')
+        if not pin_axis_geometry:break
+        samples=[];plateau=False
+        for _ in range(80):
+            samples.append(art.get_dof_positions()[0,fi].copy());samples=samples[-5:]
+            if len(samples)==5:
+                s=np.asarray(samples);plateau=bool(np.max(np.ptp(s,axis=0))<=.00015 and np.ptp(s.sum(axis=1))<=.00015)
+                if plateau:break
+            wait(.025,'pin_native_close_settle')
+        if pin_sensor_hold:
+            gap=float(art.get_dof_positions()[0,fi].sum());close_ok=bool(plateau and .0097<gap<.0135);evidence=dict(attempt=grasp_attempt,encoder_position_plateau=plateau,actual_encoder_aperture_m=gap,required_aperture_band_m=[.0097,.0135],controlled_lift_allowed=close_ok,transport_allowed=False,direct_pose_confirmation='Deferred until pin is lifted clear of hand/holder occlusion',sensor_basis='Simulated SDK-like aperture/encoder plateau after controlled close; field adapter uses gripper is_grasped; no force sensor',uses_free_body_poses=False)
+            report.setdefault('pin_SDK_postclose',[]).append(evidence);print('PIN_SDK_POSTCLOSE_LIFT_ONLY',evidence,flush=True)
+            if close_ok:G=planned_G.copy();break
+            if grasp_attempt==1:raise RuntimeError('SDK-like pin grip did not reach nonempty stationary aperture after bounded reclose')
+            release_inside_existing_holder('pin_unconfirmed_aperture_holder_release');G=planned_G.copy();continue
+        else:
+            vclose=observe('pin_postclose_RGBD',G,require_circle=True);settled_G=measured_grasp(vclose,planned_G);gap=float(art.get_dof_positions()[0,fi].sum());support=native_support(ctx,settled_G,gap);evidence=dict(attempt=grasp_attempt,actual_opening_m=gap,encoder_position_plateau=plateau,support=support);report.setdefault('native_pin_postclose',[]).append(evidence);print('PIN_NATIVE_POSTCLOSE',dict(attempt=grasp_attempt,plateau=plateau,admitted=support['admitted'],gap_m=gap,flat_span_m=support['minimum_flat_pin_axis_span_m']),flush=True)
+            if plateau and support['admitted']:G=settled_G;break
+            current_part=np.asarray(vclose['H'])@settled_G;holder_error=float(np.linalg.norm(current_part[:3,3]-P))
+            if holder_error>.002:raise RuntimeError('Weak native pin contact outside original holder2mm envelope; fingers remain closed')
+            release_inside_existing_holder('pin_rejected_contact_holder_release')
+            if grasp_attempt==1:raise RuntimeError('Native pin postclose certificate failed after bounded holder regrasp')
+            reopened=observe('pin_holder_regrasp_RGBD',settled_G,require_circle=True);reopened_G=measured_grasp(reopened,planned_G);part_H=np.asarray(reopened['H'])@reopened_G;target=part_H@np.linalg.inv(planned_G);actual_H=arm.fk(art.get_dof_positions()[0,ids])
+            if np.linalg.norm(target[:3,3]-actual_H[:3,3])>.002 or np.linalg.norm(log(target[:3,:3]@actual_H[:3,:3].T))>.05:raise RuntimeError('Pin holder regrasp exceeds2mm/.05rad bounded envelope')
+            line(actual_H,target,.3,'pin_holder_regrasp_alignment');G=planned_G.copy()
+    H=arm.fk(art.get_dof_positions()[0,ids]);lift=H.copy();lift[:3,3]+=[0,0,.07];line(H,lift,.6,'pin_tail_lift');wait(.15,'pin_lift_settle');v=observe('pin_lift_RGBD',G,require_circle=pin_axis_geometry);G=measured_grasp(v,G);report['measured_grasp']=G.tolist()
+    if pin_sensor_hold:
+        first_direct_lift_G=G.copy();wait(.05,'pin_lift_independent_confirmation');v=observe('pin_lift_confirm_RGBD',G,require_circle=True);G=measured_grasp(v,G)
+    if pin_axis_geometry:
+        gap=float(art.get_dof_positions()[0,fi].sum());support=native_support(ctx,G,gap);report['native_pin_postlift']=support;print('PIN_NATIVE_POSTLIFT',dict(admitted=support['admitted'],gap_m=gap,flat_span_m=support['minimum_flat_pin_axis_span_m']),flush=True);postlift_confirmed=support['admitted']
+        if pin_sensor_hold:
+            sensor_evidence=_pin_rgbd_sdk_hold_evidence(v['result']['pose'],first_direct_lift_G,G,gap);report['pin_RGBD_SDK_postlift']=sensor_evidence;postlift_confirmed=sensor_evidence['confirmed'];print('PIN_RGBD_SDK_POSTLIFT',sensor_evidence,flush=True)
+        if not postlift_confirmed:raise RuntimeError('Fresh RGB-D/encoder pin postlift retention confirmation failed before carry; fingers remain closed')
+    pin_hold_reference_G=G.copy()
+    if ctx.get('before_transport'):report['left_work_zone_clearance']=ctx['before_transport'](payload_grasp())
+    R=np.array(cand['goal_part_R']);safe=frame([-.10,-.25,1.35],R)@np.linalg.inv(G);pre=frame(goal-[0,0,.045],R)@np.linalg.inv(G);end=frame(goal,R)@np.linalg.inv(G)
+    robot_seeds=json.loads((HERE/'bin-picking/direct-pin-robot-seeds.json').read_text())['seeds']
+    transports=[(safe,'pin_tail_orient_free'),(pre,'pin_tail_carry_to_preinsert')]
+    if ctx.get('optimized_motion_timing'):
+        checker.attach_payload(paths['workpiece_pin'],frame([0,0,.1034],np.eye(3))@payload_grasp());shortcut=None
+        try:
+            for q in endpoint_candidates(pre,[robot_seeds.get('pin_direct_preinsert',robot_seeds['pin_tail_carry_to_preinsert']),robot_seeds['pin_tail_carry_to_preinsert'],cmd[0,ids]],'pin_preinsert_carry'):
+                if checker.path([cmd[0,ids],q],.0105,paths['workpiece_pin'])[0]:shortcut=[cmd[0,ids].copy(),q];report['direct_joint_edge_used']=True;break
+                from grasp_transfer_feasibility import robot_route_hint,hint_path_clear
+                warm=robot_route_hint(ctx,'pin_direct_carry_to_preinsert',cmd[0,ids],q)
+                if warm is not None and getattr(warm,'verified_cubic',False) and hint_path_clear(checker,warm,.0105,paths['workpiece_pin']):shortcut=warm;report['warm_spline_robot_hint_used']=True;break
+                hint=robot_hint_data.get('routes',{}).get('pin_direct_carry_to_preinsert')
+                if hint:
+                    candidate=np.asarray(hint).copy();candidate[0]=cmd[0,ids];candidate[-1]=q
+                    if checker.path(candidate,.0105,paths['workpiece_pin'])[0]:shortcut=candidate;report['validated_robot_route_hint_used']=True
+                if shortcut is None:shortcut=checker.route(cmd[0,ids],q,.0105,paths['workpiece_pin'],seconds=1.)
+                if shortcut is not None:break
+        finally:checker.detach_payload()
+        if shortcut is not None:
+            from grasp_transfer_feasibility import shorten_checked_route
+            checker.attach_payload(paths['workpiece_pin'],frame([0,0,.1034],np.eye(3))@payload_grasp())
+            try:
+                if not getattr(shortcut,'verified_cubic',False):shortcut=shorten_checked_route(checker,shortcut,.0105,paths['workpiece_pin'])
+            finally:checker.detach_payload()
+            report['pin_shortcut_nodes']=len(shortcut);motion(shortcut,.05,'pin_tail_direct_carry_to_preinsert');transports=[];report['direct_preinsert_shortcut']=True
+    for target,label in transports:
+        checker.attach_payload(paths['workpiece_pin'],frame([0,0,.1034],np.eye(3))@payload_grasp());route=None
+        for q in endpoint_candidates(target,[robot_seeds[label],cand['insert_waypoints'][0] if label=='pin_tail_carry_to_preinsert' else cmd[0,ids],cmd[0,ids]],label):
+            clear,why=checker.clear(q,.0105,paths['workpiece_pin']);print('PIN_CARRY_GOAL_CLEAR',label,(clear,why),flush=True)
+            if not clear:continue
+            route=checker.route(cmd[0,ids],q,.0105,paths['workpiece_pin'],seconds=2)
+            if route is not None:break
+        checker.detach_payload()
+        if route is None:raise RuntimeError('No collision-free carry '+label)
+        motion(route,.9,label)
+    for alignment_index in range(8 if visual_preinsert else 1):
+        v=observe('pin_preinsert_RGBD',G,require_circle=visual_preinsert);pose=v['result']['pose'];Pobs=np.asarray(pose['center_m']);remaining_depth=float(goal[2]-Pobs[2])
+        if pin_sensor_hold:
+            current_G=measured_grasp(v,G);gap=float(art.get_dof_positions()[0,fi].sum());sensor_evidence=_pin_rgbd_sdk_hold_evidence(pose,pin_hold_reference_G,current_G,gap);sensor_evidence['alignment_index']=alignment_index;report.setdefault('pin_RGBD_SDK_postcarry',[]).append(sensor_evidence);print('PIN_RGBD_SDK_POSTCARRY',sensor_evidence,flush=True)
+            if not sensor_evidence['confirmed']:raise RuntimeError('Fresh RGB-D/SDK pin postcarry retention changed beyond2mm/.05rad; correction blocked')
+        if not visual_preinsert:break
+        radial=float(np.linalg.norm(Pobs[:2]-goal[:2]));axis_error=float(np.arccos(np.clip(np.asarray(pose['axis'])@R[:,2],-1,1)));shaft_axis_max=float(max(np.linalg.norm((Pobs+z*np.asarray(pose['axis'])-goal-z*R[:,2])[:2])for z in [-.0035,.0135]))
+        evidence=dict(iteration=alignment_index,radial_error_m=radial,axis_error_rad=axis_error,radial_limit_m=.000075,axis_limit_rad=.003,maximum_shaft_axis_radial_error_m=shaft_axis_max,maximum_shaft_axis_radial_limit_m=.00015,source='Fresh RGB-D end circle/plane plus encoder FK',uses_free_body_poses=False)
+        report.setdefault('preinsert_visual_alignment',[]).append(evidence);print('PIN_VISUAL_PREALIGN',evidence,flush=True)
+        if not .035<remaining_depth<.055:raise RuntimeError('Pin visual prealignment must remain35–55mm below the calibrated jig target')
+        measured=np.linalg.inv(v['H'])@frame(Pobs,axis_frame(pose['axis']))
+        old_axis=G[:3,2];new_axis=measured[:3,2];cross=np.cross(old_axis,new_axis);length=np.linalg.norm(cross);measured[:3,:3]=exp(cross/max(length,1e-12)*np.arctan2(length,old_axis@new_axis))@G[:3,:3];G=measured
+        if radial<=.000075 and axis_error<=.003 and shaft_axis_max<=.00015:break
+        if alignment_index==7:raise RuntimeError('Pin RGB-D precision center/axis alignment did not converge; insertion blocked')
+        actual_H=arm.fk(art.get_dof_positions()[0,ids]);command_H=arm.fk(cmd[0,ids]);target,bias=_pin_visual_preinsert_target(command_H,actual_H,G,goal,R[:,2],float(Pobs[2]));evidence.update(bias)
+        saved=(checker.payload_path,checker.payload_rows,checker.payload_boxes,checker.payload_relative)
+        checker.attach_payload(paths['workpiece_pin'],frame([0,0,.1034],np.eye(3))@payload_grasp())
+        try:line(command_H,target,.35,'pin_preinsert_visual_correction')
+        finally:checker.payload_path,checker.payload_rows,checker.payload_boxes,checker.payload_relative=saved
+        wait(.08,'pin_preinsert_visual_hold')
+    report['preinsert_observed_center_m']=Pobs.tolist();report['RGBD_measured_remaining_axial_depth_m']=remaining_depth
+    if visual_preinsert:report['measured_grasp_after_preinsert_alignment']=G.tolist()
+    if np.linalg.norm(Pobs[:2]-goal[:2])>=.0015 or not .035<remaining_depth<.055:raise RuntimeError('Preinsert RGB-D alignment/depth outside direct insertion range')
+    pre=arm.fk(cmd[0,ids]);end=pre.copy();end[2,3]+=remaining_depth;line(pre,end,.8,'pin_single_axial_insert');wait(.12,'pin_full_depth_hold');v=observe('pin_full_depth_RGBD',G);pose=v['result']['pose'];error=float(np.linalg.norm(np.array(pose['center_m'])-goal));ae=float(np.arccos(np.clip(np.array(pose['axis'])[2],-1,1)));report['RGBD_full_depth_check']=dict(position_error_m=error,axis_error_rad=ae)
+    for correction_index in range(2):
+        remaining=float(goal[2]-pose['center_m'][2]);radial=float(np.linalg.norm(np.array(pose['center_m'])[:2]-goal[:2]))
+        if not (.0005<remaining<.006 and radial<.0015 and ae<.05):break
+        H=arm.fk(cmd[0,ids]);end=H.copy();end[2,3]+=remaining;line(H,end,.25,'pin_axial_depth_correction');wait(.08,'pin_depth_check_hold');v=observe('pin_full_depth_RGBD',G);pose=v['result']['pose'];error=float(np.linalg.norm(np.array(pose['center_m'])-goal));ae=float(np.arccos(np.clip(np.array(pose['axis'])[2],-1,1)));report['RGBD_full_depth_check']=dict(position_error_m=error,axis_error_rad=ae);report['axial_visual_corrections_with_grip_closed']=correction_index+1
+    if error>=.0015 or ae>=.05:raise RuntimeError('Full depth not confirmed by RGB-D; fingers remain closed')
+    for prim in stage.Traverse():
+        if ctx.get('close_pin_clamp',True) and prim.IsA(UsdPhysics.PrismaticJoint)and str(prim.GetPath()).startswith('/World/Clamps/pin/'):
+            joint=UsdPhysics.PrismaticJoint(prim);UsdPhysics.DriveAPI(prim,'linear').GetTargetPositionAttr().Set(joint.GetLowerLimitAttr().Get())
+    sim.flush_changes();wait(.12,'pin_clamp_hold');
+    if ctx.get('set_grip_hold'):ctx['set_grip_hold'](False)
+    # Return to the same preinsert pose that was checked and just traversed.
+    # The former extra 25 mm downward stroke drove link 4 into the machine.
+    fingers(.018,'pin_release_after_full_depth');withdraw=pre.copy();line(end,withdraw,.65,'pin_axial_withdraw');wait(0. if ctx.get('defer_retention_to_recipe') else .5,'pin_retention');report['retention_deferred_to_recipe']=bool(ctx.get('defer_retention_to_recipe'));tr=truth['pin'].get_transforms()[0];ae=float(np.arccos(np.clip(1-2*(tr[3]**2+tr[4]**2),-1,1)));err=float(np.linalg.norm(tr[:3]-body_goal));report.update(state='pin_single_stroke_contact_pass'if err<.0015 and ae<.05 else'pin_retention_failed',pin_single_stroke_pass=bool(err<.0015 and ae<.05),final_position_error_m=err,final_axis_error_rad=ae,pin_trial_wall_s=time.perf_counter()-started)
+    return report

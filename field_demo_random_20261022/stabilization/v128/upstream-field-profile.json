@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "profile_id": "v128-closer-transfer-445",
+  "source_import": "IMPORT.json",
+  "source_import_sha256": "0118454ac4a3da7c9d72336919be370d271f851a9467a0612a97f3d751afac89",
+  "source_run": "native-roas-table-scatter-speed-v128-closer-transfer-445",
+  "simulation_wall_elapsed_s": 43.533158828970045,
+  "hardware_tested": false,
+  "physical_cycle_time_claimed": false,
+  "simulation_coordinates_applied": false,
+  "simulation_joint_trace_replayed": false,
+  "runtime_capabilities": [
+    "seed_free_rgbd_rings",
+    "fresh_held_G_before_transfer_and_insertion",
+    "screened_dynamic_sdk_path",
+    "donor_release_after_receiver_native_and_plc",
+    "fixed_field_camera_calibration",
+    "three_part_retention_after_hand_withdrawal",
+    "no_simulation_joint_trace_replay"
+  ],
+  "runtime_files": {
+    "src/field_demo/random_cycle.py": "8fd74fc4c09f25b5a07922b91181d4b9932c5da70af1805aa2cd6d52661c6e98",
+    "src/field_demo/random_perception.py": "e74d8ae46e988287d7b9dcba55d7abbfa13589d0c79f2c038423be380acef255",
+    "src/field_demo/random_planner.py": "a21c5feb96a8e826a8fd1acc62f3fc7135ef75a91411a21d013cf37485119e8a",
+    "src/field_demo/collision.py": "47be0ed904fe62f6003a42a1526af223fbc2da014793f846579040657ee5e28d",
+    "src/field_demo/stabilization.py": "693fda79627786bbd7c63ea9f31b87d8f79bd7b00386336aa3adcc15bcd71cac",
+    "src/field_demo/stabilized/rgbd_scattered_rings.py": "292e570da3084cf03a71949205fa16d67ec3cd18fae2adde5998e7266a3134e5",
+    "src/field_demo/stabilized/rgbd_geometry.py": "9423211123770a7155afaca3a71391ffc80a40854e654fe441e8a36ad05fb784",
+    "src/isaac_port/fieldkit/site.py": "90bc99a0946dfe8411817b43cffb343b9f15db764fce3bbf6a829c5a3e692b7a",
+    "src/isaac_port/fieldkit/hand.py": "f085049a0cbeea69f26509293c5c8b14fa74839ab54055f3adbc911a9fca7f1f",
+    "src/isaac_port/fieldkit/site_motion.cpp": "fb38f2ffb69efeba155b198b32484812779c23cb86da0af0bc19a2f1c7b9ae88",
+    "src/isaac_port/fieldkit/libfranka_stage.cpp": "85275b40e7874b3a1fe1bf10707b00a2ac4826cb2536dbd648317845dee27fdb",
+    "src/isaac_port/fieldkit/servo_core.hpp": "76dd01497695db66c78f1da043064ac27e772c19ef6155926c335b5f02b18879",
+    "src/isaac_port/fieldkit/dynamic_plan.cpp": "defebb36e8677e2568e44b2b5129d9740bb45ae73da63600b2cd32ac2349dffe",
+    "src/isaac_port/fieldkit/franka_hand.cpp": "f1da263165bfcbee6fa3357cea8b35e0b84a3de836982343ad025caf65912a60",
+    "src/isaac_port/fieldkit/site_watchdog.hpp": "9a4272c23f58597a2a11457b2beef4b15ec69cdf5032139e1109581a892f5f22",
+    "src/isaac_port/fieldkit/robot_mode.hpp": "e6d8fb2dd423f36878cc72ccfcaa4510b4d6a7e42fc066efc08478c05eb7082b",
+    "src/field_demo/camera.py": "5f829bddb9c2374ceb0b0cac6f6c1ca3fbb0758a755f2ffb78881149ce70c700",
+    "src/field_demo/observations.py": "e28db02a1e94c64da7ae60a9fe9f2cd9a2463137a0530f695a6fb847517a7b25",
+    "src/field_demo/calibration.py": "ca63af2e33ca1e81a06065882bfcc58d37a1dbe79195e5431059020bd7671461",
+    "src/isaac_port/fieldkit/libfranka_stage.hpp": "ceae0b8f3d85cc3e82cc9d5f033f04f064ae467c0c46f45e7568b2eca76e212a"
+  },
+  "strategy": {
+    "part_order": [
+      "ring1",
+      "ring2",
+      "pin"
+    ],
+    "ring_transfer": "donor_first_to_distinct_receiver",
+    "pin_transfer": "direct_same_hand",
+    "execution_mode": "sequential_verified_phases",
+    "grasp_selection": "fresh_image_accessible_instance_and_measured_grasp_family",
+    "presentation": "actual_field_measured_transfer_poses_replanned_with_actual_SDK",
+    "receiver_grasp": "actual_field_measured_transform_plus_fresh_image_G",
+    "timing": "native_field_limits_and_current_SDK_model_retime_every_path",
+    "source_hints": {
+      "prefer_near_handover_branch": true,
+      "local_receiver_park": true,
+      "sort_donor_orientations": true,
+      "center_large_receiver_grasp": true,
+      "path_local_timing": true,
+      "wait_for_ring_transport_clear": true
+    }
+  },
+  "limitations": [
+    "43.533 seconds is one simulated source run, not a physical speed setting.",
+    "Source world poses, q/dq traces, drive rates, finger forces and simulated camera placement are reference data only.",
+    "Near-transfer and local-parking hints require measured field poses; no simulation scene coordinate is converted to hardware.",
+    "Current native field runtime remains sequential and replans from measured SDK states under its own conservative limits."
+  ]
+}

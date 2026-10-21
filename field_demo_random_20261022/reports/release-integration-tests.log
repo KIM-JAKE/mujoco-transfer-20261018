@@ -1,0 +1,97 @@
+test_calibration_fit_known_transform_and_reject_degenerate_mm_reflected (test_camera.CameraContracts) ... ok
+test_calibration_rejects_mm_reflection_and_unmeasured_defaults (test_camera.CameraContracts) ... ok
+test_calibration_requires_real_evidence_file (test_camera.CameraContracts) ... ok
+test_device_listing_reads_descriptors_without_starting_stream (test_camera.CameraContracts) ... ok
+test_frames_units_and_calibration_identity_rejected (test_camera.CameraContracts) ... ok
+test_freshness_utc_does_not_trust_cross_machine_monotonic (test_camera.CameraContracts) ... ok
+test_live_repeat_is_rejected_across_separate_estimate_calls (test_camera.CameraContracts) ... ok
+test_missing_optional_sdk_is_actionable_and_wrong_camera_rejected (test_camera.CameraContracts) ... ok
+test_persistent_observer_ctrl_c_clears_target_and_closes_stream (test_camera.CameraContracts) ... ok
+test_persistent_observer_publishes_two_fresh_samples_and_logs (test_camera.CameraContracts) ... {"state": "observation_published", "hardware_ready": false, "execution_allowed": false, "robot_command_sent": false, "capture_id": "live-1"}
+{"state": "observation_published", "hardware_ready": false, "execution_allowed": false, "robot_command_sent": false, "capture_id": "live-2"}
+ok
+test_persistent_observer_stale_fit_replaces_old_target_with_rejection (test_camera.CameraContracts) ... {"state": "observation_rejected", "hardware_ready": false, "execution_allowed": false, "robot_command_sent": false, "reason": "Observation stale after CAD fit; recapture", "attempt": 0}
+ok
+test_repeat_and_replay_cannot_authorize_live (test_camera.CameraContracts) ... ok
+test_replay_end_to_end_near_seed_cad_fit_is_always_readonly (test_camera.CameraContracts) ... ok
+test_sdk_snapshot_is_compatible_with_fieldkit_loader (test_camera.CameraContracts) ... ok
+test_sdk_structured_and_image_arrays_are_finite_flat_clouds (test_camera.CameraContracts) ... ok
+test_transform_direction_is_inverse_base_times_cell (test_camera.CameraContracts) ... ok
+test_all_three_complete_only_after_release_withdraw_and_final_retention (test_cycle.CycleContracts) ... ok
+test_final_current_other_arm_near_prior_part_cannot_claim_clear (test_cycle.CycleContracts) ... ok
+test_final_dwell_rechecks_all_three_retained (test_cycle.CycleContracts) ... ok
+test_handover_preserves_receiver_grasp_through_insertion (test_cycle.CycleContracts) ... ok
+test_initial_stale_feedback_blocks_actuation (test_cycle.CycleContracts) ... ok
+test_missing_clamp_never_opens_held_part (test_cycle.CycleContracts) ... ok
+test_missing_handover_or_changed_recipe_rejected (test_cycle.CycleContracts) ... ok
+test_previous_part_drop_during_next_pickup_stops_cycle (test_cycle.CycleContracts) ... ok
+test_read_only_validation_and_no_actuation_default (test_cycle.CycleContracts) ... ok
+test_site_setting_changes_invalidate_cycle_review (test_cycle.CycleContracts) ... ok
+test_withdrawal_clearance_failure_does_not_mark_part_or_cycle_complete (test_cycle.CycleContracts) ... ok
+test_camera_dependencies_are_inventory_only (test_doctor.DoctorTests) ... ok
+test_collect_offline_never_probes_or_connects (test_doctor.DoctorTests) ... ok
+test_command_timeout_is_reported (test_doctor.DoctorTests) ... ok
+test_install_fallback_uses_bundled_bootstrap_without_download (test_doctor.DoctorTests) ... ok
+test_invalid_config_stays_incomplete (test_doctor.DoctorTests) ... ok
+test_local_interface_inventory_uses_no_scans (test_doctor.DoctorTests) ... ok
+test_missing_values_preserves_valid_zero_and_false_for_separate_checks (test_doctor.DoctorTests) ... ok
+test_offline_build_guard_stops_before_extraction (test_doctor.DoctorTests) ... ok
+test_output_report_and_distinct_install_exit (test_doctor.DoctorTests) ... ok
+test_probe_only_state_and_hand_status_with_timeout (test_doctor.DoctorTests) ... ok
+test_probe_without_ips_never_executes (test_doctor.DoctorTests) ... ok
+test_unsupported_host_install_fails_without_claiming_ready (test_doctor.DoctorTests) ... ok
+test_actual_site_constructs_only_selected_arm (test_execution.ExecutionTests) ... ok
+test_camera_binding_checked_with_stage_context_before_probe_and_after_lock (test_execution.ExecutionTests) ... ok
+test_ctrl_c_stops_current_part_without_release (test_execution.ExecutionTests) ... ok
+test_dry_run_is_three_parts_and_no_connections (test_execution.ExecutionTests) ... ok
+test_first_motion_cli_forwards_native_caps_and_selected_side (test_execution.ExecutionTests) ... ok
+test_live_commands_require_execute_before_site_construction (test_execution.ExecutionTests) ... ok
+test_missing_clamp_stops_and_never_releases (test_execution.ExecutionTests) ... ok
+test_missing_seat_and_stale_feedback_stop_before_progress (test_execution.ExecutionTests) ... ok
+test_offline_validation_does_not_read_plc (test_execution.ExecutionTests) ... ok
+test_optional_button_legacy_contract (test_execution.ExecutionTests) ... ok
+test_part_validation_and_execution_ignore_unrelated_config (test_execution.ExecutionTests) ... ok
+test_separate_process_stop_bypasses_active_operation (test_execution.ExecutionTests) ... ok
+test_single_arm_and_two_arm_configurations_share_motion_exclusion (test_execution.ExecutionTests) ... ok
+test_three_parts_complete_without_button_config_or_actions (test_execution.ExecutionTests) ... ok
+test_alias_feedback_and_changed_recipe_review_are_rejected (test_handover.HandoverContracts) ... ok
+test_changed_stage_or_unbound_stage_hash_is_rejected (test_handover.HandoverContracts) ... ok
+test_no_execute_or_validate_flag_fails_before_site_creation (test_handover.HandoverContracts) ... ok
+test_no_fresh_receiver_feedback_stops_without_donor_release (test_handover.HandoverContracts) ... ok
+test_read_only_validation_does_not_read_sensors_or_move (test_handover.HandoverContracts) ... ok
+test_receiver_drop_during_retreat_stops_without_auto_open (test_handover.HandoverContracts) ... ok
+test_receiver_feedback_high_before_grasp_is_not_reused (test_handover.HandoverContracts) ... ok
+test_stale_receiver_high_rejected_before_finger_or_arm_motion (test_handover.HandoverContracts) ... ok
+test_success_releases_donor_only_after_receiver_grasp (test_handover.HandoverContracts) ... ok
+test_changed_binding_target_or_identity_is_rejected (test_motion.MotionContracts) ... ok
+test_changed_candidate_review_and_csv_are_rejected (test_motion.MotionContracts) ... ok
+test_changed_live_stage_context_is_rejected (test_motion.MotionContracts) ... ok
+test_explicit_cycle_arm_or_stage_mismatch_rejects_even_reviewed_candidate (test_motion.MotionContracts) ... ok
+test_explicit_cycle_pickup_mapping_registers_alternate_arm (test_motion.MotionContracts) ... ok
+test_live_replay_is_rejected_before_native_subprocess (test_motion.MotionContracts) ... ok
+test_missing_review_or_changed_site_blocks_registration (test_motion.MotionContracts) ... ok
+test_native_plan_review_register_and_fresh_recapture (test_motion.MotionContracts) ... ok
+test_preview_cannot_register_even_with_review (test_motion.MotionContracts) ... ok
+test_register_rejects_wrong_policy_arm_mapping (test_motion.MotionContracts) ... ok
+test_stale_or_moved_observation_blocks_unchanged_reviewed_path (test_motion.MotionContracts) ... ok
+test_target_applies_inverse_robot_base_and_measured_tcp_offset (test_motion.MotionContracts) ... ok
+test_target_rejects_wrong_units_robot_base_and_capture_identity (test_motion.MotionContracts) ... ok
+test_old_flat_snapshot_displays_rgb_without_inventing_pixel_xyz (test_preview.PreviewTests) ... ok
+test_pixel_xyz_keeps_sdk_values_rejects_zero_nan_and_outside (test_preview.PreviewTests) ... ok
+test_png_signature_dimensions_crc_and_exact_pixel_rows (test_preview.PreviewTests) ... ok
+test_standalone_html_embeds_exact_sdk_cloud_safely_no_network_assets (test_preview.PreviewTests) ... ok
+test_csv_mutation_is_rejected_on_prepare_and_seal (test_review.ReviewTests) ... ok
+test_cycle_aggregates_sealed_nested_handover_and_does_not_edit_it (test_review.ReviewTests) ... ok
+test_existing_review_is_never_overwritten (test_review.ReviewTests) ... ok
+test_explicit_completed_test_review_seals_exact_record_without_certifying_hardware (test_review.ReviewTests) ... ok
+test_future_or_naive_timestamp_rejected (test_review.ReviewTests) ... ok
+test_nested_handover_edit_after_cycle_prepare_rejected (test_review.ReviewTests) ... ok
+test_prepare_writes_false_flags_exact_hashes_and_original_backup_without_commands (test_review.ReviewTests) ... ok
+test_recipe_edit_after_preparation_requires_new_review (test_review.ReviewTests) ... ok
+test_site_mutation_after_preparation_rejected (test_review.ReviewTests) ... ok
+test_untouched_review_and_blank_reviewer_cannot_seal (test_review.ReviewTests) ... ok
+
+----------------------------------------------------------------------
+Ran 89 tests in 4.473s
+
+OK

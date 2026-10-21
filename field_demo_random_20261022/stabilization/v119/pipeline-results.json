@@ -1,0 +1,1352 @@
+{
+  "full_task_pass": true,
+  "vision_end_to_end_pass": true,
+  "end_to_end_under30": false,
+  "hardware_tested": false,
+  "part_attachments": false,
+  "workpiece_teleports_after_initialization": 0,
+  "physics_hz": 960,
+  "python_thread_switch_interval_s": 0.005,
+  "timing_basis": "Monotonic wall time from first camera snapshot through >=0.5s verified retention",
+  "CPU_camera_waits_omitted": false,
+  "finger_effort_caps_n": {
+    "left_per_finger": 30.0,
+    "right_per_finger": 30.0,
+    "left_final_insertion_per_finger": 30.0
+  },
+  "clamp_target_update_hz": 30,
+  "wall_pacing": "Each 480 Hz control step advances two 960 Hz PhysX substeps and takes at least 1/480 s wall time; no catch-up fast-forward",
+  "native_finger_target_speed_cap_m_s": 0.0475,
+  "native_force_hold": "Scattered controller: single motor + coupled passive finger, velocity preload, finite force; no attachment",
+  "initial_big_ring_aperture_m": 0.076,
+  "neural_mask_cache_used": false,
+  "CPU_fast_kinematics": {
+    "enabled": true,
+    "device": "CPU",
+    "algorithm": "Same USD frames, joint bounds, DLS damping and 220-iteration limit; Eigen C++ implementation",
+    "library_sha256": "efaaa4965137f12bd60de206612217e3271a7b702c02ca6105479e9fbf470234",
+    "source_sha256": "b513b9dc1d624c79473fe5836cdc78bd13aaaf670e48cc7b024fc3866691835a"
+  },
+  "pin_clamp_assumed_center_z_m": 1.515,
+  "pin_clamp_hardware_calibrated": false,
+  "pin_method": "Tail grasp, uninterrupted axial insertion, release only after fresh full-depth RGB-D confirmation",
+  "clamp_tensor_drives": false,
+  "solver_iterations": {
+    "position": 16,
+    "velocity": 16
+  },
+  "physics_hz_range": [
+    960,
+    960
+  ],
+  "physics_worker_threads": 0,
+  "physics_cpu_dispatcher": true,
+  "continuous_collision_detection": true,
+  "controller_hz": 480,
+  "physics_substeps_per_command": 2,
+  "randomized_bin_config": {
+    "seed": 445,
+    "tensor_clamps": false,
+    "correction_joint7_weight": 0.05,
+    "width_guard": true,
+    "digital_clamps": true,
+    "digital_clamp_threshold": 0.95,
+    "fixed_visual_application": true,
+    "direct_pin": true,
+    "ring_seat_hold_s": 0.35,
+    "motion_time_scale": 1.01,
+    "early_width_guard": true,
+    "held_correction_ramp_s": 0.35,
+    "physics_substeps": 4,
+    "physics_substep_window_s": [
+      13.0,
+      16.5
+    ],
+    "pin_tail_candidate": 1,
+    "enforce_motor_speed_limits": true,
+    "randomization_mode": "full_bin_drop",
+    "randomization_settle_s": 3.0,
+    "scatter_probe_only": false,
+    "native_mimic_frequency_hz": 0.0,
+    "deadline_s": 180,
+    "scattered_control": true,
+    "pick_part": "ring1",
+    "native_motor_speed_cap_m_s": 0.04,
+    "scattered_full_task": true,
+    "handover_only": false,
+    "scattered_physics_substeps": 2,
+    "native_finger_convex_decomposition": false,
+    "solver_velocity_iterations": 16,
+    "shuffle_drop_order": true,
+    "randomization_protocol": "full_bin_drop_shuffled_v2",
+    "start_above_bin": true,
+    "experimental_sim_only": true,
+    "full_random_task_validated": false,
+    "allow_fingertip_nudging": true,
+    "allow_internal_grasp": true,
+    "allow_single_finger_rearrangement": false,
+    "native_shared_motor_drive": false,
+    "native_grip_pad_force_n": 30,
+    "optimization_report": "scatter-optimization-20261021.json",
+    "one_ring_only": false,
+    "fast_transport": true,
+    "allow_chord_grasp": true,
+    "allow_side_entry": true,
+    "optimized_motion_timing": true,
+    "tracking_image_width_px": 192,
+    "native_contact_offset_m": 0.0005,
+    "gentle_descent": true,
+    "handover_plan_budget_s": 8.0,
+    "stability_time_scale": 1.0,
+    "grasp_settle_s": 0.12,
+    "ring_contact_debug": false,
+    "optimization_phase": "speed_after_full_success",
+    "stable_small_grasp": true,
+    "prefer_internal_small_grasp": true,
+    "ring_yaw_free": true,
+    "reliability_handover_hint": true,
+    "stability_finish_rings_before_pin": true,
+    "continuous_force_hold": true,
+    "stability_serial": false,
+    "pin_first": false,
+    "descent_contact_speed_m_s": 0.06,
+    "shortcut_checked_routes": true,
+    "parallel_transfer_approach": true,
+    "pregrasp_floor_m": 1.185
+  },
+  "randomized_ring_count": 10,
+  "setup_depenetration_cap_m_s": 0.2,
+  "operation_depenetration_cap_m_s": 1000.0,
+  "fixed_standby_TCP_world_m": [
+    0.515,
+    -0.715,
+    1.255
+  ],
+  "standby_independent_of_images_or_object_poses": true,
+  "initial_RGBD_camera_eye_offset_m": [
+    0.4,
+    -0.12,
+    0.65
+  ],
+  "clamp_control": "Finite-force open/close commands, same jaw strokes and force caps",
+  "pickup_depth_increase_m": {
+    "ring1": 0.0,
+    "ring2": 0.0
+  },
+  "diagnostic_rings_only": false,
+  "usd_clamp_targets_batched": true,
+  "dof_names": [
+    "left_arm_fr3v2_joint1",
+    "right_arm_fr3v2_joint1",
+    "left_arm_fr3v2_joint2",
+    "right_arm_fr3v2_joint2",
+    "left_arm_fr3v2_joint3",
+    "right_arm_fr3v2_joint3",
+    "left_arm_fr3v2_joint4",
+    "right_arm_fr3v2_joint4",
+    "left_arm_fr3v2_joint5",
+    "right_arm_fr3v2_joint5",
+    "left_arm_fr3v2_joint6",
+    "right_arm_fr3v2_joint6",
+    "left_arm_fr3v2_joint7",
+    "right_arm_fr3v2_joint7",
+    "left_native_left",
+    "left_native_right",
+    "right_native_left",
+    "right_native_right"
+  ],
+  "link_names": [
+    "official_FR3_Duo",
+    "left_arm_base",
+    "right_arm_base",
+    "left_arm_fr3v2_link0",
+    "right_arm_fr3v2_link0",
+    "left_arm_fr3v2_link1",
+    "right_arm_fr3v2_link1",
+    "left_arm_fr3v2_link2",
+    "right_arm_fr3v2_link2",
+    "left_arm_fr3v2_link3",
+    "right_arm_fr3v2_link3",
+    "left_arm_fr3v2_link4",
+    "right_arm_fr3v2_link4",
+    "left_arm_fr3v2_link5",
+    "right_arm_fr3v2_link5",
+    "left_arm_fr3v2_link6",
+    "right_arm_fr3v2_link6",
+    "left_arm_fr3v2_link7",
+    "right_arm_fr3v2_link7",
+    "left_arm_fr3v2_link8",
+    "right_arm_fr3v2_link8",
+    "left_NativeHand",
+    "right_NativeHand",
+    "left_left_finger",
+    "left_right_finger",
+    "right_left_finger",
+    "right_right_finger"
+  ],
+  "camera_preparation_s": 0.002430977998301387,
+  "reference_motion": "live RGB-D scattered controller; no taught pickup path",
+  "stationary_trim_s": 0.0,
+  "joint_headroom_retiming_saved_s": 0.0,
+  "retimed_free_motion_windows": [],
+  "starts_with_rings_already_installed": false,
+  "scene_ring_color": "same steel material",
+  "pin_collision_approximation": {
+    "model": "Four coaxial convex cylinders, approximate CAD outer dimensions",
+    "length_m": 0.0355,
+    "tail_diameter_m": 0.0105,
+    "collar_diameter_m": 0.013,
+    "shaft_diameter_m": 0.0076,
+    "CAD_nominal_shaft_diameter_m": 0.008,
+    "radial_clearance_allowance_m": 0.0002,
+    "tip_diameter_m": 0.005,
+    "parts": 4,
+    "original_slits_and_reliefs_not_simulated": true,
+    "hardware_validated": false
+  },
+  "grasp_obstacles_from_RGBD_cloud": true,
+  "loose_stock_contact_policy": "Fingertip nudging allowed; RGB-D palm sweep, fixed-structure queries and all physical contacts retained",
+  "fixed_receiver_catalog": {
+    "key": "656c56d71dd79034b668c3f2fa6b37d42a9b5d079b77d1cce1943a352941dcd9",
+    "cached": true,
+    "preparation_s": 2.555393637972884,
+    "counts": {
+      "ring1": 160,
+      "ring2": 80
+    },
+    "uses_free_body_poses": false,
+    "preparation_excluded_from_operation_clock": true
+  },
+  "fast_transport_planner": {
+    "enabled": true,
+    "version": "0.7.0.8",
+    "static_objects": 2793,
+    "skipped_static_colliders": [],
+    "preparation_s": 1.5833186379168183,
+    "uses_free_body_poses": false,
+    "proposal_only": true,
+    "live_PhysX_path_verification_required": true
+  },
+  "native_contact_generation": {
+    "contact_offset_m": 0.0005,
+    "rest_offset_m": 0.0,
+    "colliders": 4,
+    "applied_after_random_setup": true,
+    "collision_geometry_unchanged": true,
+    "friction_unchanged": true
+  },
+  "standby_preparation_wall_s": 19.319556909962557,
+  "automatic_gc_deferred_during_cycle": true,
+  "first_capture_wall_epoch_s": 1792574602.6144063,
+  "motor_velocity_cap_policy": "Signed position-dependent FR3 bounds at encoder position plus one-step margin; 93% drive cap and unchanged 95% actual velocity acceptance",
+  "CPU_planning_advances_physics": false,
+  "hard_realtime_controller_validated": false,
+  "native_gripper_control": "Single motor + passive coupled follower; 40 mm/s free, 15 mm/s loaded; finite pad force 30.0 N each; loaded grasp maintains closing force at 15 mm/s velocity preload instead of relaxing at a fixed minimum width",
+  "native_single_motor_coupling_validated": true,
+  "native_shared_motor_drive": false,
+  "planning_diagnostics": [
+    {
+      "event": "approved_handover",
+      "part": "ring1",
+      "incoming": [
+        [
+          0.9999937619455376,
+          0.0,
+          0.00353214807330119,
+          -0.049957699668810196
+        ],
+        [
+          0.0003072873270450292,
+          0.9962085477979098,
+          -0.086996752059365,
+          -0.14983522890501141
+        ],
+        [
+          -0.0035187561027105636,
+          0.08699729475322776,
+          0.9962023333947325,
+          1.400117938512025
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "receiver_parameters": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "right_q": [
+        -1.3445851261370128,
+        -1.2691328990045327,
+        1.014799291816934,
+        -1.2013406358216128,
+        0.21298581641748676,
+        0.7831318749266519,
+        2.4762517597146916
+      ],
+      "left_q": [
+        -0.2056964635848999,
+        0.9010186195373535,
+        -0.6330186128616333,
+        -2.0093235969543457,
+        -2.7295620441436768,
+        1.1573002338409424,
+        -0.19628824293613434
+      ],
+      "approach_order": "donor_first",
+      "elapsed_s": 0.8419096349971369,
+      "source": "RGB-D grasp + robot model; no free-body pose"
+    },
+    {
+      "event": "approved_handover",
+      "part": "ring2",
+      "incoming": [
+        [
+          0.9999957601749887,
+          8.470329472543003e-22,
+          0.0029119807771733927,
+          0.05018963311595309
+        ],
+        [
+          6.511543646419989e-06,
+          0.9999974998765614,
+          -0.0022361123018590067,
+          -0.45019940333673747
+        ],
+        [
+          -0.002911973496861999,
+          0.0022361217826240695,
+          0.9999932600621501,
+          1.3499660426615778
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "receiver_parameters": [
+        0.0,
+        0.0,
+        0.0,
+        0.004
+      ],
+      "right_q": [
+        -2.16067131716069,
+        -0.05981512520531338,
+        -2.663915649471027,
+        -1.51967131524158,
+        0.3392689833460116,
+        0.5138719944870704,
+        -1.577155418537746
+      ],
+      "left_q": [
+        -0.14521319537098132,
+        1.8127882706663785,
+        -1.0751302843652857,
+        -1.862555846061381,
+        -2.2341791523630805,
+        1.5537335437979214,
+        -0.15936166700384508
+      ],
+      "approach_order": "donor_first",
+      "elapsed_s": 1.7804064020747319,
+      "source": "RGB-D grasp + robot model; no free-body pose"
+    },
+    {
+      "event": "checked_joint_edge_execution",
+      "side": "left",
+      "duration_s": 2.058333333333333,
+      "progress_law": "checked_joint_edges_with_corner_stops",
+      "corner_stops": 1,
+      "velocity_fraction": 0.9,
+      "acceleration_rad_s2": 9.2,
+      "jerk_rad_s3": 4400.0,
+      "geometry_overshoot_avoided": true,
+      "full_concatenated_command_check": true,
+      "peak_velocity_fraction_of_reserved_bound": 0.9661214772763989,
+      "max_acceleration_rad_s2": 2.7740478515625,
+      "max_jerk_rad_s3": 158.203125
+    },
+    {
+      "event": "checked_joint_edge_execution",
+      "side": "right",
+      "duration_s": 0.7583333333333333,
+      "progress_law": "checked_joint_edges_with_corner_stops",
+      "corner_stops": 1,
+      "velocity_fraction": 0.9,
+      "acceleration_rad_s2": 9.2,
+      "jerk_rad_s3": 4400.0,
+      "geometry_overshoot_avoided": true,
+      "full_concatenated_command_check": true,
+      "peak_velocity_fraction_of_reserved_bound": 0.6311923341290034,
+      "max_acceleration_rad_s2": 8.462905883789062,
+      "max_jerk_rad_s3": 1154.1824340820312
+    },
+    {
+      "event": "ring2_insertion_search",
+      "counts": {},
+      "examples": {},
+      "found": true,
+      "planning_s": 0.9697742538992316
+    },
+    {
+      "event": "checked_joint_edge_execution",
+      "side": "left",
+      "duration_s": 1.2041666666666666,
+      "progress_law": "checked_joint_edges_with_corner_stops",
+      "corner_stops": 1,
+      "velocity_fraction": 0.9,
+      "acceleration_rad_s2": 9.2,
+      "jerk_rad_s3": 4400.0,
+      "geometry_overshoot_avoided": true,
+      "full_concatenated_command_check": true,
+      "peak_velocity_fraction_of_reserved_bound": 0.8651743105046318,
+      "max_acceleration_rad_s2": 8.5418701171875,
+      "max_jerk_rad_s3": 777.83203125
+    }
+  ],
+  "selected_actor_ids_for_validation_only": {
+    "ring1": "/World/BinStock/ring1_loose2",
+    "ring2": "/World/BinStock/ring2_loose1"
+  },
+  "state": "completed_over_budget",
+  "scattered_pick": {
+    "state": "loose_bin_recipe_executed",
+    "parts": [
+      {
+        "part": "ring1",
+        "pickup": {
+          "state": "RGBD_grasp_and_lift_confirmed",
+          "grasp_type": "outer",
+          "selected_instance": {
+            "part": "ring1",
+            "initial_arc_center_m": [
+              0.5622889048852638,
+              -0.7550748912974903,
+              1.109144859415232
+            ],
+            "initial_plane_axis": [
+              -0.34915986556793105,
+              -0.13093596601955335,
+              0.9278702285767717
+            ],
+            "center_m": [
+              0.5622889048852638,
+              -0.7550748912974903,
+              1.109144859415232
+            ],
+            "axis": [
+              -0.34915986556793105,
+              -0.13093596601955335,
+              0.9278702285767717
+            ],
+            "visible_face_inner_radius_m": 0.035661554114141576,
+            "visible_CAD_end_sign": 1,
+            "front_back_orientation_margin_m": 0.0016615541141415738,
+            "front_back_from_RGBD": true,
+            "rms_m": 0.0005711207582585738,
+            "depth_points": 611,
+            "measured_classification_diameter_m": 0.072956164444145,
+            "visible_arc_coverage_deg": 360,
+            "size_classification": "RGB-D observed annular arc metric diameter",
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "grasp_yaw_rad": 0.0,
+            "grasp_tilt_rad": 0.0,
+            "grasp_type": "outer",
+            "planned_grip_width_m": 0.0749984308695244,
+            "tcp_offset_m": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "measured_grasp": [
+            [
+              1.0000000716621649,
+              -0.0002851265617650674,
+              8.13935926809181e-05,
+              -1.0312648083932174e-05
+            ],
+            [
+              -0.00028505018734862204,
+              -1.0000000550651942,
+              -0.00025313434815254647,
+              -1.964568682388812e-05
+            ],
+            [
+              8.145034113412837e-05,
+              0.00025308132904014767,
+              -1.0000001320465348,
+              0.002804447813967048
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "observed_lift_m": 0.13293435435890855,
+          "events": [
+            {
+              "event": "loose_ring_pregrasp",
+              "wall_s": 1.4781448480207473,
+              "motion_s": 0.49583333333333335,
+              "timing": {
+                "duration_s": 0.49583333333333335,
+                "progress_law": "bounded_jerk_with_cruise",
+                "ramp_fraction": 0.4,
+                "velocity_fraction": 0.91,
+                "acceleration_rad_s2": 9.2,
+                "jerk_rad_s3": 4000.0
+              }
+            },
+            {
+              "event": "loose_ring_descend",
+              "wall_s": 2.037610474973917,
+              "motion_s": 0.525,
+              "timing": {
+                "duration_s": 0.525,
+                "progress_law": "bounded_jerk_with_cruise",
+                "ramp_fraction": 0.3,
+                "velocity_fraction": 0.91,
+                "acceleration_rad_s2": 9.2,
+                "jerk_rad_s3": 4000.0
+              }
+            },
+            {
+              "event": "preclose_reobservation",
+              "new_pose_visible": false,
+              "fallback": "Last directly measured RGB-D pose; lift requires a new visible ring",
+              "wall_s": 2.2195380890043452
+            },
+            {
+              "event": "loose_ring_close",
+              "wall_s": 2.444948491989635,
+              "motion_s": 0.14166666666666666,
+              "timing": {
+                "duration_s": 0.14166666666666666,
+                "progress_law": "bounded_jerk_with_cruise",
+                "ramp_fraction": 0.3,
+                "velocity_fraction": 0.91,
+                "acceleration_rad_s2": 9.2,
+                "jerk_rad_s3": 4000.0
+              }
+            },
+            {
+              "event": "encoder_grasp_aperture",
+              "aperture_m": 0.07472489774227142,
+              "expected_class_diameter_m": 0.075,
+              "grasp_type": "outer"
+            },
+            {
+              "event": "loose_ring_lift",
+              "wall_s": 3.7681385789765045,
+              "motion_s": 0.8208333333333333,
+              "timing": {
+                "duration_s": 0.8208333333333333,
+                "progress_law": "bounded_jerk_with_cruise",
+                "ramp_fraction": 0.5,
+                "velocity_fraction": 0.91,
+                "acceleration_rad_s2": 9.2,
+                "jerk_rad_s3": 4000.0
+              }
+            }
+          ],
+          "elapsed_s": 4.027709044050425,
+          "full_task_pass": false,
+          "uses_simulator_body_poses": false
+        },
+        "receiver_pose": {
+          "part": "ring1",
+          "initial_arc_center_m": [
+            -0.05031712860177284,
+            -0.15007003135221378,
+            1.4001338895940354
+          ],
+          "initial_plane_axis": [
+            0.013506778176496979,
+            -0.10362288017584956,
+            0.9945249447084535
+          ],
+          "center_m": [
+            -0.05028757640425442,
+            -0.15008040559772576,
+            1.4001324073142958
+          ],
+          "axis": [
+            0.013506778176496979,
+            -0.10362288017584956,
+            0.9945249447084535
+          ],
+          "visible_face_inner_radius_m": 0.035671183094078504,
+          "visible_CAD_end_sign": 1,
+          "front_back_orientation_margin_m": 0.0016711830940785016,
+          "front_back_from_RGBD": true,
+          "rms_m": 0.0006220785890683424,
+          "depth_points": 1106,
+          "measured_classification_diameter_m": 0.07295709082308625,
+          "visible_arc_coverage_deg": 360,
+          "size_classification": "RGB-D observed annular arc metric diameter",
+          "uses_depth_sensor": true,
+          "uses_simulator_body_poses": false,
+          "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+          "lateral_CAD_correction_m": [
+            2.955219751842042e-05,
+            -1.0374245511979296e-05,
+            -1.4822797396174536e-06
+          ],
+          "lateral_CAD_registration_rms_m": 6.400985770996725e-05,
+          "lateral_CAD_iterations": 3,
+          "observed_cap_axis_and_depth_preserved": true
+        },
+        "handover_planning": {
+          "elapsed_s": 0.8419096349971369,
+          "counts": {
+            "receiver_ik": 0,
+            "donor_ik": 5,
+            "donor_collision": 1,
+            "pair_collision": 0,
+            "receiver_route": 0,
+            "donor_route": 0,
+            "insertion_ik": 0,
+            "intrinsic_pair_collision": 4,
+            "donor_exit_route": 0
+          }
+        },
+        "left_carry_shortcut": true,
+        "insertion_fresh_RGBD": {
+          "part": "ring1",
+          "initial_arc_center_m": [
+            -0.12332656844468745,
+            0.24002441809592415,
+            1.530868408568189
+          ],
+          "initial_plane_axis": [
+            0.002433135150871116,
+            -0.007640963435597913,
+            0.9999678472486571
+          ],
+          "center_m": [
+            -0.12325769335389215,
+            0.23992962067124302,
+            1.5308675166134502
+          ],
+          "axis": [
+            0.002433135150871116,
+            -0.007640963435597913,
+            0.9999678472486571
+          ],
+          "visible_face_inner_radius_m": 0.03190016977738149,
+          "visible_CAD_end_sign": -1,
+          "front_back_orientation_margin_m": 0.002099830222618511,
+          "front_back_from_RGBD": true,
+          "rms_m": 0.00021811357582634123,
+          "depth_points": 2381,
+          "measured_classification_diameter_m": 0.07268739985742897,
+          "visible_arc_coverage_deg": 330,
+          "size_classification": "RGB-D observed annular arc metric diameter",
+          "uses_depth_sensor": true,
+          "uses_simulator_body_poses": false,
+          "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+          "lateral_CAD_correction_m": [
+            6.887509079529786e-05,
+            -9.479742468113117e-05,
+            -8.919547387353788e-07
+          ],
+          "lateral_CAD_registration_rms_m": 5.2817497832105474e-05,
+          "lateral_CAD_iterations": 3,
+          "observed_cap_axis_and_depth_preserved": true
+        }
+      },
+      {
+        "part": "ring2",
+        "pickup": {
+          "state": "RGBD_grasp_and_lift_confirmed",
+          "grasp_type": "outer",
+          "selected_instance": {
+            "part": "ring2",
+            "initial_arc_center_m": [
+              0.5420341140249268,
+              -0.6889466305648766,
+              1.1045310464300642
+            ],
+            "initial_plane_axis": [
+              0.20556202118509206,
+              -0.017716077829000143,
+              0.9784837229267828
+            ],
+            "center_m": [
+              0.5420341140249268,
+              -0.6889466305648766,
+              1.1045310464300642
+            ],
+            "axis": [
+              0.20556202118509206,
+              -0.017716077829000143,
+              0.9784837229267828
+            ],
+            "visible_face_inner_radius_m": 0.029463006338816912,
+            "visible_CAD_end_sign": 1,
+            "front_back_orientation_margin_m": 0.001963006338816912,
+            "front_back_from_RGBD": true,
+            "rms_m": 0.0004938858079163929,
+            "depth_points": 590,
+            "measured_classification_diameter_m": 0.060359795678214985,
+            "visible_arc_coverage_deg": 360,
+            "size_classification": "RGB-D observed annular arc metric diameter",
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "grasp_yaw_rad": 4.626417800316788,
+            "grasp_tilt_rad": null,
+            "grasp_type": "outer",
+            "planned_grip_width_m": 0.06199880360323671,
+            "tcp_offset_m": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "measured_grasp": [
+            [
+              0.9746631027379332,
+              -0.08601954269942937,
+              0.20647690136266214,
+              0.00025848124747496204
+            ],
+            [
+              -0.08790232247986014,
+              -0.9961292206154573,
+              -5.501900106935295e-05,
+              -1.6028324344663503e-05
+            ],
+            [
+              0.2056823756734763,
+              -0.018096187910470518,
+              -0.9784516482461236,
+              -0.001149106539377387
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "observed_lift_m": 0.12959264246150415,
+          "events": [
+            {
+              "event": "loose_ring_pregrasp",
+              "wall_s": 14.763708272948861,
+              "motion_s": 0.8958333333333334,
+              "timing": {
+                "duration_s": 0.8958333333333334,
+                "progress_law": "bounded_jerk_with_cruise",
+                "ramp_fraction": 0.4,
+                "velocity_fraction": 0.91,
+                "acceleration_rad_s2": 9.2,
+                "jerk_rad_s3": 4000.0
+              }
+            },
+            {
+              "event": "loose_ring_descend_free",
+              "wall_s": 15.170375684043393,
+              "motion_s": 0.3958333333333333,
+              "timing": {
+                "duration_s": 0.3958333333333333,
+                "progress_law": "bounded_jerk_with_cruise",
+                "ramp_fraction": 0.4,
+                "velocity_fraction": 0.91,
+                "acceleration_rad_s2": 9.2,
+                "jerk_rad_s3": 4000.0
+              }
+            },
+            {
+              "event": "loose_ring_descend_contact",
+              "wall_s": 15.97576848801691,
+              "motion_s": 0.78125,
+              "timing": {
+                "duration_s": 0.78125,
+                "progress_law": "minimum_jerk",
+                "ramp_fraction": null,
+                "velocity_fraction": 0.91,
+                "acceleration_rad_s2": 9.2,
+                "jerk_rad_s3": 4000.0
+              }
+            },
+            {
+              "event": "preclose_reobservation",
+              "new_pose_visible": false,
+              "fallback": "Last directly measured RGB-D pose; lift requires a new visible ring",
+              "wall_s": 16.166029950021766
+            },
+            {
+              "event": "loose_ring_close",
+              "wall_s": 17.297508890973404,
+              "motion_s": 0.15416666666666667,
+              "timing": {
+                "duration_s": 0.15416666666666667,
+                "progress_law": "bounded_jerk_with_cruise",
+                "ramp_fraction": 0.3,
+                "velocity_fraction": 0.91,
+                "acceleration_rad_s2": 9.2,
+                "jerk_rad_s3": 4000.0
+              }
+            },
+            {
+              "event": "encoder_grasp_aperture",
+              "aperture_m": 0.06177080422639847,
+              "expected_class_diameter_m": 0.062,
+              "grasp_type": "outer"
+            },
+            {
+              "event": "loose_ring_lift",
+              "wall_s": 19.049376865965314,
+              "motion_s": 0.8354166666666667,
+              "timing": {
+                "duration_s": 0.8354166666666667,
+                "progress_law": "bounded_jerk_with_cruise",
+                "ramp_fraction": 0.5,
+                "velocity_fraction": 0.91,
+                "acceleration_rad_s2": 9.2,
+                "jerk_rad_s3": 4000.0
+              }
+            }
+          ],
+          "elapsed_s": 19.313748933025636,
+          "full_task_pass": false,
+          "uses_simulator_body_poses": false
+        },
+        "receiver_pose": {
+          "part": "ring2",
+          "initial_arc_center_m": [
+            0.05097962071907948,
+            -0.4502079689724089,
+            1.346605926207441
+          ],
+          "initial_plane_axis": [
+            -0.004348280098861618,
+            -0.0045225989756046804,
+            0.9999803190856745
+          ],
+          "center_m": [
+            0.05094716206727456,
+            -0.4502034331431877,
+            1.346605805579494
+          ],
+          "axis": [
+            -0.004348280098861618,
+            -0.0045225989756046804,
+            0.9999803190856745
+          ],
+          "visible_face_inner_radius_m": 0.029488521816756694,
+          "visible_CAD_end_sign": 1,
+          "front_back_orientation_margin_m": 0.0019885218167566936,
+          "front_back_from_RGBD": true,
+          "rms_m": 0.0005137546216297849,
+          "depth_points": 805,
+          "measured_classification_diameter_m": 0.06036634530325849,
+          "visible_arc_coverage_deg": 360,
+          "size_classification": "RGB-D observed annular arc metric diameter",
+          "uses_depth_sensor": true,
+          "uses_simulator_body_poses": false,
+          "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+          "lateral_CAD_correction_m": [
+            -3.2458651804921634e-05,
+            4.535829221163912e-06,
+            -1.206279469645466e-07
+          ],
+          "lateral_CAD_registration_rms_m": 5.9131004452933675e-05,
+          "lateral_CAD_iterations": 3,
+          "observed_cap_axis_and_depth_preserved": true
+        },
+        "handover_planning": {
+          "elapsed_s": 1.7804064020747319,
+          "counts": {
+            "receiver_ik": 0,
+            "donor_ik": 6,
+            "donor_collision": 0,
+            "pair_collision": 0,
+            "receiver_route": 0,
+            "donor_route": 0,
+            "insertion_ik": 0,
+            "intrinsic_pair_collision": 8,
+            "donor_exit_route": 0
+          }
+        },
+        "receiver_stable_hold_RGBD": {
+          "part": "ring2",
+          "initial_arc_center_m": [
+            0.05085826292964277,
+            -0.45014882080271673,
+            1.3466052143260114
+          ],
+          "initial_plane_axis": [
+            -0.004428553354307028,
+            -0.004499761201890937,
+            0.999980069833551
+          ],
+          "center_m": [
+            0.050882596092903125,
+            -0.45016825186331333,
+            1.3466052346519957
+          ],
+          "axis": [
+            -0.004428553354307028,
+            -0.004499761201890937,
+            0.999980069833551
+          ],
+          "visible_face_inner_radius_m": 0.029484490438003608,
+          "visible_CAD_end_sign": 1,
+          "front_back_orientation_margin_m": 0.0019844904380036076,
+          "front_back_from_RGBD": true,
+          "rms_m": 0.0005163958616372673,
+          "depth_points": 803,
+          "measured_classification_diameter_m": 0.06038657443946215,
+          "visible_arc_coverage_deg": 360,
+          "size_classification": "RGB-D observed annular arc metric diameter",
+          "uses_depth_sensor": true,
+          "uses_simulator_body_poses": false,
+          "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+          "lateral_CAD_correction_m": [
+            2.4333163260358004e-05,
+            -1.9431060596597494e-05,
+            2.0325984229074834e-08
+          ],
+          "lateral_CAD_registration_rms_m": 6.27897165759263e-05,
+          "lateral_CAD_iterations": 4,
+          "observed_cap_axis_and_depth_preserved": true
+        },
+        "ring_goal_azimuth_rad": 0.5235987755982988,
+        "preinsert_clearance_m": 0.08,
+        "left_carry_shortcut": true,
+        "insertion_fresh_RGBD": {
+          "part": "ring2",
+          "initial_arc_center_m": [
+            -0.23905916642448097,
+            0.2839976439830219,
+            1.5317631910832232
+          ],
+          "initial_plane_axis": [
+            -9.651336300619184e-07,
+            -0.0007513381878894703,
+            0.9999997177449581
+          ],
+          "center_m": [
+            -0.23903838733708618,
+            0.28426713656568303,
+            1.5317633935834039
+          ],
+          "axis": [
+            -9.651336300619184e-07,
+            -0.0007513381878894703,
+            0.9999997177449581
+          ],
+          "visible_face_inner_radius_m": 0.025313487922613395,
+          "visible_CAD_end_sign": -1,
+          "front_back_orientation_margin_m": 0.0021865120773866056,
+          "front_back_from_RGBD": true,
+          "rms_m": 0.00033262426682781365,
+          "depth_points": 783,
+          "measured_classification_diameter_m": 0.059679297083358306,
+          "visible_arc_coverage_deg": 240,
+          "size_classification": "RGB-D observed annular arc metric diameter",
+          "uses_depth_sensor": true,
+          "uses_simulator_body_poses": false,
+          "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+          "lateral_CAD_correction_m": [
+            2.07790873947844e-05,
+            0.00026949258266112386,
+            2.0250018062384356e-07
+          ],
+          "lateral_CAD_registration_rms_m": 4.750124366006169e-05,
+          "lateral_CAD_iterations": 3,
+          "observed_cap_axis_and_depth_preserved": true
+        }
+      }
+    ],
+    "pin": {
+      "events": [
+        {
+          "event": "pin_initial",
+          "wall_s": 40.33923710905947,
+          "result": {
+            "pose": {
+              "part": "pin",
+              "center_m": [
+                0.19000387111393577,
+                -0.7897289286242213,
+                0.9160499607069958
+              ],
+              "axis": [
+                1.1677198239620618e-05,
+                -6.075228613797047e-07,
+                -0.999999999931637
+              ],
+              "pose_origin": "Physical pin symmetry-axis midpoint",
+              "visible_end_radius_m": 0.005152457969754513,
+              "cap_points": 953,
+              "lateral_from_previous_RGBD_grasp_and_encoders": false,
+              "axial_depth_updated_from_current_RGBD": true,
+              "depth_points": 1390,
+              "plane_rms_m": 2.307366374859615e-08,
+              "uses_depth_sensor": true,
+              "uses_simulator_body_poses": false,
+              "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+              "processing_ms": 17.82984903547913,
+              "neural_inference_this_frame": false
+            },
+            "depth_sensor_input": true,
+            "simulator_body_pose_input": false
+          }
+        },
+        {
+          "event": "pin_tail_approach",
+          "wall_s": 42.34100859204773,
+          "physical_duration_s": 0.6354166666666666
+        },
+        {
+          "event": "pin_tail_descend",
+          "wall_s": 42.990849256981164,
+          "physical_duration_s": 0.6
+        },
+        {
+          "event": "pin_tail_lift",
+          "wall_s": 43.60084903601091,
+          "physical_duration_s": 0.26875
+        },
+        {
+          "event": "pin_lift_RGBD",
+          "wall_s": 43.7984159339685,
+          "result": {
+            "pose": {
+              "part": "pin",
+              "center_m": [
+                0.18975701157256725,
+                -0.7897957107174262,
+                0.986132963961635
+              ],
+              "axis": [
+                0.0002871092871651741,
+                -0.0019627763288174063,
+                -0.9999980325367346
+              ],
+              "pose_origin": "Physical pin symmetry-axis midpoint",
+              "visible_end_radius_m": 0.004995290342075919,
+              "cap_points": 145,
+              "lateral_from_previous_RGBD_grasp_and_encoders": false,
+              "axial_depth_updated_from_current_RGBD": true,
+              "depth_points": 1131,
+              "plane_rms_m": 1.2970416067293233e-05,
+              "uses_depth_sensor": true,
+              "uses_simulator_body_poses": false,
+              "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+              "processing_ms": 8.700033999048173,
+              "neural_inference_this_frame": false
+            },
+            "depth_sensor_input": true,
+            "simulator_body_pose_input": false
+          }
+        },
+        {
+          "event": "pin_tail_direct_carry_to_preinsert",
+          "wall_s": 49.603122496046126,
+          "physical_duration_s": 4.379166666666666
+        },
+        {
+          "event": "pin_preinsert_RGBD",
+          "wall_s": 49.657605909975246,
+          "result": {
+            "pose": {
+              "part": "pin",
+              "center_m": [
+                -0.3018427468421432,
+                0.22868718275941421,
+                1.4826401156464037
+              ],
+              "axis": [
+                -0.00019600595764599613,
+                0.000997271207375188,
+                0.9999994835157684
+              ],
+              "pose_origin": "Physical pin symmetry-axis midpoint",
+              "visible_end_radius_m": 0.004175103208497324,
+              "cap_points": 74,
+              "lateral_from_previous_RGBD_grasp_and_encoders": true,
+              "axial_depth_updated_from_current_RGBD": true,
+              "depth_points": 1105,
+              "plane_rms_m": 6.189858557642713e-09,
+              "uses_depth_sensor": true,
+              "uses_simulator_body_poses": false,
+              "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+              "processing_ms": 8.462452911771834,
+              "neural_inference_this_frame": false
+            },
+            "depth_sensor_input": true,
+            "simulator_body_pose_input": false
+          }
+        },
+        {
+          "event": "pin_single_axial_insert",
+          "wall_s": 50.51995548803825,
+          "physical_duration_s": 0.8
+        },
+        {
+          "event": "pin_full_depth_RGBD",
+          "wall_s": 50.700535497046076,
+          "result": {
+            "pose": {
+              "part": "pin",
+              "center_m": [
+                -0.30188309215698755,
+                0.22715816267732714,
+                1.5293978593756459
+              ],
+              "axis": [
+                -3.7723763842697756e-05,
+                1.963008083187261e-05,
+                0.9999999990957887
+              ],
+              "pose_origin": "Physical pin symmetry-axis midpoint",
+              "visible_end_radius_m": 0.004920501309923528,
+              "cap_points": 53,
+              "lateral_from_previous_RGBD_grasp_and_encoders": false,
+              "axial_depth_updated_from_current_RGBD": true,
+              "depth_points": 768,
+              "plane_rms_m": 2.8519670417599242e-05,
+              "uses_depth_sensor": true,
+              "uses_simulator_body_poses": false,
+              "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+              "processing_ms": 9.293932002037764,
+              "neural_inference_this_frame": false
+            },
+            "depth_sensor_input": true,
+            "simulator_body_pose_input": false
+          }
+        },
+        {
+          "event": "pin_axial_withdraw",
+          "wall_s": 51.7205175870331,
+          "physical_duration_s": 0.65
+        }
+      ],
+      "pin_single_stroke_pass": true,
+      "pregrasp_IK_solutions": 16,
+      "measured_grasp": [
+        [
+          0.8661593799860242,
+          0.0008585245788929267,
+          -0.4997671371726773,
+          -0.007938487438180486
+        ],
+        [
+          -2.3015072494014208e-07,
+          0.9999985251854294,
+          0.0017174477905348492,
+          -1.6990205352618304e-06
+        ],
+        [
+          0.4997678745799625,
+          -0.001487468491639105,
+          0.8661581027591402,
+          0.021246069566729697
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "left_work_zone_clearance": {
+        "empty_left_arm_parked": true,
+        "right_held_pin_in_collision_query": true
+      },
+      "validated_robot_route_hint_used": true,
+      "pin_shortcut_nodes": 8,
+      "direct_preinsert_shortcut": true,
+      "preinsert_observed_center_m": [
+        -0.3018427468421432,
+        0.22868718275941421,
+        1.4826401156464037
+      ],
+      "RGBD_measured_remaining_axial_depth_m": 0.04610988435375707,
+      "RGBD_full_depth_check": {
+        "position_error_m": 0.0007472858750926562,
+        "axis_error_rad": 4.252555141458617e-05
+      },
+      "retention_deferred_to_recipe": false,
+      "state": "pin_single_stroke_contact_pass",
+      "final_position_error_m": 0.0007513248714566464,
+      "final_axis_error_rad": 0.012816889211535454,
+      "pin_trial_wall_s": 52.226329379947856
+    },
+    "events": [
+      {
+        "event": "ring1_carry_to_handover",
+        "wall_s": 7.779752859962173,
+        "motion_s": 0.96875
+      },
+      {
+        "event": "ring1_receive_approach",
+        "wall_s": 8.591233488055877,
+        "motion_s": 0.17708333333333334
+      },
+      {
+        "event": "ring1_receiver_close",
+        "wall_s": 8.926586679997854,
+        "motion_s": 0.15
+      },
+      {
+        "event": "ring1_receiver_contact",
+        "aperture_m": 0.07480110228061676,
+        "attempt": 0,
+        "wall_s": 9.008608430041932
+      },
+      {
+        "event": "ring1_donor_open",
+        "wall_s": 9.284417076036334,
+        "motion_s": 0.15
+      },
+      {
+        "event": "ring1_donor_clear",
+        "wall_s": 10.205699002952315,
+        "motion_s": 0.40625
+      },
+      {
+        "event": "ring1_donor_leave_receiver_corridor",
+        "wall_s": 11.03087284695357,
+        "overlapped_receiver_RGBD": true,
+        "extra_lateral_clearance_used": true,
+        "motion_s": 0.36875
+      },
+      {
+        "event": "ring2_parallel_transfer_approach",
+        "wall_s": 28.371249931049533,
+        "delay_steps": 770,
+        "right_steps": 1026,
+        "left_steps": 988,
+        "samples": 880,
+        "planning_s": 1.6989479080075398,
+        "minimum_pair_padding_m": 0.001,
+        "maximum_sample_joint_step_rad": 0.01,
+        "backend": "FCL convex CAD pair; original live static queries already passed"
+      },
+      {
+        "event": "ring2_receive_approach",
+        "wall_s": 29.316076203016564,
+        "motion_s": 0.07916666666666666
+      },
+      {
+        "event": "ring2_receiver_close",
+        "wall_s": 29.780920290970244,
+        "motion_s": 0.15416666666666667
+      },
+      {
+        "event": "ring2_receiver_contact",
+        "aperture_m": 0.06182906776666641,
+        "attempt": 0,
+        "wall_s": 29.86298896302469
+      },
+      {
+        "event": "ring2_donor_open",
+        "wall_s": 30.350317065021954,
+        "motion_s": 0.35833333333333334
+      },
+      {
+        "event": "ring2_donor_clear",
+        "wall_s": 31.268360247951932,
+        "motion_s": 0.16458333333333333
+      },
+      {
+        "event": "ring2_donor_leave_receiver_corridor",
+        "wall_s": 33.64621892699506,
+        "overlapped_receiver_RGBD": true,
+        "extra_lateral_clearance_used": true,
+        "motion_s": 0.7583333333333333
+      },
+      {
+        "event": "pin_left_clear_work_zone",
+        "wall_s": 44.66674521798268,
+        "motion_s": 0.8
+      }
+    ],
+    "full_task_pass": false,
+    "elapsed_s": 52.27907207899261
+  },
+  "scene_only": false,
+  "wall_verified_elapsed_s": 52.30110717203934,
+  "end_to_end_under20": false,
+  "verified_elapsed_s": 52.28507218195591,
+  "cycle_time_s": 52.28507218195591,
+  "simulation_elapsed_s": 31.679166666678395,
+  "final_checks": {
+    "ring1": {
+      "position_error_m": 0.0003361922111285754,
+      "axis_error_rad": 0.007759726415889605
+    },
+    "ring2": {
+      "position_error_m": 0.00019176456851828516,
+      "axis_error_rad": 0.0006540201357143375
+    },
+    "pin": {
+      "position_error_m": 0.0007513248714566464,
+      "axis_error_rad": 0.012819059407607478
+    }
+  },
+  "final_retention_observation_s": 0.5478495979914442,
+  "final_retention_physics_s": 0.5416666666670977,
+  "FR3_command_limit_audit": {
+    "samples": 15206,
+    "velocity_fraction_of_95_percent_PBV": 0.9611726717184519,
+    "max_acceleration_rad_s2": 9.11865234375,
+    "max_jerk_rad_s3": 2794.921875,
+    "acceleration_limit_rad_s2": 9.5,
+    "jerk_limit_rad_s3": 4750,
+    "command_limit_checks": true,
+    "complete_issued_field_checked_at_end": true,
+    "validated_sample_count": 15206
+  },
+  "observation_driven_corrections": [],
+  "CPU_operation_profile": {
+    "control_s": 3.3651447902666405,
+    "physics_s": 14.86625434749294,
+    "clamp_flush_s": 0.0
+  },
+  "fast_transport_statistics": {
+    "right": {
+      "routes": 1,
+      "proposals": 1,
+      "clear_calls": 156,
+      "seconds": 0.5655742309754714,
+      "static_objects": 2793,
+      "static_skipped": 0,
+      "backend": "FCL CPU proposals + live PhysX verification",
+      "PhysX_verified_proposals": 1
+    },
+    "left": {
+      "routes": 0,
+      "proposals": 0,
+      "clear_calls": 0,
+      "seconds": 0.0,
+      "static_objects": 2793,
+      "static_skipped": 0,
+      "backend": "FCL CPU proposals + live PhysX verification"
+    }
+  },
+  "encoder_motor_speed_audit": {
+    "samples": 15206,
+    "max_fraction_of_95_percent_PBV": 0.977974594510124,
+    "max_finger_fraction_of_47p5_mm_s": 0.8763231729206286,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  }
+}

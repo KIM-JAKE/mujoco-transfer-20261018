@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-10-21T07:48:43.176295+00:00",
+  "mode": "offline",
+  "network_attempted": false,
+  "hardware_ready": false,
+  "live_motion_enabled": false,
+  "installation_checks_passed": false,
+  "installation_checks": {
+    "supported_host": true,
+    "python_3_10_or_newer": true,
+    "cmake_available": false,
+    "cpp_compiler_available": true,
+    "build_tool_available": true,
+    "franka_cmake_package_found": true,
+    "eigen_cmake_package_found": false
+  },
+  "host": {
+    "system": "Linux",
+    "architecture": "x86_64",
+    "kernel": "5.15.0-198-generic",
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "python_executable": "/usr/bin/python3",
+    "supported": true,
+    "os_release": {
+      "NAME": "Ubuntu",
+      "ID": "ubuntu",
+      "PRETTY_NAME": "Ubuntu 22.04.3 LTS",
+      "VERSION_ID": "22.04",
+      "VERSION": "22.04.3 LTS (Jammy Jellyfish)",
+      "VERSION_CODENAME": "jammy",
+      "ID_LIKE": "debian",
+      "HOME_URL": "https://www.ubuntu.com/",
+      "SUPPORT_URL": "https://help.ubuntu.com/",
+      "BUG_REPORT_URL": "https://bugs.launchpad.net/ubuntu/",
+      "PRIVACY_POLICY_URL": "https://www.ubuntu.com/legal/terms-and-policies/privacy-policy",
+      "UBUNTU_CODENAME": "jammy"
+    },
+    "supported_hosts": "Linux x86_64 or aarch64; SDK must support the target OS/architecture."
+  },
+  "tools": {
+    "python3": {
+      "path": "/usr/bin/python3",
+      "available": true,
+      "version": {
+        "ok": true,
+        "returncode": 0,
+        "stdout": "Python 3.10.12",
+        "stderr": ""
+      }
+    },
+    "cmake": {
+      "path": null,
+      "available": false
+    },
+    "c++": {
+      "path": "/usr/bin/c++",
+      "available": true,
+      "version": {
+        "ok": true,
+        "returncode": 0,
+        "stdout": "c++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+        "stderr": ""
+      }
+    },
+    "make": {
+      "path": "/usr/bin/make",
+      "available": true,
+      "version": {
+        "ok": true,
+        "returncode": 0,
+        "stdout": "GNU Make 4.3\nBuilt for x86_64-pc-linux-gnu\nCopyright (C) 1988-2020 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.",
+        "stderr": ""
+      }
+    }
+  },
+  "sdk": {
+    "FrankaConfig": [
+      "/tmp/jake-libfranka-install/usr/lib/cmake/Franka/FrankaConfig.cmake"
+    ],
+    "declared_versions": [
+      "set(PACKAGE_VERSION \"0.18.1\")"
+    ],
+    "Eigen3Config": [],
+    "robot_version_compatibility_verified": false
+  },
+  "realtime": {
+    "kernel_realtime_indicator": null,
+    "rtprio_limits": [
+      0,
+      0
+    ],
+    "memlock_limits": [
+      33762349056,
+      33762349056
+    ],
+    "effective_uid": 1000,
+    "note": "Inventory only. Control timing, FCI, permissions and SDK/System Image compatibility need onsite verification."
+  },
+  "devices": {
+    "video_nodes": [],
+    "note": "Names only; no camera or robot device opened."
+  },
+  "site": {
+    "present": true,
+    "path": "/home/gpuadmin/workspace/jake/field-demo-20261022/config/templates/site.json",
+    "missing_values": [
+      "robots.left.ip",
+      "robots.left.T_cell_base",
+      "robots.left.tool_mass_kg",
+      "robots.left.load_mass_kg",
+      "robots.right.ip",
+      "robots.right.T_cell_base",
+      "robots.right.tool_mass_kg",
+      "robots.right.load_mass_kg",
+      "plc.endpoint.host",
+      "plc.signals.cell_ready.address",
+      "plc.signals.cell_fault.address",
+      "plc.signals.cell_stop.address",
+      "plc.signals.ring1_grasped.address",
+      "plc.signals.ring1_seated.address",
+      "plc.signals.ring1_clamped.address",
+      "plc.signals.ring1_retained.address",
+      "plc.signals.ring1_clamp_command.address",
+      "plc.signals.ring2_grasped.address",
+      "plc.signals.ring2_seated.address",
+      "plc.signals.ring2_clamped.address",
+      "plc.signals.ring2_retained.address",
+      "plc.signals.ring2_clamp_command.address",
+      "plc.signals.pin_grasped.address",
+      "plc.signals.pin_seated.address",
+      "plc.signals.pin_clamped.address",
+      "plc.signals.pin_retained.address",
+      "plc.signals.pin_clamp_command.address",
+      "stages",
+      "gripper_actions.ring1.open.width_m",
+      "gripper_actions.ring1.grasp.width_m",
+      "gripper_actions.ring1.release.width_m",
+      "gripper_actions.ring2.open.width_m",
+      "gripper_actions.ring2.grasp.width_m",
+      "gripper_actions.ring2.release.width_m",
+      "gripper_actions.pin.open.width_m",
+      "gripper_actions.pin.grasp.width_m",
+      "gripper_actions.pin.release.width_m"
+    ],
+    "unconfirmed_field_checks": [
+      "workspace_checked",
+      "stop_tested",
+      "tool_and_payload_checked",
+      "single_arm_test_area_clear"
+    ],
+    "assembly_commissioned": false,
+    "records": {
+      "calibration_record": {
+        "path": "/home/gpuadmin/workspace/jake/field-demo-20261022/config/templates/calibration.md",
+        "nonempty": false
+      },
+      "commissioning_record": {
+        "path": "/home/gpuadmin/workspace/jake/field-demo-20261022/config/templates/commissioning.md",
+        "nonempty": false
+      }
+    },
+    "field_checks_complete": false,
+    "note": "Inventory only; populated values and flags do not certify measured hardware readiness."
+  }
+}

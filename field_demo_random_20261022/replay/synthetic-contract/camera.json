@@ -1,0 +1,180 @@
+{
+  "schema_version": 2,
+  "units": "m",
+  "replay_only": true,
+  "calibration_kind": "simulation_replay",
+  "replay_source": "explicit synthetic RGB-D contract renderer; NOT hardware or v119 held frames",
+  "calibration_id": "SYNTHETIC_CONTRACT_ONLY",
+  "camera_frame": "synthetic_optical",
+  "camera_serial": "NOT_A_CAMERA",
+  "cell_frame": "synthetic_cell",
+  "T_cell_camera": [
+    [
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      -1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      -1,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      1
+    ]
+  ],
+  "robots": {
+    "left": {
+      "base_frame": "synthetic_left",
+      "T_cell_base": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "right": {
+      "base_frame": "synthetic_right",
+      "T_cell_base": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  },
+  "part_robot": {
+    "ring1": "right",
+    "ring2": "right",
+    "pin": "right"
+  },
+  "basket": {
+    "floor_origin_cell_m": [
+      0,
+      0,
+      0
+    ],
+    "basket_to_cell_R": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "outer_bounds_cell_m": [
+      [
+        -0.25,
+        -0.25,
+        -0.01
+      ],
+      [
+        0.25,
+        0.25,
+        0.3
+      ]
+    ]
+  },
+  "held_workspace_bounds_cell_m": [
+    [
+      -0.25,
+      -0.25,
+      -0.01
+    ],
+    [
+      0.25,
+      0.25,
+      0.4
+    ]
+  ],
+  "max_observation_age_s": 2,
+  "pin_holder": {
+    "enabled": true,
+    "T_cell_pin_seed": [
+      [
+        0.8086075400626401,
+        0.0,
+        0.588348405414552,
+        0.0
+      ],
+      [
+        -0.1426954482463482,
+        0.9701425001453319,
+        0.19611613513818402,
+        -0.07
+      ],
+      [
+        -0.5707817929853928,
+        -0.24253562503633297,
+        0.7844645405527361,
+        0.08
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  }
+}

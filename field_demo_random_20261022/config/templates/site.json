@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "motion_binary": "../build/m80_site_motion",
+  "state_binary": "../build/m80_read_state",
+  "calibration_record": "calibration.md",
+  "commissioning_record": "commissioning.md",
+  "commissioning": {
+    "workspace_checked": false,
+    "stop_tested": false,
+    "tool_and_payload_checked": false,
+    "single_arm_test_area_clear": false
+  },
+  "robots": {
+    "left": {
+      "ip": null,
+      "T_cell_base": null,
+      "tool_mass_kg": null,
+      "load_mass_kg": null
+    },
+    "right": {
+      "ip": null,
+      "T_cell_base": null,
+      "tool_mass_kg": null,
+      "load_mass_kg": null
+    }
+  },
+  "grippers": {
+    "left": {
+      "type": "franka_hand",
+      "binary": "../build/m80_franka_hand"
+    },
+    "right": {
+      "type": "franka_hand",
+      "binary": "../build/m80_franka_hand"
+    }
+  },
+  "plc": null,
+  "assembly_commissioned": false,
+  "stages": {},
+  "gripper_actions": {
+    "ring1": {
+      "open": {
+        "width_m": null,
+        "speed_m_s": 0.005
+      },
+      "grasp": {
+        "width_m": null,
+        "speed_m_s": 0.005,
+        "force_n": 5,
+        "epsilon_inner_m": 0.0005,
+        "epsilon_outer_m": 0.0005
+      },
+      "release": {
+        "width_m": null,
+        "speed_m_s": 0.005
+      }
+    },
+    "ring2": {
+      "open": {
+        "width_m": null,
+        "speed_m_s": 0.005
+      },
+      "grasp": {
+        "width_m": null,
+        "speed_m_s": 0.005,
+        "force_n": 5,
+        "epsilon_inner_m": 0.0005,
+        "epsilon_outer_m": 0.0005
+      },
+      "release": {
+        "width_m": null,
+        "speed_m_s": 0.005
+      }
+    },
+    "pin": {
+      "open": {
+        "width_m": null,
+        "speed_m_s": 0.005
+      },
+      "grasp": {
+        "width_m": null,
+        "speed_m_s": 0.005,
+        "force_n": 5,
+        "epsilon_inner_m": 0.0005,
+        "epsilon_outer_m": 0.0005
+      },
+      "release": {
+        "width_m": null,
+        "speed_m_s": 0.005
+      }
+    }
+  },
+  "task_profile": "three-part",
+  "cell_io_mode": "SDK_stop",
+  "part_evidence_source": "RGBD_SDK",
+  "abort_hand_policy": "preserve_completed_grasp"
+}
