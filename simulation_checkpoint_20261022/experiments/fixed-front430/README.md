@@ -1,0 +1,9 @@
+# Fixed front shelf430: physical pickup/handover passed; concurrent path stopped
+
+Original shelf and machine CAD remain. The existing photo-derived green PIN holder is moved left, SMALL lies in the middle with signed face UP, LARGE to its right with face DOWN. There are two rings total in this separate fixed-supply experiment. No table, ring holder or pedestal was added. The green holder is a previously proposed proxy whose field dimensions are unverified.
+
+Fresh simulated RGB-D automatically found both ring sizes and signed faces. Native Franka Hand physically picked SMALL from the shelf, lifted75mm, transferred to LEFT, and RIGHT released/withdrew. The next simultaneous LEFT carry/RIGHT LARGE approach was rejected before motion for LEFT palm versus RIGHT link4 at the original1mm pair margin. Total85.385wall seconds; no full three-part pass,20s result or hardware validation. No force, mass, friction, speed or collision-margin relaxation was used.
+
+The exact native Python/static class input bytes are in `code/` and hash-checked by `exact-code-manifest.json`. CAD assets, Isaac runtime, generated native collision meshes, public class/robot priors and GPU services remain external server dependencies; this folder alone is not a standalone scene or field executable. `physx-sequence-trace.npz` is evaluation/replay only; the controller uses fresh RGB-D and robot encoders.
+
+The image is the actual427 sensor frame, rotated to present left-to-right PIN, SMALL, LARGE. It is a layout/perception preview, not a completed-task image. Camera pose is simulated and does not establish a single real fixed RealSense view. CPU planning pauses SIM physics while wall waits count; physics seconds are not a hardware cycle prediction. Original CAD insertion/shaft assumptions remain unverified on hardware.
