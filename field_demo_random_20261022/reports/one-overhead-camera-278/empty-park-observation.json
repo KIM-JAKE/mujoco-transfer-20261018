@@ -1,0 +1,506 @@
+{
+  "state": "empty_robot_park_then_single_fixed_RGBD_observed",
+  "robot_motion_executed": true,
+  "physical_robot_motion_s": 1.4083333333333332,
+  "stock_motion_commanded": false,
+  "stock_untouched_requires_external_evaluator": true,
+  "logical_initial_right_hand_empty": true,
+  "intermediate_preshape": {
+    "requested_width_m": 0.07,
+    "actual_width_m": 0.07001341134309769,
+    "encoder_settled": true,
+    "arm_trajectory_unchanged": true,
+    "force_and_velocity_caps_unchanged": true,
+    "duration_s": 0.2,
+    "progress_law": "bounded_jerk_with_cruise",
+    "ramp_fraction": 0.3,
+    "velocity_fraction": 0.91,
+    "acceleration_rad_s2": 9.2,
+    "jerk_rad_s3": 4400.0
+  },
+  "actual_parked_TCP_world": [
+    [
+      0.9628143748946519,
+      0.25605389016620667,
+      -0.08616568902788453,
+      -0.00021277138123583852
+    ],
+    [
+      0.2619031326552025,
+      -0.9628944986379055,
+      0.06512123230890819,
+      -0.24986405671219636
+    ],
+    [
+      -0.06629392368072252,
+      -0.08526668699194938,
+      -0.994150091208568,
+      1.399875177833156
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "camera_eye_world_m": [
+    0.5516386926284014,
+    -0.7255239198752155,
+    1.889881666854589
+  ],
+  "camera_optical_axis_world": [
+    0.0,
+    0.0,
+    -1.0
+  ],
+  "camera_target_from_calibration_m": [
+    0.5516386926284014,
+    -0.7255239198752155,
+    1.114881666854589
+  ],
+  "single_camera_views": 1,
+  "captured_wall_s": 6.206230962998234,
+  "RGBD_result": {
+    "poses": [
+      {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          0.48030929683536616,
+          -0.849437388807652,
+          1.1144367892824465
+        ],
+        "initial_plane_axis": [
+          0.3858494570939853,
+          0.46288128541756096,
+          0.7980357837030012
+        ],
+        "center_m": [
+          0.48030929683536616,
+          -0.849437388807652,
+          1.1144367892824465
+        ],
+        "axis": [
+          -0.3858494570939853,
+          -0.46288128541756096,
+          -0.7980357837030012
+        ],
+        "visible_face_inner_radius_m": 0.025536474855544705,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0019635251444552956,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00020526777689367846,
+        "depth_points": 1666,
+        "measured_classification_diameter_m": 0.060159959655770326,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "annular_cap_free_space_gate": {
+          "backend": "RGB-D annular CAD cap observed-free-space veto",
+          "uses_simulator_body_poses": false,
+          "support_count": 717,
+          "seen_count": 720,
+          "occluded_count": 0,
+          "contradiction_count": 3,
+          "contradiction_angle_bins": 3,
+          "free_fraction": 0.004166666666666667,
+          "rejected": false
+        }
+      },
+      {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          0.5257522622690906,
+          -0.7310521438952391,
+          1.1098325940988842
+        ],
+        "initial_plane_axis": [
+          0.30622341777645185,
+          0.11219288704700586,
+          0.9453253273351805
+        ],
+        "center_m": [
+          0.5257522622690906,
+          -0.7310521438952391,
+          1.1098325940988842
+        ],
+        "axis": [
+          -0.30622341777645185,
+          -0.11219288704700586,
+          -0.9453253273351805
+        ],
+        "visible_face_inner_radius_m": 0.031931372403561815,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.002068627596438187,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00023896739405889546,
+        "depth_points": 2040,
+        "measured_classification_diameter_m": 0.07262827716681668,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "annular_cap_free_space_gate": {
+          "backend": "RGB-D annular CAD cap observed-free-space veto",
+          "uses_simulator_body_poses": false,
+          "support_count": 719,
+          "seen_count": 720,
+          "occluded_count": 0,
+          "contradiction_count": 1,
+          "contradiction_angle_bins": 1,
+          "free_fraction": 0.001388888888888889,
+          "rejected": false
+        }
+      }
+    ],
+    "instances": [
+      {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          0.6121405225143088,
+          -0.814645540186154,
+          1.1029529100920794
+        ],
+        "initial_plane_axis": [
+          -0.08714814672782396,
+          1.0394654030015295e-05,
+          0.9961953625739566
+        ],
+        "center_m": [
+          0.6121405225143088,
+          -0.814645540186154,
+          1.1029529100920794
+        ],
+        "axis": [
+          -0.08714814672782396,
+          1.0394654030015295e-05,
+          0.9961953625739566
+        ],
+        "visible_face_inner_radius_m": 0.035533940917814505,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.0015339409178145025,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.0005650184781102066,
+        "depth_points": 4530,
+        "measured_classification_diameter_m": 0.07311747474684341,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "annular_cap_free_space_gate": {
+          "backend": "RGB-D annular CAD cap observed-free-space veto",
+          "uses_simulator_body_poses": false,
+          "support_count": 671,
+          "seen_count": 690,
+          "occluded_count": 30,
+          "contradiction_count": 19,
+          "contradiction_angle_bins": 19,
+          "free_fraction": 0.02753623188405797,
+          "rejected": false
+        }
+      },
+      {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          0.5257522622690906,
+          -0.7310521438952391,
+          1.1098325940988842
+        ],
+        "initial_plane_axis": [
+          0.30622341777645185,
+          0.11219288704700586,
+          0.9453253273351805
+        ],
+        "center_m": [
+          0.5257522622690906,
+          -0.7310521438952391,
+          1.1098325940988842
+        ],
+        "axis": [
+          -0.30622341777645185,
+          -0.11219288704700586,
+          -0.9453253273351805
+        ],
+        "visible_face_inner_radius_m": 0.031931372403561815,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.002068627596438187,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00023896739405889546,
+        "depth_points": 2040,
+        "measured_classification_diameter_m": 0.07262827716681668,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "annular_cap_free_space_gate": {
+          "backend": "RGB-D annular CAD cap observed-free-space veto",
+          "uses_simulator_body_poses": false,
+          "support_count": 719,
+          "seen_count": 720,
+          "occluded_count": 0,
+          "contradiction_count": 1,
+          "contradiction_angle_bins": 1,
+          "free_fraction": 0.001388888888888889,
+          "rejected": false
+        }
+      },
+      {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          0.48030929683536616,
+          -0.849437388807652,
+          1.1144367892824465
+        ],
+        "initial_plane_axis": [
+          0.3858494570939853,
+          0.46288128541756096,
+          0.7980357837030012
+        ],
+        "center_m": [
+          0.48030929683536616,
+          -0.849437388807652,
+          1.1144367892824465
+        ],
+        "axis": [
+          -0.3858494570939853,
+          -0.46288128541756096,
+          -0.7980357837030012
+        ],
+        "visible_face_inner_radius_m": 0.025536474855544705,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0019635251444552956,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00020526777689367846,
+        "depth_points": 1666,
+        "measured_classification_diameter_m": 0.060159959655770326,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "annular_cap_free_space_gate": {
+          "backend": "RGB-D annular CAD cap observed-free-space veto",
+          "uses_simulator_body_poses": false,
+          "support_count": 717,
+          "seen_count": 720,
+          "occluded_count": 0,
+          "contradiction_count": 3,
+          "contradiction_angle_bins": 3,
+          "free_fraction": 0.004166666666666667,
+          "rejected": false
+        }
+      },
+      {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          0.4943512455287936,
+          -0.8437871810834491,
+          1.1001658530944478
+        ],
+        "initial_plane_axis": [
+          -0.281757689019577,
+          0.057701621090771746,
+          0.9577489898725264
+        ],
+        "center_m": [
+          0.4943512455287936,
+          -0.8437871810834491,
+          1.1001658530944478
+        ],
+        "axis": [
+          0.281757689019577,
+          -0.057701621090771746,
+          -0.9577489898725264
+        ],
+        "visible_face_inner_radius_m": 0.031938412390188006,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.002061587609811996,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00026651014328938445,
+        "depth_points": 1588,
+        "measured_classification_diameter_m": 0.07253041859660027,
+        "visible_arc_coverage_deg": 300,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "annular_cap_free_space_gate": {
+          "backend": "RGB-D annular CAD cap observed-free-space veto",
+          "uses_simulator_body_poses": false,
+          "support_count": 588,
+          "seen_count": 588,
+          "occluded_count": 132,
+          "contradiction_count": 0,
+          "contradiction_angle_bins": 0,
+          "free_fraction": 0.0,
+          "rejected": false
+        }
+      },
+      {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          0.5492508355099209,
+          -0.8592822240963323,
+          1.0966953141908335
+        ],
+        "initial_plane_axis": [
+          -0.08706871807691134,
+          0.00011265422338166804,
+          0.9962023015640293
+        ],
+        "center_m": [
+          0.5492508355099209,
+          -0.8592822240963323,
+          1.0966953141908335
+        ],
+        "axis": [
+          -0.08706871807691134,
+          0.00011265422338166804,
+          0.9962023015640293
+        ],
+        "visible_face_inner_radius_m": 0.02951247251039559,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.002012472510395588,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.0004783539244474886,
+        "depth_points": 541,
+        "measured_classification_diameter_m": 0.06038562072521632,
+        "visible_arc_coverage_deg": 345,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "annular_cap_free_space_gate": {
+          "backend": "RGB-D annular CAD cap observed-free-space veto",
+          "uses_simulator_body_poses": false,
+          "support_count": 600,
+          "seen_count": 622,
+          "occluded_count": 98,
+          "contradiction_count": 22,
+          "contradiction_angle_bins": 22,
+          "free_fraction": 0.03536977491961415,
+          "rejected": false
+        }
+      },
+      {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          0.585867915183585,
+          -0.7762476268064558,
+          1.1100697315556325
+        ],
+        "initial_plane_axis": [
+          -0.2760260459100727,
+          0.2919201767028499,
+          0.9157468167637969
+        ],
+        "center_m": [
+          0.585867915183585,
+          -0.7762476268064558,
+          1.1100697315556325
+        ],
+        "axis": [
+          -0.2760260459100727,
+          0.2919201767028499,
+          0.9157468167637969
+        ],
+        "visible_face_inner_radius_m": 0.029486658036678996,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.0019866580366789954,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.000493008294737818,
+        "depth_points": 542,
+        "measured_classification_diameter_m": 0.0604149165580705,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "annular_cap_free_space_gate": {
+          "backend": "RGB-D annular CAD cap observed-free-space veto",
+          "uses_simulator_body_poses": false,
+          "support_count": 699,
+          "seen_count": 720,
+          "occluded_count": 0,
+          "contradiction_count": 21,
+          "contradiction_angle_bins": 21,
+          "free_fraction": 0.029166666666666667,
+          "rejected": false
+        }
+      }
+    ],
+    "segmentation": {
+      "backend": "RGB-D observed planes and annular diameter; asymmetric taper face identifies signed axis",
+      "initial_cap_free_space_veto": true,
+      "cap_veto_rejected_candidates": 2,
+      "SAM_used": false,
+      "cached_image_masks_used": false,
+      "processing_ms": 616.6760920314118
+    },
+    "depth_sensor_input": true,
+    "simulator_body_pose_input": false,
+    "both_sizes_visible": true
+  },
+  "rejections": {
+    "parking_fixed_or_pair": 5
+  },
+  "examples": [
+    {
+      "rejection": "parking_fixed_or_pair",
+      "details": {
+        "kind": "same_arm_self_collision",
+        "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/Contact/right_arm_fr3v2_link7_collision",
+        "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5",
+        "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/Contact/right_arm_fr3v2_link5_collision",
+        "distance_m": -1.0,
+        "required_clearance_m": 0.001
+      }
+    },
+    {
+      "rejection": "parking_fixed_or_pair",
+      "details": {
+        "kind": "same_arm_self_collision",
+        "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/Contact/right_arm_fr3v2_link7_collision",
+        "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5",
+        "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/Contact/right_arm_fr3v2_link5_collision",
+        "distance_m": -1.0,
+        "required_clearance_m": 0.001
+      }
+    },
+    {
+      "rejection": "parking_fixed_or_pair",
+      "details": {
+        "kind": "same_arm_self_collision",
+        "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/Contact/right_arm_fr3v2_link7_collision",
+        "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5",
+        "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/Contact/right_arm_fr3v2_link5_collision",
+        "distance_m": -1.0,
+        "required_clearance_m": 0.001
+      }
+    },
+    {
+      "rejection": "parking_fixed_or_pair",
+      "details": {
+        "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/Contact/right_arm_fr3v2_link3_collision",
+        "actor": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5",
+        "collider": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/Contact/left_arm_fr3v2_link5_collision",
+        "predictive_pair_box": true,
+        "minimum_pair_clearance_m": 0.001
+      }
+    },
+    {
+      "rejection": "parking_fixed_or_pair",
+      "details": {
+        "kind": "same_arm_self_collision",
+        "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/Contact/right_arm_fr3v2_link7_collision",
+        "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5",
+        "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/Contact/right_arm_fr3v2_link5_collision",
+        "distance_m": -1.0,
+        "required_clearance_m": 0.001
+      }
+    }
+  ],
+  "uses_free_body_poses": false,
+  "attachments_created": false,
+  "whole_robot_fixed_pair_and_stock_volume_checked": true,
+  "hardware_caps_unchanged": true,
+  "full_task_pass": false,
+  "physical_grasp_validated": false
+}

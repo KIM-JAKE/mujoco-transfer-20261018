@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated_utc": "2026-10-21T18:01:34.685388+00:00",
-  "package": "field-demo-random-next-20261022",
+  "updated_utc": "2026-10-21T18:31:43.558741+00:00",
+  "package": "field-demo-random-starter-20261022",
   "source_original": "field-demo-random-v128-20261022",
   "source_original_unchanged": true,
   "hardware_tested": false,
@@ -9,10 +9,10 @@
   "field_ready": false,
   "usable_actual_generated_approach_and_lift_verified": false,
   "latest_full_offline": {
-    "python_tests": 250,
+    "python_tests": 258,
     "fieldkit_tests": 27,
     "passed": true,
-    "log": "reports/NEXT_FULL_OFFLINE_CHECK.log"
+    "log": "reports/STARTER_FULL_OFFLINE_CHECK.log"
   },
   "later_targeted": {},
   "implemented": [
@@ -28,13 +28,18 @@
     "exact full projected pixel rectangle depth certificate preserving all occupied/old free voxels",
     "explicit selected-payload/finger support-contact departure at most70mm; no wall/palm/arm exception",
     "upward-only explicitly bounded RGBD inference correction against actual measured floor; no real body pose write",
-    "full fixed-CAD support floor check across issued native FK curve; only named measured floor top contact allowed"
+    "full fixed-CAD support floor check across issued native FK curve; only named measured floor top contact allowed",
+    "one actual installation record plus pinned official FR3-v2 per-link SDK FK geometry authoring",
+    "actual configured F_T_EE native Hand transformation and physical Hand-datum grasp candidates",
+    "model-derived verified:false class geometry/nominal CAD load records with immutable source/content binding",
+    "same-arm nonadjacent collision checks including link5/link7; swept AABB broadphase",
+    "fixed base original CAD against one named actual mounting-support plane; moving links remain strict"
   ],
   "remaining": [
-    "Three archived simulation viewpoints support the accepted nominal Hand/selected-CAD component. Single physical fixed RealSense validation remains incomplete.",
+    "ONE archived Isaac overhead RGB-D view after actual empty-robot parking supports nominal Hand/selected-CAD approach/lift component. Actual physical RealSense + complete native SDK whole-arm/grasp/stop acceptance remains unverified.",
     "Actual complete libfranka SDK generated approach/lift with measured full robot/tool/cable/tracking envelopes is not verified; actual grasp and force/stop behavior remain onsite tests.",
     "Fresh strict carry/transfer/insert still must pass current residual UNKNOWN/physical fixture tests; no occlusion deletion or whole random-cycle acceptance claim.",
-    "Actual site IP/extrinsics/fixture/bin/mount/tool/load/COM/inertia and real stop evidence are required.",
+    "Actual site IP/base/camera/bin/jig/workspace/obstacles/STOP/clamp/cables and one true installed-model/Hand/mount/part-CAD match are required. Model-derived parts retain explicitly accepted nominal CAD load assumptions; actual configured tool/load data comes from SDK state.",
     "Initial preinspection lift uses selected-class mass; hidden multiple-item load cannot be optically certified beforehand.",
     "Latest H GPU/cuRobo simulator controller is not wholly ported into native field runtime.",
     "Native outward-expansion force grasp is unvalidated and explicitly disallowed; current real API closes from larger measured opening."
@@ -44,7 +49,8 @@
     "ctest_passed": 11,
     "new_commissioning_markers_rebuilt": true,
     "hardware_connections": 0,
-    "ctest_log": "reports/ctest.log"
+    "ctest_log": "reports/ctest.log",
+    "per_link_actual_SDK_FK_export_rebuilt": true
   },
   "simulation_reference": {
     "run": "native-roas-table-scatter-speed-v128-closer-transfer-445",
@@ -98,5 +104,20 @@
     "residual_source_sha256": "330f567677a2999e9a701166c27ae38d520469b381087e93bbc56a04c4bb7d01"
   },
   "previous_published_checkpoint": "238d651",
-  "bounded_approach_and_departure_component_verified": true
+  "bounded_approach_and_departure_component_verified": true,
+  "model_starter": {
+    "guide": "docs/MODEL_STARTER.md",
+    "installation_confirmation_records": 1,
+    "geometry_record_kind": "model_derived",
+    "geometry_record_verified": false,
+    "arm_columns_per_arm": 478,
+    "native_Hand_columns_per_arm": 96,
+    "ring_sectors": 128,
+    "pin_components": 4,
+    "nominal_grasp_candidates_per_part": 8,
+    "hardware_grasp_verified": false,
+    "full_native_approach_lift_verified": false,
+    "synthetic_curve_benchmark": "reports/factory-synthetic-curve-benchmark.json",
+    "single_SIM_camera_component": "reports/one-overhead-camera-278/INDEX.json"
+  }
 }

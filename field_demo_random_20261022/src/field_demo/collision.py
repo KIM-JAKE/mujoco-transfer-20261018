@@ -163,11 +163,15 @@ def check_envelopes(active, other, scene, phase, envelope, *, payloads=(), dynam
             if not np.all(inside_box(capsule['a'], capsule['b'], radius, workspace)):
                 raise CollisionError('Swept envelope leaves the completely modeled workspace: ' + capsule['name'])
             for obstacle in obstacles:
+                support=capsule.get('fixed_mount_support',{})
+                if (not is_payload and capsule.get('link_index')==0 and
+                        support.get('kind')=='fixed_base_known_mount_contact'and support.get('obstacle_name')==obstacle['name']):
+                    continue  # exact static CAD/known support plane proved before this capsule-skin test
                 contact = phase.get('allow_payload_contact_fixture')
                 permitted = (is_payload and capsule.get('part') == phase.get('_active_part') and
                              obstacle['name'] == contact and phase.get('payload_contact_approved') is True and
                              obstacle.get('source') not in ('measured_unknown_scene_enclosure','conservative_registered_RGBD_rays'))
-                selected_contact=(active_robot and not is_payload and capsule_index>=8 and
+                selected_contact=(active_robot and not is_payload and capsule_index>=envelope.get('tool_capsule_offset',8) and
                     capsule_index in phase.get('target_contact_tool_capsules',[]) and phase.get('_contact')=='grasp' and
                     obstacle.get('source')=='conservative_registered_RGBD_rays' and obstacle.get('occupancy_kind')=='occupied' and
                     obstacle.get('selected_contact_instance_id')==phase.get('_target_instance_id') and phase.get('_target_instance_id')is not None)
@@ -195,7 +199,7 @@ def check_envelopes(active, other, scene, phase, envelope, *, payloads=(), dynam
     boxes(other)
     boxes(payloads, True)
     # TCP corridor constrains the hand approach; full robot remains checked above.
-    tcp = active[7]['b']
+    tcp = active[0].get('actual_tcp',active[7].get('actual_tcp', active[7]['b']))
     corridor_union = np.zeros(tcp.shape[:-1], dtype=bool)
     tool_radius = float(phase.get('tcp_corridor_radius_m', 0)) + float(phase.get('_tcp_sweep_m', 0))
     if not np.isfinite(tool_radius) or tool_radius <= 0:
@@ -212,19 +216,40 @@ def check_envelopes(active, other, scene, phase, envelope, *, payloads=(), dynam
         if abs(pair[0]-pair[1]) != 1 and min(pair) < 6:
             raise ValueError('Self exclusions may cover adjacent joints or measured distal rigid hand/tool attachments only')
         ignored.add(tuple(sorted(pair)))
+    # Exact distance is needed only when the complete swept AABBs overlap.
+    # Cache once per capsule; never infer clearance from endpoints alone.
+    sweep_bounds={}
+    for row in [*active,*other,*payloads,*dynamic_obstacles]:
+        coordinates=np.concatenate([np.asarray(row['a']).reshape(-1,3),np.asarray(row['b']).reshape(-1,3)])
+        radius=float(np.max(row['r']));sweep_bounds[id(row)]=(coordinates.min(0)-radius,coordinates.max(0)+radius)
     def pair_check(a, b, description, allowed=None):
         nonlocal minimum, count
+        ba,bb=sweep_bounds.get(id(a)),sweep_bounds.get(id(b))
+        if ba is not None and bb is not None:
+            delta=np.maximum(np.maximum(ba[0]-bb[1],bb[0]-ba[1]),0.)
+            lower=float(np.linalg.norm(delta))-margin
+            if lower>0:
+                minimum=min(minimum,lower);count+=1;return
         clearance = segment_distance(a['a'], a['b'], b['a'], b['b']) - a['r'] - b['r'] - margin
         if allowed is not None:clearance=np.where(allowed,np.inf,clearance)
         minimum = min(minimum, float(np.min(clearance))); count += len(np.atleast_1d(clearance))
         if np.any(clearance <= 0):
             raise CollisionError(description + ': ' + a['name'] + '/' + b['name'])
+    def broad_pairs(first,second):
+        if not first or not second:return np.zeros((len(first),len(second)),dtype=bool)
+        low_a=np.array([sweep_bounds[id(x)][0]for x in first]);high_a=np.array([sweep_bounds[id(x)][1]for x in first])
+        low_b=np.array([sweep_bounds[id(x)][0]for x in second]);high_b=np.array([sweep_bounds[id(x)][1]for x in second])
+        delta=np.maximum(np.maximum(low_a[:,None]-high_b[None],low_b[None]-high_a[:,None]),0.)
+        return np.einsum('ijk,ijk->ij',delta,delta)<=margin*margin
+    self_possible=broad_pairs(active,active);other_possible=broad_pairs(active,other)
     for index, first in enumerate(active):
-        for second_index in range(index+1, len(active)):
-            if (index, second_index) not in ignored:
+        for second_index in np.flatnonzero(self_possible[index,index+1:])+index+1:
+            from .model_geometry import self_connected
+            model_connected=envelope.get('geometry_backend')=='sdk_link_columns'and self_connected(first,active[second_index])
+            if (index, second_index) not in ignored and not model_connected:
                 pair_check(first, active[second_index], 'Robot self collision')
-        for second in other:
-            pair_check(first, second, 'Other-arm collision')
+        for second_index in np.flatnonzero(other_possible[index]):
+            pair_check(first, other[second_index], 'Other-arm collision')
     payload_ignores = envelope.get('payload_robot_ignore_capsules', [])
     if any(type(index) is not int or index < 6 or index >= len(active) for index in payload_ignores):
         raise ValueError('Payload contact can exempt only explicitly measured distal hand/tool capsules')
@@ -237,14 +262,14 @@ def check_envelopes(active, other, scene, phase, envelope, *, payloads=(), dynam
                 pair_check(payload, robot, 'Held payload/own robot collision')
         for index, robot in enumerate(opposite):
             contact = (payload.get('owner') == 'other' and payload.get('part') == phase.get('_active_part') and
-                       phase.get('_contact') == 'handover' and index >= 8 and
+                       phase.get('_contact') == 'handover' and index >= envelope.get('tool_capsule_offset',8) and
                        index in phase.get('handover_contact_tool_capsules', []))
             if not contact:
                 pair_check(payload, robot, 'Held payload/other robot collision')
     for obstacle in dynamic_obstacles:
         for index, robot in enumerate(active):
             permitted = (obstacle.get('instance_id') == phase.get('_target_instance_id') and
-                         index in phase.get('target_contact_tool_capsules', []) and index >= 8 and
+                         index in phase.get('target_contact_tool_capsules', []) and index >= envelope.get('tool_capsule_offset',8) and
                          phase.get('_contact') == 'grasp')
             if not permitted:
                 from .stock_departure import loose_stock_pair_mask

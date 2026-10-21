@@ -1,3 +1,5 @@
+> **새 현장 설정:** [모델 기반 starter](docs/MODEL_STARTER.md)에서 링크·Hand·링·핀 충돌 모양을 자동 작성합니다. 실제 설치 일치 기록 한 개와 읽기 전용 SDK 상태를 사용하며 base/카메라/바구니/지그/STOP은 현장 값으로 유지합니다.
+
 # 10월 22일 오전 11시 KST 현장 시험용 — RGB-D + Franka SDK
 
 현재 실행과 설정은 [RGB-D + SDK 온보딩](integration/RGBD_SDK_ONBOARDING.md)을 먼저 읽는다. 실제 카메라 인식·현재 SDK 상태 기반 경로·저속 단품 집기와 전체 공정 실행 경로를 구현했다. 실제 로봇 성공이나 랜덤 바구니 전체 완주를 검증한 버전은 아니다. [구현 범위·하중·실패 처리](integration/PAYLOAD_EXPERIMENTAL.md)와 최신 검사 결과를 함께 확인한다.

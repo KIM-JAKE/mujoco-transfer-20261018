@@ -47,6 +47,9 @@ def parameters(row):
 def measured(row, root):
     parameters(row)
     record = row['measurement']
+    if record.get('kind')=='model_derived':
+        from .model_records import validate
+        return validate(record,root,subject=row)
     if (record.get('verified') is not True or not str(record.get('by', '')).strip() or
             utc_stamp(record['at_utc']) > datetime.now(timezone.utc)):
         raise ValueError('Actual measured load provenance required')

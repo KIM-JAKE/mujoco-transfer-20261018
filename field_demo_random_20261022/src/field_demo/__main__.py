@@ -8,7 +8,7 @@ import sys
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[2]
-MODULES = {'commissioning-test': 'field_demo.commissioning_test', 'doctor': 'field_demo.doctor', 'run': 'field_demo.execution',
+MODULES = {'model-preset':'field_demo.model_preset','commissioning-test': 'field_demo.commissioning_test', 'doctor': 'field_demo.doctor', 'run': 'field_demo.execution',
            'camera': 'field_demo.camera', 'calibration': 'field_demo.calibration',
            'observe': 'field_demo.observations', 'motion': 'field_demo.motion',
            'handover': 'field_demo.handover',
@@ -61,7 +61,9 @@ def verify():
     return dict(state='checksums_pass' if not errors else 'checksums_failed', checked_files=count, changed_or_missing=errors)
 
 
-def init_random(output, left_ip=None, right_ip=None):
+def init_random(output, left_ip=None, right_ip=None, *, model_installation=None, left_state=None, right_state=None, workspace=None):
+    if any((model_installation,left_state,right_state)) and not all((model_installation,left_state,right_state)):
+        raise ValueError('Model starter requires installation record AND both actual SDK snapshots')
     output = Path(output).resolve()
     names = ('random-camera.json', 'random-motion.json', 'random-cycle.json', 'payload-profile.json')
     if any((output / name).exists() for name in names):
@@ -86,6 +88,9 @@ def init_random(output, left_ip=None, right_ip=None):
                 value['camera_configs']['basket'] = 'random-camera.json'
         (output / name).write_text(json.dumps(value, indent=2)+'\n')
     result.update(state='unconfigured_random_site_created', next='Follow docs/RANDOM_ONSITE.md; actual measured values are required')
+    if model_installation:
+        from .model_preset import author
+        result['model_starter']=author(output,model_installation,left_state,right_state,workspace_path=workspace)
     return result
 
 
@@ -118,13 +123,17 @@ def main(argv=None):
     random_init.add_argument('--output', type=Path, default=ROOT / 'site/random')
     random_init.add_argument('--left-ip')
     random_init.add_argument('--right-ip')
+    random_init.add_argument('--model-installation',type=Path)
+    random_init.add_argument('--left-state',type=Path)
+    random_init.add_argument('--right-state',type=Path)
+    random_init.add_argument('--workspace',type=Path)
     sub.add_parser('verify', help='Check fixed release files against SHA256SUMS')
     a = p.parse_args(args)
     try:
         if a.command == 'init':
             print(json.dumps(init_site(a.output, a.left_ip, a.right_ip), indent=2));return 0
         if a.command == 'init-random':
-            print(json.dumps(init_random(a.output, a.left_ip, a.right_ip), indent=2));return 0
+            print(json.dumps(init_random(a.output,a.left_ip,a.right_ip,model_installation=a.model_installation,left_state=a.left_state,right_state=a.right_state,workspace=a.workspace), indent=2));return 0
         if a.command == 'verify':
             r = verify();print(json.dumps(r, indent=2));return 0 if not r['changed_or_missing'] else 2
     except (OSError, ValueError, KeyError) as e:

@@ -10,7 +10,13 @@ import numpy as np
 from .collision import box, inside_box, finite, segment_box_distance
 
 
-def _measurement(record):
+def _measurement(record, *, allow_derived=False):
+    if allow_derived and isinstance(record,dict)and record.get('kind')=='model_derived'and record.get('verified')is False:
+        # Full source/installation/content binding is checked by the caller's
+        # measured(...,root,dependencies) before planning or execution.
+        for key in ['model_preset_file','model_preset_sha256','subject_key','subject_sha256']:
+            if not isinstance(record.get(key),str)or not record[key]:raise ValueError('Bound derived native-finger identity required')
+        return
     if not isinstance(record, dict) or record.get('verified') is not True:
         raise ValueError('Measured stock-contact provenance required')
     for name in ('by', 'at_utc', 'evidence_file'):
@@ -51,16 +57,18 @@ def validate_stock_contact_policy(phase, envelope):
     _measurement(force.get('measurement')); _measurement(monitor.get('measurement'))
     _hash(monitor.get('native_driver_sha256')); _hash(monitor.get('stop_test_sha256'))
     tools = envelope.get('tool_capsules_tcp_m', [])
+    offset=envelope.get('tool_capsule_offset',8)
     fingers = policy.get('finger_capsules', [])
     if not isinstance(fingers, list) or not fingers:
         raise ValueError('Explicit measured native-finger capsule identities required')
     names = set(); indices = set()
     for entry in fingers:
         index = entry.get('index'); name = entry.get('name')
-        if (type(index) is not int or index < 8 or index-8 >= len(tools) or index in indices or
-                not isinstance(name, str) or not name or name in names or tools[index-8].get('name') != name):
+        if (type(index) is not int or index < offset or index-offset >= len(tools) or index in indices or
+                not isinstance(name, str) or not name or name in names or tools[index-offset].get('name') != name):
             raise ValueError('Named measured finger must match its actual tool capsule, never an arm/palm alias')
-        _measurement(entry.get('measurement')); names.add(name); indices.add(index)
+        if envelope.get('geometry_backend')=='sdk_link_columns'and tools[index-offset].get('geometry_role')!='finger':raise ValueError('Only actual derived native-finger CAD may receive stock contact')
+        _measurement(entry.get('measurement'),allow_derived=True); names.add(name); indices.add(index)
     return dict(bin_interior=region, finger_indices=indices, finger_names=names,
                 native_driver_sha256=monitor['native_driver_sha256'], stop_test_sha256=monitor['stop_test_sha256'])
 
@@ -71,7 +79,8 @@ def stock_contact_mask(obstacle, *, phase, capsule_index, capsule, envelope, act
     if a.shape != b.shape or a.shape[-1:] != (3,):
         raise ValueError('Actual swept capsule endpoints required')
     denied = np.zeros(a.shape[:-1], dtype=bool)
-    if not active_robot or is_payload or capsule_index < 8:
+    offset=envelope.get('tool_capsule_offset',8)
+    if not active_robot or is_payload or capsule_index < offset:
         return denied
     if obstacle.get('source') != 'conservative_registered_RGBD_rays' or obstacle.get('occupancy_kind') not in ('unknown', 'occupied'):
         return denied
@@ -81,7 +90,7 @@ def stock_contact_mask(obstacle, *, phase, capsule_index, capsule, envelope, act
         return denied
     if capsule_index not in policy['finger_indices'] or capsule.get('name') not in policy['finger_names']:
         return denied
-    tool = envelope['tool_capsules_tcp_m'][capsule_index-8]
+    tool = envelope['tool_capsules_tcp_m'][capsule_index-offset]
     if capsule.get('name') != tool.get('name'):
         return denied
     radius = finite(capsule['r'])

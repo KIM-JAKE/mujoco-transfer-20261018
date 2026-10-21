@@ -41,7 +41,10 @@ def positive(value, name, upper=None):
     return float(value)
 
 
-def measured(record, root, dependencies, name, now):
+def measured(record, root, dependencies, name, now, subject=None):
+    if isinstance(record,dict)and record.get('kind')=='model_derived':
+        from .model_records import validate
+        return validate(record,root,subject=subject,dependencies=dependencies,name=name,now=now)
     if (not isinstance(record, dict) or record.get('verified') is not True or
             not isinstance(record.get('by'), str) or not record['by'].strip() or
             not isinstance(record.get('at_utc'), str) or utc_stamp(record['at_utc']) > now):
@@ -75,7 +78,7 @@ def validate_config(config, root, dependencies, now):
         collision.box(row)
     for side in ('left', 'right'):
         envelope = config['robots'][side]
-        measured(envelope.get('measurement'), root, dependencies, side + '_robot_envelope', now)
+        measured(envelope.get('measurement'), root, dependencies, side + '_robot_envelope', now, subject=envelope)
         if envelope.get('whole_robot_hand_tool_cables_enclosed') is not True:
             raise ValueError('Actual whole robot, Hand, tool and cables need enclosing geometry: ' + side)
         radii = collision.finite(envelope['link_radii_m'], (8,))
@@ -83,6 +86,8 @@ def validate_config(config, root, dependencies, now):
             raise ValueError('Eight positive actual enclosing link radii required')
         if not envelope.get('tool_capsules_tcp_m') and envelope.get('tool_in_link_envelopes') is not True:
             raise ValueError('Actual Hand/tool enclosure is missing')
+    for part,row in config.get('loose_part_envelopes',{}).items():
+        if row.get('measurement',{}).get('kind')=='model_derived':measured(row['measurement'],root,dependencies,'model_part_'+part,now,subject=row)
     for field, limit in [('collision_margin_m', .1), ('max_observation_age_s', 2),
                           ('max_state_read_s', 30), ('other_arm_q_tolerance_rad', .005),
                           ('target_position_tolerance_m', .001), ('target_angle_tolerance_rad', .01)]:
@@ -331,6 +336,8 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
         contract=validate_stock_contact_policy(phase,envelope);policy=phase['bounded_loose_stock_contact'];monitor=policy['monitoring']
         records=[('inventory',policy['inventory_contract']['measurement']),('bin_interior',policy['bin_interior']['measurement']),('monitoring',monitor['measurement'])]+[('finger_'+str(i),f['measurement'])for i,f in enumerate(policy['finger_capsules'])]
         for label,record in records:measured(record,root,dependencies,'stock_contact_'+label,now)
+        for i,entry in enumerate(policy['finger_capsules']):
+            if entry.get('measurement',{}).get('kind')=='model_derived':measured(entry['measurement'],root,dependencies,'stock_contact_finger_model_'+str(i),now,subject=entry)
         binary=(root/site_config['motion_binary']).resolve();stop_evidence=(root/force['measurement']['evidence_file']).resolve()
         if digest(binary)!=contract['native_driver_sha256']or digest(stop_evidence)!=contract['stop_test_sha256']or monitor['heartbeat_timeout_s']!=.25:
             raise ValueError('Loose-stock contact must bind the actual native5N/1Nm executor and its250ms stop/heartbeat test')
@@ -342,38 +349,56 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
         records=[('departure_up',contract['up_axis_measurement']),('inventory',policy['inventory_contract']['measurement']),('bin_interior',policy['bin_interior']['measurement']),('monitoring',monitor['measurement'])]+[('finger_'+str(i),f['measurement'])for i,f in enumerate(policy['finger_capsules'])]
         if contract['support_floor']is not None:records.append(('support_floor',contract['support_floor']['measurement']))
         for label,record in records:measured(record,root,dependencies,'stock_departure_'+label,now)
+        for i,entry in enumerate(policy['finger_capsules']):
+            if entry.get('measurement',{}).get('kind')=='model_derived':measured(entry['measurement'],root,dependencies,'departure_finger_model_'+str(i),now,subject=entry)
         binary=(root/site_config['motion_binary']).resolve();stop_evidence=(root/force['measurement']['evidence_file']).resolve()
         if digest(binary)!=contract['native_driver_sha256']or digest(stop_evidence)!=contract['stop_test_sha256']or monitor['heartbeat_timeout_s']!=.25:raise ValueError('Departure must bind actual native5N/1Nm executor and250ms stop test')
         dependencies['stock_departure_native_executor']={'path':str(binary),'sha256':digest(binary)}
         dependencies['stock_departure_stop_test']={'path':str(stop_evidence),'sha256':digest(stop_evidence)}
     other_envelope = copy.deepcopy(config['robots'][other_side]); other_envelope['_angular_speed_bound_rad_s'] = 0.
-    active = collision.robot_capsules(links, envelope['link_radii_m'], trace['speeds'], trace['gap'], tcps, envelope, side+'_')
-    other = collision.robot_capsules(other_links[None], other_envelope['link_radii_m'], np.zeros(9), 0, other_tcp[None], other_envelope, other_side+'_')
-    # The real servo aborts only above 0.02rad tracking error. Enclose that
-    # entire error budget, rather than treating desired FK as actual geometry.
-    lengths = np.asarray(model['link_segment_lengths_m'])
-    tracking_limit = float(config.get('joint_tracking_error_limit_rad', .02))
-    tracking_bounds = np.zeros(9)
-    for point in range(2, 9):
-        tracking_bounds[point] = tracking_limit*sum(np.sum(lengths[joint+1:point]) for joint in range(7) if joint+1 < point)
-    for index, row in enumerate(active):
-        extra = max(tracking_bounds[index], tracking_bounds[index+1]) if index < 8 else tracking_bounds[-1] + tracking_limit*7*max(
-            np.linalg.norm(np.asarray(envelope['tool_capsules_tcp_m'][index-8]['a'])),
-            np.linalg.norm(np.asarray(envelope['tool_capsules_tcp_m'][index-8]['b'])))
-        row['r'] += extra
-    # Static other-arm FK is evaluated at q_d. Enclose measured q-q_d and
-    # its explicitly permitted posture variation rather than assuming equality.
-    other_lengths = np.linalg.norm(np.diff(other_links, axis=0), axis=-1)+1e-6
-    other_joint_error = np.abs(np.asarray(other_state['state']['q'])-other_state['state']['q_d']) + config['other_arm_q_tolerance_rad']
-    other_tracking = np.zeros(9)
-    for point in range(2, 9):
-        other_tracking[point] = sum(np.sum(other_lengths[joint+1:point])*other_joint_error[joint]
-                                    for joint in range(7) if joint+1 < point)
-    for index, row in enumerate(other):
-        extra = max(other_tracking[index], other_tracking[index+1]) if index < 8 else other_tracking[-1] + np.sum(other_joint_error)*max(
-            np.linalg.norm(np.asarray(other_envelope['tool_capsules_tcp_m'][index-8]['a'])),
-            np.linalg.norm(np.asarray(other_envelope['tool_capsules_tcp_m'][index-8]['b'])))
-        row['r'] += extra
+    # Enclose the actual native stop tracking budget, including local geometry
+    # rotating about each SDK joint origin between millisecond FK samples.
+    lengths=np.asarray(model['link_segment_lengths_m'])
+    tracking_limit=float(config.get('joint_tracking_error_limit_rad',.02))
+    tracking_bounds=np.zeros(9)
+    for point in range(2,9):
+        tracking_bounds[point]=tracking_limit*sum(np.sum(lengths[j+1:point])for j in range(7)if j+1<point)
+    other_lengths=np.linalg.norm(np.diff(other_links,axis=0),axis=-1)+1e-6
+    other_joint_error=np.abs(np.asarray(other_state['state']['q'])-other_state['state']['q_d'])+config['other_arm_q_tolerance_rad']
+    other_tracking=np.zeros(9)
+    for point in range(2,9):
+        other_tracking[point]=sum(np.sum(other_lengths[j+1:point])*other_joint_error[j]for j in range(7)if j+1<point)
+    def geometry(env,raw,pts,poses,speeds,velocities,gap,tracking,error,prefix,base_pose):
+        if env.get('geometry_backend')=='sdk_link_columns':
+            from .model_geometry import frames,robot_capsules
+            F=collision.transform(np.asarray(raw['state']['F_T_EE_column_major']).reshape(4,4,order='F'))
+            if not np.allclose(F.ravel(order='F'),env['F_T_EE_column_major'],atol=1e-10,rtol=0):raise ValueError('Actual configured TCP changed since model authoring; regenerate from fresh SDK state')
+            source=raw.get('samples')
+            fs=[row['link_frames_base']for row in source]if source else [raw['link_frames_base']]
+            native_tcp=np.linalg.inv(base_pose)[None]@poses
+            native_points=(pts-base_pose[:3,3])@base_pose[:3,:3]
+            fs=frames(fs,native_points,native_tcp,F)
+            fs=base_pose[None,None]@fs
+            rows=robot_capsules(fs,poses,env,speeds,velocities,gap,tracking,error,prefix)
+            support=config.get('robot_mounting_supports',{}).get(side if prefix==side+'_'else other_side)
+            if isinstance(support,dict)and support.get('obstacle_name'):
+                measured(support.get('measurement'),root,dependencies,prefix+'actual_mount_support',now)
+                from .mount_support import certify
+                from .model_preset import ASSETS
+                with np.load(ASSETS/'collision-models.npz',allow_pickle=False)as z:vertices=z['link0_vertices']
+                obstacles=[o for o in config['scene']['obstacles']if o.get('name')==support['obstacle_name']]
+                if len(obstacles)!=1:raise ValueError('Unique measured fixed-base support obstacle required')
+                proof=certify(support,obstacles[0],base_pose,vertices)
+                for row in rows:
+                    if row.get('link_index')==0:row['fixed_mount_support']=proof
+            return rows
+        rows=collision.robot_capsules(pts,env['link_radii_m'],speeds,gap,poses,env,prefix)
+        for i,row in enumerate(rows):
+            extra=max(tracking[i],tracking[i+1])if i<8 else tracking[-1]+np.sum(error)*max(np.linalg.norm(env['tool_capsules_tcp_m'][i-8]['a']),np.linalg.norm(env['tool_capsules_tcp_m'][i-8]['b']))
+            row['r']+=extra
+        return rows
+    active=geometry(envelope,model,links,tcps,trace['speeds'],trace['joint_velocities'],trace['gap'],tracking_bounds,np.full(7,tracking_limit),side+'_',base)
+    other=geometry(other_envelope,other_state,other_links[None],other_tcp[None],np.zeros(9),np.zeros(7),0,other_tracking,other_joint_error,other_side+'_',other_base)
     payloads = []
     for index, entry in enumerate(held):
         measured(entry.get('measurement'), root, dependencies, 'held_pose_'+str(index), now)

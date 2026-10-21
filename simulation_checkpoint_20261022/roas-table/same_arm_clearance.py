@@ -17,6 +17,7 @@ except ImportError:
 class SameArmClearance:
     def __init__(self, checker, *, margin_m=.0005):
         self.arm = checker.arm
+        self.checker = checker
         self.rows = list(checker.pair_boxes)
         self.margin_m = float(margin_m)
         if not 0. <= self.margin_m <= .002:
@@ -79,6 +80,9 @@ class SameArmClearance:
             self.geometries = [convex(row[2][3]) for row in self.rows]
             self.objects = [fcl.CollisionObject(g) for g in self.geometries]
 
+        from own_payload_clearance import OwnPayloadClearance
+        self.own_payload_clearance = OwnPayloadClearance(self)
+
     def clear(self, q, opening, *, changed_bodies=None):
         self.stats['queries'] += 1
         transforms = self.arm.bodies(np.asarray(q, float), float(opening))
@@ -111,4 +115,4 @@ class SameArmClearance:
                 self.stats['rejected'] += 1
                 self.stats['last_rejection'] = why
                 return False, why
-        return True, None
+        return self.own_payload_clearance.clear(self.checker,transforms,changed_bodies=changed_bodies)

@@ -1,54 +1,69 @@
 # FR3 Duo · native Franka Hand · RGB-D 현장 시험
 
-현장 시험 시간: **2026-10-22 오전 11:00 한국 시간**.
+현장 시험 기준 시각: **2026-10-22 오전 11:00 한국 시간**.
 
-이번 작업 패키지는 `field_demo_random_20261022/`에 있습니다. 기존 MuJoCo 복원 자료와 봉인 배포본은 그대로 두었습니다. RealSense RGB-D와 실제 로봇/Hand SDK 상태로 실행하며, 시뮬레이터의 물체 좌표나 별도 파지 센서를 요구하지 않습니다.
+`field_demo_random_20261022/`는 Isaac Sim 없이 설치·실행할 수 있는 현장 패키지입니다. 혼합 링 10개에서 큰 링·작은 링·홀더의 핀을 관측하고 파지·전달·삽입 스킬을 조합합니다. 실행 중 LLM agent를 호출하지 않습니다. 입력은 RealSense RGB-D, 보정값, 실제 로봇/Hand SDK 상태입니다.
 
-**현재 단계는 현장 보정과 저속 단일 파지부터 시작하는 실험 코드입니다. 랜덤 바구니에서 3개를 모두 조립하는 실기 성공이나 20초 완료를 검증한 배포본은 아닙니다.** 각 기능의 구현·검증 범위는 패키지 상태 문서에 구분했습니다. 시뮬레이션 시험 기록도 실기 시험으로 간주하면 안 됩니다.
+**현장 보정과 저속 단일 파지부터 시험하는 실험 코드입니다. 랜덤 바구니의 전체 실기 성공·20초 완료를 검증한 배포본은 아닙니다.** 실제 하중·자기충돌·다른 팔·고정 장애물·가려진 적재물·정지/통신 조건 검사를 유지합니다.
 
-## 시작
+## 내려받기와 설치
 
-전체 MuJoCo 아카이브를 복원하지 않아도 현장 패키지는 독립적으로 사용할 수 있습니다. 기존 저장소가 있으면 최신 main을 받은 뒤 아래 패키지로 이동합니다. 새 설치에서 대용량 과거 아카이브가 필요 없으면 LFS 내려받기를 생략할 수 있습니다.
+과거 MuJoCo 아카이브와 SAM 체크포인트를 복원하지 않아도 됩니다. 새 설치는 현장 폴더만 내려받을 수 있습니다.
 
 ```bash
-GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/KIM-JAKE/mujoco-transfer-20261018.git
-cd mujoco-transfer-20261018/field_demo_random_20261022
-cat START_HERE.md
+GIT_LFS_SKIP_SMUDGE=1 git clone --filter=blob:none --sparse \
+  https://github.com/KIM-JAKE/mujoco-transfer-20261018.git fr3-field
+cd fr3-field
+git sparse-checkout set field_demo_random_20261022
+cd field_demo_random_20261022
 ```
 
-설치·로봇 IP·기준 좌표·RealSense 보정·Hand 및 실제 클램프 설정은 `docs/RANDOM_ONSITE.md` 순서로 진행합니다. 로봇을 연결하기 전 `./field-demo --help`를 볼 수 있습니다. 빌드한 실행 파일과 현장 설정을 확인한 다음, 정지 시험 → 단일 링 파지 → 전달/삽입 → 전체 순서로 시작합니다.
+Ubuntu 22.04 / x86_64 / Python 3.10 현장 PC에는 오프라인 wheel·SDK 소스와 설치 도구가 포함돼 있습니다. 컴파일러·make 등 호스트 조건과 다른 OS의 설치 방법은 [설치 안내](field_demo_random_20261022/docs/INSTALL.md)를 확인합니다.
 
 ```bash
-./field-demo init-random --output site/random --left-ip LEFT_IP --right-ip RIGHT_IP
-# site/random 아래 파일에 현장 측정값 입력 후
+scripts/install.sh --with-realsense --offline --wheelhouse vendor/wheelhouse/cp310-linux-x86_64
+scripts/build-offline-ubuntu22.sh
+./field-demo verify
+```
+
+[시작 안내](field_demo_random_20261022/START_HERE.md) → [모델 기반 설정](field_demo_random_20261022/docs/MODEL_STARTER.md) → [현장 실행 순서](field_demo_random_20261022/docs/RANDOM_ONSITE.md)를 따릅니다.
+
+## 현장 설정
+
+공식 FR3-v2 CAD와 실제 SDK 링크 자세로 팔 형상을 자동 작성하고, 실제 `F_T_EE`를 반영해 Hand·양면 파지 후보·링 64개 sector·핀·명목 CAD 하중을 설정합니다. 공장 Hand 장착 방향, 추가 어댑터 유무, 실제 모델/부품 일치, 케이블 여유를 **실제로 확인한 설치 기록 한 개**가 필요합니다. 모델에서 계산한 값은 `model_derived / verified:false`로 유지하며 실측값으로 위장하지 않습니다.
+
+```bash
+mkdir -p site
+./field-demo model-preset template --output site/installation.json
+# 실제 장비와 대조해 installation.json 및 증거 파일 작성
+./build/m80_read_state LEFT_IP  > site/left-sdk-state.json
+./build/m80_read_state RIGHT_IP > site/right-sdk-state.json
+./field-demo init-random --output site/random \
+  --left-ip LEFT_IP --right-ip RIGHT_IP \
+  --model-installation site/installation.json \
+  --left-state site/left-sdk-state.json --right-state site/right-sdk-state.json
+```
+
+양팔 base 좌표, 카메라 보정/깊이 오차, 바구니·지그·핀 홀더 좌표, 작업공간과 고정 장애물, 관측/반환 자세, STOP과 실제 클램프 설정은 현장 값이 필요합니다. 클램프는 실제 PLC 어댑터 또는 명시적인 작업자 조작을 사용합니다. 가상의 파지·삽입 PLC 신호를 요구하지 않습니다.
+
+## 첫 실행
+
+카메라 인식·읽기 전용 SDK 확인 후, 실제 여유 방향에서 각 팔의 **1mm 이동·정지 시험**을 먼저 수행합니다. 아래 `+z`는 로봇 BASE 좌표이며, 현장에서 움직여도 되는 방향을 선택합니다. 자동 복구/재시작을 하지 않습니다.
+
+```bash
 ./field-demo doctor --config site/random/site.json --probe
-./field-demo commissioning-test --config site/random/site.json --side right --help
+./field-demo commissioning-test --config site/random/site.json --side right --axis z --direction 1 --execute
+./field-demo commissioning-test --config site/random/site.json --side left --axis z --direction 1 --execute
+./field-demo random-cycle --recipe site/random/random-cycle.json --single-pick ring2 --execute
 ```
 
-`commissioning-test --execute`는 작업자가 비어 있음을 확인한 **로봇 BASE 좌표의 1mm 방향**으로 10% 이하 이동하고, 실제 이동 기록이 확인된 뒤 SDK STOP을 보냅니다. 실제 정지·idle이 확인된 PASS 기록만 현장 `stop_tested` 확인의 근거로 사용합니다. 비상정지 인증 도구는 아닙니다. 양쪽 팔을 각각 확인하고 상세 절차에 따라 진행합니다.
+실제 현장 입력과 정지 기록이 빠졌거나 관측·충돌·하중 검사가 실패하면 진행하지 않습니다. 단일 파지는 성공 시 물체를 든 채 정지합니다. 이후 전달·삽입·전체 사이클 순서와 중단/반환 절차는 현장 실행 안내에 있습니다.
 
-## 실행 구조
+## 검증 범위
 
-RGB-D 취득 및 실제 SDK 렌즈 보정 → 링 영역/깊이 분석 → 크기·중심·축 추정 → 보정된 로봇 좌표 변환 → 파지 후보 및 충돌 검사 → 파지/재관측/양손 전달/삽입 스킬 조합 → RGB-D와 실제 Hand 피드백으로 유지·완료 확인.
+- **현장 패키지:** 258 Python·27 fieldkit·11 native 검사 통과. 배포 파일 443개와 연결 의존성 91개를 별도 경로에서 검증했습니다. SDK 소스 빌드·모델/TCP/하중 연결 검사는 실기 조립 성공과 다릅니다.
+- **단일 상부 시뮬 카메라:** 실제 PhysX 빈 손 주차 1.408초 후 RGB-D 한 장에서 크기·중심·축을 추정했습니다. 큰 링 접근·40/70mm 이탈 기하 구성요소가 통과했고, 손–바구니 최소 8.24mm, 링–측벽 3.03mm였습니다. 가려진 공간은 삭제하지 않았습니다. 기록은 `reports/one-overhead-camera-278/`에 있습니다.
+- **GPU 연구 경로:** cuRobo 제안 0.256초·왕복 0.286초인 운반 질의 한 건이 원래 충돌 검사와 FR3 제한 검사, 추가 자기충돌 검사를 통과했습니다. 예상 이동시간 1.794초이며 이 정적 질의 자체는 로봇을 움직이지 않았습니다. LEFT IK도 원래 LEFT FK로 검증된 후보 10개를 약40ms에 받았습니다.
+- **전체 물리 작업:** 최신 무작위 시험은 파지·전달·삽입·철수 문제를 수정하며 진행 중입니다. 한 시험에서 핀/큰 링 유지와 작은 링 삽입 깊이를 확인했으나 마지막 철수 충돌로 전체 실패를 기록했습니다. 임의 80mm 하강을 실제 삽입 전 위치로 되돌리는 수정은 289개 실행 명령 검사에 통과했고 실제 전체 재시험 중입니다.
 
-실행 중 LLM agent를 호출하지 않는 프로그램 정책입니다. 가려져 확인할 수 없는 항목은 성공으로 처리하지 않습니다. 바구니 주변의 고정 장애물, 다른 팔, 실제 하중, 정지·통신 상실 조건을 유지합니다. 클램프는 실제 PLC 어댑터 또는 명시적인 작업자 조작을 사용합니다.
-
-## 두 번째 구현 체크포인트
-
-RGB-D로 생성한 파지 접근과 실제 FR3 모델의 40/70mm 수직 이탈 구성요소가 저장된 시뮬 3시점에서 통과했습니다. 단일 실물 RealSense와 실제 전체 로봇 외피/파지/작업은 미검증입니다. 이 결과를 실기 전체 성공으로 해석하면 안 됩니다. 관련 기록은 `reports/bounded-stock-component-acceptance-summary.json`과 `reports/PAYLOAD_INTEGRATION_STATUS.json`에 있습니다.
-
-새 구현은 가려진 공간을 지우지 않고, 선언된 70mm 이내 수직 이탈에서 선택 부품의 지지 접촉을 따로 처리합니다. 실제 SDK 정지·힘·시간 제한, 벽·손바닥·팔·반대 팔 검사는 유지합니다. Python250개·fieldkit27개 오프라인 검사가 통과했고, 배포 파일405개와 의존성70개를 검증했습니다.
-
-시뮬레이터에서는 RGB-D의 로봇 손 표면을 적재물로 오인하던 문제를 수정했습니다. 최신445 시험에서 두 링의 파지와 양손 전달까지 진행했으나 큰 링 정렬에서 중단되어, 3개 완료로 기록하지 않았습니다. cuRobo 장애물 회피 경로는 약0.2초 제안이 나왔고 원래 전체 충돌 검사로 검증 중입니다. 현장 패키지의 기본 실행기는 실제 SDK 모델을 사용하는 기존 경로입니다.
-
-## GPU 경로 구현 체크포인트
-
-연구 소스에 선택적 cuRobo 경로 제안과 연속 경로 전달을 추가했습니다. 저장된 운반 질의 한 건(v273)에서 GPU 제안 0.256초, 왕복 0.286초였고, 원래 전체 충돌 검사와 FR3 제한을 반영한 경로 검사를 통과했습니다. 예상 이동시간은 1.794초이며, 이 정적 검사에서는 로봇을 움직이지 않았습니다. 실제 전체 작업 시험은 별도로 진행 중입니다.
-
-큰 링 파지 깊이, 핀의 회전 대칭을 이용한 방향 선택, 바구니 전체가 보이는 영상 설정도 연구 소스에 포함합니다. 최신 무작위 배치의 3개 완료·실기 성공·20초 달성을 증명한 상태는 아닙니다. 빈 손 주차 시험은 실제 모터 속도 제한에 걸려 중단됐고, 원인 수정 중입니다. 기존 405파일 현장 배포본은 그대로 보존했습니다.
-
-## 상부 카메라와 자기충돌 수정
-
-빈 손 주차 중 같은 팔의 link5–link7 간섭을 확인하고, 원본 CAD와 명시된 충돌 제외 관계를 쓰는 자기충돌 검사를 추가했습니다. 문제 자세를 차단하며, 앞서 검증한 cuRobo 운반 경로의 862개 명령도 새 검사를 통과했습니다. 수정 후 실제 PhysX 주차 1.408초와 단일 상부 RGB-D 촬영이 완료됐습니다. 그 한 영상의 큰 링 후보는 접근·40/70mm 이탈 기하 검사를 통과했고 손–바구니 8.24mm, 링–측벽 3.03mm 간격이 남았습니다. 실제 파지 실행과 전체 SDK·실기 성공을 증명하는 결과는 아닙니다.
-
-왼팔도 동일 FR3 체인의 기준 좌표 변환을 검증해 GPU IK를 사용합니다. 원래 왼팔 FK로 검증된 후보 10개를 약40ms에 받았으며, 전체 경로·하중·한도 검사는 유지합니다. 무작위 전체 작업과 퇴각 경로 수정은 계속 시험 중입니다.
+시뮬 연구 소스·실패 기록은 [simulation_checkpoint_20261022](simulation_checkpoint_20261022/README.md)에 있습니다. 이 폴더만으로 전체 Isaac 장면이 복원된다는 뜻은 아닙니다. 현장 실행기는 측정값과 현재 영상·실제 SDK로 경로를 다시 만들며, 과거 시뮬 관절 명령을 그대로 재생하지 않습니다. 기존 봉인 배포본은 보존했습니다.

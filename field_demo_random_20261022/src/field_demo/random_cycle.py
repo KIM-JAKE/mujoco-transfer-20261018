@@ -34,7 +34,10 @@ def offset(transform,translation,*,local=False):
     return t
 
 
-def measured(record,root):
+def measured(record,root,subject=None):
+    if isinstance(record,dict)and record.get('kind')=='model_derived':
+        from .model_records import validate
+        return validate(record,root,subject=subject)
     if record.get('verified') is not True or not record.get('by') or utc_stamp(record['at_utc'])>datetime.now(timezone.utc):
         raise ValueError('Verified actual field measurement provenance required')
     evidence=Path(root)/record['evidence_file']
@@ -90,12 +93,15 @@ def validate_recipe(path,site_config=None):
         if not e['grasp_families']:raise ValueError('Measured grasp families required')
         for family in e['grasp_families']:
             if not family['name']:raise ValueError('Named measured grasp family required')
-            rigid(family['T_part_tcp']);measured(family['measurement'],root)
+            rigid(family['T_part_tcp']);measured(family['measurement'],root,subject=family)
+            if family.get('pregrasp_offset_part_m')is not None:offset(family['T_part_tcp'],family['pregrasp_offset_part_m'])
             actions=family.get('actions') or (site_config or {})['gripper_actions'][e['part']]
             for mode in ('open','release'):FrankaHand.validate_action(actions[mode])
             FrankaHand.validate_action(actions['grasp'],grasp=True)
             if actions['open']['width_m']<=actions['grasp']['width_m']+actions['grasp']['epsilon_outer_m']:raise ValueError('Opening must clear actual grasp width')
-        dimensions=e['payload_dimensions'];measured(dimensions['measurement'],root)
+        dimensions=e['payload_dimensions'];measured(dimensions['measurement'],root,subject=dimensions)
+        if e.get('shape_model_measurement'):
+            measured(e['shape_model_measurement'],root,subject=dict(capsules_part_m=e['capsules_part_m'],payload_dimensions=e['payload_dimensions']))
         for capsule in e.get('capsules_part_m') or []:
             for endpoint in ('a','b'):
                 offset(e['grasp_families'][0]['T_part_tcp'],capsule[endpoint])
@@ -143,7 +149,7 @@ def validate_live_inputs(recipe,site_config):
         envelope=inspection['uncertain_payload_dimensions'];measured(envelope['measurement'],root)
         bounded(envelope['radius_m'],.06,.3,'uncertain inventory radius');bounded(envelope['length_m'],.01,.6,'uncertain inventory length')
         for side in ('left','right'):
-            mount=inspection['native_hand_mount'][side];rigid(mount['T_flange_hand']);measured(mount['measurement'],root)
+            mount=inspection['native_hand_mount'][side];rigid(mount['T_flange_hand']);measured(mount['measurement'],root,subject=mount)
             views=inspection['relative_tcp_views'][side]
             if not 1<=len(views)<=3:raise ValueError('One to three actual checked inspection rotations required')
             for step in views:rigid(step['T_tcp_inspection']);measured(step['measurement'],root)
@@ -250,7 +256,7 @@ def run(runtime,recipe,*,single_pick=None):
                 observed=select_observation(observation,instance)
                 for family in entry['grasp_families']:
                     tcp=rigid(instance['T_cell_part'])@rigid(family['T_part_tcp'])
-                    pre=rigid(instance['T_cell_part'])@offset(family['T_part_tcp'],entry['pregrasp_offset_part_m'])
+                    pre=rigid(instance['T_cell_part'])@offset(family['T_part_tcp'],family.get('pregrasp_offset_part_m',entry['pregrasp_offset_part_m']))
                     try:
                         plan=runtime.plan('pickup',part,donor,[pre.tolist(),tcp.tolist()],observed,list(carried.values()),contact='grasp')
                     except (RuntimeError,ValueError) as error:
@@ -692,7 +698,7 @@ class LiveRuntime:
         # under the same cell control lock; exposure timestamps stay unchanged.
         before=self.sdk_state(side);tcp=rigid(self.tcp(side));hand=self.hand_status(side)
         mount=self.recipe['inventory_inspection']['native_hand_mount'][side]
-        measured(mount['measurement'],self.root)
+        measured(mount['measurement'],self.root,subject=mount)
         F=rigid(np.asarray(before['F_T_EE_column_major']).reshape(4,4,order='F'))
         robot=actual_hand_points(tcp,F,mount['T_flange_hand'],hand['width_m'])
         metadata=dict(observation['source_metadata'],source_packet_sha256=sha(source),holding_epoch=holding_epoch)

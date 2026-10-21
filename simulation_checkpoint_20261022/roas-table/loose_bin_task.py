@@ -266,6 +266,15 @@ def execute(c):
         if c.get('set_empty_donor_contact_guard'):c['set_empty_donor_contact_guard']('right',False)
         pin_path=HERE/'direct_pin_skill.py';pin=types.ModuleType('direct_pin_skill');pin.__file__=str(pin_path);exec(compile(pin_path.read_text(),str(pin_path),'exec'),pin.__dict__)
         return pin.execute(dict(c['pin_context'],step=step,config=c['config'],robot_route_hints=c['robot_route_hints'],prefetched_initial=prefetched,before_transport=clear_left_work_zone_for_pin,goal_aware_pickup=bool(c['config'].get('pin_first') or c['config'].get('pin_between_rings')),defer_retention_to_recipe=bool(c['config'].get('pin_first') or c['config'].get('pin_between_rings'))))
+    if c['config'].get('park_before_bin_pick'):
+        if c['config'].get('pin_first'):raise ValueError('Initial known-empty park must precede ring-first task')
+        park=types.ModuleType('probe_empty_park_observe');park.__file__=str(HERE/'probe_empty_park_observe.py');exec(compile(Path(park.__file__).read_text(),park.__file__,'exec'),park.__dict__)
+        parked=park.execute(c)
+        if parked.get('state')!='empty_robot_park_then_single_fixed_RGBD_observed':raise RuntimeError('No same-arm-clear known-empty camera parking route')
+        next_initial=vision.jobs[-1][1]
+        vision.calibration['initial_eye_offset_m']=[0.,0.,.80]
+        vision.calibration.update(initial_camera_width_px=768,initial_camera_height_px=768,initial_camera_span_m=.55)
+        events.append(dict(event='initial_empty_robot_park_for_fixed_overhead_RGBD',wall_s=time.perf_counter()-c['started'],physical_robot_motion_s=parked['physical_robot_motion_s'],uses_free_body_poses=False))
     pin_first=bool(c['config'].get('pin_first'));pin_report=run_pin() if pin_first else None
     if c['config'].get('adaptive_initial_ring_order') and not c['config'].get('one_ring_only') and not c['config'].get('sequential_initial_ring_selection',True):
         preview_path=HERE/'loose_ring_pick.py';preview=types.ModuleType('pickup_order_preview');preview.__file__=str(preview_path);exec(compile(preview_path.read_text(),str(preview_path),'exec'),preview.__dict__)
@@ -751,6 +760,7 @@ def execute(c):
                 safe_z=min(float(P[2]),float(goal[2]-.045))
                 target=aligned_hand([goal[0],goal[1],safe_z]) if free_yaw else frame([goal[0],goal[1],safe_z],np.eye(3))@np.linalg.inv(G)
                 yield from cartesian(target,.40,pose_feedback=True);yield from hold(.08)
+            observed_preinsert_hand=arm.fk(cmd[0,ids]).copy()
             final_hand=aligned_hand(goal) if free_yaw else frame(goal,np.eye(3))@np.linalg.inv(G)
             yield from cartesian(final_hand,.8,pose_feedback=True,allow_fixture_contact=True);yield from hold(.12)
             angular_repairs=0
@@ -782,7 +792,9 @@ def execute(c):
             release_opening=min(.08,D+.002) if part=='ring2' else .08
             yield from rows([cmd[0,ids],cmd[0,ids]],.20,release_opening);yield from hold(.25)
             H=arm.fk(cmd[0,ids])
-            if part=='ring2':H[2,3]-=.08
+            if part=='ring2':H=observed_preinsert_hand.copy()
+            # Return to the checked preinsert pose instead of extending
+            # below the validated approach and into the machine.
             else:H=H@frame([0,0,-.08],np.eye(3))
             yield from cartesian(H,.6);c['left_hand_known_empty']=True;c['set_left_force'](float(c['config'].get('native_grip_pad_force_n',30.)));results[-1]['insertion_fresh_RGBD']=p
             if part==ring_order[0] and not c['config'].get('one_ring_only') and not c['config'].get('pin_between_rings'):

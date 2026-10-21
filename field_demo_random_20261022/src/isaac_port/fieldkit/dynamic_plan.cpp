@@ -51,6 +51,11 @@ Points points(franka::Model& m,const franka::RobotState& s,const m80::Joints& q)
 void points_json(const Points& p) {
   std::cout<<'[';for(std::size_t i=0;i<p.size();++i){if(i)std::cout<<',';std::cout<<'['<<p[i][0]<<','<<p[i][1]<<','<<p[i][2]<<']';}std::cout<<']';
 }
+void frames_json(franka::Model& m,const franka::RobotState& s,const m80::Joints& q) {
+  std::cout<<'[';matrix(Matrix::Identity());
+  const std::array<franka::Frame,7> fs{franka::Frame::kJoint1,franka::Frame::kJoint2,franka::Frame::kJoint3,franka::Frame::kJoint4,franka::Frame::kJoint5,franka::Frame::kJoint6,franka::Frame::kJoint7};
+  for(const auto f:fs){std::cout<<',';matrix(pose(m,s,q,f));}std::cout<<']';
+}
 void state_json(const franka::RobotState& s) {
   std::cout<<"{\"read_only\":true,\"server_protocol_version\":10,\"q\":";array(s.q);
   std::cout<<",\"q_d\":";array(s.q_d);std::cout<<",\"dq\":";array(s.dq);std::cout<<",\"dq_d\":";array(s.dq_d);
@@ -97,7 +102,7 @@ int main(int argc,char** argv) {
     if(mode=="--read-state") {
       std::cout<<"{\"read_only\":true,\"motion_executed\":false,\"server_protocol_version\":10,\"state\":";state_json(s);
       std::cout<<",\"link_points_base_m\":";points_json(initial_points);
-      std::cout<<",\"tcp_base\":";matrix(pose(model,s,s.q_d,franka::Frame::kEndEffector));std::cout<<"}\n";return 0;
+      std::cout<<",\"link_frames_base\":";frames_json(model,s,s.q_d);std::cout<<",\"tcp_base\":";matrix(pose(model,s,s.q_d,franka::Frame::kEndEffector));std::cout<<"}\n";return 0;
     }
     std::vector<m80::Waypoint> knots{{0.,s.q_d,{},{}}};auto q=s.q_d;
     for(const auto& T:ts) {
@@ -136,7 +141,7 @@ int main(int argc,char** argv) {
       const double t=std::min(i*.001,path.duration());const auto cmd=path.evaluate(t);if(i)std::cout<<',';
       std::cout<<"{\"time_s\":"<<t<<",\"q\":";array(cmd.q);std::cout<<",\"dq\":";array(cmd.dq);
       std::cout<<",\"tcp_base\":";matrix(pose(model,s,cmd.q,franka::Frame::kEndEffector));
-      std::cout<<",\"link_points_base_m\":";points_json(points(model,s,cmd.q));std::cout<<'}';
+      std::cout<<",\"link_frames_base\":";frames_json(model,s,cmd.q);std::cout<<",\"link_points_base_m\":";points_json(points(model,s,cmd.q));std::cout<<'}';
     }
     std::cout<<"]}\n";return 0;
   }catch(const std::exception& e){std::cerr<<"Read-only dynamic model failed: "<<e.what()<<'\n';return 1;}
