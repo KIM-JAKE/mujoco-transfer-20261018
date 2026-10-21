@@ -250,30 +250,38 @@ def screen_pickup(runtime,entry,observation,carried,*,rejected_targets=None):
         if part.startswith('ring'):candidates=[v for v in candidates if v.get('geometrically_accessible')is True]
         if not candidates:raise RuntimeError('No screened pickup candidate: no unambiguous image-derived accessible '+part)
         expired=False
-        # Breadth first: a blocked wall-side ring does not consume every yaw
-        # before another exposed ring of the SAME required class is considered.
+        # A seed round visits EVERY visible instance/family target before
+        # another elbow seed is spent on the same blocked target. Otherwise
+        # four seeds on each of four rings consume16plans and starve a fifth
+        # exposed ring even though its first seed could already be clear.
+        targets=[]
         for family in entry['grasp_families']:
             for instance in candidates:
                 if old():expired=True;break
                 tcp=rigid(instance['T_cell_part'])@rigid(family['T_part_tcp'])
                 pre=rigid(instance['T_cell_part'])@offset(family['T_part_tcp'],family.get('pregrasp_offset_part_m',entry['pregrasp_offset_part_m']))
                 if any(equivalent(pre,p)and equivalent(tcp,t)for p,t in rejected_targets):continue
-                observed=select_observation(observation,instance)
-                for seed_index,seed in enumerate(seeds):
-                    if plans>=maximum:raise RuntimeError('No screened pickup candidate: bounded planning budget exhausted '+repr(failures))
-                    plans+=1
-                    try:
-                        kw={}if seed is None else dict(ik_seed=seed)
-                        plan=runtime.plan('pickup',part,side,[pre.tolist(),tcp.tolist()],observed,carried,contact=runtime.pickup_contact(part)if hasattr(runtime,'pickup_contact')else'grasp',**kw)
-                    except (RuntimeError,ValueError)as error:
-                        if old()and not isinstance(error,CollisionError)and not str(error).startswith('Read-only candidate unavailable:'):
-                            expired=True;break
-                        failures.append(str(error));continue
-                    runtime.event('pickup_candidate_selected',part=part,plans=plans,captures=captures,failed_targets=len(rejected_targets),capture_id=observation['capture_id'],family=family['name'],ik_seed_index=seed_index)
-                    return observed,family,plan,pre,tcp
-                if expired:break
-                rejected_targets.append((pre.copy(),tcp.copy()))
+                targets.append(dict(family=family,observed=select_observation(observation,instance),pre=pre,tcp=tcp,failed_seeds=0))
             if expired:break
+        for seed_index,seed in enumerate(seeds):
+            if expired:break
+            for target in targets:
+                if old():expired=True;break
+                if plans>=maximum:raise RuntimeError('No screened pickup candidate: bounded planning budget exhausted '+repr(failures))
+                plans+=1;family=target['family'];observed=target['observed'];pre=target['pre'];tcp=target['tcp']
+                try:
+                    kw={}if seed is None else dict(ik_seed=seed)
+                    plan=runtime.plan('pickup',part,side,[pre.tolist(),tcp.tolist()],observed,carried,contact=runtime.pickup_contact(part)if hasattr(runtime,'pickup_contact')else'grasp',**kw)
+                except (RuntimeError,ValueError)as error:
+                    if old()and not isinstance(error,CollisionError)and not str(error).startswith('Read-only candidate unavailable:'):
+                        expired=True;break
+                    failures.append(str(error));target['failed_seeds']+=1
+                    # Partial seed failure does not blacklist a target that
+                    # still has untried bounded read-only IK alternatives.
+                    if target['failed_seeds']==len(seeds):rejected_targets.append((pre.copy(),tcp.copy()))
+                    continue
+                runtime.event('pickup_candidate_selected',part=part,plans=plans,captures=captures,failed_targets=len(rejected_targets),capture_id=observation['capture_id'],family=family['name'],ik_seed_index=seed_index,search_schedule='visible_targets_before_next_seed',screened_targets=len(targets))
+                return observed,family,plan,pre,tcp
         if captures>=maxcaptures:raise RuntimeError('No screened pickup candidate: '+repr(failures))
         observation=check_observation(runtime,runtime.observe('pin_holder'if part=='pin'else'basket',part,side=side));captures+=1
 

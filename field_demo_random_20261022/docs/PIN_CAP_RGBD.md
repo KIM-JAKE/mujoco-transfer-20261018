@@ -43,3 +43,11 @@ PYTHONPATH=src python tools/replay_pin_cap_component.py --compare-icp
 ```
 
 입력은 모두 패키지 안에 있습니다. SDK/카메라/로봇에 접속하지 않으며 live freshness나 하드웨어 성공 증빙을 만들지 않습니다. [결과](../reports/pin-cap-public-detector-replay.json)와 [통합 상태](../reports/pin-cap-integration-status.json)를 확인합니다.
+
+## 현장 핀 치수와 시뮬 충돌 근사 구분
+
+이 검출기의 알려진 끝면 반경은 처음 관측5.25mm, 파지 후 관측2.50mm이며 끝면에서 대칭축 중점까지17.75mm입니다. 원래 클래스 CAD와 다른 끝면·길이를 가진 핀에 그대로 적용하지 않습니다. 기본 ICP도 같은 원래 클래스 CAD를 사용합니다.
+
+별도 시뮬 핀의 **공칭8mm 축을7.6mm 원통으로 근사한 충돌 여유**는 현장 핀이나8mm 보어의 끼움 보장이 아닙니다. 이 현장 패키지의 인식은 원래 CAD 표면이고, 충돌 프리셋은 원래 고밀도 CAD4그룹을 감싸는 형상입니다. 축을7.6mm로 줄이는 설정을 사용하지 않습니다. CAD 메시 자체의 단면·슬릿·테셀레이션과 실제 부품 공차는 동일한 의미가 아닙니다.
+
+시운전 때 실제 축/보어 치수와 끝면·길이를 확인하고 설치 확인 기록의 부품 CAD 일치 근거에 남기세요. 실제 더 큰 형상은 `random-cycle.json`/`random-motion.json`의 검증된 `payload_dimensions`·`capsules_part_m`로 보수적으로 감쌀 수 있습니다. 이것은 인식 클래스의 끝면 반경을 바꾸는 설정이 아닙니다. 끝면·길이가 다르면 cap 모드를 켜지 말고 실제 클래스 CAD/검출기 설정을 갱신한 뒤 프로파일을 다시 결합해야 합니다. 원래 CAD와 다른데 일치 확인을 채우지 않습니다.

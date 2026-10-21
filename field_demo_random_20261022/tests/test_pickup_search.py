@@ -65,4 +65,54 @@ class NativeFailureTests(unittest.TestCase):
         with patch.object(random_planner.subprocess,'run',side_effect=error):
             with self.assertRaises(subprocess.CalledProcessError):random_planner.run_native('/not-run','--read-model','192.0.2.1',[np.eye(4)])
 
+
+class MultiInstanceSeedFairness(unittest.TestCase):
+    """Real screening function with explicit fake RGBD/SDK/planner outcomes."""
+    def setUp(self):
+        self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
+        self.recipe=fixture.recipe();self.recipe.update(pickup_search_max_plans=16,pickup_search_max_captures=2,
+            pickup_ik_seed_offsets_rad=[[0.]*7,[.2,0,0,0,0,0,0],[-.2,0,0,0,0,0,0],[0,.15,0,0,0,0,0]])
+        self.runtime=fixture.FakeRuntime(Path(self.temp.name),self.recipe);self.runtime.replay=False
+        self.runtime.sdk_state=lambda side:dict(state=dict(q_d=[0.,-.5,0.,-1.5,0.,2.,0.]))
+        original=self.runtime.observe
+        def observe(*args,**kwargs):
+            result=original(*args,**kwargs);base=result['instances'][0];values=[]
+            for i in range(5):
+                item=copy.deepcopy(base);item['instance_id']=result['capture_id']+':fake-visible-ring-'+str(i)
+                item['T_cell_part'][0][3]=.15+.05*i;values.append(item)
+            result['instances']=values;return result
+        self.runtime.observe=observe;self.entry=self.recipe['parts'][0]
+    def test_fifth_exposed_ring_gets_first_seed_before_blocked_rings_get_second(self):
+        seen=[]
+        def plan(*args,**kwargs):
+            key=args[4]['selected_instance']['instance_id'];seen.append((key,kwargs['ik_seed']))
+            if not key.endswith('-4'):raise policy.CollisionError('Explicit fake residual UNKNOWN blocks this candidate')
+            return dict(phase='pickup',proof='fake planner accepted; no hardware')
+        self.runtime.plan=plan
+        selected=policy.screen_pickup(self.runtime,self.entry,self.runtime.observe('basket','ring1',side='right'),[])
+        self.assertTrue(selected[0]['selected_instance']['instance_id'].endswith('-4'));self.assertEqual(len(seen),5)
+        self.assertEqual(len({tuple(seed)for _,seed in seen}),1)
+        self.assertFalse(any(e[0]in('hand','move')for e in self.runtime.events))
+    def test_partial_seed_failure_does_not_blacklist_later_ik_branch(self):
+        seen=[];rejected=[]
+        def plan(*args,**kwargs):
+            key=args[4]['selected_instance']['instance_id'];seed=kwargs['ik_seed'];seen.append((key,seed))
+            if len(seen)<=5:raise policy.CollisionError('Explicit fake initial elbow path blocked')
+            return dict(phase='pickup',proof='fake second-seed path accepted')
+        self.runtime.plan=plan
+        selected=policy.screen_pickup(self.runtime,self.entry,self.runtime.observe('basket','ring1',side='right'),[],rejected_targets=rejected)
+        self.assertEqual(len(seen),6);self.assertTrue(selected[0]['selected_instance']['instance_id'].endswith('-0'))
+        self.assertNotEqual(seen[0][1],seen[5][1]);self.assertEqual(rejected,[])
+        self.assertFalse(any(e[0]in('hand','move')for e in self.runtime.events))
+    def test_all_unknown_still_stops_at_original_plan_budget(self):
+        seen=[]
+        def plan(*args,**kwargs):
+            seen.append(args[4]['selected_instance']['instance_id'])
+            raise policy.CollisionError('Explicit fake UNKNOWN occupancy remains blocked')
+        self.runtime.plan=plan
+        with self.assertRaisesRegex(RuntimeError,'bounded planning budget exhausted'):
+            policy.screen_pickup(self.runtime,self.entry,self.runtime.observe('basket','ring1',side='right'),[])
+        self.assertEqual(len(seen),16);self.assertEqual(len(set(seen[:5])),5)
+        self.assertFalse(any(e[0]in('hand','move')for e in self.runtime.events))
+
 if __name__=='__main__':unittest.main()

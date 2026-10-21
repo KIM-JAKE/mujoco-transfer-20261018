@@ -1,0 +1,16 @@
+E
+======================================================================
+ERROR: test_fifth_exposed_ring_gets_first_seed_before_blocked_rings_get_second (test_pickup_search.MultiInstanceSeedFairness.test_fifth_exposed_ring_gets_first_seed_before_blocked_rings_get_second)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/gpuadmin/workspace/jake/field-demo-random-fair-search-20261022/tests/test_pickup_search.py", line 92, in test_fifth_exposed_ring_gets_first_seed_before_blocked_rings_get_second
+    selected=policy.screen_pickup(self.runtime,self.entry,self.runtime.observe('basket','ring1',side='right'),[])
+  File "immutable561_screen_pickup", line 263, in screen_pickup
+    if any(equivalent(pre,p)and equivalent(tcp,t)for p,t in rejected_targets):continue
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: No screened pickup candidate: bounded planning budget exhausted ['Explicit fake residual UNKNOWN blocks this candidate', 'Explicit fake residual UNKNOWN blocks this candidate', 'Explicit fake residual UNKNOWN blocks this candidate', 'Explicit fake residual UNKNOWN blocks this candidate', 'Explicit fake residual UNKNOWN blocks this candidate', 'Explicit fake residual UNKNOWN blocks this candidate', 'Explicit fake residual UNKNOWN blocks this candidate', 'Explicit fake residual UNKNOWN blocks this candidate', 'Explicit fake residual UNKNOWN blocks this candidate', 'Explicit fake residual UNKNOWN blocks this candidate', 'Explicit fake residual UNKNOWN blocks this candidate', 'Explicit fake residual UNKNOWN blocks this candidate', 'Explicit fake residual UNKNOWN blocks this candidate', 'Explicit fake residual UNKNOWN blocks this candidate', 'Explicit fake residual UNKNOWN blocks this candidate', 'Explicit fake residual UNKNOWN blocks this candidate']
+
+----------------------------------------------------------------------
+Ran 1 test in 0.005s
+
+FAILED (errors=1)

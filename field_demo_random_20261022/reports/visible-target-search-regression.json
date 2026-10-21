@@ -1,0 +1,23 @@
+{
+  "scope": "OFFLINE explicit fake RGBD/SDK/read-only planner fixtures exercise actual screen_pickup; no physical camera, native motion or hardware.",
+  "hardware_execution_attempted": false,
+  "hardware_tested": false,
+  "field_ready": false,
+  "focused_tests_passed": 22,
+  "regressions": [
+    "5same-class visible rings \u00d74bounded IK seeds \u00d716plan budget: fifth clear target tried onplan5 before secondseed",
+    "partial firstseed failure does not blacklist target before secondseed",
+    "allUNKNOWN staysblocked; original16plan budget enforced; noarm/Handcalls"
+  ],
+  "immutable561_baseline_same_test": "EXPECTED FAILURE: bounded planning budget exhausted before fifth target",
+  "new_policy_same_test": "PASS",
+  "unchanged_safety_module_sha256": {
+    "residual_occupancy.py": "c50ba92d0b5f56c2ddab8a960034a4a94159c63afbdbb2fcae8818c4bd97c798",
+    "stock_contact.py": "c546dd616a949703aabf2aed0c4e7dda305127a6ffe2078574727efd3bcac1ee",
+    "stock_departure.py": "c6c8fabdbe29b7020bf5fc06784b0160f7d2f28ac051be202e4e22786516fb31",
+    "random_planner.py": "751e777d78850ff18df1e0a487be0bbb449f62803b1965a8633543506ab0e059",
+    "selected_inventory_guard.py": "0792092135f12030dddc6216805d786e24d37c76abccfaa470b275ee7de17773",
+    "ik_branches.py": "811b2b66e0575af62b3755366e9086856cf1597f377a27ff93b1de23b18f4fc2"
+  },
+  "remaining_limit": "No new actual full-arm field approach, grasp or assembly proof. Current recorded whole-arm approach remains blocked by genuine retained UNKNOWN; this fix only improves bounded candidate scheduling."
+}
