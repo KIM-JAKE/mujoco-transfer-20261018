@@ -84,13 +84,21 @@ int main(int argc,char** argv) {
       std::cout<<"m80_dynamic_plan --check-targets TARGETS.txt\n"
        <<"m80_dynamic_plan --read-state ROBOT_IP\n"
        <<"m80_dynamic_plan --read-model ROBOT_IP TARGETS.txt\n"
+       <<"Optional read-model suffix: --ik-seed Q1 Q2 Q3 Q4 Q5 Q6 Q7 (IK only; trajectory still starts at actual desired q).\n"
        <<"READ ONLY. Native C2 samples, SDK FK, and velocity bounds; no collision or hardware readiness claim.\n";return 0;
     }
     if(argc==3 && mode=="--check-targets") {
       const auto ts=targets(argv[2]);std::cout<<"{\"targets_valid\":true,\"count\":"<<ts.size()<<",\"robot_connected\":false}\n";return 0;
     }
-    if(!((argc==3 && mode=="--read-state") || (argc==4 && mode=="--read-model")))throw std::runtime_error("Explicit --read-state or --read-model required; see --help");
+    const bool explicit_seed=mode=="--read-model" && argc==12 && std::string(argv[4])=="--ik-seed";
+    if(!((argc==3 && mode=="--read-state") || ((argc==4 || explicit_seed) && mode=="--read-model")))throw std::runtime_error("Explicit --read-state or --read-model required; see --help");
     const auto ts=mode=="--read-model"?targets(argv[3]):std::vector<Matrix>{};
+    m80::Joints ik_seed{};
+    if(explicit_seed)for(std::size_t j=0;j<7;++j) {
+      std::size_t n=0;ik_seed[j]=std::stod(argv[5+j],&n);
+      if(n!=std::string(argv[5+j]).size() || !std::isfinite(ik_seed[j]) || ik_seed[j]<m80::lower[j]+.001 || ik_seed[j]>m80::upper[j]-.001)
+        throw std::runtime_error("IK seed must be finite and inside FR3 joint limits");
+    }
     franka::Robot robot(argv[2],franka::RealtimeConfig::kIgnore);
     if(robot.serverVersion()!=10)throw std::runtime_error("FR3 protocol 10 required");
     const auto s=robot.readOnce();m80::require_idle_mode(s.robot_mode);
@@ -106,7 +114,7 @@ int main(int argc,char** argv) {
     }
     std::vector<m80::Waypoint> knots{{0.,s.q_d,{},{}}};auto q=s.q_d;
     for(const auto& T:ts) {
-      const auto goal=solve(model,s,T,q);double h=2.;bool valid=false;
+      const auto goal=solve(model,s,T,(explicit_seed && knots.size()==1)?ik_seed:q);double h=2.;bool valid=false;
       for(;h<=60.;h+=.5) {
         try {m80::Trajectory({{0.,q,{},{}},{h,goal,{},{}}}).validate(.1);valid=true;break;}
         catch(const std::exception&) {}
@@ -131,6 +139,7 @@ int main(int argc,char** argv) {
     }
     std::cout<<"{\"read_only\":true,\"motion_executed\":false,\"hardware_ready\":false,\"collision_checked\":false,\"server_protocol_version\":10,\"continuous_10percent_checked\":true,\"state\":";
     state_json(s);std::cout<<",\"q_start\":";array(s.q_d);
+    std::cout<<",\"ik_seed\":";if(explicit_seed)array(ik_seed);else std::cout<<"null";
     std::cout<<",\"duration_s\":"<<path.duration()<<",\"sample_dt_s\":0.001,\"joint_velocity_bound_rad_s\":";array(velocities);
     std::cout<<",\"link_segment_lengths_m\":";array(lengths);
     std::cout<<",\"link_point_speed_bounds_m_s\":";array(speeds);

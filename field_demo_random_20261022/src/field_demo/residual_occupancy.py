@@ -352,8 +352,13 @@ def build_occupancy(packet, metadata, bounds_cell_m, *, voxel_size_m=.008, depth
             raise ValueError('Selected contact requires a boolean pixel mask and observed-pose class CAD surface samples')
         if corridor.shape != (2, 3) or not np.isfinite(corridor).all() or np.any(corridor[0] >= corridor[1]) or np.any(corridor[1] - corridor[0] > .15) or not .0001 <= tolerance <= .003:
             raise ValueError('Selected contact requires a bounded corridor and at-most3mm surface shell')
-        distance = cKDTree(surface).query(points)[0] if len(points) else np.array([])
-        allowed_pixels = mask[vv, uu] & (distance <= tolerance) & ((points >= corridor[0]) & (points <= corridor[1])).all(1)
+        # Only these pixels can satisfy the original conjunction. Querying
+        # all basket points wastes time and can age the real frame out before
+        # planning; this prefilter preserves every selected/unselected label.
+        eligible = mask[vv, uu] & ((points >= corridor[0]) & (points <= corridor[1])).all(1)
+        distance = np.full(len(points), np.inf)
+        if eligible.any():distance[eligible] = cKDTree(surface).query(points[eligible])[0]
+        allowed_pixels = eligible & (distance <= tolerance)
         selected[np.unique(flat[allowed_pixels])] = 1
     unselected[np.unique(flat[~allowed_pixels])] = 1
     selected[unselected == 1] = 0

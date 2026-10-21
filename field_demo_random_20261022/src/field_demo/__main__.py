@@ -8,7 +8,7 @@ import sys
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[2]
-MODULES = {'model-preset':'field_demo.model_preset','commissioning-test': 'field_demo.commissioning_test', 'doctor': 'field_demo.doctor', 'run': 'field_demo.execution',
+MODULES = {'low-speed-profile':'field_demo.low_speed_profile','model-preset':'field_demo.model_preset','commissioning-test': 'field_demo.commissioning_test', 'doctor': 'field_demo.doctor', 'run': 'field_demo.execution',
            'camera': 'field_demo.camera', 'calibration': 'field_demo.calibration',
            'observe': 'field_demo.observations', 'motion': 'field_demo.motion',
            'handover': 'field_demo.handover',

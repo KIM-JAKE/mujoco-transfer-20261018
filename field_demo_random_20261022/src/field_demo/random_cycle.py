@@ -230,6 +230,11 @@ def screen_pickup(runtime,entry,observation,carried,*,rejected_targets=None):
     rejected_targets=rejected_targets if rejected_targets is not None else []
     part=entry['part'];side=entry['pickup_side'];failures=[];plans=0;captures=1
     maximum=int(runtime.recipe.get('pickup_search_max_plans',16));maxcaptures=int(runtime.recipe.get('pickup_search_max_captures',2))
+    seeds=[None]
+    if runtime.recipe.get('pickup_ik_seed_offsets_rad')is not None and not runtime.replay:
+        from .ik_branches import candidates
+        raw=runtime.sdk_state(side);state=raw.get('state',raw)
+        seeds=candidates(state['q_d'],runtime.recipe['pickup_ik_seed_offsets_rad'])
     if not 1<=maximum<=40 or not 1<=maxcaptures<=4:raise ValueError('Bounded pickup search plan/capture budgets required')
     def equivalent(a,b):
         return (np.linalg.norm(a[:3,3]-b[:3,3])<=runtime.recipe['target_position_tolerance_m']and
@@ -249,15 +254,21 @@ def screen_pickup(runtime,entry,observation,carried,*,rejected_targets=None):
                 tcp=rigid(instance['T_cell_part'])@rigid(family['T_part_tcp'])
                 pre=rigid(instance['T_cell_part'])@offset(family['T_part_tcp'],family.get('pregrasp_offset_part_m',entry['pregrasp_offset_part_m']))
                 if any(equivalent(pre,p)and equivalent(tcp,t)for p,t in rejected_targets):continue
-                if plans>=maximum:raise RuntimeError('No screened pickup candidate: bounded planning budget exhausted '+repr(failures))
-                observed=select_observation(observation,instance);plans+=1
-                try:plan=runtime.plan('pickup',part,side,[pre.tolist(),tcp.tolist()],observed,carried,contact=runtime.pickup_contact(part)if hasattr(runtime,'pickup_contact')else'grasp')
-                except (RuntimeError,ValueError)as error:
-                    if old()and not isinstance(error,CollisionError)and not str(error).startswith('Read-only candidate unavailable:'):
-                        expired=True;break  # stale information is not a failed physical target
-                    failures.append(str(error));rejected_targets.append((pre.copy(),tcp.copy()));continue
-                runtime.event('pickup_candidate_selected',part=part,plans=plans,captures=captures,failed_targets=len(rejected_targets),capture_id=observation['capture_id'],family=family['name'])
-                return observed,family,plan,pre,tcp
+                observed=select_observation(observation,instance)
+                for seed_index,seed in enumerate(seeds):
+                    if plans>=maximum:raise RuntimeError('No screened pickup candidate: bounded planning budget exhausted '+repr(failures))
+                    plans+=1
+                    try:
+                        kw={}if seed is None else dict(ik_seed=seed)
+                        plan=runtime.plan('pickup',part,side,[pre.tolist(),tcp.tolist()],observed,carried,contact=runtime.pickup_contact(part)if hasattr(runtime,'pickup_contact')else'grasp',**kw)
+                    except (RuntimeError,ValueError)as error:
+                        if old()and not isinstance(error,CollisionError)and not str(error).startswith('Read-only candidate unavailable:'):
+                            expired=True;break
+                        failures.append(str(error));continue
+                    runtime.event('pickup_candidate_selected',part=part,plans=plans,captures=captures,failed_targets=len(rejected_targets),capture_id=observation['capture_id'],family=family['name'],ik_seed_index=seed_index)
+                    return observed,family,plan,pre,tcp
+                if expired:break
+                rejected_targets.append((pre.copy(),tcp.copy()))
             if expired:break
         if captures>=maxcaptures:raise RuntimeError('No screened pickup candidate: '+repr(failures))
         observation=check_observation(runtime,runtime.observe('pin_holder'if part=='pin'else'basket',part,side=side));captures+=1
@@ -749,7 +760,7 @@ class LiveRuntime:
             if not isinstance(settings,dict):raise ValueError('Actual basket residual occupancy settings required')
             camera_packet=dict(packet,T_cell_camera=config['T_cell_camera'])
             occupancy_metadata=dict(metadata,source_packet_sha256=sha(path),scene_epoch=self.scene_epoch,cell_frame=config['cell_frame'],depth_uncertainty_m=settings['depth_uncertainty_m'])
-            snapshot=build_occupancy(camera_packet,occupancy_metadata,config['basket']['outer_bounds_cell_m'],voxel_size_m=settings['voxel_size_m'],depth_margin_m=settings['depth_margin_m'],max_age_s=self.recipe['max_observation_age_s'])
+            snapshot=build_occupancy(camera_packet,occupancy_metadata,config['basket']['outer_bounds_cell_m'],voxel_size_m=settings['voxel_size_m'],depth_margin_m=settings['depth_margin_m'],max_age_s=self.recipe['max_observation_age_s'],max_voxels=settings.get('max_voxels',1000000))
             result['residual_occupancy']=snapshot.to_record();result['basket_scene_status']='conservative_RGBD_residual_occupancy';result['unobserved_geometry_enclosed']=True;result['conservative_scene_obstacles']=[]
             result['residual_occupancy_metadata']=occupancy_metadata
             if sdk_bracket is not None:
@@ -824,7 +835,7 @@ class LiveRuntime:
             mask&=distances+.0005<competitor
         bounds=np.array([surface.min(0)-.002,surface.max(0)+.002]);settings=config['residual_occupancy']
         contact=dict(capture_id=observation['capture_id'],instance_id=selected['instance_id'],surface_mask=mask,cad_surface_points_cell_m=surface,contact_bounds_cell_m=bounds,shell_tolerance_m=tolerance)
-        snapshot=build_occupancy(packet,observation['residual_occupancy_metadata'],config['basket']['outer_bounds_cell_m'],voxel_size_m=settings['voxel_size_m'],depth_margin_m=settings['depth_margin_m'],selected_contact=contact,max_age_s=self.recipe['max_observation_age_s'])
+        snapshot=build_occupancy(packet,observation['residual_occupancy_metadata'],config['basket']['outer_bounds_cell_m'],voxel_size_m=settings['voxel_size_m'],depth_margin_m=settings['depth_margin_m'],selected_contact=contact,max_age_s=self.recipe['max_observation_age_s'],max_voxels=settings.get('max_voxels',1000000))
         result=copy.deepcopy(observation);result['residual_occupancy']=snapshot.to_record()
         if result.get('known_hand_surface')is not None:
             from .known_hand_capture import associate
@@ -974,11 +985,12 @@ class LiveRuntime:
         finally:self._static_scene_lease=None;self.scene_epoch=uuid.uuid4().hex
     def pickup_contact(self,part):
         return 'strict_empty_approach'if getattr(self,'static_scene_options',None)is not None and part.startswith('ring')else'grasp'
-    def plan(self,phase,part,side,targets,observation,held_parts,*,contact=None):
+    def plan(self,phase,part,side,targets,observation,held_parts,*,contact=None,ik_seed=None):
         self.ready()
         self._profile_check()
         observation=self._selected_record(observation)
         options={}
+        if ik_seed is not None:options['ik_seed']=ik_seed
         if getattr(self,'width_aware',False):
             from .hand_aperture import binding
             options['aperture_binding']=binding({s:self.hand_status(s)for s in ['left','right']})
@@ -1132,7 +1144,7 @@ class ReplayRuntime(LiveRuntime):
         result.update(_scope=scope,_part=part,_side=side,source_packet=str(snapshot),source_packet_sha256=sha(snapshot),source_metadata_file=str(snapshot.with_suffix('.json')),
             source_metadata_sha256=sha(snapshot.with_suffix('.json')),_camera_config_path=str(camera_path.resolve()))
         return self._record(result)
-    def plan(self,phase,part,side,targets,observation,held_parts,*,contact=None):
+    def plan(self,phase,part,side,targets,observation,held_parts,*,contact=None,ik_seed=None):
         for t in targets:rigid(t)
         return dict(replay_contract_only=True,phase=phase,part=part,side=side,targets=targets,
                     collision_certified=False,hardware_command_allowed=False)

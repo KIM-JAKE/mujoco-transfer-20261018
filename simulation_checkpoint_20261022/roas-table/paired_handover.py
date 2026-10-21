@@ -32,6 +32,13 @@ def plan(c, part, grasp,donor_release_width=.08):
     diameter = float(c['art'].get_dof_positions()[0,c['fi']].sum())
     receiver_opening=native_receiver_opening(c,part)
     reference = np.array(row['part_H'])
+    temporary_holder=bool(part=='ring1' and c['config'].get('temporary_axial_double_handover_component'))
+    preorient_large=bool(part=='ring1' and (c['config'].get('large_handover_part_axis_aligned') or temporary_holder))
+    if preorient_large:
+        # The donor physically establishes the final part orientation BEFORE
+        # transfer. Receiver/contact geometry remains relative to this part.
+        reference[:3,:3]=np.eye(3)
+    if temporary_holder:reference[:3,3]+=[-.10,0.,-.20]
     receiver_grasp = np.linalg.inv(left.fk(row['left_receive_q'])) @ reference
     initial_rotation = right.fk(rq0)[:3, :3]
     a, b = initial_rotation @ grasp[:3, 2], reference[:3, 2]
@@ -45,11 +52,13 @@ def plan(c, part, grasp,donor_release_width=.08):
     tilts = [np.eye(3)] + [exp(np.array(axis) * angle)
         for angle in [np.pi/3, -np.pi/3, np.pi/2, -np.pi/2,np.pi,-np.pi*3/4,np.pi*3/4]
         for axis in [[1., 0, 0], [0, 1., 0]]]
+    if preorient_large:tilts=[np.eye(3)]
     offsets = [[0, 0, 0], [0, 0, .15], [0, 0, -.10], [.10, 0, -.10],
                [.05, -.10, -.10], [0, -.10, -.15], [-.05, 0, -.10],
                [.10, -.10, -.15], [0, 0, .10]]
     if part=='ring2':offsets=[[.20,-.15,-.05],[.10,-.15,-.05],[.10,-.10,0.],[0,0,0.]]+offsets
     if part=='ring2' and c['config'].get('handover_offsets_override'):offsets=c['config']['handover_offsets_override']
+    if temporary_holder:offsets=[[0.,0.,0.]]
     pair_rejections={};insertion_cache={}
     started = time.perf_counter()
     budget = float(c['config'].get('handover_plan_budget_s', 4.))
@@ -109,6 +118,7 @@ def plan(c, part, grasp,donor_release_width=.08):
                     receiver_solutions=[]
                     receiver_seeds=[row['left_receive_q'],lq0]+[np.asarray(row['left_receive_q'])+np.eye(7)[2]*delta for delta in [-.6,.6,-1.2,1.2]]
                     if use_hint:receiver_seeds.insert(0,SMALL_HANDOVER_HINT['left_seed'])
+                    if temporary_holder:receiver_seeds+=list(np.random.default_rng(317).uniform(left.bounds[:,0],left.bounds[:,1],(8,7)))
                     for receiver_seed in receiver_seeds:
                         solution=left.solve(target_left[:3,3],target_left[:3,:3],receiver_seed)
                         if solution is not None and all(np.linalg.norm(solution-old)>.025 for old in receiver_solutions):receiver_solutions.append(solution)
@@ -133,26 +143,27 @@ def plan(c, part, grasp,donor_release_width=.08):
                             lc.payload_path,lc.payload_rows,lc.payload_boxes,lc.payload_relative=saved_payload
                         if not receiver_solutions:continue
                     lq=receiver_solutions[0]
-                    insertion_hand = np.asarray(row['approach_ring_poses'])[-1] @ np.linalg.inv(new_grasp)
-                    key=np.round(new_grasp,8).tobytes()
-                    insertion_q=insertion_cache.get(key)
-                    if key not in insertion_cache:
-                        for insertion_hand,_ in insertion_pose_options(c,part,new_grasp):
-                            insertion_seeds=[row['left_insert_seed'],lq,lq0]
-                            insertion_seeds+=list(np.random.default_rng(36109).uniform(left.bounds[:,0],left.bounds[:,1],(4,7)))
-                            for insertion_seed in insertion_seeds:
-                                candidate_q=left.solve(insertion_hand[:3,3],insertion_hand[:3,:3],insertion_seed)
-                                if candidate_q is None:continue
-                                # Newly proposed depths have no nominal catalog
-                                # fixture certificate. Check actual candidate
-                                # full robot/fixed/self geometry before grasp.
-                                if not lc.clear(candidate_q,max(receiver_width,receiver_opening))[0]:continue
-                                insertion_q=candidate_q;break
-                            if insertion_q is not None:break
-                        insertion_cache[key]=insertion_q
-                    if insertion_q is None:
-                        counts['insertion_ik'] += 1
-                        continue
+                    if not temporary_holder:
+                        insertion_hand = np.asarray(row['approach_ring_poses'])[-1] @ np.linalg.inv(new_grasp)
+                        key=np.round(new_grasp,8).tobytes()
+                        insertion_q=insertion_cache.get(key)
+                        if key not in insertion_cache:
+                            for insertion_hand,_ in insertion_pose_options(c,part,new_grasp):
+                                insertion_seeds=[row['left_insert_seed'],lq,lq0]
+                                insertion_seeds+=list(np.random.default_rng(36109).uniform(left.bounds[:,0],left.bounds[:,1],(4,7)))
+                                for insertion_seed in insertion_seeds:
+                                    candidate_q=left.solve(insertion_hand[:3,3],insertion_hand[:3,:3],insertion_seed)
+                                    if candidate_q is None:continue
+                                    # Newly proposed depths have no nominal catalog
+                                    # fixture certificate. Check actual candidate
+                                    # full robot/fixed/self geometry before grasp.
+                                    if not lc.clear(candidate_q,max(receiver_width,receiver_opening))[0]:continue
+                                    insertion_q=candidate_q;break
+                                if insertion_q is not None:break
+                            insertion_cache[key]=insertion_q
+                        if insertion_q is None:
+                            counts['insertion_ik'] += 1
+                            continue
                     for rotation,position in donor_targets:
                         donor_solutions=[]
                         for seed in seeds:

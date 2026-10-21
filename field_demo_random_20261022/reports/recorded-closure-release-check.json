@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-21T20:06:24.424461+00:00",
+  "package": "field-demo-random-recorded-closure-20261022",
+  "upstream_sealed_484_manifest_sha256": "ad48d31a17e22a28d748488e33f437d0433c3b1b5ebbc14ae3adb8ea0066c55d",
+  "upstream_unchanged": true,
+  "hardware_execution_attempted": false,
+  "hardware_tested": false,
+  "field_ready": false,
+  "full_approach_verified": false,
+  "closure_verified_on_real_recorded_map": false,
+  "default_tracking_error_rad": 0.02,
+  "optional_commissioning_tracking_error_rad": 0.005,
+  "actual_two_arm_tracking_stop_records_required": true,
+  "runtime_changes": [
+    "explicit_default_1M_residual_voxel_budget_with_unchanged_cells_and_margins",
+    "candidate_only_KD_search_identical_serialized_occupancy",
+    "optional5mrad_common_native_planner_Hand_tracking_guard",
+    "bounded_read_only_native_IK_seed_alternatives_with_actual_qd_start"
+  ],
+  "checks": {
+    "final_focused_python": 20,
+    "prior_affected_regression": {
+      "random_cycle": 11,
+      "random_planner": 24,
+      "residual_occupancy": 10
+    },
+    "native_final_build": true,
+    "native_ctest": 11,
+    "portable_two_view_replay": true
+  },
+  "records": {
+    "KD_equivalence": "reports/recorded-occupancy-patch-regression.json",
+    "two_view_campaign": "reports/recorded-two-view-alternate-branches.json",
+    "exact_unknown_cells": "reports/recorded-two-view-exact-cell-blocker.json"
+  },
+  "two_view_scope": "OFFLINE only,2 virtual same-snapshot calibrated SIM camera images; occupied wins; no live multi-camera lease integration",
+  "two_view_branches": 24,
+  "IK_solved": 21,
+  "admitted_endpoint_count": 0,
+  "lease_or_Hand_dispatch_reached": false,
+  "relocation_verification": {
+    "directory": "/tmp/field-recorded-closure-relocation-20261022-ayqsqhn9/portable-package",
+    "manifest_copy_files": 522,
+    "verify": {
+      "state": "checksums_pass",
+      "checked_files": 522,
+      "changed_or_missing": []
+    },
+    "profile": {
+      "profile_id": "v128-stopped-payload-experimental",
+      "source_run": "native-roas-table-scatter-speed-v128-closer-transfer-445",
+      "simulation_wall_elapsed_s": 43.533158828970045,
+      "hardware_tested": false,
+      "physical_cycle_time_claimed": false,
+      "state": "compatible_profile_checked",
+      "dependencies": 102,
+      "hardware_ready": false
+    },
+    "portable_two_view_replay": {
+      "scope": "OFFLINE two virtual SIM camera ray-fusion component only; no live lease or hardware",
+      "hardware_tested": false,
+      "robot_command_sent": false,
+      "physical_camera_count_proof": false,
+      "overhead_unknown": 76085,
+      "fused_unknown": 66082,
+      "actual_rays_clear_unknown": 4573,
+      "all_original_occupied_preserved": true,
+      "all_global_occupied_preserved": true,
+      "source_count": 2,
+      "oldest_source_utc": "2026-10-21T20:06:40.998809+00:00",
+      "full_approach_verified": false,
+      "field_ready": false
+    },
+    "new_unconfigured_site_and_optin_profile_generation_pass": true,
+    "original20mrad_preserved": true,
+    "hardware_calls": false
+  }
+}

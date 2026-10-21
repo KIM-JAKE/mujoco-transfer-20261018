@@ -353,6 +353,15 @@ def _receiver_depth_options(c,part):
 
 
 def receiving_poses(c, part, incoming):
+    if part=='ring1' and c.get('config',{}).get('temporary_axial_double_handover_component'):
+        # Temporary holder NEVER inserts: use actual bilateral axial caps,
+        # not the irrelevant final-jig receiver catalog.
+        from axial_rim_receiver import geometric_candidates
+        for target,G,width,metadata in geometric_candidates(c,part,incoming):
+            yaw,sign,rho,_=metadata
+            if abs(yaw)<1e-8 and sign==1. and abs(rho-.0345)<1e-8:
+                yield target,metadata
+        return
     if c.get('config',{}).get('receiver_axial_only'):
         from axial_rim_receiver import receiving_poses as axial_poses
         yield from axial_poses(c,part,incoming)
@@ -416,6 +425,20 @@ def receiving_poses(c, part, incoming):
         # nominal IK miss must not suppress physically admissible new branches.
         centered=[(0.,0.,centered_chord,float(depth)) for depth in depths]
         rows=centered+[r for r in rows if not any(np.allclose(r,p,atol=1e-9) for p in centered)]
+    if part=='ring1' and c.get('config',{}).get('native_large_receiver_tilt25_only'):
+        # Two bounded native-specific proposals. Their 3.5 mm COM offset
+        # keeps the finite native fingers clear of the original 0540 fixture;
+        # 25 degrees is reachable where the straight axial family was not.
+        # This diagnostic mode has no legacy tilted-posture fallback: every
+        # actual contact/IK/fixed/payload/pair/issued-path gate must still pass.
+        tilt=np.radians(25.)
+        for yaw in np.radians([-75.,-90.]):
+            rotation=exp(np.array([0.,0.,yaw]))@exp(np.array([0.,-tilt,0.]))
+            grasp=frame([0,0,.0035],rotation.T)
+            target=incoming@np.linalg.inv(grasp)
+            if receiver_aperture(c,part,grasp) is not None:
+                yield target,(float(tilt),float(yaw),0.,.0035)
+        return
     if part=='ring1' and c.get('config',{}).get('large_receiver_tool_axis_aligned'):
         # A native Hand diameter grip with tool Z parallel to the measured
         # ring axis avoids inheriting the tilted taught gripper posture.
@@ -463,7 +486,7 @@ def compatible(c, part, pose, pickup_tcp):
     elif pose.get('grasp_type')!='inner' and pad_aperture(c,part,grasp) is None:return False
     donor_release=float(pose.get('release_width_m',.001 if pose.get('grasp_type')=='inner' else .08))
     compatibility_cache=c.setdefault('_grasp_transfer_cache',{})
-    cache_key=(bool(c.get('config',{}).get('large_receiver_tool_axis_aligned')),bool(c.get('config',{}).get('project_large_receiver_closing_axis')),part,pose.get('grasp_type'),pose.get('planned_grip_width_m'),donor_release,receiver_opening(c,part),bool(c.get('config',{}).get('balanced_large_receiver_grasp')),bool(c.get('config',{}).get('exact_axis_large_receiver_grasp')),np.round(grasp,9).tobytes())
+    cache_key=(bool(c.get('config',{}).get('temporary_axial_double_handover_component')),bool(c.get('config',{}).get('native_large_receiver_tilt25_only')),bool(c.get('config',{}).get('large_receiver_tool_axis_aligned')),bool(c.get('config',{}).get('project_large_receiver_closing_axis')),part,pose.get('grasp_type'),pose.get('planned_grip_width_m'),donor_release,receiver_opening(c,part),bool(c.get('config',{}).get('balanced_large_receiver_grasp')),bool(c.get('config',{}).get('exact_axis_large_receiver_grasp')),np.round(grasp,9).tobytes())
     if cache_key in compatibility_cache:return compatibility_cache[cache_key]
     reference = c['handoff_reference'][part]
     incoming = np.asarray(reference['part_H'])

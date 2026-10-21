@@ -83,6 +83,7 @@ def execute(c):
         completed_geometry.register(checkers['right'],part,template,T,uncertainty_m=.0035)
         c['planning_diagnostics'].append(dict(event='completed_part_added_to_both_arm_collision_worlds',part=part,source=source,pose_from_RGBD=pose,uncertainty_m=.0035,uses_free_body_poses=False))
     loaded_contact_bindings={}
+    loaded_contact_capture_window=None
     last_annular_observation_steps={}
     def check_loaded_contact_bindings():
         for carrier,binding in loaded_contact_bindings.items():
@@ -96,6 +97,9 @@ def execute(c):
             except StopIteration:left_program=None;left_finished_step=control_steps
         c['step'](label or phase)
         control_steps+=1
+        for callback in c.get('_encoder_capture_callbacks',()):callback(control_steps*dt)
+        if loaded_contact_capture_window is not None:
+            loaded_contact_capture_window.append((control_steps*dt,art.get_dof_positions()[0,fingers['left']].copy()))
         check_loaded_contact_bindings()
     def wait(t,label):
         for _ in range(int(np.ceil(t/dt))):step(label)
@@ -638,12 +642,21 @@ def execute(c):
             # A finite-force target deliberately lies inside the rigid ring.
             # Certify actual encoder geometry, never replace the force target.
             from loaded_contact_aperture import LoadedContactAperture
-            left_G,pose=observe('left',part,left_G,part+'_loaded_contact_fresh_RGBD')
-            finger_window=[];window_times=[]
-            for sample in range(5):
-                if sample:wait(.025,part+'_loaded_contact_encoder_window')
-                finger_window.append(art.get_dof_positions()[0,fingers['left']].copy())
-                window_times.append(control_steps*dt)
+            # Establish stationarity FIRST, then capture. Continue recording
+            # every actual encoder sample while the real RGB-D worker runs;
+            # no extra 100 ms dwell is added to the newly captured image.
+            loaded_contact_capture_window=[(control_steps*dt,art.get_dof_positions()[0,fingers['left']].copy())]
+            try:
+                wait(.1,part+'_loaded_contact_encoder_window')
+                left_G,pose=observe('left',part,left_G,part+'_loaded_contact_fresh_RGBD')
+                # The last step sample and current delivery share a timestamp
+                # if the future completed without advancing physics.
+                current=(control_steps*dt,art.get_dof_positions()[0,fingers['left']].copy())
+                if current[0]>loaded_contact_capture_window[-1][0]:loaded_contact_capture_window.append(current)
+                else:loaded_contact_capture_window[-1]=current
+                window_times=[row[0]for row in loaded_contact_capture_window]
+                finger_window=[row[1]for row in loaded_contact_capture_window]
+            finally:loaded_contact_capture_window=None
             gap=float(np.asarray(finger_window)[-1].sum())
             contact=receiver_contact_state(c,part,left_G,gap,contact_tolerance_m=.0008)
             if transfer.receiver_aperture(c,part,left_G) is None:
@@ -665,6 +678,11 @@ def execute(c):
                 raise RuntimeError('Small ring lacks stable receiver pad geometry after withdrawal')
             results[-1]['receiver_stable_hold_RGBD']=pose
         events.append(dict(event=part+'_donor_leave_receiver_corridor',wall_s=time.perf_counter()-c['started'],overlapped_receiver_RGBD=True,extra_lateral_clearance_used=extra_lateral_clearance,motion_s=len(clearing_rows)*dt))
+        if c['config'].get('temporary_axial_double_handover_component'):
+            module=types.ModuleType('double_native_handover');module.__file__=str(HERE/'double_native_handover.py');exec(compile(Path(module.__file__).read_text(),module.__file__,'exec'),module.__dict__)
+            component_context=dict(c,step=step,component_move=move,component_observe=observe,component_trajectory=trajectory,component_bindings=loaded_contact_bindings,component_encoder_capture_callbacks=c.setdefault('_encoder_capture_callbacks',[]),component_image_age_steps=lambda side,part:control_steps-last_annular_observation_steps[(side,part)])
+            completed=module.execute(component_context,part,left_G)
+            return dict(completed,parts=results,initial_handover_events=events,full_task_pass=False)
         if c['config'].get('handover_only'):return dict(state='physical_handover_camera_confirmed',parts=results,events=events,full_task_pass=False)
         # Adapt the already taught approach shape to the newly observed grasp.
         # These poses come only from stored robot commands + calibrated goals.

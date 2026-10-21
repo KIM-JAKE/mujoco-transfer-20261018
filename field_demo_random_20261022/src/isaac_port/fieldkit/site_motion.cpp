@@ -98,7 +98,7 @@ int main(int argc,char** argv) {
     const std::string mode=argv[1];
     const bool tracking_option=argc>=11 && std::string(argv[argc-2])=="--tracking-error-rad";
     const int execution_argc=argc-(tracking_option?2:0);
-    if(tracking_option && mode!="--execute-csv")throw std::runtime_error("Explicit tracking option is supported only for CSV stages");
+    // The SAME FieldContext tracking abort applies to commissioning jogs too.
     if(!((mode=="--execute-jog" && execution_argc==11) || (mode=="--execute-cartesian" && execution_argc==12) || (mode=="--execute-csv" && execution_argc==9)))
       throw std::runtime_error("Invalid explicit execution mode or argument count");
     m80::FieldContext site;site.command_fraction=.1;site.expected_tool_mass_kg=number(argv[3]);site.expected_load_mass_kg=number(argv[4]);

@@ -1,0 +1,276 @@
+{
+  "scope": "OFFLINE real SIM RGB-D -> field pixel selection -> bounded24 native-DLS seed/family alternatives -> whole official SDK-shaped endpoint geometry. Endpoint test is necessary preflight only, not actual measured endpoint or full curve execution.",
+  "hardware_tested": false,
+  "field_ready": false,
+  "robot_command_sent": false,
+  "uses_free_object_poses": false,
+  "events": [],
+  "robot_geometry_source": "Archived SIM robot FK/body-base calibration only, not free-body stock transforms",
+  "actual_interval_s": [
+    14.819549139938317,
+    14.84044817800168
+  ],
+  "archived_joint_delta_rad": 0.0004507303237915039,
+  "occupancy_build_s": 0.5527392290532589,
+  "two_view_fusion": {
+    "virtual_camera_count": 2,
+    "physical_camera_proof": false,
+    "same_private_render_snapshot": true,
+    "scene_snapshot_time_s": 7.015576021978632,
+    "overhead_target_source": "actual production pixel detector on same-snapshot overhead image",
+    "source_captures": [
+      {
+        "calibration_sha256": "8a658daf459a6b500e8d19e72a0ab2072ffc7132421f923d38ee2ceedaa7efdc",
+        "camera_array_sha256": "6e38c86860a6b4152551cc382f6ab22a2a7e1eaf0767678cee828ae35da55768",
+        "capture_id": "v280-same-snapshot-global",
+        "captured_at_utc": "2026-10-21T20:02:38.858095+00:00",
+        "cell_frame": "recorded_v280_SIM_cell",
+        "depth_uncertainty_m": 0.001,
+        "projection_kind": "rectified_pinhole",
+        "ray_footprint_padding_px": 0,
+        "replay": true,
+        "scene_epoch": "recorded-v280-static-interval",
+        "source": "archived_Isaac_RGBD_replay_only",
+        "source_packet_sha256": "6cf21e66efdf50479133105f629a94e0480089448415bf933ef1f564d08ac65d"
+      },
+      {
+        "calibration_sha256": "8c678f9a9c2b304b90190ce76f761a68ae71fb2279398ed46a834c4389e6563f",
+        "camera_array_sha256": "a86454380945dafa58c9af6cfdd635111083398d9e9af9fc124ec8886ac1b081",
+        "capture_id": "v280-same-snapshot-overhead",
+        "captured_at_utc": "2026-10-21T20:02:38.858095+00:00",
+        "cell_frame": "recorded_v280_SIM_cell",
+        "depth_uncertainty_m": 0.001,
+        "projection_kind": "rectified_pinhole",
+        "ray_footprint_padding_px": 0,
+        "replay": true,
+        "scene_epoch": "recorded-v280-static-interval",
+        "source": "archived_Isaac_RGBD_replay_only",
+        "source_packet_sha256": "56b092681444eddc1477a781faedfedf2866ad1f9995fa0f81877c1103a5ae0d"
+      }
+    ],
+    "source_age_policy_s": 2.0,
+    "lease_origin_utc": "2026-10-21T20:02:38.858095+00:00",
+    "source_timestamp_scope": "Frozen OFFLINE replay clock, not actual fresh SDK exposure or live scene lease",
+    "overhead_unknown": 76085,
+    "global_unknown": 109763,
+    "fused_unknown": 66082,
+    "genuinely_ray_cleared_unknown": 4573,
+    "all_original_occupied_preserved": true,
+    "fused_obstacle_count": 4673
+  },
+  "selected_from_actual_pixels": {
+    "part": "ring1",
+    "initial_arc_center_m": [
+      0.5257853571907123,
+      -0.7310139110747076,
+      1.1098202101288148
+    ],
+    "initial_plane_axis": [
+      0.3062290827492788,
+      0.11220912240119087,
+      0.9453215652509412
+    ],
+    "center_m": [
+      0.5257853571907123,
+      -0.7310139110747076,
+      1.1098202101288148
+    ],
+    "axis": [
+      -0.3062290827492788,
+      -0.11220912240119087,
+      -0.9453215652509412
+    ],
+    "visible_face_inner_radius_m": 0.03249593914178348,
+    "visible_CAD_end_sign": -1,
+    "front_back_orientation_margin_m": 0.0015040608582165202,
+    "front_back_from_RGBD": true,
+    "rms_m": 0.00022678789636545337,
+    "depth_points": 1644,
+    "measured_classification_diameter_m": 0.07204456695669975,
+    "visible_arc_coverage_deg": 360,
+    "size_classification": "RGB-D observed annular arc metric diameter",
+    "uses_depth_sensor": true,
+    "uses_simulator_body_poses": false,
+    "instance_id": "v280-same-snapshot-overhead:image:0",
+    "T_cell_part": [
+      [
+        0.951957850368668,
+        6.938893903907228e-18,
+        -0.30622908274927885,
+        0.5257853571907123
+      ],
+      [
+        -0.03609581728404348,
+        -0.9930288036228111,
+        -0.1122091224011909,
+        -0.7310139110747076
+      ],
+      [
+        -0.3040942996770272,
+        0.11787194397077064,
+        -0.9453215652509415,
+        1.1098202101288148
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "orientation_scope": "signed axis from observed tapered face; axial yaw unobservable; canonical basis only",
+    "instance_identity_scope": "this RGB-D capture only; no simulator actor identity",
+    "geometrically_accessible": true,
+    "robot_reachability_verified": false
+  },
+  "occupancy_obstacles": 4642,
+  "selected_low_speed_profile": {
+    "path": "/tmp/OFFLINE-recorded-closure-eeifpa30/site/random-motion-low-speed.json",
+    "sha256": "6c67735f30a3db0d3cf97c7a30efa972b4c2829c5057385399793d1a83f4d6e7",
+    "joint_tracking_error_limit_rad": 0.005
+  },
+  "native_fixture": {
+    "mocked_SDK": true,
+    "actual_SDK_connection": false,
+    "curve_duration_s": 0.1,
+    "samples": 101,
+    "q0": [
+      -0.39189332723617554,
+      -1.6396421194076538,
+      0.1684885174036026,
+      -1.4654651880264282,
+      -1.7282496690750122,
+      0.8404603004455566,
+      0.7618110775947571
+    ],
+    "q1": [
+      -0.39170941710472107,
+      -1.639986515045166,
+      0.16841034591197968,
+      -1.4659159183502197,
+      -1.7282496690750122,
+      0.8405482769012451,
+      0.7619361877441406
+    ],
+    "whole_arm_model_columns": {
+      "left": 478,
+      "right": 478
+    },
+    "gripper_widths": {
+      "left": 0.07999255508184433,
+      "right": 0.07999255508184433
+    },
+    "tracking_error_bound_rad": 0.005
+  },
+  "first_collision_detail": {
+    "capsule": "right_link5_column_4_4",
+    "inflated_radius_m": 0.03461617052736961,
+    "a_cell_m": [
+      0.31733491224663835,
+      -0.6365351674527344,
+      1.15687119274967
+    ],
+    "b_cell_m": [
+      0.5566858387244349,
+      -0.6436745048664108,
+      1.350331755829591
+    ],
+    "centerline_distance_m": 0.033136920208995516,
+    "obstacle": {
+      "name": "residual_50ab2b4ac61f_870",
+      "T_cell_box": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.42439114421256435
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -0.7116490319168962
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          1.195296023189291
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "half_extents_m": [
+        0.0019701434511465443,
+        0.14843750173699105,
+        0.0039055458696504175
+      ],
+      "source": "conservative_registered_RGBD_rays",
+      "occupancy_kind": "unknown",
+      "source_capture_ids": [
+        "v280-same-snapshot-global",
+        "v280-same-snapshot-overhead"
+      ],
+      "voxel_resolution_m": [
+        0.0039402869022930965,
+        0.003958333379653095,
+        0.003905545869650483
+      ]
+    },
+    "collision_margin_m": 0.001
+  },
+  "branch_campaign": [
+    {
+      "family": "native_external_CAD_face0_yaw0",
+      "seed_index": 0,
+      "T_cell_tcp": [
+        [
+          0.9519578478311825,
+          4.192565187203585e-08,
+          -0.3062290906374202,
+          0.5257853732315134
+        ],
+        [
+          -0.036095773409122345,
+          -0.9930288056273644,
+          -0.11220911877511673,
+          -0.7310138963156699
+        ],
+        [
+          -0.3040943128284717,
+          0.11787192708312375,
+          -0.9453215631260564,
+          1.109820278671367
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link5_column_4_4 intersects measured obstacle residual_50ab2b4ac61f_870"
+    }
+  ],
+  "endpoint_survivors": [],
+  "branch_elapsed_s": 0.9097035449231043,
+  "start_q_from_actual_empty_park": [
+    -1.0509302616119385,
+    -1.220984935760498,
+    0.9760252833366394,
+    -1.3192867040634155,
+    0.15331736207008362,
+    0.685775876045227,
+    2.3184409141540527
+  ],
+  "archived_grasp_goal_joint_seed_used": false,
+  "replay_comparison_clock": "Frozen offline replay clock for repeated same immutable map; never live freshness evidence",
+  "native_sdk_solver": "Same DLS damping0.00005,700iterations,25mrad step and position/angle thresholds as fieldkit/dynamic_plan.cpp; analytic saved SDK-shaped chain, NOT actual SDK connection",
+  "pipeline_stopped_before_lease_or_Hand_dispatch": true
+}

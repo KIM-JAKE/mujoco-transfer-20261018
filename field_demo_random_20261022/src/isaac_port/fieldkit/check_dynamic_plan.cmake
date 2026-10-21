@@ -14,4 +14,8 @@ execute_process(COMMAND "${PROGRAM}" --read-state RESULT_VARIABLE MODE_CODE ERRO
 if(MODE_CODE EQUAL 0 OR NOT MODE_RESULT MATCHES "Explicit")
   message(FATAL_ERROR "Missing explicit read mode arguments were accepted")
 endif()
+execute_process(COMMAND "${PROGRAM}" --read-model INVALID_IP "${GOOD}" --ik-seed 0 -0.7 0 -2.1 0 1.5 nan RESULT_VARIABLE SEED_CODE ERROR_VARIABLE SEED_ERROR)
+if(SEED_CODE EQUAL 0 OR NOT SEED_ERROR MATCHES "IK seed must")
+  message(FATAL_ERROR "Nonfinite IK seed was not rejected before connection: ${SEED_ERROR}")
+endif()
 file(REMOVE "${GOOD}" "${BAD}")

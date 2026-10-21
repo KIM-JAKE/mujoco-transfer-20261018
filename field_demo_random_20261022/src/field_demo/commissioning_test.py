@@ -99,6 +99,18 @@ def telemetry_progress(path):
         return None
 
 
+def telemetry_tracking(path):
+    if not path.exists():return None
+    text=path.read_text()
+    if not text.endswith('\n'):text=text[:text.rfind('\n')+1]
+    rows=list(csv.DictReader(text.splitlines()))
+    if len(rows)<2:return None
+    try:
+        values=[abs(float(row['q'+str(i)])-float(row['q_d'+str(i)]))for row in rows for i in range(1,8)]
+        return max(values)if all(math.isfinite(v)for v in values)else None
+    except(KeyError,TypeError,ValueError):return None
+
+
 def stop_evidence(*, observed, markers, stop_sent_s, finished_s, returncode, after):
     return bool(observed and observed['observed_displacement_m'] >= .00002
                 and observed['observed_motion_interval_s'] >= .3
@@ -110,14 +122,18 @@ def stop_evidence(*, observed, markers, stop_sent_s, finished_s, returncode, aft
                 and max(map(abs, after['dq_d'])) <= .001)
 
 
-def execute(site, side, output, *, axis='z', direction=1):
+def execute(site, side, output, *, axis='z', direction=1, tracking_profile=None):
     row = validate(site, side)
+    from .low_speed_profile import load_tracking_profile
+    tracking_binding=load_tracking_profile(tracking_profile)if tracking_profile is not None else None
+    tracking_limit=tracking_binding['joint_tracking_error_limit_rad']if tracking_binding else .02
     output.mkdir(parents=True, exist_ok=False)
     record = output/'stop-test.json'
     report = dict(state='IN_PROGRESS', stop_tested=False, hardware_motion_tested=False,
                   side=side, robot_ip=row['ip'], started_utc=datetime.now(timezone.utc).isoformat(),
                   scope='1mm <=10% commissioning jog; explicit SDK software STOP only',
                   hardware_execution_attempted=False,
+                  joint_tracking_error_limit_rad=tracking_limit, tracking_profile=tracking_binding,
                   configuration_sha256=digest(site.filename),
                   motion_binary_sha256=digest(site.path(site.config['motion_binary'])),
                   calibration_sha256=digest(site.path(site.config['calibration_record'])))
@@ -127,6 +143,8 @@ def execute(site, side, output, *, axis='z', direction=1):
         with site.control_lock():
             site.require_ready()
             report['before'] = read_state(site, row)
+            if max(abs(a-b)for a,b in zip(report['before']['q'],report['before']['q_d']))>min(.005,tracking_limit):
+                raise ValueError('Actual initial SDK tracking error exceeds selected profile')
             hand = site.grippers[side].status()
             if hand.get('is_grasped') is not False:
                 raise ValueError('Remove supported workpiece manually before first empty-hand test')
@@ -135,6 +153,7 @@ def execute(site, side, output, *, axis='z', direction=1):
             command = [str(site.path(site.config['motion_binary'])), '--execute-cartesian', row['ip'],
                        str(row['tool_mass_kg']), '0', str(site.path(site.config['calibration_record'])),
                        str(record), str(telemetry), *map(str, xyz), '4']
+            if tracking_binding is not None:command += ['--tracking-error-rad',str(tracking_limit)]
             lines = queue.Queue()
             with (output/'native-stderr.txt').open('w') as errors:
                 process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
@@ -175,6 +194,10 @@ def execute(site, side, output, *, axis='z', direction=1):
                                   hardware_motion_tested=observed is not None)
                     passed=stop_evidence(observed=observed, markers=markers, stop_sent_s=stop_sent,
                                          finished_s=finished, returncode=process.returncode, after=report['after'])
+                    report['observed_max_tracking_error_rad']=telemetry_tracking(telemetry)
+                    if tracking_binding is not None:
+                        passed=passed and report['observed_max_tracking_error_rad']is not None and report['observed_max_tracking_error_rad']<=tracking_limit
+                        passed=passed and max(abs(a-b)for a,b in zip(report['after']['q'],report['after']['q_d']))<=min(.005,tracking_limit)
                     report.update(state='PASS' if passed else 'FAIL', stop_tested=passed)
                 finally:
                     if process.poll() is None:
@@ -201,15 +224,19 @@ def main(argv=None):
     parser.add_argument('--output-dir', type=Path)
     parser.add_argument('--axis', choices=('x','y','z'), default='z', help='Clear direction in robot BASE frame,1mm only')
     parser.add_argument('--direction', type=int, choices=(-1,1), default=1)
+    parser.add_argument('--tracking-profile',type=Path,help='Same motion JSON used by planner/CSV/Hand monitor; earlier tracking abort, no prior PASS required')
     parser.add_argument('--execute', action='store_true')
     args=parser.parse_args(argv)
     output=(args.output_dir or args.config.resolve().parent/'logs'/('first-stop-'+args.side+'-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ'))).resolve()
     site=Site(args.config, output.parent, sides=(args.side,))
     validate(site,args.side)
+    if args.tracking_profile is not None:
+        from .low_speed_profile import load_tracking_profile
+        load_tracking_profile(args.tracking_profile)
     if not args.execute:
         print(json.dumps(dict(state='configuration_validated', robot_connected=False, stop_tested=False,
                               next='After clearing a1mm base-frame jog, repeat with --execute'), indent=2));return 0
-    report,record=execute(site,args.side,output,axis=args.axis,direction=args.direction)
+    report,record=execute(site,args.side,output,axis=args.axis,direction=args.direction,tracking_profile=args.tracking_profile)
     print(json.dumps(dict(**report, record=str(record)),indent=2))
     return 0 if report['stop_tested'] else 2
 

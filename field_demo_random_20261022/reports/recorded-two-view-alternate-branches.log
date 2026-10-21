@@ -1,0 +1,909 @@
+{
+  "scope": "OFFLINE real SIM RGB-D -> field pixel selection -> bounded24 native-DLS seed/family alternatives -> whole official SDK-shaped endpoint geometry. Endpoint test is necessary preflight only, not actual measured endpoint or full curve execution.",
+  "hardware_tested": false,
+  "field_ready": false,
+  "robot_command_sent": false,
+  "uses_free_object_poses": false,
+  "events": [],
+  "robot_geometry_source": "Archived SIM robot FK/body-base calibration only, not free-body stock transforms",
+  "actual_interval_s": [
+    14.819549139938317,
+    14.84044817800168
+  ],
+  "archived_joint_delta_rad": 0.0004507303237915039,
+  "occupancy_build_s": 0.5646295610349625,
+  "two_view_fusion": {
+    "virtual_camera_count": 2,
+    "physical_camera_proof": false,
+    "same_private_render_snapshot": true,
+    "scene_snapshot_time_s": 7.015576021978632,
+    "overhead_target_source": "actual production pixel detector on same-snapshot overhead image",
+    "source_captures": [
+      {
+        "calibration_sha256": "8a658daf459a6b500e8d19e72a0ab2072ffc7132421f923d38ee2ceedaa7efdc",
+        "camera_array_sha256": "6e38c86860a6b4152551cc382f6ab22a2a7e1eaf0767678cee828ae35da55768",
+        "capture_id": "v280-same-snapshot-global",
+        "captured_at_utc": "2026-10-21T20:01:50.418812+00:00",
+        "cell_frame": "recorded_v280_SIM_cell",
+        "depth_uncertainty_m": 0.001,
+        "projection_kind": "rectified_pinhole",
+        "ray_footprint_padding_px": 0,
+        "replay": true,
+        "scene_epoch": "recorded-v280-static-interval",
+        "source": "archived_Isaac_RGBD_replay_only",
+        "source_packet_sha256": "6cf21e66efdf50479133105f629a94e0480089448415bf933ef1f564d08ac65d"
+      },
+      {
+        "calibration_sha256": "8c678f9a9c2b304b90190ce76f761a68ae71fb2279398ed46a834c4389e6563f",
+        "camera_array_sha256": "a86454380945dafa58c9af6cfdd635111083398d9e9af9fc124ec8886ac1b081",
+        "capture_id": "v280-same-snapshot-overhead",
+        "captured_at_utc": "2026-10-21T20:01:50.418812+00:00",
+        "cell_frame": "recorded_v280_SIM_cell",
+        "depth_uncertainty_m": 0.001,
+        "projection_kind": "rectified_pinhole",
+        "ray_footprint_padding_px": 0,
+        "replay": true,
+        "scene_epoch": "recorded-v280-static-interval",
+        "source": "archived_Isaac_RGBD_replay_only",
+        "source_packet_sha256": "56b092681444eddc1477a781faedfedf2866ad1f9995fa0f81877c1103a5ae0d"
+      }
+    ],
+    "source_age_policy_s": 2.0,
+    "lease_origin_utc": "2026-10-21T20:01:50.418812+00:00",
+    "source_timestamp_scope": "Frozen OFFLINE replay clock, not actual fresh SDK exposure or live scene lease",
+    "overhead_unknown": 76085,
+    "global_unknown": 109763,
+    "fused_unknown": 66082,
+    "genuinely_ray_cleared_unknown": 4573,
+    "all_original_occupied_preserved": true,
+    "fused_obstacle_count": 4673
+  },
+  "occupancy_obstacles": 4642,
+  "selected_low_speed_profile": {
+    "path": "/tmp/OFFLINE-recorded-closure-nxtssp9w/site/random-motion-low-speed.json",
+    "sha256": "d9565487b5fb921507179f5b470b08665e18937de40cbb85443f4537b56b58d6",
+    "joint_tracking_error_limit_rad": 0.005
+  },
+  "native_fixture": {
+    "mocked_SDK": true,
+    "actual_SDK_connection": false,
+    "curve_duration_s": 0.1,
+    "samples": 101,
+    "q0": [
+      -0.39189332723617554,
+      -1.6396421194076538,
+      0.1684885174036026,
+      -1.4654651880264282,
+      -1.7282496690750122,
+      0.8404603004455566,
+      0.7618110775947571
+    ],
+    "q1": [
+      -0.39170941710472107,
+      -1.639986515045166,
+      0.16841034591197968,
+      -1.4659159183502197,
+      -1.7282496690750122,
+      0.8405482769012451,
+      0.7619361877441406
+    ],
+    "whole_arm_model_columns": {
+      "left": 478,
+      "right": 478
+    },
+    "gripper_widths": {
+      "left": 0.07999255508184433,
+      "right": 0.07999255508184433
+    },
+    "tracking_error_bound_rad": 0.005
+  },
+  "branch_campaign": [
+    {
+      "family": "native_external_CAD_face0_yaw0",
+      "seed_index": 0,
+      "T_cell_tcp": [
+        [
+          0.9519578478311825,
+          4.192565187203585e-08,
+          -0.3062290906374202,
+          0.5257853732315134
+        ],
+        [
+          -0.036095773409122345,
+          -0.9930288056273644,
+          -0.11220911877511673,
+          -0.7310138963156699
+        ],
+        [
+          -0.3040943128284717,
+          0.11787192708312375,
+          -0.9453215631260564,
+          1.109820278671367
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link5_column_4_4 intersects measured obstacle residual_f6b58f91fecf_870"
+    },
+    {
+      "family": "native_external_CAD_face0_yaw0",
+      "seed_index": 1,
+      "T_cell_tcp": [
+        [
+          0.9519578478311825,
+          4.192565187203585e-08,
+          -0.3062290906374202,
+          0.5257853732315134
+        ],
+        [
+          -0.036095773409122345,
+          -0.9930288056273644,
+          -0.11220911877511673,
+          -0.7310138963156699
+        ],
+        [
+          -0.3040943128284717,
+          0.11787192708312375,
+          -0.9453215631260564,
+          1.109820278671367
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link7_column_0_2 intersects measured obstacle residual_f6b58f91fecf_4126"
+    },
+    {
+      "family": "native_external_CAD_face0_yaw0",
+      "seed_index": 2,
+      "T_cell_tcp": [
+        [
+          0.9519578478311825,
+          4.192565187203585e-08,
+          -0.3062290906374202,
+          0.5257853732315134
+        ],
+        [
+          -0.036095773409122345,
+          -0.9930288056273644,
+          -0.11220911877511673,
+          -0.7310138963156699
+        ],
+        [
+          -0.3040943128284717,
+          0.11787192708312375,
+          -0.9453215631260564,
+          1.109820278671367
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link5_column_4_4 intersects measured obstacle residual_f6b58f91fecf_870"
+    },
+    {
+      "family": "native_external_CAD_face0_yaw45",
+      "seed_index": 0,
+      "T_cell_tcp": [
+        [
+          0.6731358792333514,
+          -0.67313582205404,
+          -0.30622908607180865,
+          0.5257853793611438
+        ],
+        [
+          -0.7277009685289518,
+          -0.6766538369904946,
+          -0.1122091141042786,
+          -0.7310138941735164
+        ],
+        [
+          -0.13167911182404266,
+          0.2983751832067701,
+          -0.9453215651594742,
+          1.1098202764314515
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link5_column_4_4 intersects measured obstacle residual_f6b58f91fecf_870"
+    },
+    {
+      "family": "native_external_CAD_face0_yaw45",
+      "seed_index": 1,
+      "T_cell_tcp": [
+        [
+          0.6731358792333514,
+          -0.67313582205404,
+          -0.30622908607180865,
+          0.5257853793611438
+        ],
+        [
+          -0.7277009685289518,
+          -0.6766538369904946,
+          -0.1122091141042786,
+          -0.7310138941735164
+        ],
+        [
+          -0.13167911182404266,
+          0.2983751832067701,
+          -0.9453215651594742,
+          1.1098202764314515
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link5_column_4_4 intersects measured obstacle residual_f6b58f91fecf_870"
+    },
+    {
+      "family": "native_external_CAD_face0_yaw45",
+      "seed_index": 2,
+      "T_cell_tcp": [
+        [
+          0.6731358792333514,
+          -0.67313582205404,
+          -0.30622908607180865,
+          0.5257853793611438
+        ],
+        [
+          -0.7277009685289518,
+          -0.6766538369904946,
+          -0.1122091141042786,
+          -0.7310138941735164
+        ],
+        [
+          -0.13167911182404266,
+          0.2983751832067701,
+          -0.9453215651594742,
+          1.1098202764314515
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "palm_y0_z0 intersects measured obstacle residual_f6b58f91fecf_389"
+    },
+    {
+      "family": "native_external_CAD_face0_yaw90",
+      "seed_index": 0,
+      "T_cell_tcp": [
+        [
+          4.041413677152968e-08,
+          -0.9519578513946364,
+          -0.30622907955990425,
+          0.5257853853050787
+        ],
+        [
+          -0.9930288061812168,
+          0.03609577210339414,
+          -0.11220911429365915,
+          -0.7310138972411191
+        ],
+        [
+          0.11787192241711332,
+          0.30409430182817915,
+          -0.9453215672464722,
+          1.1098202748700858
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link5_column_4_4 intersects measured obstacle residual_f6b58f91fecf_870"
+    },
+    {
+      "family": "native_external_CAD_face0_yaw90",
+      "seed_index": 1,
+      "T_cell_tcp": [
+        [
+          4.041413677152968e-08,
+          -0.9519578513946364,
+          -0.30622907955990425,
+          0.5257853853050787
+        ],
+        [
+          -0.9930288061812168,
+          0.03609577210339414,
+          -0.11220911429365915,
+          -0.7310138972411191
+        ],
+        [
+          0.11787192241711332,
+          0.30409430182817915,
+          -0.9453215672464722,
+          1.1098202748700858
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link5_column_4_4 intersects measured obstacle residual_f6b58f91fecf_870"
+    },
+    {
+      "family": "native_external_CAD_face0_yaw90",
+      "seed_index": 2,
+      "T_cell_tcp": [
+        [
+          4.041413677152968e-08,
+          -0.9519578513946364,
+          -0.30622907955990425,
+          0.5257853853050787
+        ],
+        [
+          -0.9930288061812168,
+          0.03609577210339414,
+          -0.11220911429365915,
+          -0.7310138972411191
+        ],
+        [
+          0.11787192241711332,
+          0.30409430182817915,
+          -0.9453215672464722,
+          1.1098202748700858
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link7_column_0_2 intersects measured obstacle residual_f6b58f91fecf_4126"
+    },
+    {
+      "family": "native_external_CAD_face0_yaw135",
+      "seed_index": 0,
+      "T_cell_tcp": [
+        [
+          -0.673135823565555,
+          -0.673135882796805,
+          -0.3062290749162922,
+          0.5257853875814416
+        ],
+        [
+          -0.6766538375443473,
+          0.7277009672232237,
+          -0.11220911923232184,
+          -0.7310139037215181
+        ],
+        [
+          0.2983751785407597,
+          0.1316791008237501,
+          -0.9453215681645155,
+          1.1098202749018966
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link5_column_4_4 intersects measured obstacle residual_f6b58f91fecf_870"
+    },
+    {
+      "family": "native_external_CAD_face0_yaw135",
+      "seed_index": 1,
+      "T_cell_tcp": [
+        [
+          -0.673135823565555,
+          -0.673135882796805,
+          -0.3062290749162922,
+          0.5257853875814416
+        ],
+        [
+          -0.6766538375443473,
+          0.7277009672232237,
+          -0.11220911923232184,
+          -0.7310139037215181
+        ],
+        [
+          0.2983751785407597,
+          0.1316791008237501,
+          -0.9453215681645155,
+          1.1098202749018966
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "current_native_DLS_IK",
+      "reason": "No bounded measured-model IK branch"
+    },
+    {
+      "family": "native_external_CAD_face0_yaw135",
+      "seed_index": 2,
+      "T_cell_tcp": [
+        [
+          -0.673135823565555,
+          -0.673135882796805,
+          -0.3062290749162922,
+          0.5257853875814416
+        ],
+        [
+          -0.6766538375443473,
+          0.7277009672232237,
+          -0.11220911923232184,
+          -0.7310139037215181
+        ],
+        [
+          0.2983751785407597,
+          0.1316791008237501,
+          -0.9453215681645155,
+          1.1098202749018966
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "palm_y0_z0 intersects measured obstacle residual_f6b58f91fecf_389"
+    },
+    {
+      "family": "native_external_CAD_face1_yaw0",
+      "seed_index": 0,
+      "T_cell_tcp": [
+        [
+          0.9519578529061514,
+          4.3977590077265525e-08,
+          0.3062290748611375,
+          0.5257853295246545
+        ],
+        [
+          -0.03609586115896454,
+          0.9930288023701321,
+          0.1122091193733132,
+          -0.7310139253929451
+        ],
+        [
+          -0.3040942865255822,
+          -0.11787195452413511,
+          0.9453215681656468,
+          1.1098201452998455
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "palm_y0_z1 intersects measured obstacle residual_f6b58f91fecf_712"
+    },
+    {
+      "family": "native_external_CAD_face1_yaw0",
+      "seed_index": 1,
+      "T_cell_tcp": [
+        [
+          0.9519578529061514,
+          4.3977590077265525e-08,
+          0.3062290748611375,
+          0.5257853295246545
+        ],
+        [
+          -0.03609586115896454,
+          0.9930288023701321,
+          0.1122091193733132,
+          -0.7310139253929451
+        ],
+        [
+          -0.3040942865255822,
+          -0.11787195452413511,
+          0.9453215681656468,
+          1.1098201452998455
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "palm_y0_z1 intersects measured obstacle residual_f6b58f91fecf_712"
+    },
+    {
+      "family": "native_external_CAD_face1_yaw0",
+      "seed_index": 2,
+      "T_cell_tcp": [
+        [
+          0.9519578529061514,
+          4.3977590077265525e-08,
+          0.3062290748611375,
+          0.5257853295246545
+        ],
+        [
+          -0.03609586115896454,
+          0.9930288023701321,
+          0.1122091193733132,
+          -0.7310139253929451
+        ],
+        [
+          -0.3040942865255822,
+          -0.11787195452413511,
+          0.9453215681656468,
+          1.1098201452998455
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "palm_y0_z1 intersects measured obstacle residual_f6b58f91fecf_712"
+    },
+    {
+      "family": "native_external_CAD_face1_yaw45",
+      "seed_index": 0,
+      "T_cell_tcp": [
+        [
+          0.6731358235655551,
+          0.6731358827968049,
+          0.3062290749162922,
+          0.525785326799983
+        ],
+        [
+          -0.7277010277295906,
+          0.6766537713238531,
+          0.11220912616407376,
+          -0.7310139190892544
+        ],
+        [
+          -0.13167906923281195,
+          -0.2983751950892928,
+          0.9453215673417206,
+          1.1098201454342358
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "palm_y0_z1 intersects measured obstacle residual_f6b58f91fecf_752"
+    },
+    {
+      "family": "native_external_CAD_face1_yaw45",
+      "seed_index": 1,
+      "T_cell_tcp": [
+        [
+          0.6731358235655551,
+          0.6731358827968049,
+          0.3062290749162922,
+          0.525785326799983
+        ],
+        [
+          -0.7277010277295906,
+          0.6766537713238531,
+          0.11220912616407376,
+          -0.7310139190892544
+        ],
+        [
+          -0.13167906923281195,
+          -0.2983751950892928,
+          0.9453215673417206,
+          1.1098201454342358
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "palm_y0_z1 intersects measured obstacle residual_f6b58f91fecf_752"
+    },
+    {
+      "family": "native_external_CAD_face1_yaw45",
+      "seed_index": 2,
+      "T_cell_tcp": [
+        [
+          0.6731358235655551,
+          0.6731358827968049,
+          0.3062290749162922,
+          0.525785326799983
+        ],
+        [
+          -0.7277010277295906,
+          0.6766537713238531,
+          0.11220912616407376,
+          -0.7310139190892544
+        ],
+        [
+          -0.13167906923281195,
+          -0.2983751950892928,
+          0.9453215673417206,
+          1.1098201454342358
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "palm_y0_z1 intersects measured obstacle residual_f6b58f91fecf_752"
+    },
+    {
+      "family": "native_external_CAD_face1_yaw90",
+      "seed_index": 0,
+      "T_cell_tcp": [
+        [
+          -4.041413664107067e-08,
+          0.9519578513946364,
+          0.30622907955990425,
+          0.5257853290763459
+        ],
+        [
+          -0.9930288010644034,
+          -0.03609586171281702,
+          0.11220913075058857,
+          -0.7310139127814832
+        ],
+        [
+          0.11787196552442768,
+          -0.30409429119159254,
+          0.9453215652930442,
+          1.1098201439480981
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "palm_y0_z1 intersects measured obstacle residual_f6b58f91fecf_1362"
+    },
+    {
+      "family": "native_external_CAD_face1_yaw90",
+      "seed_index": 1,
+      "T_cell_tcp": [
+        [
+          -4.041413664107067e-08,
+          0.9519578513946364,
+          0.30622907955990425,
+          0.5257853290763459
+        ],
+        [
+          -0.9930288010644034,
+          -0.03609586171281702,
+          0.11220913075058857,
+          -0.7310139127814832
+        ],
+        [
+          0.11787196552442768,
+          -0.30409429119159254,
+          0.9453215652930442,
+          1.1098201439480981
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "palm_y0_z1 intersects measured obstacle residual_f6b58f91fecf_1362"
+    },
+    {
+      "family": "native_external_CAD_face1_yaw90",
+      "seed_index": 2,
+      "T_cell_tcp": [
+        [
+          -4.041413664107067e-08,
+          0.9519578513946364,
+          0.30622907955990425,
+          0.5257853290763459
+        ],
+        [
+          -0.9930288010644034,
+          -0.03609586171281702,
+          0.11220913075058857,
+          -0.7310139127814832
+        ],
+        [
+          0.11787196552442768,
+          -0.30409429119159254,
+          0.9453215652930442,
+          1.1098201439480981
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "current_native_DLS_IK",
+      "reason": "No bounded measured-model IK branch"
+    },
+    {
+      "family": "native_external_CAD_face1_yaw135",
+      "seed_index": 0,
+      "T_cell_tcp": [
+        [
+          -0.6731358792333513,
+          0.6731358220540401,
+          0.30622908607180865,
+          0.5257853350202808
+        ],
+        [
+          -0.6766537700181243,
+          -0.7277010282834434,
+          0.11220913044613946,
+          -0.7310139101646382
+        ],
+        [
+          0.29837520608958534,
+          -0.13167907389882233,
+          0.9453215632197047,
+          1.1098201417119917
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "palm_y0_z1 intersects measured obstacle residual_f6b58f91fecf_1452"
+    },
+    {
+      "family": "native_external_CAD_face1_yaw135",
+      "seed_index": 1,
+      "T_cell_tcp": [
+        [
+          -0.6731358792333513,
+          0.6731358220540401,
+          0.30622908607180865,
+          0.5257853350202808
+        ],
+        [
+          -0.6766537700181243,
+          -0.7277010282834434,
+          0.11220913044613946,
+          -0.7310139101646382
+        ],
+        [
+          0.29837520608958534,
+          -0.13167907389882233,
+          0.9453215632197047,
+          1.1098201417119917
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link5_column_6_2 intersects measured obstacle residual_f6b58f91fecf_2857"
+    },
+    {
+      "family": "native_external_CAD_face1_yaw135",
+      "seed_index": 2,
+      "T_cell_tcp": [
+        [
+          -0.6731358792333513,
+          0.6731358220540401,
+          0.30622908607180865,
+          0.5257853350202808
+        ],
+        [
+          -0.6766537700181243,
+          -0.7277010282834434,
+          0.11220913044613946,
+          -0.7310139101646382
+        ],
+        [
+          0.29837520608958534,
+          -0.13167907389882233,
+          0.9453215632197047,
+          1.1098201417119917
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "accepted": false,
+      "stage": "current_native_DLS_IK",
+      "reason": "No bounded measured-model IK branch"
+    }
+  ],
+  "endpoint_survivors": [],
+  "branch_elapsed_s": 19.985804282012396,
+  "start_q_from_actual_empty_park": [
+    -1.0509302616119385,
+    -1.220984935760498,
+    0.9760252833366394,
+    -1.3192867040634155,
+    0.15331736207008362,
+    0.685775876045227,
+    2.3184409141540527
+  ],
+  "archived_grasp_goal_joint_seed_used": false,
+  "replay_comparison_clock": "Frozen offline replay clock for repeated same immutable map; never live freshness evidence",
+  "native_sdk_solver": "Same DLS damping0.00005,700iterations,25mrad step and position/angle thresholds as fieldkit/dynamic_plan.cpp; analytic saved SDK-shaped chain, NOT actual SDK connection",
+  "pipeline_stopped_before_lease_or_Hand_dispatch": true
+}

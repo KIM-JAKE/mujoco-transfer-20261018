@@ -1,0 +1,73 @@
+Extracting cmake-data_3.22.1-1ubuntu1.22.04.2_all.deb
+Extracting cmake_3.22.1-1ubuntu1.22.04.2_amd64.deb
+Extracting jake-libfranka-0.18.1.deb
+Extracting libeigen3-dev_3.4.0-2ubuntu2_all.deb
+Extracting libfmt-dev_8.1.1+ds1-2_amd64.deb
+Extracting libfmt8_8.1.1+ds1-2_amd64.deb
+Extracting libjsoncpp25_1.9.5-3_amd64.deb
+Extracting libpcre3_2%3a8.39-13ubuntu0.22.04.1_amd64.deb
+Extracting libpocofoundation62_1.9.2-3ubuntu3_amd64.deb
+Extracting libpoconet62_1.9.2-3ubuntu3_amd64.deb
+Extracting librhash0_1.4.2-1ubuntu1_amd64.deb
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/gpuadmin/workspace/jake/field-demo-random-recorded-closure-20261022/build
+Consolidate compiler generated dependencies of target m80_read_state
+Consolidate compiler generated dependencies of target m80_model_audit
+[  7%] Built target m80_read_state
+[ 14%] Built target m80_model_audit
+Consolidate compiler generated dependencies of target m80_joint_stage
+Consolidate compiler generated dependencies of target m80_camera_plan
+[ 21%] Built target m80_joint_stage
+[ 28%] Built target m80_camera_plan
+Consolidate compiler generated dependencies of target m80_dynamic_plan
+Consolidate compiler generated dependencies of target m80_franka_hand
+[ 32%] Building CXX object CMakeFiles/m80_dynamic_plan.dir/dynamic_plan.cpp.o
+[ 39%] Built target m80_franka_hand
+Consolidate compiler generated dependencies of target m80_site_motion
+[ 46%] Built target m80_site_motion
+Consolidate compiler generated dependencies of target test_servo_core
+[ 53%] Built target test_servo_core
+Consolidate compiler generated dependencies of target test_site_watchdog
+[ 60%] Built target test_site_watchdog
+Consolidate compiler generated dependencies of target test_stage_link
+[ 67%] Built target test_stage_link
+Consolidate compiler generated dependencies of target test_field_context
+[ 75%] Built target test_field_context
+Consolidate compiler generated dependencies of target test_telemetry
+[ 82%] Built target test_telemetry
+Consolidate compiler generated dependencies of target m80_payload_load
+[ 89%] Built target m80_payload_load
+Consolidate compiler generated dependencies of target test_payload_load_core
+[ 96%] Built target test_payload_load_core
+[100%] Linking CXX executable m80_dynamic_plan
+[100%] Built target m80_dynamic_plan
+Test project /home/gpuadmin/workspace/jake/field-demo-random-recorded-closure-20261022/build
+      Start  1: dynamic_plan_input_guards
+ 1/11 Test  #1: dynamic_plan_input_guards ........   Passed    0.03 sec
+      Start  2: camera_plan_input_guards
+ 2/11 Test  #2: camera_plan_input_guards .........   Passed    0.02 sec
+      Start  3: site_watchdog_latched_timeout
+ 3/11 Test  #3: site_watchdog_latched_timeout ....   Passed    0.00 sec
+      Start  4: native_hand_offline_guards
+ 4/11 Test  #4: native_hand_offline_guards .......   Passed    0.03 sec
+      Start  5: site_motion_offline_guards
+ 5/11 Test  #5: site_motion_offline_guards .......   Passed    0.05 sec
+      Start  6: servo_core
+ 6/11 Test  #6: servo_core .......................   Passed    0.00 sec
+      Start  7: stage_sdk_link
+ 7/11 Test  #7: stage_sdk_link ...................   Passed    0.00 sec
+      Start  8: field_context_abort_guards
+ 8/11 Test  #8: field_context_abort_guards .......   Passed    0.00 sec
+      Start  9: telemetry_spsc
+ 9/11 Test  #9: telemetry_spsc ...................   Passed    0.02 sec
+      Start 10: readonly_model_input_guards
+10/11 Test #10: readonly_model_input_guards ......   Passed    0.02 sec
+      Start 11: payload_load_core_offline
+11/11 Test #11: payload_load_core_offline ........   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 11
+
+Total Test time (real) =   0.19 sec
+Source build finished: /home/gpuadmin/workspace/jake/field-demo-random-recorded-closure-20261022/build. Hardware connection and motion remain unverified.
+Offline source build passed. Local SDK marker written; robot compatibility and execution still require onsite verification.

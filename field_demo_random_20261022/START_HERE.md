@@ -1,83 +1,42 @@
-> **현재 추가 기능:** [실제 Hand 폭·후보 재선택](docs/APERTURE_ADAPTIVE.md). 새 설정 작성과 재빌드가 필요하며 실제 SDK 값으로 검사합니다.
+# 10월 22일 오전 11시 KST 현장 시험 — RGB-D + Franka SDK
 
-> **새 현장 설정:** [모델 기반 starter](docs/MODEL_STARTER.md)에서 링크·Hand·링·핀 충돌 모양을 자동 작성합니다. 실제 설치 일치 기록 한 개와 읽기 전용 SDK 상태를 사용하며 base/카메라/바구니/지그/STOP은 현장 값으로 유지합니다.
+이 패키지는 현장에서 **설정 → 실제 카메라 인식 → 읽기 전용 SDK 확인 → 첫 1mm 이동·STOP → 저속 단품 시험**을 시작하는 코드입니다. 실제 로봇의 랜덤 바구니 파지·링 2개/핀 1개 조립 완주는 아직 검증하지 않았습니다. 본 서버에서는 로봇 명령을 보내지 않았습니다.
 
-# 10월 22일 오전 11시 KST 현장 시험용 — RGB-D + Franka SDK
+이번 변경은 실제 기록을 연결하면서 발견한 실행 문제를 고쳤습니다.
 
-현재 실행과 설정은 [RGB-D + SDK 온보딩](integration/RGBD_SDK_ONBOARDING.md)을 먼저 읽는다. 실제 카메라 인식·현재 SDK 상태 기반 경로·저속 단품 집기와 전체 공정 실행 경로를 구현했다. 실제 로봇 성공이나 랜덤 바구니 전체 완주를 검증한 버전은 아니다. [구현 범위·하중·실패 처리](integration/PAYLOAD_EXPERIMENTAL.md)와 최신 검사 결과를 함께 확인한다.
+- 4mm 바구니 격자 205,632개가 기본 예산을 넘던 문제를 고쳐 명시적 기본 예산을 1,000,000개로 설정했습니다. UNKNOWN/FREE 판정과 3mm 깊이 여유는 그대로입니다.
+- 선택한 링의 표면 검사에서 실제 후보 픽셀만 CAD와 비교합니다. 같은 기록에서 결과 바이트를 유지하면서 해당 격자 작성이 1.771초에서 0.562초로 줄었습니다. 전체 공정 시간이나 실기 성능 수치는 아닙니다.
+- 선택적 **5mrad 저속 시운전 프로파일**과 실제 SDK 모델의 **파지 자세·IK 초기값 대안 탐색**을 추가했습니다. 기존 20mrad 기본값은 유지합니다. [시운전 프로파일](docs/LOW_SPEED_COMMISSIONING.md)을 따르세요.
 
-원본 봉인 패키지는 보존했다. 아래 v128 자료는 이전 시뮬 참조/설치 배경이며 현장 실행 상태는 위 최신 문서를 기준으로 한다. GPU/cuRobo 최적화 최신 시뮬은 H 작업에 있으며 이 패키지의 실기 경로 생성기는 native libfranka 모델과 보수적 외피 검사다. 시뮬 CSV를 로봇에서 재생하지 않는다.
+## 먼저 설치하고 설정하기
 
----
-
-# 10월 22일 실기 준비 — v128 성공본 연결과 카메라 설치
-
-현장 제어 PC에 이 폴더 전체를 복사합니다. 기존 안정화 작업과 이전 `field-demo-20261022`, `field-demo-random-20261022` 패키지는 수정하지 않았습니다. v119 52.30초 성공 자료도 그대로 보존합니다.
-
-새 실행 경로는 **RGB-D 무작위 링 검출 → 현재 SDK 상태로 집기 경로 생성·검사 → 파지 후 재관측 → 필요한 양손 전달 → 재관측으로 삽입 목표 보정 → 안착·클램프 → 개방·철수 → 세 부품 유지 확인**입니다. 큰 링·작은 링은 초기 물체 위치를 입력하지 않습니다. 핀은 별도 홀더의 실측 위치를 탐색 범위로 사용합니다.
-
-실물은 아직 연결하지 않았습니다. 내일 좌표 보정·손/부품 치수·현장 충돌 영역·PLC 신호를 측정하고 단품 동작을 확인해야 합니다. 실행 코드를 준비한 상태이며, 현장 무조정 완주나 30초 미만을 검증한 상태는 아닙니다.
-
-## 먼저 할 일
+Ubuntu 22.04 / x86_64 / Python 3.10, 컴파일러와 make가 있는 PC에서:
 
 ```bash
 chmod +x field-demo scripts/*.sh
 ./field-demo verify
-./field-demo doctor --output reports/arrival.json
-```
-
-Ubuntu 22.04 / x86_64 / Python 3.10, 컴파일러와 make가 있는 PC의 오프라인 설치:
-
-```bash
 scripts/install.sh --with-realsense --offline --wheelhouse vendor/wheelhouse/cp310-linux-x86_64
 scripts/build-offline-ubuntu22.sh
 scripts/offline-check.sh
 ./field-demo init-random --output site/random
 ```
 
-다른 환경은 [설치 안내](docs/INSTALL.md)를 따릅니다. 미확인 현장값은 `null`로 생성되며, 값을 측정하기 전에는 실행되지 않습니다.
+다른 호스트는 [설치 안내](docs/INSTALL.md)를 확인합니다. [모델 기반 starter](docs/MODEL_STARTER.md)로 공식 FR3-v2/Franka Hand·부품 CAD 형상을 작성하면 링크와 손 모양을 하나씩 측정할 필요가 없습니다. 실제 설치와 맞는다는 기록 한 개, 실제 양팔 SDK 상태가 필요합니다. 모델 파생 수치를 현장 실측값으로 표시하지 않습니다.
 
-## 내일 열어 둘 문서
+현장에서 넣어야 하는 값은 실제 양팔 IP, 로봇 기저/카메라/바구니/지그 좌표, 실제 Hand/tool/load, 케이블·고정 설비와 통로, 클램프 방식입니다. null을 가짜 확인 값으로 바꾸지 말고 [현장 온보딩](docs/RANDOM_ONSITE.md)을 순서대로 따르세요. 부품별 파지·착좌 PLC 센서는 요구하지 않습니다. 실제 RGB-D와 Hand/로봇 SDK를 사용하며, 클램프는 실제 PLC 또는 명시적 수동 방식입니다.
 
-**[현장 실행 순서와 명령](docs/RANDOM_ONSITE.md)**을 위에서부터 따릅니다. 먼저 **[이미지로 보는 카메라 설치 가이드](docs/CAMERA_INSTALLATION.html)** ([Markdown](docs/CAMERA_INSTALLATION.md))에서 바구니·전달·지그·핀 홀더 시야를 확인합니다. **[v128 연결 방법과 적용 범위](docs/V128_CONNECTION.md)**에는 선택한 성공본과 현장 실행기의 관계를 정리했습니다. 기존 고정 경로 도구는 [기존 연결·단품 절차](docs/ONSITE_SEQUENCE.md), 문제 대응은 [중단·문제 해결](docs/TROUBLESHOOTING.md)에 있습니다.
+## 현장 실행 순서
 
-장비 없이 인식만 확인하는 명령:
+1. `site/random` 설정과 [모델 starter](docs/MODEL_STARTER.md)를 완성합니다.
+2. [RGB-D 인식과 읽기 전용 상태](docs/RANDOM_ONSITE.md)를 확인합니다.
+3. 실제 빈 방향으로 양팔의 첫 1mm 이동·STOP 시험을 합니다. 더 엄격한 5mrad 프로파일은 [별도 절차](docs/LOW_SPEED_COMMISSIONING.md)에서 만들고, 실제 두 팔의 PASS 기록과 해시로 활성화합니다.
+4. 설정 검증 후 `--single-pick ring1`부터 저속으로 시험합니다. 후보가 모두 막히면 움직이지 않고 종료합니다.
+5. 파지·단일 물체 확인·전달·삽입·클램프·손을 놓은 뒤 유지 확인을 현장에서 각각 확인한 다음 전체를 시험합니다.
 
-```bash
-./field-demo random-vision detect --replay \
-  --snapshot stabilization/replay-frames/observation-001-initial.npz \
-  --config src/field_demo/stabilized/replay-camera.json \
-  --output reports/random-recognition-replay.json
-```
+native 실기 실행 상한은 10%입니다. 시뮬 95% 속도나 과거 43.533초 기록을 실기에 적용하지 않습니다. 현장 경로는 현재 SDK 상태에서 다시 만들며 시뮬 관절 CSV를 재생하지 않습니다. GPU/cuRobo의 최신 Isaac 정책 전체를 이 패키지에 포팅한 것은 아닙니다.
 
-이 명령은 보관된 시뮬 RGB-D를 검출기에 넣습니다. 로봇에 연결하거나 움직이지 않습니다. 전체 실행기는 `random-cycle --help`로 확인합니다.
+## 현재 기록으로 확인한 한계
 
-실제 검출기와 전체 단계 순서를 함께 확인하는 합성 영상 재생도 포함했습니다. 로봇·손·PLC와 경로 계획은 가상 장치입니다.
+실제 저장된 Isaac RGB-D를 현재 검출기·모델 형상·5mrad 추종 여유와 연결했습니다. 오버헤드와 글로벌 **가상 카메라 두 대**의 같은 장면을 융합하면 UNKNOWN 4,573개가 실제 ray 근거로 FREE가 됐지만, 24개 후보 중 전체 로봇 끝 자세 검사를 통과한 후보는 0개였습니다. 가장 가까운 UNKNOWN 셀은 병합 상자가 만든 가짜 구멍이 아니라 실제 미확인 셀입니다. 따라서 이 기록에서 접근·Hand 폐쇄·파지 성공을 주장하지 않습니다.
 
-```bash
-./field-demo random-cycle --recipe replay/synthetic-contract/recipe-v128.json \
-  --dry-run --replay-manifest replay/synthetic-contract/manifest.json \
-  --output-dir reports/synthetic-replay
-```
-
-이 예제의 24개 영상은 시험용 합성 영상입니다. 저쪽 성공 run의 전체 영상 기록이나 실제 조립 시험으로 해석하지 않습니다.
-
-## 저쪽 안정화 결과 연결
-
-해시를 확인한 **v128 43.533초 성공본**을 `stabilization/v128`에 추가하고, 기존 `stabilization/v119`를 보존했습니다. 인식 코어가 같은 것을 확인했고, 새 `init-random` 설정은 v128 프로필과 실행 엔진을 해시로 연결합니다. 프로필이 바뀌거나 실행 코드가 달라지면 재검증해야 합니다.
-
-```bash
-./field-demo stabilization check --profile stabilization/v128/field-profile.json
-./field-demo random-vision detect --replay \
-  --snapshot stabilization/v128/replay-frames/observation-001-initial.npz \
-  --config stabilization/v128/replay-camera.json \
-  --output reports/v128-recognition-replay.json
-```
-
-43.533초는 seed445의 시뮬 벽시계 시간입니다. 실기에서는 실측 좌표·현재 영상·실제 SDK로 경로를 다시 만들며, 기존 실기 실행기의 저속·순차 제약을 유지합니다. 시뮬의 관절 궤적·전달 좌표·힘·속도를 그대로 실행하지 않습니다. 근거리 전달 분기 탐색·시간 배분·동시 작업 최적화 전체를 실기에 포팅했다는 뜻도 아닙니다. 새 성공 자료는 `stabilization inspect/import`로 별도 폴더에 읽어 올 수 있고, 자동으로 현재 프로필을 바꾸지 않습니다.
-
-검증 범위는 [기능과 남은 현장 확인](docs/CAPABILITIES.md), 시험 결과는 `reports/release-validation.json`에 기록합니다.
-
-추가 실험 기능: [자기 Hand RGB-D 표면 연결](docs/KNOWN_HAND_SURFACE.md). 기본 비활성, 실제 in-bin 파지 통과 미확인입니다.
-
-손 진입 후 자기 점유 때문에 닫기가 막히는 경우의 새 opt-in: [짧은 정적 바구니 지도 유지](docs/STATIC_SCENE_LEASE.md). 실제 접촉 전 엄격한 빈 손 접근과 새 목표 촬영이 필요하며, SDK/현장 검증은 미완료입니다.
+[기록된 파이프라인 검사](docs/RECORDED_PIPELINE_STATUS.md)에 결과와 재생 방법이 있습니다. 두 뷰 융합은 **오프라인 구성 요소 시험**이며 live 다중 카메라/scene lease 기능이 아닙니다. 기존 scene lease도 기본 비활성이며 [별도 조건](docs/STATIC_SCENE_LEASE.md)을 따릅니다. 과거 v128 자료는 출처를 보존한 시뮬 참조이며, 이 패키지의 실기 성공 근거가 아닙니다.

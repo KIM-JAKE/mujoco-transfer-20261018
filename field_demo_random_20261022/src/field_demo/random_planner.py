@@ -176,13 +176,17 @@ def validate_model(model):
             'gap': float(np.max(gaps)), 'sample_count': len(samples), 'duration_s': float(times[-1])}
 
 
-def run_native(binary, mode, address, targets=None):
+def run_native(binary, mode, address, targets=None, *, ik_seed=None):
     args = [str(binary), mode, str(ipaddress.ip_address(address))]
     with tempfile.TemporaryDirectory(prefix='random-field-plan-') as directory:
         if targets is not None:
             path = Path(directory) / 'targets.txt'
             path.write_text(''.join(' '.join(format(v, '.17g') for v in matrix.ravel())+'\n' for matrix in targets))
             args.append(str(path))
+        if ik_seed is not None:
+            seed=collision.finite(ik_seed,(7,))
+            if mode!='--read-model' or targets is None:raise ValueError('IK seed is read-model candidate input only')
+            args += ['--ik-seed',*[format(v,'.17g')for v in seed]]
         try:
             result = subprocess.run(args, capture_output=True, text=True, check=True, timeout=90 if targets is not None else 10)
         except subprocess.CalledProcessError as error:
@@ -619,7 +623,10 @@ def plan_phase(request, config, site_dir, *, native_plan=None, other_state=None,
     base = collision.transform(site['robots'][side]['T_cell_base'])
     base_targets = [np.linalg.inv(base)@target for target in targets]
     before = datetime.now(timezone.utc)
-    model = native_plan(site['robots'][side]['ip'], base_targets) if native_plan else run_native(binary, '--read-model', site['robots'][side]['ip'], base_targets)
+    if native_plan:
+        seed_options={}if request.get('ik_seed')is None else dict(ik_seed=request['ik_seed'])
+        model=native_plan(site['robots'][side]['ip'],base_targets,**seed_options)
+    else:model=run_native(binary,'--read-model',site['robots'][side]['ip'],base_targets,ik_seed=request.get('ik_seed'))
     received = datetime.now(timezone.utc)
     opposite = 'right' if side == 'left' else 'left'
     other = other_state(site['robots'][opposite]['ip']) if callable(other_state) else other_state
@@ -760,10 +767,10 @@ class DynamicPlanner:
     def __init__(self, site, config, output_dir):
         self.site, self.config, self.output_dir = site, Path(config).resolve(), Path(output_dir).resolve()
 
-    def plan(self, phase, part, side, T_cell_tcp_targets, observation, *, held_parts=None, contact=None,aperture_binding=None):
+    def plan(self, phase, part, side, T_cell_tcp_targets, observation, *, held_parts=None, contact=None,aperture_binding=None,ik_seed=None):
         return plan_phase({'phase': phase, 'part': part, 'robot': side,
                            'T_cell_tcp_targets': T_cell_tcp_targets, 'observation': observation,
-                           'held_parts': held_parts or [], 'contact': contact,'aperture_binding':aperture_binding, 'output_dir': str(self.output_dir)},
+                           'held_parts': held_parts or [], 'contact': contact,'aperture_binding':aperture_binding,'ik_seed':ik_seed, 'output_dir': str(self.output_dir)},
                           self.config, self.site.filename.parent)
 
     def revalidate(self, plan, observation=None):

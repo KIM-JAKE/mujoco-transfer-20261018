@@ -30,7 +30,7 @@ class LoadedContactAperture:
         if grasp.shape!=(4,4) or not np.isfinite(grasp).all() or not payload_path:
             raise RuntimeError('Loaded-contact geometry lacks its image-derived carried transform')
         if not 0<=capture_age_physics_s<=.25:
-            raise RuntimeError('Loaded-contact image is too old at binding')
+            raise RuntimeError('Loaded-contact image is too old at binding '+str(dict(capture_age_physics_s=float(capture_age_physics_s),maximum_age_physics_s=.25)))
         if not .00025<=half_interval_m<=.0005 or not 0<control_dt_s<=.01:
             raise RuntimeError('Invalid conservative loaded-contact geometry interval')
         self.side=side;self.part=part;self.payload_path=str(payload_path)

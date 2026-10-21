@@ -1,0 +1,3593 @@
+{
+  "full_task_pass": false,
+  "vision_end_to_end_pass": false,
+  "end_to_end_under30": false,
+  "hardware_tested": false,
+  "part_attachments": false,
+  "workpiece_teleports_after_initialization": 0,
+  "physics_hz": 1920,
+  "python_thread_switch_interval_s": 0.005,
+  "timing_basis": "Monotonic wall time from first camera snapshot through >=0.5s verified retention",
+  "CPU_camera_waits_omitted": false,
+  "finger_effort_caps_n": {
+    "left_per_finger": 30.0,
+    "right_per_finger": 30.0,
+    "left_final_insertion_per_finger": 15.0
+  },
+  "clamp_target_update_hz": 30,
+  "wall_pacing": "Each 480 Hz control step advances two 960 Hz PhysX substeps and takes at least 1/480 s wall time; no catch-up fast-forward",
+  "native_finger_target_speed_cap_m_s": 0.0475,
+  "native_force_hold": "Scattered controller: single motor + coupled passive finger, velocity preload, finite force; no attachment",
+  "initial_big_ring_aperture_m": 0.076,
+  "neural_mask_cache_used": false,
+  "CPU_fast_kinematics": {
+    "enabled": true,
+    "device": "CPU",
+    "algorithm": "Same USD frames, joint bounds, DLS damping and 220-iteration limit; Eigen C++ implementation",
+    "library_sha256": "efaaa4965137f12bd60de206612217e3271a7b702c02ca6105479e9fbf470234",
+    "source_sha256": "b513b9dc1d624c79473fe5836cdc78bd13aaaf670e48cc7b024fc3866691835a"
+  },
+  "pin_clamp_assumed_center_z_m": 1.515,
+  "pin_clamp_hardware_calibrated": false,
+  "pin_method": "Tail grasp, uninterrupted axial insertion, release only after fresh full-depth RGB-D confirmation",
+  "clamp_tensor_drives": false,
+  "solver_iterations": {
+    "position": 16,
+    "velocity": 16
+  },
+  "physics_hz_range": [
+    1920,
+    1920
+  ],
+  "physics_worker_threads": 0,
+  "physics_cpu_dispatcher": true,
+  "continuous_collision_detection": true,
+  "controller_hz": 480,
+  "physics_substeps_per_command": 4,
+  "randomized_bin_config": {
+    "seed": 446,
+    "tensor_clamps": false,
+    "correction_joint7_weight": 0.05,
+    "width_guard": true,
+    "digital_clamps": true,
+    "digital_clamp_threshold": 0.95,
+    "fixed_visual_application": true,
+    "direct_pin": true,
+    "ring_seat_hold_s": 0.35,
+    "motion_time_scale": 1.01,
+    "early_width_guard": true,
+    "held_correction_ramp_s": 0.35,
+    "physics_substeps": 4,
+    "physics_substep_window_s": [
+      13.0,
+      16.5
+    ],
+    "pin_tail_candidate": 0,
+    "enforce_motor_speed_limits": true,
+    "randomization_mode": "full_bin_drop",
+    "randomization_settle_s": 3.0,
+    "scatter_probe_only": false,
+    "native_mimic_frequency_hz": 0.0,
+    "deadline_s": 600,
+    "scattered_control": true,
+    "pick_part": "ring2",
+    "native_motor_speed_cap_m_s": 0.032,
+    "scattered_full_task": true,
+    "handover_only": false,
+    "scattered_physics_substeps": 4,
+    "native_finger_convex_decomposition": false,
+    "solver_velocity_iterations": 16,
+    "shuffle_drop_order": true,
+    "randomization_protocol": "full_bin_drop_shuffled_v2",
+    "start_above_bin": true,
+    "experimental_sim_only": true,
+    "full_random_task_validated": false,
+    "allow_fingertip_nudging": true,
+    "allow_internal_grasp": false,
+    "allow_single_finger_rearrangement": true,
+    "native_shared_motor_drive": true,
+    "native_grip_pad_force_n": 30,
+    "optimization_report": "scatter-optimization-20261021.json",
+    "one_ring_only": false,
+    "fast_transport": true,
+    "allow_chord_grasp": true,
+    "allow_side_entry": true,
+    "optimized_motion_timing": true,
+    "tracking_image_width_px": 384,
+    "native_contact_offset_m": 0.0005,
+    "gentle_descent": true,
+    "handover_plan_budget_s": 60.0,
+    "stability_time_scale": 1.0,
+    "grasp_settle_s": 0.2,
+    "ring_contact_debug": false,
+    "optimization_phase": "randomized_reliability_first",
+    "stable_small_grasp": true,
+    "prefer_internal_small_grasp": false,
+    "ring_yaw_free": true,
+    "reliability_handover_hint": true,
+    "stability_finish_rings_before_pin": true,
+    "continuous_force_hold": true,
+    "stability_serial": true,
+    "pin_first": false,
+    "descent_contact_speed_m_s": 0.03,
+    "shortcut_checked_routes": true,
+    "parallel_transfer_approach": false,
+    "pregrasp_floor_m": 1.235,
+    "prefer_near_handover_branch": true,
+    "pregrasp_floor_small_m": 1.235,
+    "path_local_timing": true,
+    "warm_spline_routes": false,
+    "center_large_receiver_grasp": true,
+    "sort_donor_orientations": true,
+    "handover_offsets_override": [
+      [
+        0.1,
+        -0.1,
+        0.0
+      ]
+    ],
+    "pin_between_rings": false,
+    "local_left_park": true,
+    "wait_for_ring_transport_clear": true,
+    "small_receiver_opening_m": 0.074,
+    "receiver_approach_standoff_m": 0.02,
+    "receiver_approach_step_m": 0.002,
+    "receiver_approach_resolution_rad": 0.002,
+    "pickup_multiview": true,
+    "require_fresh_preclose_rgbd": true,
+    "small_ring_repick_on_unstable_hold": true,
+    "small_ring_com_x_limit_m": 0.0025,
+    "pickup_retry_limit": 3,
+    "initial_eye_offset_m": [
+      0,
+      0,
+      0.8
+    ],
+    "stable_receiver_grasp": true,
+    "rim_only_pickup": false,
+    "allow_local_rim_grasp": false,
+    "prefer_local_rim_grasp": true,
+    "initial_pickup_multiview": false,
+    "native_loaded_preload_ramp_s": 0.3,
+    "native_loaded_initial_preload_m_s": 0.003,
+    "native_loaded_preload_m_s": 0.0075,
+    "rim_encoder_recenter": true,
+    "strict_rim_clutter": true,
+    "native_loaded_preload_after_contact_m_s": 0.015,
+    "inner_only_pickup": false,
+    "native_inner_bore_grasp": false,
+    "operation_solver_position_iterations": 128,
+    "operation_solver_velocity_iterations": 64,
+    "inner_bore_friction_reserve_mu": 0.6,
+    "allow_bin_release_retry": true,
+    "verify_receiver_pad_contact": true,
+    "inner_bore_x_tilt_candidates_deg": [
+      0,
+      10,
+      -10,
+      15,
+      -15
+    ],
+    "inner_bore_center_correction_limit_m": 0.0025,
+    "right_ring_insert_probe": false,
+    "receiver_axial_only": false,
+    "axial_receiver_probe": false,
+    "right_insertion_fixture_probe": false,
+    "rearrange_probe": false,
+    "rearrange_then_pick": false,
+    "require_front_up_pickup": false,
+    "rearrange_front_up_only": false,
+    "allow_partial_preclose_tracking": true,
+    "preclose_occlusion_max_age_s": 2.0,
+    "verify_lifted_pad_contact": true,
+    "right_direct_empty_left_parking": true,
+    "right_left_park_fixture_probe": false,
+    "reuse_aperture_invariant_checks": true,
+    "axial_receiver_fixture_budget_s": 90.0,
+    "allow_direct_right_insert": true,
+    "prefer_right_carry_small_posture": true,
+    "right_carry_vertical_escape": false,
+    "avoid_other_stock_finger_contact": true,
+    "stable_outer_donor_grasp": true,
+    "allow_tilted_bore_hook": true,
+    "timing_comparison_eligible": false,
+    "rearrangement_retry_limit": 3,
+    "bin_axial_pick_probe": false,
+    "tilted_ring_hook_probe": false,
+    "broaden_tilted_bore_hook_proposals": true,
+    "rearrangement_pickup_extra_eye_offsets_m": [
+      [
+        0.28,
+        0.28,
+        0.5
+      ],
+      [
+        -0.28,
+        -0.28,
+        0.5
+      ]
+    ],
+    "donor_release_opening_cap_m": 0.078,
+    "adaptive_initial_ring_order": true,
+    "pickup_diagonal_offsets_m": [
+      [
+        -0.08,
+        0.0,
+        0.0
+      ]
+    ],
+    "receiver_depth_options_m": [
+      0.002
+    ],
+    "right_fixture_replan_on_alignment_failure": true,
+    "close_empty_left_for_pin": true,
+    "large_receiver_depth_options_m": [
+      0.004
+    ],
+    "large_encoder_pose_bias_compensation": true,
+    "require_broad_large_donor_support": true,
+    "right_fixture_oblique_camera_views": true,
+    "defer_handover_until_visible_clearance": true,
+    "verify_large_lift_grasp_retention": true,
+    "large_lift_grasp_translation_limit_m": 0.002,
+    "large_lift_grasp_axis_limit_rad": 0.05,
+    "verify_large_donor_after_carry": true,
+    "robust_annular_camera_view_bank": true,
+    "timing_metadata_correction": "Parallel CPU reliability experiment; measured wall time is not an eligible optimization comparison.",
+    "balanced_large_receiver_grasp": true,
+    "pin_visual_preinsert_alignment": true,
+    "pin_axis_goal_world_m": [
+      -0.30203095784,
+      0.22724999619,
+      1.52875
+    ],
+    "exact_axis_large_receiver_grasp": true,
+    "verify_selected_outer_approach": true,
+    "robust_pin_cap_circle": true,
+    "pin_precision_image_width_px": 768,
+    "pin_grasp_catalog_run": "native-roas-table-scatter-stable-v251-corrected-pin-catalog",
+    "pin_grasp_catalog_candidate": 0,
+    "pin_grasp_catalog_probe": false,
+    "pin_axis_frame_consistent_geometry": true,
+    "verify_native_pin_hold": true,
+    "ray_image_backend": "embree_cpu",
+    "gpu_ik_proposals": true,
+    "gpu_ik_socket": "/workspace/project/mujoco/.local/curobo-gpu2/ik.sock",
+    "pin_rgbd_sdk_hold_confirmation": true,
+    "pin_terminal_stroke_preflight": true,
+    "pin_axial_yaw_free": true,
+    "gpu_route_proposals": true,
+    "gpu_route_socket": "/workspace/project/mujoco/.local/curobo-gpu2/route.sock",
+    "gpu_route_timeout_s": 2.0,
+    "sequential_initial_ring_selection": true,
+    "initial_camera_width_px": 768,
+    "initial_camera_height_px": 768,
+    "initial_camera_span_m": 0.55,
+    "park_before_bin_pick": false,
+    "empty_park_known_empty": true,
+    "empty_park_preshape_m": 0.07,
+    "empty_park_planning_budget_s": 20.0,
+    "gpu_dual_arm_reference": true,
+    "gpu_left_route_proposals": true,
+    "gpu_left_route_socket": "/workspace/project/mujoco/.local/curobo-gpu2/route-dual.sock",
+    "gpu_route_static_probe": true
+  },
+  "randomized_ring_count": 10,
+  "setup_depenetration_cap_m_s": 0.2,
+  "operation_depenetration_cap_m_s": 1000.0,
+  "fixed_standby_TCP_world_m": [
+    0.515,
+    -0.715,
+    1.255
+  ],
+  "standby_independent_of_images_or_object_poses": true,
+  "contact_material_audit": {
+    "steel": {
+      "static_friction": 0.6000000238418579,
+      "dynamic_friction": 0.5099999904632568,
+      "authored_friction_combine_mode": null,
+      "default_combine_mode": "average",
+      "hardware_friction_measured": false
+    },
+    "rubber": {
+      "static_friction": 1.0,
+      "dynamic_friction": 0.8500000238418579,
+      "authored_friction_combine_mode": null,
+      "default_combine_mode": "average",
+      "hardware_friction_measured": false
+    }
+  },
+  "initial_RGBD_camera_eye_offset_m": [
+    0,
+    0,
+    0.8
+  ],
+  "clamp_control": "Finite-force open/close commands, same jaw strokes and force caps",
+  "pickup_depth_increase_m": {
+    "ring1": 0.0,
+    "ring2": 0.0
+  },
+  "diagnostic_rings_only": false,
+  "pin_grasp_catalog_selection": {
+    "run": "native-roas-table-scatter-stable-v251-corrected-pin-catalog",
+    "candidate_index": 0,
+    "tilt_deg": -40,
+    "contact_z_m": 0.0,
+    "pickup_center_from_RGBD": [
+      0.19000387111393577,
+      -0.7897289286242213,
+      0.9160499607069958
+    ],
+    "physical_grasp_previously_tested": false
+  },
+  "usd_clamp_targets_batched": true,
+  "dof_names": [
+    "left_arm_fr3v2_joint1",
+    "right_arm_fr3v2_joint1",
+    "left_arm_fr3v2_joint2",
+    "right_arm_fr3v2_joint2",
+    "left_arm_fr3v2_joint3",
+    "right_arm_fr3v2_joint3",
+    "left_arm_fr3v2_joint4",
+    "right_arm_fr3v2_joint4",
+    "left_arm_fr3v2_joint5",
+    "right_arm_fr3v2_joint5",
+    "left_arm_fr3v2_joint6",
+    "right_arm_fr3v2_joint6",
+    "left_arm_fr3v2_joint7",
+    "right_arm_fr3v2_joint7",
+    "left_native_left",
+    "left_native_right",
+    "right_native_left",
+    "right_native_right"
+  ],
+  "link_names": [
+    "official_FR3_Duo",
+    "left_arm_base",
+    "right_arm_base",
+    "left_arm_fr3v2_link0",
+    "right_arm_fr3v2_link0",
+    "left_arm_fr3v2_link1",
+    "right_arm_fr3v2_link1",
+    "left_arm_fr3v2_link2",
+    "right_arm_fr3v2_link2",
+    "left_arm_fr3v2_link3",
+    "right_arm_fr3v2_link3",
+    "left_arm_fr3v2_link4",
+    "right_arm_fr3v2_link4",
+    "left_arm_fr3v2_link5",
+    "right_arm_fr3v2_link5",
+    "left_arm_fr3v2_link6",
+    "right_arm_fr3v2_link6",
+    "left_arm_fr3v2_link7",
+    "right_arm_fr3v2_link7",
+    "left_arm_fr3v2_link8",
+    "right_arm_fr3v2_link8",
+    "left_NativeHand",
+    "right_NativeHand",
+    "left_left_finger",
+    "left_right_finger",
+    "right_left_finger",
+    "right_right_finger"
+  ],
+  "camera_preparation_s": 0.002597987069748342,
+  "reference_motion": "live RGB-D scattered controller; no taught pickup path",
+  "stationary_trim_s": 0.0,
+  "joint_headroom_retiming_saved_s": 0.0,
+  "retimed_free_motion_windows": [],
+  "starts_with_rings_already_installed": false,
+  "scene_ring_color": "same steel material",
+  "pin_collision_approximation": {
+    "model": "Four coaxial convex cylinders, approximate CAD outer dimensions",
+    "length_m": 0.0355,
+    "tail_diameter_m": 0.0105,
+    "collar_diameter_m": 0.013,
+    "shaft_diameter_m": 0.0076,
+    "CAD_nominal_shaft_diameter_m": 0.008,
+    "radial_clearance_allowance_m": 0.0002,
+    "tip_diameter_m": 0.005,
+    "parts": 4,
+    "original_slits_and_reliefs_not_simulated": true,
+    "hardware_validated": false
+  },
+  "grasp_obstacles_from_RGBD_cloud": true,
+  "loose_stock_contact_policy": "Fingertip nudging allowed; RGB-D palm sweep, fixed-structure queries and all physical contacts retained",
+  "fast_transport_planner": {
+    "enabled": true,
+    "version": "0.7.0.8",
+    "static_objects": 2793,
+    "skipped_static_colliders": [],
+    "preparation_s": 51.76596335193608,
+    "uses_free_body_poses": false,
+    "proposal_only": true,
+    "live_PhysX_path_verification_required": true
+  },
+  "native_contact_generation": {
+    "contact_offset_m": 0.0005,
+    "rest_offset_m": 0.0,
+    "colliders": 4,
+    "applied_after_random_setup": true,
+    "collision_geometry_unchanged": true,
+    "friction_unchanged": true
+  },
+  "operation_solver_iterations": {
+    "position": 128,
+    "velocity": 64,
+    "applied_after_random_setup": true
+  },
+  "standby_preparation_wall_s": 81.98622399102896,
+  "automatic_gc_deferred_during_cycle": true,
+  "first_capture_wall_epoch_s": 1792611876.9366727,
+  "motor_velocity_cap_policy": "Signed position-dependent FR3 bounds at encoder position plus one-step margin; 93% drive cap and unchanged 95% actual velocity acceptance",
+  "CPU_planning_advances_physics": false,
+  "hard_realtime_controller_validated": false,
+  "native_gripper_control": "One scalar width/velocity command + hard mechanical coupling; same reference on both pads; total effort cap 60.0 N and total damping 4000 N s/m, distributed equally; no additional motor capability; loaded grasp maintains closing force at 15 mm/s velocity preload instead of relaxing at a fixed minimum width; configured loaded preload 7.5 mm/s with 0.3 s force ramp",
+  "native_single_motor_coupling_validated": true,
+  "native_shared_motor_drive": true,
+  "native_loaded_preload_ramp": {
+    "duration_s": 0.3,
+    "initial_m_s": 0.003,
+    "final_m_s": 0.0075,
+    "motor_force_cap_n": 60.0,
+    "arm_timing_unchanged": true
+  },
+  "planning_diagnostics": [],
+  "state": "physical_acceptance_failed",
+  "scattered_pick": {
+    "state": "conservative_fixed_CAD_component",
+    "installation": {
+      "queries": 0,
+      "accepted": 0,
+      "fallback": 0,
+      "seconds": 0.0,
+      "backend": "conservative full-CAD FCL acceptance + original PhysX fallback",
+      "physical_motion_backend": "Isaac PhysX",
+      "full_PhysX_query_claim": false,
+      "static_colliders": 2793,
+      "skipped": [],
+      "authored_prismatic_envelopes": {
+        "/World/Button": {
+          "joint": "/World/ButtonTravel",
+          "axis": "Y",
+          "limits_m": [
+            0.0,
+            0.002199999988079071
+          ],
+          "body0": "world"
+        },
+        "/World/Clamps/ring1/jaw_0": {
+          "joint": "/World/Clamps/ring1/jaw_0/Actuator",
+          "axis": "X",
+          "limits_m": [
+            0.0,
+            0.002400000113993883
+          ],
+          "body0": "world"
+        },
+        "/World/Clamps/ring1/jaw_1": {
+          "joint": "/World/Clamps/ring1/jaw_1/Actuator",
+          "axis": "X",
+          "limits_m": [
+            0.0,
+            0.002400000113993883
+          ],
+          "body0": "world"
+        },
+        "/World/Clamps/ring1/jaw_2": {
+          "joint": "/World/Clamps/ring1/jaw_2/Actuator",
+          "axis": "X",
+          "limits_m": [
+            0.0,
+            0.002400000113993883
+          ],
+          "body0": "world"
+        },
+        "/World/Clamps/ring2/jaw_0": {
+          "joint": "/World/Clamps/ring2/jaw_0/Actuator",
+          "axis": "X",
+          "limits_m": [
+            0.0,
+            0.0020000000949949026
+          ],
+          "body0": "world"
+        },
+        "/World/Clamps/ring2/jaw_1": {
+          "joint": "/World/Clamps/ring2/jaw_1/Actuator",
+          "axis": "X",
+          "limits_m": [
+            0.0,
+            0.0020000000949949026
+          ],
+          "body0": "world"
+        },
+        "/World/Clamps/ring2/jaw_2": {
+          "joint": "/World/Clamps/ring2/jaw_2/Actuator",
+          "axis": "X",
+          "limits_m": [
+            0.0,
+            0.0020000000949949026
+          ],
+          "body0": "world"
+        },
+        "/World/Clamps/pin/jaw_0": {
+          "joint": "/World/Clamps/pin/jaw_0/Actuator",
+          "axis": "X",
+          "limits_m": [
+            -0.004699999932199717,
+            0.0
+          ],
+          "body0": "world"
+        },
+        "/World/Clamps/pin/jaw_1": {
+          "joint": "/World/Clamps/pin/jaw_1/Actuator",
+          "axis": "X",
+          "limits_m": [
+            -0.004699999932199717,
+            0.0
+          ],
+          "body0": "world"
+        }
+      },
+      "opposite_base_colliders": {
+        "right": 1,
+        "left": 1
+      },
+      "padding_m": 0.0005,
+      "additional_authored_contact_offset_m": 9.999999747378752e-05
+    },
+    "preparation_s": 44.99725130293518,
+    "robot_motion_executed": false,
+    "full_task_pass": false,
+    "hardware_tested": false,
+    "current_actor_workpiece_pose_used": false,
+    "samples": [
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 0,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.002305577974766493,
+        "optimized_s": 0.01660109800286591
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 0,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.00338235090021044,
+        "optimized_s": 0.016479921992868185
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 621,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014579639537259936,
+        "optimized_s": 0.0011867750436067581
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 621,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013555629411712289,
+        "optimized_s": 0.001377927022986114
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 1243,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013967930572107434,
+        "optimized_s": 0.0011175780091434717
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 1243,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013523220550268888,
+        "optimized_s": 0.0013578139478340745
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 1864,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001247104024514556,
+        "optimized_s": 0.001089919009245932
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 1864,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013343889731913805,
+        "optimized_s": 0.0013491860590875149
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 2486,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014738549944013357,
+        "optimized_s": 0.0012699899962171912
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 2486,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013133779866620898,
+        "optimized_s": 0.0013338429853320122
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 3107,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014781870413571596,
+        "optimized_s": 0.0012540090829133987
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 3107,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013259400147944689,
+        "optimized_s": 0.001342009985819459
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 3729,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0015069750370457768,
+        "optimized_s": 0.0012430400820448995
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 3729,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001331736915744841,
+        "optimized_s": 0.0013287749607115984
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 4351,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0015296279452741146,
+        "optimized_s": 0.001186347915790975
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 4351,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013474150327965617,
+        "optimized_s": 0.0013337209820747375
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 4972,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014058490050956607,
+        "optimized_s": 0.001095626037567854
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 4972,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013295490061864257,
+        "optimized_s": 0.0013351469533517957
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 5594,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013925080420449376,
+        "optimized_s": 0.0011244510533288121
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 5594,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001339734997600317,
+        "optimized_s": 0.0013699149712920189
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 6215,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0015145340003073215,
+        "optimized_s": 0.0012815051013603806
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 6215,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0015202319482341409,
+        "optimized_s": 0.0015145409852266312
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 6837,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0015878030098974705,
+        "optimized_s": 0.0015308730071410537
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 6837,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0015136119909584522,
+        "optimized_s": 0.001526935026049614
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 7459,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014949010219424963,
+        "optimized_s": 0.0013286890462040901
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 7459,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013878870522603393,
+        "optimized_s": 0.0014129680348560214
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 8080,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0015727370046079159,
+        "optimized_s": 0.021154418005608022
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 8080,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0015195170417428017,
+        "optimized_s": 0.001523982034996152
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 8702,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014818459749221802,
+        "optimized_s": 0.001317458925768733
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 8702,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014035659842193127,
+        "optimized_s": 0.001398283988237381
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 9323,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014413140015676618,
+        "optimized_s": 0.0013195329811424017
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 9323,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013400790048763156,
+        "optimized_s": 0.001349714002572
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 9945,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014314920408651233,
+        "optimized_s": 0.0012491699308156967
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 9945,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001361291971988976,
+        "optimized_s": 0.0013333519455045462
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 10567,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013580999802798033,
+        "optimized_s": 0.0010975159239023924
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 10567,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013838349841535091,
+        "optimized_s": 0.0013286719331517816
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 11188,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014275370631366968,
+        "optimized_s": 0.00119609700050205
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 11188,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013248639879748225,
+        "optimized_s": 0.0013098020572215319
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 11810,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001465687993913889,
+        "optimized_s": 0.0012560940813273191
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 11810,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013172220205888152,
+        "optimized_s": 0.001320931944064796
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 12431,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014363799709826708,
+        "optimized_s": 0.0011833650059998035
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 12431,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013224310241639614,
+        "optimized_s": 0.0013108229031786323
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 13053,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001439986051991582,
+        "optimized_s": 0.0011636369163170457
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 13053,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001329754013568163,
+        "optimized_s": 0.0013111160369589925
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 13675,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0012763020349666476,
+        "optimized_s": 0.0011499839602038264
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 13675,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0012986839283257723,
+        "optimized_s": 0.00131507299374789
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 14296,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014523990685120225,
+        "optimized_s": 0.0011588830966502428
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 14296,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001323858043178916,
+        "optimized_s": 0.001313196960836649
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 14918,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014381459914147854,
+        "optimized_s": 0.0012177960015833378
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 14918,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013231209013611078,
+        "optimized_s": 0.001333154970780015
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 15539,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014422750100493431,
+        "optimized_s": 0.0011550809722393751
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 15539,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013288010377436876,
+        "optimized_s": 0.0013310469221323729
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 16161,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014397240011021495,
+        "optimized_s": 0.0011118859983980656
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 16161,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001326954923570156,
+        "optimized_s": 0.0013213569764047861
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 16782,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014731819974258542,
+        "optimized_s": 0.0011665920028463006
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 16782,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013028740650042892,
+        "optimized_s": 0.00132636702619493
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 17404,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0015287160640582442,
+        "optimized_s": 0.0012217899784445763
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 17404,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013141809031367302,
+        "optimized_s": 0.001319156028330326
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 18026,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0015204850351437926,
+        "optimized_s": 0.0012218530755490065
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 18026,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013252339558675885,
+        "optimized_s": 0.0013429629616439342
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 18647,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014600809663534164,
+        "optimized_s": 0.0011263120686635375
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 18647,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001384975970722735,
+        "optimized_s": 0.0013357559219002724
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 19269,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013664449797943234,
+        "optimized_s": 0.0010968929855152965
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 19269,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014264220371842384,
+        "optimized_s": 0.001189377042464912
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 19890,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0012311090249568224,
+        "optimized_s": 0.001073242980055511
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 19890,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013986080884933472,
+        "optimized_s": 0.0011814810568466783
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 20512,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0012510380474850535,
+        "optimized_s": 0.0010783339384943247
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 20512,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001249321037903428,
+        "optimized_s": 0.0011505309958010912
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 21134,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013786059571430087,
+        "optimized_s": 0.0010746989864856005
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 21134,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0012418660335242748,
+        "optimized_s": 0.001131796045228839
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 21755,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0011612540110945702,
+        "optimized_s": 0.000987524981610477
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 21755,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013061190256848931,
+        "optimized_s": 0.001353337080217898
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 22377,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0011602459708228707,
+        "optimized_s": 0.0009788390016183257
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 22377,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013376770075410604,
+        "optimized_s": 0.022912536980584264
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 22998,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0011954839574173093,
+        "optimized_s": 0.0010080650681629777
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 22998,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001283276011236012,
+        "optimized_s": 0.0012950609670951962
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 23620,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0012993400450795889,
+        "optimized_s": 0.0010279049165546894
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 23620,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0011583610903471708,
+        "optimized_s": 0.0012711419258266687
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 24242,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0012641570065170527,
+        "optimized_s": 0.0010633210185915232
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 24242,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001150739029981196,
+        "optimized_s": 0.0012580460170283914
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 24863,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001269678003154695,
+        "optimized_s": 0.0010608810698613524
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 24863,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0011549879563972354,
+        "optimized_s": 0.0012502679601311684
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 25485,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0011808400740846992,
+        "optimized_s": 0.0010865229414775968
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 25485,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013131080195307732,
+        "optimized_s": 0.0010640519903972745
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 26106,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0012692520394921303,
+        "optimized_s": 0.0011388140264898539
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 26106,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014860479859635234,
+        "optimized_s": 0.0013733169762417674
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 26728,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014199460856616497,
+        "optimized_s": 0.0011227090144529939
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 26728,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014066779986023903,
+        "optimized_s": 0.00136544497217983
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 27350,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0016537350602447987,
+        "optimized_s": 0.001790854032151401
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 27350,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014929620083421469,
+        "optimized_s": 0.0015049779321998358
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 27971,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001644489006139338,
+        "optimized_s": 0.0016122090164572
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 27971,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014781170757487416,
+        "optimized_s": 0.0015315059572458267
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 28593,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0016102930530905724,
+        "optimized_s": 0.0016274939989671111
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 28593,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014556939713656902,
+        "optimized_s": 0.0015040410216897726
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 29214,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0016145219560712576,
+        "optimized_s": 0.0016101999208331108
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 29214,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014756079763174057,
+        "optimized_s": 0.0015145079232752323
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 29836,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0016118630301207304,
+        "optimized_s": 0.003372853039763868
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 29836,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0015337510267272592,
+        "optimized_s": 0.0015606149099767208
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 30458,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001612953026778996,
+        "optimized_s": 0.0016110580181702971
+      },
+      {
+        "case": "archived_empty_v280",
+        "archive_index": 30458,
+        "side": "left",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0014822590164840221,
+        "optimized_s": 0.00149312405847013
+      },
+      {
+        "case": "archived_self_collision_v272",
+        "archive_index": 399,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013269479386508465,
+        "optimized_s": 0.0010624479036778212
+      },
+      {
+        "case": "archived_self_collision_v272",
+        "archive_index": 406,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0012981460895389318,
+        "optimized_s": 0.0010659489780664444
+      },
+      {
+        "case": "archived_self_collision_v272",
+        "archive_index": 413,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0012926950585097075,
+        "optimized_s": 0.0010643969289958477
+      },
+      {
+        "case": "archived_self_collision_v272",
+        "archive_index": 420,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0012997579760849476,
+        "optimized_s": 0.0010603980626910925
+      },
+      {
+        "case": "archived_self_collision_v272",
+        "archive_index": 427,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013087999541312456,
+        "optimized_s": 0.0010628850432112813
+      },
+      {
+        "case": "archived_self_collision_v272",
+        "archive_index": 434,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001289075007662177,
+        "optimized_s": 0.0010643089190125465
+      },
+      {
+        "case": "archived_self_collision_v272",
+        "archive_index": 441,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013015599688515067,
+        "optimized_s": 0.0010753730311989784
+      },
+      {
+        "case": "archived_self_collision_v272",
+        "archive_index": 448,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0012978720478713512,
+        "optimized_s": 0.0010547790443524718
+      },
+      {
+        "case": "archived_self_collision_v272",
+        "archive_index": 455,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0012914269464090466,
+        "optimized_s": 0.0010637829545885324
+      },
+      {
+        "case": "archived_self_collision_v272",
+        "archive_index": 462,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013022780185565352,
+        "optimized_s": 0.0010691940551623702
+      },
+      {
+        "case": "archived_self_collision_v272",
+        "archive_index": 469,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0012977819424122572,
+        "optimized_s": 0.001076870015822351
+      },
+      {
+        "case": "archived_self_collision_v272",
+        "archive_index": 476,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013082769000902772,
+        "optimized_s": 0.0010780240409076214
+      },
+      {
+        "case": "archived_self_collision_v272",
+        "archive_index": 483,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0012943089241161942,
+        "optimized_s": 0.001088595949113369
+      },
+      {
+        "case": "archived_self_collision_v272",
+        "archive_index": 490,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "kind": "same_arm_self_collision",
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/Contact/right_arm_fr3v2_link7_collision",
+          "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5",
+          "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/Contact/right_arm_fr3v2_link5_collision",
+          "distance_m": -1.0,
+          "required_clearance_m": 0.001
+        },
+        "original_s": 0.00030927802436053753,
+        "optimized_s": 0.00028727599419653416
+      },
+      {
+        "case": "archived_self_collision_v272",
+        "archive_index": 498,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "kind": "same_arm_self_collision",
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/Contact/right_arm_fr3v2_link7_collision",
+          "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5",
+          "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/Contact/right_arm_fr3v2_link5_collision",
+          "distance_m": -1.0,
+          "required_clearance_m": 0.001
+        },
+        "original_s": 0.00029374496079981327,
+        "optimized_s": 0.0002796390326693654
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4394,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.5822827940573916,
+        "optimized_s": 3.8258627739269286
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4425,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.009276614058762789,
+        "optimized_s": 0.008229414001107216
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4456,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.00823615596164018,
+        "optimized_s": 0.007833179086446762
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4487,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.00795235694386065,
+        "optimized_s": 0.00759761210065335
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4518,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007804952096194029,
+        "optimized_s": 0.007412779959850013
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4549,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0077707041054964066,
+        "optimized_s": 0.0059676580131053925
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4581,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007662380929104984,
+        "optimized_s": 0.0059836889849975705
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4612,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007553088013082743,
+        "optimized_s": 0.005925051984377205
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4643,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007449661032296717,
+        "optimized_s": 0.00589217699598521
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4674,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007416384993121028,
+        "optimized_s": 0.005877666990272701
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4705,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007318296004086733,
+        "optimized_s": 0.005818161065690219
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4737,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007341452990658581,
+        "optimized_s": 0.00583504606038332
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4768,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007340715965256095,
+        "optimized_s": 0.005911981919780374
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4799,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0075087330769747496,
+        "optimized_s": 0.005989715922623873
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4830,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007471336983144283,
+        "optimized_s": 0.0060400019865483046
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4861,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007490399992093444,
+        "optimized_s": 0.006051911972463131
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4893,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.00769360305275768,
+        "optimized_s": 0.0060434050392359495
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4924,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007553367060609162,
+        "optimized_s": 0.0060962989227846265
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4955,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007578082964755595,
+        "optimized_s": 0.00604871497489512
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 4986,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007661048090085387,
+        "optimized_s": 0.0061679460341110826
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5017,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.00762714899610728,
+        "optimized_s": 0.006160921999253333
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5049,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0076031890930607915,
+        "optimized_s": 0.00610930600669235
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5080,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007657933980226517,
+        "optimized_s": 0.0061590420082211494
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5111,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007614367990754545,
+        "optimized_s": 0.006254083011299372
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5142,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007575428928248584,
+        "optimized_s": 0.006125546991825104
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5173,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007608980988152325,
+        "optimized_s": 0.007673268090002239
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5204,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007624756079167128,
+        "optimized_s": 0.0075881549855694175
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5236,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007651133928447962,
+        "optimized_s": 0.007988322991877794
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5267,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0078013630118221045,
+        "optimized_s": 0.008290425990708172
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5298,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": false,
+        "original_rejection": null,
+        "original_s": 0.007777674007229507,
+        "optimized_s": 0.00909244001377374
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5329,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008169899927452207,
+        "optimized_s": 0.008076373022049665
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5360,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0079448779579252,
+        "optimized_s": 0.006361144012771547
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5392,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007793845026753843,
+        "optimized_s": 0.00622611993458122
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5423,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007758821011520922,
+        "optimized_s": 0.006371974013745785
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5454,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0077642269898205996,
+        "optimized_s": 0.006389239919371903
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5485,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007796406047418714,
+        "optimized_s": 0.006299288012087345
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5516,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007693531108088791,
+        "optimized_s": 0.006281253998167813
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5548,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007678860914893448,
+        "optimized_s": 0.006196227972395718
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5579,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007645534002222121,
+        "optimized_s": 0.0061475979164242744
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5610,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0075731270480901,
+        "optimized_s": 0.00763984490185976
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5641,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007590989931486547,
+        "optimized_s": 0.008790382998995483
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5672,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007575587020255625,
+        "optimized_s": 0.008815321023575962
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5704,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007640396943315864,
+        "optimized_s": 0.00849865097552538
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5735,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007592736976221204,
+        "optimized_s": 0.007266437984071672
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5766,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007414472056552768,
+        "optimized_s": 0.0072393890004605055
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5797,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007363020093180239,
+        "optimized_s": 0.007120623020455241
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5828,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007341334945522249,
+        "optimized_s": 0.007111913990229368
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5860,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0073350470047444105,
+        "optimized_s": 0.00713222601916641
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5891,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.00740366498939693,
+        "optimized_s": 0.007139998953789473
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5922,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.00741296901833266,
+        "optimized_s": 0.007150326040573418
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5953,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007394730928353965,
+        "optimized_s": 0.007180165033787489
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 5984,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007531429058872163,
+        "optimized_s": 0.007321043056435883
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6015,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0076425300212576985,
+        "optimized_s": 0.007523086038418114
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6047,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007788429036736488,
+        "optimized_s": 0.007639606017619371
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6078,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007865276071242988,
+        "optimized_s": 0.007776573998853564
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6109,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.00802177400328219,
+        "optimized_s": 0.007932389969937503
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6140,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008022545953281224,
+        "optimized_s": 0.007898424053564668
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6171,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007965110940858722,
+        "optimized_s": 0.007823589025065303
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6203,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008280239999294281,
+        "optimized_s": 0.008188424981199205
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6234,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008440759032964706,
+        "optimized_s": 0.008168451953679323
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6265,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008351637981832027,
+        "optimized_s": 0.008151005022227764
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6296,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008294709958136082,
+        "optimized_s": 0.008205810911022127
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6327,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008119926904328167,
+        "optimized_s": 0.007988269906491041
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6359,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007959641981869936,
+        "optimized_s": 0.007869011024013162
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6390,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.00786047091241926,
+        "optimized_s": 0.0078020000364631414
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6421,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.00784894300159067,
+        "optimized_s": 0.007811033050529659
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6452,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.00796333805192262,
+        "optimized_s": 0.008460756042040884
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6483,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008104669046588242,
+        "optimized_s": 0.007901001023128629
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6515,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.00797212403267622,
+        "optimized_s": 0.007922759978100657
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6546,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007963863899931312,
+        "optimized_s": 0.00792061595711857
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6577,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.00809410004876554,
+        "optimized_s": 0.008046415983699262
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6608,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008093500044196844,
+        "optimized_s": 0.00801630795467645
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6639,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.00798452296294272,
+        "optimized_s": 0.007966386969201267
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6671,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008547559031285346,
+        "optimized_s": 0.011414168984629214
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6702,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008702202932909131,
+        "optimized_s": 0.012307050987146795
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6733,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008265633950941265,
+        "optimized_s": 0.012118131038732827
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6764,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008214956964366138,
+        "optimized_s": 0.011657582013867795
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6795,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0081956289941445,
+        "optimized_s": 0.010968560934998095
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6826,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008052787045016885,
+        "optimized_s": 0.010416531004011631
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6858,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008037355961278081,
+        "optimized_s": 0.010482447920367122
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6889,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008228708058595657,
+        "optimized_s": 0.010742988903075457
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6920,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008125238004140556,
+        "optimized_s": 0.010448910994455218
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6951,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008153703063726425,
+        "optimized_s": 0.010862902970984578
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 6982,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008553865947760642,
+        "optimized_s": 0.01067800004966557
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 7014,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008126197033561766,
+        "optimized_s": 0.010414274060167372
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 7045,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008095554076135159,
+        "optimized_s": 0.010695280972868204
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 7076,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008371587959118187,
+        "optimized_s": 0.010606696945615113
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 7107,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008164793020114303,
+        "optimized_s": 0.010461736004799604
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 7138,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008327265037223697,
+        "optimized_s": 0.010561673087067902
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 7170,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.008088801987469196,
+        "optimized_s": 0.01046727690845728
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 7201,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.00802466506138444,
+        "optimized_s": 0.010292744031175971
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 7232,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.00785394199192524,
+        "optimized_s": 0.010172997019253671
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 7263,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007534573087468743,
+        "optimized_s": 0.00985595106612891
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 7294,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007528846035711467,
+        "optimized_s": 0.009744998067617416
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 7326,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007487649912945926,
+        "optimized_s": 0.009752442012540996
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 7357,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.00746202003210783,
+        "optimized_s": 0.009770823991857469
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 7388,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007443424081429839,
+        "optimized_s": 0.009689704980701208
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 7419,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0074367939960211515,
+        "optimized_s": 0.009779959917068481
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 7450,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007431093021295965,
+        "optimized_s": 0.009782464010640979
+      },
+      {
+        "case": "archived_loaded_v280",
+        "archive_index": 7482,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.007423816015943885,
+        "optimized_s": 0.00976170098874718
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 0,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/Contact/right_arm_fr3v2_link5_collision",
+          "actor": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand",
+          "collider": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/Palm",
+          "predictive_pair_box": true,
+          "minimum_pair_clearance_m": 0.001
+        },
+        "original_s": 0.0011074199574068189,
+        "optimized_s": 0.0010301490547135472
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 1,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision",
+          "actor": "/World/Environment/m80/instance_2958",
+          "collider": "/World/Environment/m80/instance_2958"
+        },
+        "original_s": 0.007095590000972152,
+        "optimized_s": 0.007966739009134471
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 2,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/Contact/right_arm_fr3v2_link5_collision",
+          "actor": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand",
+          "collider": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/Palm",
+          "predictive_pair_box": true,
+          "minimum_pair_clearance_m": 0.001
+        },
+        "original_s": 0.0010451209964230657,
+        "optimized_s": 0.0009935999987646937
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 3,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm",
+          "actor": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6",
+          "collider": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/Contact/left_arm_fr3v2_link6_collision",
+          "predictive_pair_box": true,
+          "minimum_pair_clearance_m": 0.001
+        },
+        "original_s": 0.0008422379614785314,
+        "optimized_s": 0.000838369014672935
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 4,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm",
+          "actor": "/World/Environment/m80/instance_0666",
+          "collider": "/World/Environment/m80/instance_0666"
+        },
+        "original_s": 0.0009720310335978866,
+        "optimized_s": 0.001242359052412212
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 5,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.00130420399364084,
+        "optimized_s": 0.001100037945434451
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 6,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm",
+          "actor": "/World/Environment/m80/instance_0667",
+          "collider": "/World/Environment/m80/instance_0667"
+        },
+        "original_s": 0.0009402850409969687,
+        "optimized_s": 0.0011049349559471011
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 7,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/Contact/right_arm_fr3v2_link5_collision",
+          "actor": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand",
+          "collider": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/Palm",
+          "predictive_pair_box": true,
+          "minimum_pair_clearance_m": 0.001
+        },
+        "original_s": 0.0007855030708014965,
+        "optimized_s": 0.0007609149906784296
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 8,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm",
+          "actor": "/World/Environment/m80/instance_0636",
+          "collider": "/World/Environment/m80/instance_0636"
+        },
+        "original_s": 0.0009248870192095637,
+        "optimized_s": 0.0011111779604107141
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 9,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0012866039760410786,
+        "optimized_s": 0.0011233710683882236
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 10,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision",
+          "actor": "/World/Environment/m80/instance_0636",
+          "collider": "/World/Environment/m80/instance_0636"
+        },
+        "original_s": 0.0017613050295040011,
+        "optimized_s": 0.0031093439320102334
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 11,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/Contact/right_arm_fr3v2_link6_collision",
+          "actor": "/World/Environment/m80/instance_0618",
+          "collider": "/World/Environment/m80/instance_0618"
+        },
+        "original_s": 0.0013078359188511968,
+        "optimized_s": 0.001357607077807188
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 12,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013191129546612501,
+        "optimized_s": 0.0011355539318174124
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 13,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001245170016773045,
+        "optimized_s": 0.0011170479701831937
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 14,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm",
+          "actor": "/World/Environment/m80/instance_0384",
+          "collider": "/World/Environment/m80/instance_0384"
+        },
+        "original_s": 0.0010827180230990052,
+        "optimized_s": 0.0013373499969020486
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 15,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/Contact/right_arm_fr3v2_link6_collision",
+          "actor": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5",
+          "collider": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/Contact/left_arm_fr3v2_link5_collision",
+          "predictive_pair_box": true,
+          "minimum_pair_clearance_m": 0.001
+        },
+        "original_s": 0.0009004280436784029,
+        "optimized_s": 0.0008794140303507447
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 16,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0012370230397209525,
+        "optimized_s": 0.0010407259687781334
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 17,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/Contact/right_arm_fr3v2_link6_collision",
+          "actor": "/World/Environment/m80/instance_0094",
+          "collider": "/World/Environment/m80/instance_0094"
+        },
+        "original_s": 0.0013217710657045245,
+        "optimized_s": 0.00153955293353647
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 18,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm",
+          "actor": "/World/Environment/m80/instance_1597",
+          "collider": "/World/Environment/m80/instance_1597"
+        },
+        "original_s": 0.0011075520887970924,
+        "optimized_s": 0.0013501510256901383
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 19,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0012946579372510314,
+        "optimized_s": 0.0011531179770827293
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 20,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/Contact/right_arm_fr3v2_link6_collision",
+          "actor": "/World/Environment/m80/instance_0001",
+          "collider": "/World/Environment/m80/instance_0001"
+        },
+        "original_s": 0.001070859027095139,
+        "optimized_s": 0.0016742900479584932
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 21,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision",
+          "actor": "/World/Environment/m80/instance_0160",
+          "collider": "/World/Environment/m80/instance_0160"
+        },
+        "original_s": 0.0015076459385454655,
+        "optimized_s": 0.0032713619293645024
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 22,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm",
+          "actor": "/World/Environment/m80/instance_0196",
+          "collider": "/World/Environment/m80/instance_0196"
+        },
+        "original_s": 0.0031633840408176184,
+        "optimized_s": 0.003340527997352183
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 23,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision",
+          "actor": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5",
+          "collider": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/Contact/left_arm_fr3v2_link5_collision",
+          "predictive_pair_box": true,
+          "minimum_pair_clearance_m": 0.001
+        },
+        "original_s": 0.0009015940595418215,
+        "optimized_s": 0.0008397690253332257
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 24,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger/tip",
+          "actor": "/World/Environment/m80/instance_0636",
+          "collider": "/World/Environment/m80/instance_0636"
+        },
+        "original_s": 0.0010384289780631661,
+        "optimized_s": 0.00150907295756042
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 25,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001255634007975459,
+        "optimized_s": 0.0010494310408830643
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 26,
+        "side": "right",
+        "original_clear": false,
+        "optimized_clear": false,
+        "fixed_CAD_accepted": false,
+        "original_rejection": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/Contact/right_arm_fr3v2_link7_collision",
+          "actor": "/World/Environment/m80/instance_0002",
+          "collider": "/World/Environment/m80/instance_0002"
+        },
+        "original_s": 0.0016796269919723272,
+        "optimized_s": 0.0022166470298543572
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 27,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013736819382756948,
+        "optimized_s": 0.0011717829620465636
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 28,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.0013819360174238682,
+        "optimized_s": 0.0012155240401625633
+      },
+      {
+        "case": "synthetic_fixed_collision_proposals",
+        "archive_index": 29,
+        "side": "right",
+        "original_clear": true,
+        "optimized_clear": true,
+        "fixed_CAD_accepted": true,
+        "original_rejection": null,
+        "original_s": 0.001257639960385859,
+        "optimized_s": 0.0011294200085103512
+      }
+    ],
+    "loaded_geometry": {
+      "sectors": 48,
+      "pose_source": "v280 RGB-D observation8 held ring1",
+      "G_handroot_part": [
+        [
+          -0.6722037435952138,
+          -0.6123116793147982,
+          -0.41619320249444497,
+          -0.0023480358609133667
+        ],
+        [
+          0.6733833528448484,
+          -0.7392936503977086,
+          6.561168884738696e-05,
+          -1.64766517329884e-06
+        ],
+        [
+          -0.30772918308776676,
+          -0.2802134291101117,
+          0.9092763674835923,
+          0.10845821418259471
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "case_summary": {
+      "archived_empty_v280": {
+        "samples": 100,
+        "original_clear": 100,
+        "original_collision": 0,
+        "accepted": 100,
+        "original_median_ms": 1.3901975471526384,
+        "optimized_median_ms": 1.3121564988978207,
+        "original_seconds": 0.14197027566842735,
+        "optimized_seconds": 0.20229239959735423
+      },
+      "archived_self_collision_v272": {
+        "samples": 15,
+        "original_clear": 13,
+        "original_collision": 2,
+        "accepted": 13,
+        "original_median_ms": 1.2978720478713512,
+        "optimized_median_ms": 1.0643089190125465,
+        "original_seconds": 0.017511949758045375,
+        "optimized_seconds": 0.014453919953666627
+      },
+      "archived_loaded_v280": {
+        "samples": 100,
+        "original_clear": 100,
+        "original_collision": 0,
+        "accepted": 99,
+        "original_median_ms": 7.774189056362957,
+        "optimized_median_ms": 7.883717538788915,
+        "original_seconds": 1.3568363905651495,
+        "optimized_seconds": 4.625702159595676
+      },
+      "synthetic_fixed_collision_proposals": {
+        "samples": 30,
+        "original_clear": 10,
+        "original_collision": 20,
+        "accepted": 10,
+        "original_median_ms": 1.250402012374252,
+        "optimized_median_ms": 1.1443359544500709,
+        "original_seconds": 0.04351188812870532,
+        "optimized_seconds": 0.048709344933740795
+      }
+    },
+    "samples_count": 245,
+    "false_accepts": [],
+    "all_original_outcomes_preserved": true,
+    "missing_other_context_falls_back": true,
+    "partial_hand_FK_falls_back": true,
+    "changed_rows_fall_back": true,
+    "certificate_stats": {
+      "queries": 240,
+      "accepted": 222,
+      "fallback": 18,
+      "seconds": 4.14652580244001,
+      "backend": "conservative full-CAD FCL acceptance + original PhysX fallback",
+      "physical_motion_backend": "Isaac PhysX",
+      "full_PhysX_query_claim": false,
+      "static_colliders": 2793,
+      "skipped": [],
+      "authored_prismatic_envelopes": {
+        "/World/Button": {
+          "joint": "/World/ButtonTravel",
+          "axis": "Y",
+          "limits_m": [
+            0.0,
+            0.002199999988079071
+          ],
+          "body0": "world"
+        },
+        "/World/Clamps/ring1/jaw_0": {
+          "joint": "/World/Clamps/ring1/jaw_0/Actuator",
+          "axis": "X",
+          "limits_m": [
+            0.0,
+            0.002400000113993883
+          ],
+          "body0": "world"
+        },
+        "/World/Clamps/ring1/jaw_1": {
+          "joint": "/World/Clamps/ring1/jaw_1/Actuator",
+          "axis": "X",
+          "limits_m": [
+            0.0,
+            0.002400000113993883
+          ],
+          "body0": "world"
+        },
+        "/World/Clamps/ring1/jaw_2": {
+          "joint": "/World/Clamps/ring1/jaw_2/Actuator",
+          "axis": "X",
+          "limits_m": [
+            0.0,
+            0.002400000113993883
+          ],
+          "body0": "world"
+        },
+        "/World/Clamps/ring2/jaw_0": {
+          "joint": "/World/Clamps/ring2/jaw_0/Actuator",
+          "axis": "X",
+          "limits_m": [
+            0.0,
+            0.0020000000949949026
+          ],
+          "body0": "world"
+        },
+        "/World/Clamps/ring2/jaw_1": {
+          "joint": "/World/Clamps/ring2/jaw_1/Actuator",
+          "axis": "X",
+          "limits_m": [
+            0.0,
+            0.0020000000949949026
+          ],
+          "body0": "world"
+        },
+        "/World/Clamps/ring2/jaw_2": {
+          "joint": "/World/Clamps/ring2/jaw_2/Actuator",
+          "axis": "X",
+          "limits_m": [
+            0.0,
+            0.0020000000949949026
+          ],
+          "body0": "world"
+        },
+        "/World/Clamps/pin/jaw_0": {
+          "joint": "/World/Clamps/pin/jaw_0/Actuator",
+          "axis": "X",
+          "limits_m": [
+            -0.004699999932199717,
+            0.0
+          ],
+          "body0": "world"
+        },
+        "/World/Clamps/pin/jaw_1": {
+          "joint": "/World/Clamps/pin/jaw_1/Actuator",
+          "axis": "X",
+          "limits_m": [
+            -0.004699999932199717,
+            0.0
+          ],
+          "body0": "world"
+        }
+      },
+      "opposite_base_colliders": {
+        "right": 1,
+        "left": 1
+      },
+      "padding_m": 0.0005,
+      "additional_authored_contact_offset_m": 9.999999747378752e-05
+    },
+    "dirty_reason": null
+  },
+  "scene_only": false,
+  "wall_verified_elapsed_s": 52.72824539197609,
+  "end_to_end_under20": false,
+  "verified_elapsed_s": 52.72820618900005,
+  "cycle_time_s": 52.72820618900005,
+  "simulation_elapsed_s": 0.0,
+  "final_checks": {
+    "ring1": {
+      "position_error_m": 1.1517287480179756,
+      "axis_error_rad": 3.0543263474824025
+    },
+    "ring2": {
+      "position_error_m": 1.406065624498071,
+      "axis_error_rad": 2.4948173444356465
+    },
+    "pin": {
+      "position_error_m": 1.285613421458405,
+      "axis_error_rad": 3.141592653589793
+    }
+  },
+  "final_retention_observation_s": 0.0,
+  "final_retention_physics_s": 0.0,
+  "FR3_command_limit_audit": {
+    "samples": 0,
+    "velocity_fraction_of_95_percent_PBV": 0.0,
+    "max_acceleration_rad_s2": 0.0,
+    "max_jerk_rad_s3": 0.0,
+    "acceleration_limit_rad_s2": 9.5,
+    "jerk_limit_rad_s3": 4750,
+    "command_limit_checks": true,
+    "complete_issued_field_checked_at_end": false,
+    "validated_sample_count": 0
+  },
+  "observation_driven_corrections": [],
+  "CPU_operation_profile": {
+    "control_s": 0.0,
+    "physics_s": 0.0,
+    "clamp_flush_s": 0.0
+  },
+  "GPU_route_statistics": {},
+  "fast_transport_statistics": {
+    "right": {
+      "routes": 0,
+      "proposals": 0,
+      "clear_calls": 0,
+      "seconds": 0.0,
+      "static_objects": 2793,
+      "static_skipped": 0,
+      "backend": "FCL CPU proposals + live PhysX verification"
+    },
+    "left": {
+      "routes": 0,
+      "proposals": 0,
+      "clear_calls": 0,
+      "seconds": 0.0,
+      "static_objects": 2793,
+      "static_skipped": 0,
+      "backend": "FCL CPU proposals + live PhysX verification"
+    }
+  },
+  "encoder_motor_speed_audit": {
+    "samples": 0,
+    "max_fraction_of_95_percent_PBV": 0.0,
+    "max_finger_fraction_of_47p5_mm_s": 0.0,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  }
+}

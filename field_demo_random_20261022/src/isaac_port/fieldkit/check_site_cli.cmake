@@ -23,3 +23,22 @@ execute_process(COMMAND "${PROGRAM}" --validate-csv "${CMAKE_CURRENT_BINARY_DIR}
 if(code EQUAL 0)
   message(FATAL_ERROR "Invalid CSV was accepted")
 endif()
+
+# The first1mm Cartesian commissioning test must accept the SAME explicit
+# stricter guard as CSV. Invalid limits reject before opening a robot socket.
+foreach(limit 0 0.00009 0.020001 nan)
+  execute_process(COMMAND "${PROGRAM}" --execute-cartesian INVALID_ROBOT_ADDRESS 0 0
+    "${CMAKE_CURRENT_BINARY_DIR}/test-record.txt" "${CMAKE_CURRENT_BINARY_DIR}/test-record.txt"
+    unused.csv 0 0 0.001 4 --tracking-error-rad "${limit}"
+    RESULT_VARIABLE guard_code ERROR_VARIABLE guard_error)
+  if(guard_code EQUAL 0 OR NOT guard_error MATCHES "Tracking error guard|Finite")
+    message(FATAL_ERROR "Invalid Cartesian tracking guard was not rejected before connection: ${guard_error}")
+  endif()
+endforeach()
+execute_process(COMMAND "${PROGRAM}" --execute-cartesian INVALID_ROBOT_ADDRESS 0 0
+  "${CMAKE_CURRENT_BINARY_DIR}/test-record.txt" "${CMAKE_CURRENT_BINARY_DIR}/test-record.txt"
+  unused.csv nan 0 0 4 --tracking-error-rad 0.005
+  RESULT_VARIABLE valid_profile_code ERROR_VARIABLE valid_profile_error)
+if(valid_profile_code EQUAL 0 OR NOT valid_profile_error MATCHES "Finite")
+  message(FATAL_ERROR "5mrad commissioning option did not reach preconnection target validation: ${valid_profile_error}")
+endif()

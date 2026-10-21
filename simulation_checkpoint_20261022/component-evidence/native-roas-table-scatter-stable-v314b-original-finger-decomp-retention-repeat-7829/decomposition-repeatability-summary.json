@@ -1,0 +1,28 @@
+{
+  "scope": "Two exact-policy isolated SIM short-retention components. No lateral redistribution, full task, or field admission.",
+  "source_identical": true,
+  "config_identical": true,
+  "both_private_physical_retention_checks_passed": true,
+  "generic_hull_contact_certificate_passed": false,
+  "initial_RGBD_grasp_matches_hull306": false,
+  "full_task_pass": false,
+  "field_admission": false,
+  "live_cooked_decomposition_exported": false,
+  "causality_limit": "Same drop seed and source; settled stock and selected measured pose differ from hull306/310. These components do not isolate the same loaded contact or prove decomposition caused the improved retention.",
+  "runs": [
+    {
+      "run": "native-roas-table-scatter-stable-v314-original-finger-decomp-retention-7829",
+      "actual_lift_m": 0.014981508255004883,
+      "actual_Hand_relative_COM_drift_m": 0.0005025897824336357,
+      "actual_Hand_relative_axis_drift_rad": 0.018460743120207877,
+      "physical_short_retention_verified": true
+    },
+    {
+      "run": "native-roas-table-scatter-stable-v314b-original-finger-decomp-retention-repeat-7829",
+      "actual_lift_m": 0.014976143836975098,
+      "actual_Hand_relative_COM_drift_m": 0.00049552612307625,
+      "actual_Hand_relative_axis_drift_rad": 0.015633511984768096,
+      "physical_short_retention_verified": true
+    }
+  ]
+}
