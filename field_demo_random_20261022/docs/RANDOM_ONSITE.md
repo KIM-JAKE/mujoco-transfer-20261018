@@ -1,3 +1,5 @@
+> PIN 단품 시험·파지 직전 보정·빈 반대팔 주차는 [PIN_PICKUP_FEEDBACK.md](PIN_PICKUP_FEEDBACK.md)를 보세요. 기본 꺼짐이며 추가 part PLC 센서를 요구하지 않습니다.
+
 > 링크 반경·Hand 모양·부품 sector를 직접 재기 전에 [MODEL_STARTER.md](MODEL_STARTER.md)의 자동 작성 절차를 사용하세요. 모델 파생 값은 실제 측정값으로 위장하지 않습니다.
 
 # RGB-D 무작위 바구니 → 링 2개·핀 1개: 현장 온보딩

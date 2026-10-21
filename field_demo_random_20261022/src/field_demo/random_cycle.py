@@ -89,6 +89,12 @@ def validate_recipe(path,site_config=None):
     bounded(c['release_width_tolerance_m'],0,.002,'release_width_tolerance_m',positive=True)
     bounded(c['insert_pose_confirmation_tolerance_m'],0,.003,'insert_pose_confirmation_tolerance_m',positive=True)
     for e in c['parts']:
+        if e.get('pin_pickup_feedback')is not None:
+            from .pin_pickup import options as pickup_options
+            configured=pickup_options(e['pin_pickup_feedback'])
+            if e['part']!='pin':raise ValueError('PIN pickup feedback applies only to pin')
+            park=(configured or {}).get('other_empty_park')
+            if park and park['enabled']:measured(park['measurement'],root)
         if e.get('pin_precision_preinsert')is not None:
             from .pin_precision import options
             if e['part']!='pin':raise ValueError('Pin precision applies only to pin')
@@ -104,6 +110,7 @@ def validate_recipe(path,site_config=None):
             for mode in ('open','release'):FrankaHand.validate_action(actions[mode])
             FrankaHand.validate_action(actions['grasp'],grasp=True)
             if actions['open']['width_m']<=actions['grasp']['width_m']+actions['grasp']['epsilon_outer_m']:raise ValueError('Opening must clear actual grasp width')
+            if e['part']=='pin'and (e.get('pin_pickup_feedback')or{}).get('enabled')is True and actions['open']['width_m']<.024:raise ValueError('PIN feedback requires pickup opening>=24mm before descent')
         dimensions=e['payload_dimensions'];measured(dimensions['measurement'],root,subject=dimensions)
         if e.get('shape_model_measurement'):
             measured(e['shape_model_measurement'],root,subject=dict(capsules_part_m=e['capsules_part_m'],payload_dimensions=e['payload_dimensions']))
@@ -137,6 +144,11 @@ def validate_live_inputs(recipe,site_config):
     if recipe.get('clamp_control',{}).get('mode')not in ('actual_PLC','operator_manual'):raise ValueError('Explicit actual_PLC or operator_manual clamp control required')
     if site_config.get('part_evidence_source')!='RGBD_SDK'or site_config.get('abort_hand_policy')!='preserve_completed_grasp':raise ValueError('Live random policy requires RGBD_SDK and preserve_completed_grasp abort')
     config=json.loads((root/recipe['planner_config']).read_text())
+    for entry in recipe['parts']:
+        if entry['part']=='pin':
+            from .pin_pickup import options as pickup_options
+            if pickup_options(entry.get('pin_pickup_feedback'))is not None:
+                if not all(config['robots'][side].get('native_hand_aperture_geometry')for side in ['left','right']):raise ValueError('PIN pickup feedback requires actual-width Hand geometry and full aperture guards')
     if config['scene'].get('require_residual_occupancy')is not True:raise ValueError('Conservative residual RGB-D occupancy required')
     departure=config['phases'].get('stock_departure',{}).get('bounded_loose_stock_departure')
     policy=config['phases']['pickup'].get('bounded_loose_stock_contact')or (departure or {}).get('contact_policy')
@@ -335,6 +347,9 @@ def run(runtime,recipe,*,single_pick=None):
                     rejected.append((pre.copy(),tcp.copy()));preflight_retries+=1
                     observation=check_observation(runtime,runtime.observe('pin_holder'if part=='pin'else'basket',part,side=donor))
                     runtime.event('pickup_pre_motion_reselection',part=part,retry=preflight_retries)
+            if part=='pin':
+                from .pin_pickup import preclose
+                observed=preclose(runtime,entry,family,observed)
             if runtime.read(part+'_grasped'):raise RuntimeError('Grasp feedback high before actual command')
             runtime.hand_move(donor,part,'grasp',actions['grasp'])
             if facts is None:wait(part+'_grasped')
@@ -372,6 +387,9 @@ def run(runtime,recipe,*,single_pick=None):
                     single_item_inventory_proof=getattr(runtime,'latest_inventory_proof',None),
                     motion_executed=not runtime.replay,hardware_execution_verified=False,
                     instruction='Arms are stopped; completed native grasp is retained. No automatic release or resume.')
+            if part=='pin':
+                from .pin_pickup import park_other
+                observed,carried[part]=park_other(runtime,entry,observed,carried[part])
             if donor!=receiver:
                 h=entry['handover']
                 for name in (h['donor_grasped_signal'],):
@@ -605,6 +623,7 @@ class LiveRuntime:
                 self.ready()
                 if closure_admission is not None:closure_admission.consume()
                 self.invalidate_scene_lease('Actual Hand command begins; stock interaction may occur')
+                if part=='pin'and mode=='grasp':self._pin_pickup_guard=None
                 result=self.site.guarded(lambda cancel:g.move(**parameters,grasp=mode=='grasp',cancelled=cancel))
                 self.hand_monitors[side].publish(result)
                 if proof is not None:
@@ -672,6 +691,8 @@ class LiveRuntime:
                 validate(lease,maximum_age_s=self.static_scene_options['maximum_scene_age_s']);target_agrees(lease,fresh,settings)
                 source=json.loads(Path(lease['source_observation_file']).read_text());source['_sha256']=lease['source_observation_sha256']
                 fresh.update(static_scene_lease=copy.deepcopy(lease),scene_observations=[source])
+        from .pin_pickup import dispatch_guard
+        dispatch_guard(self,side,part,mode,fresh)
         fresh=self._selected_record(fresh)
         samples={s:self.hand_status(s)for s in ['left','right']};aperture=binding(samples,sweep_side=side,target_width_m=parameters['width_m'],epsilon_inner_m=parameters.get('epsilon_inner_m',0.),epsilon_outer_m=parameters.get('epsilon_outer_m',0.))
         phase=plan['phase'];contact=None
@@ -1249,7 +1270,7 @@ def main(argv=None):
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--recipe',type=Path,required=True);p.add_argument('--output-dir',type=Path,default=Path('random-cycle-logs'))
     p.add_argument('--replay-manifest',type=Path)
-    p.add_argument('--single-pick',choices=['ring1','ring2'],help='Stop stationary holding one inspected ring; no transfer/insertion/release')
+    p.add_argument('--single-pick',choices=['ring1','ring2','pin'],help='Stop stationary holding one inspected part; no transfer/insertion/release')
     modes=p.add_mutually_exclusive_group(required=True)
     modes.add_argument('--validate',action='store_true');modes.add_argument('--execute',action='store_true');modes.add_argument('--dry-run',action='store_true')
     a=p.parse_args(argv)

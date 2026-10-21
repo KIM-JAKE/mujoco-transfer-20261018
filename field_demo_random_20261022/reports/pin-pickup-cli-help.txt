@@ -1,0 +1,22 @@
+usage: __main__.py [-h] --recipe RECIPE [--output-dir OUTPUT_DIR]
+                   [--replay-manifest REPLAY_MANIFEST]
+                   [--single-pick {ring1,ring2,pin}] (--validate | --execute |
+                   --dry-run)
+
+Seed-free RGB-D -> dynamically screened FR3 motion -> measured three-part
+cycle. Every motion is generated from current images and measured SDK state.
+No stored simulation joint trace or image actor identity is reused. Dry replay
+executes this same state machine against explicit fake devices, never real
+actuators.
+
+options:
+  -h, --help            show this help message and exit
+  --recipe RECIPE
+  --output-dir OUTPUT_DIR
+  --replay-manifest REPLAY_MANIFEST
+  --single-pick {ring1,ring2,pin}
+                        Stop stationary holding one inspected part; no
+                        transfer/insertion/release
+  --validate
+  --execute
+  --dry-run
