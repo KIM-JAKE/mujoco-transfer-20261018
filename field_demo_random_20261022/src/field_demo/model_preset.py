@@ -116,7 +116,7 @@ def author(output,installation_path,left_state,right_state,*,workspace_path=None
         entry['pregrasp_offset_part_m']=[0,0,-.06];entry['lift_offsets_cell_m']=[[0,0,.07],[0,0,.10]]
         entry['insert_entry_offset_part_m']=[0,0,-.05];entry['withdraw_offset_cell_m']=[0,0,-.06];entry['min_tcp_clearance_m']=.04
         width={'ring1':.075,'ring2':.062,'pin':.013}[part]
-        actions=dict(open=dict(width_m=.08,speed_m_s=.01),grasp=dict(width_m=width,speed_m_s=.01,force_n=10,epsilon_inner_m=.003,epsilon_outer_m=.003),release=dict(width_m=.08,speed_m_s=.01))
+        actions=dict(open=dict(width_m=.08,speed_m_s=.01),grasp=dict(width_m=width,speed_m_s=.01,force_n=10,epsilon_inner_m=.002,epsilon_outer_m=.002),release=dict(width_m=.08,speed_m_s=.01))
         for family,key in zip(families,family_keys):
             family['actions']=copy.deepcopy(actions)
             subjects[key]['actions']=copy.deepcopy(actions)

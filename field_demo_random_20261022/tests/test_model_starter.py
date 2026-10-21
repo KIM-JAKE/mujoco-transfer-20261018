@@ -58,6 +58,15 @@ class StarterTests(unittest.TestCase):
         self.inst['verified']=False;self.ip.write_text(json.dumps(self.inst))
         with self.assertRaisesRegex(ValueError,'ONE actual'):self.author()
         self.assertFalse((self.site/'model-preset.json').exists())
+    def test_every_generated_family_passes_actual_native_adapter_action_parser(self):
+        self.author();cycle=json.loads((self.site/'random-cycle.json').read_text())
+        from isaac_port.fieldkit.hand import FrankaHand
+        for part in cycle['parts']:
+            for family in part['grasp_families']:
+                for mode in ['open','release']:FrankaHand.validate_action(family['actions'][mode])
+                FrankaHand.validate_action(family['actions']['grasp'],grasp=True)
+                self.assertGreater(family['actions']['open']['width_m'],family['actions']['grasp']['width_m']+family['actions']['grasp']['epsilon_outer_m'])
+
     def test_actual_sdk_tcp_and_native_mount_transform(self):
         self.F[:3,3]=[.01,-.02,.14];self.state['F_T_EE_column_major']=self.F.ravel(order='F').tolist();self.sp.write_text(json.dumps(self.state));self.author()
         motion=json.loads((self.site/'random-motion.json').read_text());cycle=json.loads((self.site/'random-cycle.json').read_text())
