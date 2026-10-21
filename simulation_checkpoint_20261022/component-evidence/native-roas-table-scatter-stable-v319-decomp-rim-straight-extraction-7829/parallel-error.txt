@@ -1,0 +1,33 @@
+Traceback (most recent call last):
+  File "/workspace/project/mujoco/isaac_port/runs/native-roas-table-scatter-stable-v319-decomp-rim-straight-extraction-7829/run_frozen_trial.py", line 7, in <module>
+    runpy.run_path(str(H/'run_realtime_recipe.py'))
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v319-decomp-rim-straight-extraction-7829/isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py", line 655, in <module>
+    (OUT/'pipeline-results.json').write_text(json.dumps(report,indent=2))
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/isaac-sim/kit/python/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/isaac-sim/kit/python/lib/python3.12/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/isaac-sim/kit/python/lib/python3.12/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/isaac-sim/kit/python/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/isaac-sim/kit/python/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/isaac-sim/kit/python/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/isaac-sim/kit/python/lib/python3.12/json/encoder.py", line 326, in _iterencode_list
+    yield from chunks
+  File "/isaac-sim/kit/python/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/isaac-sim/kit/python/lib/python3.12/json/encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "/isaac-sim/kit/python/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type ndarray is not JSON serializable

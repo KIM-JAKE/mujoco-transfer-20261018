@@ -27,8 +27,12 @@ Typed RIGHT pre-carry planning failure can select a checked handover before load
 |311b |720 empty/loaded full self/payload queries match exact FCL convex-boundary indexing; no useful speedup, not installed. |
 |312 |Combined pin feedback with random-bin full task; LARGE free alignment failed473.8s. Not an all3 success. |
 |314/314b |Original finger CAD decomposition, same source/config, both15mm lift+release components passed. Generic hull contact certificate remainedFALSE; no outside-bin or field admission. Settled grasp differs from306, so this is not proof of causality. |
+|316b/316c |Stationary CPU/GPU step+readback comparison only:0.5s simulation took27.812s with requested GPU dynamics vs0.562s CPU. Current pipeline keeps CPU physics; cuRobo and image workers remain GPU-backed. No movement/task proof. |
+|317/320 |Double-handover held-ring endpoint blocked by actual parked LEFT. Exact original-model causes are recorded; prospective temporary-holder feasibility is not executed transfer success. |
+|318 |25mm in-bin shift/release passed, but subsequent ordinary outer pickup still palm/basket blocked. Generic contact certificateFALSE. |
+|319 |Actual one-rim extraction rose132.099mm total, lowest class-CAD15.327mm above lip, then checked return/release. Generic contact certificateFALSE, SIM mechanism only. Driver final JSON serialization failed after saved traces; independent evaluator preserves this limitation. No field/assembly admission. |
 
-The full-CAD FCL accept-only acceleration experiment303 also preserved outcomes but gave no useful loaded speedup; it is not enabled. Current field522 packet replay remains blocked before approach/Hand dispatch by trueUNKNOWN clearance even after two virtual views. Field safety admission and SIM point-cloud checks are distinct implementations; neither result is relabeled as success in the other.
+The full-CAD FCL accept-only acceleration experiment303 also preserved outcomes but gave no useful loaded speedup; it is not enabled. Current field532 packet replay remains blocked before approach/Hand dispatch by trueUNKNOWN clearance even after two virtual views. Field safety admission and SIM point-cloud checks are distinct implementations; neither result is relabeled as success in the other.
 
 ## Video and source
 

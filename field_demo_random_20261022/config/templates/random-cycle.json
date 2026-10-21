@@ -213,7 +213,12 @@
           "speed_m_s": null
         }
       },
-      "capsules_part_m": null
+      "capsules_part_m": null,
+      "pin_precision_preinsert": {
+        "enabled": false,
+        "gain": 0.5,
+        "max_iterations": 8
+      }
     }
   ],
   "notes": "Fill measured real hand grasp transforms, conservative payload geometry, actual insertion fixtures, independently observed grasp inputs and fixed calibrated camera views. Rings use no nominal object pose seeds. Every live movement requires fresh actual pixels, real SDK model and commissioned collision-envelope proof. No simulated camera relocation. Dry-run requires recorded/synthetic-labelled RGB-D manifest and uses fake devices only. TCP clearance is not a whole-hand collision certificate. Optional capsules_part_m is a measured part-frame enclosing shell list [{a:[x,y,z],b:[x,y,z],radius_m:r}]; verified enclosing annular shell capsules preserve physical holes. A solid radius/length fallback deliberately fills holes and may reject stacking or pin insertion. Never invent smaller radii or disable collision checks to get a pass.",

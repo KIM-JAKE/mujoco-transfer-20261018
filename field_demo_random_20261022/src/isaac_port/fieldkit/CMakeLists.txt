@@ -70,3 +70,6 @@ add_executable(test_payload_load_core test_payload_load_core.cpp)
 target_compile_features(test_payload_load_core PRIVATE cxx_std_17)
 target_link_libraries(test_payload_load_core PRIVATE Eigen3::Eigen)
 add_test(NAME payload_load_core_offline COMMAND test_payload_load_core)
+
+add_test(NAME read_state_model_input_guards COMMAND ${CMAKE_COMMAND}
+  -DPROGRAM=$<TARGET_FILE:m80_read_state> -P ${CMAKE_CURRENT_SOURCE_DIR}/check_read_state.cmake)

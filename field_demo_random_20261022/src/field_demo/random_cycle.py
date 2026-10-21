@@ -89,6 +89,10 @@ def validate_recipe(path,site_config=None):
     bounded(c['release_width_tolerance_m'],0,.002,'release_width_tolerance_m',positive=True)
     bounded(c['insert_pose_confirmation_tolerance_m'],0,.003,'insert_pose_confirmation_tolerance_m',positive=True)
     for e in c['parts']:
+        if e.get('pin_precision_preinsert')is not None:
+            from .pin_precision import options
+            if e['part']!='pin':raise ValueError('Pin precision applies only to pin')
+            options(e['pin_precision_preinsert'])
         if e['pickup_side'] not in ('left','right') or e['insert_side'] not in ('left','right'):raise ValueError('Explicit arm assignment required')
         rigid(c['insertion_targets'][e['part']]);bounded(e['min_tcp_clearance_m'],.04,1,'min_tcp_clearance_m')
         if not e['grasp_families']:raise ValueError('Measured grasp families required')
@@ -408,7 +412,10 @@ def run(runtime,recipe,*,single_pick=None):
             desired=entry_part@np.linalg.inv(rigid(carried[part]['T_tcp_part']))
             move('preinsert',part,receiver,[desired.tolist()],observed)
             observed,carried[part]=held_measurement(runtime,entry,receiver,observed)
-            desired=goal@np.linalg.inv(rigid(carried[part]['T_tcp_part']))
+            from .pin_precision import options as pin_precision_options
+            if part=='pin'and pin_precision_options(entry.get('pin_precision_preinsert'))is not None:
+                observed,carried[part],desired=runtime.precision_pin_preinsert(entry,goal,observed,carried[part],move,lambda value:carried.__setitem__(part,value))
+            else:desired=goal@np.linalg.inv(rigid(carried[part]['T_tcp_part']))
             if runtime.read(part+'_seated'):raise RuntimeError('Seat feedback high before insertion')
             move('insert',part,receiver,[desired.tolist()],observed,contact='insert')
             if facts is not None:
@@ -677,6 +684,75 @@ class LiveRuntime:
         if state.get('read_only') is not True or state.get('server_protocol_version')!=10:raise ValueError('Measured protocol-10 robot state required')
         if any(abs(v)>.01 for v in state['dq']+state['dq_d']):raise RuntimeError('Stationary measured TCP required')
         return state
+    def _pin_precision_sdk(self,side):
+        import subprocess
+        from .pin_precision import sdk_sample
+        settings=json.loads((self.root/self.recipe['planner_config']).read_text())
+        row=self.site.config['robots'][side];started=datetime.now(timezone.utc)
+        result=subprocess.run([str(self.site.path(self.site.config['state_binary'])),row['ip'],'--with-model'],check=True,capture_output=True,text=True,timeout=2)
+        state=json.loads(result.stdout);sdk_sample(state,settings.get('joint_tracking_error_limit_rad',.02))
+        state['_read_started_utc']=started.isoformat();state['_read_returned_utc']=datetime.now(timezone.utc).isoformat()
+        return state
+    def _pin_precision_window(self,side):
+        from .pin_precision import encoder_window
+        settings=json.loads((self.root/self.recipe['planner_config']).read_text());deadline=time.monotonic()+2;samples=[]
+        while time.monotonic()<deadline:
+            self.ready();value=self._pin_precision_sdk(side);samples.append(value)
+            # Use a sliding actual-clock window; a transient must settle rather
+            # than poisoning every later sample, but the2s budget never grows.
+            while len(samples)>5 and value['robot_time_s']-samples[1]['robot_time_s']>=.1:samples.pop(0)
+            if time.monotonic()>deadline:raise RuntimeError('Actual SDK precision window exceeded bounded2s wait')
+            evidence=encoder_window(samples,settings.get('joint_tracking_error_limit_rad',.02))
+            if evidence is not None:
+                self.event('pin_precision_actual_encoder_window',side=side,evidence=evidence)
+                return value,evidence
+        raise RuntimeError('Pin SDK TCP did not become stationary within bounded2s precision wait')
+    def precision_pin_preinsert(self,entry,goal,previous,carry,move,update_carried):
+        import numpy as np
+        from .pin_precision import options,correction,axial_target,errors,sdk_sample,rotation_error
+        cfg=options(entry.get('pin_precision_preinsert'));side=entry['insert_side'];base=rigid(self.site.config['robots'][side]['T_cell_base'])
+        tracking=json.loads((self.root/self.recipe['planner_config']).read_text()).get('joint_tracking_error_limit_rad',.02)
+        for iteration in range(cfg['max_iterations']):
+            before,window=self._pin_precision_window(side)
+            observed,carry=held_measurement(self,entry,side,previous)
+            update_carried(carry)  # every correction plans with the NEW measured payload G
+            after=self._pin_precision_sdk(side);A,C=sdk_sample(after,tracking);A,C=base@A,base@C
+            stamp=utc_stamp(observed['captured_at_utc'])
+            if stamp<utc_stamp(before['_read_returned_utc']) or stamp>utc_stamp(after['_read_started_utc']):raise RuntimeError('Pin precision requires a fresh exposure between stopped actual SDK reads')
+            if np.max(abs(np.asarray(before['q_d'])-after['q_d']))>1e-6 or not np.allclose(before['F_T_EE_column_major'],after['F_T_EE_column_major'],atol=1e-12,rtol=0):raise RuntimeError('Pin desired joints/TCP changed across fresh precision image')
+            image_tcp=rigid(observed['measured_tcp_pose'])
+            if np.linalg.norm(A[:3,3]-image_tcp[:3,3])>.000025 or rotation_error(A[:3,:3],image_tcp[:3,:3])>.0005:raise RuntimeError('Actual SDK TCP moved after precision image/load refresh')
+            evidence=errors(observed['T_cell_part'],goal);evidence.update(iteration=iteration,capture_id=observed['capture_id'],encoder_window=window,perception='Current field RGB-D CAD-body ICP, not SIM end-circle fit',hardware_tested=False)
+            self.event('pin_precision_fresh_prealignment',**evidence)
+            if evidence['aligned']:
+                target,_=axial_target(C,observed['T_cell_part'],goal)
+                self._pin_precision_insert_guard=dict(goal=rigid(goal).tolist(),side=side,capture_id=observed['capture_id'],q_d=after['q_d'],F_T_EE_column_major=after['F_T_EE_column_major'])
+                return observed,carry,target
+            if iteration+1==cfg['max_iterations']:raise RuntimeError('Pin fresh RGB-D precision did not converge; axial insertion blocked')
+            target,feedback=correction(C,A,carry['T_tcp_part'],observed['T_cell_part'],goal,gain=cfg['gain'])
+            self.event('pin_precision_bounded_correction',iteration=iteration,**feedback)
+            move('preinsert','pin',side,[target.tolist()],observed)
+            previous=observed
+        raise RuntimeError('Unreachable bounded pin prealignment')
+
+    def _pin_precision_dispatch(self,plan,fresh):
+        import numpy as np
+        from .pin_precision import errors,sdk_sample,rotation_error
+        guard=getattr(self,'_pin_precision_insert_guard',None)
+        if plan.get('phase')!='insert'or plan.get('part')!='pin'or guard is None:return
+        side=plan['_runtime_side']
+        evidence=errors(fresh['T_cell_part'],guard['goal'])
+        if guard['side']!=side or not evidence['aligned']:raise RuntimeError('Fresh pre-dispatch PIN precision changed; retain Hand and abort before insertion')
+        state=self._pin_precision_sdk(side)
+        if np.max(abs(np.asarray(state['q_d'])-guard['q_d']))>1e-6 or not np.allclose(state['F_T_EE_column_major'],guard['F_T_EE_column_major'],atol=1e-12,rtol=0):raise RuntimeError('Pin precision command/TCP changed before axial dispatch')
+        tracking=json.loads((self.root/self.recipe['planner_config']).read_text()).get('joint_tracking_error_limit_rad',.02)
+        A,_=sdk_sample(state,tracking);A=rigid(self.site.config['robots'][side]['T_cell_base'])@A;image_tcp=rigid(fresh['measured_tcp_pose'])
+        if np.linalg.norm(A[:3,3]-image_tcp[:3,3])>.000025 or rotation_error(A[:3,:3],image_tcp[:3,:3])>.0005:raise RuntimeError('Pin actual TCP changed after final pre-dispatch image')
+        self.facts.sdk_grasp(self.hand_status(side))
+        check_observation(self,fresh)  # SDK/Hand calls must not consume the original exposure TTL
+        if (datetime.now(timezone.utc)-utc_stamp(state['_read_returned_utc'])).total_seconds()>.2:raise RuntimeError('Actual pin SDK precision state expired before dispatch')
+        self.event('pin_precision_actual_predispatch_image',capture_id=fresh['capture_id'],**evidence)
+
     def flange_frame(self,side):
         import numpy as np
         return rigid(np.asarray(self.sdk_state(side)['F_T_EE_column_major']).reshape(4,4,order='F'))
@@ -1024,6 +1100,7 @@ class LiveRuntime:
             try:self.planner.revalidate(plan,observation=fresh)
             except CollisionError as error:
                 raise PreMotionPickupChanged('Fresh scene blocks pre-motion pickup: '+str(error))from error
+            self._pin_precision_dispatch(plan,fresh)
             row=copy.deepcopy(plan['stage_row'])
             if row.get('planning_source')!='dynamic_field_envelope' or row.get('field_path_reviewed') is True:
                 raise ValueError('Dynamic stage requires explicit scene-envelope proof, not a fabricated taught-path approval')

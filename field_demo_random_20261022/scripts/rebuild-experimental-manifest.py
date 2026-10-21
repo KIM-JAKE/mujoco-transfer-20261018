@@ -9,7 +9,7 @@ from pathlib import Path
 from datetime import datetime,timezone
 import hashlib,json
 R=Path(__file__).resolve().parents[1]
-if R.name!='field-demo-random-recorded-closure-20261022':raise RuntimeError('Explicit experimental copy only; do not reseal upstream bundle')
+if R.name!='field-demo-random-pin-feedback-20261022':raise RuntimeError('Explicit experimental copy only; do not reseal upstream bundle')
 files={}
 for p in sorted(R.rglob('*')):
  rel=p.relative_to(R)

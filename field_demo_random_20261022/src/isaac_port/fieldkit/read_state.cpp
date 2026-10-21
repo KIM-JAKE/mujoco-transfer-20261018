@@ -1,5 +1,7 @@
 // Read-only FCI diagnostic. No control(), recovery or configuration writes.
 #include <franka/robot.h>
+#include <franka/model.h>
+#include <string>
 #include <franka/robot_state.h>
 #include <array>
 #include <iomanip>
@@ -18,8 +20,9 @@ void array_json(const std::array<double, N>& a) {
 }
 
 int main(int argc, char** argv) {
-  if (argc != 2) {
-    std::cerr << "Usage: m80_read_state ROBOT_IP\n";
+  const bool with_model=argc==3 && std::string(argv[2])=="--with-model";
+  if (!(argc==2 || with_model)) {
+    std::cerr << "Usage: m80_read_state ROBOT_IP [--with-model]\n";
     return 2;
   }
   try {
@@ -37,6 +40,11 @@ int main(int argc, char** argv) {
     std::cout << ",\"tau_J\":"; array_json(state.tau_J);
     std::cout << ",\"tau_J_d_without_gravity\":"; array_json(state.tau_J_d);
     std::cout << ",\"O_T_EE_column_major\":"; array_json(state.O_T_EE);
+    if(with_model) {
+      auto model=robot.loadModel();
+      const auto desired=model.pose(franka::Frame::kEndEffector,state.q_d,state.F_T_EE,state.EE_T_K);
+      std::cout << ",\"O_T_EE_desired_model_column_major\":"; array_json(desired);
+    }
     std::cout << ",\"F_T_EE_column_major\":"; array_json(state.F_T_EE);
     std::cout << ",\"O_F_ext_hat_K\":"; array_json(state.O_F_ext_hat_K);
     std::cout << ",\"F_x_Cee_m\":"; array_json(state.F_x_Cee);

@@ -1,0 +1,98 @@
+Extracting cmake-data_3.22.1-1ubuntu1.22.04.2_all.deb
+Extracting cmake_3.22.1-1ubuntu1.22.04.2_amd64.deb
+Extracting jake-libfranka-0.18.1.deb
+Extracting libeigen3-dev_3.4.0-2ubuntu2_all.deb
+Extracting libfmt-dev_8.1.1+ds1-2_amd64.deb
+Extracting libfmt8_8.1.1+ds1-2_amd64.deb
+Extracting libjsoncpp25_1.9.5-3_amd64.deb
+Extracting libpcre3_2%3a8.39-13ubuntu0.22.04.1_amd64.deb
+Extracting libpocofoundation62_1.9.2-3ubuntu3_amd64.deb
+Extracting libpoconet62_1.9.2-3ubuntu3_amd64.deb
+Extracting librhash0_1.4.2-1ubuntu1_amd64.deb
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Looking for C++ include pthread.h
+-- Looking for C++ include pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/gpuadmin/workspace/jake/field-demo-random-pin-feedback-20261022/build
+[  3%] Building CXX object CMakeFiles/m80_model_audit.dir/model_audit.cpp.o
+[  7%] Building CXX object CMakeFiles/m80_read_state.dir/read_state.cpp.o
+[ 10%] Linking CXX executable m80_read_state
+[ 10%] Built target m80_read_state
+[ 14%] Building CXX object CMakeFiles/m80_joint_stage.dir/libfranka_stage.cpp.o
+[ 17%] Linking CXX executable m80_model_audit
+[ 17%] Built target m80_model_audit
+[ 21%] Building CXX object CMakeFiles/m80_camera_plan.dir/camera_plan.cpp.o
+[ 25%] Linking CXX static library libm80_joint_stage.a
+[ 25%] Built target m80_joint_stage
+[ 28%] Building CXX object CMakeFiles/m80_dynamic_plan.dir/dynamic_plan.cpp.o
+[ 32%] Linking CXX executable m80_camera_plan
+[ 32%] Built target m80_camera_plan
+[ 35%] Building CXX object CMakeFiles/m80_franka_hand.dir/franka_hand.cpp.o
+[ 39%] Linking CXX executable m80_franka_hand
+[ 39%] Built target m80_franka_hand
+[ 42%] Building CXX object CMakeFiles/m80_site_motion.dir/site_motion.cpp.o
+[ 46%] Linking CXX executable m80_dynamic_plan
+[ 46%] Built target m80_dynamic_plan
+[ 50%] Building CXX object CMakeFiles/test_servo_core.dir/test_servo_core.cpp.o
+[ 53%] Linking CXX executable test_servo_core
+[ 53%] Built target test_servo_core
+[ 57%] Building CXX object CMakeFiles/test_site_watchdog.dir/test_site_watchdog.cpp.o
+[ 60%] Linking CXX executable test_site_watchdog
+[ 60%] Built target test_site_watchdog
+[ 64%] Building CXX object CMakeFiles/test_stage_link.dir/test_stage_link.cpp.o
+[ 67%] Linking CXX executable test_stage_link
+[ 67%] Built target test_stage_link
+[ 71%] Building CXX object CMakeFiles/test_field_context.dir/test_field_context.cpp.o
+[ 75%] Linking CXX executable test_field_context
+[ 75%] Built target test_field_context
+[ 78%] Building CXX object CMakeFiles/test_telemetry.dir/test_telemetry.cpp.o
+[ 82%] Linking CXX executable m80_site_motion
+[ 85%] Linking CXX executable test_telemetry
+[ 85%] Built target m80_site_motion
+[ 89%] Building CXX object CMakeFiles/m80_payload_load.dir/payload_load.cpp.o
+[ 89%] Built target test_telemetry
+[ 92%] Building CXX object CMakeFiles/test_payload_load_core.dir/test_payload_load_core.cpp.o
+[ 96%] Linking CXX executable m80_payload_load
+[ 96%] Built target m80_payload_load
+[100%] Linking CXX executable test_payload_load_core
+[100%] Built target test_payload_load_core
+Test project /home/gpuadmin/workspace/jake/field-demo-random-pin-feedback-20261022/build
+      Start  1: dynamic_plan_input_guards
+ 1/12 Test  #1: dynamic_plan_input_guards ........   Passed    0.03 sec
+      Start  2: camera_plan_input_guards
+ 2/12 Test  #2: camera_plan_input_guards .........   Passed    0.02 sec
+      Start  3: site_watchdog_latched_timeout
+ 3/12 Test  #3: site_watchdog_latched_timeout ....   Passed    0.00 sec
+      Start  4: native_hand_offline_guards
+ 4/12 Test  #4: native_hand_offline_guards .......   Passed    0.03 sec
+      Start  5: site_motion_offline_guards
+ 5/12 Test  #5: site_motion_offline_guards .......   Passed    0.06 sec
+      Start  6: servo_core
+ 6/12 Test  #6: servo_core .......................   Passed    0.00 sec
+      Start  7: stage_sdk_link
+ 7/12 Test  #7: stage_sdk_link ...................   Passed    0.00 sec
+      Start  8: field_context_abort_guards
+ 8/12 Test  #8: field_context_abort_guards .......   Passed    0.00 sec
+      Start  9: telemetry_spsc
+ 9/12 Test  #9: telemetry_spsc ...................   Passed    0.03 sec
+      Start 10: readonly_model_input_guards
+10/12 Test #10: readonly_model_input_guards ......   Passed    0.02 sec
+      Start 11: payload_load_core_offline
+11/12 Test #11: payload_load_core_offline ........   Passed    0.00 sec
+      Start 12: read_state_model_input_guards
+12/12 Test #12: read_state_model_input_guards ....   Passed    0.02 sec
+
+100% tests passed, 0 tests failed out of 12
+
+Total Test time (real) =   0.22 sec
+Source build finished: /home/gpuadmin/workspace/jake/field-demo-random-pin-feedback-20261022/build. Hardware connection and motion remain unverified.
+Offline source build passed. Local SDK marker written; robot compatibility and execution still require onsite verification.

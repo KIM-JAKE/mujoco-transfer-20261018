@@ -1,0 +1,47 @@
+{
+  "scope": "Paired stationary step/readback experiment only; no robot command or full task",
+  "GPU_requested": {
+    "state": "GPU_requested_stationary_step_eligibility_component",
+    "requested_device": 0,
+    "authored_scene_settings": [
+      {
+        "path": "/PhysicsScene",
+        "GPU_dynamics": true,
+        "broadphase": "GPU"
+      }
+    ],
+    "steps": 240,
+    "physics_s": 0.5,
+    "wall_s": 27.812246781075373,
+    "all_joint_positions_finite": true,
+    "maximum_joint_change": 0.0,
+    "robot_motion_commanded": false,
+    "full_task_pass": false,
+    "hardware_tested": false,
+    "GPU_solver_activation_requires_log_and_device_confirmation": true
+  },
+  "CPU": {
+    "state": "GPU_requested_stationary_step_eligibility_component",
+    "requested_device": -1,
+    "authored_scene_settings": [
+      {
+        "path": "/PhysicsScene",
+        "GPU_dynamics": false,
+        "broadphase": "MBP"
+      }
+    ],
+    "steps": 240,
+    "physics_s": 0.5,
+    "wall_s": 0.562461058027111,
+    "all_joint_positions_finite": true,
+    "maximum_joint_change": 0.0,
+    "robot_motion_commanded": false,
+    "full_task_pass": false,
+    "hardware_tested": false,
+    "GPU_solver_activation_requires_log_and_device_confirmation": true
+  },
+  "GPU_to_CPU_wall_ratio": 49.447417530788066,
+  "decision": "Do not enable GPU dynamics for current NumPy/readback pipeline; GPU cuRobo route/IK and ray-camera workers remain enabled",
+  "hardware_tested": false,
+  "full_task_pass": false
+}
