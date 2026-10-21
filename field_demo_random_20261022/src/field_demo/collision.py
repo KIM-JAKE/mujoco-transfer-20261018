@@ -148,21 +148,32 @@ def check_envelopes(active, other, scene, phase, envelope, *, payloads=(), dynam
     names = [obstacle.get('name') for obstacle in obstacles]
     if any(not isinstance(name, str) or not name for name in names) or len(set(names)) != len(names):
         raise ValueError('Every measured obstacle needs a unique name')
+    obstacle_lows=[];obstacle_highs=[]
     for obstacle in obstacles:
-        box(obstacle)
+        pose,half=box(obstacle);extent=np.abs(pose[:3,:3])@half
+        obstacle_lows.append(pose[:3,3]-extent);obstacle_highs.append(pose[:3,3]+extent)
+    obstacle_lows=np.asarray(obstacle_lows);obstacle_highs=np.asarray(obstacle_highs)
     corridors = phase.get('corridors')
     if not isinstance(corridors, list) or not corridors:
         raise ValueError('Field-reviewed phase corridors required')
     workspace = scene['workspace']
     minimum = float('inf')
     count = 0
+    sweep_bounds={}
+    for row in [*active,*other,*payloads,*dynamic_obstacles]:
+        coordinates=np.concatenate([np.asarray(row['a']).reshape(-1,3),np.asarray(row['b']).reshape(-1,3)])
+        radius=float(np.max(row['r']));sweep_bounds[id(row)]=(coordinates.min(0)-radius,coordinates.max(0)+radius)
     def boxes(capsules, is_payload=False, active_robot=False):
         nonlocal minimum, count
         for capsule_index,capsule in enumerate(capsules):
             radius = capsule['r'] + margin
             if not np.all(inside_box(capsule['a'], capsule['b'], radius, workspace)):
                 raise CollisionError('Swept envelope leaves the completely modeled workspace: ' + capsule['name'])
-            for obstacle in obstacles:
+            caplow,caphigh=sweep_bounds[id(capsule)]
+            delta=np.maximum(np.maximum(caplow-obstacle_highs,obstacle_lows-caphigh),0.)
+            possible=np.einsum('ij,ij->i',delta,delta)<=margin*margin
+            for obstacle_index in np.flatnonzero(possible):
+                obstacle=obstacles[obstacle_index]
                 support=capsule.get('fixed_mount_support',{})
                 if (not is_payload and capsule.get('link_index')==0 and
                         support.get('kind')=='fixed_base_known_mount_contact'and support.get('obstacle_name')==obstacle['name']):
@@ -218,10 +229,6 @@ def check_envelopes(active, other, scene, phase, envelope, *, payloads=(), dynam
         ignored.add(tuple(sorted(pair)))
     # Exact distance is needed only when the complete swept AABBs overlap.
     # Cache once per capsule; never infer clearance from endpoints alone.
-    sweep_bounds={}
-    for row in [*active,*other,*payloads,*dynamic_obstacles]:
-        coordinates=np.concatenate([np.asarray(row['a']).reshape(-1,3),np.asarray(row['b']).reshape(-1,3)])
-        radius=float(np.max(row['r']));sweep_bounds[id(row)]=(coordinates.min(0)-radius,coordinates.max(0)+radius)
     def pair_check(a, b, description, allowed=None):
         nonlocal minimum, count
         ba,bb=sweep_bounds.get(id(a)),sweep_bounds.get(id(b))

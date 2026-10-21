@@ -1,3 +1,5 @@
+> **현재 추가 기능:** [실제 Hand 폭·후보 재선택](docs/APERTURE_ADAPTIVE.md). 새 설정 작성과 재빌드가 필요하며 실제 SDK 값으로 검사합니다.
+
 > **새 현장 설정:** [모델 기반 starter](docs/MODEL_STARTER.md)에서 링크·Hand·링·핀 충돌 모양을 자동 작성합니다. 실제 설치 일치 기록 한 개와 읽기 전용 SDK 상태를 사용하며 base/카메라/바구니/지그/STOP은 현장 값으로 유지합니다.
 
 # 10월 22일 오전 11시 KST 현장 시험용 — RGB-D + Franka SDK

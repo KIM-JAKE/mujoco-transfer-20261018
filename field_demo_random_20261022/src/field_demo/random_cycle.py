@@ -18,6 +18,7 @@ from isaac_port.fieldkit.hand import FrankaHand,bounded
 from isaac_port.fieldkit.site import Site
 from .calibration import rigid,utc_stamp
 from .execution import StopListener
+from .collision import CollisionError
 
 PARTS=('ring1','ring2','pin')
 
@@ -215,6 +216,53 @@ def held_measurement(runtime,entry,side,previous=None):
     return observed,carry
 
 
+class PreMotionPickupChanged(RuntimeError):
+    """Only a fresh image/scene rejection before the arm process is launched."""
+
+
+def screen_pickup(runtime,entry,observation,carried,*,rejected_targets=None):
+    """Bounded pixel-only search: alternate instances before repeating families.
+
+    No Hand/arm action occurs here. Capture-scoped IDs are never remembered as
+    object identity; failed world TCP/pregrasp targets are compared geometrically.
+    """
+    import numpy as np
+    rejected_targets=rejected_targets if rejected_targets is not None else []
+    part=entry['part'];side=entry['pickup_side'];failures=[];plans=0;captures=1
+    maximum=int(runtime.recipe.get('pickup_search_max_plans',16));maxcaptures=int(runtime.recipe.get('pickup_search_max_captures',2))
+    if not 1<=maximum<=40 or not 1<=maxcaptures<=4:raise ValueError('Bounded pickup search plan/capture budgets required')
+    def equivalent(a,b):
+        return (np.linalg.norm(a[:3,3]-b[:3,3])<=runtime.recipe['target_position_tolerance_m']and
+            np.arccos(np.clip((np.trace(a[:3,:3]@b[:3,:3].T)-1)/2,-1,1))<=runtime.recipe['target_angle_tolerance_rad'])
+    def old():
+        return not runtime.replay and (datetime.now(timezone.utc)-utc_stamp(observation['captured_at_utc'])).total_seconds()>runtime.recipe['max_observation_age_s']
+    while True:
+        candidates=instances(observation,part)
+        if part.startswith('ring'):candidates=[v for v in candidates if v.get('geometrically_accessible')is True]
+        if not candidates:raise RuntimeError('No screened pickup candidate: no unambiguous image-derived accessible '+part)
+        expired=False
+        # Breadth first: a blocked wall-side ring does not consume every yaw
+        # before another exposed ring of the SAME required class is considered.
+        for family in entry['grasp_families']:
+            for instance in candidates:
+                if old():expired=True;break
+                tcp=rigid(instance['T_cell_part'])@rigid(family['T_part_tcp'])
+                pre=rigid(instance['T_cell_part'])@offset(family['T_part_tcp'],family.get('pregrasp_offset_part_m',entry['pregrasp_offset_part_m']))
+                if any(equivalent(pre,p)and equivalent(tcp,t)for p,t in rejected_targets):continue
+                if plans>=maximum:raise RuntimeError('No screened pickup candidate: bounded planning budget exhausted '+repr(failures))
+                observed=select_observation(observation,instance);plans+=1
+                try:plan=runtime.plan('pickup',part,side,[pre.tolist(),tcp.tolist()],observed,carried,contact='grasp')
+                except (RuntimeError,ValueError)as error:
+                    if old()and not isinstance(error,CollisionError)and not str(error).startswith('Read-only candidate unavailable:'):
+                        expired=True;break  # stale information is not a failed physical target
+                    failures.append(str(error));rejected_targets.append((pre.copy(),tcp.copy()));continue
+                runtime.event('pickup_candidate_selected',part=part,plans=plans,captures=captures,failed_targets=len(rejected_targets),capture_id=observation['capture_id'],family=family['name'])
+                return observed,family,plan,pre,tcp
+            if expired:break
+        if captures>=maxcaptures:raise RuntimeError('No screened pickup candidate: '+repr(failures))
+        observation=check_observation(runtime,runtime.observe('pin_holder'if part=='pin'else'basket',part,side=side));captures+=1
+
+
 def run(runtime,recipe,*,single_pick=None):
     """Same state transitions in live/replay; failures stop without retries/opening."""
     import numpy as np
@@ -227,6 +275,7 @@ def run(runtime,recipe,*,single_pick=None):
             if getattr(runtime,'stock_return_release_part',None)and signal.startswith(runtime.stock_return_release_part+'_'):continue
             if not runtime.read(signal):raise RuntimeError('Measured part feedback lost: '+signal)
     runtime.monitor=ready
+    runtime.carried_state=lambda:copy.deepcopy(list(carried.values()))
     def wait(signal):runtime.wait(signal,recipe['feedback_timeout_s'],recipe['feedback_dwell_s'])
     def move(phase,part,side,targets,observation,contact=None,plan=None):
         ready()
@@ -248,25 +297,21 @@ def run(runtime,recipe,*,single_pick=None):
             part=entry['part'];donor,receiver=entry['pickup_side'],entry['insert_side']
             observation=check_observation(runtime,runtime.observe('pin_holder' if part=='pin' else 'basket',part,side=donor))
             if runtime.hand_status(donor)['is_grasped']:raise RuntimeError('Pickup hand is not empty')
-            selected=None;failures=[]
-            candidates=instances(observation,part)
-            if part.startswith('ring'):
-                candidates=[v for v in candidates if v.get('geometrically_accessible') is True]
-            for instance in candidates:
-                observed=select_observation(observation,instance)
-                for family in entry['grasp_families']:
-                    tcp=rigid(instance['T_cell_part'])@rigid(family['T_part_tcp'])
-                    pre=rigid(instance['T_cell_part'])@offset(family['T_part_tcp'],family.get('pregrasp_offset_part_m',entry['pregrasp_offset_part_m']))
-                    try:
-                        plan=runtime.plan('pickup',part,donor,[pre.tolist(),tcp.tolist()],observed,list(carried.values()),contact='grasp')
-                    except (RuntimeError,ValueError) as error:
-                        failures.append(str(error));continue  # no actuator/arm motion has started
-                    selected=(observed,family,plan);break
-                if selected:break
-            if selected is None:raise RuntimeError('No screened pickup candidate: '+repr(failures))
-            observed,family,plan=selected;actions=family.get('actions') or runtime.site.config['gripper_actions'][part]
-            runtime.hand_move(donor,part,'open',actions['open'])
-            move('pickup',part,donor,[],observed,plan=plan)
+            prepared_open=False
+            if hasattr(runtime,'prepare_pickup_hand'):
+                prepared_open=runtime.prepare_pickup_hand(entry,observation)
+                if prepared_open:observation=check_observation(runtime,runtime.observe('pin_holder'if part=='pin'else'basket',part,side=donor))
+            rejected=[];preflight_retries=0
+            while True:
+                observed,family,plan,pre,tcp=screen_pickup(runtime,entry,observation,list(carried.values()),rejected_targets=rejected)
+                actions=family.get('actions')or runtime.site.config['gripper_actions'][part]
+                if not prepared_open:runtime.hand_move(donor,part,'open',actions['open']);prepared_open=True
+                try:move('pickup',part,donor,[],observed,plan=plan);break
+                except PreMotionPickupChanged:
+                    if preflight_retries>=1 or runtime.hand_status(donor)['is_grasped']:raise
+                    rejected.append((pre.copy(),tcp.copy()));preflight_retries+=1
+                    observation=check_observation(runtime,runtime.observe('pin_holder'if part=='pin'else'basket',part,side=donor))
+                    runtime.event('pickup_pre_motion_reselection',part=part,retry=preflight_retries)
             if runtime.read(part+'_grasped'):raise RuntimeError('Grasp feedback high before actual command')
             runtime.hand_move(donor,part,'grasp',actions['grasp'])
             if facts is None:wait(part+'_grasped')
@@ -413,6 +458,8 @@ class LiveRuntime:
         planner_settings=json.loads((self.root/recipe['planner_config']).read_text())
         if planner_settings.get('scene',{}).get('require_residual_occupancy')is not True:raise ValueError('Live RGB-D/SDK cycle requires conservative residual occupancy in every basket plan')
         self.require_basket_observation=planner_settings.get('scene',{}).get('require_basket_observation',True)
+        self.width_aware=any(v.get('native_hand_aperture_geometry')for v in planner_settings['robots'].values())
+        self._active_aperture_binding=None;self._latest_plan_context=None;self._stopped_arm_monitors={}
         self.monitor=lambda:None;self.installed_parts=[];self.streams={};self.camera_configs={};self.scene_epoch=uuid.uuid4().hex
         from .sensor_facts import SensorFacts
         self.facts=SensorFacts(recipe)
@@ -438,6 +485,10 @@ class LiveRuntime:
             self.payload.valid=False;self.site.cancelled.set();raise RuntimeError('Payload profile or driver changed; inhibit motion')
         if self.payload is None or not self.payload.valid:raise RuntimeError('Known measured payload state required')
         self._base_ready();self.monitor()
+        for monitor in getattr(self,'_stopped_arm_monitors',{}).values():monitor.status()
+        if getattr(self,'_active_aperture_binding',None)is not None:
+            from .hand_aperture import current_within
+            current_within(self._active_aperture_binding,{s:self.hand_status(s)for s in ['left','right']})
     def wait_signal(self,name,expected):
         return self.site.guarded(lambda cancel:self.site.plc.wait(name,timeout_s=self.recipe['feedback_timeout_s'],dwell_s=self.recipe['feedback_dwell_s'],cancelled=cancel,expected=expected))
     def read(self,name):
@@ -492,16 +543,97 @@ class LiveRuntime:
         self.event('clamp_confirmation',part=part,mode=mode,evidence=evidence)
     def hand_status(self,side):return self.site.grippers[side].status()
     def hand_move(self,side,part,mode,parameters):
+        # One cell lock covers fresh stopped SDK proof through Hand completion.
+        with self.site.control_lock():return self._hand_move_locked(side,part,mode,parameters)
+    def _hand_move_locked(self,side,part,mode,parameters):
         g=self.site.grippers[side]
         if mode=='grasp' and g.status()['width_m']<=parameters['width_m']+parameters['epsilon_outer_m']:
             raise ValueError('Field native grasp must close from a measured larger opening; simulated outward expansion is not enabled')
         if mode=='release' and parameters['width_m']<=g.status()['width_m']+self.recipe['release_width_tolerance_m']:
             raise ValueError('Release must open beyond the measured held width')
-        result=self.site.guarded(lambda cancel:g.move(**parameters,grasp=mode=='grasp',cancelled=cancel))
-        self.hand_monitors[side].publish(result)
+        proof=None
+        if getattr(self,'width_aware',False):
+            if self._active_aperture_binding is not None:raise RuntimeError('Hand commands cannot overlap checked arm motion or another Hand sweep')
+            proof=self._check_hand_sweep(side,part,mode,parameters)
+            self._active_aperture_binding=proof['aperture_binding']
+        try:
+            if proof is not None:
+                from .stopped_arm_monitor import StoppedArmMonitor
+                settings=json.loads((self.root/self.recipe['planner_config']).read_text())
+                for arm in ['left','right']:
+                    sdk=proof['active_SDK']if arm==side else proof['other_SDK']
+                    self._stopped_arm_monitors[arm]=StoppedArmMonitor(lambda arm=arm:self.sdk_state(arm),sdk['state']['q_d'],settings.get('joint_tracking_error_limit_rad',.02))
+
+            with self.site.control_lock():
+                result=self.site.guarded(lambda cancel:g.move(**parameters,grasp=mode=='grasp',cancelled=cancel))
+                self.hand_monitors[side].publish(result)
+                if proof is not None:
+                    from .hand_aperture import current_within
+                    current_within(proof['aperture_binding'],{s:self.hand_status(s)for s in ['left','right']})
+        finally:
+            for monitor in getattr(self,'_stopped_arm_monitors',{}).values():monitor.close()
+            self._stopped_arm_monitors={}
+            if proof is not None:self._active_aperture_binding=None
+
         if mode!='grasp' and (result['is_grasped'] or result['width_m']<parameters['width_m']-self.recipe['release_width_tolerance_m']):
             raise RuntimeError('Native Hand opening was not measured')
         return result
+    def prepare_pickup_hand(self,entry,observation):
+        if not getattr(self,'width_aware',False):return False
+        side=entry['pickup_side'];part=entry['part']
+        actions=[family.get('actions')or self.site.config['gripper_actions'][part]for family in entry['grasp_families']]
+        if any(action['open']!=actions[0]['open']for action in actions[1:]):raise ValueError('Width-aware candidate search requires one common actual pickup opening per part')
+        current=self.hand_status(side)
+        if current['is_grasped']:raise RuntimeError('Initial native pickup Hand is not empty')
+        from .hand_aperture import TOLERANCE_M
+        if abs(current['width_m']-actions[0]['open']['width_m'])<=TOLERANCE_M:return True
+        choices=instances(observation,part)
+        if part.startswith('ring'):choices=[v for v in choices if v.get('geometrically_accessible')is True]
+        if not choices:raise RuntimeError('No screened pickup candidate before empty Hand opening')
+        self._latest_plan_context=dict(part=part,phase='pickup',kind='actual_image_context_for_stopped_Hand_sweep',
+            _runtime_observation=select_observation(observation,choices[0]))
+        self.hand_move(side,part,'open',actions[0]['open'])
+        return True
+
+    def _check_hand_sweep(self,side,part,mode,parameters):
+        import numpy as np
+        from .hand_aperture import binding
+        from .random_planner import check_stopped_aperture
+        plan=self._latest_plan_context
+        if not isinstance(plan,dict)or plan.get('part')!=part:raise RuntimeError('Current same-part screened context required before Hand actuation')
+        held=getattr(self,'carried_state',lambda:[])();target=next((v for v in held if v['part']==part),None)
+        if target is not None:
+            owner=target['robot'];previous=json.loads(Path(target['measurement']['evidence_file']).read_text())
+            previous['T_tcp_part']=target['T_tcp_part']
+            fresh=check_observation(self,self.observe('held',part,side=owner,previous=previous));values=instances(fresh,part)
+            if len(values)!=1:raise RuntimeError('Fresh held target ambiguous before Hand aperture sweep')
+            fresh=select_observation(fresh,values[0])
+            current_tcp=rigid(self.tcp(owner));G=np.linalg.inv(current_tcp)@rigid(fresh['T_cell_part'])
+            fresh.update(measured_tcp_pose=current_tcp.tolist(),T_tcp_part=G.tolist())
+            fresh=self._record(fresh)
+            target['T_tcp_part']=G.tolist();target['observation_capture_id']=fresh['capture_id']
+            target['measurement']=dict(verified=True,by='live_RGBD_SDK_stopped_Hand_sweep',at_utc=fresh['captured_at_utc'],evidence_file=fresh['_path'])
+            self.facts.confirm_held(part,owner,fresh,G,self.hand_status(owner))
+            if self.payload.owner[owner]==part:self.payload.refresh_held(owner,part,self.flange_frame(owner),G)
+        else:
+            original=plan['_runtime_observation'];fresh=check_observation(self,self.observe(original['_scope'],part,side=side,previous=original))
+            old=rigid(original['selected_instance']['T_cell_part']);matches=[]
+            for value in instances(fresh,part):
+                current=rigid(value['T_cell_part']);angle=np.arccos(np.clip((np.trace(current[:3,:3]@old[:3,:3].T)-1)/2,-1,1))
+                if np.linalg.norm(current[:3,3]-old[:3,3])<=self.recipe['target_position_tolerance_m']and angle<=self.recipe['target_angle_tolerance_rad']:matches.append(value)
+            if len(matches)!=1:raise RuntimeError('Fresh target changed before Hand aperture sweep')
+            fresh=select_observation(fresh,matches[0])
+        fresh=self._selected_record(fresh)
+        samples={s:self.hand_status(s)for s in ['left','right']};aperture=binding(samples,sweep_side=side,target_width_m=parameters['width_m'],epsilon_inner_m=parameters.get('epsilon_inner_m',0.),epsilon_outer_m=parameters.get('epsilon_outer_m',0.))
+        phase=plan['phase'];contact=None
+        if mode=='grasp':contact='handover'if target is not None and target['robot']!=side else'grasp'
+        elif target is not None and target['robot']!=side:contact='handover'
+        elif phase=='insert':contact='insert'
+        proof=check_stopped_aperture(self.root/self.recipe['planner_config'],self.site,phase,part,side,fresh,held,aperture,contact=contact)
+        path=self.output/('aperture-proof-'+uuid.uuid4().hex+'.json');path.write_text(json.dumps(proof,indent=2,allow_nan=False)+'\n');path.chmod(0o444)
+        self.event('actual_stopped_Hand_full_aperture_sweep',part=part,side=side,mode=mode,proof_file=str(path),sha256=sha(path))
+        return proof
+
     def sdk_state(self,side):
         import subprocess
         import numpy as np
@@ -786,7 +918,13 @@ class LiveRuntime:
         self.ready()
         self._profile_check()
         observation=self._selected_record(observation)
-        plan=self.planner.plan(phase,part,side,targets,observation,held_parts=held_parts,contact=contact)
+        options={}
+        if getattr(self,'width_aware',False):
+            from .hand_aperture import binding
+            options['aperture_binding']=binding({s:self.hand_status(s)for s in ['left','right']})
+        plan=self.planner.plan(phase,part,side,targets,observation,held_parts=held_parts,contact=contact,**options)
+        self._latest_plan_context=plan
+
         plan['_runtime_observation']=observation;plan['_runtime_side']=side
         return plan
     def execute(self,plan,observation):
@@ -802,18 +940,25 @@ class LiveRuntime:
             angle=np.arccos(np.clip((np.trace(current[:3,:3]@old[:3,:3].T)-1)/2,-1,1))
             if position<=self.recipe['target_position_tolerance_m'] and angle<=self.recipe['target_angle_tolerance_rad']:
                 eligible.append(value)
-        if len(eligible)!=1:raise RuntimeError('Fresh image no longer uniquely agrees with the planned target')
+        if len(eligible)!=1:raise PreMotionPickupChanged('Fresh image no longer uniquely agrees with the planned target; no arm motion issued')
         fresh=self._selected_record(select_observation(fresh,eligible[0]))
         with self.site.control_lock():
             self._profile_check()
-            self.ready();self.planner.revalidate(plan,observation=fresh)
+            self.ready()
+            try:self.planner.revalidate(plan,observation=fresh)
+            except CollisionError as error:
+                raise PreMotionPickupChanged('Fresh scene blocks pre-motion pickup: '+str(error))from error
             row=copy.deepcopy(plan['stage_row'])
             if row.get('planning_source')!='dynamic_field_envelope' or row.get('field_path_reviewed') is True:
                 raise ValueError('Dynamic stage requires explicit scene-envelope proof, not a fabricated taught-path approval')
             if sha(plan['csv'])!=plan['csv_sha256'] or row.get('sha256')!=plan['csv_sha256']:
                 raise ValueError('Exact screened dynamic CSV hash required')
             self.site.config.setdefault('stages',{})['dynamic.'+uuid.uuid4().hex]=row
-            self.site.motion(plan['_runtime_side'],'csv',[Path(plan['csv'])]);self.ready()
+            aperture=plan.get('proof',{}).get('aperture_binding')
+            if getattr(self,'width_aware',False)and aperture is None:raise RuntimeError('Width-aware arm motion lacks actual Hand geometry binding')
+            self._active_aperture_binding=aperture
+            try:self.site.motion(plan['_runtime_side'],'csv',[Path(plan['csv'])]);self.ready()
+            finally:self._active_aperture_binding=None
     def verify_clearance(self,recipe):
         import numpy as np
         positions={side:rigid(self.tcp(side))[:3,3] for side in ('left','right')}
@@ -856,6 +1001,8 @@ class ReplayRuntime(LiveRuntime):
         self.frames=iter(m['frames']);self.tcps={s:rigid(m['initial_tcp'][s]).tolist() for s in ('left','right')}
         self.hands={s:dict(part=None,width_m=bounded(m['initial_hand_width_m'][s],0,.08,'fake initial width')) for s in ('left','right')}
         self.site=SimpleNamespace(config=json.loads((self.root/recipe['site_config']).read_text()),expected_held={})
+        self.width_aware=any(v.get('native_hand_aperture_geometry')for v in planner_settings['robots'].values())
+        self._active_aperture_binding=None;self._latest_plan_context=None;self._stopped_arm_monitors={}
         self.monitor=lambda:None;self.installed_parts=[];self.camera_configs={};self.stopped=False;self.events=[]
         self.signals={part+'_'+suffix:False for part in PARTS for suffix in ('grasped','seated','clamped','retained')}
         for e in recipe['parts']:

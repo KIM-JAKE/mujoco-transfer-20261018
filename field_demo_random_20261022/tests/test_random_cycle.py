@@ -86,7 +86,7 @@ class FakeRuntime:
         instance=dict(instance_id=metadata['capture_id']+':pixel-0',part=part,T_cell_part=self.object_pose(part),geometrically_accessible=True)
         values=[instance]
         if scope=='basket' and self.reject_first:
-            first=copy.deepcopy(instance);first['instance_id']+=':blocked';values=[first,instance]
+            first=copy.deepcopy(instance);first['instance_id']+=':blocked';first['T_cell_part'][0][3]-=.05;values=[first,instance]
         result=dict(state='random_ring_observation',schema_version=2,replay=self.replay,source_metadata=metadata,
             **{k:metadata[k] for k in ('capture_id','captured_at_utc','calibration_sha256')},
             instances=values,ring_pose_seed_used=scope=='held',_scope=scope,_part=part,_side=side)

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "updated_utc": "2026-10-21T18:54:28.875275+00:00",
+  "package": "field-demo-random-adaptive-20261022",
+  "source_original_unchanged": true,
+  "source": "field-demo-random-hotfix-20261022",
+  "hardware_tested": false,
+  "field_ready": false,
+  "live_cli_available": true,
+  "full_offline": {
+    "python_tests": 275,
+    "fieldkit_tests": 27,
+    "native_ctest": 11,
+    "passed": true,
+    "log": "reports/ADAPTIVE_FULL_OFFLINE_CHECK.log"
+  },
+  "features": [
+    "Official original Hand CAD transformed at current actual SDK width with 0.5mm measured-width interval; both fresh Hand samples required",
+    "Full stopped current-to-commanded-aperture sweep includes grasp epsilon, fixed scene, both arms and carried payloads before real Hand command",
+    "Independent actual SDK stopped-arm wrench/pose polling during Hand motion; existing 5N/1Nm limits, advancing SDK time and 200ms validity",
+    "Open empty Hand before width-dependent pickup planning, never execute closed-width plan after opening",
+    "Bounded family-first alternate same-class visible ring selection, geometry-based rejection cache across captures, exactly one pre-motion reselect",
+    "Only exact known native read-model IK/unreachable-duration errors are candidate failures; SDK errors remain fatal",
+    "Observed installed part full class-CAD registry retained for all later moving arm/payload and Hand sweeps; regression proves earlier placement blocks later pickup before contact",
+    "Vectorized swept AABB broadphase preserves actual collision result including nonadjacent link5/link7",
+    "Generated grasp epsilon 2mm matches actual native Hand action validator"
+  ],
+  "physical_unsampled_width_bound_certified": false,
+  "scope_limitations": [
+    "No actual hardware/RealSense/SDK motion or physical grasp/force/stop acceptance was performed",
+    "Visible Hand surface in raw in-bin occupancy is not yet associated to current body; actual pre-close may be rejected by its own observed surface",
+    "UNKNOWN including opaque Hand interior and occlusion remains an obstacle; no self-volume/shadow deletion",
+    "Representative single-camera approach/lift proof is archived Isaac RGB-D plus nominal Hand/selected-CAD component only, not actual whole-arm field execution",
+    "Native outward force expansion grasp remains disallowed; current real Hand action is inward closing"
+  ],
+  "guide": "docs/APERTURE_ADAPTIVE.md",
+  "synthetic_curve_benchmark": "reports/adaptive-curve-benchmark.json",
+  "known_hand_surface_module_integrated": false
+}

@@ -180,7 +180,16 @@ def run_native(binary, mode, address, targets=None):
             path = Path(directory) / 'targets.txt'
             path.write_text(''.join(' '.join(format(v, '.17g') for v in matrix.ravel())+'\n' for matrix in targets))
             args.append(str(path))
-        result = subprocess.run(args, capture_output=True, text=True, check=True, timeout=90 if targets is not None else 10)
+        try:
+            result = subprocess.run(args, capture_output=True, text=True, check=True, timeout=90 if targets is not None else 10)
+        except subprocess.CalledProcessError as error:
+            # These two pinned read-only backend failures concern this target,
+            # not SDK communication/state. All other native failures propagate.
+            target_failures=['No measured-model bounded IK for this phase','Phase exceeds 60s continuous 10-percent envelope']
+            if mode=='--read-model'and any((error.stderr or '').strip()=='Read-only dynamic model failed: '+reason for reason in target_failures):
+                raise RuntimeError('Read-only candidate unavailable: '+(error.stderr or '').strip())from error
+            raise
+
     return json.loads(result.stdout)
 
 
@@ -302,8 +311,13 @@ def payload_capsules(entry):
     return [{'a': [0, 0, -length/2], 'b': [0, 0, length/2], 'radius_m': radius}]
 
 
-def geometry_check(model, other_state, config, site_config, phase_name, side, part, observation, held, root, dependencies, now, contact=None):
-    trace = validate_model(model)
+def geometry_check(model, other_state, config, site_config, phase_name, side, part, observation, held, root, dependencies, now, contact=None, *, aperture_binding=None, stopped_aperture=False):
+    if stopped_aperture:
+        native_output(model)
+        points=collision.finite(model['link_points_base_m'],(9,3))
+        trace=dict(links=points[None],tcps=collision.transform(model['tcp_base'])[None],speeds=np.zeros(9),joint_velocities=np.zeros(7),gap=0.,sample_count=1)
+        model=dict(model,link_segment_lengths_m=(np.linalg.norm(np.diff(points,axis=0),axis=1)+1e-6).tolist())
+    else:trace=validate_model(model)
     guard = float(config.get('joint_tracking_error_limit_rad', .02))
     if np.max(np.abs(np.asarray(model['state']['q'])-model['state']['q_d'])) > min(.005, guard):
         raise ValueError('Actual start tracking error already exceeds the requested native guard')
@@ -331,6 +345,7 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
     other_links = collision.finite(other_state['link_points_base_m'], (9, 3))@other_base[:3, :3].T+other_base[:3, 3]
     other_tcp = other_base@collision.transform(other_state['tcp_base'])
     envelope = copy.deepcopy(config['robots'][side]); envelope['_angular_speed_bound_rad_s'] = float(np.sum(trace['joint_velocities']))
+    if any(config['robots'][s].get('native_hand_aperture_geometry')for s in ['left','right'])and aperture_binding is None:raise ValueError('Actual both-Hand SDK aperture binding required for width-aware native geometry')
     if phase.get('bounded_loose_stock_contact')is not None:
         from .stock_contact import validate_stock_contact_policy
         contract=validate_stock_contact_policy(phase,envelope);policy=phase['bounded_loose_stock_contact'];monitor=policy['monitoring']
@@ -356,6 +371,10 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
         dependencies['stock_departure_native_executor']={'path':str(binary),'sha256':digest(binary)}
         dependencies['stock_departure_stop_test']={'path':str(stop_evidence),'sha256':digest(stop_evidence)}
     other_envelope = copy.deepcopy(config['robots'][other_side]); other_envelope['_angular_speed_bound_rad_s'] = 0.
+    if aperture_binding is not None:
+        from .hand_aperture import validate
+        intervals=validate(aperture_binding)
+        envelope['_aperture_interval_m']=intervals[side];other_envelope['_aperture_interval_m']=intervals[other_side]
     # Enclose the actual native stop tracking budget, including local geometry
     # rotating about each SDK joint origin between millisecond FK samples.
     lengths=np.asarray(model['link_segment_lengths_m'])
@@ -380,6 +399,7 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
             fs=frames(fs,native_points,native_tcp,F)
             fs=base_pose[None,None]@fs
             rows=robot_capsules(fs,poses,env,speeds,velocities,gap,tracking,error,prefix)
+            for row in rows:row['robot_side']=side if prefix==side+'_'else other_side
             support=config.get('robot_mounting_supports',{}).get(side if prefix==side+'_'else other_side)
             if isinstance(support,dict)and support.get('obstacle_name'):
                 measured(support.get('measurement'),root,dependencies,prefix+'actual_mount_support',now)
@@ -517,7 +537,8 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
     result = collision.check_envelopes(active, other, scene, phase, envelope,
                                        payloads=payloads, dynamic_obstacles=dynamic, margin=config['collision_margin_m'])
     result.update(sample_count=trace['sample_count'], maximum_sample_gap_s=trace['gap'],
-                  independent_c2_curve_bound=True, unsampled_motion_inflation=True,
+                  independent_c2_curve_bound=not stopped_aperture, unsampled_motion_inflation=not stopped_aperture,
+                  stopped_SDK_aperture_sweep=stopped_aperture,checked_Hand_aperture_binding=aperture_binding,
                   point_speed_bounds_m_s=trace['speeds'].tolist(),
                   enforced_joint_tracking_error_bound_rad=tracking_limit,
                   tracking_envelope_inflation_m=tracking_bounds.tolist(),
@@ -579,7 +600,7 @@ def plan_phase(request, config, site_dir, *, native_plan=None, other_state=None,
     if (datetime.now(timezone.utc)-received).total_seconds() > config['max_state_read_s']:
         raise ValueError('Other-arm state read exceeded its commissioned freshness limit')
     geometry, trace = geometry_check(model, other, config, site, phase, side, part, observation,
-                                     request.get('held_parts', []), root, dependencies, now, request.get('contact'))
+                                     request.get('held_parts', []), root, dependencies, now, request.get('contact'),aperture_binding=request.get('aperture_binding'))
     for actual, expected in zip((base@collision.transform(row['tcp_base']) for row in [model['samples'][-1]]), targets[-1:]):
         if np.linalg.norm(actual[:3, 3]-expected[:3, 3]) > 1e-4 or np.linalg.norm(actual[:3, :3]-expected[:3, :3]) > 1e-3:
             raise ValueError('Native phase endpoint differs from the measured requested target')
@@ -606,6 +627,7 @@ def plan_phase(request, config, site_dir, *, native_plan=None, other_state=None,
              'csv': {'path': str(csv_path), 'sha256': digest(csv_path)}, 'collision': geometry,
              'measured_state_started_at_utc': before.isoformat(), 'model_received_at_utc': received.isoformat(),
              'other_state': other, 'observation': observation, 'held_parts': request.get('held_parts', []),
+             'aperture_binding':request.get('aperture_binding'),
              'contact': request.get('contact'), 'T_cell_tcp_targets': [target.tolist() for target in targets]}
     write_new(proof_path, proof)
     row = {'csv': str(csv_path), 'sha256': digest(csv_path), 'planning_source': 'dynamic_field_envelope',
@@ -670,14 +692,20 @@ def validate_runtime_stage(row, side, *, site):
     native_output(other)
     if np.max(np.abs(np.asarray(other['state']['q_d'])-proof['other_state']['state']['q_d'])) > config['other_arm_q_tolerance_rad']:
         raise ValueError('Other arm posture changed; replan before moving')
+    if proof.get('aperture_binding')is not None:
+        if proof['aperture_binding'].get('actual_sweep_side')is not None:raise ValueError('A Hand opening/closing sweep cannot authorize arm motion')
+        from .hand_aperture import current_within
+        current_within(proof['aperture_binding'],{s:site.grippers[s].status()for s in ['left','right']})
     # Recompute the checked C2 curve and whole conservative geometry with current other-arm FK.
     geometry_check(model, other, config, load(proof['dependencies']['site_config']['path']), proof['phase'], side,
-                   proof['part'], observation, proof['held_parts'], root, dependencies, now, proof.get('contact'))
+                   proof['part'], observation, proof['held_parts'], root, dependencies, now, proof.get('contact'),aperture_binding=proof.get('aperture_binding'))
     # Native reads and geometric validation consume real time. Check the real
     # sensor exposure timestamps again at the end; never restamp old images.
     final_now = datetime.now(timezone.utc)
     observation_valid(observation, config, root, fresh_dependencies, final_now)
     scene_packets(observation, config, root, fresh_dependencies, final_now)
+    if proof.get('aperture_binding')is not None:
+        current_within(proof['aperture_binding'],{s:site.grippers[s].status()for s in ['left','right']})
     dependencies_valid(fresh_dependencies)
     dependencies_valid(proof['dependencies'])
     return {'state': 'dynamic_envelope_revalidated', 'hardware_ready': False}
@@ -704,10 +732,10 @@ class DynamicPlanner:
     def __init__(self, site, config, output_dir):
         self.site, self.config, self.output_dir = site, Path(config).resolve(), Path(output_dir).resolve()
 
-    def plan(self, phase, part, side, T_cell_tcp_targets, observation, *, held_parts=None, contact=None):
+    def plan(self, phase, part, side, T_cell_tcp_targets, observation, *, held_parts=None, contact=None,aperture_binding=None):
         return plan_phase({'phase': phase, 'part': part, 'robot': side,
                            'T_cell_tcp_targets': T_cell_tcp_targets, 'observation': observation,
-                           'held_parts': held_parts or [], 'contact': contact, 'output_dir': str(self.output_dir)},
+                           'held_parts': held_parts or [], 'contact': contact,'aperture_binding':aperture_binding, 'output_dir': str(self.output_dir)},
                           self.config, self.site.filename.parent)
 
     def revalidate(self, plan, observation=None):
@@ -718,3 +746,21 @@ class DynamicPlanner:
             row['dynamic_observation_file'] = observation['_path']
             row['dynamic_observation_sha256'] = observation['_sha256']
         return validate_runtime_stage(row, plan['robot'], site=self.site)
+
+
+def check_stopped_aperture(config_path,site,phase,part,side,observation,held_parts,aperture_binding,*,contact=None):
+    """Full geometry sweep at actual stopped SDK FK; never an issued arm curve."""
+    config_path=Path(config_path).resolve();root=config_path.parent;config=load(config_path);dependencies={};now=datetime.now(timezone.utc)
+    validate_config(config,root,dependencies,now);observation_valid(observation,config,root,dependencies,now)
+    site_config=load(site.filename);binary=(root/config['planner_binary']).resolve()
+    from .hand_aperture import current_within
+    current_within(aperture_binding,{s:site.grippers[s].status()for s in ['left','right']})
+    active=run_native(binary,'--read-state',site_config['robots'][side]['ip']);opposite='right'if side=='left'else'left'
+    other=run_native(binary,'--read-state',site_config['robots'][opposite]['ip'])
+    result,_=geometry_check(active,other,config,site_config,phase,side,part,observation,held_parts,root,dependencies,now,contact,
+                            aperture_binding=aperture_binding,stopped_aperture=True)
+    current_within(aperture_binding,{s:site.grippers[s].status()for s in ['left','right']})
+    final=datetime.now(timezone.utc);observation_valid(observation,config,root,dependencies,final);scene_packets(observation,config,root,dependencies,final);dependencies_valid(dependencies)
+    return dict(scope='actual_stopped_SDK_pose_full_commanded_Hand_aperture_sweep',arm_motion_issued=False,physical_execution_certified=False,
+                geometry=result,aperture_binding=aperture_binding,active_SDK=active,other_SDK=other,
+                observation_file=observation['_path'],observation_sha256=observation['_sha256'],dependencies=dependencies)

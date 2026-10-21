@@ -33,12 +33,16 @@ def robot_capsules(link_frames,tcp_poses,envelope,point_speeds,joint_velocities,
         row['r']=float(spec['radius_m'])+speed*gap/2+track
         row.update(name=prefix+spec['name'],geometry_role='arm',link_index=i,speed_bound_m_s=speed)
         rows.append(row)
-    for spec in envelope['tool_capsules_tcp_m']:
+    tool_rows=envelope['tool_capsules_tcp_m']
+    if envelope.get('_aperture_interval_m')is not None:
+        from .hand_aperture import tools
+        tool_rows=tools(envelope,envelope['_aperture_interval_m'])
+    for spec in tool_rows:
         reach=max(np.linalg.norm(spec['a']),np.linalg.norm(spec['b']))+float(spec['radius_m'])
         speed=float(point_speeds[-1]+np.sum(v)*reach);track=float(tracking_bounds[-1]+np.sum(error)*reach)
         row=collision.local_capsules([spec],tcp_poses,point_speeds[-1],np.sum(v),gap,prefix)[0]
         row['r']=float(spec['radius_m'])+speed*gap/2+track
-        row.update(name=spec['name'],geometry_role=spec.get('geometry_role','tool'),link_index=8,speed_bound_m_s=speed)
+        row.update(name=spec['name'],geometry_role=spec.get('geometry_role','tool'),link_index=8,speed_bound_m_s=speed,hand_body='left_finger'if spec['name'].startswith('left_finger')else'right_finger'if spec['name'].startswith('right_finger')else'palm')
         rows.append(row)
     rows[0]['actual_tcp']=tcp_poses[:,:3,3]
     return rows

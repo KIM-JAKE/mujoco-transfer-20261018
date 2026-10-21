@@ -85,7 +85,7 @@ def author(output,installation_path,left_state,right_state,*,workspace_path=None
         for row in link_columns:row['radius_m']+=pad
         for row in tools:row['geometry_role']='finger'if'finger'in row['name']else'palm'
         radii=(np.asarray(proof['link_radii_m'])+pad).tolist()
-        envelope=dict(geometry_backend='sdk_link_columns',link_capsules_link_m=link_columns,tool_capsule_offset=len(link_columns),F_T_EE_column_major=F.ravel(order='F').tolist(),link_radii_m=radii,link_endpoint='sdk_flange',tool_in_link_envelopes=False,tool_capsules_tcp_m=tools,
+        envelope=dict(native_hand_aperture_geometry=dict(T_tcp_hand=T.tolist(),cable_radial_allowance_m=pad,palm_column_count=32),geometry_backend='sdk_link_columns',link_capsules_link_m=link_columns,tool_capsule_offset=len(link_columns),F_T_EE_column_major=F.ravel(order='F').tolist(),link_radii_m=radii,link_endpoint='sdk_flange',tool_in_link_envelopes=False,tool_capsules_tcp_m=tools,
             whole_robot_hand_tool_cables_enclosed=True,self_ignore_pairs=[],payload_robot_ignore_capsules=[len(link_columns)+i for i,row in enumerate(tools)if row['geometry_role']=='finger'],
             model_notes='Conservative pinned official collision-mesh enclosures plus actual cable allowance. Actual SDK per-link FK with tight triangle-clipped column enclosures; all-width Hand sweep can reject feasible paths. Fixed-base support contact needs one actual support-plane record; no moving-link exception.')
         motion['robots'][side]=bind('robot_'+side,envelope)

@@ -69,6 +69,12 @@ test_withdrawal_verifies_every_installed_part_from_new_fixture_images (test_fixt
 test_only_small_inferred_penetration_moves_up_and_elevated_part_stays (test_floor_constraint.FloorConstraintTests.test_only_small_inferred_penetration_moves_up_and_elevated_part_stays) ... ok
 test_pixels_exceeding_their_own_reported_bound_are_not_hoisted (test_floor_constraint.FloorConstraintTests.test_pixels_exceeding_their_own_reported_bound_are_not_hoisted) ... ok
 test_selected_actual_CAD_can_depart_floor0_without_allowing_finger_floor_contact (test_floor_constraint.FloorConstraintTests.test_selected_actual_CAD_can_depart_floor0_without_allowing_finger_floor_contact) ... ok
+test_closed_aperture_passes_real_fixture_clearance_that_full_open_width_blocks (test_hand_aperture.ApertureTests.test_closed_aperture_passes_real_fixture_clearance_that_full_open_width_blocks) ... ok
+test_official_columns_follow_measured_width_and_full_sweep_not_commanded_width_only (test_hand_aperture.ApertureTests.test_official_columns_follow_measured_width_and_full_sweep_not_commanded_width_only) ... ok
+test_open_close_sweep_covers_entire_actual_motion_and_grasp_epsilon (test_hand_aperture.ApertureTests.test_open_close_sweep_covers_entire_actual_motion_and_grasp_epsilon) ... ok
+test_real_width_timestamp_bounds_and_drift_stop (test_hand_aperture.ApertureTests.test_real_width_timestamp_bounds_and_drift_stop) ... ok
+test_already_installed_observed_part_blocks_next_pick_before_contact (test_hand_aperture.StoppedProofTests.test_already_installed_observed_part_blocks_next_pick_before_contact) ... ok
+test_stopped_sdk_geometry_branch_never_fabricates_a_c2_arm_trace (test_hand_aperture.StoppedProofTests.test_stopped_sdk_geometry_branch_never_fabricates_a_c2_arm_trace) ... ok
 test_older_sdk_packet_cannot_overwrite_completed_opening (test_hand_monitor.HandMonitorTests.test_older_sdk_packet_cannot_overwrite_completed_opening) ... ok
 test_repeated_same_sdk_timestamp_does_not_refresh_stale_hold (test_hand_monitor.HandMonitorTests.test_repeated_same_sdk_timestamp_does_not_refresh_stale_hold) ... ok
 test_stalled_or_failed_actual_read_cannot_keep_old_grasp_alive (test_hand_monitor.HandMonitorTests.test_stalled_or_failed_actual_read_cannot_keep_old_grasp_alive) ... ok
@@ -129,6 +135,13 @@ test_missing_null_profile_rejected_without_device_calls (test_payload_cycle_inte
 test_second_robot_transfer_write_failure_no_retreat_or_insert (test_payload_cycle_integration.IntegratedPayloadCycle.test_second_robot_transfer_write_failure_no_retreat_or_insert) ... ok
 test_stale_or_missing_independent_donor_release_signal_blocks_transfer (test_payload_cycle_integration.IntegratedPayloadCycle.test_stale_or_missing_independent_donor_release_signal_blocks_transfer) ... ok
 test_startup_sdk_tool_load_mismatch_does_not_overwrite (test_payload_cycle_integration.IntegratedPayloadCycle.test_startup_sdk_tool_load_mismatch_does_not_overwrite) ... ok
+test_only_pinned_no_ik_target_failure_is_candidate_retryable (test_pickup_search.NativeFailureTests.test_only_pinned_no_ik_target_failure_is_candidate_retryable) ... ok
+test_arbitrary_execution_failure_never_retries_unknown_motion_state (test_pickup_search.SearchTests.test_arbitrary_execution_failure_never_retries_unknown_motion_state) ... ok
+test_expired_frame_recaptured_before_any_planning (test_pickup_search.SearchTests.test_expired_frame_recaptured_before_any_planning) ... ok
+test_fresh_capture_ids_do_not_repeat_identical_failed_physical_targets (test_pickup_search.SearchTests.test_fresh_capture_ids_do_not_repeat_identical_failed_physical_targets) ... ok
+test_opening_happens_before_width_sensitive_pickup_planning (test_pickup_search.SearchTests.test_opening_happens_before_width_sensitive_pickup_planning) ... ok
+test_other_visible_ring_before_all_yaws_of_blocked_wall_ring (test_pickup_search.SearchTests.test_other_visible_ring_before_all_yaws_of_blocked_wall_ring) ... ok
+test_target_changes_before_first_arm_motion_reselects_one_new_image_pose (test_pickup_search.SearchTests.test_target_changes_before_first_arm_motion_reselects_one_new_image_pose) ... ok
 test_old_flat_snapshot_displays_rgb_without_inventing_pixel_xyz (test_preview.PreviewTests.test_old_flat_snapshot_displays_rgb_without_inventing_pixel_xyz) ... ok
 test_pixel_xyz_keeps_sdk_values_rejects_zero_nan_and_outside (test_preview.PreviewTests.test_pixel_xyz_keeps_sdk_values_rejects_zero_nan_and_outside) ... ok
 test_png_signature_dimensions_crc_and_exact_pixel_rows (test_preview.PreviewTests.test_png_signature_dimensions_crc_and_exact_pixel_rows) ... ok
@@ -260,9 +273,12 @@ test_runtime_splits_70mm_contact_lift_before_any_remaining_transport (test_stock
 test_blocked_return_never_opens_hand (test_stock_return.ReturnTests.test_blocked_return_never_opens_hand) ... ok
 test_empty_load_only_after_real_release_and_two_view_empty_proof (test_stock_return.ReturnTests.test_empty_load_only_after_real_release_and_two_view_empty_proof) ... ok
 test_no_release_outside_measured_enclosing_region (test_stock_return.ReturnTests.test_no_release_outside_measured_enclosing_region) ... ok
+test_reader_failure_never_preserves_last_good_proof (test_stopped_arm_monitor.StoppedArmTests.test_reader_failure_never_preserves_last_good_proof) ... ok
+test_same_existing_aggregate_limits_and_stationary_pose_not_pad_force (test_stopped_arm_monitor.StoppedArmTests.test_same_existing_aggregate_limits_and_stationary_pose_not_pad_force) ... ok
+test_stalled_sdk_clock_and_read_error_revoke_actual_sample (test_stopped_arm_monitor.StoppedArmTests.test_stalled_sdk_clock_and_read_error_revoke_actual_sample) ... ok
 
 ----------------------------------------------------------------------
-Ran 259 tests in 13.511s
+Ran 275 tests in 15.903s
 
 OK
 test_capture_rejects_moving_or_wrong_protocol (isaac_port.fieldkit.test_hand.HandTests.test_capture_rejects_moving_or_wrong_protocol) ... ok
@@ -311,7 +327,7 @@ test_observed_fault_stops_the_policy (isaac_port.fieldkit.test_fieldkit.FieldCon
 test_preflight_does_not_certify_simulation (isaac_port.fieldkit.test_fieldkit.FieldContractTests.test_preflight_does_not_certify_simulation) ... ok
 
 ----------------------------------------------------------------------
-Ran 27 tests in 9.367s
+Ran 27 tests in 9.421s
 
 OK
 {

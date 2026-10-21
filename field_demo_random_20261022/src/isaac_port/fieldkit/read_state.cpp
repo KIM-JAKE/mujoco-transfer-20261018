@@ -29,6 +29,7 @@ int main(int argc, char** argv) {
               << "{\"read_only\":true,\"hardware_motion_tested\":false,\"server_protocol_version\":"
               << robot.serverVersion() << ",\"q\":";
     array_json(state.q);
+    std::cout << ",\"robot_time_s\":" << state.time.toSec();
     std::cout << ",\"q_d\":"; array_json(state.q_d);
     std::cout << ",\"dq\":"; array_json(state.dq);
     std::cout << ",\"dq_d\":"; array_json(state.dq_d);
