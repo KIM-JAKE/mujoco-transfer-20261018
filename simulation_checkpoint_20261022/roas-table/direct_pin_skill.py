@@ -229,17 +229,32 @@ def execute(ctx):
     if ctx.get('optimized_motion_timing'):
         checker.attach_payload(paths['workpiece_pin'],frame([0,0,.1034],np.eye(3))@payload_grasp());shortcut=None
         try:
-            for q in endpoint_candidates(pre,[robot_seeds.get('pin_direct_preinsert',robot_seeds['pin_tail_carry_to_preinsert']),robot_seeds['pin_tail_carry_to_preinsert'],cmd[0,ids]],'pin_preinsert_carry'):
-                if checker.path([cmd[0,ids],q],.0105,paths['workpiece_pin'])[0]:shortcut=[cmd[0,ids].copy(),q];report['direct_joint_edge_used']=True;break
-                from grasp_transfer_feasibility import robot_route_hint,hint_path_clear
-                warm=robot_route_hint(ctx,'pin_direct_carry_to_preinsert',cmd[0,ids],q)
-                if warm is not None and getattr(warm,'verified_cubic',False) and hint_path_clear(checker,warm,.0105,paths['workpiece_pin']):shortcut=warm;report['warm_spline_robot_hint_used']=True;break
-                hint=robot_hint_data.get('routes',{}).get('pin_direct_carry_to_preinsert')
-                if hint:
-                    candidate=np.asarray(hint).copy();candidate[0]=cmd[0,ids];candidate[-1]=q
-                    if checker.path(candidate,.0105,paths['workpiece_pin'])[0]:shortcut=candidate;report['validated_robot_route_hint_used']=True
-                if shortcut is None:shortcut=checker.route(cmd[0,ids],q,.0105,paths['workpiece_pin'],seconds=1.)
-                if shortcut is not None:break
+            # The shaft/cap are axially symmetric. Keep the calibrated physical
+            # midpoint and signed axis fixed, but choose a reachable hand yaw.
+            # No axial yaw is inferred from RGB-D or sent as object truth.
+            nominal_R=R.copy()
+            yaw_options=[0.,90.,-90.,180.] if pin_config.get('pin_axial_yaw_free') else [0.]
+            for yaw_deg in yaw_options:
+                candidate_R=nominal_R@exp(np.array([0.,0.,np.deg2rad(yaw_deg)]))
+                candidate_pre=frame(goal-[0,0,.045],candidate_R)@np.linalg.inv(G)
+                for q in endpoint_candidates(candidate_pre,[robot_seeds.get('pin_direct_preinsert',robot_seeds['pin_tail_carry_to_preinsert']),robot_seeds['pin_tail_carry_to_preinsert'],cmd[0,ids]],'pin_preinsert_carry'):
+                    if checker.path([cmd[0,ids],q],.0105,paths['workpiece_pin'])[0]:shortcut=[cmd[0,ids].copy(),q];report['direct_joint_edge_used']=True;break
+                    from grasp_transfer_feasibility import robot_route_hint,hint_path_clear
+                    warm=robot_route_hint(ctx,'pin_direct_carry_to_preinsert',cmd[0,ids],q)
+                    if warm is not None and getattr(warm,'verified_cubic',False) and hint_path_clear(checker,warm,.0105,paths['workpiece_pin']):shortcut=warm;report['warm_spline_robot_hint_used']=True;break
+                    hint=robot_hint_data.get('routes',{}).get('pin_direct_carry_to_preinsert')
+                    if hint:
+                        candidate=np.asarray(hint).copy();candidate[0]=cmd[0,ids];candidate[-1]=q
+                        if checker.path(candidate,.0105,paths['workpiece_pin'])[0]:shortcut=candidate;report['validated_robot_route_hint_used']=True
+                    if shortcut is None:shortcut=checker.route(cmd[0,ids],q,.0105,paths['workpiece_pin'],seconds=1.)
+                    if shortcut is not None:break
+                if shortcut is not None:
+                    R=candidate_R;pre=candidate_pre;end=frame(goal,R)@np.linalg.inv(G)
+                    safe=frame([-.10,-.25,1.35],R)@np.linalg.inv(G)
+                    transports=[(safe,'pin_tail_orient_free'),(pre,'pin_tail_carry_to_preinsert')]
+                    report['selected_pin_axial_yaw_deg']=float(yaw_deg)
+                    report['pin_axis_goal_unchanged_by_yaw']=goal.tolist()
+                    break
         finally:checker.detach_payload()
         if shortcut is not None:
             from grasp_transfer_feasibility import shorten_checked_route

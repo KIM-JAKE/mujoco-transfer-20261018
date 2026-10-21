@@ -47,11 +47,25 @@ class Vision:
         elif mode=='held_left':axis=predicted[:3,2].copy();axis*=1 if axis[2]>=0 else -1;seed=target
         elif mode=='held':axis=-H[:3,2]if part!='pin'else H[:3,2];axis*=1 if part=='pin'or axis[2]>=0 else -1;seed=target-axis*.003 if part!='pin'else target
         else:seed=axis=None
+        initial_width,initial_height=640,400
+        initial_override_keys=('initial_camera_width_px','initial_camera_height_px','initial_camera_span_m')
+        initial_geometry={key:self.calibration[key] for key in initial_override_keys if key in self.calibration} if mode=='initial' and self.calibration.get('loose_bin_mode') else {}
+        initial_geometry.update({key:event[key] for key in initial_override_keys if key in event})
+        if initial_geometry:
+            if mode!='initial' or not self.calibration.get('loose_bin_mode'):
+                raise ValueError('Initial camera geometry override requires calibrated loose-bin initial capture')
+            initial_width=initial_geometry.get('initial_camera_width_px',640);initial_height=initial_geometry.get('initial_camera_height_px',400)
+            requested_span=initial_geometry.get('initial_camera_span_m',span)
+            if (type(initial_width)is not int or type(initial_height)is not int or
+                not 256<=initial_width<=1280 or not 256<=initial_height<=1280 or
+                type(requested_span)not in (int,float)or not np.isfinite(requested_span)or not .20<=requested_span<=1.20):
+                raise ValueError('Initial RGB-D size must be256--1280pixels and span0.20--1.20m')
+            span=float(requested_span)
         precision_width=event.get('pin_precision_image_width_px')
         if precision_width is not None:
             if part!='pin' or mode!='held' or type(precision_width) is not int or not 384<=precision_width<=1280:
                 raise ValueError('Pin precision camera width must be384–1280 pixels for held pin only')
-        future=Future();number=len(self.jobs);self.jobs.append((event,future));self.conn.send(dict(id=number,mode=mode,part=part,H=H,eye=eye,target=target,span=span,width=640 if mode=='initial' and self.calibration.get('loose_bin_mode') else precision_width if precision_width is not None else int(self.calibration.get('tracking_image_width_px',384)) if mode in ['held','held_left','pregrasp_ring'] else 256,height=400 if mode=='initial' and self.calibration.get('loose_bin_mode') else precision_width if precision_width is not None else int(self.calibration.get('tracking_image_width_px',384)) if mode in ['held','held_left','pregrasp_ring'] else 256,seed=seed,axis=axis,robust_pin_cap_circle=bool(event.get('robust_pin_cap_circle')),require_annular_face=bool(event.get('require_annular_face')),allow_partial_preclose_tracking=bool(event.get('allow_partial_preclose_tracking')) and mode=='pregrasp_ring',calibration=self.calibration,render_snapshot=poses,snapshot_monotonic=snapshot_started,cycle_started=self.start));return future
+        future=Future();number=len(self.jobs);self.jobs.append((event,future));self.conn.send(dict(id=number,mode=mode,part=part,H=H,eye=eye,target=target,span=span,width=initial_width if mode=='initial' and self.calibration.get('loose_bin_mode') else precision_width if precision_width is not None else int(self.calibration.get('tracking_image_width_px',384)) if mode in ['held','held_left','pregrasp_ring'] else 256,height=initial_height if mode=='initial' and self.calibration.get('loose_bin_mode') else precision_width if precision_width is not None else int(self.calibration.get('tracking_image_width_px',384)) if mode in ['held','held_left','pregrasp_ring'] else 256,seed=seed,axis=axis,robust_pin_cap_circle=bool(event.get('robust_pin_cap_circle')),require_annular_face=bool(event.get('require_annular_face')),allow_partial_preclose_tracking=bool(event.get('allow_partial_preclose_tracking')) and mode=='pregrasp_ring',calibration=self.calibration,render_snapshot=poses,snapshot_monotonic=snapshot_started,cycle_started=self.start));return future
     def poll(self):
         while self.conn.poll(0):
             value=self.conn.recv();self.jobs[value.pop('id')][1].set_result(value)

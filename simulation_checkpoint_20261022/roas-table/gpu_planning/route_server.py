@@ -37,6 +37,17 @@ def set_obstacles(boxes):
  cuboids.inv_pose[0].copy_(torch.as_tensor(invpose,device='cuda:0'))
  cuboids.enable[0].copy_(torch.as_tensor(enabled,device='cuda:0'))
  planner.graph_planner.reset_buffer()
+def seeded_route(a,b):
+ prior_path=ROOT/'robot-route-prior.json'
+ if not prior_path.exists():return None
+ prior=json.loads(prior_path.read_text())
+ if prior.get('model_sha256')!=MODEL_SHA:return None
+ original=np.asarray(prior['joint_waypoints'],float);n=int(planner.trajopt_solver.action_horizon);u=np.linspace(0,1,n);curve=np.stack([np.interp(u,np.linspace(0,1,len(original)),original[:,j])for j in range(7)],axis=1);curve+=(a-curve[0])*(1-u[:,None])+(b-curve[-1])*u[:,None]
+ if np.any(curve<bounds[:,0])or np.any(curve>bounds[:,1]):return None
+ seeds=np.repeat(curve[None],4,axis=0)
+ for i,(j,d)in enumerate([(1,.08),(3,-.08),(5,.08)],1):seeds[i,:,j]+=np.sin(np.pi*u)*d
+ if np.any(seeds<bounds[:,0])or np.any(seeds>bounds[:,1]):return None
+ return planner.trajopt_solver.solve_cspace(state(b),state(a),seed_traj=torch.tensor(seeds[None],device='cuda:0',dtype=torch.float32),finetune_attempts=1,finetune_dt_scale=.75)
 def collision_hint(q):
  s=planner.compute_kinematics(state(q));buf=CollisionBuffer.from_shape(s.robot_spheres.shape,DEV);v=planner.scene_collision_checker.get_sphere_distance(s,buf,torch.ones(1,device='cuda:0'),torch.zeros(1,device='cuda:0')).detach().cpu().numpy().reshape(-1);idx=np.argsort(v)[-5:][::-1];spheres=s.robot_spheres.detach().cpu().numpy().reshape(-1,4);vox=planner.scene_collision_checker.data.voxels
  rows=[]
@@ -57,7 +68,7 @@ while True:
   request=json.loads(data.split(b'\n',1)[0]);a=np.asarray(request['start_q'],float);b=np.asarray(request['goal_q'],float);opening=float(request['opening_m'])
   if request['model_sha256']!=MODEL_SHA:raise ValueError('Production native FR3 model hash mismatch')
   if a.shape!=(7,)or b.shape!=(7,)or not np.isfinite(np.r_[a,b,opening]).all()or np.any(a<bounds[:,0])or np.any(a>bounds[:,1])or np.any(b<bounds[:,0])or np.any(b>bounds[:,1])or not 0<=opening<=.08:raise ValueError('Invalid joint bounds/native aperture')
-  update_start=time.perf_counter();set_native(opening,request.get('payload'));torch.cuda.synchronize();native_s=time.perf_counter()-update_start;update_start=time.perf_counter();set_obstacles(request.get('obstacle_boxes',[]));torch.cuda.synchronize();obstacle_s=time.perf_counter()-update_start;plan_start=time.perf_counter();r=planner.plan_cspace(state(b),state(a),max_attempts=1,enable_graph_attempt=1);torch.cuda.synchronize();route=None
+  update_start=time.perf_counter();set_native(opening,request.get('payload'));torch.cuda.synchronize();native_s=time.perf_counter()-update_start;update_start=time.perf_counter();set_obstacles(request.get('obstacle_boxes',[]));torch.cuda.synchronize();obstacle_s=time.perf_counter()-update_start;plan_start=time.perf_counter();r=seeded_route(a,b);torch.cuda.synchronize();route=None
   if r is not None and bool(r.success.any()):
    curve=r.js_solution.position.detach().cpu().numpy().reshape(-1,7);curve[0]=a;curve[-1]=b
    if len(curve)>=2 and np.isfinite(curve).all()and np.all(curve>=bounds[:,0])and np.all(curve<=bounds[:,1]):route=curve.tolist()

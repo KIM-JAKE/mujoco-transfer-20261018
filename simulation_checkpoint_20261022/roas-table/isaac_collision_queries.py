@@ -92,8 +92,18 @@ class Checker:
             from fr3_gpu_route import propose_route
             proposed=propose_route(self,start,goal,opening,selected)
             if proposed is not None:
-                from scipy.interpolate import CubicSpline
-                curve=np.asarray(proposed) if getattr(self,'execute_checked_edges',False) else CubicSpline(np.linspace(0,1,len(proposed)),proposed)(np.linspace(0,1,max(33,16*len(proposed))))
+                from gpu_route_curve_validation import cubic_geometry
+                from grasp_transfer_feasibility import VerifiedCubicRoute
+                continuous,curve_evidence=cubic_geometry(proposed,self.arm.bounds,step_rad=.010)
+                if continuous is not None:
+                    old_resolution=getattr(self,'resolution_rad',.035);self.resolution_rad=.010
+                    try:continuous_clear,continuous_why=self.path(continuous,opening,selected)
+                    finally:self.resolution_rad=old_resolution
+                    if continuous_clear:
+                        self.gpu_route_stats['PhysX_verified_continuous_proposals']=self.gpu_route_stats.get('PhysX_verified_continuous_proposals',0)+1
+                        print('GPU_ROUTE_CONTINUOUS_PHYSX_VERIFIED',dict(curve_evidence,fixed_pair_payload_checked=True,issued_curve_and_FR3_retiming_still_required=True),flush=True)
+                        return VerifiedCubicRoute(proposed)
+                curve=np.asarray(proposed)
                 old_resolution=getattr(self,'resolution_rad',.035);self.resolution_rad=.010
                 try:accepted,rejection=self.path(curve,opening,selected)
                 finally:self.resolution_rad=old_resolution

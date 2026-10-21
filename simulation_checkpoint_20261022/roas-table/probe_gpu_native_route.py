@@ -5,7 +5,8 @@ from isaac_kinematics import frame
 from rgbd_geometry import axis_frame,cloud
 from fr3_gpu_ik import model_sha256
 from fr3_gpu_route import propose_route
-from fr3_path_timing import retime_safe_polyline
+from fr3_path_timing import retime_safe_polyline,retime
+from gpu_route_curve_validation import cubic_geometry,issued_geometry_samples
 
 def execute(c):
     start=time.perf_counter();here=Path(__file__).resolve().parent;name=c['config'].get('gpu_route_probe_source_run','native-roas-table-scatter-stable-v240-camera-bank-parallel-all3-446');source=here.parents[1]/'runs'/name;part='ring1'
@@ -24,12 +25,24 @@ def execute(c):
             route=propose_route(checker,right,goal,width)
             result['GPU_statistics']=getattr(checker,'gpu_route_stats',{})
             if route is None:return dict(result,approved=False,reason='No bounded GPU proposal')
-            ok,why=checker.path(route,width);result['raw_path_check']=dict(clear=ok,reason=why)
-            if not ok:return dict(result,approved=False,reason='Original full PhysX rejected raw proposal')
-            q,_,timing=retime_safe_polyline(route,c['dt'],np.full(2,width/2),np.full(2,width/2),scale=1.,velocity_fraction=.95,acceleration=9.5,jerk=4750.)
-            # Issued float32 curve is separately checked, including exact start.
-            issued=np.vstack([right,np.asarray(q[1:],dtype=np.float32)]);ok,why=checker.path(issued,width)
-            result.update(approved=bool(ok),issued_curve_check=dict(clear=ok,reason=why),route=np.asarray(route).tolist(),issued_samples=len(issued),retiming=timing,original_full_native_fixed_pair_payload_checks=True)
+            result['route']=np.asarray(route).tolist()
+            continuous,evidence=cubic_geometry(route,c['arm'].bounds,step_rad=.010);result['cubic_geometry']=evidence
+            continuous_clear=False
+            if continuous is not None:
+                continuous_clear,why=checker.path(continuous,width);result['continuous_curve_check']=dict(clear=continuous_clear,reason=why)
+            if continuous_clear:
+                q,_,timing=retime(route,.05,c['dt'],np.full(2,width/2),np.full(2,width/2),velocity_fraction=.95,acceleration=9.5,jerk=4750.,finger_command_speed=.0475,optimize=True)
+            else:
+                ok,why=checker.path(route,width);result['raw_path_check']=dict(clear=ok,reason=why)
+                if not ok:return dict(result,approved=False,reason='Original full PhysX rejected raw and continuous proposal')
+                q,_,timing=retime_safe_polyline(route,c['dt'],np.full(2,width/2),np.full(2,width/2),scale=1.,velocity_fraction=.95,acceleration=9.5,jerk=4750.)
+            # Original retimer differentiated EVERY issued float32 command.
+            # Geometry is checked at joint-space resolution with endpoints and
+            # exact quantized local extrema, avoiding duplicate stationary ticks.
+            issued=np.vstack([right,np.asarray(q[1:],dtype=np.float32)]);samples,sampling_evidence=issued_geometry_samples(issued,step_rad=.003);old_resolution=getattr(checker,'resolution_rad',.035);checker.resolution_rad=.010
+            try:ok,why=checker.path(samples,width)
+            finally:checker.resolution_rad=old_resolution
+            result.update(approved=bool(ok),issued_curve_check=dict(clear=ok,reason=why),continuous_cubic_used=bool(continuous_clear),issued_samples=len(issued),issued_geometry_sampling=sampling_evidence,retiming=timing,original_full_native_fixed_pair_payload_checks=True,full_FR3_numpy_command_validation=True)
     finally:
         checker.payload_path,checker.payload_rows,checker.payload_boxes,checker.payload_relative=saved
         for key,value in old.items():setattr(checker,key,value)

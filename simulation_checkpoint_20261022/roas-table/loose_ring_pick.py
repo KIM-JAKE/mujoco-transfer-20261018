@@ -211,13 +211,14 @@ def _execute(c):
         return v
     def move(qs,t,label,width=None):
         nonlocal phase
+        verified_cubic=bool(getattr(qs,'verified_cubic',False) and c['config'].get('gpu_route_proposals') and c['config'].get('stability_serial'))
         qs=np.array(qs);qs[0]=cmd[0,ids];start=cmd[0,fi].copy();target=start if width is None else np.full(2,width/2)
         if label.startswith(('loose_ring_descend','loose_ring_observed_grasp_adjust')):pickup_motion.append(qs.copy())
         if label in ['loose_ring_lift','loose_ring_lift_breakaway','loose_ring_RGBD_lift_clearance_repair']:lift_motion.append(qs.copy())
         optimized=c['config'].get('optimized_motion_timing',False)
         if optimized and label in ['loose_ring_pregrasp','loose_ring_lift','loose_ring_RGBD_lift_clearance_repair']:t=.05
         scale=max(1.,float(c['config'].get('stability_time_scale',1.)))
-        if label=='loose_ring_pregrasp' and len(qs)>2:
+        if label=='loose_ring_pregrasp' and len(qs)>2 and not verified_cubic:
             q,h,timing=retime_safe_polyline(qs,dt,start,target,scale=scale,velocity_fraction=.91,jerk=4000.)
         else:
             q,h,timing=retime(qs,t,dt,start,target,velocity_fraction=.91,jerk=4000.,optimize=optimized)
