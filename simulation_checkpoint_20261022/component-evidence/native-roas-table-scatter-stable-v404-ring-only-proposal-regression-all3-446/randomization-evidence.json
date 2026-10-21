@@ -1,0 +1,693 @@
+{
+  "config": {
+    "seed": 446,
+    "tensor_clamps": false,
+    "correction_joint7_weight": 0.05,
+    "width_guard": true,
+    "digital_clamps": true,
+    "digital_clamp_threshold": 0.95,
+    "fixed_visual_application": true,
+    "direct_pin": true,
+    "ring_seat_hold_s": 0.35,
+    "motion_time_scale": 1.01,
+    "early_width_guard": true,
+    "held_correction_ramp_s": 0.35,
+    "physics_substeps": 4,
+    "physics_substep_window_s": [
+      13.0,
+      16.5
+    ],
+    "pin_tail_candidate": 0,
+    "enforce_motor_speed_limits": true,
+    "randomization_mode": "full_bin_drop",
+    "randomization_settle_s": 3.0,
+    "scatter_probe_only": false,
+    "native_mimic_frequency_hz": 0.0,
+    "deadline_s": 1800,
+    "scattered_control": true,
+    "pick_part": "ring1",
+    "native_motor_speed_cap_m_s": 0.032,
+    "scattered_full_task": true,
+    "handover_only": false,
+    "scattered_physics_substeps": 4,
+    "native_finger_convex_decomposition": false,
+    "solver_velocity_iterations": 16,
+    "shuffle_drop_order": true,
+    "randomization_protocol": "full_bin_drop_shuffled_v2",
+    "start_above_bin": true,
+    "experimental_sim_only": true,
+    "full_random_task_validated": false,
+    "allow_fingertip_nudging": true,
+    "allow_internal_grasp": false,
+    "allow_single_finger_rearrangement": true,
+    "native_shared_motor_drive": true,
+    "native_grip_pad_force_n": 30,
+    "optimization_report": "scatter-optimization-20261021.json",
+    "one_ring_only": false,
+    "fast_transport": true,
+    "allow_chord_grasp": true,
+    "allow_side_entry": true,
+    "optimized_motion_timing": true,
+    "tracking_image_width_px": 384,
+    "native_contact_offset_m": 0.0005,
+    "gentle_descent": true,
+    "handover_plan_budget_s": 60.0,
+    "stability_time_scale": 1.0,
+    "grasp_settle_s": 0.2,
+    "ring_contact_debug": false,
+    "optimization_phase": "randomized_reliability_first",
+    "stable_small_grasp": true,
+    "prefer_internal_small_grasp": false,
+    "ring_yaw_free": true,
+    "reliability_handover_hint": true,
+    "stability_finish_rings_before_pin": true,
+    "continuous_force_hold": true,
+    "stability_serial": true,
+    "pin_first": false,
+    "descent_contact_speed_m_s": 0.03,
+    "shortcut_checked_routes": true,
+    "parallel_transfer_approach": false,
+    "pregrasp_floor_m": 1.235,
+    "prefer_near_handover_branch": true,
+    "pregrasp_floor_small_m": 1.235,
+    "path_local_timing": true,
+    "warm_spline_routes": false,
+    "center_large_receiver_grasp": true,
+    "sort_donor_orientations": true,
+    "handover_offsets_override": [
+      [
+        0.1,
+        -0.1,
+        0.0
+      ]
+    ],
+    "pin_between_rings": false,
+    "local_left_park": true,
+    "wait_for_ring_transport_clear": true,
+    "small_receiver_opening_m": 0.074,
+    "receiver_approach_standoff_m": 0.02,
+    "receiver_approach_step_m": 0.002,
+    "receiver_approach_resolution_rad": 0.002,
+    "pickup_multiview": true,
+    "require_fresh_preclose_rgbd": true,
+    "small_ring_repick_on_unstable_hold": true,
+    "small_ring_com_x_limit_m": 0.0025,
+    "pickup_retry_limit": 3,
+    "initial_eye_offset_m": [
+      0.04,
+      -0.04,
+      0.65
+    ],
+    "stable_receiver_grasp": true,
+    "rim_only_pickup": false,
+    "allow_local_rim_grasp": false,
+    "prefer_local_rim_grasp": true,
+    "initial_pickup_multiview": true,
+    "native_loaded_preload_ramp_s": 0.3,
+    "native_loaded_initial_preload_m_s": 0.003,
+    "native_loaded_preload_m_s": 0.0075,
+    "rim_encoder_recenter": true,
+    "strict_rim_clutter": true,
+    "native_loaded_preload_after_contact_m_s": 0.015,
+    "inner_only_pickup": false,
+    "native_inner_bore_grasp": false,
+    "operation_solver_position_iterations": 128,
+    "operation_solver_velocity_iterations": 64,
+    "inner_bore_friction_reserve_mu": 0.6,
+    "allow_bin_release_retry": true,
+    "verify_receiver_pad_contact": true,
+    "inner_bore_x_tilt_candidates_deg": [
+      0,
+      10,
+      -10,
+      15,
+      -15
+    ],
+    "inner_bore_center_correction_limit_m": 0.0025,
+    "right_ring_insert_probe": false,
+    "receiver_axial_only": false,
+    "axial_receiver_probe": false,
+    "right_insertion_fixture_probe": false,
+    "rearrange_probe": false,
+    "rearrange_then_pick": false,
+    "require_front_up_pickup": false,
+    "rearrange_front_up_only": false,
+    "allow_partial_preclose_tracking": true,
+    "preclose_occlusion_max_age_s": 2.0,
+    "verify_lifted_pad_contact": true,
+    "right_direct_empty_left_parking": true,
+    "right_left_park_fixture_probe": false,
+    "reuse_aperture_invariant_checks": true,
+    "axial_receiver_fixture_budget_s": 90.0,
+    "allow_direct_right_insert": true,
+    "prefer_right_carry_small_posture": true,
+    "right_carry_vertical_escape": false,
+    "avoid_other_stock_finger_contact": true,
+    "stable_outer_donor_grasp": true,
+    "allow_tilted_bore_hook": true,
+    "timing_comparison_eligible": false,
+    "rearrangement_retry_limit": 3,
+    "bin_axial_pick_probe": false,
+    "tilted_ring_hook_probe": false,
+    "broaden_tilted_bore_hook_proposals": true,
+    "rearrangement_pickup_extra_eye_offsets_m": [
+      [
+        0.28,
+        0.28,
+        0.5
+      ],
+      [
+        -0.28,
+        -0.28,
+        0.5
+      ]
+    ],
+    "donor_release_opening_cap_m": 0.078,
+    "adaptive_initial_ring_order": true,
+    "pickup_diagonal_offsets_m": [
+      [
+        -0.08,
+        0.0,
+        0.0
+      ]
+    ],
+    "receiver_depth_options_m": [
+      0.002
+    ],
+    "right_fixture_replan_on_alignment_failure": true,
+    "close_empty_left_for_pin": true,
+    "large_receiver_depth_options_m": [
+      0.005,
+      0.004
+    ],
+    "large_encoder_pose_bias_compensation": true,
+    "require_broad_large_donor_support": true,
+    "right_fixture_oblique_camera_views": true,
+    "defer_handover_until_visible_clearance": true,
+    "verify_large_lift_grasp_retention": true,
+    "large_lift_grasp_translation_limit_m": 0.002,
+    "large_lift_grasp_axis_limit_rad": 0.05,
+    "verify_large_donor_after_carry": true,
+    "robust_annular_camera_view_bank": true,
+    "timing_metadata_correction": "Actual full random-bin task composition of304observed-face preference and308pin encoder-window/0.5feedback component. Legacyreceiver, unchanged all FR3/force/contact/collision/finalaccuracy gates. Concurrentwalltime notoptimizationcomparison.",
+    "balanced_large_receiver_grasp": true,
+    "pin_visual_preinsert_alignment": true,
+    "pin_axis_goal_world_m": [
+      -0.30203095784,
+      0.22724999619,
+      1.52875
+    ],
+    "exact_axis_large_receiver_grasp": true,
+    "verify_selected_outer_approach": true,
+    "robust_pin_cap_circle": true,
+    "pin_precision_image_width_px": 768,
+    "pin_grasp_catalog_run": "native-roas-table-scatter-stable-v251-corrected-pin-catalog",
+    "pin_grasp_catalog_candidate": 0,
+    "pin_grasp_catalog_probe": false,
+    "pin_axis_frame_consistent_geometry": true,
+    "verify_native_pin_hold": true,
+    "ray_image_backend": "warp_cuda",
+    "gpu_ik_proposals": true,
+    "gpu_ik_socket": "/workspace/project/mujoco/.local/curobo-gpu3/ik.sock",
+    "pin_rgbd_sdk_hold_confirmation": true,
+    "pin_terminal_stroke_preflight": true,
+    "pin_axial_yaw_free": true,
+    "gpu_route_proposals": true,
+    "gpu_route_socket": "/workspace/project/mujoco/.local/curobo-gpu3/route.sock",
+    "gpu_route_timeout_s": 2.0,
+    "sequential_initial_ring_selection": true,
+    "initial_camera_width_px": 768,
+    "initial_camera_height_px": 768,
+    "initial_camera_span_m": 0.55,
+    "gpu_dual_arm_reference": true,
+    "gpu_left_route_proposals": true,
+    "gpu_left_route_socket": "/workspace/project/mujoco/.local/curobo-gpu3/route-dual.sock",
+    "measured_loaded_contact_geometry": true,
+    "project_large_receiver_closing_axis": false,
+    "large_receiver_tool_axis_aligned": false,
+    "prefer_direct_right_pickup": true,
+    "pin_only_component": false,
+    "pin_precision_encoder_settle": true,
+    "pin_visual_servo_gain": 0.5,
+    "large_handover_part_axis_aligned": false,
+    "native_large_receiver_tilt25_only": false,
+    "ring_visual_servo_gain": 0.5,
+    "final_empty_right_clearance": true,
+    "right_direct_skip_greedy_shortcuts": true,
+    "right_direct_smooth_verified_carry": true,
+    "batch_query_transform_updates": true,
+    "render_visible_planes": true,
+    "rgbd_far_clip_m": 2.5,
+    "gpu_right_partitioned_route": true,
+    "segmented_preclose_visual_servo": true,
+    "ring_precision_image_width_px": 768,
+    "large_receiver_alignment_attempts": 12,
+    "gpu_right_ring_route_socket": "/workspace/project/mujoco/.local/curobo-gpu3/route-dual.sock"
+  },
+  "setup_before_first_capture": true,
+  "controller_has_random_seed_or_true_poses": false,
+  "ring_count": 10,
+  "target_body_privileged": false,
+  "records": [
+    {
+      "path": "/World/BinStock/ring2_loose1",
+      "primary": false,
+      "distribution": "uniform bin XY, uniform SO(3), randomized body drop order",
+      "drop_rank": 0,
+      "requested_bin_xy_m": [
+        -0.002608555358920281,
+        -0.12038743257695676
+      ],
+      "drop_height_above_floor_m": 0.15,
+      "initialized_transform": [
+        0.5359665751457214,
+        -0.8459097743034363,
+        1.2390848398208618,
+        0.42746976017951965,
+        -0.18966609239578247,
+        -0.8740860819816589,
+        -0.13141502439975739
+      ],
+      "original_transform": [
+        0.6013468503952026,
+        -0.6435944437980652,
+        1.1152019500732422,
+        0.22601543366909027,
+        0.11101382970809937,
+        -0.44410568475723267,
+        0.859862208366394
+      ],
+      "settled_transform": [
+        0.5492503643035889,
+        -0.8592771291732788,
+        1.096699833869934,
+        0.04265332221984863,
+        0.00912806112319231,
+        -0.9769287705421448,
+        -0.20906350016593933
+      ],
+      "settled_local_translation_mm": [
+        -53.51080890434338,
+        -215.6825383001162,
+        -13.893485544656647
+      ],
+      "settled_axis_tilt_from_floor_deg": 0.0006317076920470269
+    },
+    {
+      "path": "/World/BinStock/ring1_loose2",
+      "primary": false,
+      "distribution": "uniform bin XY, uniform SO(3), randomized body drop order",
+      "drop_rank": 1,
+      "requested_bin_xy_m": [
+        0.013749150285057923,
+        -0.07902405487978309
+      ],
+      "drop_height_above_floor_m": 0.15,
+      "initialized_transform": [
+        0.5522620677947998,
+        -0.8045464158058167,
+        1.2405099868774414,
+        -0.5218766331672668,
+        -0.3978940546512604,
+        0.7100739479064941,
+        -0.25518637895584106
+      ],
+      "original_transform": [
+        0.5938304662704468,
+        -0.7033650279045105,
+        1.1112579107284546,
+        0.15547972917556763,
+        0.0041033118031919,
+        -0.4776904582977295,
+        0.8646509051322937
+      ],
+      "settled_transform": [
+        0.4941915273666382,
+        -0.8438667058944702,
+        1.1001263856887817,
+        -0.9858846664428711,
+        -0.08308647572994232,
+        -0.13944685459136963,
+        -0.04102179408073425
+      ],
+      "settled_local_translation_mm": [
+        -100.22995899057459,
+        -140.5016525202547,
+        -2.406548026829689
+      ],
+      "settled_axis_tilt_from_floor_deg": 11.858555831168006
+    },
+    {
+      "path": "/World/Cell/Geometry/workpiece_ring1",
+      "primary": true,
+      "distribution": "uniform bin XY, uniform SO(3), randomized body drop order",
+      "drop_rank": 2,
+      "requested_bin_xy_m": [
+        -0.039410115587778044,
+        0.0828523108077685
+      ],
+      "drop_height_above_floor_m": 0.15,
+      "initialized_transform": [
+        0.49930524826049805,
+        -0.6426700353622437,
+        1.235875129699707,
+        0.07524454593658447,
+        -0.9229845404624939,
+        -0.3449690341949463,
+        -0.15308211743831635
+      ],
+      "original_transform": [
+        0.49119114875793457,
+        -0.725523829460144,
+        1.0923731327056885,
+        -3.984767715792259e-07,
+        -0.043619465082883835,
+        7.3779788181127515e-06,
+        0.9990482330322266
+      ],
+      "settled_transform": [
+        0.49692845344543457,
+        -0.6260337829589844,
+        1.0928751230239868,
+        0.1422881782054901,
+        -0.9888637065887451,
+        0.006212284322828054,
+        -0.04317471757531166
+      ],
+      "settled_local_translation_mm": [
+        5.759223850067686,
+        99.49004649514973,
+        0.001094324671440599
+      ],
+      "settled_axis_tilt_from_floor_deg": 0.0006237037084017541
+    },
+    {
+      "path": "/World/BinStock/ring1_loose4",
+      "primary": false,
+      "distribution": "uniform bin XY, uniform SO(3), randomized body drop order",
+      "drop_rank": 3,
+      "requested_bin_xy_m": [
+        -0.021171920027252863,
+        0.026513200993812935
+      ],
+      "drop_height_above_floor_m": 0.15,
+      "initialized_transform": [
+        0.5174739956855774,
+        -0.699009120464325,
+        1.2374653816223145,
+        -0.8542625308036804,
+        0.1783922165632248,
+        -0.1501198410987854,
+        -0.4646243453025818
+      ],
+      "original_transform": [
+        0.5879850387573242,
+        -0.7449417114257812,
+        1.1132824420928955,
+        0.14580386877059937,
+        -0.12517571449279785,
+        0.2953885495662689,
+        0.9358514547348022
+      ],
+      "settled_transform": [
+        0.5140430927276611,
+        -0.7348124980926514,
+        1.094372272491455,
+        -0.9593344926834106,
+        0.2788810133934021,
+        -0.041885387152433395,
+        0.01217640656977892
+      ],
+      "settled_local_translation_mm": [
+        -75.30870447001605,
+        10.129344542338597,
+        -12.393638285317412
+      ],
+      "settled_axis_tilt_from_floor_deg": 0.0006303660088428562
+    },
+    {
+      "path": "/World/BinStock/ring1_loose0",
+      "primary": false,
+      "distribution": "uniform bin XY, uniform SO(3), randomized body drop order",
+      "drop_rank": 4,
+      "requested_bin_xy_m": [
+        0.02625186628427635,
+        -0.010999244683486287
+      ],
+      "drop_height_above_floor_m": 0.15,
+      "initialized_transform": [
+        0.5647172927856445,
+        -0.7365216016769409,
+        1.2415989637374878,
+        0.7051779627799988,
+        0.09330695867538452,
+        -0.6708440184593201,
+        -0.20972880721092224
+      ],
+      "original_transform": [
+        0.6044572591781616,
+        -0.6580734848976135,
+        1.1022827625274658,
+        -0.040175627917051315,
+        0.016987912356853485,
+        0.9201651215553284,
+        -0.38909322023391724
+      ],
+      "settled_transform": [
+        0.5258834362030029,
+        -0.7309715151786804,
+        1.1097835302352905,
+        0.9727389216423035,
+        0.1626005321741104,
+        -0.1625082939863205,
+        0.03051406517624855
+      ],
+      "settled_local_translation_mm": [
+        -77.62109088562592,
+        -72.89818188365263,
+        14.319613115617646
+      ],
+      "settled_axis_tilt_from_floor_deg": 23.789460900956865
+    },
+    {
+      "path": "/World/BinStock/ring2_loose7",
+      "primary": false,
+      "distribution": "uniform bin XY, uniform SO(3), randomized body drop order",
+      "drop_rank": 5,
+      "requested_bin_xy_m": [
+        -0.06846311312185852,
+        -0.08472402086486865
+      ],
+      "drop_height_above_floor_m": 0.15,
+      "initialized_transform": [
+        0.47036266326904297,
+        -0.8102463483810425,
+        1.2333447933197021,
+        0.33207952976226807,
+        0.6659680604934692,
+        0.5101026296615601,
+        0.43128302693367004
+      ],
+      "original_transform": [
+        0.5833529829978943,
+        -0.7625921368598938,
+        1.1226234436035156,
+        0.4248178005218506,
+        0.7697615027427673,
+        -0.4499262273311615,
+        0.15672814846038818
+      ],
+      "settled_transform": [
+        0.4651861786842346,
+        -0.7791579961776733,
+        1.1138478517532349,
+        0.0563485287129879,
+        0.5571226477622986,
+        0.0635741651058197,
+        0.8260736465454102
+      ],
+      "settled_local_translation_mm": [
+        -118.48198717453141,
+        -16.565875797466298,
+        1.5565420646449648
+      ],
+      "settled_axis_tilt_from_floor_deg": 73.10536949444426
+    },
+    {
+      "path": "/World/Cell/Geometry/workpiece_ring2",
+      "primary": true,
+      "distribution": "uniform bin XY, uniform SO(3), randomized body drop order",
+      "drop_rank": 6,
+      "requested_bin_xy_m": [
+        -0.07330675384324534,
+        -0.11806230334226626
+      ],
+      "drop_height_above_floor_m": 0.15,
+      "initialized_transform": [
+        0.465537428855896,
+        -0.8435846567153931,
+        1.2329230308532715,
+        -0.7922186255455017,
+        -0.508147120475769,
+        -0.10783889889717102,
+        -0.3202294409275055
+      ],
+      "original_transform": [
+        0.49125543236732483,
+        -0.6455122232437134,
+        1.0916259288787842,
+        -1.063744548446266e-06,
+        -0.043619271367788315,
+        2.223555202363059e-05,
+        0.9990482330322266
+      ],
+      "settled_transform": [
+        0.48035046458244324,
+        -0.849399745464325,
+        1.1143985986709595,
+        -0.9423953294754028,
+        -0.10443486273288727,
+        0.22913536429405212,
+        -0.22018487751483917
+      ],
+      "settled_local_translation_mm": [
+        -8.878702156130148,
+        -203.8877724428587,
+        23.634284956920716
+      ],
+      "settled_axis_tilt_from_floor_deg": 40.41509712359942
+    },
+    {
+      "path": "/World/BinStock/ring1_loose6",
+      "primary": false,
+      "distribution": "uniform bin XY, uniform SO(3), randomized body drop order",
+      "drop_rank": 7,
+      "requested_bin_xy_m": [
+        0.061573087301013976,
+        -0.08619844676208355
+      ],
+      "drop_height_above_floor_m": 0.15,
+      "initialized_transform": [
+        0.5999040603637695,
+        -0.8117207884788513,
+        1.244678258895874,
+        -0.11082014441490173,
+        0.4329019784927368,
+        0.2988751232624054,
+        -0.8432012796401978
+      ],
+      "original_transform": [
+        0.5951016545295715,
+        -0.8125472664833069,
+        1.1101772785186768,
+        0.14143137633800507,
+        0.015576694160699844,
+        -0.6392430663108826,
+        0.7557268142700195
+      ],
+      "settled_transform": [
+        0.6118553876876831,
+        -0.8146459460258484,
+        1.1029331684112549,
+        -0.014912419952452183,
+        0.04103348031640053,
+        0.34168678522109985,
+        -0.938799262046814
+      ],
+      "settled_local_translation_mm": [
+        16.05861435428984,
+        -2.098587683868608,
+        -8.676750345449184
+      ],
+      "settled_axis_tilt_from_floor_deg": 0.004901965611258569
+    },
+    {
+      "path": "/World/BinStock/ring2_loose5",
+      "primary": false,
+      "distribution": "uniform bin XY, uniform SO(3), randomized body drop order",
+      "drop_rank": 8,
+      "requested_bin_xy_m": [
+        -0.057109786033647573,
+        0.04584240775461687
+      ],
+      "drop_height_above_floor_m": 0.15,
+      "initialized_transform": [
+        0.48167291283607483,
+        -0.6796799302101135,
+        1.2343329191207886,
+        0.6420034766197205,
+        0.25923243165016174,
+        -0.3997429311275482,
+        0.6006959676742554
+      ],
+      "original_transform": [
+        0.569456160068512,
+        -0.5820207595825195,
+        1.118923544883728,
+        -0.232650488615036,
+        0.8853552341461182,
+        0.3806275725364685,
+        0.13093030452728271
+      ],
+      "settled_transform": [
+        0.4813292622566223,
+        -0.6815893650054932,
+        1.1148332357406616,
+        0.6728329062461853,
+        0.2450702041387558,
+        -0.4188845455646515,
+        0.5583657622337341
+      ],
+      "settled_local_translation_mm": [
+        -88.14804229335817,
+        -99.56864359352032,
+        3.6049667826178444
+      ],
+      "settled_axis_tilt_from_floor_deg": 89.99056471573316
+    },
+    {
+      "path": "/World/BinStock/ring2_loose3",
+      "primary": false,
+      "distribution": "uniform bin XY, uniform SO(3), randomized body drop order",
+      "drop_rank": 9,
+      "requested_bin_xy_m": [
+        0.06389023231126388,
+        -0.03238400550210056
+      ],
+      "drop_height_above_floor_m": 0.15,
+      "initialized_transform": [
+        0.6022124290466309,
+        -0.7579063177108765,
+        1.2448796033859253,
+        -0.422847181558609,
+        -0.2975764870643616,
+        -0.6544229388237,
+        0.5517056584358215
+      ],
+      "original_transform": [
+        0.5907489061355591,
+        -0.6757205128669739,
+        1.1322083473205566,
+        -0.1326637715101242,
+        0.09221148490905762,
+        0.8634595274925232,
+        0.47784435749053955
+      ],
+      "settled_transform": [
+        0.5858242511749268,
+        -0.7762241959571838,
+        1.1100540161132812,
+        0.034674663096666336,
+        -0.20231793820858002,
+        -0.8147457242012024,
+        0.5422680377960205
+      ],
+      "settled_local_translation_mm": [
+        -6.8367923384618985,
+        -100.50345397816784,
+        -21.641879340744445
+      ],
+      "settled_axis_tilt_from_floor_deg": 20.56129593238369
+    }
+  ]
+}
