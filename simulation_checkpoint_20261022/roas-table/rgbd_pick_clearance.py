@@ -5,6 +5,7 @@ identities. Static structures are checked separately by the PhysX planner.
 """
 from pathlib import Path
 import numpy as np
+import hashlib
 from scipy.spatial import ConvexHull,cKDTree
 from rgbd_geometry import cloud,axis_frame
 
@@ -43,10 +44,29 @@ class ObservedGraspClearance:
 
     def points(self,packet,calibration):
         P=cloud(packet);rgb=packet['rgb'];gray=rgb.mean(2);bounds=np.asarray(calibration['outer_bounds_world_m']);mask=np.isfinite(P).all(2)&(np.ptp(rgb.astype(float),axis=2)<45)&(gray>35)&(gray<180)&np.all((P>=bounds[0]-.003)&(P<=bounds[1]+.015),axis=2);v=P[mask];return v[::max(1,len(v)//12000)]
+    def _candidate_points(self,points,pose,radius,exclude_selected):
+        """Cache identical image/class computations, content-invalidated.
+
+        Hash ALL input point bytes + exact measured pose; array identity or a
+        scene/object index can never reuse old stock after a fresh exposure.
+        No point/margin/filter changes relative to original computations.
+        """
+        points=np.ascontiguousarray(points);center=np.asarray(pose['center_m']);axis=np.asarray(pose['axis'])
+        digest=hashlib.blake2b(points.view(np.uint8),digest_size=16).digest()
+        key=(points.dtype.str,points.shape,digest,center.dtype.str,center.tobytes(),axis.dtype.str,axis.tobytes(),pose['part'],radius,exclude_selected)
+        cache=getattr(self,'_candidate_cache',None)
+        if cache is None:self._candidate_cache=cache={}
+        if key in cache and np.array_equal(points,cache[key][0]):return cache[key][1]
+        near=points[np.linalg.norm(points-center,axis=1)<radius]
+        if exclude_selected and len(near):
+            distance,_=self.estimator.trees[pose['part']].query((near-center)@axis_frame(pose['axis']))
+            near=near[distance>.0025]
+        if len(cache)>=16:cache.clear()
+        cache[key]=(points.copy(),near)
+        return near
+
     def clear(self,points,pose,pre,grasp,opening=.08):
-        center=np.array(pose['center_m']);near=points[np.linalg.norm(points-center,axis=1)<.13]
-        if not len(near):return True
-        distance,_=self.estimator.trees[pose['part']].query((near-center)@axis_frame(pose['axis']));obstacles=near[distance>.0025]
+        obstacles=self._candidate_points(points,pose,.13,True)
         if not len(obstacles):return True
         R=pre[:3,:3];root=pre[:3,3]-R@np.array([0,0,.1034]);delta=grasp[:3,3]-pre[:3,3];A=self.planes[:,:3];b=self.planes[:,3];margin=.0006
         for sign in [1,-1]:
@@ -64,7 +84,7 @@ class ObservedGraspClearance:
         Physical collisions, finite actuator effort and measured speed guards
         still apply to every loose body. No collision filter is changed here.
         """
-        center=np.asarray(pose['center_m']);near=points[np.linalg.norm(points-center,axis=1)<.23]
+        near=self._candidate_points(points,pose,.23,False)
         if not len(near):return True
         R=pre[:3,:3];root=pre[:3,3]-R@np.array([0,0,.1034]);local=(near-root)@R;direction=(grasp[:3,3]-pre[:3,3])@R
         low=np.zeros(len(local));high=np.ones(len(local));valid=np.ones(len(local),bool)

@@ -485,13 +485,27 @@ def _execute(c):
                         transfer_feasible=not c.get('handover_feasible_grasp') or bool(c['handover_feasible_grasp'](transfer_pose,H))
                     if not transfer_feasible:
                         reject('native hand pair cannot fit this grasp at handover');break
-                rng=np.random.default_rng(1127);seed_pool=[ik_seed,cmd[0,ids]]+list(rng.uniform(arm.bounds[:,0],arm.bounds[:,1],size=(48,7)));solutions=[]
-                for seed in seed_pool:
-                    q=arm.solve(pre[:3,3],R,seed)
-                    if q is not None and all(np.linalg.norm(q-old)>.12 for old in solutions):solutions.append(q)
-                if not solutions:reject('pregrasp IK')
-                solutions.sort(key=lambda q:np.max(abs(q-cmd[0,ids])/np.array([2.62,2.62,2.62,2.62,5.26,4.18,5.26])))
-                for preq in solutions[:12]:
+                def pregrasp_endpoints():
+                    from fr3_gpu_ik import propose_ik
+                    # GPU endpoints are original USD-FK/bounds checked.
+                    # Each still traverses all original final/descent/lift/
+                    # stock/self/other-arm/route/issued-curve admission below.
+                    gpu=propose_ik(c,arm,pre[:3,3],R,cmd[0,ids],'loose_'+part+'_pregrasp')
+                    gpu.sort(key=lambda q:np.max(abs(q-cmd[0,ids])/np.array([2.62,2.62,2.62,2.62,5.26,4.18,5.26])))
+                    for q in gpu[:12]:yield q
+                    # Only compute expensive original CPU catalogue when all
+                    # GPU alternatives failed. Preserve original seed set,
+                    # CPU sorting and12-branch budget, even GPU duplicates.
+                    started=time.perf_counter();rng=np.random.default_rng(1127)
+                    seed_pool=[ik_seed,cmd[0,ids]]+list(rng.uniform(arm.bounds[:,0],arm.bounds[:,1],size=(48,7)));solutions=[]
+                    for seed in seed_pool:
+                        q=arm.solve(pre[:3,3],R,seed)
+                        if q is not None and all(np.linalg.norm(q-old)>.12 for old in solutions):solutions.append(q)
+                    if not solutions:reject('pregrasp IK')
+                    solutions.sort(key=lambda q:np.max(abs(q-cmd[0,ids])/np.array([2.62,2.62,2.62,2.62,5.26,4.18,5.26])))
+                    print('GPU_PICKUP_CPU_FALLBACK',dict(part=part,gpu_branches=len(gpu),CPU_branches=len(solutions),CPU_s=time.perf_counter()-started),flush=True)
+                    yield from solutions[:12]
+                for preq in pregrasp_endpoints():
                     finalq=arm.solve(H[:3,3],R,preq)
                     if finalq is None:reject('final IK');continue
                     ok,why=checker.clear(finalq,opening)

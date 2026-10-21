@@ -6,7 +6,7 @@ Current policy:10 loose mixed rings, native Franka Hands, RGB-D recognition and 
 
 ## Runtime
 
-GPU2 provides exact-reference cuRobo IK/RIGHT/LEFT route proposals; GPU2/3 provide actual Warp RGB-D triangle-ray images. Original authored-CAD self/payload/other-arm/fixed/installed-part checks and FR3 retiming remain final authority. Warp is not RTX rendering. Virtual held-part view banks are not proof of one fixed physical RealSense's visibility.
+GPU2 provides exact-reference cuRobo IK/RIGHT/LEFT route proposals; pickup pregrasp now tests GPU endpoints before lazily computing the unchanged50-seed CPU fallback; GPU2/3 provide actual Warp RGB-D triangle-ray images. Original authored-CAD self/payload/other-arm/fixed/installed-part checks and FR3 retiming remain final authority. Warp is not RTX rendering. Virtual held-part view banks are not proof of one fixed physical RealSense's visibility.
 
 The measured loaded-aperture option uses actual stationary encoders plus fresh image-derived G for carrier-finger/held-CAD checks; finite-force spring targets are not treated as achieved geometry. Palm/arm/fixed/opposite-arm/installed-part checks retain full requested widths. Encoder lookahead/expiry is monitored at each control step. The100ms encoder window now starts before the final image and continues through delivery, preserving the250ms capture-age gate.
 
@@ -31,6 +31,8 @@ Typed RIGHT pre-carry planning failure can select a checked handover before load
 |317/320 |Double-handover held-ring endpoint blocked by actual parked LEFT. Exact original-model causes are recorded; prospective temporary-holder feasibility is not executed transfer success. |
 |318 |25mm in-bin shift/release passed, but subsequent ordinary outer pickup still palm/basket blocked. Generic contact certificateFALSE. |
 |319 |Actual one-rim extraction rose132.099mm total, lowest class-CAD15.327mm above lip, then checked return/release. Generic contact certificateFALSE, SIM mechanism only. Driver final JSON serialization failed after saved traces; independent evaluator preserves this limitation. No field/assembly admission. |
+|324/327 |Half-gain large-ring free alignment did not solve the center gate: both full trials failed (546.97/446.26s).327 used real GPU pregrasp endpoints and physically picked/lifted both parts; final large radial187.5um still exceeded100um despite0.981mrad axis. Not an all3 pass or timing comparison. |
+|329 |Identical recorded image/class subsets are cached by full point bytes and exact measured pose, with full array-equality guard.48 native-swept finger/palm queries preserve all4 boolean combinations and same-array mutation invalidation; isolated component3.13x faster. No collision/filter/age margins changed; not whole-cycle speedup. |
 
 The full-CAD FCL accept-only acceleration experiment303 also preserved outcomes but gave no useful loaded speedup; it is not enabled. Current field561 packet replay remains blocked before approach/Hand dispatch by trueUNKNOWN clearance even after two virtual views. Field safety admission and SIM point-cloud checks are distinct implementations; neither result is relabeled as success in the other.
 
