@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated_utc": "2026-10-21T18:54:28.875275+00:00",
-  "package": "field-demo-random-adaptive-20261022",
+  "updated_utc": "2026-10-21T19:09:55.829931+00:00",
+  "package": "field-demo-random-selfsurface-20261022",
   "source_original": "field-demo-random-v128-20261022",
   "source_original_unchanged": true,
   "hardware_tested": false,
@@ -9,11 +9,10 @@
   "field_ready": false,
   "usable_actual_generated_approach_and_lift_verified": false,
   "latest_full_offline": {
-    "python_tests": 275,
+    "python_tests": 290,
     "fieldkit_tests": 27,
-    "native_ctest": 11,
     "passed": true,
-    "log": "reports/ADAPTIVE_FULL_OFFLINE_CHECK.log"
+    "log": "reports/SELFSURFACE_FULL_OFFLINE_CHECK.log"
   },
   "later_targeted": {},
   "implemented": [
@@ -43,9 +42,14 @@
     "Only exact known native read-model IK/unreachable-duration errors are candidate failures; SDK errors remain fatal",
     "Observed installed part full class-CAD registry retained for all later moving arm/payload and Hand sweeps; regression proves earlier placement blocks later pickup before contact",
     "Vectorized swept AABB broadphase preserves actual collision result including nonadjacent link5/link7",
-    "Generated grasp epsilon 2mm matches actual native Hand action validator"
+    "Generated grasp epsilon 2mm matches actual native Hand action validator",
+    "Actual stopped SDK exposure bracketing, FK/aperture/clock/mount/uncertainty checks, immutable independent planner revalidation",
+    "Observed same-body surface-only labels, mixed unexplained cells remain ordinary stock",
+    "Optional exact closed visual material prior preserving signed holes, open main palm omitted",
+    "Explicit engineering COLLISION_ENVELOPE assumption at actual SDK pose/width, entire-voxel plus uncertainty erosion, never FREE and never otherbody/payload exception"
   ],
   "remaining": [
+    "Boundary mixed cells and external occlusion remain blockers. Actual full in-bin Hand aperture proof is NOT verified. No hardware calls. Default strict mode is unchanged.",
     "Visible Hand surface in raw in-bin occupancy is not yet associated to current body; actual pre-close may be rejected by its own observed surface",
     "ONE archived Isaac overhead RGB-D view after actual empty-robot parking supports nominal Hand/selected-CAD approach/lift component. Actual physical RealSense + complete native SDK whole-arm/grasp/stop acceptance remains unverified.",
     "Actual complete libfranka SDK generated approach/lift with measured full robot/tool/cable/tracking envelopes is not verified; actual grasp and force/stop behavior remain onsite tests.",
@@ -132,5 +136,6 @@
     "synthetic_curve_benchmark": "reports/factory-synthetic-curve-benchmark.json",
     "single_SIM_camera_component": "reports/one-overhead-camera-278/INDEX.json"
   },
-  "aperture_adaptive_status": "reports/APERTURE_ADAPTIVE_STATUS.json"
+  "aperture_adaptive_status": "reports/APERTURE_ADAPTIVE_STATUS.json",
+  "known_hand_selfsurface_status": "reports/known-hand-selfsurface/STATUS.json"
 }

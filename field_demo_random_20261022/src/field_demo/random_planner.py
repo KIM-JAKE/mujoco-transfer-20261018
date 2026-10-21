@@ -68,6 +68,9 @@ def validate_config(config, root, dependencies, now):
     if tracking < .02:
         measured(config.get('tracking_guard_measurement'), root, dependencies, 'tight_tracking_stop_test', now)
     scene = config['scene']
+    if scene.get('known_hand_surface')is not None:
+        from .known_hand_capture import settings
+        settings(scene['known_hand_surface'])
     measured(scene.get('measurement'), root, dependencies, 'scene_measurement', now)
     if scene.get('complete_within_workspace') is not True or scene.get('unobserved_geometry_enclosed') is not True:
         raise ValueError('Complete conservative scene geometry, including unobserved geometry, must be field-verified')
@@ -213,6 +216,7 @@ def observation_valid(observation, config, root, dependencies, now, *, require_f
         if raw.get(key) != observation.get(key):
             raise ValueError('Immutable sensor packet metadata differs: '+key)
     if raw.get('residual_occupancy')!=observation.get('residual_occupancy'):raise ValueError('Immutable residual occupancy record differs from saved observation')
+    if raw.get('known_hand_surface')!=observation.get('known_hand_surface'):raise ValueError('Immutable actual SDK Hand surface record differs from saved observation')
     selected = observation.get('selected_instance')
     if selected is not None:
         if not any(value.get('instance_id') == selected.get('instance_id') and value.get('part') == selected.get('part') and
@@ -463,7 +467,10 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
         if packet.get('scope')=='basket' and config['scene'].get('require_residual_occupancy') is True:
             from .residual_occupancy import OccupancySnapshot
             snapshot=OccupancySnapshot.from_record(packet['residual_occupancy'],expected_capture_id=packet['capture_id'],expected_calibration_sha256=packet['calibration_sha256'],max_age_s=config['max_observation_age_s'],now_utc=now)
-            packet_residual_boxes=snapshot.planner_boxes();scene['obstacles'].extend(packet_residual_boxes)
+            from .known_hand_capture import planner_boxes
+            packet_residual_boxes,association_hash=planner_boxes(snapshot,packet,config,site_config,root,dependencies)
+            if association_hash is not None:phase.setdefault('_known_hand_association_hashes',[]).append(association_hash)
+            scene['obstacles'].extend(packet_residual_boxes)
         for box_index, obstacle in enumerate(packet.get('conservative_scene_obstacles', [])):
             if obstacle.get('source') != 'measured_unknown_scene_enclosure' or packet.get('basket_scene_status') != 'unknown_treated_fully_occupied':
                 raise ValueError('Unknown-space enclosure needs actual measured basket provenance')

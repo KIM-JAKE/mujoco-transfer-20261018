@@ -459,6 +459,10 @@ class LiveRuntime:
         if planner_settings.get('scene',{}).get('require_residual_occupancy')is not True:raise ValueError('Live RGB-D/SDK cycle requires conservative residual occupancy in every basket plan')
         self.require_basket_observation=planner_settings.get('scene',{}).get('require_basket_observation',True)
         self.width_aware=any(v.get('native_hand_aperture_geometry')for v in planner_settings['robots'].values())
+        self.known_hand_surface=planner_settings['scene'].get('known_hand_surface')
+        if self.known_hand_surface is not None:
+            from .known_hand_capture import settings
+            settings(self.known_hand_surface)
         self._active_aperture_binding=None;self._latest_plan_context=None;self._stopped_arm_monitors={}
         self.monitor=lambda:None;self.installed_parts=[];self.streams={};self.camera_configs={};self.scene_epoch=uuid.uuid4().hex
         from .sensor_facts import SensorFacts
@@ -686,7 +690,18 @@ class LiveRuntime:
         from .random_perception import detect_packet
         from .camera import save_capture
         stream,config,camera_path=self._camera(scope,side)
+        sdk_before=None
+        if scope=='basket'and self.known_hand_surface is not None:
+            from .known_hand_capture import read_sample
+            sdk_before={arm:read_sample(self,arm)for arm in ['left','right']}
         packet,metadata=stream.read()
+        if sdk_before is not None:
+            # Only an exposure actually newer than both SDK reads is eligible.
+            cutoff=max(utc_stamp(v['read_returned_utc'])for v in sdk_before.values())
+            deadline=time.monotonic()+self.known_hand_surface['max_sdk_capture_gap_s']
+            while utc_stamp(metadata['captured_at_utc'])<cutoff:
+                if time.monotonic()>deadline:raise RuntimeError('No actual RGB-D exposure within stopped SDK synchronization budget')
+                packet,metadata=stream.read()
         releases=[utc_stamp(v['released_at_utc'])for v in self.facts.releases.values()if v['part']==part] if part is not None else []
         if releases:
             # A buffered camera frame may predate SDK completion. Require an
@@ -695,6 +710,13 @@ class LiveRuntime:
             while utc_stamp(metadata['captured_at_utc'])<=required:
                 if time.monotonic()>deadline:raise RuntimeError('No actual postrelease RGB-D exposure')
                 packet,metadata=stream.read()
+        sdk_bracket=None
+        if sdk_before is not None:
+            from .known_hand_capture import read_sample,bind_states
+            after={arm:read_sample(self,arm)for arm in ['left','right']}
+            mounts=self.recipe['inventory_inspection']['native_hand_mount']
+            for arm,mount in mounts.items():measured(mount['measurement'],self.root,subject=mount)
+            sdk_bracket=bind_states(sdk_before,after,metadata,self.site.config['robots'],mounts,self.known_hand_surface)
         path=self.output/('capture-'+uuid.uuid4().hex+'.npz');save_capture(path,packet,metadata)
         result=detect_packet(packet,config,metadata,replay=False,scope=scope,part=part,
             held_tcp_pose=self.tcp(side) if scope=='held' else None,
@@ -710,6 +732,10 @@ class LiveRuntime:
             snapshot=build_occupancy(camera_packet,occupancy_metadata,config['basket']['outer_bounds_cell_m'],voxel_size_m=settings['voxel_size_m'],depth_margin_m=settings['depth_margin_m'],max_age_s=self.recipe['max_observation_age_s'])
             result['residual_occupancy']=snapshot.to_record();result['basket_scene_status']='conservative_RGBD_residual_occupancy';result['unobserved_geometry_enclosed']=True;result['conservative_scene_obstacles']=[]
             result['residual_occupancy_metadata']=occupancy_metadata
+            if sdk_bracket is not None:
+                from .known_hand_capture import associate
+                _,surface_proof=associate(snapshot,camera_packet,occupancy_metadata,sdk_bracket)
+                result['known_hand_surface']=dict(sdk_bracket,association_proof=surface_proof)
         result.update(_scope=scope,_part=part,_side=side,source_packet=str(path),source_packet_sha256=sha(path),source_metadata_file=str(path.with_suffix('.json')),
             source_metadata_sha256=sha(path.with_suffix('.json')),_camera_config_path=str(camera_path.resolve()))
         result=self._record(result)
@@ -778,7 +804,11 @@ class LiveRuntime:
         bounds=np.array([surface.min(0)-.002,surface.max(0)+.002]);settings=config['residual_occupancy']
         contact=dict(capture_id=observation['capture_id'],instance_id=selected['instance_id'],surface_mask=mask,cad_surface_points_cell_m=surface,contact_bounds_cell_m=bounds,shell_tolerance_m=tolerance)
         snapshot=build_occupancy(packet,observation['residual_occupancy_metadata'],config['basket']['outer_bounds_cell_m'],voxel_size_m=settings['voxel_size_m'],depth_margin_m=settings['depth_margin_m'],selected_contact=contact,max_age_s=self.recipe['max_observation_age_s'])
-        result=copy.deepcopy(observation);result['residual_occupancy']=snapshot.to_record();return result
+        result=copy.deepcopy(observation);result['residual_occupancy']=snapshot.to_record()
+        if result.get('known_hand_surface')is not None:
+            from .known_hand_capture import associate
+            _,proof=associate(snapshot,packet,result['residual_occupancy_metadata'],result['known_hand_surface']);result['known_hand_surface']['association_proof']=proof
+        return result
 
     def _selected_record(self,observation):
         # Bind planner target selection to immutable bytes, not just memory.
@@ -1002,6 +1032,10 @@ class ReplayRuntime(LiveRuntime):
         self.hands={s:dict(part=None,width_m=bounded(m['initial_hand_width_m'][s],0,.08,'fake initial width')) for s in ('left','right')}
         self.site=SimpleNamespace(config=json.loads((self.root/recipe['site_config']).read_text()),expected_held={})
         self.width_aware=any(v.get('native_hand_aperture_geometry')for v in planner_settings['robots'].values())
+        self.known_hand_surface=planner_settings['scene'].get('known_hand_surface')
+        if self.known_hand_surface is not None:
+            from .known_hand_capture import settings
+            settings(self.known_hand_surface)
         self._active_aperture_binding=None;self._latest_plan_context=None;self._stopped_arm_monitors={}
         self.monitor=lambda:None;self.installed_parts=[];self.camera_configs={};self.stopped=False;self.events=[]
         self.signals={part+'_'+suffix:False for part in PARTS for suffix in ('grasped','seated','clamped','retained')}

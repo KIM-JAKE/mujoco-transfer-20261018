@@ -1,0 +1,58 @@
+{
+  "schema_version": 2,
+  "updated_utc": "2026-10-21T19:09:55.829931+00:00",
+  "package": "field-demo-random-selfsurface-20261022",
+  "integrated_off_default": true,
+  "live_opt_in_available": true,
+  "hardware_tested": false,
+  "field_ready": false,
+  "usable_in_bin_preclose_verified": false,
+  "runtime_files": 69,
+  "full_offline": {
+    "python_tests": 290,
+    "fieldkit_tests": 27,
+    "passed": true,
+    "log": "reports/SELFSURFACE_FULL_OFFLINE_CHECK.log"
+  },
+  "native_cpp_unchanged_from": "field-demo-random-adaptive-20261022",
+  "inherited_native_ctest_passed": 11,
+  "implemented": [
+    "Actual stopped SDK exposure bracketing, FK/aperture/clock/mount/uncertainty checks, immutable independent planner revalidation",
+    "Observed same-body surface-only labels, mixed unexplained cells remain ordinary stock",
+    "Optional exact closed visual material prior preserving signed holes, open main palm omitted",
+    "Explicit engineering COLLISION_ENVELOPE assumption at actual SDK pose/width, entire-voxel plus uncertainty erosion, never FREE and never otherbody/payload exception"
+  ],
+  "collision_envelope_prior": {
+    "scope": "Existing pinned official collision model, explicit engineering robot-self-filter assumption; no hardware/physicalvisualmaterial certificate",
+    "captured_voxels": [
+      622,
+      696,
+      696,
+      696
+    ],
+    "producer_elapsed_s": [
+      1.0693,
+      0.7394,
+      1.3792,
+      1.0225
+    ],
+    "snapshot_original_fingerprint_unchanged": true,
+    "free_voxels_created": 0,
+    "full_Hand_residual_contacts_before": [
+      2339,
+      2324,
+      2827,
+      2881
+    ],
+    "full_Hand_residual_contacts_after": [
+      1739,
+      1508,
+      2011,
+      2065
+    ],
+    "preclose_passed": false
+  },
+  "known_material_scope": "Exact closed signed official visual components only, whole voxel sphere + pose/depth/geometry erosion. Openmainpalm omitted. No repaired or convexified physical-material claim.",
+  "remaining": "Boundary mixed cells and external occlusion remain blockers. Actual full in-bin Hand aperture proof is NOT verified. No hardware calls. Default strict mode is unchanged.",
+  "guide": "docs/KNOWN_HAND_SURFACE.md"
+}

@@ -188,6 +188,15 @@ def check_envelopes(active, other, scene, phase, envelope, *, payloads=(), dynam
                     obstacle.get('selected_contact_instance_id')==phase.get('_target_instance_id') and phase.get('_target_instance_id')is not None)
                 if selected_contact:continue  # Only observed selected surface; unknown/palm/other arm/payload never exempt.
                 clearance = segment_box_distance(capsule['a'], capsule['b'], obstacle) - radius
+                tag=obstacle.get('known_hand_surface',{})
+                if tag.get('association_sha256')in phase.get('_known_hand_association_hashes',[]):
+                    from .known_hand_surface import known_hand_contact_mask
+                    # This body's own measured material is not another object,
+                    # also when it belongs to the stationary SDK arm. Stock
+                    # contact permissions retain their separate active flag.
+                    actual_hand=not is_payload and capsule.get('robot_side')in ('left','right')and capsule.get('hand_body')in ('palm','left_finger','right_finger')
+                    allowed_hand=known_hand_contact_mask(obstacle,capsule=capsule,association_sha256=tag['association_sha256'],active_robot=actual_hand,is_payload=is_payload)
+                    clearance=np.where(allowed_hand,np.inf,clearance)
                 if phase.get('bounded_loose_stock_contact')is not None:
                     from .stock_contact import stock_contact_mask
                     allowed_stock=stock_contact_mask(obstacle,phase=phase,capsule_index=capsule_index,capsule=dict(capsule,r=radius),envelope=envelope,active_robot=active_robot,is_payload=is_payload)

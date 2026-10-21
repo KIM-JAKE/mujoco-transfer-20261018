@@ -77,3 +77,5 @@ scripts/offline-check.sh
 43.533초는 seed445의 시뮬 벽시계 시간입니다. 실기에서는 실측 좌표·현재 영상·실제 SDK로 경로를 다시 만들며, 기존 실기 실행기의 저속·순차 제약을 유지합니다. 시뮬의 관절 궤적·전달 좌표·힘·속도를 그대로 실행하지 않습니다. 근거리 전달 분기 탐색·시간 배분·동시 작업 최적화 전체를 실기에 포팅했다는 뜻도 아닙니다. 새 성공 자료는 `stabilization inspect/import`로 별도 폴더에 읽어 올 수 있고, 자동으로 현재 프로필을 바꾸지 않습니다.
 
 검증 범위는 [기능과 남은 현장 확인](docs/CAPABILITIES.md), 시험 결과는 `reports/release-validation.json`에 기록합니다.
+
+추가 실험 기능: [자기 Hand RGB-D 표면 연결](docs/KNOWN_HAND_SURFACE.md). 기본 비활성, 실제 in-bin 파지 통과 미확인입니다.
