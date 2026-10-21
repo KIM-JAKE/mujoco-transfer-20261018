@@ -88,6 +88,19 @@ class Checker:
         start=np.asarray(start,float);goal=np.asarray(goal,float)
         if not skip_direct and self.path([start,goal],opening,selected)[0]:return[start,goal]
         if not self.clear(goal,opening,selected)[0]:return None
+        if use_fast and getattr(self,'gpu_route_enabled',False):
+            from fr3_gpu_route import propose_route
+            proposed=propose_route(self,start,goal,opening,selected)
+            if proposed is not None:
+                from scipy.interpolate import CubicSpline
+                curve=np.asarray(proposed) if getattr(self,'execute_checked_edges',False) else CubicSpline(np.linspace(0,1,len(proposed)),proposed)(np.linspace(0,1,max(33,16*len(proposed))))
+                old_resolution=getattr(self,'resolution_rad',.035);self.resolution_rad=.010
+                try:accepted,rejection=self.path(curve,opening,selected)
+                finally:self.resolution_rad=old_resolution
+                if accepted:
+                    self.gpu_route_stats['PhysX_verified_proposals']=self.gpu_route_stats.get('PhysX_verified_proposals',0)+1
+                    print('GPU_ROUTE_PHYSX_VERIFIED',dict(knots=len(proposed),fixed_pair_payload_checked=True,issued_curve_and_FR3_retiming_still_required=True),flush=True);return proposed
+                self.gpu_route_stats['PhysX_rejected_proposals']=self.gpu_route_stats.get('PhysX_rejected_proposals',0)+1;self.gpu_route_stats['last_PhysX_rejection']=rejection
         fast=getattr(self,'fast_planner',None)
         if fast is not None and use_fast:
             try:

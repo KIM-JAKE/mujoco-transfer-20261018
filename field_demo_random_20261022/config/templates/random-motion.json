@@ -542,6 +542,44 @@
       },
       "target_contact_tool_capsules": [],
       "handover_contact_tool_capsules": []
+    },
+    "stock_departure": {
+      "measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "corridors": [
+        {
+          "T_cell_box": null,
+          "half_extents_m": null
+        }
+      ],
+      "tcp_corridor_radius_m": null,
+      "force_monitor": {
+        "enabled": null,
+        "force_limit_n": 5,
+        "moment_limit_nm": 1,
+        "measurement": {
+          "verified": null,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        }
+      },
+      "allow_payload_contact_fixture": null,
+      "payload_contact_approved": null,
+      "payload_contact_region": null,
+      "contact_measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      },
+      "target_contact_tool_capsules": [],
+      "handover_contact_tool_capsules": [],
+      "bounded_loose_stock_departure": null
     }
   },
   "notes": "All geometry must conservatively enclose the ACTUAL robot, hand, tool, cables and complete scene within the measured workspace. Eight link radii enclose base/joint1/.../joint7/TCP segments. Self-exclusion indices and distal payload contact masks require actual field review. Capsule/box checks are conservative envelope checks, not inferred whole-body meshes. Unknown/empty geometry cannot authorize motion. Only payload-vs-named fixture contact in the measured insertion region can be exempted; robot-vs-fixture checks remain active. TCP corridors need measured enclosing radius and complete path review. 5N/1Nm are the native fixed stop thresholds, not certified insertion control. Every measurement needs real evidence. Real RGB-D observations and all installed parts are bound per phase; no simulator paths or scene identities are accepted. Held-only views require a fresh basket scene_observations packet by default. The alternative requires named measured static boxes enclosing every unseen loose object. The enforced native 0.02rad tracking-error budget is included in collision inflation and may conservatively reject tight insertion paths; no smaller unimplemented threshold is assumed. A tighter joint_tracking_error_limit_rad is accepted only with actual measured stop-test evidence and must be enforced by the native dynamic runner; it can never exceed 0.02rad. Measured ring-shell capsules_part_m may conservatively preserve real holes; solid cylinder/capsule fallback will reject some narrow ring/pin paths.",
@@ -587,6 +625,72 @@
       "stop_test_sha256": null,
       "measurement": {
         "verified": false,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      }
+    }
+  },
+  "bounded_loose_stock_departure_example": {
+    "schema_version": 1,
+    "contact_policy": {
+      "schema_version": 1,
+      "inventory_contract": {
+        "parts": [
+          "ring1",
+          "ring2"
+        ],
+        "maximum_count": 10,
+        "measurement": {
+          "verified": false,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        }
+      },
+      "bin_interior": {
+        "T_cell_box": null,
+        "half_extents_m": null,
+        "measurement": {
+          "verified": false,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        }
+      },
+      "finger_capsules": [],
+      "monitoring": {
+        "wrench_source": "actual_fr3_sdk_aggregate_wrench",
+        "force_limit_n": 5,
+        "moment_limit_nm": 1,
+        "heartbeat_timeout_s": 0.25,
+        "native_driver_sha256": null,
+        "stop_test_sha256": null,
+        "measurement": {
+          "verified": false,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        }
+      }
+    },
+    "up_axis_cell": null,
+    "maximum_lift_m": 0.07,
+    "up_axis_measurement": {
+      "verified": null,
+      "by": null,
+      "at_utc": null,
+      "evidence_file": null
+    },
+    "support_floor": {
+      "origin_cell_m": null,
+      "normal_cell": null,
+      "obstacle_name": null,
+      "plane_alignment_tolerance_m": null,
+      "maximum_inference_correction_m": null,
+      "reported_fit_depth_bound_m": null,
+      "measurement": {
+        "verified": null,
         "by": null,
         "at_utc": null,
         "evidence_file": null

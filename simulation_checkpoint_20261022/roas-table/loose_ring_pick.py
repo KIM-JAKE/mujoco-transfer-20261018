@@ -99,6 +99,7 @@ def _execute(c):
         pose=result.get('pose',{})
         return bool(not result.get('error') and (pose.get('front_back_from_RGBD') or (mode=='pregrasp_ring' and c['config'].get('allow_partial_preclose_tracking') and pose.get('fresh_partial_tracking'))))
     def observe(mode,part=None,G=None,allow_missing=False):
+        capture_gap=float(art.get_dof_positions()[0,fi].sum())
         e=dict(mode=mode,part=part)
         allow_partial=bool(mode=='pregrasp_ring' and c['config'].get('allow_partial_preclose_tracking'))
         if allow_partial:e['allow_partial_preclose_tracking']=True
@@ -206,6 +207,7 @@ def _execute(c):
             elif c['config'].get('require_fresh_preclose_rgbd') or mode=='held':
                 v=dict(result=dict(error='No directly visible annular face from pickup camera views'))
         if v['result'].get('error') and not allow_missing:raise RuntimeError(v['result']['error'])
+        v['capture_native_hand_opening_m']=capture_gap
         return v
     def move(qs,t,label,width=None):
         nonlocal phase
@@ -270,13 +272,24 @@ def _execute(c):
             clear,why=checker.path(curve,opening)
             if not clear:raise RuntimeError('Fresh RGB-D pickup Cartesian path blocked: '+str(why))
         move(qs,t,label,width)
-    initial_value=observe('initial');initial=initial_value['result'];observed_points=np.concatenate([c['observed_grasp_clearance'].points(packet,c['calibration']) for packet in initial_value.get('supporting_packets',[initial_value['packet']])]) if c.get('observed_grasp_clearance') else None;part=c['config'].get('pick_part','ring1');candidates=[p for p in initial['instances'] if p['part']==part and abs(p['axis'][2])>.35 and p.get('front_back_orientation_margin_m',0)>.0005]
+    def stock_points(value,packet=None):
+        stock=c['observed_grasp_clearance'];points=stock.points(value['packet']if packet is None else packet,c['calibration'])
+        # The capture TCP is actual encoder FK, already part of the RGB-D
+        # observation protocol. No scene actor pose is available to this mask.
+        H=np.asarray(value.get('H',arm.fk(art.get_dof_positions()[0,ids])))
+        gap=float(value.get('capture_native_hand_opening_m',art.get_dof_positions()[0,fi].sum()))
+        filtered=stock.remove_known_hand_surface(points,H,gap)
+        if stock.last_hand_surface_exclusion['surface_matches']:record(dict(event='RGBD_known_hand_surface_exclusion',**stock.last_hand_surface_exclusion,wall_s=time.perf_counter()-c['started']))
+        return filtered
+
+    initial_value=observe('initial');initial=initial_value['result'];observed_points=np.concatenate([stock_points(initial_value,packet) for packet in initial_value.get('supporting_packets',[initial_value['packet']])]) if c.get('observed_grasp_clearance') else None;part=c['config'].get('pick_part','ring1');candidates=[p for p in initial['instances'] if p['part']==part and abs(p['axis'][2])>.35 and p.get('front_back_orientation_margin_m',0)>.0005]
     if c['config'].get('require_front_up_pickup'):candidates=[p for p in candidates if p['axis'][2]>.35]
     avoid=c['config'].get('pickup_avoid_centers',[])
     if avoid:
         radius=float(c['config'].get('pickup_avoid_radius_m',.025));filtered=[p for p in candidates if all(np.linalg.norm(np.asarray(p['center_m'])-old)>radius for old in np.asarray(avoid))]
         if filtered:candidates=filtered
     if not candidates:raise RuntimeError('No visible accessible measurable '+part+'')
+    if observed_points is not None:checker.gpu_rgbd_stock_points=observed_points.copy()
     pickup_seed=np.array(c['pickup_seed']);postures=[(yaw,pickup_seed.copy(),None) for yaw in np.arange(0,2*np.pi,np.pi/8)]+[(yaw,pickup_seed.copy(),0.) for yaw in [0,np.pi/2,-np.pi/2,np.pi,np.pi/4,-np.pi/4,3*np.pi/4,-3*np.pi/4]]
     for elbow_delta in [-.50,.50]:
         seed=pickup_seed.copy();seed[2]+=elbow_delta
@@ -670,7 +683,7 @@ def _execute(c):
     if local_contact and c['config'].get('rim_encoder_recenter'):
         if grasp_type=='rim':from local_rim_grasp import candidate as local_candidate
         else:from inner_bore_grasp import candidate as local_candidate
-        correction_points=c['observed_grasp_clearance'].points(settled_value['packet'],c['calibration']) if c.get('observed_grasp_clearance') and 'packet'in settled_value else observed_points
+        correction_points=stock_points(settled_value) if c.get('observed_grasp_clearance') and 'packet'in settled_value else observed_points
         for correction_index in range(2):
             actual_q=art.get_dof_positions()[0,ids].copy();actual_H=arm.fk(actual_q);distance=float(np.linalg.norm(H[:3,3]-actual_H[:3,3]));angle=float(np.linalg.norm(log(H[:3,:3]@actual_H[:3,:3].T)))
             if distance<.0006 and angle<.008:break
@@ -690,7 +703,7 @@ def _execute(c):
             P=np.asarray(fresh_pose['center_m']);n=np.asarray(fresh_pose['axis']);candidate_extra={'roll_rad':float(p.get('grasp_roll_rad',0.))} if grasp_type=='inner' else {};updated=local_candidate(c,part,fresh_pose,H[:3,1],axial_offset_m=contact_offset,tilt_rad=float(p['grasp_tilt_rad']),**candidate_extra)
             if updated is None:return retry_pick('Updated RGB-D rim pose has no opposing native pad contacts')
             H=np.asarray(updated['tcp_world']).copy();R=H[:3,:3];tcp_offset=H[:3,3]-P-n*np.sign(n[2])*contact_offset;p['planned_grip_width_m']=float(updated['contact_width_m']);p['command_width_m']=float(updated['command_width_m'])
-            if c.get('observed_grasp_clearance') and 'packet'in fresh_value:correction_points=c['observed_grasp_clearance'].points(fresh_value['packet'],c['calibration'])
+            if c.get('observed_grasp_clearance') and 'packet'in fresh_value:correction_points=stock_points(fresh_value)
             record(dict(event='rim_encoder_recenter',iteration=correction_index,position_error_before_m=distance,angle_error_before_rad=angle,command_joint_correction_rad=(desired_q-actual_q).tolist(),wall_s=time.perf_counter()-c['started']))
         actual_H=arm.fk(art.get_dof_positions()[0,ids]);remaining=float(np.linalg.norm(H[:3,3]-actual_H[:3,3]))
         if remaining>.0015:return retry_pick('Rim encoder correction did not converge within 1.5 mm')
@@ -699,7 +712,7 @@ def _execute(c):
     close_width=float(p['command_width_m']) if local_contact else p['planned_grip_width_m'] if grasp_type=='inner' else max(.001,p['planned_grip_width_m']-.003)
     if part=='ring2' and grasp_type=='outer' and c['config'].get('verify_selected_outer_approach'):
         actual_q=art.get_dof_positions()[0,ids].copy();actual_H=arm.fk(actual_q);actual_gap=float(art.get_dof_positions()[0,fi].sum())
-        fresh_points=c['observed_grasp_clearance'].points(settled_value['packet'],c['calibration']);close_pose=dict(part=part,center_m=P.tolist(),axis=n.tolist())
+        fresh_points=stock_points(settled_value);close_pose=dict(part=part,center_m=P.tolist(),axis=n.tolist())
         # Recheck the SAME aperture domain with fresh pixels and actual
         # encoders. If stock moved, fingers have not yet closed: reverse the
         # checked empty approach and choose again from fresh RGB-D.

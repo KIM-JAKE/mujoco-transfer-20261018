@@ -250,7 +250,7 @@ def execute(c):
         pin_path=HERE/'direct_pin_skill.py';pin=types.ModuleType('direct_pin_skill');pin.__file__=str(pin_path);exec(compile(pin_path.read_text(),str(pin_path),'exec'),pin.__dict__)
         return pin.execute(dict(c['pin_context'],step=step,config=c['config'],robot_route_hints=c['robot_route_hints'],prefetched_initial=prefetched,before_transport=clear_left_work_zone_for_pin,goal_aware_pickup=bool(c['config'].get('pin_first') or c['config'].get('pin_between_rings')),defer_retention_to_recipe=bool(c['config'].get('pin_first') or c['config'].get('pin_between_rings'))))
     pin_first=bool(c['config'].get('pin_first'));pin_report=run_pin() if pin_first else None
-    if c['config'].get('adaptive_initial_ring_order') and not c['config'].get('one_ring_only'):
+    if c['config'].get('adaptive_initial_ring_order') and not c['config'].get('one_ring_only') and not c['config'].get('sequential_initial_ring_selection',True):
         preview_path=HERE/'loose_ring_pick.py';preview=types.ModuleType('pickup_order_preview');preview.__file__=str(preview_path);exec(compile(preview_path.read_text(),str(preview_path),'exec'),preview.__dict__)
         trials=[]
         for candidate_part in list(ring_order):
@@ -266,7 +266,7 @@ def execute(c):
             break
         order_evidence=dict(event='initial_RGBD_pickup_order',trials=trials,selected_order=list(ring_order),uses_free_body_poses=False,preview_robot_motion_executed=False,wall_s=time.perf_counter()-c['started'])
         events.append(order_evidence);c['planning_diagnostics'].append(order_evidence);print('LOOSE_INITIAL_PICKUP_ORDER',order_evidence,flush=True)
-    for part in ([c['config'].get('pick_part','ring1')] if c['config'].get('one_ring_only') else ring_order):
+    for task_index,part in enumerate([c['config'].get('pick_part','ring1')] if c['config'].get('one_ring_only') else ring_order):
         if c['config'].get('stability_serial'):
             while left_program is not None:step('stable_receiver_finishes_before_next_pick')
         # The right hand keeps working while the queued left insertion runs.
@@ -276,7 +276,25 @@ def execute(c):
         if next_initial is not None:pickup_ctx['prefetched_initial']=next_initial;next_initial=None
         try:p=pick.execute(pickup_ctx)
         except RuntimeError as error:
-            if c['config'].get('allow_single_finger_rearrangement') and str(error).startswith(('No structure-clear grasp','No visible accessible measurable')):
+            # Select and execute one fresh plan instead of previewing and then
+            # recomputing that same plan. Try the other size before rearranging
+            # stock; all sensing, CAD/route, retention and issued-curve checks
+            # remain inside the same pickup skill.
+            eligible=str(error).startswith(('No structure-clear grasp','No visible accessible measurable'))
+            if task_index==0 and eligible and c['config'].get('adaptive_initial_ring_order') and c['config'].get('sequential_initial_ring_selection',True) and not c['config'].get('one_ring_only'):
+                original_part=part;alternate=next(name for name in ring_order if name!=part)
+                alternate_ctx=dict(pickup_ctx,config=dict(pickup_ctx['config'],pick_part=alternate),handover_feasible_grasp=lambda pose,H,selected=alternate:pickup_destination_feasible(selected,pose,H),grasp_pad_aperture=lambda pose,H,selected=alternate:transfer.donor_aperture(c,selected,np.linalg.inv(H)@frame(pose['center_m'],axis_frame(pose['axis']))))
+                alternate_ctx.pop('prefetched_initial',None)
+                try:alternative_pick=pick.execute(alternate_ctx)
+                except RuntimeError as alternate_error:
+                    if not str(alternate_error).startswith(('No structure-clear grasp','No visible accessible measurable')):raise
+                    events.append(dict(event='initial_size_alternative_unavailable',part=alternate,reason=str(alternate_error),wall_s=time.perf_counter()-c['started']))
+                else:
+                    p=alternative_pick;part=alternate;pickup_ctx=alternate_ctx;ring_order[:]=[alternate,original_part];error=None
+                    evidence=dict(event='initial_RGBD_pickup_order',selected_order=list(ring_order),executed_single_fresh_plan=True,discarded_size_reason='No current accessible checked grasp',uses_free_body_poses=False,wall_s=time.perf_counter()-c['started'])
+                    events.append(evidence);c['planning_diagnostics'].append(evidence);print('LOOSE_INITIAL_PICKUP_ORDER',evidence,flush=True)
+            if error is None:pass
+            elif c['config'].get('allow_single_finger_rearrangement') and str(error).startswith(('No structure-clear grasp','No visible accessible measurable')):
                 rearrange_path=HERE/'loose_bin_rearrange.py';rearrange=types.ModuleType('loose_bin_rearrange');rearrange.__file__=str(rearrange_path);exec(compile(rearrange_path.read_text(),str(rearrange_path),'exec'),rearrange.__dict__)
                 limit=int(c['config'].get('rearrangement_retry_limit',1))
                 if not 1<=limit<=3:raise ValueError('Rearrangement retry limit must be between 1 and 3')

@@ -110,6 +110,30 @@ def _source(metadata, packet):
     return row
 
 
+def _rectangle_depth_minimum(depth, low, high):
+    """Exact inclusive pixel-rectangle minima, using four contained blocks.
+
+    Each dyadic block lies entirely INSIDE the projected rectangle. Their
+    union covers every pixel, including missing-depth zeros. Unlike a larger
+    padded window, unrelated foreground outside the footprint cannot veto a
+    genuinely observed free voxel. The caller has already bounded pixels.
+    """
+    low=np.asarray(low,int);high=np.asarray(high,int)
+    if low.shape != high.shape or low.ndim != 2 or low.shape[1] != 2:
+        raise ValueError('Bounded inclusive projected pixel rectangles required')
+    if np.any(low<0) or np.any(high<low) or np.any(high>=[depth.shape[1],depth.shape[0]]):
+        raise ValueError('Projected pixel rectangle leaves actual depth image')
+    if not len(low):return np.empty(0,float)
+    widths=high-low+1;blocks=np.left_shift(1,np.floor(np.log2(widths)).astype(int));result=np.empty(len(low),float)
+    for bx,by in np.unique(blocks,axis=0):
+        ids=np.flatnonzero((blocks==[bx,by]).all(1))
+        # Negative origins make this an inclusive TOP-LEFT anchored block.
+        minima=minimum_filter(depth,size=(int(by),int(bx)),origin=(-(int(by)//2),-(int(bx)//2)),mode='constant',cval=0.)
+        x0,y0=low[ids].T;x1,y1=(high[ids]-[bx,by]+1).T
+        result[ids]=np.minimum.reduce([minima[y0,x0],minima[y0,x1],minima[y1,x0],minima[y1,x1]])
+    return result
+
+
 def _merged_ranges(mask):
     """Exact disjoint axis-aligned box cover; never fills a free grid hole."""
     rectangles = []
@@ -296,6 +320,13 @@ def build_occupancy(packet, metadata, bounds_cell_m, *, voxel_size_m=.008, depth
         ids = np.flatnonzero(usable & (rounded == [rx, ry]).all(1))
         minimum = minimum_filter(conservative_depth, size=(2 * ry + 1, 2 * rx + 1), mode='constant', cval=0.)
         free[ids] = camera[ids, :, 2].max(1) + depth_margin_m < minimum[middle[ids, 1], middle[ids, 0]]
+    # Refine only false negatives from the larger power-of-two windows.
+    # This remains the SAME whole projected footprint (including SDK padding),
+    # same all-valid rule and same worst corner depth/uncertainty margin.
+    unresolved=np.flatnonzero(usable & ~free)
+    if len(unresolved):
+        exact=_rectangle_depth_minimum(conservative_depth,low[unresolved],high[unresolved])
+        free[unresolved]=camera[unresolved,:,2].max(1)+depth_margin_m<exact
     states = np.where(free, FREE, UNKNOWN).astype(np.uint8)
     vv, uu = np.nonzero(valid_depth); zz = depth[vv, uu]
     points_camera = organized[vv, uu] if organized is not None else np.c_[(uu - k[0, 2]) * zz / k[0, 0], (vv - k[1, 2]) * zz / k[1, 1], zz]

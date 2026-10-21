@@ -18,6 +18,8 @@ from ray_camera_core import NumericRayCamera
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--source',required=True)
 parser.add_argument('--fps',type=int,default=20)
+parser.add_argument('--backend',choices=['embree_cpu','warp_cuda'],default='embree_cpu')
+parser.add_argument('--end-wall-s',type=float,help='Optional0-based partial replay; full source outcome remains labeled')
 parser.add_argument('--part',choices=['ring1','ring2','pin','auto'],default='ring1')
 args=parser.parse_args()
 import re
@@ -25,13 +27,18 @@ assert re.fullmatch(r'native-roas-table-[a-zA-Z0-9_-]+',args.source)
 source=HERE.parents[1]/'runs'/args.source
 report=json.loads((source/'pipeline-results.json').read_text())
 trace=np.load(source/'physx-sequence-trace.npz')
-out=source/'cpu-replay';out.mkdir(exist_ok=True)
-camera=NumericRayCamera(source/'camera-local-models.npz')
+out=source/('gpu-replay' if args.backend=='warp_cuda' else 'cpu-replay');out.mkdir(exist_ok=True)
+if args.backend=='warp_cuda':
+    from warp_ray_camera import WarpRayCamera
+    camera=WarpRayCamera(source/'camera-local-models.npz')
+else:camera=NumericRayCamera(source/'camera-local-models.npz')
 paths=trace['camera_body_paths'].tolist()
-assert set(camera.geometry)<=set(paths)
+assert set(camera.paths if args.backend=='warp_cuda'else camera.geometry)<=set(paths)
 times=trace['time_s']
 bodies=trace['camera_bodies'];parts=trace['parts'];part_names=trace['part_names'].tolist();phases=trace['pin_phase']
-end=float(report['wall_verified_elapsed_s']);fps=args.fps
+source_end=float(report['wall_verified_elapsed_s']);end=source_end if args.end_wall_s is None else min(source_end,args.end_wall_s);fps=args.fps
+assert end>0 and fps>0
+
 switches=[dict(wall_s=0.,part='ring1')]
 if args.part=='auto':
     observations=json.loads((source/'rgb-observations.json').read_text())
@@ -81,9 +88,9 @@ with (out/'encoding.log').open('wb') as log:
         writer.kill();writer.wait();raise
 manifest=dict(source_run=args.source,source_full_task_pass=bool(report.get('full_task_pass')),
     source_under20=bool(report.get('end_to_end_under20')),physics='Recorded Isaac Sim CPU PhysX',
-    renderer='CPU Embree ray camera of original Isaac CAD geometry',RTX=False,
+    renderer=('GPU Warp ray camera'if args.backend=='warp_cuda'else'CPU Embree ray camera')+' of original Isaac CAD geometry',image_backend=args.backend,RTX=False,
     replay_only=True,new_physics_steps=0,speed_multiplier=1.,clock='Recorded monotonic wall clock including camera/planning waits',
-    source_wall_end_s=end,video_duration_s=count/fps,frame_count=count,fps=fps,
+    source_wall_end_s=source_end,replay_wall_end_s=end,partial_replay=end<source_end,video_duration_s=count/fps,frame_count=count,fps=fps,
     all_loose_stock_poses_replayed=True,all_recorded_dynamic_bodies=len(paths),
     evaluator_poses_used_for_rendering_only=True,closeup_part=args.part,closeup_switches=switches if args.part=='auto' else [])
 (out/'replay-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')

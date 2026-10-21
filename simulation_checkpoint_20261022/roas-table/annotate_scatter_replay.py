@@ -7,10 +7,11 @@ from PIL import Image,ImageDraw,ImageFont
 HERE=Path(__file__).resolve().parent
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--source',required=True)
+parser.add_argument('--backend',choices=['embree_cpu','warp_cuda'],default='embree_cpu')
 args=parser.parse_args()
 import re
 assert re.fullmatch(r'native-roas-table-[a-zA-Z0-9_-]+',args.source)
-root=HERE.parents[1]/'runs'/args.source;out=root/'cpu-replay'
+root=HERE.parents[1]/'runs'/args.source;out=root/('gpu-replay'if args.backend=='warp_cuda'else'cpu-replay')
 report=json.loads((root/'pipeline-results.json').read_text());manifest=json.loads((out/'replay-manifest.json').read_text())
 ffmpeg=HERE.parents[3]/'.isaac/lab3.0.0-rc1/packages/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2'
 fontpath=HERE.parents[1]/'assets/NotoSansKR.ttf';font=ImageFont.truetype(str(fontpath),18);small=ImageFont.truetype(str(fontpath),14)
@@ -30,7 +31,7 @@ with (out/'caption-encoding.log').open('wb') as log:
         if not raw:break
         if len(raw)!=width*height*3:raise RuntimeError('Truncated replay frame')
         frame=Image.fromarray(np.frombuffer(raw,np.uint8).reshape(height,width,3));draw=ImageDraw.Draw(frame)
-        draw.rectangle((0,0,width,39),fill=(17,24,39));draw.text((12,7),title,font=font,fill='white');draw.text((790,9),f'{count/fps:.2f} s | CPU 1x',font=small,fill='white')
+        draw.rectangle((0,0,width,39),fill=(17,24,39));draw.text((12,7),title,font=font,fill='white');draw.text((790,9),f'{count/fps:.2f} s | '+('GPU ray'if args.backend=='warp_cuda'else'CPU')+' 1x',font=small,fill='white')
         # The close-up always looks at the selected recorded ring center. This
         # projected-location marker is rendering-only, never a sensor cue.
         x,y=832,280

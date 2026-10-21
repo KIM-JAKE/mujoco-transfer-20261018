@@ -49,7 +49,7 @@ class ResidualOccupancyTests(unittest.TestCase):
         self.assertEqual(foreground.states[cell(foreground, [0, 0, .3])], UNKNOWN)
 
     def test_rectified_nearest_ray_padding_conservatively_keeps_nearby_hits(self):
-        depth = camera()['depth_m']; depth[27, 27] = .23
+        depth = camera()['depth_m']; depth[29, 29] = .23
         direct = build(camera(depth)); meta = metadata(); meta['ray_footprint_padding_px'] = 2
         padded = build(camera(depth), meta)
         index = cell(direct, [.005, .005, .3])
@@ -60,6 +60,29 @@ class ResidualOccupancyTests(unittest.TestCase):
         for invalid in (5, -1, 1.5, True):
             meta['ray_footprint_padding_px'] = invalid
             with self.assertRaises(ValueError): build(camera(depth), meta)
+
+    def test_exact_footprint_ignores_only_foreground_outside_rectangle(self):
+        depth=camera()['depth_m'];depth[31,28]=.1
+        bounds=[[-.003,-.003,.2],[.003,.003,.204]]
+        def one(packet,meta=None):
+            return build_occupancy(packet,meta or metadata(),bounds,voxel_size_m=.008,depth_margin_m=.003,now_utc=NOW)
+        # The complete projected rectangle is pixels29..34. The initial
+        # larger dyadic window also sees pixel28, which must not create an
+        # artificial occlusion. Every actual footprint pixel sees the floor.
+        self.assertEqual(one(camera(depth)).states[0,0,0],FREE)
+        padded=metadata();padded['ray_footprint_padding_px']=2
+        self.assertEqual(one(camera(depth),padded).states[0,0,0],UNKNOWN)
+        for value in [.1,np.nan]:
+            inside=depth.copy();inside[31,29]=value
+            self.assertEqual(one(camera(inside)).states[0,0,0],UNKNOWN)
+
+    def test_exact_rectangle_minimum_matches_every_pixel(self):
+        from field_demo.residual_occupancy import _rectangle_depth_minimum
+        rng=np.random.default_rng(7);depth=rng.uniform(.1,1.,(31,43));depth[4,5]=0.
+        low=np.c_[rng.integers(0,43,150),rng.integers(0,31,150)]
+        high=np.array([[rng.integers(x,43),rng.integers(y,31)]for x,y in low])
+        expected=[depth[y0:y1+1,x0:x1+1].min()for (x0,y0),(x1,y1)in zip(low,high)]
+        np.testing.assert_array_equal(_rectangle_depth_minimum(depth,low,high),expected)
 
     def test_sdk_endpoints_use_actual_organized_rays(self):
         depth = np.full((64, 64), np.nan); depth[32, 31] = .4

@@ -9,3 +9,9 @@ GPU2 supplies cuRobo IK proposals, validated against exact exported USD FK/joint
 Current-policy random full-task reliability is NOT demonstrated. v260: deep pin grasp remained stable through direct insertion/release/withdraw, then ring pregrasp cross-arm contact aborted. v261: near-COM pin grip rolled and was rejected. v262: deep pin hold remained measurable, but axial insertion IK failed. None is a complete three-part success. v258/259 expose respectively a transient camera timeout and a subsequently fixed end-tip radius classification bug. Their failed outcomes are preserved.
 
 The next change adds explicit predictive other-arm geometry and checks the actual issued pregrasp curve/aperture; new trials263/264 are in progress. Actual field hardware has not been connected/tested.
+
+## Next source checkpoint
+
+The Hand surface self-filter uses recorded capture TCP/encoder aperture and official native Hand mesh surfaces only (1.2mm surface band); it never erases the enclosing Hand volume or uses loose actor poses. Four archived late-close false palm-obstacle cases are resolved. The newest445 physical run266 picked/transferred both rings, but failed its large-ring prealignment. Run268 rejects a pin terminal branch before carry; full-task failure reports are retained. Direct class selection also avoids duplicate preview/replanning.
+
+Portable cuRobo GPU2 service sources and exact USD-derived reference model are under `roas-table/gpu_planning/`. GPU route proposals use approximate cached8mm ESDF plus current encoder/RGB-D obstacle envelopes; all original PhysX/native Hand/other-arm/payload checks and FR3 retiming remain authoritative. Default-off route support is being tested, not presented as an accepted physical route. CUDA binaries, mesh caches and runtime sockets are excluded.

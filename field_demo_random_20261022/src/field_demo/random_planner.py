@@ -336,6 +336,16 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
             raise ValueError('Loose-stock contact must bind the actual native5N/1Nm executor and its250ms stop/heartbeat test')
         dependencies['stock_contact_native_executor']={'path':str(binary),'sha256':digest(binary)}
         dependencies['stock_contact_stop_test']={'path':str(stop_evidence),'sha256':digest(stop_evidence)}
+    if phase.get('bounded_loose_stock_departure')is not None:
+        from .stock_departure import validate_departure_policy
+        contract=validate_departure_policy(phase,envelope);policy=phase['bounded_loose_stock_departure']['contact_policy'];monitor=policy['monitoring']
+        records=[('departure_up',contract['up_axis_measurement']),('inventory',policy['inventory_contract']['measurement']),('bin_interior',policy['bin_interior']['measurement']),('monitoring',monitor['measurement'])]+[('finger_'+str(i),f['measurement'])for i,f in enumerate(policy['finger_capsules'])]
+        if contract['support_floor']is not None:records.append(('support_floor',contract['support_floor']['measurement']))
+        for label,record in records:measured(record,root,dependencies,'stock_departure_'+label,now)
+        binary=(root/site_config['motion_binary']).resolve();stop_evidence=(root/force['measurement']['evidence_file']).resolve()
+        if digest(binary)!=contract['native_driver_sha256']or digest(stop_evidence)!=contract['stop_test_sha256']or monitor['heartbeat_timeout_s']!=.25:raise ValueError('Departure must bind actual native5N/1Nm executor and250ms stop test')
+        dependencies['stock_departure_native_executor']={'path':str(binary),'sha256':digest(binary)}
+        dependencies['stock_departure_stop_test']={'path':str(stop_evidence),'sha256':digest(stop_evidence)}
     other_envelope = copy.deepcopy(config['robots'][other_side]); other_envelope['_angular_speed_bound_rad_s'] = 0.
     active = collision.robot_capsules(links, envelope['link_radii_m'], trace['speeds'], trace['gap'], tcps, envelope, side+'_')
     other = collision.robot_capsules(other_links[None], other_envelope['link_radii_m'], np.zeros(9), 0, other_tcp[None], other_envelope, other_side+'_')
@@ -389,19 +399,26 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
             extent = max(np.linalg.norm(shape['a']), np.linalg.norm(shape['b']))
             row['r'] += (tracking_bounds[-1] + tracking_limit*7*extent if moving else other_tracking[-1] + np.sum(other_joint_error)*extent)
             row['r'] += config['target_position_tolerance_m'] + 2*extent*np.sin(config['target_angle_tolerance_rad']/2)
-            row.update(part=entry['part'], owner='active' if moving else 'other',
+            row.update(part=entry['part'],T_tcp_part=entry['T_tcp_part'], owner='active' if moving else 'other',
                        robot_ignore_capsules=other_envelope.get('payload_robot_ignore_capsules', []),
                        instance_id=entry.get('instance_id', phase['_target_instance_id'] if entry['part']==part else None))
         payloads.extend(rows)
+    if phase.get('bounded_loose_stock_departure')is not None:
+        from .stock_departure import certify_issued_departure
+        association=[entry for entry in held if entry['robot']==side and entry['part']==part and entry.get('observation_capture_id')==observation['capture_id']]
+        selected=[row for row in payloads if row.get('owner')=='active'and row.get('part')==part]
+        if len(association)!=1 or not selected or observation.get('scope')!='held':raise ValueError('Departure requires this fresh held-image/SDK G association')
+        phase['_departure_certificate']=certify_issued_departure(tcps,phase,envelope,selected_payload=selected[0])
     dynamic = []
     scene = copy.deepcopy(config['scene'])
     # All observed clutter is retained, including fresh basket packets when
     # the primary view is a local held-object camera.
     for packet_index, packet in enumerate(scene_packets(observation, config, root, dependencies, now)):
+        packet_residual_boxes=[]
         if packet.get('scope')=='basket' and config['scene'].get('require_residual_occupancy') is True:
             from .residual_occupancy import OccupancySnapshot
             snapshot=OccupancySnapshot.from_record(packet['residual_occupancy'],expected_capture_id=packet['capture_id'],expected_calibration_sha256=packet['calibration_sha256'],max_age_s=config['max_observation_age_s'],now_utc=now)
-            scene['obstacles'].extend(snapshot.planner_boxes())
+            packet_residual_boxes=snapshot.planner_boxes();scene['obstacles'].extend(packet_residual_boxes)
         for box_index, obstacle in enumerate(packet.get('conservative_scene_obstacles', [])):
             if obstacle.get('source') != 'measured_unknown_scene_enclosure' or packet.get('basket_scene_status') != 'unknown_treated_fully_occupied':
                 raise ValueError('Unknown-space enclosure needs actual measured basket provenance')
@@ -438,12 +455,19 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
                         continue
                     tcp = tcps[0] if entry['robot'] == side else other_tcp
                     expected = tcp@collision.transform(entry['T_tcp_part'])
-                    if np.linalg.norm(actual[:3, 3]-expected[:3, 3]) <= config['target_position_tolerance_m']:
+                    axis_error=float(np.arccos(np.clip(actual[:3,2]@expected[:3,2],-1,1)))
+                    if np.linalg.norm(actual[:3, 3]-expected[:3, 3]) <= config['target_position_tolerance_m']and axis_error<=config['target_angle_tolerance_rad']:
                         matched.append(entry)
                 close = [value for value in packet.get('instances', []) if value['part'] == instance['part'] and
                          np.linalg.norm(collision.transform(value['T_cell_part'])[:3, 3]-actual[:3, 3]) <= config['target_position_tolerance_m']]
                 if len(matched) != 1 or len(close) != 1:
                     raise ValueError('Excluded basket instance is ambiguous or does not match the actual measured held transform')
+                owner=matched[0];owned_payloads=[row for row in payloads if row.get('part')==owner['part']and row.get('owner')==('active'if owner['robot']==side else'other')]
+                for occupied in packet_residual_boxes:
+                    if occupied.get('occupancy_kind')=='occupied'and occupied.get('selected_contact_instance_id')==identity:
+                        occupied['owned_payload_part']=owner['part'];occupied['owned_payload_owner']='active'if owner['robot']==side else'other'
+                        occupied['owned_payload_instance_ids']=sorted({row['instance_id']for row in owned_payloads if row.get('instance_id')})
+                        occupied['owned_surface_source_capture_id']=observation['capture_id']
         for instance in packet.get('instances', []):
             if instance['instance_id'] in exclusions:
                 continue
@@ -456,7 +480,7 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
             measured(definition.get('measurement'), root, dependencies, 'loose_shape_'+instance['part'], now)
             object_pose = collision.transform(instance['T_cell_part'])[None]
             for row in collision.local_capsules(payload_capsules(definition), object_pose, 0, 0, 0, 'observed_'+instance['instance_id']):
-                row.update(instance_id=instance['instance_id'], part=instance['part'])
+                row.update(instance_id=instance['instance_id'], part=instance['part'],source='current_RGBD_loose_ring'if instance['part']in ('ring1','ring2')else'current_RGBD_pin')
                 dynamic.append(row)
     for index, installed in enumerate(observation.get('installed_parts', [])):
         measured(installed.get('measurement'), root, dependencies, 'installed_pose_'+str(index), now)
@@ -472,7 +496,7 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
                   point_speed_bounds_m_s=trace['speeds'].tolist(),
                   enforced_joint_tracking_error_bound_rad=tracking_limit,
                   tracking_envelope_inflation_m=tracking_bounds.tolist(),
-                  tight_clearance_rejection_possible=True)
+                  tight_clearance_rejection_possible=True,stock_departure_certificate=phase.get('_departure_certificate'))
     return result, trace
 
 

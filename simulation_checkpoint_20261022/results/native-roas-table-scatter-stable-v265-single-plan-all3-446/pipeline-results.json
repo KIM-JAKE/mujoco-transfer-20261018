@@ -1,0 +1,1721 @@
+{
+  "full_task_pass": false,
+  "vision_end_to_end_pass": false,
+  "end_to_end_under30": false,
+  "hardware_tested": false,
+  "part_attachments": false,
+  "workpiece_teleports_after_initialization": 0,
+  "physics_hz": 1920,
+  "python_thread_switch_interval_s": 0.005,
+  "timing_basis": "Monotonic wall time from first camera snapshot through >=0.5s verified retention",
+  "CPU_camera_waits_omitted": false,
+  "finger_effort_caps_n": {
+    "left_per_finger": 30.0,
+    "right_per_finger": 30.0,
+    "left_final_insertion_per_finger": 15.0
+  },
+  "clamp_target_update_hz": 30,
+  "wall_pacing": "Each 480 Hz control step advances two 960 Hz PhysX substeps and takes at least 1/480 s wall time; no catch-up fast-forward",
+  "native_finger_target_speed_cap_m_s": 0.0475,
+  "native_force_hold": "Scattered controller: single motor + coupled passive finger, velocity preload, finite force; no attachment",
+  "initial_big_ring_aperture_m": 0.076,
+  "neural_mask_cache_used": false,
+  "CPU_fast_kinematics": {
+    "enabled": true,
+    "device": "CPU",
+    "algorithm": "Same USD frames, joint bounds, DLS damping and 220-iteration limit; Eigen C++ implementation",
+    "library_sha256": "efaaa4965137f12bd60de206612217e3271a7b702c02ca6105479e9fbf470234",
+    "source_sha256": "b513b9dc1d624c79473fe5836cdc78bd13aaaf670e48cc7b024fc3866691835a"
+  },
+  "pin_clamp_assumed_center_z_m": 1.515,
+  "pin_clamp_hardware_calibrated": false,
+  "pin_method": "Tail grasp, uninterrupted axial insertion, release only after fresh full-depth RGB-D confirmation",
+  "clamp_tensor_drives": false,
+  "solver_iterations": {
+    "position": 16,
+    "velocity": 16
+  },
+  "physics_hz_range": [
+    1920,
+    1920
+  ],
+  "physics_worker_threads": 0,
+  "physics_cpu_dispatcher": true,
+  "continuous_collision_detection": true,
+  "controller_hz": 480,
+  "physics_substeps_per_command": 4,
+  "randomized_bin_config": {
+    "seed": 446,
+    "tensor_clamps": false,
+    "correction_joint7_weight": 0.05,
+    "width_guard": true,
+    "digital_clamps": true,
+    "digital_clamp_threshold": 0.95,
+    "fixed_visual_application": true,
+    "direct_pin": true,
+    "ring_seat_hold_s": 0.35,
+    "motion_time_scale": 1.01,
+    "early_width_guard": true,
+    "held_correction_ramp_s": 0.35,
+    "physics_substeps": 4,
+    "physics_substep_window_s": [
+      13.0,
+      16.5
+    ],
+    "pin_tail_candidate": 0,
+    "enforce_motor_speed_limits": true,
+    "randomization_mode": "full_bin_drop",
+    "randomization_settle_s": 3.0,
+    "scatter_probe_only": false,
+    "native_mimic_frequency_hz": 0.0,
+    "deadline_s": 600,
+    "scattered_control": true,
+    "pick_part": "ring2",
+    "native_motor_speed_cap_m_s": 0.032,
+    "scattered_full_task": true,
+    "handover_only": false,
+    "scattered_physics_substeps": 4,
+    "native_finger_convex_decomposition": false,
+    "solver_velocity_iterations": 16,
+    "shuffle_drop_order": true,
+    "randomization_protocol": "full_bin_drop_shuffled_v2",
+    "start_above_bin": true,
+    "experimental_sim_only": true,
+    "full_random_task_validated": false,
+    "allow_fingertip_nudging": true,
+    "allow_internal_grasp": false,
+    "allow_single_finger_rearrangement": true,
+    "native_shared_motor_drive": true,
+    "native_grip_pad_force_n": 30,
+    "optimization_report": "scatter-optimization-20261021.json",
+    "one_ring_only": false,
+    "fast_transport": true,
+    "allow_chord_grasp": true,
+    "allow_side_entry": true,
+    "optimized_motion_timing": true,
+    "tracking_image_width_px": 384,
+    "native_contact_offset_m": 0.0005,
+    "gentle_descent": true,
+    "handover_plan_budget_s": 60.0,
+    "stability_time_scale": 1.0,
+    "grasp_settle_s": 0.2,
+    "ring_contact_debug": false,
+    "optimization_phase": "randomized_reliability_first",
+    "stable_small_grasp": true,
+    "prefer_internal_small_grasp": false,
+    "ring_yaw_free": true,
+    "reliability_handover_hint": true,
+    "stability_finish_rings_before_pin": true,
+    "continuous_force_hold": true,
+    "stability_serial": true,
+    "pin_first": false,
+    "descent_contact_speed_m_s": 0.03,
+    "shortcut_checked_routes": true,
+    "parallel_transfer_approach": false,
+    "pregrasp_floor_m": 1.235,
+    "prefer_near_handover_branch": true,
+    "pregrasp_floor_small_m": 1.235,
+    "path_local_timing": true,
+    "warm_spline_routes": false,
+    "center_large_receiver_grasp": true,
+    "sort_donor_orientations": true,
+    "handover_offsets_override": [
+      [
+        0.1,
+        -0.1,
+        0.0
+      ]
+    ],
+    "pin_between_rings": false,
+    "local_left_park": true,
+    "wait_for_ring_transport_clear": true,
+    "small_receiver_opening_m": 0.074,
+    "receiver_approach_standoff_m": 0.02,
+    "receiver_approach_step_m": 0.002,
+    "receiver_approach_resolution_rad": 0.002,
+    "pickup_multiview": true,
+    "require_fresh_preclose_rgbd": true,
+    "small_ring_repick_on_unstable_hold": true,
+    "small_ring_com_x_limit_m": 0.0025,
+    "pickup_retry_limit": 3,
+    "initial_eye_offset_m": [
+      0.04,
+      -0.04,
+      0.65
+    ],
+    "stable_receiver_grasp": true,
+    "rim_only_pickup": false,
+    "allow_local_rim_grasp": false,
+    "prefer_local_rim_grasp": true,
+    "initial_pickup_multiview": true,
+    "native_loaded_preload_ramp_s": 0.3,
+    "native_loaded_initial_preload_m_s": 0.003,
+    "native_loaded_preload_m_s": 0.0075,
+    "rim_encoder_recenter": true,
+    "strict_rim_clutter": true,
+    "native_loaded_preload_after_contact_m_s": 0.015,
+    "inner_only_pickup": false,
+    "native_inner_bore_grasp": false,
+    "operation_solver_position_iterations": 128,
+    "operation_solver_velocity_iterations": 64,
+    "inner_bore_friction_reserve_mu": 0.6,
+    "allow_bin_release_retry": true,
+    "verify_receiver_pad_contact": true,
+    "inner_bore_x_tilt_candidates_deg": [
+      0,
+      10,
+      -10,
+      15,
+      -15
+    ],
+    "inner_bore_center_correction_limit_m": 0.0025,
+    "right_ring_insert_probe": false,
+    "receiver_axial_only": false,
+    "axial_receiver_probe": false,
+    "right_insertion_fixture_probe": false,
+    "rearrange_probe": false,
+    "rearrange_then_pick": false,
+    "require_front_up_pickup": false,
+    "rearrange_front_up_only": false,
+    "allow_partial_preclose_tracking": true,
+    "preclose_occlusion_max_age_s": 2.0,
+    "verify_lifted_pad_contact": true,
+    "right_direct_empty_left_parking": true,
+    "right_left_park_fixture_probe": false,
+    "reuse_aperture_invariant_checks": true,
+    "axial_receiver_fixture_budget_s": 90.0,
+    "allow_direct_right_insert": true,
+    "prefer_right_carry_small_posture": true,
+    "right_carry_vertical_escape": false,
+    "avoid_other_stock_finger_contact": true,
+    "stable_outer_donor_grasp": true,
+    "allow_tilted_bore_hook": true,
+    "timing_comparison_eligible": false,
+    "rearrangement_retry_limit": 3,
+    "bin_axial_pick_probe": false,
+    "tilted_ring_hook_probe": false,
+    "broaden_tilted_bore_hook_proposals": true,
+    "rearrangement_pickup_extra_eye_offsets_m": [
+      [
+        0.28,
+        0.28,
+        0.5
+      ],
+      [
+        -0.28,
+        -0.28,
+        0.5
+      ]
+    ],
+    "donor_release_opening_cap_m": 0.078,
+    "adaptive_initial_ring_order": true,
+    "pickup_diagonal_offsets_m": [
+      [
+        -0.08,
+        0.0,
+        0.0
+      ]
+    ],
+    "receiver_depth_options_m": [
+      0.002
+    ],
+    "right_fixture_replan_on_alignment_failure": true,
+    "close_empty_left_for_pin": true,
+    "large_receiver_depth_options_m": [
+      0.004
+    ],
+    "large_encoder_pose_bias_compensation": true,
+    "require_broad_large_donor_support": true,
+    "right_fixture_oblique_camera_views": true,
+    "defer_handover_until_visible_clearance": true,
+    "verify_large_lift_grasp_retention": true,
+    "large_lift_grasp_translation_limit_m": 0.002,
+    "large_lift_grasp_axis_limit_rad": 0.05,
+    "verify_large_donor_after_carry": true,
+    "robust_annular_camera_view_bank": true,
+    "timing_metadata_correction": "Parallel CPU reliability experiment; measured wall time is not an eligible optimization comparison.",
+    "balanced_large_receiver_grasp": true,
+    "pin_visual_preinsert_alignment": true,
+    "pin_axis_goal_world_m": [
+      -0.30203095784,
+      0.22724999619,
+      1.52875
+    ],
+    "exact_axis_large_receiver_grasp": true,
+    "verify_selected_outer_approach": true,
+    "robust_pin_cap_circle": true,
+    "pin_precision_image_width_px": 768,
+    "pin_grasp_catalog_run": "native-roas-table-scatter-stable-v251-corrected-pin-catalog",
+    "pin_grasp_catalog_candidate": 0,
+    "pin_grasp_catalog_probe": false,
+    "pin_axis_frame_consistent_geometry": true,
+    "verify_native_pin_hold": true,
+    "ray_image_backend": "warp_cuda",
+    "gpu_ik_proposals": true,
+    "gpu_ik_socket": "/workspace/project/mujoco/.local/curobo-gpu2/ik.sock",
+    "pin_rgbd_sdk_hold_confirmation": true
+  },
+  "randomized_ring_count": 10,
+  "setup_depenetration_cap_m_s": 0.2,
+  "operation_depenetration_cap_m_s": 1000.0,
+  "fixed_standby_TCP_world_m": [
+    0.515,
+    -0.715,
+    1.255
+  ],
+  "standby_independent_of_images_or_object_poses": true,
+  "contact_material_audit": {
+    "steel": {
+      "static_friction": 0.6000000238418579,
+      "dynamic_friction": 0.5099999904632568,
+      "authored_friction_combine_mode": null,
+      "default_combine_mode": "average",
+      "hardware_friction_measured": false
+    },
+    "rubber": {
+      "static_friction": 1.0,
+      "dynamic_friction": 0.8500000238418579,
+      "authored_friction_combine_mode": null,
+      "default_combine_mode": "average",
+      "hardware_friction_measured": false
+    }
+  },
+  "initial_RGBD_camera_eye_offset_m": [
+    0.04,
+    -0.04,
+    0.65
+  ],
+  "clamp_control": "Finite-force open/close commands, same jaw strokes and force caps",
+  "pickup_depth_increase_m": {
+    "ring1": 0.0,
+    "ring2": 0.0
+  },
+  "diagnostic_rings_only": false,
+  "pin_grasp_catalog_selection": {
+    "run": "native-roas-table-scatter-stable-v251-corrected-pin-catalog",
+    "candidate_index": 0,
+    "tilt_deg": -40,
+    "contact_z_m": 0.0,
+    "pickup_center_from_RGBD": [
+      0.19000387111393577,
+      -0.7897289286242213,
+      0.9160499607069958
+    ],
+    "physical_grasp_previously_tested": false
+  },
+  "usd_clamp_targets_batched": true,
+  "dof_names": [
+    "left_arm_fr3v2_joint1",
+    "right_arm_fr3v2_joint1",
+    "left_arm_fr3v2_joint2",
+    "right_arm_fr3v2_joint2",
+    "left_arm_fr3v2_joint3",
+    "right_arm_fr3v2_joint3",
+    "left_arm_fr3v2_joint4",
+    "right_arm_fr3v2_joint4",
+    "left_arm_fr3v2_joint5",
+    "right_arm_fr3v2_joint5",
+    "left_arm_fr3v2_joint6",
+    "right_arm_fr3v2_joint6",
+    "left_arm_fr3v2_joint7",
+    "right_arm_fr3v2_joint7",
+    "left_native_left",
+    "left_native_right",
+    "right_native_left",
+    "right_native_right"
+  ],
+  "link_names": [
+    "official_FR3_Duo",
+    "left_arm_base",
+    "right_arm_base",
+    "left_arm_fr3v2_link0",
+    "right_arm_fr3v2_link0",
+    "left_arm_fr3v2_link1",
+    "right_arm_fr3v2_link1",
+    "left_arm_fr3v2_link2",
+    "right_arm_fr3v2_link2",
+    "left_arm_fr3v2_link3",
+    "right_arm_fr3v2_link3",
+    "left_arm_fr3v2_link4",
+    "right_arm_fr3v2_link4",
+    "left_arm_fr3v2_link5",
+    "right_arm_fr3v2_link5",
+    "left_arm_fr3v2_link6",
+    "right_arm_fr3v2_link6",
+    "left_arm_fr3v2_link7",
+    "right_arm_fr3v2_link7",
+    "left_arm_fr3v2_link8",
+    "right_arm_fr3v2_link8",
+    "left_NativeHand",
+    "right_NativeHand",
+    "left_left_finger",
+    "left_right_finger",
+    "right_left_finger",
+    "right_right_finger"
+  ],
+  "camera_preparation_s": 0.002436690032482147,
+  "reference_motion": "live RGB-D scattered controller; no taught pickup path",
+  "stationary_trim_s": 0.0,
+  "joint_headroom_retiming_saved_s": 0.0,
+  "retimed_free_motion_windows": [],
+  "starts_with_rings_already_installed": false,
+  "scene_ring_color": "same steel material",
+  "pin_collision_approximation": {
+    "model": "Four coaxial convex cylinders, approximate CAD outer dimensions",
+    "length_m": 0.0355,
+    "tail_diameter_m": 0.0105,
+    "collar_diameter_m": 0.013,
+    "shaft_diameter_m": 0.0076,
+    "CAD_nominal_shaft_diameter_m": 0.008,
+    "radial_clearance_allowance_m": 0.0002,
+    "tip_diameter_m": 0.005,
+    "parts": 4,
+    "original_slits_and_reliefs_not_simulated": true,
+    "hardware_validated": false
+  },
+  "grasp_obstacles_from_RGBD_cloud": true,
+  "loose_stock_contact_policy": "Fingertip nudging allowed; RGB-D palm sweep, fixed-structure queries and all physical contacts retained",
+  "fixed_receiver_catalog": {
+    "key": "e1d24196a2d3175da8920c08bcf2453d52cd5b4296369eb8778edc8f00f0b963",
+    "cached": false,
+    "balanced_large_receiver_grasp": true,
+    "exact_axis_large_receiver_grasp": true,
+    "preparation_s": 5.299850973999128,
+    "counts": {
+      "ring1|depths=0.0040000000000000001|balanced-X=0.0051883790850085765|exact-axis-Y=0.60889605905295219": 60,
+      "ring2|depths=0.002": 60
+    },
+    "uses_free_body_poses": false,
+    "preparation_excluded_from_operation_clock": true
+  },
+  "fast_transport_planner": {
+    "enabled": true,
+    "version": "0.7.0.8",
+    "static_objects": 2793,
+    "skipped_static_colliders": [],
+    "preparation_s": 52.83533072494902,
+    "uses_free_body_poses": false,
+    "proposal_only": true,
+    "live_PhysX_path_verification_required": true
+  },
+  "native_contact_generation": {
+    "contact_offset_m": 0.0005,
+    "rest_offset_m": 0.0,
+    "colliders": 4,
+    "applied_after_random_setup": true,
+    "collision_geometry_unchanged": true,
+    "friction_unchanged": true
+  },
+  "operation_solver_iterations": {
+    "position": 128,
+    "velocity": 64,
+    "applied_after_random_setup": true
+  },
+  "standby_preparation_wall_s": 78.15837131801527,
+  "automatic_gc_deferred_during_cycle": true,
+  "first_capture_wall_epoch_s": 1792605022.861208,
+  "motor_velocity_cap_policy": "Signed position-dependent FR3 bounds at encoder position plus one-step margin; 93% drive cap and unchanged 95% actual velocity acceptance",
+  "CPU_planning_advances_physics": false,
+  "hard_realtime_controller_validated": false,
+  "native_gripper_control": "One scalar width/velocity command + hard mechanical coupling; same reference on both pads; total effort cap 60.0 N and total damping 4000 N s/m, distributed equally; no additional motor capability; loaded grasp maintains closing force at 15 mm/s velocity preload instead of relaxing at a fixed minimum width; configured loaded preload 7.5 mm/s with 0.3 s force ramp",
+  "native_single_motor_coupling_validated": true,
+  "native_shared_motor_drive": true,
+  "native_loaded_preload_ramp": {
+    "duration_s": 0.3,
+    "initial_m_s": 0.003,
+    "final_m_s": 0.0075,
+    "motor_force_cap_n": 60.0,
+    "arm_timing_unchanged": true
+  },
+  "planning_diagnostics": [
+    {
+      "event": "right_ring_fixture_search",
+      "part": "ring1",
+      "fresh_RGBD_alignment_replan": false,
+      "approved": true,
+      "counts": {},
+      "examples": {},
+      "carry_route_counts": {
+        "attempts": 1,
+        "accepted": 1
+      },
+      "current_measured_grasp": [
+        [
+          0.9087454500848725,
+          -0.00020635098112900421,
+          -0.41735106529765886,
+          -0.0024030171782052356
+        ],
+        [
+          0.00036925041282452587,
+          1.00000000677442,
+          0.0003095352437390921,
+          1.3329911271453554e-06
+        ],
+        [
+          0.4173509888754599,
+          -0.00043543679066016525,
+          0.9087454489139055,
+          0.0049397051950221815
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "checked_width_m": 0.07500026177794605
+    },
+    {
+      "event": "right_ring_checked_executed_curve",
+      "part": "ring1",
+      "label": "carry_to_preinsert",
+      "checked_openings_m": [
+        0.07199863344430923,
+        0.0726878009736538,
+        0.07337696850299835,
+        0.07406613603234291,
+        0.07475530356168747
+      ],
+      "payload_checked": true,
+      "aperture_invariants_reused": true,
+      "aperture_query_diagnostics": {
+        "apertures_m": [
+          0.07199863344430923,
+          0.0726878009736538,
+          0.07337696850299835,
+          0.07406613603234291,
+          0.07475530356168747
+        ],
+        "reference_full_paths": 1,
+        "dependent_configurations": 12184,
+        "invariant_configurations_reused": 0,
+        "fallback_full_configurations": 0,
+        "changed_body_names": [
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger",
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger"
+        ],
+        "path_sample_count": 3046
+      },
+      "duration_s": 6.341666666666667,
+      "progress_law": "checked_joint_edges_with_corner_stops",
+      "corner_stops": 23,
+      "velocity_fraction": 0.9,
+      "acceleration_rad_s2": 9.2,
+      "jerk_rad_s3": 4400.0,
+      "geometry_overshoot_avoided": true,
+      "full_concatenated_command_check": true,
+      "peak_velocity_fraction_of_reserved_bound": 0.8915655791834227,
+      "max_acceleration_rad_s2": 8.83026123046875,
+      "max_jerk_rad_s3": 2913.57421875
+    },
+    {
+      "event": "right_ring_checked_executed_curve",
+      "part": "ring1",
+      "label": "preinsert_visual_correction",
+      "checked_openings_m": [
+        0.07199863344430923,
+        0.07267758995294571,
+        0.07335654646158218,
+        0.07403550297021866,
+        0.07471445947885513
+      ],
+      "payload_checked": true,
+      "aperture_invariants_reused": true,
+      "aperture_query_diagnostics": {
+        "apertures_m": [
+          0.07199863344430923,
+          0.07267758995294571,
+          0.07335654646158218,
+          0.07403550297021866,
+          0.07471445947885513
+        ],
+        "reference_full_paths": 1,
+        "dependent_configurations": 860,
+        "invariant_configurations_reused": 0,
+        "fallback_full_configurations": 0,
+        "changed_body_names": [
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger",
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger"
+        ],
+        "path_sample_count": 215
+      },
+      "duration_s": 0.44375,
+      "progress_law": "checked_joint_edges_with_corner_stops",
+      "corner_stops": 7,
+      "velocity_fraction": 0.9,
+      "acceleration_rad_s2": 9.2,
+      "jerk_rad_s3": 4400.0,
+      "geometry_overshoot_avoided": true,
+      "full_concatenated_command_check": true,
+      "peak_velocity_fraction_of_reserved_bound": 0.01082286883249841,
+      "max_acceleration_rad_s2": 1.593017578125,
+      "max_jerk_rad_s3": 263.671875
+    },
+    {
+      "event": "right_ring_checked_executed_curve",
+      "part": "ring1",
+      "label": "axial_insert",
+      "checked_openings_m": [
+        0.07199863344430923,
+        0.07267758622765541,
+        0.07335653901100159,
+        0.07403549179434776,
+        0.07471444457769394
+      ],
+      "payload_checked": false,
+      "aperture_invariants_reused": true,
+      "aperture_query_diagnostics": {
+        "apertures_m": [
+          0.07199863344430923,
+          0.07267758622765541,
+          0.07335653901100159,
+          0.07403549179434776,
+          0.07471444457769394
+        ],
+        "reference_full_paths": 1,
+        "dependent_configurations": 1544,
+        "invariant_configurations_reused": 0,
+        "fallback_full_configurations": 0,
+        "changed_body_names": [
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger",
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger"
+        ],
+        "path_sample_count": 386
+      },
+      "duration_s": 0.8,
+      "progress_law": "checked_joint_edges_with_corner_stops",
+      "corner_stops": 7,
+      "velocity_fraction": 0.9,
+      "acceleration_rad_s2": 9.2,
+      "jerk_rad_s3": 4400.0,
+      "geometry_overshoot_avoided": true,
+      "full_concatenated_command_check": true,
+      "peak_velocity_fraction_of_reserved_bound": 0.17163711043107904,
+      "max_acceleration_rad_s2": 8.8165283203125,
+      "max_jerk_rad_s3": 4113.28125
+    },
+    {
+      "event": "right_ring_checked_executed_curve",
+      "part": "ring1",
+      "label": "release_after_full_depth",
+      "checked_openings_m": [
+        0.07199863344430923,
+        0.07399897508323193,
+        0.07599931672215463,
+        0.0779996583610773,
+        0.08
+      ],
+      "payload_checked": false,
+      "aperture_invariants_reused": true,
+      "aperture_query_diagnostics": {
+        "apertures_m": [
+          0.07199863344430923,
+          0.07399897508323193,
+          0.07599931672215463,
+          0.0779996583610773,
+          0.08
+        ],
+        "reference_full_paths": 1,
+        "dependent_configurations": 392,
+        "invariant_configurations_reused": 0,
+        "fallback_full_configurations": 0,
+        "changed_body_names": [
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger",
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger"
+        ],
+        "path_sample_count": 98
+      },
+      "duration_s": 0.2,
+      "progress_law": "minimum_jerk",
+      "ramp_fraction": null,
+      "velocity_fraction": 0.9,
+      "acceleration_rad_s2": 9.2,
+      "jerk_rad_s3": 4400.0
+    },
+    {
+      "event": "right_ring_checked_executed_curve",
+      "part": "ring1",
+      "label": "world_down_withdraw",
+      "checked_openings_m": [
+        0.07998514920473099,
+        0.07998886190354824,
+        0.0799925746023655,
+        0.07999628730118274,
+        0.08
+      ],
+      "payload_checked": false,
+      "aperture_invariants_reused": true,
+      "aperture_query_diagnostics": {
+        "apertures_m": [
+          0.07998514920473099,
+          0.07998886190354824,
+          0.0799925746023655,
+          0.07999628730118274,
+          0.08
+        ],
+        "reference_full_paths": 1,
+        "dependent_configurations": 1956,
+        "invariant_configurations_reused": 0,
+        "fallback_full_configurations": 0,
+        "changed_body_names": [
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger",
+          "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger"
+        ],
+        "path_sample_count": 489
+      },
+      "duration_s": 1.0145833333333334,
+      "progress_law": "checked_joint_edges_with_corner_stops",
+      "corner_stops": 7,
+      "velocity_fraction": 0.9,
+      "acceleration_rad_s2": 9.2,
+      "jerk_rad_s3": 4400.0,
+      "geometry_overshoot_avoided": true,
+      "full_concatenated_command_check": true,
+      "peak_velocity_fraction_of_reserved_bound": 0.22929436681228132,
+      "max_acceleration_rad_s2": 8.8165283203125,
+      "max_jerk_rad_s3": 3744.140625
+    },
+    {
+      "event": "live_tilted_bore_hook_planned",
+      "part": "ring2",
+      "source": "fresh live RGB-D and current robot encoders",
+      "left_hand_known_empty": true,
+      "left_actual_q": [
+        -0.1839800477027893,
+        0.9112180471420288,
+        -0.5997387170791626,
+        -2.069779872894287,
+        -2.6931893825531006,
+        1.090158224105835,
+        -0.20198294520378113
+      ],
+      "left_actual_opening_m": 0.07999999821186066,
+      "proposal": {
+        "approved": true,
+        "selected_inner_wall_contact_proof": {
+          "supported": true,
+          "reason": "inner_wall_supports_pull",
+          "first_contact_stroke_m": 0.014,
+          "minimum_hull_clearance_m": 0.0004782773035779467,
+          "first_patch_count": 3,
+          "inner_wall_samples": 3,
+          "cap_samples": 0,
+          "opposing_normal_to_pull_cosine": 0.9487712480961945,
+          "normal_direction_component": -4.7239861755950214e-17,
+          "mean_native_facet_normal_opposition": 0.6985207972438406,
+          "first_patch_world_normal": [
+            0.29930380143122576,
+            -0.7131229446033688,
+            0.6339344605943409
+          ],
+          "force_contact_measured": false,
+          "uses_free_body_poses": false
+        },
+        "pose": {
+          "part": "ring2",
+          "initial_arc_center_m": [
+            0.5858458115446479,
+            -0.7762472127724172,
+            1.1100627174524644
+          ],
+          "initial_plane_axis": [
+            -0.27599839429812606,
+            0.2920413516688877,
+            0.915716514681408
+          ],
+          "center_m": [
+            0.5858458115446479,
+            -0.7762472127724172,
+            1.1100627174524644
+          ],
+          "axis": [
+            -0.27599839429812606,
+            0.2920413516688877,
+            0.915716514681408
+          ],
+          "visible_face_inner_radius_m": 0.029496964379371875,
+          "visible_CAD_end_sign": 1,
+          "front_back_orientation_margin_m": 0.0019969643793718746,
+          "front_back_from_RGBD": true,
+          "rms_m": 0.0004918535798437005,
+          "depth_points": 600,
+          "measured_classification_diameter_m": 0.06036969940350062,
+          "visible_arc_coverage_deg": 360,
+          "size_classification": "RGB-D observed annular arc metric diameter",
+          "uses_depth_sensor": true,
+          "uses_simulator_body_poses": false,
+          "annular_cap_free_space_gate": {
+            "backend": "RGB-D annular CAD cap observed-free-space veto",
+            "uses_simulator_body_poses": false,
+            "support_count": 698,
+            "seen_count": 720,
+            "occluded_count": 0,
+            "contradiction_count": 22,
+            "contradiction_angle_bins": 22,
+            "free_fraction": 0.030555555555555555,
+            "rejected": false
+          }
+        },
+        "contact_TCP": [
+          [
+            0.9659258262886847,
+            -9.226981004209161e-07,
+            0.2588190451023078,
+            0.5853229209204108
+          ],
+          [
+            -8.912579250644525e-07,
+            -0.9999999999995743,
+            -2.388118412687565e-07,
+            -0.7287471492517965
+          ],
+          [
+            0.25881904510241793,
+            0.0,
+            -0.9659258262890958,
+            1.1160398856410352
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "pre_TCP": [
+          [
+            0.9659258262886847,
+            -9.226981004209161e-07,
+            0.2588190451023078,
+            0.5581469211846685
+          ],
+          [
+            -8.912579250644525e-07,
+            -0.9999999999995743,
+            -2.388118412687565e-07,
+            -0.7287471241765532
+          ],
+          [
+            0.25881904510241793,
+            0.0,
+            -0.9659258262890958,
+            1.2174620974013903
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "pre_route": [
+          [
+            -2.5262179374694824,
+            -0.16187289357185364,
+            2.6401171684265137,
+            -1.6493349075317383,
+            2.161133050918579,
+            2.0568647384643555,
+            1.322270154953003
+          ],
+          [
+            -1.810966378409021,
+            -0.3928376075681521,
+            1.9257355019929725,
+            -1.5681288449739323,
+            1.5470185382537895,
+            1.8811456372920978,
+            1.0878740413996248
+          ],
+          [
+            -1.6444622462601766,
+            -0.6239262642802016,
+            1.511432860850761,
+            -1.4454874573516319,
+            1.0326561266504755,
+            1.6027782668271302,
+            1.0419419529560252
+          ],
+          [
+            -1.083263944921257,
+            -1.2430632547127671,
+            0.7367433232169203,
+            -1.1260549332922638,
+            -0.4589490040621874,
+            1.1632111537912941,
+            0.8167533396008051
+          ],
+          [
+            -0.9090429882277089,
+            -1.2420725676214752,
+            0.35331722417491196,
+            -1.1385782732346044,
+            -0.9141732304986114,
+            1.204957590724911,
+            0.7667705481567593
+          ],
+          [
+            -0.7817264224690188,
+            -1.3271142713024129,
+            0.1732825806653863,
+            -1.0983675460973412,
+            -1.1562852138617845,
+            1.1378888468970894,
+            0.7230373068950392
+          ],
+          [
+            -0.6544098567103286,
+            -1.4121559749833505,
+            -0.006752062844139445,
+            -1.058156818960078,
+            -1.3983971972249578,
+            1.0708201030692677,
+            0.679304065633319
+          ]
+        ],
+        "descent": [
+          [
+            -0.6544098567103286,
+            -1.4121559749833505,
+            -0.006752062844139445,
+            -1.058156818960078,
+            -1.3983971972249578,
+            1.0708201030692677,
+            0.679304065633319
+          ],
+          [
+            -0.627431199903288,
+            -1.4629740740328452,
+            -0.018815937248243143,
+            -1.1386159923721237,
+            -1.4050468720912506,
+            1.0955863191671218,
+            0.7089468904615225
+          ],
+          [
+            -0.6022578713092055,
+            -1.5077939267157403,
+            -0.03261146249858804,
+            -1.2080084541805585,
+            -1.4139676975921747,
+            1.1202562867338774,
+            0.7330276490091886
+          ],
+          [
+            -0.5785177700712578,
+            -1.5480906844316782,
+            -0.04777253318994255,
+            -1.2688301422642374,
+            -1.4248521361682331,
+            1.1448810552845528,
+            0.752905422325742
+          ],
+          [
+            -0.5559364083981913,
+            -1.5847648893064061,
+            -0.06406783319905153,
+            -1.3226186057938158,
+            -1.4374748682774898,
+            1.169495338930714,
+            0.7694528578083097
+          ],
+          [
+            -0.5343018717508264,
+            -1.6184044569599627,
+            -0.08133512348703614,
+            -1.3703860647365016,
+            -1.451656637979675,
+            1.1941229403312914,
+            0.7832707020815368
+          ]
+        ],
+        "pull_direction": [
+          -0.5082888983819128,
+          0.7642540951045889,
+          -0.39693585615004306
+        ],
+        "pull_TCP": [
+          [
+            0.9659258262886847,
+            -9.226981004209161e-07,
+            0.2588190451023078,
+            0.5675328094770439
+          ],
+          [
+            -8.912579250644525e-07,
+            -0.9999999999995743,
+            -2.388118412687565e-07,
+            -0.7019982559231359
+          ],
+          [
+            0.25881904510241793,
+            0.0,
+            -0.9659258262890958,
+            1.1021471306757837
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "contact_stage_routes": [
+          [
+            [
+              -0.5343018717508264,
+              -1.6184044569599627,
+              -0.08133512348703614,
+              -1.3703860647365016,
+              -1.451656637979675,
+              1.1941229403312914,
+              0.7832707020815368
+            ],
+            [
+              -0.5342231261323397,
+              -1.628752086473266,
+              -0.07998077469096677,
+              -1.389459557966462,
+              -1.4493101412987577,
+              1.1940312216681457,
+              0.7927781646583996
+            ],
+            [
+              -0.534124796560663,
+              -1.6388919839823095,
+              -0.07865864031731858,
+              -1.4081899296802125,
+              -1.4469786041555668,
+              1.1939533671038334,
+              0.8021399908976645
+            ],
+            [
+              -0.534007332653189,
+              -1.6488327255379107,
+              -0.07736729059319312,
+              -1.4265922393206518,
+              -1.444661453401219,
+              1.1938903723394048,
+              0.811362930808937
+            ],
+            [
+              -0.5338720451664694,
+              -1.65858473428122,
+              -0.0761049066650258,
+              -1.4446842995612548,
+              -1.4423575916457398,
+              1.1938422021596458,
+              0.8204547765383251
+            ],
+            [
+              -0.5337201243292985,
+              -1.6681575249687242,
+              -0.07486983021445824,
+              -1.4624823879531212,
+              -1.4400660305241129,
+              1.1938088248921772,
+              0.8294226552967179
+            ]
+          ],
+          [
+            [
+              -0.5337201243292985,
+              -1.6681575249687242,
+              -0.07486983021445824,
+              -1.4624823879531212,
+              -1.4400660305241129,
+              1.1938088248921772,
+              0.8294226552967179
+            ],
+            [
+              -0.5335625241344719,
+              -1.6770417813596663,
+              -0.07372725835243685,
+              -1.4790352309860624,
+              -1.4379120845054603,
+              1.1937910067732145,
+              0.8377843733941156
+            ],
+            [
+              -0.533391892650077,
+              -1.6857807115164005,
+              -0.07260651291223162,
+              -1.495350760522622,
+              -1.4357676355102524,
+              1.1937863375022624,
+              0.8460464349357506
+            ],
+            [
+              -0.5332089996041279,
+              -1.6943805590518672,
+              -0.07150650846426182,
+              -1.5114396960347716,
+              -1.433632060439643,
+              1.193794797693397,
+              0.8542135481156945
+            ],
+            [
+              -0.5330145551657494,
+              -1.702847111593253,
+              -0.07042623946406526,
+              -1.527311987231979,
+              -1.431504789491916,
+              1.1938163702208242,
+              0.8622900881033446
+            ],
+            [
+              -0.5328092159126807,
+              -1.7111857437796145,
+              -0.06936477239677383,
+              -1.542976886832337,
+              -1.4293853007085804,
+              1.1938510399524391,
+              0.8702801286117293
+            ]
+          ],
+          [
+            [
+              -0.5328092159126807,
+              -1.7111857437796145,
+              -0.06936477239677383,
+              -1.542976886832337,
+              -1.4293853007085804,
+              1.1938510399524391,
+              0.8702801286117293
+            ],
+            [
+              -0.5329517723949683,
+              -1.7053129157959683,
+              -0.07010857761507246,
+              -1.5319403281679342,
+              -1.4308840799083655,
+              1.193822275924154,
+              0.8646492529960795
+            ],
+            [
+              -0.5330890069098144,
+              -1.6993771158731483,
+              -0.07086159073747557,
+              -1.520801747230049,
+              -1.4323867273692081,
+              1.1938000437369376,
+              0.8589758467164701
+            ],
+            [
+              -0.5332206967108467,
+              -1.6933765110281407,
+              -0.07162412887536079,
+              -1.5095579863727628,
+              -1.433893421223924,
+              1.193784348725604,
+              0.8532585186546443
+            ],
+            [
+              -0.5333466066301015,
+              -1.687309174765858,
+              -0.07239652569789275,
+              -1.4982057302495662,
+              -1.4354043506607832,
+              1.1937751970503914,
+              0.8474958095568712
+            ],
+            [
+              -0.5334664880633602,
+              -1.6811730769458173,
+              -0.07317913289774593,
+              -1.486741488587543,
+              -1.4369197169500139,
+              1.193772595396577,
+              0.8416861845065776
+            ]
+          ],
+          [
+            [
+              -0.5334664880633602,
+              -1.6811730769458173,
+              -0.07317913289774593,
+              -1.486741488587543,
+              -1.4369197169500139,
+              1.193772595396577,
+              0.8416861845065776
+            ],
+            [
+              -0.555213167471535,
+              -1.6225664535466027,
+              -0.054911356240463574,
+              -1.407885285604004,
+              -1.4217148402838804,
+              1.16793839708324,
+              0.8219107705392149
+            ],
+            [
+              -0.5786532132607722,
+              -1.5589676633307201,
+              -0.03839125758445247,
+              -1.3189272445389284,
+              -1.4094617011697395,
+              1.142056375440555,
+              0.7969998318356868
+            ],
+            [
+              -0.60421556112778,
+              -1.4886333878098774,
+              -0.023917801934452643,
+              -1.2169248734640445,
+              -1.4004876070020762,
+              1.1160524901174445,
+              0.7653718545590058
+            ],
+            [
+              -0.6325447610187371,
+              -1.4083022410932304,
+              -0.012089392084812566,
+              -1.0963998143831037,
+              -1.3953496506257363,
+              1.0897891636879806,
+              0.7242101986415432
+            ],
+            [
+              -0.6648233862431119,
+              -1.3108254775178931,
+              -0.004333267979050462,
+              -0.945387568520672,
+              -1.3951523464323095,
+              1.0629120005506967,
+              0.6675596257113547
+            ]
+          ]
+        ],
+        "counts": {
+          "native_bore_geometry": 2,
+          "pregrasp_IK": 1,
+          "descent_robot_fixed": 1,
+          "planned_pull_fingers_observed_other_stock": 3
+        },
+        "examples": {
+          "native_bore_geometry": [
+            {
+              "inside_bore": false,
+              "jaws": [
+                {
+                  "jaw_sign": -1.0,
+                  "midplane_intersection_points": 0,
+                  "maximum_midplane_radius_m": null,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": 0.052201719899720125,
+                  "inside_bore": false
+                },
+                {
+                  "jaw_sign": 1.0,
+                  "midplane_intersection_points": 12,
+                  "maximum_midplane_radius_m": 0.016389902695626405,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": -0.001055057468564562,
+                  "inside_bore": false
+                }
+              ],
+              "source": "RGB-D signed ring plane, class CAD and actual unmodified native finger hull"
+            },
+            {
+              "inside_bore": false,
+              "jaws": [
+                {
+                  "jaw_sign": -1.0,
+                  "midplane_intersection_points": 12,
+                  "maximum_midplane_radius_m": 0.016389902695626405,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": -0.001055057468564562,
+                  "inside_bore": false
+                },
+                {
+                  "jaw_sign": 1.0,
+                  "midplane_intersection_points": 0,
+                  "maximum_midplane_radius_m": null,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": 0.052201719899720125,
+                  "inside_bore": false
+                }
+              ],
+              "source": "RGB-D signed ring plane, class CAD and actual unmodified native finger hull"
+            }
+          ],
+          "pregrasp_IK": [
+            {
+              "image_center_m": [
+                0.5858458115446479,
+                -0.7762472127724172,
+                1.1100627174524644
+              ],
+              "target": [
+                0.5581469211846685,
+                -0.7287471241765532,
+                1.2174620974013903
+              ],
+              "seed_index": 0
+            }
+          ],
+          "descent_robot_fixed": [
+            {
+              "image_center_m": [
+                0.5858458115446479,
+                -0.7762472127724172,
+                1.1100627174524644
+              ],
+              "progress": 0.6000000000000001,
+              "collision": {
+                "segment": 0,
+                "fraction": 1.0,
+                "collision": {
+                  "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision",
+                  "actor": "/World/Environment/m80/instance_0641",
+                  "collider": "/World/Environment/m80/instance_0641"
+                }
+              }
+            }
+          ]
+        },
+        "pose_trials": [
+          {
+            "tool_tilt_about_bin_Y_deg": 15.0,
+            "TCP_basket_normal_offset_m": 0.006,
+            "TCP_transverse_offset_m": 0.0,
+            "TCP_transverse_axis": [
+              0.9999999999995743,
+              -9.226981004209161e-07,
+              0.0
+            ],
+            "image_center_m": [
+              0.4802904616993172,
+              -0.8494088923845264,
+              1.1144301359805189
+            ],
+            "image_axis": [
+              -0.38585637796316735,
+              -0.4628670898497479,
+              -0.7980406710933792
+            ],
+            "contact_TCP_world_m": [
+              0.4797675710750801,
+              -0.8019088288639058,
+              1.1204073041690896
+            ],
+            "pregrasp_TCP_world_m": [
+              0.4525915713393378,
+              -0.8019088037886625,
+              1.2218295159294448
+            ],
+            "pull_TCP_world_m": [
+              0.5047118098918744,
+              -0.7512905397666261,
+              1.0789878189149855
+            ],
+            "rotation": [
+              [
+                0.9659258262886847,
+                -9.226981004209161e-07,
+                0.2588190451023078
+              ],
+              [
+                -8.912579250644525e-07,
+                -0.9999999999995743,
+                -2.388118412687565e-07
+              ],
+              [
+                0.25881904510241793,
+                0.0,
+                -0.9659258262890958
+              ]
+            ],
+            "pregrasp_ik_attempts": 0,
+            "bore_proof": {
+              "inside_bore": false,
+              "jaws": [
+                {
+                  "jaw_sign": -1.0,
+                  "midplane_intersection_points": 0,
+                  "maximum_midplane_radius_m": null,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": 0.052201719899720125,
+                  "inside_bore": false
+                },
+                {
+                  "jaw_sign": 1.0,
+                  "midplane_intersection_points": 12,
+                  "maximum_midplane_radius_m": 0.016389902695626405,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": -0.001055057468564562,
+                  "inside_bore": false
+                }
+              ],
+              "source": "RGB-D signed ring plane, class CAD and actual unmodified native finger hull"
+            }
+          },
+          {
+            "tool_tilt_about_bin_Y_deg": 15.0,
+            "TCP_basket_normal_offset_m": 0.006,
+            "TCP_transverse_offset_m": 0.0,
+            "TCP_transverse_axis": [
+              0.9999999999995743,
+              -9.226981004209161e-07,
+              0.0
+            ],
+            "image_center_m": [
+              0.4802904616993172,
+              -0.8494088923845264,
+              1.1144301359805189
+            ],
+            "image_axis": [
+              -0.38585637796316735,
+              -0.4628670898497479,
+              -0.7980406710933792
+            ],
+            "contact_TCP_world_m": [
+              0.4797675710750801,
+              -0.8019088288639058,
+              1.1204073041690896
+            ],
+            "pregrasp_TCP_world_m": [
+              0.4525915713393378,
+              -0.8019088037886625,
+              1.2218295159294448
+            ],
+            "pull_TCP_world_m": [
+              0.5047118098918744,
+              -0.7512905397666261,
+              1.0789878189149855
+            ],
+            "rotation": [
+              [
+                -0.9659258262886847,
+                9.226981004209161e-07,
+                0.2588190451023078
+              ],
+              [
+                8.912579250644525e-07,
+                0.9999999999995743,
+                -2.388118412687565e-07
+              ],
+              [
+                -0.25881904510241793,
+                0.0,
+                -0.9659258262890958
+              ]
+            ],
+            "pregrasp_ik_attempts": 0,
+            "bore_proof": {
+              "inside_bore": false,
+              "jaws": [
+                {
+                  "jaw_sign": -1.0,
+                  "midplane_intersection_points": 12,
+                  "maximum_midplane_radius_m": 0.016389902695626405,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": -0.001055057468564562,
+                  "inside_bore": false
+                },
+                {
+                  "jaw_sign": 1.0,
+                  "midplane_intersection_points": 0,
+                  "maximum_midplane_radius_m": null,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": 0.052201719899720125,
+                  "inside_bore": false
+                }
+              ],
+              "source": "RGB-D signed ring plane, class CAD and actual unmodified native finger hull"
+            }
+          },
+          {
+            "tool_tilt_about_bin_Y_deg": 15.0,
+            "TCP_basket_normal_offset_m": 0.006,
+            "TCP_transverse_offset_m": 0.0,
+            "TCP_transverse_axis": [
+              0.9999999999995743,
+              -9.226981004209161e-07,
+              0.0
+            ],
+            "image_center_m": [
+              0.5858458115446479,
+              -0.7762472127724172,
+              1.1100627174524644
+            ],
+            "image_axis": [
+              -0.27599839429812606,
+              0.2920413516688877,
+              0.915716514681408
+            ],
+            "contact_TCP_world_m": [
+              0.5853229209204108,
+              -0.7287471492517965,
+              1.1160398856410352
+            ],
+            "pregrasp_TCP_world_m": [
+              0.5581469211846685,
+              -0.7287471241765532,
+              1.2174620974013903
+            ],
+            "pull_TCP_world_m": [
+              0.5497426980336769,
+              -0.6752493625944753,
+              1.088254375710532
+            ],
+            "rotation": [
+              [
+                0.9659258262886847,
+                -9.226981004209161e-07,
+                0.2588190451023078
+              ],
+              [
+                -8.912579250644525e-07,
+                -0.9999999999995743,
+                -2.388118412687565e-07
+              ],
+              [
+                0.25881904510241793,
+                0.0,
+                -0.9659258262890958
+              ]
+            ],
+            "pregrasp_ik_attempts": 3,
+            "bore_proof": {
+              "inside_bore": true,
+              "jaws": [
+                {
+                  "jaw_sign": -1.0,
+                  "midplane_intersection_points": 0,
+                  "maximum_midplane_radius_m": null,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": 0.050952744482582336,
+                  "inside_bore": false
+                },
+                {
+                  "jaw_sign": 1.0,
+                  "midplane_intersection_points": 14,
+                  "maximum_midplane_radius_m": 0.012326453890815995,
+                  "minimum_class_bore_radius_m": 0.02525502156294241,
+                  "minimum_native_hull_to_selected_CAD_m": 0.008984685046385506,
+                  "inside_bore": true
+                }
+              ],
+              "source": "RGB-D signed ring plane, class CAD and actual unmodified native finger hull"
+            },
+            "planned_stroke_m": 0.035,
+            "planned_pull_TCP_world_m": [
+              0.5675328094770439,
+              -0.7019982559231359,
+              1.1021471306757837
+            ],
+            "selected_inner_wall_contact_proof": {
+              "supported": true,
+              "reason": "inner_wall_supports_pull",
+              "first_contact_stroke_m": 0.014,
+              "minimum_hull_clearance_m": 0.0004782773035779467,
+              "first_patch_count": 3,
+              "inner_wall_samples": 3,
+              "cap_samples": 0,
+              "opposing_normal_to_pull_cosine": 0.9487712480961945,
+              "normal_direction_component": -4.7239861755950214e-17,
+              "mean_native_facet_normal_opposition": 0.6985207972438406,
+              "first_patch_world_normal": [
+                0.29930380143122576,
+                -0.7131229446033688,
+                0.6339344605943409
+              ],
+              "force_contact_measured": false,
+              "uses_free_body_poses": false
+            }
+          }
+        ],
+        "robot_motion_executed": false,
+        "physical_hook_validated": false
+      },
+      "archived_execute_called": false
+    }
+  ],
+  "empty_donor_contact_guard_events": [
+    {
+      "side": "right",
+      "armed": false,
+      "carried_part": null,
+      "physics_s": 0.0,
+      "force_threshold_n": 12.0
+    },
+    {
+      "side": "right",
+      "armed": false,
+      "carried_part": null,
+      "physics_s": 15.995833333332586,
+      "force_threshold_n": 12.0
+    }
+  ],
+  "selected_actor_ids_for_validation_only": {
+    "ring1": "/World/BinStock/ring1_loose0"
+  },
+  "motor_limit_abort": {
+    "names": [
+      "left_arm_fr3v2_joint1",
+      "right_arm_fr3v2_joint1",
+      "left_arm_fr3v2_joint2",
+      "right_arm_fr3v2_joint2",
+      "left_arm_fr3v2_joint3",
+      "right_arm_fr3v2_joint3",
+      "left_arm_fr3v2_joint4",
+      "right_arm_fr3v2_joint4",
+      "left_arm_fr3v2_joint5",
+      "right_arm_fr3v2_joint5",
+      "left_arm_fr3v2_joint6",
+      "right_arm_fr3v2_joint6",
+      "left_arm_fr3v2_joint7",
+      "right_arm_fr3v2_joint7",
+      "left_native_left",
+      "left_native_right",
+      "right_native_left",
+      "right_native_right"
+    ],
+    "q": [
+      -0.1839800477027893,
+      -0.5341065526008606,
+      0.9112180471420288,
+      -1.6740254163742065,
+      -0.5997387170791626,
+      -0.07362089306116104,
+      -2.069779872894287,
+      -1.4735075235366821,
+      -2.6931893825531006,
+      -1.4391162395477295,
+      1.090158224105835,
+      1.194612741470337,
+      -0.20198294520378113,
+      0.8350080847740173,
+      0.03999999910593033,
+      0.03999999910593033,
+      0.0350184291601181,
+      0.035017792135477066
+    ],
+    "velocity": [
+      0.0,
+      -0.20150291919708252,
+      0.0,
+      -0.00433136522769928,
+      0.0,
+      0.3426439166069031,
+      0.0,
+      0.08405330777168274,
+      0.0,
+      -1.2103116512298584,
+      0.0,
+      0.6579180955886841,
+      0.0,
+      -0.000577881932258606,
+      0.0,
+      0.0,
+      -0.08923859149217606,
+      -0.0804390013217926
+    ],
+    "caps": [
+      2.4365999698638916,
+      2.4365999698638916,
+      1.7935138940811157,
+      0.6029890775680542,
+      2.4365999698638916,
+      2.4365999698638916,
+      2.4365999698638916,
+      2.4365999698638916,
+      4.8917999267578125,
+      4.8917999267578125,
+      3.887399911880493,
+      2.2097392082214355,
+      4.8917999267578125,
+      4.8917999267578125,
+      0.03200000151991844,
+      0.03200000151991844,
+      0.03200000151991844,
+      0.03200000151991844
+    ],
+    "physics_reported_caps": [
+      [
+        2.4365999698638916,
+        2.4365999698638916,
+        1.7935138940811157,
+        0.6029890775680542,
+        2.4365999698638916,
+        2.4365999698638916,
+        2.4365999698638916,
+        2.4365999698638916,
+        4.8917999267578125,
+        4.8917999267578125,
+        3.887399911880493,
+        2.2097392082214355,
+        4.8917999267578125,
+        4.8917999267578125,
+        0.03200000151991844,
+        0.03200000151991844,
+        0.03200000151991844,
+        0.03200000151991844
+      ]
+    ],
+    "physical_s": 21.247916666670093,
+    "previous_q": [
+      -0.1839800477027893,
+      -0.5340666174888611,
+      0.9112180471420288,
+      -1.6735762357711792,
+      -0.5997387170791626,
+      -0.0738784447312355,
+      -2.069779872894287,
+      -1.4727510213851929,
+      -2.6931893825531006,
+      -1.4386160373687744,
+      1.090158224105835,
+      1.1941393613815308,
+      -0.20198294520378113,
+      0.8346248269081116,
+      0.03999999910593033,
+      0.03999999910593033,
+      0.035005610436201096,
+      0.035005610436201096
+    ]
+  },
+  "state": "failed",
+  "error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v265-single-plan-all3-446/isaac_port/native_hand_layout/roas-table/loose_bin_task.py\", line 277, in execute\n    try:p=pick.execute(pickup_ctx)\n          ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v265-single-plan-all3-446/isaac_port/native_hand_layout/roas-table/loose_ring_pick.py\", line 80, in execute\n    return _execute(c)\n           ^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v265-single-plan-all3-446/isaac_port/native_hand_layout/roas-table/loose_ring_pick.py\", line 543, in _execute\n    if not routes:raise RuntimeError('No structure-clear grasp among RGB-D instances')\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No structure-clear grasp among RGB-D instances\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v265-single-plan-all3-446/isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py\", line 477, in <module>\n    result=plugin.execute(task_ctx)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v265-single-plan-all3-446/isaac_port/native_hand_layout/roas-table/loose_bin_task.py\", line 303, in execute\n    rearranged=rearrange.execute(pickup_ctx);history.append(rearranged);pickup_ctx.pop('prefetched_initial',None)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v265-single-plan-all3-446/isaac_port/native_hand_layout/roas-table/loose_bin_rearrange.py\", line 212, in execute\n    for qs,requested,label in zip(contact_plan,[.8,.7,.4,.7],['_hook_take_up_clearance','_hook_slide_toward_center','_hook_back_off_inside_bore','_hook_withdraw']):move(qs,requested,part+label)\n                                                                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v265-single-plan-all3-446/isaac_port/native_hand_layout/roas-table/loose_bin_rearrange.py\", line 188, in move\n    cmd[0,ids]=row;cmd[0,fi]=start+(target-start)*weight;c['step'](label)\n                                                         ^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v265-single-plan-all3-446/isaac_port/native_hand_layout/roas-table/loose_bin_task.py\", line 59, in step\n    c['step'](label or phase)\n  File \"/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v265-single-plan-all3-446/isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py\", line 450, in scattered_step\n    update_motor_speed_limits(velocity_target[0],cmd[0]);art.set_dof_position_targets(cmd,idx);art.set_dof_velocity_targets(velocity_target,idx);audit.update(cmd);active_physics_substeps=int(startup_config.get('scattered_physics_substeps',2))\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v265-single-plan-all3-446/isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py\", line 148, in update_motor_speed_limits\n    raise RuntimeError('Actual robot motor velocity exceeded reserved limit '+str((ratio,finger_ratio)))\nRuntimeError: Actual robot motor velocity exceeded reserved limit (0.24220765483887502, 1.8787071893089695)\n",
+  "end_to_end_under20": false,
+  "one_ring_component_accepted": false,
+  "wall_verified_elapsed_s": 107.9324418118922,
+  "observation_driven_corrections": [],
+  "CPU_operation_profile": {
+    "control_s": 3.18582368735224,
+    "physics_s": 41.20914075523615,
+    "clamp_flush_s": 0.0
+  },
+  "fast_transport_statistics": {
+    "right": {
+      "routes": 2,
+      "proposals": 2,
+      "clear_calls": 1336,
+      "seconds": 1.2216198969399557,
+      "static_objects": 2793,
+      "static_skipped": 0,
+      "backend": "FCL CPU proposals + live PhysX verification",
+      "PhysX_verified_proposals": 2
+    },
+    "left": {
+      "routes": 0,
+      "proposals": 0,
+      "clear_calls": 0,
+      "seconds": 0.0,
+      "static_objects": 2793,
+      "static_skipped": 0,
+      "backend": "FCL CPU proposals + live PhysX verification"
+    }
+  },
+  "encoder_motor_speed_audit": {
+    "samples": 10200,
+    "max_fraction_of_95_percent_PBV": 0.9113046805235588,
+    "max_finger_fraction_of_47p5_mm_s": 1.8787071893089695,
+    "max_coupled_finger_difference_m": 6.370246410369873e-07,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  }
+}

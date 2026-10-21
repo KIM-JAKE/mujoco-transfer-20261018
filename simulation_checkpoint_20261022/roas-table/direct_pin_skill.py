@@ -58,12 +58,22 @@ def execute(ctx):
     def endpoint_candidates(H,seeds,label):
         from fr3_gpu_ik import propose_ik
         seen=[]
+        def terminal_admitted(q):
+            if not pin_config.get('pin_terminal_stroke_preflight') or label not in ['pin_preinsert_carry','pin_tail_carry_to_preinsert']:return True
+            from pin_terminal_geometry import check_terminal
+            width=max(float(art.get_dof_positions()[0,fi].sum()),float(cmd[0,fi].sum()))
+            ok,evidence=check_terminal(ctx,arm,checker,q,.045,width,paths['workpiece_pin'],margin=.03)
+            evidence.update(label=label,accepted=bool(ok));report.setdefault('pin_terminal_branch_preflight',[]).append(evidence);print('PIN_TERMINAL_BRANCH_PREFLIGHT',evidence,flush=True)
+            return ok
         for q in propose_ik(ctx,arm,H[:3,3],H[:3,:3],art.get_dof_positions()[0,ids].copy(),label):
-            seen.append(q);yield q
+            seen.append(q)
+            if terminal_admitted(q):yield q
         for seed in seeds:
             if seed is None:continue
             q=arm.solve(H[:3,3],H[:3,:3],seed)
-            if q is not None and all(np.linalg.norm(q-old)>.05 for old in seen):seen.append(q);yield q
+            if q is not None and all(np.linalg.norm(q-old)>.05 for old in seen):
+                seen.append(q)
+                if terminal_admitted(q):yield q
     def step():ctx['step'](phase)
     def wait(seconds,label):
         nonlocal phase

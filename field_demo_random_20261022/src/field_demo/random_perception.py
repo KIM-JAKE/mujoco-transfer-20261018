@@ -81,6 +81,14 @@ def load_random_config(path):
         if not np.all(inside_box(corners,corners,0,enclosure)):
             raise ValueError('Unknown-scene enclosure must contain the full measured basket ROI')
         if not replay_only:_measurement(enclosure.get('measurement'),path.parent,'unrecognized basket scene enclosure')
+    constraint=basket.get('floor_fit_constraint')
+    if constraint is not None:
+        if not isinstance(constraint,dict):raise ValueError('Explicit floor-fit constraint required')
+        for key in ('maximum_correction_m','reported_fit_depth_bound_m'):
+            value=constraint.get(key)
+            if type(value)not in (int,float)or not 0<value<=.005:raise ValueError('Explicit measured floor-fit/depth bound<=5mm required')
+        uncertainty=(c.get('residual_occupancy')or {}).get('depth_uncertainty_m')
+        if type(uncertainty)not in (int,float)or constraint['reported_fit_depth_bound_m']>uncertainty:raise ValueError('Floor-fit bound must be covered by explicit actual depth uncertainty')
     held=c.get('held_workspace_bounds_cell_m')
     if held is not None:
         a=np.asarray(held,float)
@@ -282,6 +290,16 @@ def detect_packet(packet,config,metadata,*,replay=False,scope='basket',part=None
                 image_candidates.append(dict(part=observed['part'],bbox_xyxy=[int(xx.min()),int(yy.min()),int(xx.max()+1),int(yy.max()+1)],
                                              visible_face_pixels=int(len(xx)),source='current RGB-D geometry, not semantic labels'))
         instances=[_pose(p,metadata['capture_id'],i) for i,p in enumerate(raw['instances'])]
+        if scope=='basket' and config['basket'].get('floor_fit_constraint')is not None:
+            from .floor_constraint import project_inferred_ring_above_floor
+            spec=config['basket']['floor_fit_constraint'];floor=config['basket']['floor_origin_cell_m'];up=np.asarray(config['basket']['basket_to_cell_R'])[:,2]
+            constrained=[]
+            for item in instances:
+                try:
+                    T,record=project_inferred_ring_above_floor(item['T_cell_part'],item['part'],floor,up,maximum_correction_m=spec['maximum_correction_m'],reported_uncertainty_m=spec['reported_fit_depth_bound_m'])
+                except ValueError:continue  # This RGB-D hypothesis contradicts measured floor beyond its own uncertainty.
+                item.update(T_cell_part=T.tolist(),center_m=T[:3,3].tolist(),floor_fit_constraint=record);constrained.append(item)
+            instances=constrained
         selected=[]
         if scope in ('held','fixture'):
             instances=[p for p in instances if p['part']==part and np.linalg.norm(np.asarray(p['center_m'])-seed)<=held_roi_radius_m]
@@ -291,8 +309,8 @@ def detect_packet(packet,config,metadata,*,replay=False,scope='basket',part=None
             # Source selection favors the exposed highest face independently
             # of any actor identity. Keep every detected instance separately.
             for p in raw['poses']:
-                candidate=min((q for q in instances if q['part']==p['part']),key=lambda q:np.linalg.norm(np.asarray(q['center_m'])-p['center_m']))
-                selected.append(candidate)
+                options=[q for q in instances if q['part']==p['part']]
+                if options:selected.append(min(options,key=lambda q:np.linalg.norm(np.asarray(q['center_m'])-p['center_m'])))
         if not instances:
             if scope!='basket' or not allow_unknown_basket:raise RuntimeError('No qualifying observed ring instances')
             enclosure=config['basket'].get('unrecognized_scene_enclosure')

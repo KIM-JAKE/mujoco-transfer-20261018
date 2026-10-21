@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated_utc": "2026-10-21T17:44:54.927230+00:00",
-  "package": "field-demo-random-stabilization-20261022",
+  "updated_utc": "2026-10-21T18:01:34.685388+00:00",
+  "package": "field-demo-random-next-20261022",
   "source_original": "field-demo-random-v128-20261022",
   "source_original_unchanged": true,
   "hardware_tested": false,
@@ -9,16 +9,12 @@
   "field_ready": false,
   "usable_actual_generated_approach_and_lift_verified": false,
   "latest_full_offline": {
-    "python_tests": 239,
+    "python_tests": 250,
     "fieldkit_tests": 27,
     "passed": true,
-    "log": "reports/FINAL_FIELD_COPY_OFFLINE_CHECK.log"
+    "log": "reports/NEXT_FULL_OFFLINE_CHECK.log"
   },
-  "later_targeted": {
-    "commissioning_audit_flag_tests": 4,
-    "empty_load_current_open_width_test": 1,
-    "passed": true
-  },
+  "later_targeted": {},
   "implemented": [
     "measured stopped-boundary setLoad including transfer and confirmed return",
     "current RGBD + actual SDK part facts without per-part PLC",
@@ -28,15 +24,20 @@
     "fully checked return/empty-hand proof, retain on unobservable or blocked",
     "explicit low-speed live single-pick commissioning entry",
     "preserve completed grasp on normal camera/SDK abort, no automatic resume",
-    "independent actual Hand polling,200ms advancing-SDK-timestamp validity"
+    "independent actual Hand polling,200ms advancing-SDK-timestamp validity",
+    "exact full projected pixel rectangle depth certificate preserving all occupied/old free voxels",
+    "explicit selected-payload/finger support-contact departure at most70mm; no wall/palm/arm exception",
+    "upward-only explicitly bounded RGBD inference correction against actual measured floor; no real body pose write",
+    "full fixed-CAD support floor check across issued native FK curve; only named measured floor top contact allowed"
   ],
   "remaining": [
-    "Two representative current RGB-D/native Hand approach components rejected by retained actual floor/residual UNKNOWN; no generated full approach+lift acceptance. Next checkpoint needs accessible pose/camera-ray refinement, not wall/palm exemptions.",
-    "strict unknown residual shadow cannot be erased; selected-body self-association/departure still needs concrete accepted path",
-    "actual site IP/extrinsics/fixture/bin/mount/tool/load/COM/inertia and real stop evidence required",
-    "initial preinspection lift uses selected-class mass; hidden multiple-item load not optically certified yet",
-    "latest H GPU/cuRobo simulator controller is not wholly ported into this native field runtime",
-    "native outward-expansion force grasp is unvalidated and explicitly disallowed; current real API closes from a larger measured width"
+    "Three archived simulation viewpoints support the accepted nominal Hand/selected-CAD component. Single physical fixed RealSense validation remains incomplete.",
+    "Actual complete libfranka SDK generated approach/lift with measured full robot/tool/cable/tracking envelopes is not verified; actual grasp and force/stop behavior remain onsite tests.",
+    "Fresh strict carry/transfer/insert still must pass current residual UNKNOWN/physical fixture tests; no occlusion deletion or whole random-cycle acceptance claim.",
+    "Actual site IP/extrinsics/fixture/bin/mount/tool/load/COM/inertia and real stop evidence are required.",
+    "Initial preinspection lift uses selected-class mass; hidden multiple-item load cannot be optically certified beforehand.",
+    "Latest H GPU/cuRobo simulator controller is not wholly ported into native field runtime.",
+    "Native outward-expansion force grasp is unvalidated and explicitly disallowed; current real API closes from larger measured opening."
   ],
   "native_build": {
     "libfranka": "0.18.1",
@@ -60,16 +61,42 @@
     "emergency_stop_certification": false
   },
   "representative_component_admission": {
-    "passed": false,
-    "whole_robot_checked": false,
-    "physical_execution_certified": false,
-    "reports": [
-      "reports/residual-stock-component-acceptance.json",
-      "reports/residual-stock-component-acceptance-255.json"
+    "scope": "OFFLINE COMPONENT acceptance of RGB-D-generated native Hand approach and bounded40/70mm upward departure. Three actual archived simulation-camera views, current residual+contact code, native kinematic FK and exact authored basket CAD. Not whole-arm field-SDK planning or physical execution acceptance.",
+    "bounded_approach_and_departure_component_verified": true,
+    "camera_view_count": 3,
+    "camera_placement": "Three actual recorded virtual simulation views; one-fixed-RealSense validation remains incomplete",
+    "single_true_overhead_component_passed": false,
+    "all_surface_hits_preserved_and_contact_scoped": true,
+    "robot_floor_and_wall_checks_preserved": true,
+    "minimum_full_native_hand_fixed_geometry_clearance_m": 0.008412971005956426,
+    "minimum_full_payload_sector_sidewall_clearance_m": 0.003004712094910189,
+    "inferred_pose_floor_constraint": {
+      "source": "RGBD_CAD_fit_plus_measured_support_plane",
+      "uses_object_truth": false,
+      "actual_object_pose_written": false,
+      "raw_minimum_floor_height_m": -1.4077221971482354e-05,
+      "upward_inference_correction_m": 1.4077221971482354e-05,
+      "maximum_allowed_correction_m": 0.001,
+      "reported_uncertainty_m": 0.001,
+      "elevated_ring_forced_down": false
+    },
+    "lift_heights_m": [
+      0.04,
+      0.07
     ],
-    "case_243": "49 of50 native proposals palm UNKNOWN; sole palm-clear finger extends4.54mm below actual authored floor; all rejected",
-    "case_255": "50 of50 official palm sweeps intersect conservative residual UNKNOWN; all rejected",
-    "blocked_geometry_retained": true,
-    "no_actor_pose_control_inputs": true
-  }
+    "full_measured_robot_envelopes_and_native_SDK_route_checked": false,
+    "live_wrench_stop_and_tracking_test_performed": false,
+    "real_single_item_grasp_and_retention_verified": false,
+    "physical_execution_certified": false,
+    "full_field_cycle_runnable_verified": false,
+    "evidence_files": [
+      "residual-stock-component-acceptance-255-fused-floor-columns.json",
+      "residual-stock-departure-component-255-floor.json",
+      "native-hand-basket-wall-component-255.json",
+      "exact-rectangle-replay-regression.json"
+    ],
+    "residual_source_sha256": "330f567677a2999e9a701166c27ae38d520469b381087e93bbc56a04c4bb7d01"
+  },
+  "previous_published_checkpoint": "238d651",
+  "bounded_approach_and_departure_component_verified": true
 }

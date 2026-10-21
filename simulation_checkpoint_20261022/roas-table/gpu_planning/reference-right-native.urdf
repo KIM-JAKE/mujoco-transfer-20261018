@@ -1,0 +1,113 @@
+<robot name="production_native_fr3_right">
+  <link name="world" />
+  <link name="body0" />
+  <joint name="mount" type="fixed">
+    <parent link="world" />
+    <child link="body0" />
+    <origin xyz="-0.19885095953941345 -0.4379999339580536 0.7407563924789429" rpy="0.8933480443196804 -0.1745605722999115 2.0341413124867875" />
+  </joint>
+  <link name="rotor1" />
+  <joint name="joint1" type="revolute">
+    <parent link="body0" />
+    <child link="rotor1" />
+    <origin xyz="-5.551115123125783e-17 0.0 0.3330000042915344" rpy="0.0 0.0 0.0" />
+    <axis xyz="0.0 0.0 1.0" />
+    <limit lower="-2.854410999166667" upper="2.854410999166667" velocity="2.0" effort="87" />
+  </joint>
+  <link name="body1" />
+  <joint name="frame1" type="fixed">
+    <parent link="rotor1" />
+    <child link="body1" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+  <link name="rotor2" />
+  <joint name="joint2" type="revolute">
+    <parent link="body1" />
+    <child link="rotor2" />
+    <origin xyz="0.0 0.0 0.0" rpy="-1.5707960897504418 0.0 0.0" />
+    <axis xyz="0.0 0.0 1.0" />
+    <limit lower="-1.8138460560928433" upper="1.8138460560928433" velocity="2.0" effort="87" />
+  </joint>
+  <link name="body2" />
+  <joint name="frame2" type="fixed">
+    <parent link="rotor2" />
+    <child link="body2" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+  <link name="rotor3" />
+  <joint name="joint3" type="revolute">
+    <parent link="body2" />
+    <child link="rotor3" />
+    <origin xyz="-8.326672684688674e-17 -0.3160000145435333 0.0" rpy="1.5707960897504418 0.0 0.0" />
+    <axis xyz="0.0 0.0 1.0" />
+    <limit lower="-2.8807" upper="2.8807" velocity="2.0" effort="87" />
+  </joint>
+  <link name="body3" />
+  <joint name="frame3" type="fixed">
+    <parent link="rotor3" />
+    <child link="body3" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+  <link name="rotor4" />
+  <joint name="joint4" type="revolute">
+    <parent link="body3" />
+    <child link="rotor4" />
+    <origin xyz="0.08250000327825546 2.220446049250313e-16 0.0" rpy="1.5707960897504418 0.0 0.0" />
+    <axis xyz="0.0 0.0 1.0" />
+    <limit lower="-3.05139738875" upper="-0.14250261125" velocity="2.0" effort="87" />
+  </joint>
+  <link name="body4" />
+  <joint name="frame4" type="fixed">
+    <parent link="rotor4" />
+    <child link="body4" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+  <link name="rotor5" />
+  <joint name="joint5" type="revolute">
+    <parent link="body4" />
+    <child link="rotor5" />
+    <origin xyz="-0.08250000327825546 0.3840000033378601 0.0" rpy="-1.5707960897504418 0.0 -2.220446049250313e-16" />
+    <axis xyz="0.0 0.0 1.0" />
+    <limit lower="-2.8563" upper="2.8563" velocity="2.0" effort="87" />
+  </joint>
+  <link name="body5" />
+  <joint name="frame5" type="fixed">
+    <parent link="rotor5" />
+    <child link="body5" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+  <link name="rotor6" />
+  <joint name="joint6" type="revolute">
+    <parent link="body5" />
+    <child link="rotor6" />
+    <origin xyz="0.0 0.0 -2.220446049250313e-16" rpy="1.5707960897504418 0.0 0.0" />
+    <axis xyz="0.0 0.0 1.0" />
+    <limit lower="0.47143171272727274" upper="4.589968287272727" velocity="2.0" effort="87" />
+  </joint>
+  <link name="body6" />
+  <joint name="frame6" type="fixed">
+    <parent link="rotor6" />
+    <child link="body6" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+  <link name="rotor7" />
+  <joint name="joint7" type="revolute">
+    <parent link="body6" />
+    <child link="rotor7" />
+    <origin xyz="0.08799999952316284 -2.220446049250313e-16 0.0" rpy="1.5707960897504418 2.220446049250313e-16 2.220446049250313e-16" />
+    <axis xyz="0.0 0.0 1.0" />
+    <limit lower="-3.0308" upper="3.0308" velocity="2.0" effort="87" />
+  </joint>
+  <link name="body7" />
+  <joint name="frame7" type="fixed">
+    <parent link="rotor7" />
+    <child link="body7" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+  <link name="tcp" />
+  <joint name="native_tcp" type="fixed">
+    <parent link="body7" />
+    <child link="tcp" />
+    <origin xyz="-8.968149021539597e-09 -3.330000751757968e-10 0.21039992863698892" rpy="3.350332011820001e-09 -8.286229480347629e-09 -0.7853982085166951" />
+  </joint>
+</robot>

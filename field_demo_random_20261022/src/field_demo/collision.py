@@ -177,6 +177,11 @@ def check_envelopes(active, other, scene, phase, envelope, *, payloads=(), dynam
                     from .stock_contact import stock_contact_mask
                     allowed_stock=stock_contact_mask(obstacle,phase=phase,capsule_index=capsule_index,capsule=dict(capsule,r=radius),envelope=envelope,active_robot=active_robot,is_payload=is_payload)
                     clearance=np.where(allowed_stock,np.inf,clearance)
+                if phase.get('bounded_loose_stock_departure')is not None:
+                    from .stock_departure import departure_contact_mask,departure_support_floor_mask
+                    allowed_departure=departure_contact_mask(obstacle,phase=phase,capsule_index=capsule_index,capsule=dict(capsule,r=radius),envelope=envelope,active_robot=active_robot,is_payload=is_payload)
+                    allowed_floor=departure_support_floor_mask(obstacle,phase=phase,capsule=dict(capsule,r=radius),envelope=envelope,is_payload=is_payload)
+                    clearance=np.where(allowed_departure|allowed_floor,np.inf,clearance)
                 if permitted:
                     region = phase.get('payload_contact_region')
                     if region is None:
@@ -207,9 +212,10 @@ def check_envelopes(active, other, scene, phase, envelope, *, payloads=(), dynam
         if abs(pair[0]-pair[1]) != 1 and min(pair) < 6:
             raise ValueError('Self exclusions may cover adjacent joints or measured distal rigid hand/tool attachments only')
         ignored.add(tuple(sorted(pair)))
-    def pair_check(a, b, description):
+    def pair_check(a, b, description, allowed=None):
         nonlocal minimum, count
         clearance = segment_distance(a['a'], a['b'], b['a'], b['b']) - a['r'] - b['r'] - margin
+        if allowed is not None:clearance=np.where(allowed,np.inf,clearance)
         minimum = min(minimum, float(np.min(clearance))); count += len(np.atleast_1d(clearance))
         if np.any(clearance <= 0):
             raise CollisionError(description + ': ' + a['name'] + '/' + b['name'])
@@ -241,10 +247,14 @@ def check_envelopes(active, other, scene, phase, envelope, *, payloads=(), dynam
                          index in phase.get('target_contact_tool_capsules', []) and index >= 8 and
                          phase.get('_contact') == 'grasp')
             if not permitted:
-                pair_check(robot, obstacle, 'Observed loose-part collision')
+                from .stock_departure import loose_stock_pair_mask
+                allowed=loose_stock_pair_mask(dict(robot,r=robot['r']+margin),obstacle,phase=phase,envelope=envelope,capsule_index=index)
+                pair_check(robot, obstacle, 'Observed loose-part collision',allowed)
         for payload in payloads:
             if payload.get('instance_id') != obstacle.get('instance_id'):
-                pair_check(payload, obstacle, 'Held payload/observed loose-part collision')
+                from .stock_departure import loose_stock_pair_mask
+                allowed=loose_stock_pair_mask(dict(payload,r=payload['r']+margin),obstacle,phase=phase,envelope=envelope,is_payload=True)
+                pair_check(payload, obstacle, 'Held payload/observed loose-part collision',allowed)
     return {'scope': 'field-verified enclosing capsules against measured boxes, self, other arm and supplied observed geometry',
             'conservative_swept_envelopes_checked': True, 'minimum_clearance_m': minimum,
             'geometric_checks': count, 'robot_geometry_inferred_from_tcp': False,

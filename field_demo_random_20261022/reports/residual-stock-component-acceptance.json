@@ -1,6 +1,10 @@
 {
   "scope": "Archived genuine RGB-D component acceptance only. Generated official native Hand approach and class-surface lift, production residual+bounded-stock permission. NOT whole-arm SDK/field certification, no physics execution or force-stop evidence. Authored CAD interior is offline-only.",
   "source": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-scatter-stable-v243-balanced-pin-servo-all3-446/rgb-perception/observation-046-initial/rgbd.npz",
+  "camera_sources": [
+    "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-scatter-stable-v243-balanced-pin-servo-all3-446/rgb-perception/observation-046-initial/rgbd.npz"
+  ],
+  "virtual_sim_camera_views": false,
   "source_sha256": "bfed2e511adcf5e8eb4351e1f900e66eb8f2dd5667ded490425d62b17f1a1923",
   "capture_id": "archived243-046",
   "selected_image_pose": {
@@ -49,7 +53,7 @@
     }
   },
   "voxel_resolution_m": 0.004,
-  "obstacle_boxes": 4062,
+  "obstacle_boxes": 4135,
   "finger_capsules": [
     {
       "name": "official_finger_-1_section0",
@@ -143,12 +147,260 @@
     }
   ],
   "proposal_counts": {
-    "palm_residual_blocked": 49,
-    "finger_outside_permitted_ROI": 1
+    "palm_residual_blocked": 48,
+    "finger_outside_permitted_ROI": 2
   },
   "approach_component_accepted": false,
   "selected_route": null,
   "component_diagnostics": [
+    {
+      "stage": "palm_residual",
+      "T_cell_tcp": [
+        [
+          0.8618502941765215,
+          -0.5071627652222149,
+          0.0,
+          0.5726537364303733
+        ],
+        [
+          -0.5071627652222149,
+          -0.8618502941765215,
+          0.0,
+          -0.7681584848264889
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          1.1158519883815856
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "detail": {
+        "hits": {
+          "unknown": 77
+        },
+        "examples": [
+          {
+            "name": "residual_aad97991322d_1296",
+            "T_cell_box": [
+              [
+                1.0,
+                0.0,
+                0.0,
+                0.6056443417180468
+              ],
+              [
+                0.0,
+                1.0,
+                0.0,
+                -0.7670656992320395
+              ],
+              [
+                0.0,
+                0.0,
+                1.0,
+                1.2089654337330678
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "half_extents_m": [
+              0.0019701434511465443,
+              0.0019791666898265614,
+              0.0019527729348252088
+            ],
+            "source": "conservative_registered_RGBD_rays",
+            "occupancy_kind": "unknown",
+            "source_capture_ids": [
+              "archived243-046"
+            ],
+            "voxel_resolution_m": [
+              0.0039402869022930965,
+              0.003958333379653095,
+              0.003905545869650483
+            ]
+          },
+          {
+            "name": "residual_aad97991322d_1311",
+            "T_cell_box": [
+              [
+                1.0,
+                0.0,
+                0.0,
+                0.6095846286203399
+              ],
+              [
+                0.0,
+                1.0,
+                0.0,
+                -0.7650865325422129
+              ],
+              [
+                0.0,
+                0.0,
+                1.0,
+                1.2070126607982425
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "half_extents_m": [
+              0.0019701434511465443,
+              0.003958333379653067,
+              0.0039055458696505285
+            ],
+            "source": "conservative_registered_RGBD_rays",
+            "occupancy_kind": "unknown",
+            "source_capture_ids": [
+              "archived243-046"
+            ],
+            "voxel_resolution_m": [
+              0.0039402869022930965,
+              0.003958333379653095,
+              0.003905545869650483
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "stage": "palm_residual",
+      "T_cell_tcp": [
+        [
+          -0.8618502941765215,
+          0.5071627652222149,
+          0.0,
+          0.5726537364303733
+        ],
+        [
+          0.5071627652222149,
+          0.8618502941765215,
+          0.0,
+          -0.7681584848264889
+        ],
+        [
+          0.0,
+          -0.0,
+          -1.0,
+          1.1158519883815856
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "detail": {
+        "hits": {
+          "unknown": 85
+        },
+        "examples": [
+          {
+            "name": "residual_aad97991322d_1296",
+            "T_cell_box": [
+              [
+                1.0,
+                0.0,
+                0.0,
+                0.6056443417180468
+              ],
+              [
+                0.0,
+                1.0,
+                0.0,
+                -0.7670656992320395
+              ],
+              [
+                0.0,
+                0.0,
+                1.0,
+                1.2089654337330678
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "half_extents_m": [
+              0.0019701434511465443,
+              0.0019791666898265614,
+              0.0019527729348252088
+            ],
+            "source": "conservative_registered_RGBD_rays",
+            "occupancy_kind": "unknown",
+            "source_capture_ids": [
+              "archived243-046"
+            ],
+            "voxel_resolution_m": [
+              0.0039402869022930965,
+              0.003958333379653095,
+              0.003905545869650483
+            ]
+          },
+          {
+            "name": "residual_aad97991322d_1311",
+            "T_cell_box": [
+              [
+                1.0,
+                0.0,
+                0.0,
+                0.6095846286203399
+              ],
+              [
+                0.0,
+                1.0,
+                0.0,
+                -0.7650865325422129
+              ],
+              [
+                0.0,
+                0.0,
+                1.0,
+                1.2070126607982425
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "half_extents_m": [
+              0.0019701434511465443,
+              0.003958333379653067,
+              0.0039055458696505285
+            ],
+            "source": "conservative_registered_RGBD_rays",
+            "occupancy_kind": "unknown",
+            "source_capture_ids": [
+              "archived243-046"
+            ],
+            "voxel_resolution_m": [
+              0.0039402869022930965,
+              0.003958333379653095,
+              0.003905545869650483
+            ]
+          }
+        ]
+      }
+    },
     {
       "stage": "finger_permission",
       "T_cell_tcp": [
@@ -179,10 +431,10 @@
       ],
       "detail": {
         "denied_samples": {
-          "unknown": 406,
+          "unknown": 351,
           "occupied": 140
         },
-        "permitted_samples": 933,
+        "permitted_samples": 791,
         "examples": [
           {
             "capsule": "official_finger_-1_section1",
@@ -201,7 +453,7 @@
             "capsule_inside_bin": false,
             "box_inside_bin": true,
             "obstacle": {
-              "name": "residual_956b37ae81a9_1451",
+              "name": "residual_aad97991322d_1412",
               "T_cell_box": [
                 [
                   1.0,
@@ -262,7 +514,7 @@
             "capsule_inside_bin": false,
             "box_inside_bin": true,
             "obstacle": {
-              "name": "residual_956b37ae81a9_1452",
+              "name": "residual_aad97991322d_1467",
               "T_cell_box": [
                 [
                   1.0,
@@ -291,7 +543,7 @@
               ],
               "half_extents_m": [
                 0.0019701434511465443,
-                0.02375000027791857,
+                0.019791666898265448,
                 0.0039055458696505285
               ],
               "source": "conservative_registered_RGBD_rays",
@@ -308,11 +560,380 @@
           }
         ]
       }
+    },
+    {
+      "stage": "finger_permission",
+      "T_cell_tcp": [
+        [
+          -0.8640018297580703,
+          -7.80541319114388e-17,
+          0.5034886673746554,
+          0.572502689830161
+        ],
+        [
+          -0.17265543909299974,
+          0.9393652603576954,
+          -0.29628197208862134,
+          -0.7680696002348624
+        ],
+        [
+          -0.4729597631155422,
+          -0.34291822295281876,
+          -0.8116133037602151,
+          1.1160954723727137
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "detail": {
+        "denied_samples": {
+          "unknown": 351,
+          "occupied": 140
+        },
+        "permitted_samples": 791,
+        "examples": [
+          {
+            "capsule": "official_finger_-1_section1",
+            "sample": 26,
+            "a_cell_m": [
+              0.5500104623414296,
+              -0.8221350003220446,
+              1.1757481179360236
+            ],
+            "b_cell_m": [
+              0.5751667637772544,
+              -0.8013845198784931,
+              1.1598549472093624
+            ],
+            "r_m": 0.019333802937235113,
+            "capsule_inside_bin": false,
+            "box_inside_bin": true,
+            "obstacle": {
+              "name": "residual_aad97991322d_1091",
+              "T_cell_box": [
+                [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.5820026203042883
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0,
+                  -0.7888365328201316
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.1406183810141841
+                ],
+                [
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              ],
+              "half_extents_m": [
+                0.0019701434511466,
+                0.003958333379653123,
+                0.0039055458696505285
+              ],
+              "source": "conservative_registered_RGBD_rays",
+              "occupancy_kind": "unknown",
+              "source_capture_ids": [
+                "archived243-046"
+              ],
+              "voxel_resolution_m": [
+                0.0039402869022930965,
+                0.003958333379653095,
+                0.003905545869650483
+              ]
+            }
+          },
+          {
+            "capsule": "official_finger_1_section1",
+            "sample": 31,
+            "a_cell_m": [
+              0.5662929319987648,
+              -0.6971142851117612,
+              1.1245848326818748
+            ],
+            "b_cell_m": [
+              0.5606891378877489,
+              -0.7293705963810159,
+              1.1089597665643385
+            ],
+            "r_m": 0.019333802937235113,
+            "capsule_inside_bin": false,
+            "box_inside_bin": true,
+            "obstacle": {
+              "name": "residual_aad97991322d_1412",
+              "T_cell_box": [
+                [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.5425997512813573
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0,
+                  -0.7492531990236007
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.1093740140569803
+                ],
+                [
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              ],
+              "half_extents_m": [
+                0.0019701434511465443,
+                0.011875000138959313,
+                0.0039055458696505285
+              ],
+              "source": "conservative_registered_RGBD_rays",
+              "occupancy_kind": "unknown",
+              "source_capture_ids": [
+                "archived243-046"
+              ],
+              "voxel_resolution_m": [
+                0.0039402869022930965,
+                0.003958333379653095,
+                0.003905545869650483
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "lift_m": 0.0,
+      "surface_points_inside_bin": 12000,
+      "unknown_points": 3853,
+      "occupied_unselected_points": 196,
+      "occupied_selected_points": 7951,
+      "observed_free_points": 0
+    },
+    {
+      "lift_m": 0.01,
+      "surface_points_inside_bin": 12000,
+      "unknown_points": 5819,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 3334,
+      "observed_free_points": 2847
+    },
+    {
+      "lift_m": 0.02,
+      "surface_points_inside_bin": 12000,
+      "unknown_points": 1641,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 225,
+      "observed_free_points": 10134
+    },
+    {
+      "lift_m": 0.03,
+      "surface_points_inside_bin": 12000,
+      "unknown_points": 0,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 12000
+    },
+    {
+      "lift_m": 0.04,
+      "surface_points_inside_bin": 12000,
+      "unknown_points": 0,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 12000
+    },
+    {
+      "lift_m": 0.05,
+      "surface_points_inside_bin": 12000,
+      "unknown_points": 0,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 12000
+    },
+    {
+      "lift_m": 0.06,
+      "surface_points_inside_bin": 12000,
+      "unknown_points": 0,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 12000
+    },
+    {
+      "lift_m": 0.07,
+      "surface_points_inside_bin": 12000,
+      "unknown_points": 4,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 11996
+    },
+    {
+      "lift_m": 0.08,
+      "surface_points_inside_bin": 10991,
+      "unknown_points": 475,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 10516
+    },
+    {
+      "lift_m": 0.09,
+      "surface_points_inside_bin": 7945,
+      "unknown_points": 791,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 7154
+    },
+    {
+      "lift_m": 0.1,
+      "surface_points_inside_bin": 5492,
+      "unknown_points": 297,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 5195
+    },
+    {
+      "lift_m": 0.11,
+      "surface_points_inside_bin": 2689,
+      "unknown_points": 0,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 2689
+    },
+    {
+      "lift_m": 0.12,
+      "surface_points_inside_bin": 71,
+      "unknown_points": 0,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 71
     }
   ],
-  "lift_voxel_surface_checks": [],
+  "lift_voxel_surface_checks": [
+    {
+      "lift_m": 0.0,
+      "surface_points_inside_bin": 12000,
+      "unknown_points": 3853,
+      "occupied_unselected_points": 196,
+      "occupied_selected_points": 7951,
+      "observed_free_points": 0
+    },
+    {
+      "lift_m": 0.01,
+      "surface_points_inside_bin": 12000,
+      "unknown_points": 5819,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 3334,
+      "observed_free_points": 2847
+    },
+    {
+      "lift_m": 0.02,
+      "surface_points_inside_bin": 12000,
+      "unknown_points": 1641,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 225,
+      "observed_free_points": 10134
+    },
+    {
+      "lift_m": 0.03,
+      "surface_points_inside_bin": 12000,
+      "unknown_points": 0,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 12000
+    },
+    {
+      "lift_m": 0.04,
+      "surface_points_inside_bin": 12000,
+      "unknown_points": 0,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 12000
+    },
+    {
+      "lift_m": 0.05,
+      "surface_points_inside_bin": 12000,
+      "unknown_points": 0,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 12000
+    },
+    {
+      "lift_m": 0.06,
+      "surface_points_inside_bin": 12000,
+      "unknown_points": 0,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 12000
+    },
+    {
+      "lift_m": 0.07,
+      "surface_points_inside_bin": 12000,
+      "unknown_points": 4,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 11996
+    },
+    {
+      "lift_m": 0.08,
+      "surface_points_inside_bin": 10991,
+      "unknown_points": 475,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 10516
+    },
+    {
+      "lift_m": 0.09,
+      "surface_points_inside_bin": 7945,
+      "unknown_points": 791,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 7154
+    },
+    {
+      "lift_m": 0.1,
+      "surface_points_inside_bin": 5492,
+      "unknown_points": 297,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 5195
+    },
+    {
+      "lift_m": 0.11,
+      "surface_points_inside_bin": 2689,
+      "unknown_points": 0,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 2689
+    },
+    {
+      "lift_m": 0.12,
+      "surface_points_inside_bin": 71,
+      "unknown_points": 0,
+      "occupied_unselected_points": 0,
+      "occupied_selected_points": 0,
+      "observed_free_points": 71
+    }
+  ],
   "full_pick_and_lift_runnable": false,
   "whole_robot_checked": false,
   "physical_execution_certified": false,
-  "elapsed_s": 5.888905035913922
+  "elapsed_s": 13.777092817006633
 }

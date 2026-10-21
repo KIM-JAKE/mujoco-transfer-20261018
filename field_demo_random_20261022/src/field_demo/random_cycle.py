@@ -127,11 +127,15 @@ def validate_live_inputs(recipe,site_config):
     if site_config.get('part_evidence_source')!='RGBD_SDK'or site_config.get('abort_hand_policy')!='preserve_completed_grasp':raise ValueError('Live random policy requires RGBD_SDK and preserve_completed_grasp abort')
     config=json.loads((root/recipe['planner_config']).read_text())
     if config['scene'].get('require_residual_occupancy')is not True:raise ValueError('Conservative residual RGB-D occupancy required')
-    policy=config['phases']['pickup'].get('bounded_loose_stock_contact')
+    departure=config['phases'].get('stock_departure',{}).get('bounded_loose_stock_departure')
+    policy=config['phases']['pickup'].get('bounded_loose_stock_contact')or (departure or {}).get('contact_policy')
     if policy is not None:
         from .stock_contact import validate_stock_contact_policy
         for side in {e['pickup_side']for e in recipe['parts']if e['part'].startswith('ring')}:
-            validate_stock_contact_policy(dict(config['phases']['pickup'],_phase_name='pickup',_contact='grasp',_active_part='ring1'),config['robots'][side])
+            validate_stock_contact_policy(dict(config['phases']['pickup'],bounded_loose_stock_contact=policy,_phase_name='pickup',_contact='grasp',_active_part='ring1'),config['robots'][side])
+            if departure is not None:
+                from .stock_departure import validate_departure_policy
+                validate_departure_policy(dict(config['phases']['stock_departure'],_phase_name='stock_departure',_contact='depart',_active_part='ring1'),config['robots'][side])
         inspection=recipe.get('inventory_inspection')
         if not isinstance(inspection,dict):raise ValueError('Actual two-view inspection and measured bin return required')
         for name in ('inventory_inspection','inventory_return','empty_hand_inspection'):
@@ -263,18 +267,30 @@ def run(runtime,recipe,*,single_pick=None):
             if not runtime.hand_status(donor)['is_grasped']:raise RuntimeError('Actual pickup was not grasped')
             if facts is None:held_signals.add(part+'_grasped')
             runtime.site.expected_held[donor]=part
-            observed,carry=held_measurement(runtime,entry,donor,observed);carried[part]=carry
+            observed,carry=held_measurement(runtime,entry,donor,observed)
+            if hasattr(runtime,'constrain_initial_held_floor'):observed,carry=runtime.constrain_initial_held_floor(entry,donor,observed,carry)
+            carried[part]=carry
             held_signals.add(part+'_grasped')
             if payload is not None:
                 payload.after_grasp(donor,part,runtime.flange_frame(donor),carry['T_tcp_part'])
                 runtime.event('payload_grasp_confirmed_before_lift',side=donor,part=part)
-            current=rigid(runtime.tcp(donor));targets=[]
-            for delta in entry['lift_offsets_cell_m']:
-                current=offset(current,delta);targets.append(current.tolist())
-            move('lift',part,donor,targets,observed)
+            current=rigid(runtime.tcp(donor));targets=[];remaining=[];lift_phase='lift'
+            if hasattr(runtime,'initial_stock_lift'):
+                lift_phase,targets,remaining=runtime.initial_stock_lift(entry,current)
+            else:
+                for delta in entry['lift_offsets_cell_m']:
+                    current=offset(current,delta);targets.append(current.tolist())
+            move(lift_phase,part,donor,targets,observed,contact='depart'if lift_phase=='stock_departure'else None)
             observed,carried[part]=held_measurement(runtime,entry,donor,observed)
             if hasattr(runtime,'verify_stock_inventory'):
                 observed,carried[part]=runtime.verify_stock_inventory(entry,donor,observed,carried[part],move)
+            # Further transport uses strict free-space checks, only AFTER the
+            # bounded contact lift has a fresh complementary-view item proof.
+            if remaining:
+                current=rigid(runtime.tcp(donor));targets=[]
+                for delta in remaining:current=offset(current,delta);targets.append(current.tolist())
+                move('lift',part,donor,targets,observed)
+                observed,carried[part]=held_measurement(runtime,entry,donor,observed)
             if single_pick is not None:
                 runtime.ready()
                 return dict(state='single_pick_held_for_commissioning',part=part,side=donor,
@@ -574,6 +590,10 @@ class LiveRuntime:
                         v=candidates[0];scene['excluded_instance_ids']=[v['instance_id']]
                         scene['excluded_measurements']=[dict(instance_id=v['instance_id'],part=part,T_cell_part=v['T_cell_part'],
                             reason='current_held_image_association',source_capture_id=result['capture_id'])]
+                        # Tag observed selected surface with this exact current
+                        # held-image association. UNKNOWN is never reassigned.
+                        scene=select_observation(scene,v)
+                        scene=self._selected_occupancy(scene)
                         scene=self._record(scene)
             result['scene_observations']=[scene]
             result=self._record(result)
@@ -625,6 +645,41 @@ class LiveRuntime:
     def _selected_record(self,observation):
         # Bind planner target selection to immutable bytes, not just memory.
         return self._record(self._selected_occupancy(observation))
+    def constrain_initial_held_floor(self,entry,side,observed,carry):
+        import numpy as np
+        settings=json.loads((self.root/self.recipe['planner_config']).read_text())
+        spec=settings['phases'].get('stock_departure',{}).get('bounded_loose_stock_departure')
+        support=(spec or {}).get('support_floor')
+        if not entry['part'].startswith('ring')or support is None:return observed,carry
+        from .floor_constraint import project_inferred_ring_above_floor
+        corrected,proof=project_inferred_ring_above_floor(observed['T_cell_part'],entry['part'],support['origin_cell_m'],support['normal_cell'],maximum_correction_m=support['maximum_inference_correction_m'],reported_uncertainty_m=support['reported_fit_depth_bound_m'])
+        result=copy.deepcopy(observed);identity=result['selected_instance']['instance_id']
+        for item in [result['selected_instance'],*result['instances']]:
+            if item['instance_id']==identity:item.update(T_cell_part=corrected.tolist(),center_m=corrected[:3,3].tolist(),floor_fit_constraint=proof)
+        G=np.linalg.inv(rigid(result['measured_tcp_pose']))@corrected
+        result.update(T_cell_part=corrected.tolist(),T_tcp_part=G.tolist(),floor_fit_constraint=proof);result=self._record(result)
+        carry=copy.deepcopy(carry);carry['T_tcp_part']=G.tolist();carry['measurement']['evidence_file']=result['_path']
+        self.facts.confirm_held(entry['part'],side,result,G,self.hand_status(side))
+        self.event('initial_RGBD_support_floor_inference',part=entry['part'],proof=proof)
+        return result,carry
+
+    def initial_stock_lift(self,entry,current):
+        import numpy as np
+        settings=json.loads((self.root/self.recipe['planner_config']).read_text())
+        spec=settings['phases'].get('stock_departure',{}).get('bounded_loose_stock_departure')
+        if not entry['part'].startswith('ring')or spec is None:
+            targets=[]
+            for delta in entry['lift_offsets_cell_m']:current=offset(current,delta);targets.append(current.tolist())
+            return 'lift',targets,[]
+        from .stock_departure import validate_departure_policy
+        phase=dict(settings['phases']['stock_departure'],_phase_name='stock_departure',_contact='depart',_active_part=entry['part'])
+        contract=validate_departure_policy(phase,settings['robots'][entry['pickup_side']]);up=contract['up_axis_cell']
+        requested=np.asarray(entry['lift_offsets_cell_m'][0],float);height=float(requested@up)
+        if height<=0 or np.linalg.norm(requested-height*up)>1e-6:raise ValueError('First stock lift must follow measured calibrated up')
+        departure=up*min(height,contract['maximum_lift_m']);remaining=[(requested-departure).tolist(),*entry['lift_offsets_cell_m'][1:]]
+        remaining=[v for v in remaining if np.linalg.norm(v)>1e-9]
+        return 'stock_departure',[offset(current,departure).tolist()],remaining
+
     def _inventory_frame(self,observation,side,holding_epoch):
         import numpy as np
         from .native_hand_geometry import actual_hand_points
@@ -648,7 +703,7 @@ class LiveRuntime:
     def verify_stock_inventory(self,entry,side,observed,carry,move):
         import numpy as np
         settings=json.loads((self.root/self.recipe['planner_config']).read_text())
-        policy=settings['phases']['pickup'].get('bounded_loose_stock_contact')
+        policy=settings['phases']['pickup'].get('bounded_loose_stock_contact')or settings['phases'].get('stock_departure',{}).get('bounded_loose_stock_departure')
         if not entry['part'].startswith('ring')or policy is None:return observed,carry
         from .selected_inventory_guard import verify_single_inventory
         from .perception_models import model_points

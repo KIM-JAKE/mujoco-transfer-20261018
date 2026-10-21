@@ -1,0 +1,7 @@
+# Install only into an isolated --target directory; base image supplies Torch/CUDA.
+# Tested base: Python3.12, torch2.11+cu128, warp-lang1.16, numpy, scipy,
+# trimesh, PyYAML. Use the repository's vendored cuRobo source through PYTHONPATH.
+cuda-core[cu12]>=0.7
+yourdfpy>=0.0.60
+numpy-quaternion>=2024.0.13
+setuptools_scm>=10.3.4

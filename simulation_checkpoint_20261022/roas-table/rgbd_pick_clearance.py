@@ -5,14 +5,42 @@ identities. Static structures are checked separately by the PhysX planner.
 """
 from pathlib import Path
 import numpy as np
-from scipy.spatial import ConvexHull
+from scipy.spatial import ConvexHull,cKDTree
 from rgbd_geometry import cloud,axis_frame
 
 class ObservedGraspClearance:
     def __init__(self,here):
         from isaac_port.fieldkit.perception import CadPoseEstimator
-        self.estimator=CadPoseEstimator();mesh=np.load(Path(here)/'native-official-finger.npz');self.planes=ConvexHull(mesh['vertices']).equations
+        self.estimator=CadPoseEstimator();self._asset_dir=Path(here);mesh=np.load(Path(here)/'native-official-finger.npz');self.planes=ConvexHull(mesh['vertices']).equations
         self.palm_planes=ConvexHull(np.load(Path(here)/'native-hand-assets.npz')['vertices']).equations
+    def remove_known_hand_surface(self,points,tcp,opening):
+        """Remove only pixel points matching measured robot surface geometry.
+
+        This is a 1.2mm surface band, never the Hand enclosing volume, the
+        selected ring, a free-body pose, or an assertion about occluded space.
+        The actual static-world/native collisions and force abort remain.
+        """
+        if not hasattr(self,'_hand_surface_trees'):
+            trees=[]
+            for name in ['native-hand-assets.npz','native-official-finger.npz']:
+                mesh=np.load(self._asset_dir/name);V=mesh['vertices'];samples=[]
+                for face in mesh['faces']:
+                    triangle=V[face];count=max(1,int(np.ceil(max(np.linalg.norm(triangle[(i+1)%3]-triangle[i])for i in range(3))/.00075)))
+                    u,v=np.triu_indices(count+1);a=u/count;b=(v-u)/count
+                    samples.append(triangle[0]+a[:,None]*(triangle[1]-triangle[0])+b[:,None]*(triangle[2]-triangle[0]))
+                trees.append(cKDTree(np.concatenate(samples)))
+            self._hand_surface_trees=trees
+        H=np.asarray(tcp,float);opening=float(opening)
+        if H.shape!=(4,4)or not np.isfinite(H).all()or not 0<=opening<=.081:raise ValueError('Actual encoder Hand pose/aperture required for surface exclusion')
+        local=(np.asarray(points)-H[:3,3])@H[:3,:3];local[:,2]+=.1034
+        distance=self._hand_surface_trees[0].query(local,workers=1)[0]
+        for sign in [1,-1]:
+            finger=local-[0,sign*opening/2,.0584];finger[:,:2]*=sign
+            distance=np.minimum(distance,self._hand_surface_trees[1].query(finger,workers=1)[0])
+        keep=distance>.0012
+        self.last_hand_surface_exclusion=dict(input_points=len(points),surface_matches=int((~keep).sum()),maximum_surface_distance_m=.0012,uses_actual_encoders=True,uses_free_body_poses=False)
+        return np.asarray(points)[keep]
+
     def points(self,packet,calibration):
         P=cloud(packet);rgb=packet['rgb'];gray=rgb.mean(2);bounds=np.asarray(calibration['outer_bounds_world_m']);mask=np.isfinite(P).all(2)&(np.ptp(rgb.astype(float),axis=2)<45)&(gray>35)&(gray<180)&np.all((P>=bounds[0]-.003)&(P<=bounds[1]+.015),axis=2);v=P[mask];return v[::max(1,len(v)//12000)]
     def clear(self,points,pose,pre,grasp,opening=.08):
