@@ -1,0 +1,724 @@
+{
+  "scope": "Raw SIM308 RGBD frames; predictedROI from previous image+SIM robot TCP only; no object actor positions",
+  "hardware_tested": false,
+  "physical_camera_proof": false,
+  "virtual_camera_views": [
+    "observation-010.npz",
+    "observation-013.npz",
+    "observation-016.npz",
+    "observation-021.npz"
+  ],
+  "initial_previous_image_index": 5,
+  "initial_previous_pixel_pose": {
+    "cap_edge_coverage_deg": 323.25306220137844,
+    "cap_circular_edge_inliers": 38,
+    "cap_total_hull_edge_points": 39,
+    "cap_circular_edge_rms_m": 2.7492383833694077e-05,
+    "cap_expected_radius_m": 0.0025,
+    "robust_cap_circle_from_pixels": true,
+    "part": "pin",
+    "center_m": [
+      0.18975967810361655,
+      -0.7901103393832601,
+      0.9867482938266828
+    ],
+    "axis": [
+      -0.002163967923006234,
+      -0.014515838267064084,
+      -0.9998922980412605
+    ],
+    "pose_origin": "Physical pin symmetry-axis midpoint",
+    "visible_end_radius_m": 0.0024531149558035333,
+    "cap_points": 475,
+    "lateral_from_previous_RGBD_grasp_and_encoders": false,
+    "axial_depth_updated_from_current_RGBD": true,
+    "depth_points": 16394,
+    "plane_rms_m": 1.4448852308821696e-05,
+    "uses_depth_sensor": true,
+    "uses_simulator_body_poses": false,
+    "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+    "processing_ms": 141.53014600742608,
+    "neural_inference_this_frame": false
+  },
+  "initial_previous_SIM_TCP": [
+    [
+      0.765821916696823,
+      -0.0004267686787350532,
+      0.6430523566950553,
+      0.18985877029257758
+    ],
+    [
+      0.0003387362294792331,
+      -0.9999992352790835,
+      -0.0010670575204412838,
+      -0.7899795747465655
+    ],
+    [
+      0.6430523604338522,
+      0.0010350276444153325,
+      -0.7658213377708596,
+      1.0023274757830696
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "source_observations_sha256": "ae04d5a1e203052af8c970631c5fc1a0bd846b4f4a73d70f3bd5f9683cf9384f",
+  "rows": [
+    {
+      "index": 9,
+      "accepted": true,
+      "source_packet": "observation-010.npz",
+      "source_packet_sha256": "3e4002ea26a319669b00c2f01e558f2567f03e4fac1e4588c33ecf697beeb3aa",
+      "prior_body_from_previous_RGBD_and_SIM_encoder": [
+        [
+          -0.9999994168692368,
+          -0.0010398127845888535,
+          -0.0002951140709998708,
+          -0.30187748189357555
+        ],
+        [
+          0.0010398294291158975,
+          -0.9999994884890802,
+          0.00011499361073692946,
+          0.22730241473968138
+        ],
+        [
+          -0.0002953213800292555,
+          0.00011475924305395061,
+          0.9999999130633318,
+          1.4836138725767187
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "current_SIM_TCP": [
+        [
+          -0.7642473791795731,
+          -0.0006461016151467846,
+          -0.6449226713331463,
+          -0.3019381018820215
+        ],
+        [
+          -0.008275015384298028,
+          -0.9999072505068162,
+          0.010807897583592317,
+          0.22745529653088967
+        ],
+        [
+          -0.6448698972903374,
+          0.01359669954501854,
+          0.7641711861030551,
+          1.468034220242461
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "reference_SIM_RGBD_pose": {
+        "cap_edge_coverage_deg": 331.8216333313901,
+        "cap_circular_edge_inliers": 43,
+        "cap_total_hull_edge_points": 43,
+        "cap_circular_edge_rms_m": 1.413191241829897e-05,
+        "cap_expected_radius_m": 0.0025,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.3018630451585355,
+          0.22757599083192695,
+          1.4836255595592098
+        ],
+        "axis": [
+          0.008599695223972064,
+          -0.0013456009006774536,
+          0.9999621165825587
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.002476801774725269,
+        "cap_points": 791,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 15726,
+        "plane_rms_m": 9.210938645903376e-06,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 209.98831291217357,
+        "neural_inference_this_frame": false
+      },
+      "result": {
+        "cap_edge_coverage_deg": 331.8216333313901,
+        "cap_circular_edge_inliers": 43,
+        "cap_total_hull_edge_points": 43,
+        "cap_circular_edge_rms_m": 1.413191241829897e-05,
+        "cap_expected_radius_m": 0.0025,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.3018633066181978,
+          0.2273259911830365,
+          1.4836252254134081
+        ],
+        "axis": [
+          0.008599695223972064,
+          -0.0013456009006774536,
+          0.9999621165825587
+        ],
+        "pose_origin": "canonical CAD body; measured symmetry-axis midpoint converted by fixed class geometry",
+        "visible_end_radius_m": 0.002476801774725269,
+        "cap_points": 791,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 15726,
+        "plane_rms_m": 9.210938645903376e-06,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial plane and measured class-radius circle; occlusion rejects, no predicted-XY fallback",
+        "T_cell_part": [
+          [
+            -0.9999624768292782,
+            -0.0010458386491818954,
+            0.008599694907686091,
+            -0.3018633066181978
+          ],
+          [
+            0.0010343555132721041,
+            -0.9999985955618055,
+            -0.0013456008511879447,
+            0.2273259911830365
+          ],
+          [
+            0.008601002319503738,
+            -0.0013365832070199872,
+            0.9999620798052097,
+            1.4836252254134081
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "measured_physical_axis_center_m": [
+          -0.3018630451585355,
+          0.22757599083192695,
+          1.4836255595592098
+        ],
+        "axial_plane_points": 2474,
+        "body_to_axis_offset_m": [
+          0.0,
+          -0.00025,
+          0.0
+        ],
+        "orientation_scope": "measured signed axis; axial yaw retained from previous image/holder calibration",
+        "processing_ms": 258.2599410088733,
+        "robot_reachability_verified": false,
+        "quality_scope": "Ideal-depth SIM thresholds; residuals are not physical75um/calibration accuracy guarantees",
+        "fallback_used": false
+      },
+      "center_difference_from_source_RGBD_m": 0.0,
+      "axis_difference_from_source_RGBD_rad": 1.4901161193847656e-08,
+      "elapsed_s": 0.26021984696853906
+    },
+    {
+      "index": 12,
+      "accepted": true,
+      "source_packet": "observation-013.npz",
+      "source_packet_sha256": "758eefff5aec0016c9cc51a6722556633bb03ad995660d0ca28ce6885ccd34ec",
+      "prior_body_from_previous_RGBD_and_SIM_encoder": [
+        [
+          -0.9999817903682173,
+          -7.806462541663458e-06,
+          0.006035066623437749,
+          -0.3018427493798071
+        ],
+        [
+          -5.977343598690123e-07,
+          -0.9999990546107496,
+          -0.001401030732562645,
+          0.22679073470644676
+        ],
+        [
+          0.006034984556055828,
+          -0.0014009370793645578,
+          0.9999807703494854,
+          1.4840955176347654
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "current_SIM_TCP": [
+        [
+          -0.7625811017157773,
+          0.000353514465490168,
+          -0.6468923127339808,
+          -0.30187767029474166
+        ],
+        [
+          -0.009024093867972923,
+          -0.999908256743128,
+          0.010091600835958689,
+          0.22692096556595862
+        ],
+        [
+          -0.6468294560364467,
+          0.013533327890736609,
+          0.7625143669687352,
+          1.4685043798704356
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "reference_SIM_RGBD_pose": {
+        "cap_edge_coverage_deg": 333.29357829183897,
+        "cap_circular_edge_inliers": 42,
+        "cap_total_hull_edge_points": 42,
+        "cap_circular_edge_rms_m": 1.553883147397321e-05,
+        "cap_expected_radius_m": 0.0025,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.30185267323470816,
+          0.2270480543232733,
+          1.4840967697592256
+        ],
+        "axis": [
+          0.0037362356590298637,
+          -0.0011928680891154463,
+          0.9999923087748335
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.002476702515428789,
+        "cap_points": 801,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 15660,
+        "plane_rms_m": 8.976432110510685e-06,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 209.95428401511163,
+        "neural_inference_this_frame": false
+      },
+      "result": {
+        "cap_edge_coverage_deg": 333.29357829183897,
+        "cap_circular_edge_inliers": 42,
+        "cap_total_hull_edge_points": 42,
+        "cap_circular_edge_rms_m": 1.553883147397321e-05,
+        "cap_expected_radius_m": 0.0025,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.3018526749321148,
+          0.2267980544921308,
+          1.484096471564492
+        ],
+        "axis": [
+          0.0037362356590298637,
+          -0.0011928680891154463,
+          0.9999923087748335
+        ],
+        "pose_origin": "canonical CAD body; measured symmetry-axis midpoint converted by fixed class geometry",
+        "visible_end_radius_m": 0.002476702515428789,
+        "cap_points": 801,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 15660,
+        "plane_rms_m": 8.976432110510685e-06,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial plane and measured class-radius circle; occlusion rejects, no predicted-XY fallback",
+        "T_cell_part": [
+          [
+            -0.9999930216037596,
+            -6.78962664535586e-06,
+            0.0037362355207611444,
+            -0.3018526749321148
+          ],
+          [
+            2.383754804891372e-06,
+            -0.9999993245699467,
+            -0.0011928680449703876,
+            0.2267980544921308
+          ],
+          [
+            0.0037361537809581877,
+            -0.0011927789340124004,
+            0.9999922717676241,
+            1.484096471564492
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "measured_physical_axis_center_m": [
+          -0.30185267323470816,
+          0.2270480543232733,
+          1.4840967697592256
+        ],
+        "axial_plane_points": 2505,
+        "body_to_axis_offset_m": [
+          0.0,
+          -0.00025,
+          0.0
+        ],
+        "orientation_scope": "measured signed axis; axial yaw retained from previous image/holder calibration",
+        "processing_ms": 182.17805901076645,
+        "robot_reachability_verified": false,
+        "quality_scope": "Ideal-depth SIM thresholds; residuals are not physical75um/calibration accuracy guarantees",
+        "fallback_used": false
+      },
+      "center_difference_from_source_RGBD_m": 0.0,
+      "axis_difference_from_source_RGBD_rad": 2.1073424255447017e-08,
+      "elapsed_s": 0.18422050401568413
+    },
+    {
+      "index": 15,
+      "accepted": true,
+      "source_packet": "observation-016.npz",
+      "source_packet_sha256": "74aa32ce16dd88c81187f031c8366d7ee15a7c324765223b6af64707e392c5f1",
+      "prior_body_from_previous_RGBD_and_SIM_encoder": [
+        [
+          -0.9999980032352498,
+          -4.403581194415381e-06,
+          0.001998991829406167,
+          -0.3019463248396722
+        ],
+        [
+          3.2308234607852834e-06,
+          -0.9999998487911617,
+          -0.0006120773937846709,
+          0.2269096313261906
+        ],
+        [
+          0.0019989071339032273,
+          -0.0006119979429234055,
+          0.9999977775650689,
+          1.483916078984027
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "current_SIM_TCP": [
+        [
+          -0.7614562424618139,
+          0.0003303169822732443,
+          -0.6482160192255737,
+          -0.30194423281296273
+        ],
+        [
+          -0.00940077321301464,
+          -0.9999002277275342,
+          0.010533604102760791,
+          0.22702348661536323
+        ],
+        [
+          -0.6481479245415113,
+          0.014114657221629048,
+          0.7613834121147404,
+          1.4683238986415255
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "reference_SIM_RGBD_pose": {
+        "cap_edge_coverage_deg": 334.1176992926155,
+        "cap_circular_edge_inliers": 46,
+        "cap_total_hull_edge_points": 46,
+        "cap_circular_edge_rms_m": 1.7312034118623982e-05,
+        "cap_expected_radius_m": 0.0025,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.3019621962219256,
+          0.22715953080324963,
+          1.4839148029272065
+        ],
+        "axis": [
+          0.0008327901662093326,
+          -0.0009560326909799918,
+          0.9999991962306933
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.0024742794311345224,
+        "cap_points": 802,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 15670,
+        "plane_rms_m": 9.804701401373175e-06,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 210.87126899510622,
+        "neural_inference_this_frame": false
+      },
+      "result": {
+        "cap_edge_coverage_deg": 334.1176992926155,
+        "cap_circular_edge_inliers": 46,
+        "cap_total_hull_edge_points": 46,
+        "cap_circular_edge_rms_m": 1.7312034118623982e-05,
+        "cap_expected_radius_m": 0.0025,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.30196219744459424,
+          0.2269095309084665,
+          1.4839145639379394
+        ],
+        "axis": [
+          0.0008327901662093326,
+          -0.0009560326909799918,
+          0.9999991962306933
+        ],
+        "pose_origin": "canonical CAD body; measured symmetry-axis midpoint converted by fixed class geometry",
+        "visible_end_radius_m": 0.0024742794311345224,
+        "cap_points": 802,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 15670,
+        "plane_rms_m": 9.804701401373175e-06,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial plane and measured class-radius circle; occlusion rejects, no predicted-XY fallback",
+        "T_cell_part": [
+          [
+            -0.9999996543478804,
+            -4.89067443273316e-06,
+            0.0008327901352887273,
+            -0.30196219744459424
+          ],
+          [
+            4.14521959947357e-06,
+            -0.9999995791326038,
+            -0.0009560326554835237,
+            0.2269095309084665
+          ],
+          [
+            0.0008327073866789382,
+            -0.0009559570683651765,
+            0.9999991591017962,
+            1.4839145639379394
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "measured_physical_axis_center_m": [
+          -0.3019621962219256,
+          0.22715953080324963,
+          1.4839148029272065
+        ],
+        "axial_plane_points": 2509,
+        "body_to_axis_offset_m": [
+          0.0,
+          -0.00025,
+          0.0
+        ],
+        "orientation_scope": "measured signed axis; axial yaw retained from previous image/holder calibration",
+        "processing_ms": 181.27141508739442,
+        "robot_reachability_verified": false,
+        "quality_scope": "Ideal-depth SIM thresholds; residuals are not physical75um/calibration accuracy guarantees",
+        "fallback_used": false
+      },
+      "center_difference_from_source_RGBD_m": 0.0,
+      "axis_difference_from_source_RGBD_rad": 1.4901161193847656e-08,
+      "elapsed_s": 0.18309845391195267
+    },
+    {
+      "index": 20,
+      "accepted": true,
+      "source_packet": "observation-021.npz",
+      "source_packet_sha256": "76360de8d94c24017b20fe9621493dce3094749d4a269ff585b10cbdfb67b74b",
+      "prior_body_from_previous_RGBD_and_SIM_encoder": [
+        [
+          -0.9999998991003393,
+          -5.01492405840637e-05,
+          0.0004488452761849947,
+          -0.30199580929044395
+        ],
+        [
+          4.995030371727226e-05,
+          -0.9999998802602077,
+          -0.0005561150073050363,
+          0.22694926314118538
+        ],
+        [
+          0.0004487860667747919,
+          -0.0005560207479532438,
+          0.9999997074874252,
+          1.483835829747936
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "current_SIM_TCP": [
+        [
+          -0.7612077895087546,
+          0.0002792772926012001,
+          -0.6485077864127742,
+          -0.30197185418106454
+        ],
+        [
+          -0.009625377978192521,
+          -0.9998945165265358,
+          0.010867598656729963,
+          0.227056982445331
+        ],
+        [
+          -0.6484364032240899,
+          0.014514680184180744,
+          0.761130219426452,
+          1.468245128169431
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "reference_SIM_RGBD_pose": {
+        "cap_edge_coverage_deg": 324.35236679408666,
+        "cap_circular_edge_inliers": 46,
+        "cap_total_hull_edge_points": 47,
+        "cap_circular_edge_rms_m": 1.4010117363073254e-05,
+        "cap_expected_radius_m": 0.0025,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.30200712116795314,
+          0.22718829677924002,
+          1.483834736905662
+        ],
+        "axis": [
+          0.0004888769423733633,
+          -0.0007841281550011859,
+          0.9999995730710948
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.0024710159550921707,
+        "cap_points": 799,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 16741,
+        "plane_rms_m": 9.801787128491838e-06,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 211.00076800212264,
+        "neural_inference_this_frame": false
+      },
+      "result": {
+        "cap_edge_coverage_deg": 324.35236679408666,
+        "cap_circular_edge_inliers": 46,
+        "cap_total_hull_edge_points": 47,
+        "cap_circular_edge_rms_m": 1.4010117363073254e-05,
+        "cap_expected_radius_m": 0.0025,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.30200713373198895,
+          0.22693829684736969,
+          1.4838345408976967
+        ],
+        "axis": [
+          0.0004888769423733633,
+          -0.0007841281550011859,
+          0.9999995730710948
+        ],
+        "pose_origin": "canonical CAD body; measured symmetry-axis midpoint converted by fixed class geometry",
+        "visible_end_radius_m": 0.0024710159550921707,
+        "cap_points": 799,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 16741,
+        "plane_rms_m": 9.801787128491838e-06,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial plane and measured class-radius circle; occlusion rejects, no predicted-XY fallback",
+        "T_cell_part": [
+          [
+            -0.9999998803291664,
+            -5.025614328961066e-05,
+            0.0004888769242118091,
+            -0.30200713373198895
+          ],
+          [
+            4.9923489817010685e-05,
+            -0.9999997274813675,
+            -0.0007841281258711845,
+            0.22693829684736969
+          ],
+          [
+            0.0004888291654641279,
+            -0.0007840318608091641,
+            0.9999995359215693,
+            1.4838345408976967
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "measured_physical_axis_center_m": [
+          -0.30200712116795314,
+          0.22718829677924002,
+          1.483834736905662
+        ],
+        "axial_plane_points": 2494,
+        "body_to_axis_offset_m": [
+          0.0,
+          -0.00025,
+          0.0
+        ],
+        "orientation_scope": "measured signed axis; axial yaw retained from previous image/holder calibration",
+        "processing_ms": 163.02033397369087,
+        "robot_reachability_verified": false,
+        "quality_scope": "Ideal-depth SIM thresholds; residuals are not physical75um/calibration accuracy guarantees",
+        "fallback_used": false
+      },
+      "center_difference_from_source_RGBD_m": 0.0,
+      "axis_difference_from_source_RGBD_rad": 0.0,
+      "elapsed_s": 0.16436264791991562
+    }
+  ]
+}

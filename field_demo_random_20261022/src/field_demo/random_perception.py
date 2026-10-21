@@ -94,6 +94,7 @@ def load_random_config(path):
         a=np.asarray(held,float)
         if a.shape!=(2,3) or not np.isfinite(a).all() or np.any(a[0]>=a[1]) or np.max(np.abs(a))>5:
             raise ValueError('Invalid held workspace metric bounds')
+    if c.get('pin_pose_backend','cad_icp')not in ('cad_icp','measured_cap_circle'):raise ValueError('Unknown pin pose backend')
     holder=c.get('pin_holder',{})
     if type(holder.get('enabled',False)) is not bool:raise ValueError('pin_holder enabled must be boolean')
     if holder.get('enabled'):
@@ -235,19 +236,24 @@ def detect_packet(packet,config,metadata,*,replay=False,scope='basket',part=None
                 elif np.linalg.norm(prior[:3,3]-tcp[:3,3])>.048:
                     prior[:3,3]=tcp[:3,3]
                 prior_scope='Previous image pin axis near actual encoder TCP; current image fit required'
-        from isaac_port.fieldkit.perception import CadPoseEstimator
-        estimator=CadPoseEstimator();points=cloud(camera).reshape(-1,3)
-        model=estimator.models['pin']@prior[:3,:3].T+prior[:3,3]
-        keep=np.isfinite(points).all(1)&np.all((points>model.min(0)-.01)&(points<model.max(0)+.01),axis=1)
-        if scope=='held':
-            rgb=camera['rgb'].reshape(-1,3);gray=rgb.mean(1)
-            keep&=(np.ptp(rgb.astype(float),axis=1)<45)&(gray>35)&(gray<180)
-        fit=estimator.fit('pin',points[keep],prior,max_shift_m=(.01,.01,.01),max_tilt_rad=.2).as_dict()
-        t=np.asarray(fit['T_cell_part']);fit.update(part='pin',center_m=t[:3,3].tolist(),axis=t[:3,2].tolist(),
-                  perception_scope='Current RGB-D CAD registration',search_prior_scope=prior_scope,
-                  instance_id=metadata['capture_id']+':image:pin',robot_reachability_verified=False)
+        if config.get('pin_pose_backend','cad_icp')=='measured_cap_circle':
+            from .pin_cap import estimate
+            fit=estimate(camera,prior)
+            fit.update(part='pin',perception_scope='Current RGB-D measured cap circle/axis',search_prior_scope=prior_scope,instance_id=metadata['capture_id']+':image:pin',robot_reachability_verified=False)
+        else:
+            from isaac_port.fieldkit.perception import CadPoseEstimator
+            estimator=CadPoseEstimator();points=cloud(camera).reshape(-1,3)
+            model=estimator.models['pin']@prior[:3,:3].T+prior[:3,3]
+            keep=np.isfinite(points).all(1)&np.all((points>model.min(0)-.01)&(points<model.max(0)+.01),axis=1)
+            if scope=='held':
+                rgb=camera['rgb'].reshape(-1,3);gray=rgb.mean(1)
+                keep&=(np.ptp(rgb.astype(float),axis=1)<45)&(gray>35)&(gray<180)
+            fit=estimator.fit('pin',points[keep],prior,max_shift_m=(.01,.01,.01),max_tilt_rad=.2).as_dict()
+            t=np.asarray(fit['T_cell_part']);fit.update(part='pin',center_m=t[:3,3].tolist(),axis=t[:3,2].tolist(),
+                      perception_scope='Current RGB-D CAD registration',search_prior_scope=prior_scope,
+                      instance_id=metadata['capture_id']+':image:pin',robot_reachability_verified=False)
         instances=[fit];selected=[fit]
-        raw['segmentation']=dict(backend='Current RGB-D pin CAD registration',search_prior_scope=prior_scope,simulator_input=False)
+        raw['segmentation']=dict(backend='Current RGB-D measured cap circle/axis'if config.get('pin_pose_backend')=='measured_cap_circle'else'Current RGB-D pin CAD registration',search_prior_scope=prior_scope,simulator_input=False)
     else:
         if part=='pin':raise ValueError('Random ring detector does not infer a pin from a ring ROI')
         if scope in ('held','fixture'):

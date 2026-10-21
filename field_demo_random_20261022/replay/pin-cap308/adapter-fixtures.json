@@ -1,0 +1,317 @@
+{
+  "scope": "Authentic recorded SIM308 camera RGBD and SIM encoder TCP. Multiple virtual source camera views, not one physical fixed camera demonstration",
+  "hardware_tested": false,
+  "initial_previous_image": {
+    "index": 5,
+    "camera_config": "observation-006-cap-camera.json",
+    "snapshot": "observation-006.npz",
+    "T_cell_part": [
+      [
+        0.9999976586186731,
+        6.776263578034403e-21,
+        -0.002163967923006234,
+        0.18975967810361655
+      ],
+      [
+        -3.141188193266688e-05,
+        -0.9998946391758976,
+        -0.014515838267064084,
+        -0.7903603130430541
+      ],
+      [
+        -0.002163739925562535,
+        0.014515872254256325,
+        -0.9998922980412605,
+        0.9867519227947464
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "actual_SIM_TCP": [
+      [
+        0.765821916696823,
+        -0.0004267686787350532,
+        0.6430523566950553,
+        0.18985877029257758
+      ],
+      [
+        0.0003387362294792331,
+        -0.9999992352790835,
+        -0.0010670575204412838,
+        -0.7899795747465655
+      ],
+      [
+        0.6430523604338522,
+        0.0010350276444153325,
+        -0.7658213377708596,
+        1.0023274757830696
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "pixel_estimate_source": "Source308 prior RGB-D circle estimate, not actor transform"
+  },
+  "frames": [
+    {
+      "index": 9,
+      "snapshot": "observation-010.npz",
+      "cap_camera_config": "observation-010-cap-camera.json",
+      "icp_camera_config": "observation-010-icp-camera.json",
+      "actual_SIM_TCP": [
+        [
+          -0.7642473791795731,
+          -0.0006461016151467846,
+          -0.6449226713331463,
+          -0.3019381018820215
+        ],
+        [
+          -0.008275015384298028,
+          -0.9999072505068162,
+          0.010807897583592317,
+          0.22745529653088967
+        ],
+        [
+          -0.6448698972903374,
+          0.01359669954501854,
+          0.7641711861030551,
+          1.468034220242461
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "source_RGBD_reference": {
+        "cap_edge_coverage_deg": 331.8216333313901,
+        "cap_circular_edge_inliers": 43,
+        "cap_total_hull_edge_points": 43,
+        "cap_circular_edge_rms_m": 1.413191241829897e-05,
+        "cap_expected_radius_m": 0.0025,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.3018630451585355,
+          0.22757599083192695,
+          1.4836255595592098
+        ],
+        "axis": [
+          0.008599695223972064,
+          -0.0013456009006774536,
+          0.9999621165825587
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.002476801774725269,
+        "cap_points": 791,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 15726,
+        "plane_rms_m": 9.210938645903376e-06,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 209.98831291217357,
+        "neural_inference_this_frame": false
+      }
+    },
+    {
+      "index": 12,
+      "snapshot": "observation-013.npz",
+      "cap_camera_config": "observation-013-cap-camera.json",
+      "icp_camera_config": "observation-013-icp-camera.json",
+      "actual_SIM_TCP": [
+        [
+          -0.7625811017157773,
+          0.000353514465490168,
+          -0.6468923127339808,
+          -0.30187767029474166
+        ],
+        [
+          -0.009024093867972923,
+          -0.999908256743128,
+          0.010091600835958689,
+          0.22692096556595862
+        ],
+        [
+          -0.6468294560364467,
+          0.013533327890736609,
+          0.7625143669687352,
+          1.4685043798704356
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "source_RGBD_reference": {
+        "cap_edge_coverage_deg": 333.29357829183897,
+        "cap_circular_edge_inliers": 42,
+        "cap_total_hull_edge_points": 42,
+        "cap_circular_edge_rms_m": 1.553883147397321e-05,
+        "cap_expected_radius_m": 0.0025,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.30185267323470816,
+          0.2270480543232733,
+          1.4840967697592256
+        ],
+        "axis": [
+          0.0037362356590298637,
+          -0.0011928680891154463,
+          0.9999923087748335
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.002476702515428789,
+        "cap_points": 801,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 15660,
+        "plane_rms_m": 8.976432110510685e-06,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 209.95428401511163,
+        "neural_inference_this_frame": false
+      }
+    },
+    {
+      "index": 15,
+      "snapshot": "observation-016.npz",
+      "cap_camera_config": "observation-016-cap-camera.json",
+      "icp_camera_config": "observation-016-icp-camera.json",
+      "actual_SIM_TCP": [
+        [
+          -0.7614562424618139,
+          0.0003303169822732443,
+          -0.6482160192255737,
+          -0.30194423281296273
+        ],
+        [
+          -0.00940077321301464,
+          -0.9999002277275342,
+          0.010533604102760791,
+          0.22702348661536323
+        ],
+        [
+          -0.6481479245415113,
+          0.014114657221629048,
+          0.7613834121147404,
+          1.4683238986415255
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "source_RGBD_reference": {
+        "cap_edge_coverage_deg": 334.1176992926155,
+        "cap_circular_edge_inliers": 46,
+        "cap_total_hull_edge_points": 46,
+        "cap_circular_edge_rms_m": 1.7312034118623982e-05,
+        "cap_expected_radius_m": 0.0025,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.3019621962219256,
+          0.22715953080324963,
+          1.4839148029272065
+        ],
+        "axis": [
+          0.0008327901662093326,
+          -0.0009560326909799918,
+          0.9999991962306933
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.0024742794311345224,
+        "cap_points": 802,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 15670,
+        "plane_rms_m": 9.804701401373175e-06,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 210.87126899510622,
+        "neural_inference_this_frame": false
+      }
+    },
+    {
+      "index": 20,
+      "snapshot": "observation-021.npz",
+      "cap_camera_config": "observation-021-cap-camera.json",
+      "icp_camera_config": "observation-021-icp-camera.json",
+      "actual_SIM_TCP": [
+        [
+          -0.7612077895087546,
+          0.0002792772926012001,
+          -0.6485077864127742,
+          -0.30197185418106454
+        ],
+        [
+          -0.009625377978192521,
+          -0.9998945165265358,
+          0.010867598656729963,
+          0.227056982445331
+        ],
+        [
+          -0.6484364032240899,
+          0.014514680184180744,
+          0.761130219426452,
+          1.468245128169431
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "source_RGBD_reference": {
+        "cap_edge_coverage_deg": 324.35236679408666,
+        "cap_circular_edge_inliers": 46,
+        "cap_total_hull_edge_points": 47,
+        "cap_circular_edge_rms_m": 1.4010117363073254e-05,
+        "cap_expected_radius_m": 0.0025,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.30200712116795314,
+          0.22718829677924002,
+          1.483834736905662
+        ],
+        "axis": [
+          0.0004888769423733633,
+          -0.0007841281550011859,
+          0.9999995730710948
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.0024710159550921707,
+        "cap_points": 799,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 16741,
+        "plane_rms_m": 9.801787128491838e-06,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 211.00076800212264,
+        "neural_inference_this_frame": false
+      }
+    }
+  ],
+  "source_rgb_observations_sha256": "ae04d5a1e203052af8c970631c5fc1a0bd846b4f4a73d70f3bd5f9683cf9384f"
+}

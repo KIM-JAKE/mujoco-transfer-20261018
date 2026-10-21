@@ -1,0 +1,15 @@
+{
+  "scope": "Pure image geometry from development H sources, adapted into field modules; source308 raw results independently replayed, no frozen308 code snapshot asserted",
+  "upstream_files": {
+    "rgbd_pin_axes.py": "5eb6ed1a019107e993e8a3d43be60899fcafb1b86af9272b24a76f0cd84624c5",
+    "rgbd_fast_tracker.py": "62acd5760f5fa6fa674bf5a22679693f5bec857053c5072ea5046e200df58bb6"
+  },
+  "adaptations": [
+    "mandatory robust circle; removed prior-predicted XY fallback",
+    "camera-only field API with authentic SDK organizedXYZ",
+    "current pixel mask/plane; wrapped image-neighbour endpoints excluded",
+    "canonical CAD-body output; prior yaw retained, measured axis normalized",
+    "explicit opt-in, failed measurement does not silently fall back to ICP"
+  ],
+  "controller_actor_inputs": false
+}

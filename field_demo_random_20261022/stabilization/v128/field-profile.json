@@ -12,6 +12,7 @@
   "simulation_coordinates_applied": false,
   "simulation_joint_trace_replayed": false,
   "runtime_capabilities": [
+    "optional_measured_RGBD_PIN_cap_circle_plane_no_predicted_XY_fallback",
     "optional_bounded_PIN_RGBD_SDK_prealignment_and_same_strict_predispatch_gate",
     "optional_5mrad_native_tracking_stop_profile_with_real_two_arm_records",
     "bounded_read_only_native_IK_seeds_actual_qd_start",
@@ -52,6 +53,8 @@
     "no_simulation_joint_trace_replay"
   ],
   "runtime_files": {
+    "src/field_demo/pin_cap.py": "153fc560ee0ccc275e9721935d2ce1d90be417adf50323cbb230a1f403b5b02e",
+    "src/field_demo/pin_cap_geometry.py": "ce18d9af713b98c860bcd92b55b6d15205601ba886f23572be98c6c26048fad7",
     "src/field_demo/pin_precision.py": "d90ec35ab3a26a4472335c173553bb8b7ccf5b73f41859b498aa0c5c4da55b33",
     "src/isaac_port/fieldkit/assets/part-models.npz": "0609c63413088daa5c3aed9fd6d59ce8945fe092cf1114a91c76581594b71547",
     "src/field_demo/low_speed_profile.py": "a25efba3fe9aab7f266bd6ce18fff994574087547fc16782d3215d3a039bcfe1",
@@ -92,7 +95,7 @@
     "src/isaac_port/fieldkit/payload_load_core.hpp": "334caef67e6942cec525451347cb69548cb29acae9af2d38ccc039773da19131",
     "src/isaac_port/fieldkit/read_state.cpp": "32f733c7f09b2cb788e5144568c9c403e5ed106f969535810a076dca94539f59",
     "src/field_demo/random_cycle.py": "683281c330e3f01fe94cfed6aed7121d6a686c7f5346032e9311adfe5216ed64",
-    "src/field_demo/random_perception.py": "b222d1ddb56409e793a4d87fd3f421595613a224bddeb9b5317b8bb80d65084a",
+    "src/field_demo/random_perception.py": "ec8fdefae116f9d6e0b9cbae5ef7ce10e74c038b15ae40ba5303f2f1d6dd168e",
     "src/isaac_port/fieldkit/assets/fr3v2-factory/collision-models.npz": "70fd59da267a0a36f4dc4ce80a0bc585c4b1f77d0c225edb555d8c23b9d74a36",
     "src/isaac_port/fieldkit/assets/fr3v2-factory/enclosure-proof.json": "182ded4b016d4257faefa7ddaa15d7db1ce275ec752f5e5156a97d7d7b13a42b",
     "src/isaac_port/fieldkit/assets/fr3v2-factory/arm-columns.json": "8e1bcd346816deb05a39d8841dade394a8efd5d00756547038a60d9a920197b5",
@@ -111,7 +114,7 @@
     "src/isaac_port/fieldkit/assets/fr3v2-factory/link7.stl": "f0001986a733293afb0a8142eadf5adc582397cfc05e538e60963fc3bb2b6e41",
     "src/field_demo/random_planner.py": "751e777d78850ff18df1e0a487be0bbb449f62803b1965a8633543506ab0e059",
     "src/field_demo/collision.py": "f0a47fdca872d76eef0a038d47ab4ebeb95bf75c09a3f10b6e6a5edf6cda4f8d",
-    "src/field_demo/stabilization.py": "ebee8182fe16e6cc00f1e3ec0d6d095259681d4ad1975dd48a02947c0f0e21c0",
+    "src/field_demo/stabilization.py": "4eadddd0394221ca553dfa801e57caae9303186c14c185214d7346292c3bfb62",
     "src/field_demo/stabilized/rgbd_scattered_rings.py": "292e570da3084cf03a71949205fa16d67ec3cd18fae2adde5998e7266a3134e5",
     "src/field_demo/stabilized/rgbd_geometry.py": "9423211123770a7155afaca3a71391ffc80a40854e654fe441e8a36ad05fb784",
     "src/isaac_port/fieldkit/site.py": "ed0cdd02e0e90e196d4956205288bb6651f7369c788b2d649808d5c94538f408",

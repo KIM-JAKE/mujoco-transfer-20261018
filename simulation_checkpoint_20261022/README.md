@@ -32,7 +32,7 @@ Typed RIGHT pre-carry planning failure can select a checked handover before load
 |318 |25mm in-bin shift/release passed, but subsequent ordinary outer pickup still palm/basket blocked. Generic contact certificateFALSE. |
 |319 |Actual one-rim extraction rose132.099mm total, lowest class-CAD15.327mm above lip, then checked return/release. Generic contact certificateFALSE, SIM mechanism only. Driver final JSON serialization failed after saved traces; independent evaluator preserves this limitation. No field/assembly admission. |
 
-The full-CAD FCL accept-only acceleration experiment303 also preserved outcomes but gave no useful loaded speedup; it is not enabled. Current field532 packet replay remains blocked before approach/Hand dispatch by trueUNKNOWN clearance even after two virtual views. Field safety admission and SIM point-cloud checks are distinct implementations; neither result is relabeled as success in the other.
+The full-CAD FCL accept-only acceleration experiment303 also preserved outcomes but gave no useful loaded speedup; it is not enabled. Current field561 packet replay remains blocked before approach/Hand dispatch by trueUNKNOWN clearance even after two virtual views. Field safety admission and SIM point-cloud checks are distinct implementations; neither result is relabeled as success in the other.
 
 ## Video and source
 

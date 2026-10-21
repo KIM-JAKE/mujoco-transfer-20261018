@@ -1,0 +1,164 @@
+{
+  "schema_version": 2,
+  "units": "m",
+  "replay_only": true,
+  "calibration_kind": "simulation_replay",
+  "replay_source": "SIM308 raw RGB-D camera exposure; virtual source view, NOT actual RealSense",
+  "calibration_id": "SIM308_PIN_CAP_CAMERA_9",
+  "camera_frame": "SIM308_camera9_optical",
+  "camera_serial": "VIRTUAL_SIM308_CAMERA_9_NOT_HARDWARE",
+  "cell_frame": "v119_simulation_cell",
+  "T_cell_camera": [
+    [
+      -0.4999639062967054,
+      -0.5680764807460557,
+      0.6537011583466221,
+      -0.501122075050725
+    ],
+    [
+      -0.8660462414909144,
+      0.32794754226996176,
+      -0.377378214949608,
+      0.34257541257444407
+    ],
+    [
+      0.0,
+      -0.754810917741833,
+      -0.6559424353232013,
+      1.6835418270426517
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "robots": {
+    "left": {
+      "base_frame": "unused_replay_left",
+      "T_cell_base": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "right": {
+      "base_frame": "v119_right_base",
+      "T_cell_base": [
+        [
+          -0.4401506876935133,
+          -0.5002360113917756,
+          0.7456750666542198,
+          -0.19885095953941345
+        ],
+        [
+          0.8809677780329728,
+          -0.4012021721999228,
+          0.2508636902576995,
+          -0.4379999339580536
+        ],
+        [
+          0.17367540467946146,
+          0.7673335323892156,
+          0.6172812194458164,
+          0.7407563924789429
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  },
+  "part_robot": {
+    "ring1": "right",
+    "ring2": "right",
+    "pin": "right"
+  },
+  "basket": {
+    "floor_origin_cell_m": [
+      0.5516386926284014,
+      -0.7255239198752155,
+      1.089881666854589
+    ],
+    "basket_to_cell_R": [
+      [
+        0.9961946981509433,
+        9.226981003696011e-07,
+        -0.08715574206614143
+      ],
+      [
+        -1.304512053934559e-15,
+        0.9999999999439602,
+        1.0586773483478584e-05
+      ],
+      [
+        0.08715574207102555,
+        -1.0546487614643274e-05,
+        0.9961946980951167
+      ]
+    ],
+    "outer_bounds_cell_m": [
+      [
+        0.4224210007614178,
+        -0.9155032009690306,
+        1.0781296470997765
+      ],
+      [
+        0.6706590756058829,
+        -0.5355031965223335,
+        1.210918206667893
+      ]
+    ]
+  },
+  "held_workspace_bounds_cell_m": [
+    [
+      -3,
+      -3,
+      -3
+    ],
+    [
+      3,
+      3,
+      3
+    ]
+  ],
+  "pin_holder": {
+    "enabled": false
+  },
+  "max_observation_age_s": 0.5,
+  "replay_frame_sha256": {
+    "observation-008-initial.npz": "9428266493b07cc24dd7e342b7dbc9c2199d4e0c4841b0e5601c2a35216b2b55",
+    "observation-001-initial.npz": "40737c25ce289f58de7da2da504f4b7c293392573b28c2bfbf6f6f9924ea2a66"
+  },
+  "provenance": {
+    "basket_fixture_source": "frozen scene CAD basket audit, not a measured field calibration",
+    "basket_audit_sha256": "41c12306a78c43179f09a15e5f440dd8b5a95e6e820285547e50f8a9e84dc8c5",
+    "robot_base_scope": "right frozen simulator base; left placeholder unused replay frame; cannot be used live"
+  },
+  "pin_pose_backend": "cad_icp"
+}
