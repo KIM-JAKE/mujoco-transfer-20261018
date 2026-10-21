@@ -42,7 +42,7 @@ The full-CAD FCL accept-only acceleration experiment303 also preserved outcomes 
 
 ## Video and source
 
-[Three-part insertion excerpts](media/all3-inserted331-recorded-excerpts-1x.mp4) show actual331 recorded PhysX with explicit waiting cuts, original wall timestamps and1x retained motions. The permanent banner preserves **FINAL EMPTY-HAND CLEARANCE FAILED**. [Provenance](media/all3-inserted331-replay-manifest.json) preserves801.38s total and lack of hardware/generalization proof. All three parts met final pose/retention criteria, while the original aggregate160mm hand-clearance criterion remained failed.
+[Full801.4s wall-clock video](media/all3-inserted331-recorded-full-wall-1x.mp4) includes camera, recognition and planning waits at1x. [Three-part insertion excerpts](media/all3-inserted331-recorded-excerpts-1x.mp4) show actual331 recorded PhysX with explicit waiting cuts, original wall timestamps and1x retained motions. The permanent banner preserves **FINAL EMPTY-HAND CLEARANCE FAILED**. [Provenance](media/all3-inserted331-replay-manifest.json) preserves801.38s total and lack of hardware/generalization proof. All three parts met final pose/retention criteria, while the original aggregate160mm hand-clearance criterion remained failed.
 
 [PIN-only recorded video](media/pin-component308-recorded-physx-1x-captioned.mp4) shows actual recorded PhysX at1x monotonic wall time, including camera/compute waits. It is a separate component, not a three-part cycle. [Replay provenance](media/pin-component308-replay-manifest.json) and component records preserve that scope. Only text/reticle overlays were added; no robot/object poses or playback timing were changed.
 
