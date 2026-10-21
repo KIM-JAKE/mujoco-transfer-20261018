@@ -100,20 +100,43 @@ def shape_overlap(a, b, margin=1e-6):
     return result.status!=2
 
 
-def at_pose(checker, q, opening):
+class LazyTransformedProxy:
+    """Defer only vertex/normal projection until a broadphase survivor needs it.
+
+    Every proxy retains the same authored convex CAD and transformed OBB.
+    Nothing is approximated or cached across scene/pose contexts. Copying the
+    transform prevents caller mutation from changing a deferred narrowphase.
+    """
+    def __init__(self, box, transform):
+        self.local = box
+        self.transform = np.asarray(transform).copy()
+        self.bounds = transform_proxy_bounds(box, self.transform)
+        self.full = None
+    def __len__(self):return 5
+    def __getitem__(self, index):
+        if isinstance(index, slice):return tuple(self[i] for i in range(5)[index])
+        if index < 0:index += 5
+        if not 0 <= index < 5:raise IndexError(index)
+        if index < 3:return self.bounds[index]
+        if self.full is None:self.full = transform_proxy(self.local, self.transform)
+        return self.full[index]
+
+_LAZY_PAIR_PROJECTIONS = True
+
+def at_pose(checker, q, opening, *, lazy=False):
     transforms = checker.arm.bodies(q, opening)
     result = []
     if checker.payload_path:
         transforms[checker.payload_path] = transforms[checker.arm.hand_path] @ checker.payload_relative
     for body, source, box in checker.pair_boxes + checker.payload_boxes:
         transform = transforms[body]
-        result.append((body, source, transform_proxy(box, transform)))
+        result.append((body, source, LazyTransformedProxy(box, transform) if lazy else transform_proxy(box, transform)))
     return result
 
 
 def pair_clear(checker, q, opening):
     other = checker.preview_other_boxes
-    own=at_pose(checker,q,opening);margin=.0005
+    own=at_pose(checker,q,opening,lazy=_LAZY_PAIR_PROJECTIONS);margin=.0005
     if not own or not other:return True,None
     def bounds(rows):
         centers=np.array([row[2][0] for row in rows]);extents=np.array([abs(row[2][1])@(row[2][2]+margin) for row in rows]);return centers-extents,centers+extents
@@ -130,7 +153,7 @@ def pair_clear(checker, q, opening):
 def other_at(checker, other, q, opening):
     """Replace only the other moving arm's stale actors in planning queries."""
     previous = checker.preview_other_boxes, checker.preview_other_actors,getattr(checker,'preview_other_configuration',None)
-    checker.preview_other_boxes = at_pose(other, q, opening)
+    checker.preview_other_boxes = at_pose(other, q, opening, lazy=_LAZY_PAIR_PROJECTIONS)
     checker.preview_other_actors = {body for body, _, _ in checker.preview_other_boxes}
     checker.preview_other_configuration=(other,np.asarray(q).copy(),float(opening))
     try:
