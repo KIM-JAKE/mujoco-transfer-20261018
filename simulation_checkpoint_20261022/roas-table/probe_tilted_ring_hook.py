@@ -86,7 +86,13 @@ def _plan(c,measurements,broader=False):
             if not any(np.linalg.norm(np.asarray(pose['center_m'])-old['center_m'])<.012 for old in poses):poses.append(pose)
     # High exposed stock leaves clearance for the native 205 mm palm.
     poses.sort(key=lambda p:-p['center_m'][2])
-    points=np.concatenate([c['observed_grasp_clearance'].points(value['packet'],c['calibration']) for value in measurements])
+    clouds=[]
+    for value in measurements:
+        points=c['observed_grasp_clearance'].points(value['packet'],c['calibration'])
+        if 'capture_native_hand_opening_m' in value:
+            points=c['observed_grasp_clearance'].remove_known_hand_surface(points,value['H'],value['capture_native_hand_opening_m'])
+        clouds.append(points)
+    points=np.concatenate(clouds)
     floor=np.asarray(c['calibration']['floor_origin_world_m']);B=np.asarray(c['calibration']['basket_to_world_R']);normal=B[:,2]
     y=B[:,1].copy();y[2]=0;y/=np.linalg.norm(y);z=np.array([np.sin(np.radians(15.)),0.,-np.cos(np.radians(15.))]);z-=y*(z@y);z/=np.linalg.norm(z);R=np.column_stack([np.cross(y,z),y,z])
     rotations=[R,R@np.diag([-1.,-1.,1.])];current_R=arm.fk(cmd[0,ids])[:3,:3];rotations.sort(key=lambda r:np.linalg.norm(log(r@current_R.T)))

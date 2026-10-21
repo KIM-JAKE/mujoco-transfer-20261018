@@ -15,6 +15,11 @@ def _obstacle_boxes(checker):
         center,R,extents=proxy[:3];R=np.asarray(R).copy()
         if np.linalg.det(R)<0:R[:,2]*=-1
         quaternion=Rotation.from_matrix(R).as_quat()[[3,0,1,2]];boxes.append(dict(dims_m=(2*(np.asarray(extents)+.0005)).tolist(),pose_world_wxyz=np.r_[center,quaternion].tolist(),source=source))
+    completed=getattr(checker,'placed_part_clearance',None)
+    if completed is not None:
+        for label,part in completed.parts.items():
+            vertices=np.concatenate([shape[3]for shape in part['placed']]);low=vertices.min(0)-part['uncertainty_m'];high=vertices.max(0)+part['uncertainty_m']
+            boxes.append(dict(dims_m=(high-low).tolist(),pose_world_wxyz=np.r_[(low+high)/2,[1,0,0,0]].tolist(),source='RGB-D completed '+label+'; conservative whole-class envelope, exact final CAD checks retained'))
     points=getattr(checker,'gpu_rgbd_stock_points',None)
     if points is not None:
         points=np.asarray(points,float);points=points[np.isfinite(points).all(1)];room=192-len(boxes);size=.02

@@ -93,7 +93,10 @@ class Checker:
         if not skip_direct and self.path([start,goal],opening,selected)[0]:return[start,goal]
         if not self.clear(goal,opening,selected)[0]:return None
         if use_fast and getattr(self,'gpu_route_enabled',False):
-            from fr3_gpu_route import propose_route
+            if self.side=='left'and getattr(self,'gpu_left_route_proposals',False):
+                from fr3_gpu_route_dual import propose_route
+            else:
+                from fr3_gpu_route import propose_route
             proposed=propose_route(self,start,goal,opening,selected)
             if proposed is not None:
                 from gpu_route_curve_validation import cubic_geometry

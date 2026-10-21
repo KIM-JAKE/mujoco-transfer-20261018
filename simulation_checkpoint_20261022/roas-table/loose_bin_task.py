@@ -67,6 +67,21 @@ def _annular_cap_camera_view_bank(hand_world,measured_grasp):
 def execute(c):
     HERE=Path(__file__).resolve().parent;c['robot_route_hints']=json.loads((HERE/'bin-picking/live-robot-route-hints.json').read_text());cmd=c['cmd'];art=c['art'];dt=c['dt'];vision=c['vision'];phase='initial';events=[]
     arms={'right':c['arm'],'left':c['left_arm']};indices={'right':c['ids'],'left':c['left_ids']};fingers={'right':c['fi'],'left':c['left_fi']};checkers=c['checkers'];left_program=None;control_steps=0;left_finished_step=0;pin_retention_start=None
+    from placed_part_clearance import PlacedPartClearance
+    completed_geometry=PlacedPartClearance()
+    for planning_checker in checkers.values():planning_checker.placed_part_clearance=completed_geometry
+    def register_completed(part,pose,source):
+        if not pose or pose.get('part')!=part:raise RuntimeError('Completed part requires a directly observed class pose')
+        target=np.asarray(c['goals'][part]['P'] if part!='pin' else c['config']['pin_axis_goal_world_m'],float)
+        P=np.asarray(pose['center_m'],float);axis=np.asarray(pose['axis'],float)
+        if np.linalg.norm(P-target)>=.0015 or np.arccos(np.clip(axis[2],-1,1))>=.05:raise RuntimeError('Completed part pose outside insertion tolerance')
+        T=frame(P,axis_frame(axis))
+        if part=='pin':
+            from pin_native_contact import axis_to_body_grasp
+            T=axis_to_body_grasp(T);template=c['pin_context']['paths']['workpiece_pin']
+        else:template=c['part_collision_templates'][part]
+        completed_geometry.register(checkers['right'],part,template,T,uncertainty_m=.0035)
+        c['planning_diagnostics'].append(dict(event='completed_part_added_to_both_arm_collision_worlds',part=part,source=source,pose_from_RGBD=pose,uncertainty_m=.0035,uses_free_body_poses=False))
     def step(label=None):
         nonlocal left_program,control_steps,left_finished_step,pin_retention_start
         if label=='pin_retention' and pin_retention_start is None:pin_retention_start=control_steps
@@ -265,7 +280,10 @@ def execute(c):
             while left_program is not None and np.linalg.norm(arms['left'].fk(art.get_dof_positions()[0,indices['left']])[:3,3]-arms['right'].fk(art.get_dof_positions()[0,indices['right']])[:3,3])<.24:step('receiver_clears_empty_pin_preshape_volume')
         if c.get('set_empty_donor_contact_guard'):c['set_empty_donor_contact_guard']('right',False)
         pin_path=HERE/'direct_pin_skill.py';pin=types.ModuleType('direct_pin_skill');pin.__file__=str(pin_path);exec(compile(pin_path.read_text(),str(pin_path),'exec'),pin.__dict__)
-        return pin.execute(dict(c['pin_context'],step=step,config=c['config'],robot_route_hints=c['robot_route_hints'],prefetched_initial=prefetched,before_transport=clear_left_work_zone_for_pin,goal_aware_pickup=bool(c['config'].get('pin_first') or c['config'].get('pin_between_rings')),defer_retention_to_recipe=bool(c['config'].get('pin_first') or c['config'].get('pin_between_rings'))))
+        pin_result=pin.execute(dict(c['pin_context'],step=step,config=c['config'],robot_route_hints=c['robot_route_hints'],prefetched_initial=prefetched,before_transport=clear_left_work_zone_for_pin,goal_aware_pickup=bool(c['config'].get('pin_first') or c['config'].get('pin_between_rings')),defer_retention_to_recipe=bool(c['config'].get('pin_first') or c['config'].get('pin_between_rings'))))
+        seated=next((e['result']['pose']for e in reversed(pin_result['events'])if e['event']=='pin_full_depth_RGBD'and e.get('result',{}).get('pose')),None)
+        register_completed('pin',seated,'Last fresh full-depth RGB-D; conservative placement obstacle, retention not certified')
+        return pin_result
     if c['config'].get('park_before_bin_pick'):
         if c['config'].get('pin_first'):raise ValueError('Initial known-empty park must precede ring-first task')
         park=types.ModuleType('probe_empty_park_observe');park.__file__=str(HERE/'probe_empty_park_observe.py');exec(compile(Path(park.__file__).read_text(),park.__file__,'exec'),park.__dict__)
@@ -350,6 +368,9 @@ def execute(c):
             direct_path=HERE/'native_right_ring_insert.py';direct=types.ModuleType('native_right_ring_insert');direct.__file__=str(direct_path);exec(compile(direct_path.read_text(),str(direct_path),'exec'),direct.__dict__)
             direct_context=dict(c,left_hand_known_empty=c.get('left_hand_known_empty',False),step=step,config=dict(c['config'],pick_part=part,right_direct_empty_left_parking=bool(part=='ring2' and c['config'].get('right_direct_empty_left_parking'))))
             placed=direct.execute(direct_context,pickup=p)
+            retained=placed['native_ring_result'].get('retention_RGBD')
+            if retained is None:raise RuntimeError('Released ring retention must be visible before planning the next part')
+            register_completed(part,retained['pose'],'Fresh RGB-D after release and withdrawal')
             results.append(dict(part=part,pickup=p,right_direct=placed,insertion_fresh_RGBD=placed['native_ring_result']['full_depth_pose']))
             events.append(dict(event=part+'_right_direct_insertion_complete',wall_s=time.perf_counter()-c['started']))
             if c['config'].get('pin_between_rings') and part==ring_order[0] and not c['config'].get('one_ring_only'):
@@ -797,6 +818,9 @@ def execute(c):
             # below the validated approach and into the machine.
             else:H=H@frame([0,0,-.08],np.eye(3))
             yield from cartesian(H,.6);c['left_hand_known_empty']=True;c['set_left_force'](float(c['config'].get('native_grip_pad_force_n',30.)));results[-1]['insertion_fresh_RGBD']=p
+            released_world=frame(p['center_m'],axis_frame(p['axis']));G=np.linalg.inv(arm.fk(art.get_dof_positions()[0,ids]))@released_world
+            released=yield from photo(part+'_released_retention_RGBD');_,released_pose=grasp_from(released)
+            register_completed(part,released_pose,'Fresh RGB-D after release and withdrawal');results[-1]['released_retention_RGBD']=released_pose
             if part==ring_order[0] and not c['config'].get('one_ring_only') and not c['config'].get('pin_between_rings'):
                 return_route=checkers['left'].route(cmd[0,ids],left_standby_q,.08,seconds=.35)
                 if return_route is None:raise RuntimeError('No empty receiver return route to handover standby')

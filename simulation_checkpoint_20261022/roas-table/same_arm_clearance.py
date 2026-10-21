@@ -115,4 +115,8 @@ class SameArmClearance:
                 self.stats['rejected'] += 1
                 self.stats['last_rejection'] = why
                 return False, why
-        return self.own_payload_clearance.clear(self.checker,transforms,changed_bodies=changed_bodies)
+        ok,why=self.own_payload_clearance.clear(self.checker,transforms,changed_bodies=changed_bodies)
+        if not ok:return ok,why
+        completed=getattr(self.checker,'placed_part_clearance',None)
+        if completed is not None:return completed.clear(self.checker,transforms,changed_bodies=changed_bodies)
+        return True,None

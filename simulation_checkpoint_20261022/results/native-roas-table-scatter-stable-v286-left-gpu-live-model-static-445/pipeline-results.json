@@ -1,0 +1,1316 @@
+{
+  "full_task_pass": false,
+  "vision_end_to_end_pass": false,
+  "end_to_end_under30": false,
+  "hardware_tested": false,
+  "part_attachments": false,
+  "workpiece_teleports_after_initialization": 0,
+  "physics_hz": 1920,
+  "python_thread_switch_interval_s": 0.005,
+  "timing_basis": "Monotonic wall time from first camera snapshot through >=0.5s verified retention",
+  "CPU_camera_waits_omitted": false,
+  "finger_effort_caps_n": {
+    "left_per_finger": 30.0,
+    "right_per_finger": 30.0,
+    "left_final_insertion_per_finger": 15.0
+  },
+  "clamp_target_update_hz": 30,
+  "wall_pacing": "Each 480 Hz control step advances two 960 Hz PhysX substeps and takes at least 1/480 s wall time; no catch-up fast-forward",
+  "native_finger_target_speed_cap_m_s": 0.0475,
+  "native_force_hold": "Scattered controller: single motor + coupled passive finger, velocity preload, finite force; no attachment",
+  "initial_big_ring_aperture_m": 0.076,
+  "neural_mask_cache_used": false,
+  "CPU_fast_kinematics": {
+    "enabled": true,
+    "device": "CPU",
+    "algorithm": "Same USD frames, joint bounds, DLS damping and 220-iteration limit; Eigen C++ implementation",
+    "library_sha256": "efaaa4965137f12bd60de206612217e3271a7b702c02ca6105479e9fbf470234",
+    "source_sha256": "b513b9dc1d624c79473fe5836cdc78bd13aaaf670e48cc7b024fc3866691835a"
+  },
+  "pin_clamp_assumed_center_z_m": 1.515,
+  "pin_clamp_hardware_calibrated": false,
+  "pin_method": "Tail grasp, uninterrupted axial insertion, release only after fresh full-depth RGB-D confirmation",
+  "clamp_tensor_drives": false,
+  "solver_iterations": {
+    "position": 16,
+    "velocity": 16
+  },
+  "physics_hz_range": [
+    1920,
+    1920
+  ],
+  "physics_worker_threads": 0,
+  "physics_cpu_dispatcher": true,
+  "continuous_collision_detection": true,
+  "controller_hz": 480,
+  "physics_substeps_per_command": 4,
+  "randomized_bin_config": {
+    "seed": 446,
+    "tensor_clamps": false,
+    "correction_joint7_weight": 0.05,
+    "width_guard": true,
+    "digital_clamps": true,
+    "digital_clamp_threshold": 0.95,
+    "fixed_visual_application": true,
+    "direct_pin": true,
+    "ring_seat_hold_s": 0.35,
+    "motion_time_scale": 1.01,
+    "early_width_guard": true,
+    "held_correction_ramp_s": 0.35,
+    "physics_substeps": 4,
+    "physics_substep_window_s": [
+      13.0,
+      16.5
+    ],
+    "pin_tail_candidate": 0,
+    "enforce_motor_speed_limits": true,
+    "randomization_mode": "full_bin_drop",
+    "randomization_settle_s": 3.0,
+    "scatter_probe_only": false,
+    "native_mimic_frequency_hz": 0.0,
+    "deadline_s": 600,
+    "scattered_control": true,
+    "pick_part": "ring2",
+    "native_motor_speed_cap_m_s": 0.032,
+    "scattered_full_task": true,
+    "handover_only": false,
+    "scattered_physics_substeps": 4,
+    "native_finger_convex_decomposition": false,
+    "solver_velocity_iterations": 16,
+    "shuffle_drop_order": true,
+    "randomization_protocol": "full_bin_drop_shuffled_v2",
+    "start_above_bin": true,
+    "experimental_sim_only": true,
+    "full_random_task_validated": false,
+    "allow_fingertip_nudging": true,
+    "allow_internal_grasp": false,
+    "allow_single_finger_rearrangement": true,
+    "native_shared_motor_drive": true,
+    "native_grip_pad_force_n": 30,
+    "optimization_report": "scatter-optimization-20261021.json",
+    "one_ring_only": false,
+    "fast_transport": true,
+    "allow_chord_grasp": true,
+    "allow_side_entry": true,
+    "optimized_motion_timing": true,
+    "tracking_image_width_px": 384,
+    "native_contact_offset_m": 0.0005,
+    "gentle_descent": true,
+    "handover_plan_budget_s": 60.0,
+    "stability_time_scale": 1.0,
+    "grasp_settle_s": 0.2,
+    "ring_contact_debug": false,
+    "optimization_phase": "randomized_reliability_first",
+    "stable_small_grasp": true,
+    "prefer_internal_small_grasp": false,
+    "ring_yaw_free": true,
+    "reliability_handover_hint": true,
+    "stability_finish_rings_before_pin": true,
+    "continuous_force_hold": true,
+    "stability_serial": true,
+    "pin_first": false,
+    "descent_contact_speed_m_s": 0.03,
+    "shortcut_checked_routes": true,
+    "parallel_transfer_approach": false,
+    "pregrasp_floor_m": 1.235,
+    "prefer_near_handover_branch": true,
+    "pregrasp_floor_small_m": 1.235,
+    "path_local_timing": true,
+    "warm_spline_routes": false,
+    "center_large_receiver_grasp": true,
+    "sort_donor_orientations": true,
+    "handover_offsets_override": [
+      [
+        0.1,
+        -0.1,
+        0.0
+      ]
+    ],
+    "pin_between_rings": false,
+    "local_left_park": true,
+    "wait_for_ring_transport_clear": true,
+    "small_receiver_opening_m": 0.074,
+    "receiver_approach_standoff_m": 0.02,
+    "receiver_approach_step_m": 0.002,
+    "receiver_approach_resolution_rad": 0.002,
+    "pickup_multiview": true,
+    "require_fresh_preclose_rgbd": true,
+    "small_ring_repick_on_unstable_hold": true,
+    "small_ring_com_x_limit_m": 0.0025,
+    "pickup_retry_limit": 3,
+    "initial_eye_offset_m": [
+      0.04,
+      -0.04,
+      0.65
+    ],
+    "stable_receiver_grasp": true,
+    "rim_only_pickup": false,
+    "allow_local_rim_grasp": false,
+    "prefer_local_rim_grasp": true,
+    "initial_pickup_multiview": true,
+    "native_loaded_preload_ramp_s": 0.3,
+    "native_loaded_initial_preload_m_s": 0.003,
+    "native_loaded_preload_m_s": 0.0075,
+    "rim_encoder_recenter": true,
+    "strict_rim_clutter": true,
+    "native_loaded_preload_after_contact_m_s": 0.015,
+    "inner_only_pickup": false,
+    "native_inner_bore_grasp": false,
+    "operation_solver_position_iterations": 128,
+    "operation_solver_velocity_iterations": 64,
+    "inner_bore_friction_reserve_mu": 0.6,
+    "allow_bin_release_retry": true,
+    "verify_receiver_pad_contact": true,
+    "inner_bore_x_tilt_candidates_deg": [
+      0,
+      10,
+      -10,
+      15,
+      -15
+    ],
+    "inner_bore_center_correction_limit_m": 0.0025,
+    "right_ring_insert_probe": false,
+    "receiver_axial_only": false,
+    "axial_receiver_probe": false,
+    "right_insertion_fixture_probe": false,
+    "rearrange_probe": false,
+    "rearrange_then_pick": false,
+    "require_front_up_pickup": false,
+    "rearrange_front_up_only": false,
+    "allow_partial_preclose_tracking": true,
+    "preclose_occlusion_max_age_s": 2.0,
+    "verify_lifted_pad_contact": true,
+    "right_direct_empty_left_parking": true,
+    "right_left_park_fixture_probe": false,
+    "reuse_aperture_invariant_checks": true,
+    "axial_receiver_fixture_budget_s": 90.0,
+    "allow_direct_right_insert": true,
+    "prefer_right_carry_small_posture": true,
+    "right_carry_vertical_escape": false,
+    "avoid_other_stock_finger_contact": true,
+    "stable_outer_donor_grasp": true,
+    "allow_tilted_bore_hook": true,
+    "timing_comparison_eligible": false,
+    "rearrangement_retry_limit": 3,
+    "bin_axial_pick_probe": false,
+    "tilted_ring_hook_probe": false,
+    "broaden_tilted_bore_hook_proposals": true,
+    "rearrangement_pickup_extra_eye_offsets_m": [
+      [
+        0.28,
+        0.28,
+        0.5
+      ],
+      [
+        -0.28,
+        -0.28,
+        0.5
+      ]
+    ],
+    "donor_release_opening_cap_m": 0.078,
+    "adaptive_initial_ring_order": true,
+    "pickup_diagonal_offsets_m": [
+      [
+        -0.08,
+        0.0,
+        0.0
+      ]
+    ],
+    "receiver_depth_options_m": [
+      0.002
+    ],
+    "right_fixture_replan_on_alignment_failure": true,
+    "close_empty_left_for_pin": true,
+    "large_receiver_depth_options_m": [
+      0.004
+    ],
+    "large_encoder_pose_bias_compensation": true,
+    "require_broad_large_donor_support": true,
+    "right_fixture_oblique_camera_views": true,
+    "defer_handover_until_visible_clearance": true,
+    "verify_large_lift_grasp_retention": true,
+    "large_lift_grasp_translation_limit_m": 0.002,
+    "large_lift_grasp_axis_limit_rad": 0.05,
+    "verify_large_donor_after_carry": true,
+    "robust_annular_camera_view_bank": true,
+    "timing_metadata_correction": "Parallel CPU reliability experiment; measured wall time is not an eligible optimization comparison.",
+    "balanced_large_receiver_grasp": true,
+    "pin_visual_preinsert_alignment": true,
+    "pin_axis_goal_world_m": [
+      -0.30203095784,
+      0.22724999619,
+      1.52875
+    ],
+    "exact_axis_large_receiver_grasp": true,
+    "verify_selected_outer_approach": true,
+    "robust_pin_cap_circle": true,
+    "pin_precision_image_width_px": 768,
+    "pin_grasp_catalog_run": "native-roas-table-scatter-stable-v251-corrected-pin-catalog",
+    "pin_grasp_catalog_candidate": 0,
+    "pin_grasp_catalog_probe": false,
+    "pin_axis_frame_consistent_geometry": true,
+    "verify_native_pin_hold": true,
+    "ray_image_backend": "embree_cpu",
+    "gpu_ik_proposals": true,
+    "gpu_ik_socket": "/workspace/project/mujoco/.local/curobo-gpu2/ik.sock",
+    "pin_rgbd_sdk_hold_confirmation": true,
+    "gpu_route_static_probe": false,
+    "gpu_route_probe_source_run": "native-roas-table-scatter-stable-v240-camera-bank-parallel-all3-446",
+    "gpu_route_socket": "/workspace/project/mujoco/.local/curobo-gpu2/route.sock",
+    "gpu_route_timeout_s": 2.0,
+    "gpu_left_route_static_probe": true
+  },
+  "randomized_ring_count": 10,
+  "setup_depenetration_cap_m_s": 0.2,
+  "operation_depenetration_cap_m_s": 1000.0,
+  "fixed_standby_TCP_world_m": [
+    0.515,
+    -0.715,
+    1.255
+  ],
+  "standby_independent_of_images_or_object_poses": true,
+  "contact_material_audit": {
+    "steel": {
+      "static_friction": 0.6000000238418579,
+      "dynamic_friction": 0.5099999904632568,
+      "authored_friction_combine_mode": null,
+      "default_combine_mode": "average",
+      "hardware_friction_measured": false
+    },
+    "rubber": {
+      "static_friction": 1.0,
+      "dynamic_friction": 0.8500000238418579,
+      "authored_friction_combine_mode": null,
+      "default_combine_mode": "average",
+      "hardware_friction_measured": false
+    }
+  },
+  "initial_RGBD_camera_eye_offset_m": [
+    0.04,
+    -0.04,
+    0.65
+  ],
+  "clamp_control": "Finite-force open/close commands, same jaw strokes and force caps",
+  "pickup_depth_increase_m": {
+    "ring1": 0.0,
+    "ring2": 0.0
+  },
+  "diagnostic_rings_only": false,
+  "pin_grasp_catalog_selection": {
+    "run": "native-roas-table-scatter-stable-v251-corrected-pin-catalog",
+    "candidate_index": 0,
+    "tilt_deg": -40,
+    "contact_z_m": 0.0,
+    "pickup_center_from_RGBD": [
+      0.19000387111393577,
+      -0.7897289286242213,
+      0.9160499607069958
+    ],
+    "physical_grasp_previously_tested": false
+  },
+  "usd_clamp_targets_batched": true,
+  "dof_names": [
+    "left_arm_fr3v2_joint1",
+    "right_arm_fr3v2_joint1",
+    "left_arm_fr3v2_joint2",
+    "right_arm_fr3v2_joint2",
+    "left_arm_fr3v2_joint3",
+    "right_arm_fr3v2_joint3",
+    "left_arm_fr3v2_joint4",
+    "right_arm_fr3v2_joint4",
+    "left_arm_fr3v2_joint5",
+    "right_arm_fr3v2_joint5",
+    "left_arm_fr3v2_joint6",
+    "right_arm_fr3v2_joint6",
+    "left_arm_fr3v2_joint7",
+    "right_arm_fr3v2_joint7",
+    "left_native_left",
+    "left_native_right",
+    "right_native_left",
+    "right_native_right"
+  ],
+  "link_names": [
+    "official_FR3_Duo",
+    "left_arm_base",
+    "right_arm_base",
+    "left_arm_fr3v2_link0",
+    "right_arm_fr3v2_link0",
+    "left_arm_fr3v2_link1",
+    "right_arm_fr3v2_link1",
+    "left_arm_fr3v2_link2",
+    "right_arm_fr3v2_link2",
+    "left_arm_fr3v2_link3",
+    "right_arm_fr3v2_link3",
+    "left_arm_fr3v2_link4",
+    "right_arm_fr3v2_link4",
+    "left_arm_fr3v2_link5",
+    "right_arm_fr3v2_link5",
+    "left_arm_fr3v2_link6",
+    "right_arm_fr3v2_link6",
+    "left_arm_fr3v2_link7",
+    "right_arm_fr3v2_link7",
+    "left_arm_fr3v2_link8",
+    "right_arm_fr3v2_link8",
+    "left_NativeHand",
+    "right_NativeHand",
+    "left_left_finger",
+    "left_right_finger",
+    "right_left_finger",
+    "right_right_finger"
+  ],
+  "camera_preparation_s": 0.002269916934892535,
+  "reference_motion": "live RGB-D scattered controller; no taught pickup path",
+  "stationary_trim_s": 0.0,
+  "joint_headroom_retiming_saved_s": 0.0,
+  "retimed_free_motion_windows": [],
+  "starts_with_rings_already_installed": false,
+  "scene_ring_color": "same steel material",
+  "pin_collision_approximation": {
+    "model": "Four coaxial convex cylinders, approximate CAD outer dimensions",
+    "length_m": 0.0355,
+    "tail_diameter_m": 0.0105,
+    "collar_diameter_m": 0.013,
+    "shaft_diameter_m": 0.0076,
+    "CAD_nominal_shaft_diameter_m": 0.008,
+    "radial_clearance_allowance_m": 0.0002,
+    "tip_diameter_m": 0.005,
+    "parts": 4,
+    "original_slits_and_reliefs_not_simulated": true,
+    "hardware_validated": false
+  },
+  "grasp_obstacles_from_RGBD_cloud": true,
+  "loose_stock_contact_policy": "Fingertip nudging allowed; RGB-D palm sweep, fixed-structure queries and all physical contacts retained",
+  "fast_transport_planner": {
+    "enabled": true,
+    "version": "0.7.0.8",
+    "static_objects": 2793,
+    "skipped_static_colliders": [],
+    "preparation_s": 1.5807831160491332,
+    "uses_free_body_poses": false,
+    "proposal_only": true,
+    "live_PhysX_path_verification_required": true
+  },
+  "native_contact_generation": {
+    "contact_offset_m": 0.0005,
+    "rest_offset_m": 0.0,
+    "colliders": 4,
+    "applied_after_random_setup": true,
+    "collision_geometry_unchanged": true,
+    "friction_unchanged": true
+  },
+  "operation_solver_iterations": {
+    "position": 128,
+    "velocity": 64,
+    "applied_after_random_setup": true
+  },
+  "standby_preparation_wall_s": 17.043654825072736,
+  "automatic_gc_deferred_during_cycle": true,
+  "first_capture_wall_epoch_s": 1792608129.0745113,
+  "motor_velocity_cap_policy": "Signed position-dependent FR3 bounds at encoder position plus one-step margin; 93% drive cap and unchanged 95% actual velocity acceptance",
+  "CPU_planning_advances_physics": false,
+  "hard_realtime_controller_validated": false,
+  "native_gripper_control": "One scalar width/velocity command + hard mechanical coupling; same reference on both pads; total effort cap 60.0 N and total damping 4000 N s/m, distributed equally; no additional motor capability; loaded grasp maintains closing force at 15 mm/s velocity preload instead of relaxing at a fixed minimum width; configured loaded preload 7.5 mm/s with 0.3 s force ramp",
+  "native_single_motor_coupling_validated": true,
+  "native_shared_motor_drive": true,
+  "native_loaded_preload_ramp": {
+    "duration_s": 0.3,
+    "initial_m_s": 0.003,
+    "final_m_s": 0.0075,
+    "motor_force_cap_n": 60.0,
+    "arm_timing_unchanged": true
+  },
+  "planning_diagnostics": [],
+  "state": "physical_acceptance_failed",
+  "scattered_pick": {
+    "state": "static_LEFT_GPU_route_probe_only",
+    "source_run": "native-roas-table-scatter-stable-v279-self-clear-dual-IK-deep-pad-all3-445",
+    "source_encoder_row": 16190,
+    "nominal_live_calibration_max_component_difference": {
+      "base": 2.0709666959106698e-07,
+      "tip": 3.337367909292757e-07,
+      "frames": 0.0,
+      "axes": 0.0,
+      "bounds": 0.0
+    },
+    "source_model_sha256": "4468cb84b8b2a1f574faba4d39fb401e576bc62bdb290c1ea18b63bfc2616bd3",
+    "current_model_sha256": "ccf8d9da12a90dd5ff6cfadf7bb6b603f4f640ce23ac7472efb0a553d425903c",
+    "robot_motion_executed": false,
+    "free_body_pose_input": false,
+    "full_task_pass": false,
+    "source_float32_goal_projection_magnitude_rad": 0.0,
+    "capture_start_translation_difference_m": 0.0,
+    "proposal_model": "optimistic class-surface and native-boundary witnesses; original full checker mandatory",
+    "GPU_statistics": {
+      "queries": 1,
+      "proposals": 1,
+      "CPU_fallbacks": 0,
+      "last_server_s": 0.177949410979636,
+      "last_obstacle_boxes": 16,
+      "last_payload": true,
+      "reference_gauge_used": true,
+      "original_arm_model_sha256": "ccf8d9da12a90dd5ff6cfadf7bb6b603f4f640ce23ac7472efb0a553d425903c",
+      "last_wall_s": 0.460392787004821
+    },
+    "route": [
+      [
+        -0.20663289725780487,
+        0.8930678367614746,
+        -0.6444843411445618,
+        -2.0111241340637207,
+        -2.752397298812866,
+        1.1786853075027466,
+        -0.18168608844280243
+      ],
+      [
+        -0.20663291215896606,
+        0.8930678963661194,
+        -0.6444844007492065,
+        -2.0111243724823,
+        -2.7523975372314453,
+        1.1786854267120361,
+        -0.18168610334396362
+      ],
+      [
+        -0.20663291215896606,
+        0.8930678367614746,
+        -0.6444844007492065,
+        -2.0111241340637207,
+        -2.752397298812866,
+        1.1786853075027466,
+        -0.18168610334396362
+      ],
+      [
+        -0.20663289725780487,
+        0.8930678963661194,
+        -0.6444844007492065,
+        -2.0111241340637207,
+        -2.7523975372314453,
+        1.1786853075027466,
+        -0.18168610334396362
+      ],
+      [
+        -0.20663291215896606,
+        0.8930678963661194,
+        -0.6444843411445618,
+        -2.0111241340637207,
+        -2.752397298812866,
+        1.1786853075027466,
+        -0.18168610334396362
+      ],
+      [
+        -0.20661886036396027,
+        0.893103837966919,
+        -0.6444598436355591,
+        -2.011122465133667,
+        -2.7523953914642334,
+        1.178726077079773,
+        -0.181718647480011
+      ],
+      [
+        -0.20652051270008087,
+        0.8933555483818054,
+        -0.6442878842353821,
+        -2.0111083984375,
+        -2.7523820400238037,
+        1.1790108680725098,
+        -0.18194645643234253
+      ],
+      [
+        -0.20625358819961548,
+        0.8940389752388,
+        -0.6438212394714355,
+        -2.011070728302002,
+        -2.7523458003997803,
+        1.1797839403152466,
+        -0.18256479501724243
+      ],
+      [
+        -0.20573380589485168,
+        0.8953697085380554,
+        -0.6429124474525452,
+        -2.0109972953796387,
+        -2.752274751663208,
+        1.181289553642273,
+        -0.18376895785331726
+      ],
+      [
+        -0.20489144325256348,
+        0.8974797129631042,
+        -0.6414619088172913,
+        -2.010836601257324,
+        -2.752161979675293,
+        1.1837140321731567,
+        -0.18570902943611145
+      ],
+      [
+        -0.20371529459953308,
+        0.9001656770706177,
+        -0.6395605802536011,
+        -2.0103771686553955,
+        -2.752014398574829,
+        1.1870120763778687,
+        -0.18835462629795074
+      ],
+      [
+        -0.2022087275981903,
+        0.9031401872634888,
+        -0.6373469233512878,
+        -2.0093679428100586,
+        -2.751844644546509,
+        1.191080927848816,
+        -0.19163019955158234
+      ],
+      [
+        -0.20037510991096497,
+        0.9061159491539001,
+        -0.6349596381187439,
+        -2.0075576305389404,
+        -2.7516636848449707,
+        1.1958178281784058,
+        -0.19546015560626984
+      ],
+      [
+        -0.19822396337985992,
+        0.9088534712791443,
+        -0.6325185894966125,
+        -2.0047385692596436,
+        -2.7514801025390625,
+        1.2011367082595825,
+        -0.1997801810503006
+      ],
+      [
+        -0.19578945636749268,
+        0.9113044142723083,
+        -0.6300681829452515,
+        -2.0008738040924072,
+        -2.7512905597686768,
+        1.2070202827453613,
+        -0.20457084476947784
+      ],
+      [
+        -0.19311189651489258,
+        0.9134679436683655,
+        -0.6276341676712036,
+        -1.9959710836410522,
+        -2.7510881423950195,
+        1.213468313217163,
+        -0.20982393622398376
+      ],
+      [
+        -0.19023162126541138,
+        0.9153434634208679,
+        -0.6252422332763672,
+        -1.9900364875793457,
+        -2.750866174697876,
+        1.2204800844192505,
+        -0.21553124487400055
+      ],
+      [
+        -0.18718412518501282,
+        0.9169350862503052,
+        -0.6229125261306763,
+        -1.9830867052078247,
+        -2.7506191730499268,
+        1.2280505895614624,
+        -0.22168166935443878
+      ],
+      [
+        -0.18398576974868774,
+        0.9182656407356262,
+        -0.6206425428390503,
+        -1.975174069404602,
+        -2.750347375869751,
+        1.2361538410186768,
+        -0.2282525599002838
+      ],
+      [
+        -0.180648073554039,
+        0.9193626046180725,
+        -0.6184243559837341,
+        -1.966361403465271,
+        -2.7500524520874023,
+        1.2447593212127686,
+        -0.23521842062473297
+      ],
+      [
+        -0.1771826297044754,
+        0.9202536344528198,
+        -0.6162498593330383,
+        -1.9567102193832397,
+        -2.749735116958618,
+        1.2538360357284546,
+        -0.2425537258386612
+      ],
+      [
+        -0.17360135912895203,
+        0.9209632873535156,
+        -0.614112913608551,
+        -1.946277141571045,
+        -2.749396562576294,
+        1.2633552551269531,
+        -0.25023403763771057
+      ],
+      [
+        -0.16991785168647766,
+        0.9215041399002075,
+        -0.6120150685310364,
+        -1.9350947141647339,
+        -2.749035358428955,
+        1.2732951641082764,
+        -0.258239209651947
+      ],
+      [
+        -0.1661461740732193,
+        0.9218856692314148,
+        -0.609959602355957,
+        -1.923189640045166,
+        -2.748647928237915,
+        1.2836353778839111,
+        -0.2665502429008484
+      ],
+      [
+        -0.16230027377605438,
+        0.9221174716949463,
+        -0.6079498529434204,
+        -1.9105885028839111,
+        -2.74823260307312,
+        1.294356346130371,
+        -0.27514803409576416
+      ],
+      [
+        -0.15839439630508423,
+        0.9222092032432556,
+        -0.6059895157814026,
+        -1.8973193168640137,
+        -2.7477872371673584,
+        1.305437684059143,
+        -0.28401368856430054
+      ],
+      [
+        -0.15444348752498627,
+        0.9221708178520203,
+        -0.6040835976600647,
+        -1.8834140300750732,
+        -2.7473130226135254,
+        1.3168588876724243,
+        -0.29312863945961
+      ],
+      [
+        -0.15046270191669464,
+        0.9220123291015625,
+        -0.602237343788147,
+        -1.8689061403274536,
+        -2.7468113899230957,
+        1.3285995721817017,
+        -0.30247440934181213
+      ],
+      [
+        -0.1464671790599823,
+        0.9217436909675598,
+        -0.6004559397697449,
+        -1.853829026222229,
+        -2.7462844848632812,
+        1.3406392335891724,
+        -0.312032550573349
+      ],
+      [
+        -0.14247046411037445,
+        0.9213747978210449,
+        -0.5987431406974792,
+        -1.8382179737091064,
+        -2.745734214782715,
+        1.352957010269165,
+        -0.32178500294685364
+      ],
+      [
+        -0.1384797990322113,
+        0.9209144115447998,
+        -0.5970959067344666,
+        -1.8221168518066406,
+        -2.745161771774292,
+        1.3655319213867188,
+        -0.33171501755714417
+      ],
+      [
+        -0.13450075685977936,
+        0.9203712940216064,
+        -0.5955094695091248,
+        -1.8055717945098877,
+        -2.744568109512329,
+        1.3783423900604248,
+        -0.34180623292922974
+      ],
+      [
+        -0.1305389255285263,
+        0.9197539687156677,
+        -0.5939790606498718,
+        -1.7886286973953247,
+        -2.743955612182617,
+        1.3913673162460327,
+        -0.3520423173904419
+      ],
+      [
+        -0.1266014575958252,
+        0.9190719723701477,
+        -0.5925012230873108,
+        -1.771332859992981,
+        -2.7433249950408936,
+        1.404585838317871,
+        -0.36240699887275696
+      ],
+      [
+        -0.1227014884352684,
+        0.9183385968208313,
+        -0.5910772085189819,
+        -1.7537256479263306,
+        -2.7426788806915283,
+        1.4179794788360596,
+        -0.37288469076156616
+      ],
+      [
+        -0.11885367333889008,
+        0.9175678491592407,
+        -0.5897096991539001,
+        -1.735848069190979,
+        -2.7420191764831543,
+        1.4315310716629028,
+        -0.3834598958492279
+      ],
+      [
+        -0.11507266759872437,
+        0.9167739152908325,
+        -0.588401198387146,
+        -1.7177411317825317,
+        -2.7413482666015625,
+        1.4452223777770996,
+        -0.3941170871257782
+      ],
+      [
+        -0.11137271672487259,
+        0.9159713387489319,
+        -0.5871536731719971,
+        -1.6994439363479614,
+        -2.740669012069702,
+        1.4590370655059814,
+        -0.404840350151062
+      ],
+      [
+        -0.10776637494564056,
+        0.9151766896247864,
+        -0.5859673023223877,
+        -1.6809896230697632,
+        -2.7399821281433105,
+        1.4729636907577515,
+        -0.4156119227409363
+      ],
+      [
+        -0.10426580905914307,
+        0.9144068956375122,
+        -0.5848415493965149,
+        -1.6624093055725098,
+        -2.7392895221710205,
+        1.4869920015335083,
+        -0.4264135956764221
+      ],
+      [
+        -0.1008831337094307,
+        0.9136790633201599,
+        -0.5837759971618652,
+        -1.6437345743179321,
+        -2.7385921478271484,
+        1.501111626625061,
+        -0.43722712993621826
+      ],
+      [
+        -0.09762796014547348,
+        0.9130086898803711,
+        -0.5827689170837402,
+        -1.6249961853027344,
+        -2.7378921508789062,
+        1.5153112411499023,
+        -0.44803500175476074
+      ],
+      [
+        -0.09449965506792068,
+        0.9124056696891785,
+        -0.581814169883728,
+        -1.6062202453613281,
+        -2.7371885776519775,
+        1.5295747518539429,
+        -0.45882225036621094
+      ],
+      [
+        -0.09149505943059921,
+        0.9118785858154297,
+        -0.5809044241905212,
+        -1.5874321460723877,
+        -2.7364814281463623,
+        1.5438849925994873,
+        -0.46957460045814514
+      ],
+      [
+        -0.08861099183559418,
+        0.9114357829093933,
+        -0.5800321102142334,
+        -1.5686575174331665,
+        -2.7357711791992188,
+        1.5582246780395508,
+        -0.48027774691581726
+      ],
+      [
+        -0.08584409207105637,
+        0.9110859036445618,
+        -0.5791893601417542,
+        -1.5499237775802612,
+        -2.7350571155548096,
+        1.5725759267807007,
+        -0.4909172058105469
+      ],
+      [
+        -0.08319025486707687,
+        0.9108374714851379,
+        -0.5783652663230896,
+        -1.531265377998352,
+        -2.7343363761901855,
+        1.5869165658950806,
+        -0.5014776587486267
+      ],
+      [
+        -0.08064516633749008,
+        0.9106991291046143,
+        -0.577548623085022,
+        -1.5127195119857788,
+        -2.733607769012451,
+        1.6012237071990967,
+        -0.5119434595108032
+      ],
+      [
+        -0.07820454239845276,
+        0.9106794595718384,
+        -0.576728105545044,
+        -1.4943230152130127,
+        -2.73286771774292,
+        1.6154747009277344,
+        -0.5222991704940796
+      ],
+      [
+        -0.07586562633514404,
+        0.9107852578163147,
+        -0.5758945345878601,
+        -1.4761139154434204,
+        -2.732114553451538,
+        1.6296451091766357,
+        -0.532528817653656
+      ],
+      [
+        -0.07363193482160568,
+        0.9110158681869507,
+        -0.5750482082366943,
+        -1.4581345319747925,
+        -2.731346368789673,
+        1.6437058448791504,
+        -0.5426148176193237
+      ],
+      [
+        -0.07150851935148239,
+        0.9113689661026001,
+        -0.5741918683052063,
+        -1.4404293298721313,
+        -2.730562925338745,
+        1.6576263904571533,
+        -0.5525392293930054
+      ],
+      [
+        -0.06950043141841888,
+        0.9118419289588928,
+        -0.5733280777931213,
+        -1.423041820526123,
+        -2.729762554168701,
+        1.6713757514953613,
+        -0.5622840523719788
+      ],
+      [
+        -0.06761172413825989,
+        0.912431001663208,
+        -0.5724599361419678,
+        -1.4060158729553223,
+        -2.728945732116699,
+        1.6849229335784912,
+        -0.5718310475349426
+      ],
+      [
+        -0.06584241986274719,
+        0.9131264090538025,
+        -0.571592390537262,
+        -1.38939368724823,
+        -2.728116750717163,
+        1.6982311010360718,
+        -0.5811606049537659
+      ],
+      [
+        -0.06419150531291962,
+        0.9139169454574585,
+        -0.5707306861877441,
+        -1.3732173442840576,
+        -2.7272820472717285,
+        1.7112630605697632,
+        -0.5902528166770935
+      ],
+      [
+        -0.06265799701213837,
+        0.9147915840148926,
+        -0.5698801279067993,
+        -1.3575284481048584,
+        -2.7264468669891357,
+        1.723981499671936,
+        -0.599087655544281
+      ],
+      [
+        -0.061240341514348984,
+        0.9157391786575317,
+        -0.5690458416938782,
+        -1.3423677682876587,
+        -2.7256176471710205,
+        1.7363498210906982,
+        -0.6076457500457764
+      ],
+      [
+        -0.059934720396995544,
+        0.9167494177818298,
+        -0.5682310461997986,
+        -1.3277668952941895,
+        -2.724801540374756,
+        1.7483351230621338,
+        -0.6159089803695679
+      ],
+      [
+        -0.05873679742217064,
+        0.917812168598175,
+        -0.5674389600753784,
+        -1.3137564659118652,
+        -2.724006414413452,
+        1.7599055767059326,
+        -0.6238594651222229
+      ],
+      [
+        -0.05764220282435417,
+        0.918917179107666,
+        -0.566672682762146,
+        -1.300366759300232,
+        -2.7232391834259033,
+        1.771028995513916,
+        -0.6314796209335327
+      ],
+      [
+        -0.056646235287189484,
+        0.9200534224510193,
+        -0.5659348964691162,
+        -1.287627935409546,
+        -2.7225067615509033,
+        1.781672477722168,
+        -0.6387507319450378
+      ],
+      [
+        -0.05574274808168411,
+        0.9212073683738708,
+        -0.5652273297309875,
+        -1.2755706310272217,
+        -2.721813678741455,
+        1.7917994260787964,
+        -0.6456505060195923
+      ],
+      [
+        -0.05492526665329933,
+        0.9223644733428955,
+        -0.5645514726638794,
+        -1.2642247676849365,
+        -2.721162796020508,
+        1.8013725280761719,
+        -0.6521558165550232
+      ],
+      [
+        -0.054187286645174026,
+        0.9235101342201233,
+        -0.5639085173606873,
+        -1.2536211013793945,
+        -2.720557689666748,
+        1.8103541135787964,
+        -0.6582434773445129
+      ],
+      [
+        -0.05352281033992767,
+        0.9246302247047424,
+        -0.5633004307746887,
+        -1.2437866926193237,
+        -2.720001697540283,
+        1.8187100887298584,
+        -0.6638927459716797
+      ],
+      [
+        -0.05292770266532898,
+        0.925710916519165,
+        -0.5627305507659912,
+        -1.2347363233566284,
+        -2.7194957733154297,
+        1.826419711112976,
+        -0.6690925359725952
+      ],
+      [
+        -0.05239831656217575,
+        0.9267385005950928,
+        -0.5622029304504395,
+        -1.2264821529388428,
+        -2.719041109085083,
+        1.8334654569625854,
+        -0.6738342642784119
+      ],
+      [
+        -0.0519309863448143,
+        0.9276993870735168,
+        -0.5617212653160095,
+        -1.2190357446670532,
+        -2.7186379432678223,
+        1.8398298025131226,
+        -0.6781094074249268
+      ],
+      [
+        -0.05152358487248421,
+        0.9285775423049927,
+        -0.5612905621528625,
+        -1.2124289274215698,
+        -2.7182884216308594,
+        1.8454792499542236,
+        -0.6818984746932983
+      ],
+      [
+        -0.05118003115057945,
+        0.929347813129425,
+        -0.5609195232391357,
+        -1.2067742347717285,
+        -2.7179954051971436,
+        1.850315809249878,
+        -0.6851381063461304
+      ],
+      [
+        -0.05090577155351639,
+        0.929982602596283,
+        -0.5606182217597961,
+        -1.2022043466567993,
+        -2.7177627086639404,
+        1.8542253971099854,
+        -0.6877540349960327
+      ],
+      [
+        -0.05070624127984047,
+        0.9304543733596802,
+        -0.5603964328765869,
+        -1.1988518238067627,
+        -2.7175936698913574,
+        1.8570940494537354,
+        -0.6896719932556152
+      ],
+      [
+        -0.0505826398730278,
+        0.9307481050491333,
+        -0.560258686542511,
+        -1.1967707872390747,
+        -2.717489242553711,
+        1.858874797821045,
+        -0.6908624768257141
+      ],
+      [
+        -0.05051916837692261,
+        0.9308990240097046,
+        -0.5601878762245178,
+        -1.1957019567489624,
+        -2.717435598373413,
+        1.859789252281189,
+        -0.6914737820625305
+      ],
+      [
+        -0.05049578472971916,
+        0.9309545755386353,
+        -0.560161828994751,
+        -1.1953083276748657,
+        -2.7174160480499268,
+        1.8601261377334595,
+        -0.6916989684104919
+      ],
+      [
+        -0.05049244686961174,
+        0.9309625625610352,
+        -0.5601580739021301,
+        -1.1952520608901978,
+        -2.7174129486083984,
+        1.8601741790771484,
+        -0.6917310953140259
+      ],
+      [
+        -0.05049244686961174,
+        0.9309625029563904,
+        -0.5601581335067749,
+        -1.1952521800994873,
+        -2.7174129486083984,
+        1.8601741790771484,
+        -0.6917311549186707
+      ],
+      [
+        -0.05049244314432144,
+        0.9309625029563904,
+        -0.5601580739021301,
+        -1.1952520608901978,
+        -2.7174129486083984,
+        1.8601741790771484,
+        -0.6917311549186707
+      ],
+      [
+        -0.05049244686961174,
+        0.9309625625610352,
+        -0.5601580739021301,
+        -1.1952520608901978,
+        -2.7174131870269775,
+        1.8601741790771484,
+        -0.6917310953140259
+      ],
+      [
+        -0.05049244314432144,
+        0.9309625029563904,
+        -0.5601580739021301,
+        -1.1952520608901978,
+        -2.7174129486083984,
+        1.8601741790771484,
+        -0.6917310953140259
+      ]
+    ],
+    "cubic_geometry": {
+      "cubic_samples": 177,
+      "joint_extrema_included": true,
+      "maximum_sample_joint_step_rad": 0.0098344087600708
+    },
+    "continuous_curve_check": {
+      "clear": true,
+      "reason": null
+    },
+    "approved": true,
+    "issued_curve_check": {
+      "clear": true,
+      "reason": null
+    },
+    "continuous_cubic_used": true,
+    "issued_samples": 429,
+    "issued_geometry_sampling": {
+      "full_issued_samples": 429,
+      "issued_geometry_samples": 233,
+      "first_last_and_float32_extrema_preserved": true,
+      "maximum_retained_joint_step_rad": 0.0059621334075927734
+    },
+    "retiming": {
+      "duration_s": 0.8916666666666666,
+      "progress_law": "locally_constrained_path_speed_with_smoothed_progress",
+      "velocity_fraction": 0.95,
+      "acceleration_rad_s2": 9.5,
+      "jerk_rad_s3": 4750.0,
+      "unchanged_geometric_spline": true,
+      "full_float32_issued_field_check": true,
+      "saved_s": 0.4041666666666667
+    },
+    "original_full_native_self_fixed_pair_payload_checks": true,
+    "own_payload_vs_proximal_fingers_palm_and_arm_checked": true,
+    "same_arm_statistics": {
+      "queries": 410,
+      "rejected": 0,
+      "candidate_pairs": 43,
+      "geometry_rows": 11,
+      "backend": "FCL convex CAD",
+      "semantic_exclusions": "same rigid body, direct joint collision=false, exact authored FilteredPairs"
+    },
+    "own_payload_statistics": {
+      "queries": 410,
+      "rejected": 0,
+      "distal_native_pad_contact_only": true,
+      "palm_and_arm_exempt": false,
+      "uses_free_body_poses": false
+    },
+    "full_FR3_numpy_command_validation": true,
+    "elapsed_s": 6.492560404003598
+  },
+  "scene_only": false,
+  "wall_verified_elapsed_s": 6.5065071530407295,
+  "end_to_end_under20": false,
+  "verified_elapsed_s": 6.506484272074886,
+  "cycle_time_s": 6.506484272074886,
+  "simulation_elapsed_s": 0.0,
+  "final_checks": {
+    "ring1": {
+      "position_error_m": 1.1517287480179756,
+      "axis_error_rad": 3.0543263474824025
+    },
+    "ring2": {
+      "position_error_m": 1.406065624498071,
+      "axis_error_rad": 2.4948173444356465
+    },
+    "pin": {
+      "position_error_m": 1.285613421458405,
+      "axis_error_rad": 3.141592653589793
+    }
+  },
+  "final_retention_observation_s": 0.0,
+  "final_retention_physics_s": 0.0,
+  "FR3_command_limit_audit": {
+    "samples": 0,
+    "velocity_fraction_of_95_percent_PBV": 0.0,
+    "max_acceleration_rad_s2": 0.0,
+    "max_jerk_rad_s3": 0.0,
+    "acceleration_limit_rad_s2": 9.5,
+    "jerk_limit_rad_s3": 4750,
+    "command_limit_checks": true,
+    "complete_issued_field_checked_at_end": false,
+    "validated_sample_count": 0
+  },
+  "observation_driven_corrections": [],
+  "CPU_operation_profile": {
+    "control_s": 0.0,
+    "physics_s": 0.0,
+    "clamp_flush_s": 0.0
+  },
+  "GPU_route_statistics": {
+    "left": {
+      "queries": 1,
+      "proposals": 1,
+      "CPU_fallbacks": 0,
+      "last_server_s": 0.177949410979636,
+      "last_obstacle_boxes": 16,
+      "last_payload": true,
+      "reference_gauge_used": true,
+      "original_arm_model_sha256": "ccf8d9da12a90dd5ff6cfadf7bb6b603f4f640ce23ac7472efb0a553d425903c",
+      "last_wall_s": 0.460392787004821
+    }
+  },
+  "fast_transport_statistics": {
+    "right": {
+      "routes": 0,
+      "proposals": 0,
+      "clear_calls": 0,
+      "seconds": 0.0,
+      "static_objects": 2793,
+      "static_skipped": 0,
+      "backend": "FCL CPU proposals + live PhysX verification"
+    },
+    "left": {
+      "routes": 0,
+      "proposals": 0,
+      "clear_calls": 0,
+      "seconds": 0.0,
+      "static_objects": 2793,
+      "static_skipped": 0,
+      "backend": "FCL CPU proposals + live PhysX verification"
+    }
+  },
+  "encoder_motor_speed_audit": {
+    "samples": 0,
+    "max_fraction_of_95_percent_PBV": 0.0,
+    "max_finger_fraction_of_47p5_mm_s": 0.0,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  }
+}

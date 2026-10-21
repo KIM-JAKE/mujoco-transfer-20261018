@@ -16,12 +16,12 @@ from fr3_path_timing import retime,retime_safe_polyline
 def execute(c):
     arm,art,cmd,ids,fi,dt,vision,checker=[c[k] for k in ['arm','art','cmd','ids','fi','dt','vision','checker']]
     part=c['config']['pick_part'];events=[]
-    event=dict(mode='initial',part=None);future=vision.request(event,arm.fk(art.get_dof_positions()[0,ids]))
+    event=dict(mode='initial',part=None,capture_native_hand_opening_m=float(art.get_dof_positions()[0,fi].sum()));future=vision.request(event,arm.fk(art.get_dof_positions()[0,ids]))
     deadline=time.perf_counter()+3
     while not future.done():
         vision.poll();c['step'](part+'_rearrange_RGBD')
         if time.perf_counter()>deadline:raise RuntimeError('Rearrangement image deadline')
-    value=future.result();event['delivered_wall_s']=time.perf_counter()-c['started'];measurements=[]
+    value=future.result();value['capture_native_hand_opening_m']=event['capture_native_hand_opening_m'];event['delivered_wall_s']=time.perf_counter()-c['started'];measurements=[]
     if not value['result'].get('error'):measurements.append(value)
     previous=vision.calibration.get('initial_eye_offset_m',[.04,-.04,.65])
     extra_offsets=c['config'].get('initial_pickup_extra_eye_offsets_m',[])
@@ -34,14 +34,14 @@ def execute(c):
     # may now lie behind the withdrawn hand; no prior hook displacement is
     # treated as a measured part pose, and every packet joins the cloud union.
     for offset in [[.35,-.25,.50],[-.30,.25,.50]]+list(extra_offsets):
-        vision.calibration['initial_eye_offset_m']=offset;event=dict(mode='initial',part=None,rearrangement_camera=True)
+        vision.calibration['initial_eye_offset_m']=offset;event=dict(mode='initial',part=None,rearrangement_camera=True,capture_native_hand_opening_m=float(art.get_dof_positions()[0,fi].sum()))
         try:future=vision.request(event,arm.fk(art.get_dof_positions()[0,ids]))
         finally:vision.calibration['initial_eye_offset_m']=previous
         deadline=time.perf_counter()+3
         while not future.done():
             vision.poll();c['step'](part+'_rearrange_RGBD')
             if time.perf_counter()>deadline:raise RuntimeError('Rearrangement alternate image deadline')
-        value=future.result();event['delivered_wall_s']=time.perf_counter()-c['started']
+        value=future.result();value['capture_native_hand_opening_m']=event['capture_native_hand_opening_m'];event['delivered_wall_s']=time.perf_counter()-c['started']
         if not value['result'].get('error'):measurements.append(value)
     if not measurements:raise RuntimeError('No directly measured stock in rearrangement camera views')
     poses=[]
@@ -52,7 +52,13 @@ def execute(c):
             if not any(np.linalg.norm(np.asarray(pose['center_m'])-old['center_m'])<.012 for old in poses):poses.append(pose)
     # High exposed stock leaves clearance for the native 205 mm palm.
     poses.sort(key=lambda p:-p['center_m'][2])
-    points=np.concatenate([c['observed_grasp_clearance'].points(value['packet'],c['calibration']) for value in measurements])
+    clouds=[]
+    for value in measurements:
+        points=c['observed_grasp_clearance'].points(value['packet'],c['calibration'])
+        if 'capture_native_hand_opening_m' in value:
+            points=c['observed_grasp_clearance'].remove_known_hand_surface(points,value['H'],value['capture_native_hand_opening_m'])
+        clouds.append(points)
+    points=np.concatenate(clouds)
     floor=np.asarray(c['calibration']['floor_origin_world_m']);B=np.asarray(c['calibration']['basket_to_world_R']);normal=B[:,2]
     y=B[:,1].copy();y[2]=0;y/=np.linalg.norm(y);z=np.array([0.,0.,-1.]);R=np.column_stack([np.cross(y,z),y,z])
     rotations=[R,R@np.diag([-1.,-1.,1.])];current_R=arm.fk(cmd[0,ids])[:3,:3];rotations.sort(key=lambda r:np.linalg.norm(log(r@current_R.T)))

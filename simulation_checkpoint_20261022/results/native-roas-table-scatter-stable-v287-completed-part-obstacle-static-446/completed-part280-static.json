@@ -1,0 +1,88 @@
+{
+  "state": "static_completed_part_RGBD_encoder_regression",
+  "approved": true,
+  "physical_robot_motion": false,
+  "uses_free_body_poses": false,
+  "source_RGBD_capture_wall_s": 201.51046756096184,
+  "registered_pose": {
+    "part": "ring1",
+    "initial_arc_center_m": [
+      -0.12311059569833191,
+      0.24005911707651223,
+      1.5306052445205847
+    ],
+    "initial_plane_axis": [
+      0.002612239056388745,
+      -0.0018187303578787396,
+      0.9999949342006677
+    ],
+    "center_m": [
+      -0.12322632249909704,
+      0.23995114388389985,
+      1.5306053504530668
+    ],
+    "axis": [
+      0.002612239056388745,
+      -0.0018187303578787396,
+      0.9999949342006677
+    ],
+    "visible_face_inner_radius_m": 0.03191951558857418,
+    "visible_CAD_end_sign": -1,
+    "front_back_orientation_margin_m": 0.0020804844114258245,
+    "front_back_from_RGBD": true,
+    "rms_m": 0.00017968893639681372,
+    "depth_points": 11196,
+    "measured_classification_diameter_m": 0.07297252720826783,
+    "visible_arc_coverage_deg": 360,
+    "size_classification": "RGB-D observed annular arc metric diameter",
+    "uses_depth_sensor": true,
+    "uses_simulator_body_poses": false,
+    "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+    "lateral_CAD_correction_m": [
+      -0.00011572680076513131,
+      -0.0001079731926123817,
+      1.0593248211954176e-07
+    ],
+    "lateral_CAD_registration_rms_m": 0.00035555205052682743,
+    "lateral_CAD_iterations": 4,
+    "observed_cap_axis_and_depth_preserved": true
+  },
+  "good_after_release": {
+    "source_row": 9297,
+    "source_wall_s": 201.50966487894766,
+    "clear": true,
+    "reason": null
+  },
+  "rejected_before_kick": {
+    "source_row": 10103,
+    "source_wall_s": 236.53353533393238,
+    "clear": false,
+    "reason": {
+      "kind": "robot_or_payload_vs_completed_part",
+      "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm",
+      "actor": "RGBD_placed_ring1",
+      "placed_part": "ring1",
+      "distance_m": 0.003898691847762554,
+      "required_clearance_m": 0.0045000000000000005,
+      "uses_free_body_poses": false
+    }
+  },
+  "registry_statistics": {
+    "queries": 53,
+    "rejected": 1,
+    "registered_parts": [
+      "ring1"
+    ],
+    "uses_free_body_poses": false,
+    "last_rejection": {
+      "kind": "robot_or_payload_vs_completed_part",
+      "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm",
+      "actor": "RGBD_placed_ring1",
+      "placed_part": "ring1",
+      "distance_m": 0.003898691847762554,
+      "required_clearance_m": 0.0045000000000000005,
+      "uses_free_body_poses": false
+    }
+  },
+  "full_task_pass": false
+}

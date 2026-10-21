@@ -31,12 +31,29 @@ GPU IK uses TCP target + current measured robot joints only. It does not certify
 
 The reference evidence reports32 random FK samples with maximum position error0.258µm and rotation error0.291µrad. Runtime trials256/257 accepted12/11 GPU pregrasp proposals without CPU IK fallback. Those are endpoint acceleration observations, not full-task acceptance.
 
-## Experimental route proposals — default off
+## Optional checked route proposals — default off
 
-`build_route_model.py` and `route_server.py` are experimental source only. Set `M80_GPU_COLLISION_NPZ` to a freshly exported collision-model archive from the matching production scene, then run the builder before the route server. The archive must contain the native PhysX mesh indices used by this project; an unrelated asset order is unsupported. The builder creates local fitted spheres and a fixed-CAD mesh. These generated assets are intentionally excluded from this package/Git. Do not use a stale mesh after changing the scene.
+RIGHT and LEFT carry proposals now have bounded opt-in clients. The model uses the same native FR3 chain, approximate native collision spheres, an 8mm fixed-CAD ESDF and current robot/RGB-D obstacles. The coarse model is deliberately an optimizer approximation. The original complete self, own-payload, opposite-arm, fixed-CAD and completed-part registry checks remain authoritative, including all issued FR3 command guards. No insertion contact stroke is certified by the GPU world.
 
-The sphere geometry is an approximation fitted to the actual FR3/native-hand collision meshes. It can miss or overestimate features. Current other-arm encoder envelopes and RGB-D stock bounds are provided per request; a held-payload envelope is also included. The route remains a proposal and must pass the unchanged original full collision checks and exact issued-curve retiming. Insert/contact strokes do not use the approximate GPU world as an authority.
+Generate local assets using the matching current production collision archive, which must use this project's native-body mesh layout:
 
-Current route evidence is an81-point proposal at about5.7s, with original PhysX acceptance still pending; it has not met the100ms target and is not enabled in production. Do not enable `gpu_route_proposals` until the bounded client integration and original full-path check are reviewed. The active IK service is independent and must remain available while route work continues.
+```bash
+export M80_GPU_COLLISION_NPZ=/path/to/current/camera-local-models.npz
+python3 build_route_model.py
+python3 native_witness_proposal.py
+python3 build_route_esdf.py
+cp robot-route-prior.json robot-route-prior-left.json "$M80_GPU_PLANNING_HOME/"
+python3 route_server.py
+# In a separate process, using the same environment/assets:
+python3 route_dual_server.py
+```
 
-No `.so`, Torch package, CUDA cache, credentials, socket, logs or large scene mesh belongs in this source package.
+The workers have separate `route.sock` and `route-dual.sock`; neither replaces the independent IK worker. Do not start another worker on an occupied socket. Enabling LEFT requires `gpu_route_proposals=true`, `gpu_left_route_proposals=true`, `gpu_dual_arm_reference=true`; the optional `gpu_left_route_socket` is distinct from the RIGHT socket. Missing service, mismatch, timeout or original-checker rejection retains CPU fallback. The service must be warmed before per-request timing; cold startup belongs in end-to-end task wall time.
+
+LEFT uses a rigid world/TCP gauge of the same intrinsic joint chain. Frames, axes and bounds must match; current arm FK and exact model/endpoint echoes remain checked. `left-gauge-readiness.json` records nominal parity. Fixed-geometry cache pose and current observed obstacle envelopes are transformed into the reference world for each request. The dual worker uses native boundary witnesses and optional carried-class surface witnesses to avoid filling annular holes with a sphere. These are optimistic proposal hints, never clearance certificates. They can miss a collision and require the final original checker.
+
+Robot joint priors are optimizer seeds only. Endpoints are retargeted to each current encoder/goal query and the entire curve is optimized and independently checked. No archived command stream or loose-object pose is executed. The packaged scene-specific priors are not field calibration.
+
+Static LEFT proof286 accepted one source279 camera/encoder carry query:178ms GPU,429 issued commands,410 current same-arm/own-payload checks with no rejection, and original fixed/opposite-arm/full CAD acceptance. Planned motion duration was0.892s and static proof wall6.49s. No motion was executed. Earlier installed parts were not recreated in that static proof; live operation must inherit the completed-part CAD registry. This is not a full task or field-hardware pass. RIGHT proofs271/273 predated the exact same-arm guard and only certify their documented fixed/pair/payload/FR3 scope; all current proposals require the new self guard.
+
+The service never changes physical geometry, mass, contact, force, hardware bounds or command caps. GPU geometry files and scene caches must be rebuilt after model changes. No `.so`, Torch package, CUDA cache, credentials, socket, logs or large scene mesh belongs in this source package.
