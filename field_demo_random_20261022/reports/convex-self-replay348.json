@@ -1,0 +1,1078 @@
+{
+  "scope": "ONE cross-framework diagnostic at actual348 preclose+held saved states. Renderer actor transforms evaluation-only. No command, hardware, profile activation or new grasp/view/grid. Nominal0mrad is nonexecutable sensitivity. Fresh close-camera occupancy is deliberately not asserted to be a valid leased initial map; strict endpoint rejection is diagnostic, not actual held transport semantics.",
+  "cases": [
+    {
+      "state": "actual348_preclose_before_grasp",
+      "source_observation_index": 7,
+      "registration": {
+        "capture_wall_s": 8.814135832013562,
+        "encoder_wall_s": 8.81276634207461,
+        "encoder_age_s": 0.0013694899389520288,
+        "trace_wall_s": 8.805043013067916,
+        "public_TCP_vs_saved_encoder_FK_translation_m": 9.846438364915884e-08,
+        "public_TCP_vs_saved_encoder_FK_rotation_rad": 1.0187446444122123e-07,
+        "measured_actual_vs_command_joint_error_rad": 0.0007086992263793945,
+        "palm_root_translation_m": 3.4579261504922356e-07,
+        "palm_root_rotation_rad": 8.402986388481281e-07,
+        "body_registrations": [
+          {
+            "link": 1,
+            "translation_m": 1.054071230450689e-07,
+            "rotation_rad": 1.7995727964181762e-07
+          },
+          {
+            "link": 2,
+            "translation_m": 1.1677125167682609e-07,
+            "rotation_rad": 5.47400766599947e-07
+          },
+          {
+            "link": 3,
+            "translation_m": 2.238589082640202e-07,
+            "rotation_rad": 5.309952430558725e-07
+          },
+          {
+            "link": 4,
+            "translation_m": 2.8685267618251106e-07,
+            "rotation_rad": 6.637579615608837e-07
+          },
+          {
+            "link": 5,
+            "translation_m": 4.86245220602744e-07,
+            "rotation_rad": 8.476252788046668e-07
+          },
+          {
+            "link": 6,
+            "translation_m": 3.9082378331357886e-07,
+            "rotation_rad": 8.374519568030817e-07
+          },
+          {
+            "link": 7,
+            "translation_m": 4.402349562221483e-07,
+            "rotation_rad": 8.376919554990522e-07
+          }
+        ]
+      },
+      "measured_G_from_public_image_and_public_TCP": [
+        [
+          0.9064214464459194,
+          -0.0008489985247012925,
+          -0.4223738429308079,
+          -0.0022590389501799812
+        ],
+        [
+          0.0009858994698476414,
+          0.9999996473812597,
+          0.00010572814192477,
+          0.0002251048202387418
+        ],
+        [
+          0.4223735935980868,
+          -0.0005122661783588098,
+          0.9064218697673911,
+          0.004846176023753035
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "native_width_m": 0.07999923825263977,
+      "camera_FOV": {
+        "shape": [
+          384,
+          384
+        ],
+        "K": [
+          [
+            1629.1740238538057,
+            0.0,
+            191.5
+          ],
+          [
+            0.0,
+            1629.1740238538057,
+            191.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "T_cell_camera": [
+          [
+            -0.01563856298907651,
+            0.7070203092371664,
+            -0.7070203092371663,
+            0.8258932704299541
+          ],
+          [
+            0.9998777101964204,
+            0.011058133937588964,
+            -0.011058133937588963,
+            -0.7262831702157555
+          ],
+          [
+            0.0,
+            -0.7071067811865475,
+            -0.7071067811865476,
+            1.40976598179553
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "occupancy": {
+        "unknown": 197013,
+        "occupied": 1318,
+        "free": 7301
+      },
+      "geometry_cases": [
+        {
+          "self_hull_record": null,
+          "convex_hulls_enabled": false,
+          "result_geometry": null,
+          "common_mount_enabled": true,
+          "tracking_budget_rad": 0.02,
+          "executable": false,
+          "accepted": false,
+          "first_rejection": "right_link5_column_2_3 intersects measured obstacle residual_6c06247748da_11",
+          "first_obstacle": {
+            "capsule": "right_link5_column_2_3",
+            "link_index": 5,
+            "radius_m": 0.09213788451894166,
+            "margin_m": 0.001,
+            "obstacle": {
+              "name": "residual_6c06247748da_11",
+              "T_cell_box": [
+                [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.4362120049194437
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0,
+                  -0.725503198745682
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.1445239268838348
+                ],
+                [
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              ],
+              "half_extents_m": [
+                0.013791004158025838,
+                0.19000000222334856,
+                0.06639427978405821
+              ],
+              "source": "conservative_registered_RGBD_rays",
+              "occupancy_kind": "unknown",
+              "source_capture_ids": [
+                "actual348-observation-8"
+              ],
+              "voxel_resolution_m": [
+                0.0039402869022930965,
+                0.003958333379653095,
+                0.003905545869650483
+              ]
+            },
+            "centerline_distance_m": 0.09269626139149577,
+            "nominal_model_cable_radius_m": 0.015359212102797826,
+            "a_cell_m": [
+              0.22407731630336838,
+              -0.699208662236108,
+              1.1304176609169083
+            ],
+            "b_cell_m": [
+              0.42806346401588447,
+              -0.6745695935691284,
+              1.3549995732111135
+            ],
+            "nearest_uncertainty_cell": {
+              "index": [
+                0,
+                58,
+                33
+              ],
+              "state": 0,
+              "center_cell_m": [
+                0.42439114421256435,
+                -0.6839406982593246,
+                1.2089654337330678
+              ],
+              "pixel_low": [
+                368,
+                -362
+              ],
+              "pixel_high": [
+                387,
+                -338
+              ],
+              "camera_shape": [
+                384,
+                384
+              ],
+              "inside_FOV": false,
+              "valid_depth_pixels": 0,
+              "total_pixels": 0,
+              "farthest_voxel_camera_z_m": 0.4281849942191427,
+              "nearest_valid_depth_m": null,
+              "depth_margin_m": 0.003
+            }
+          },
+          "first_pair": null
+        },
+        {
+          "self_hull_record": null,
+          "convex_hulls_enabled": false,
+          "result_geometry": null,
+          "common_mount_enabled": true,
+          "tracking_budget_rad": 0.0,
+          "executable": false,
+          "accepted": false,
+          "first_rejection": "right_link7_column_0_6 intersects measured obstacle residual_6c06247748da_547",
+          "first_obstacle": {
+            "capsule": "right_link7_column_0_6",
+            "link_index": 7,
+            "radius_m": 0.010571277832995876,
+            "margin_m": 0.001,
+            "obstacle": {
+              "name": "residual_6c06247748da_547",
+              "T_cell_box": [
+                [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.5051670257095728
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0,
+                  -0.6107115307357422
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.1445239268838348
+                ],
+                [
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              ],
+              "half_extents_m": [
+                0.011820860706879266,
+                0.07520833421340883,
+                0.06639427978405821
+              ],
+              "source": "conservative_registered_RGBD_rays",
+              "occupancy_kind": "unknown",
+              "source_capture_ids": [
+                "actual348-observation-8"
+              ],
+              "voxel_resolution_m": [
+                0.0039402869022930965,
+                0.003958333379653095,
+                0.003905545869650483
+              ]
+            },
+            "centerline_distance_m": 0.010727748621529587,
+            "nominal_model_cable_radius_m": 0.010571277832995876,
+            "a_cell_m": [
+              0.5150433151126251,
+              -0.6680189047837698,
+              1.2216459552894225
+            ],
+            "b_cell_m": [
+              0.5620546077619393,
+              -0.7142932688389897,
+              1.2330545615526818
+            ],
+            "nearest_uncertainty_cell": {
+              "index": [
+                23,
+                62,
+                33
+              ],
+              "state": 0,
+              "center_cell_m": [
+                0.5150177429653056,
+                -0.6681073647407121,
+                1.2089654337330678
+              ],
+              "pixel_low": [
+                464,
+                -170
+              ],
+              "pixel_high": [
+                488,
+                -143
+              ],
+              "camera_shape": [
+                384,
+                384
+              ],
+              "inside_FOV": false,
+              "valid_depth_pixels": 0,
+              "total_pixels": 0,
+              "farthest_voxel_camera_z_m": 0.36393506122113967,
+              "nearest_valid_depth_m": null,
+              "depth_margin_m": 0.003
+            }
+          },
+          "first_pair": null
+        },
+        {
+          "self_hull_record": {
+            "model_sha256": "a50c465a4f3c21863194375d748d962af81d9b2ef68ef0b61d32adb2e6fe96b1",
+            "frame_sha256": "a28cb1651570dffbfbcbf79e766bf88ff1bb3075606958925936c162374c4ef2",
+            "FK_samples": 1,
+            "FCL_queries": 0,
+            "accepted_link_pairs": [],
+            "scope": "Only original self-capsule rejections; closed original full-link and rigid native-palm convex hulls with full original uncertainty and unchanged margin",
+            "physical_execution_certified": false
+          },
+          "convex_hulls_enabled": true,
+          "result_geometry": null,
+          "common_mount_enabled": true,
+          "tracking_budget_rad": 0.02,
+          "executable": false,
+          "accepted": false,
+          "first_rejection": "right_link5_column_2_3 intersects measured obstacle residual_6c06247748da_11",
+          "first_obstacle": {
+            "capsule": "right_link5_column_2_3",
+            "link_index": 5,
+            "radius_m": 0.09213788451894166,
+            "margin_m": 0.001,
+            "obstacle": {
+              "name": "residual_6c06247748da_11",
+              "T_cell_box": [
+                [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.4362120049194437
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0,
+                  -0.725503198745682
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.1445239268838348
+                ],
+                [
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              ],
+              "half_extents_m": [
+                0.013791004158025838,
+                0.19000000222334856,
+                0.06639427978405821
+              ],
+              "source": "conservative_registered_RGBD_rays",
+              "occupancy_kind": "unknown",
+              "source_capture_ids": [
+                "actual348-observation-8"
+              ],
+              "voxel_resolution_m": [
+                0.0039402869022930965,
+                0.003958333379653095,
+                0.003905545869650483
+              ]
+            },
+            "centerline_distance_m": 0.09269626139149577,
+            "nominal_model_cable_radius_m": 0.015359212102797826,
+            "a_cell_m": [
+              0.22407731630336838,
+              -0.699208662236108,
+              1.1304176609169083
+            ],
+            "b_cell_m": [
+              0.42806346401588447,
+              -0.6745695935691284,
+              1.3549995732111135
+            ],
+            "nearest_uncertainty_cell": {
+              "index": [
+                0,
+                58,
+                33
+              ],
+              "state": 0,
+              "center_cell_m": [
+                0.42439114421256435,
+                -0.6839406982593246,
+                1.2089654337330678
+              ],
+              "pixel_low": [
+                368,
+                -362
+              ],
+              "pixel_high": [
+                387,
+                -338
+              ],
+              "camera_shape": [
+                384,
+                384
+              ],
+              "inside_FOV": false,
+              "valid_depth_pixels": 0,
+              "total_pixels": 0,
+              "farthest_voxel_camera_z_m": 0.4281849942191427,
+              "nearest_valid_depth_m": null,
+              "depth_margin_m": 0.003
+            }
+          },
+          "first_pair": null
+        },
+        {
+          "self_hull_record": {
+            "model_sha256": "a50c465a4f3c21863194375d748d962af81d9b2ef68ef0b61d32adb2e6fe96b1",
+            "frame_sha256": "a28cb1651570dffbfbcbf79e766bf88ff1bb3075606958925936c162374c4ef2",
+            "FK_samples": 1,
+            "FCL_queries": 0,
+            "accepted_link_pairs": [],
+            "scope": "Only original self-capsule rejections; closed original full-link and rigid native-palm convex hulls with full original uncertainty and unchanged margin",
+            "physical_execution_certified": false
+          },
+          "convex_hulls_enabled": true,
+          "result_geometry": null,
+          "common_mount_enabled": true,
+          "tracking_budget_rad": 0.0,
+          "executable": false,
+          "accepted": false,
+          "first_rejection": "right_link7_column_0_6 intersects measured obstacle residual_6c06247748da_547",
+          "first_obstacle": {
+            "capsule": "right_link7_column_0_6",
+            "link_index": 7,
+            "radius_m": 0.010571277832995876,
+            "margin_m": 0.001,
+            "obstacle": {
+              "name": "residual_6c06247748da_547",
+              "T_cell_box": [
+                [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.5051670257095728
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0,
+                  -0.6107115307357422
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.1445239268838348
+                ],
+                [
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              ],
+              "half_extents_m": [
+                0.011820860706879266,
+                0.07520833421340883,
+                0.06639427978405821
+              ],
+              "source": "conservative_registered_RGBD_rays",
+              "occupancy_kind": "unknown",
+              "source_capture_ids": [
+                "actual348-observation-8"
+              ],
+              "voxel_resolution_m": [
+                0.0039402869022930965,
+                0.003958333379653095,
+                0.003905545869650483
+              ]
+            },
+            "centerline_distance_m": 0.010727748621529587,
+            "nominal_model_cable_radius_m": 0.010571277832995876,
+            "a_cell_m": [
+              0.5150433151126251,
+              -0.6680189047837698,
+              1.2216459552894225
+            ],
+            "b_cell_m": [
+              0.5620546077619393,
+              -0.7142932688389897,
+              1.2330545615526818
+            ],
+            "nearest_uncertainty_cell": {
+              "index": [
+                23,
+                62,
+                33
+              ],
+              "state": 0,
+              "center_cell_m": [
+                0.5150177429653056,
+                -0.6681073647407121,
+                1.2089654337330678
+              ],
+              "pixel_low": [
+                464,
+                -170
+              ],
+              "pixel_high": [
+                488,
+                -143
+              ],
+              "camera_shape": [
+                384,
+                384
+              ],
+              "inside_FOV": false,
+              "valid_depth_pixels": 0,
+              "total_pixels": 0,
+              "farthest_voxel_camera_z_m": 0.36393506122113967,
+              "nearest_valid_depth_m": null,
+              "depth_margin_m": 0.003
+            }
+          },
+          "first_pair": null
+        }
+      ],
+      "nominal_field_columns_vs_rendered_Isaac_collision_vertices": [
+        {
+          "link": 1,
+          "Isaac_collision_mesh_vertices": 52,
+          "max_vertex_outside_field_CAD_columns_without_cable_m": -0.0003042024283669599,
+          "fraction_vertices_enclosed": 1.0
+        },
+        {
+          "link": 2,
+          "Isaac_collision_mesh_vertices": 52,
+          "max_vertex_outside_field_CAD_columns_without_cable_m": -4.975497485047893e-05,
+          "fraction_vertices_enclosed": 1.0
+        },
+        {
+          "link": 3,
+          "Isaac_collision_mesh_vertices": 59,
+          "max_vertex_outside_field_CAD_columns_without_cable_m": -2.3506325896706717e-05,
+          "fraction_vertices_enclosed": 1.0
+        },
+        {
+          "link": 4,
+          "Isaac_collision_mesh_vertices": 60,
+          "max_vertex_outside_field_CAD_columns_without_cable_m": -1.0492792118014377e-05,
+          "fraction_vertices_enclosed": 1.0
+        },
+        {
+          "link": 5,
+          "Isaac_collision_mesh_vertices": 46,
+          "max_vertex_outside_field_CAD_columns_without_cable_m": -0.0002450355023219039,
+          "fraction_vertices_enclosed": 1.0
+        },
+        {
+          "link": 6,
+          "Isaac_collision_mesh_vertices": 75,
+          "max_vertex_outside_field_CAD_columns_without_cable_m": -0.00045488601582613017,
+          "fraction_vertices_enclosed": 1.0
+        },
+        {
+          "link": 7,
+          "Isaac_collision_mesh_vertices": 69,
+          "max_vertex_outside_field_CAD_columns_without_cable_m": -2.1693675221213723e-05,
+          "fraction_vertices_enclosed": 1.0
+        }
+      ]
+    },
+    {
+      "state": "actual348_postlift_held",
+      "source_observation_index": 13,
+      "registration": {
+        "capture_wall_s": 14.853447229019366,
+        "encoder_wall_s": 14.857950131059624,
+        "encoder_age_s": 0.00450290204025805,
+        "trace_wall_s": 14.857950131059624,
+        "public_TCP_vs_saved_encoder_FK_translation_m": 9.611560483884618e-08,
+        "public_TCP_vs_saved_encoder_FK_rotation_rad": 1.0187446491182855e-07,
+        "measured_actual_vs_command_joint_error_rad": 0.00048422813415527344,
+        "palm_root_translation_m": 6.61000682870661e-07,
+        "palm_root_rotation_rad": 9.50265312833675e-07,
+        "body_registrations": [
+          {
+            "link": 1,
+            "translation_m": 1.6096341920013059e-07,
+            "rotation_rad": 1.7405117455907787e-07
+          },
+          {
+            "link": 2,
+            "translation_m": 2.6285230751918165e-07,
+            "rotation_rad": 6.061135720851599e-07
+          },
+          {
+            "link": 3,
+            "translation_m": 3.1756120866923484e-07,
+            "rotation_rad": 6.026671613827154e-07
+          },
+          {
+            "link": 4,
+            "translation_m": 3.793141183567837e-07,
+            "rotation_rad": 6.701788753485244e-07
+          },
+          {
+            "link": 5,
+            "translation_m": 5.864438861649372e-07,
+            "rotation_rad": 8.000848959475303e-07
+          },
+          {
+            "link": 6,
+            "translation_m": 5.793899738922019e-07,
+            "rotation_rad": 6.443963933767087e-07
+          },
+          {
+            "link": 7,
+            "translation_m": 7.087896549076473e-07,
+            "rotation_rad": 9.470041153520239e-07
+          }
+        ]
+      },
+      "measured_G_from_public_image_and_public_TCP": [
+        [
+          0.9051512105746303,
+          -0.0002480318420316008,
+          -0.4250899565018668,
+          -0.0023349177587748127
+        ],
+        [
+          0.000309385609492029,
+          1.000000072246022,
+          7.525150096078491e-05,
+          -1.268230463313813e-06
+        ],
+        [
+          0.4250899527058686,
+          -0.0001996702297021207,
+          0.9051512697928265,
+          0.0050730402733656366
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "native_width_m": 0.07737677544355392,
+      "camera_FOV": {
+        "shape": [
+          384,
+          384
+        ],
+        "K": [
+          [
+            961.7264475930773,
+            0.0,
+            191.5
+          ],
+          [
+            0.0,
+            961.7264475930773,
+            191.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "T_cell_camera": [
+          [
+            0.0151167237415466,
+            0.05988544718347022,
+            0.9980907863911768,
+            0.27590506255799
+          ],
+          [
+            -0.9998857358035076,
+            0.0009053752131827577,
+            0.015089586886379392,
+            -0.7346012832886374
+          ],
+          [
+            0.0,
+            -0.9982048454657787,
+            0.059892290727946336,
+            1.2252652207271952
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "occupancy": {
+        "unknown": 198202,
+        "occupied": 598,
+        "free": 6832
+      },
+      "geometry_cases": [
+        {
+          "self_hull_record": null,
+          "convex_hulls_enabled": false,
+          "result_geometry": null,
+          "common_mount_enabled": true,
+          "tracking_budget_rad": 0.02,
+          "executable": false,
+          "accepted": false,
+          "first_rejection": "right_link5_column_7_4 intersects measured obstacle residual_8368080ea660_46",
+          "first_obstacle": {
+            "capsule": "right_link5_column_7_4",
+            "link_index": 5,
+            "radius_m": 0.09090847998970035,
+            "margin_m": 0.001,
+            "obstacle": {
+              "name": "residual_8368080ea660_46",
+              "T_cell_box": [
+                [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.42833143111485744
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0,
+                  -0.620607364184875
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.1445239268838348
+                ],
+                [
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              ],
+              "half_extents_m": [
+                0.005910430353439633,
+                0.08510416766254153,
+                0.06639427978405821
+              ],
+              "source": "conservative_registered_RGBD_rays",
+              "occupancy_kind": "unknown",
+              "source_capture_ids": [
+                "actual348-observation-14"
+              ],
+              "voxel_resolution_m": [
+                0.0039402869022930965,
+                0.003958333379653095,
+                0.003905545869650483
+              ]
+            },
+            "centerline_distance_m": 0.08892269148628273,
+            "nominal_model_cable_radius_m": 0.015359212102797826,
+            "a_cell_m": [
+              0.31480500325636507,
+              -0.6334707763910359,
+              1.217793016368589
+            ],
+            "b_cell_m": [
+              0.47821630192115466,
+              -0.6518723782490528,
+              1.426156183286416
+            ],
+            "nearest_uncertainty_cell": {
+              "index": [
+                0,
+                70,
+                33
+              ],
+              "state": 0,
+              "center_cell_m": [
+                0.42439114421256435,
+                -0.6364406977034873,
+                1.2089654337330678
+              ],
+              "pixel_low": [
+                -452,
+                340
+              ],
+              "pixel_high": [
+                -406,
+                370
+              ],
+              "camera_shape": [
+                384,
+                384
+              ],
+              "inside_FOV": false,
+              "valid_depth_pixels": 0,
+              "total_pixels": 0,
+              "farthest_voxel_camera_z_m": 0.15082076398883296,
+              "nearest_valid_depth_m": null,
+              "depth_margin_m": 0.003
+            }
+          },
+          "first_pair": null
+        },
+        {
+          "self_hull_record": null,
+          "convex_hulls_enabled": false,
+          "result_geometry": null,
+          "common_mount_enabled": true,
+          "tracking_budget_rad": 0.0,
+          "executable": false,
+          "accepted": false,
+          "first_rejection": "Robot self collision: right_link5_column_7_3/right_link7_column_3_0",
+          "first_obstacle": null,
+          "first_pair": null
+        },
+        {
+          "self_hull_record": {
+            "model_sha256": "a50c465a4f3c21863194375d748d962af81d9b2ef68ef0b61d32adb2e6fe96b1",
+            "frame_sha256": "60e7ed6d44592b6166e103dd786a3fed635f1de283f29d381240888bde8c31c0",
+            "FK_samples": 1,
+            "FCL_queries": 0,
+            "accepted_link_pairs": [],
+            "scope": "Only original self-capsule rejections; closed original full-link and rigid native-palm convex hulls with full original uncertainty and unchanged margin",
+            "physical_execution_certified": false
+          },
+          "convex_hulls_enabled": true,
+          "result_geometry": null,
+          "common_mount_enabled": true,
+          "tracking_budget_rad": 0.02,
+          "executable": false,
+          "accepted": false,
+          "first_rejection": "right_link5_column_7_4 intersects measured obstacle residual_8368080ea660_46",
+          "first_obstacle": {
+            "capsule": "right_link5_column_7_4",
+            "link_index": 5,
+            "radius_m": 0.09090847998970035,
+            "margin_m": 0.001,
+            "obstacle": {
+              "name": "residual_8368080ea660_46",
+              "T_cell_box": [
+                [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.42833143111485744
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0,
+                  -0.620607364184875
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.1445239268838348
+                ],
+                [
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              ],
+              "half_extents_m": [
+                0.005910430353439633,
+                0.08510416766254153,
+                0.06639427978405821
+              ],
+              "source": "conservative_registered_RGBD_rays",
+              "occupancy_kind": "unknown",
+              "source_capture_ids": [
+                "actual348-observation-14"
+              ],
+              "voxel_resolution_m": [
+                0.0039402869022930965,
+                0.003958333379653095,
+                0.003905545869650483
+              ]
+            },
+            "centerline_distance_m": 0.08892269148628273,
+            "nominal_model_cable_radius_m": 0.015359212102797826,
+            "a_cell_m": [
+              0.31480500325636507,
+              -0.6334707763910359,
+              1.217793016368589
+            ],
+            "b_cell_m": [
+              0.47821630192115466,
+              -0.6518723782490528,
+              1.426156183286416
+            ],
+            "nearest_uncertainty_cell": {
+              "index": [
+                0,
+                70,
+                33
+              ],
+              "state": 0,
+              "center_cell_m": [
+                0.42439114421256435,
+                -0.6364406977034873,
+                1.2089654337330678
+              ],
+              "pixel_low": [
+                -452,
+                340
+              ],
+              "pixel_high": [
+                -406,
+                370
+              ],
+              "camera_shape": [
+                384,
+                384
+              ],
+              "inside_FOV": false,
+              "valid_depth_pixels": 0,
+              "total_pixels": 0,
+              "farthest_voxel_camera_z_m": 0.15082076398883296,
+              "nearest_valid_depth_m": null,
+              "depth_margin_m": 0.003
+            }
+          },
+          "first_pair": null
+        },
+        {
+          "self_hull_record": {
+            "model_sha256": "a50c465a4f3c21863194375d748d962af81d9b2ef68ef0b61d32adb2e6fe96b1",
+            "frame_sha256": "60e7ed6d44592b6166e103dd786a3fed635f1de283f29d381240888bde8c31c0",
+            "FK_samples": 1,
+            "FCL_queries": 2,
+            "accepted_link_pairs": [
+              {
+                "clearance_m": 0.014441641820248876,
+                "whole_link_pair": [
+                  5,
+                  7
+                ],
+                "checked_FK_samples": 1,
+                "model_sha256": "a50c465a4f3c21863194375d748d962af81d9b2ef68ef0b61d32adb2e6fe96b1",
+                "frame_sha256": "60e7ed6d44592b6166e103dd786a3fed635f1de283f29d381240888bde8c31c0",
+                "inflation_each_m": [
+                  0.002,
+                  0.002
+                ],
+                "numeric_padding_each_m": 0.0005,
+                "original_margin_m": 0.001
+              },
+              {
+                "clearance_m": 0.05226420056194616,
+                "whole_link_pair": [
+                  5,
+                  8
+                ],
+                "checked_FK_samples": 1,
+                "model_sha256": "a50c465a4f3c21863194375d748d962af81d9b2ef68ef0b61d32adb2e6fe96b1",
+                "frame_sha256": "60e7ed6d44592b6166e103dd786a3fed635f1de283f29d381240888bde8c31c0",
+                "inflation_each_m": [
+                  0.002,
+                  0.002
+                ],
+                "numeric_padding_each_m": 0.0005,
+                "original_margin_m": 0.001
+              }
+            ],
+            "scope": "Only original self-capsule rejections; closed original full-link and rigid native-palm convex hulls with full original uncertainty and unchanged margin",
+            "physical_execution_certified": false
+          },
+          "convex_hulls_enabled": true,
+          "result_geometry": null,
+          "common_mount_enabled": true,
+          "tracking_budget_rad": 0.0,
+          "executable": false,
+          "accepted": false,
+          "first_rejection": "Observed loose-part collision: left_finger_y0_z7/ring1_sector11",
+          "first_obstacle": null,
+          "first_pair": null
+        }
+      ],
+      "nominal_field_columns_vs_rendered_Isaac_collision_vertices": [
+        {
+          "link": 1,
+          "Isaac_collision_mesh_vertices": 52,
+          "max_vertex_outside_field_CAD_columns_without_cable_m": -0.0003042000040201689,
+          "fraction_vertices_enclosed": 1.0
+        },
+        {
+          "link": 2,
+          "Isaac_collision_mesh_vertices": 52,
+          "max_vertex_outside_field_CAD_columns_without_cable_m": -4.9594888745167764e-05,
+          "fraction_vertices_enclosed": 1.0
+        },
+        {
+          "link": 3,
+          "Isaac_collision_mesh_vertices": 59,
+          "max_vertex_outside_field_CAD_columns_without_cable_m": -2.3664002327906594e-05,
+          "fraction_vertices_enclosed": 1.0
+        },
+        {
+          "link": 4,
+          "Isaac_collision_mesh_vertices": 60,
+          "max_vertex_outside_field_CAD_columns_without_cable_m": -1.0369151600228554e-05,
+          "fraction_vertices_enclosed": 1.0
+        },
+        {
+          "link": 5,
+          "Isaac_collision_mesh_vertices": 46,
+          "max_vertex_outside_field_CAD_columns_without_cable_m": -0.0002450412584354203,
+          "fraction_vertices_enclosed": 1.0
+        },
+        {
+          "link": 6,
+          "Isaac_collision_mesh_vertices": 75,
+          "max_vertex_outside_field_CAD_columns_without_cable_m": -0.0004552006903703592,
+          "fraction_vertices_enclosed": 1.0
+        },
+        {
+          "link": 7,
+          "Isaac_collision_mesh_vertices": 69,
+          "max_vertex_outside_field_CAD_columns_without_cable_m": -2.177238707771513e-05,
+          "fraction_vertices_enclosed": 1.0
+        }
+      ]
+    }
+  ],
+  "hardware_tested": false,
+  "robot_commands_sent": false
+}

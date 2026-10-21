@@ -1,0 +1,46 @@
+{
+  "state": "numeric_FK_full_original_guard_equivalence",
+  "component_only": true,
+  "full_task_pass": false,
+  "uses_free_body_poses": false,
+  "robot_motion_executed": false,
+  "source": "native-roas-table-scatter-stable-v327-gpu-pickup-half-gain-all3-445",
+  "queries": 90,
+  "all_full_checker_answers_and_first_rejections_equal": true,
+  "numeric_distance_tolerance": 1e-12,
+  "negative_self_collision_retained": true,
+  "negative_before": [
+    false,
+    {
+      "kind": "same_arm_self_collision",
+      "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/Contact/right_arm_fr3v2_link7_collision",
+      "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5",
+      "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/Contact/right_arm_fr3v2_link5_collision",
+      "distance_m": -1.0,
+      "required_clearance_m": 0.001
+    }
+  ],
+  "negative_after": [
+    false,
+    {
+      "kind": "same_arm_self_collision",
+      "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/Contact/right_arm_fr3v2_link7_collision",
+      "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5",
+      "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/Contact/right_arm_fr3v2_link5_collision",
+      "distance_m": -1.0,
+      "required_clearance_m": 0.001
+    }
+  ],
+  "original_seconds": 0.39172648394014686,
+  "numeric_seconds": 0.3536130910506472,
+  "component_speedup": 1.1077827542420955,
+  "metadata": {
+    "enabled": true,
+    "device": "CPU",
+    "algorithm": "Same live USD frames/Rodrigues/native finger transforms; Eigen numeric FK",
+    "library_sha256": "4e2a183e467191201ab80cc508d7e206d3c5c7fb19a3c6bf9fa2fde6cf5053dc",
+    "source_sha256": "d50e733751bb11eafd69825296f921385b8ff5bcaab6caa0432c9bbccdc19d21",
+    "model_mutations_invalidate": true
+  },
+  "approved": true
+}

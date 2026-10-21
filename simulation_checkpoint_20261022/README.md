@@ -12,6 +12,14 @@ The measured loaded-aperture option uses actual stationary encoders plus fresh i
 
 Typed RIGHT pre-carry planning failure can select a checked handover before loaded motion begins. Observed completed parts are registered as obstacles to both arms. Alternative receiver angle, donor preorientation and double-handover features are experimental flags; model-only feasibility is not physical task success.
 
+## New-layout and computation follow-ups
+
+361(seed447) completed SMALL insertion, then released an uncertain LARGE grasp back into the bin, re-picked and handed it to LEFT; the loaded-finger geometry interval stopped its next carry (517.35s, fullFAIL).362(seed448) completed LARGE insertion but found no SMALL hook/rearrangement route (92.38s, fullFAIL). These do not extend accepted-layout reliability.371 is testing a larger, already permitted, continuously swept finger-uncertainty interval with all geometric and speed guards, plus [numeric FK368](experiments/numeric-fk368/README.md); no result yet.
+
+Stationary full-scene CPU-dispatch364/365 found4 worker threads slower than the existing0 (7.246s vs1.119s for one simulated second); the existing setting is retained. These are no-motion performance components, so their aggregate task verdict is intentionallyFALSE.
+
+587 field source adds an optional conservative whole-link/palm convex self check with all original uncertainty, not a field success. Recorded default20mrad/UNKNOWN admission is still blocked. Actual survey records already support known static NON-bin geometry; they do not erase uncertainty in unseen basket stock.
+
 ## Accepted357 smooth-carry follow-up
 
 [1x motion excerpts with explicit CUT cards](media/all3-pass357-recorded-excerpts-1x.mp4), [full470.50s wall-clock replay](media/all3-pass357-recorded-full-wall-1x.mp4).

@@ -368,6 +368,8 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
     phase['_tcp_sweep_m'] = trace['speeds'][-1]*trace['gap']/2
     from .common_duo_mount import binding as common_duo_binding,KEY as common_duo_key
     common_mount=common_duo_binding(config,site_config,root,dependencies,now)
+    from .convex_self import validate_optin as validate_convex_self,KEY as convex_self_key
+    convex_self_enabled=validate_convex_self(config,root,dependencies,now)
     base = collision.transform(site_config['robots'][side]['T_cell_base'])
     other_side = 'right' if side == 'left' else 'left'
     other_base = collision.transform(site_config['robots'][other_side]['T_cell_base'])
@@ -377,6 +379,7 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
     other_tcp = other_base@collision.transform(other_state['tcp_base'])
     envelope = copy.deepcopy(config['robots'][side]); envelope['_angular_speed_bound_rad_s'] = float(np.sum(trace['joint_velocities']))
     envelope.pop(common_duo_key,None)
+    envelope.pop(convex_self_key,None)
     if common_mount is not None:envelope[common_duo_key]=common_mount
     if any(config['robots'][s].get('native_hand_aperture_geometry')for s in ['left','right'])and aperture_binding is None:raise ValueError('Actual both-Hand SDK aperture binding required for width-aware native geometry')
     if phase.get('bounded_loose_stock_contact')is not None:
@@ -433,6 +436,9 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
             fs=base_pose[None,None]@fs
             rows=robot_capsules(fs,poses,env,speeds,velocities,gap,tracking,error,prefix)
             for row in rows:row['robot_side']=side if prefix==side+'_'else other_side
+            if convex_self_enabled and prefix==side+'_':
+                from .convex_self import context as convex_self_context
+                env[convex_self_key]=convex_self_context(env,rows,fs,side)
             support=config.get('robot_mounting_supports',{}).get(side if prefix==side+'_'else other_side)
             if isinstance(support,dict)and support.get('obstacle_name'):
                 measured(support.get('measurement'),root,dependencies,prefix+'actual_mount_support',now)
@@ -572,6 +578,7 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
             dynamic.append(row)
     result = collision.check_envelopes(active, other, scene, phase, envelope,
                                        payloads=payloads, dynamic_obstacles=dynamic, margin=config['collision_margin_m'])
+    result['convex_self_narrowphase']=envelope[convex_self_key].record()if convex_self_key in envelope else None
     result['common_duo_mount_proof']=dict(proof_sha256=common_mount.proof_sha256,description_sha256=common_mount.description_sha256,scope='Only installed static opposite link0 pairs; moving and obstacle guards unchanged')if common_mount is not None else None
     result.update(sample_count=trace['sample_count'], maximum_sample_gap_s=trace['gap'],
                   independent_c2_curve_bound=not stopped_aperture, unsampled_motion_inflation=not stopped_aperture,

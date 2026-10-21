@@ -7,3 +7,5 @@ Only the initial native RIGHT carry may use the planner-marked cubic through the
 These are exact top-level Python sources. Server CAD/generated geometry, bin models/calibration, earlier class-only robot priors and Isaac runtime remain external; this is not a standalone scene. Controller uses simulated RGB-D and encoders. Trace actor poses are evaluation/replay data only. The standalone field package is separate and still has approach-admission blockers.
 
 The report's nested `scattered_pick.full_task_pass` is provisional metadata emitted before final evaluation; the top-level `full_task_pass` and `vision_end_to_end_pass` are the final aggregate. The original report is preserved verbatim.
+
+CPU planning calls pause simulation physics (`CPU_planning_advances_physics=false`), while all waits still count in the reported wall clock.59.07physics seconds is therefore not a real-hardware cycle-time prediction; physical continuous holds during long planning calls are not validated by this trial.

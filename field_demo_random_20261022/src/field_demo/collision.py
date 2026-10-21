@@ -248,6 +248,11 @@ def check_envelopes(active, other, scene, phase, envelope, *, payloads=(), dynam
                 minimum=min(minimum,lower);count+=1;return
         clearance = segment_distance(a['a'], a['b'], b['a'], b['b']) - a['r'] - b['r'] - margin
         if allowed is not None:clearance=np.where(allowed,np.inf,clearance)
+        if description=='Robot self collision'and np.any(clearance<=0):
+            from .convex_self import refine as refine_self_hulls
+            refined=refine_self_hulls(envelope,a,b,margin)
+            if refined is not None:
+                minimum=min(minimum,refined['clearance_m']);count+=refined['checked_FK_samples'];return
         minimum = min(minimum, float(np.min(clearance))); count += len(np.atleast_1d(clearance))
         if np.any(clearance <= 0):
             raise CollisionError(description + ': ' + a['name'] + '/' + b['name'])
