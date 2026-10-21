@@ -1,0 +1,3 @@
+# Exact accepted348 research source
+
+One randomseed446 PhysX three-part assembly passed all existing part/retention/empty-Hand criteria. Total656.96s wall and85.35s physics; not20/30s, hardware or generalized reliability. The exact top-level Python sources are frozen here. Existing server CAD/generated geometry, bin-picking model/calibration data, earlier class-only robot priors and Isaac runtime remain external; this is not a standalone scene. Controller inputs are simulated RGBD/encoders; trace actor states under component evidence serve evaluation/replay only. Field executable remains separate.

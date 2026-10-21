@@ -1,0 +1,78 @@
+{
+  "state": "FRAME_ALIGNMENT_PASS_FIELD_ADMISSION_BLOCKED",
+  "hardware_tested": false,
+  "robot_commands_sent": false,
+  "controller_object_truth_used": false,
+  "source_package_manifest_sha256": "6a1efba402463b1cf717571c1af85e2750909ef84df5247ea75ab3df7b7c4b30",
+  "registration": {
+    "max_public_TCP_FK_translation_m": 9.846438364915884e-08,
+    "max_public_TCP_FK_rotation_rad": 1.0187446491182855e-07,
+    "max_palm_root_translation_m": 6.61000682870661e-07,
+    "max_link_body_frame_translation_m": 7.087896549076473e-07,
+    "all_sampled_original_Isaac_link_vertices_enclosed_without_cable": true,
+    "scope": "Two actual348 stationary image captures; recorded encoder wall-time proximity1.37/4.50ms. Vertex enclosure is NOT a new full triangle/curve/hardware certificate."
+  },
+  "actual_joint_tracking_error_rad": [
+    0.0007086992263793945,
+    0.00048422813415527344
+  ],
+  "preclose_nominal_unknown": {
+    "first_shape": "right_link7_column_0_6 intersects measured obstacle residual_408b78d6c270_547",
+    "voxel": {
+      "index": [
+        23,
+        62,
+        33
+      ],
+      "state": 0,
+      "center_cell_m": [
+        0.5150177429653056,
+        -0.6681073647407121,
+        1.2089654337330678
+      ],
+      "pixel_low": [
+        464,
+        -170
+      ],
+      "pixel_high": [
+        488,
+        -143
+      ],
+      "camera_shape": [
+        384,
+        384
+      ],
+      "inside_FOV": false,
+      "valid_depth_pixels": 0,
+      "total_pixels": 0,
+      "farthest_voxel_camera_z_m": 0.36393506122113967,
+      "nearest_valid_depth_m": null,
+      "depth_margin_m": 0.003
+    }
+  },
+  "fixed_base_pair": {
+    "names": [
+      "right_link0_column_5_0",
+      "left_link0_column_1_0"
+    ],
+    "tracking_inflation_m": 0.0,
+    "centerline_distance_m": 0.02947810906377392,
+    "radii_with_offline2mm_cable_m": [
+      0.01666425239125036,
+      0.01666425239125036
+    ],
+    "fixed_margin_m": 0.001,
+    "capsule_clearance_with_margin_m": -0.0048503957187268,
+    "capsule_clearance_if_both2mm_cable_allowances_removed_m": -0.0008503957187267997,
+    "original_recorded_CAD_triangle_distance_m": 0.0007824668541843475,
+    "actual_mesh_collision": false,
+    "implication": "The fixedDuo base CAD gap0.782mm is below generic1mm margin; nominal column/cable enclosure overrejects too. Requires explicit verified installed fixed-assembly semantics or accurate fixed-base check, never blanket moving-arm/self exclusion."
+  },
+  "conclusion": "No material coordinate/Hand registration mismatch was found in this recorded SIM fixture. Tight actual close-up RGB-D does not cover nearby arm uncertainty space even with zero tracking inflation. At the held pose nominal query exposes a separate zero-tracking fixedDuo base-pair envelope/margin blocker. Practical next work is coherent calibrated global/basket map coverage plus a specific measured/factory-fixed base-assembly model; reducing tracking assumptions alone cannot claim a field path. Actual site calibration/SDK/wrench/stop/grasp remain untested.",
+  "limits": [
+    "384x384 close-up capture was intentionally evaluated as a fresh standalone map; it is not asserted to be a valid leased overhead map or held-transport policy.",
+    "Strict empty-arm geometry is used to isolate body/UNKNOWN gates. Held payload contact/transport acceptance is NOT certified.",
+    "Nominal0mrad sensitivity sets geometry at recordedactualq; it is NOT executable and does not assert zero trackingerror. Original actual command-vs-encoder error is reported separately.",
+    "Private actor transforms/mesh vertices enter registration and CAD comparison evaluation only, not a controller, target, planner map or command."
+  ]
+}

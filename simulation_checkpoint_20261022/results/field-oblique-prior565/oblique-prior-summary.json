@@ -1,0 +1,84 @@
+{
+  "state": "MISSING_FAMILY_CONFIRMED_BUT_NEW_PRIOR_STILL_BLOCKED",
+  "field_package_changed": false,
+  "hardware_tested": false,
+  "robot_commands_sent": false,
+  "source_package_manifest_sha256": "6a1efba402463b1cf717571c1af85e2750909ef84df5247ea75ab3df7b7c4b30",
+  "default_field_family": {
+    "count": 8,
+    "face_flips": [
+      0,
+      180
+    ],
+    "yaw_degrees": [
+      0,
+      45,
+      90,
+      135
+    ],
+    "oblique_tilt_degrees": 0
+  },
+  "actual348_grips": {
+    "large_tilt_from_tool_Z_deg": 25.16246597170182,
+    "small_tilt_from_nearest_tool_Z_deg": 23.782046933243468,
+    "small_G_for_comparison_only": [
+      [
+        -0.9150861629397544,
+        -0.00034761354042087405,
+        -0.403258556129914,
+        0.002129938333042647
+      ],
+      [
+        -0.0005978007250933287,
+        0.999999872574736,
+        0.0004946279581599983,
+        -3.74811221196536e-05
+      ],
+      [
+        0.4032582402788818,
+        0.0006936623129136209,
+        -0.9150860698653528,
+        0.00394870851439344
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  },
+  "prior_scope": "ONE measured LARGE class/native-Hand relative grasp, transformed via factory mount and current configured SDK TCP then retargeted to CURRENT measured image pose. Optional ToolZpi finger swap only after first12 failed. No source object-world coordinate or source q reused.",
+  "source_robot_kinematics_exactly_matches_recorded_scene": true,
+  "native_contact_geometry": {
+    "original": true,
+    "ToolZpi_swap": true,
+    "scope": "Unchanged official finger hull + original field class CAD samples and normals at actually recorded348 aperture; geometric certificate only, not new physical or hardware test"
+  },
+  "original_prior": {
+    "plans": 12,
+    "required_class_instances": 4,
+    "endpoint_survivors": 0,
+    "geometry_rejections": 11,
+    "IK_rejections": 1,
+    "seconds": 18.541554857045412
+  },
+  "ToolZpi_swap": {
+    "plans": 12,
+    "required_class_instances": 4,
+    "endpoint_survivors": 0,
+    "geometry_rejections": 11,
+    "IK_rejections": 1,
+    "seconds": 18.340216088923626
+  },
+  "total_plans": 24,
+  "bounds": {
+    "original_conditional_tracking_rad": 0.005,
+    "default_native_tracking_rad": 0.02,
+    "unknown_erased": false,
+    "radius_or_tolerance_changed": false,
+    "camera_changed": false,
+    "executable_profile_created": false
+  },
+  "conclusion": "Oblique native Hand contact family was missing, and native CAD contact certificate passes for the measured prior and its finger swap. It does not solve first-field-endpoint acceptance on this recorded view: all24 candidates still reject original whole-body residual collision/IK. No new field copy/preset activated because the required conditional admission did not pass. No approach/closure/hardware claim."
+}

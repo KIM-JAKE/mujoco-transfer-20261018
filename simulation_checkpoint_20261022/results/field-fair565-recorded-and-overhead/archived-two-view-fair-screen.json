@@ -1,0 +1,1191 @@
+{
+  "scope": "OFFLINE actual sealed565 screen_pickup -> authentic saved SIM pixel-derived instances -> authentic saved SIM FK -> original field whole-model endpoint admission. Endpoint-only preflight, not full curve or SDK execution.",
+  "hardware_tested": false,
+  "field_ready": false,
+  "robot_command_sent": false,
+  "uses_free_object_poses": false,
+  "events": [],
+  "robot_geometry_source": "Archived SIM robot FK/body-base calibration only, not free-body stock transforms",
+  "actual_interval_s": [
+    14.819549139938317,
+    14.84044817800168
+  ],
+  "archived_joint_delta_rad": 0.0004507303237915039,
+  "occupancy_build_s": 0.5478189799468964,
+  "two_view_fusion": {
+    "virtual_camera_count": 2,
+    "physical_camera_proof": false,
+    "same_private_render_snapshot": true,
+    "scene_snapshot_time_s": 7.015576021978632,
+    "overhead_target_source": "actual production pixel detector on same-snapshot overhead image",
+    "source_captures": [
+      {
+        "calibration_sha256": "8a658daf459a6b500e8d19e72a0ab2072ffc7132421f923d38ee2ceedaa7efdc",
+        "camera_array_sha256": "6e38c86860a6b4152551cc382f6ab22a2a7e1eaf0767678cee828ae35da55768",
+        "capture_id": "v280-same-snapshot-global",
+        "captured_at_utc": "2026-10-21T21:06:14.229564+00:00",
+        "cell_frame": "recorded_v280_SIM_cell",
+        "depth_uncertainty_m": 0.001,
+        "projection_kind": "rectified_pinhole",
+        "ray_footprint_padding_px": 0,
+        "replay": true,
+        "scene_epoch": "recorded-v280-static-interval",
+        "source": "archived_Isaac_RGBD_replay_only",
+        "source_packet_sha256": "6cf21e66efdf50479133105f629a94e0480089448415bf933ef1f564d08ac65d"
+      },
+      {
+        "calibration_sha256": "8c678f9a9c2b304b90190ce76f761a68ae71fb2279398ed46a834c4389e6563f",
+        "camera_array_sha256": "a86454380945dafa58c9af6cfdd635111083398d9e9af9fc124ec8886ac1b081",
+        "capture_id": "v280-same-snapshot-overhead",
+        "captured_at_utc": "2026-10-21T21:06:14.229564+00:00",
+        "cell_frame": "recorded_v280_SIM_cell",
+        "depth_uncertainty_m": 0.001,
+        "projection_kind": "rectified_pinhole",
+        "ray_footprint_padding_px": 0,
+        "replay": true,
+        "scene_epoch": "recorded-v280-static-interval",
+        "source": "archived_Isaac_RGBD_replay_only",
+        "source_packet_sha256": "56b092681444eddc1477a781faedfedf2866ad1f9995fa0f81877c1103a5ae0d"
+      }
+    ],
+    "source_age_policy_s": 2.0,
+    "lease_origin_utc": "2026-10-21T21:06:14.229564+00:00",
+    "source_timestamp_scope": "Frozen OFFLINE replay clock, not actual fresh SDK exposure or live scene lease",
+    "overhead_unknown": 76085,
+    "global_unknown": 109763,
+    "fused_unknown": 66082,
+    "genuinely_ray_cleared_unknown": 4573,
+    "all_original_occupied_preserved": true,
+    "fused_obstacle_count": 4673
+  },
+  "selected_from_actual_pixels": {
+    "part": "ring1",
+    "initial_arc_center_m": [
+      0.5257853571907123,
+      -0.7310139110747076,
+      1.1098202101288148
+    ],
+    "initial_plane_axis": [
+      0.3062290827492788,
+      0.11220912240119087,
+      0.9453215652509412
+    ],
+    "center_m": [
+      0.5257853571907123,
+      -0.7310139110747076,
+      1.1098202101288148
+    ],
+    "axis": [
+      -0.3062290827492788,
+      -0.11220912240119087,
+      -0.9453215652509412
+    ],
+    "visible_face_inner_radius_m": 0.03249593914178348,
+    "visible_CAD_end_sign": -1,
+    "front_back_orientation_margin_m": 0.0015040608582165202,
+    "front_back_from_RGBD": true,
+    "rms_m": 0.00022678789636545337,
+    "depth_points": 1644,
+    "measured_classification_diameter_m": 0.07204456695669975,
+    "visible_arc_coverage_deg": 360,
+    "size_classification": "RGB-D observed annular arc metric diameter",
+    "uses_depth_sensor": true,
+    "uses_simulator_body_poses": false,
+    "instance_id": "v280-same-snapshot-overhead:image:0",
+    "T_cell_part": [
+      [
+        0.951957850368668,
+        6.938893903907228e-18,
+        -0.30622908274927885,
+        0.5257853571907123
+      ],
+      [
+        -0.03609581728404348,
+        -0.9930288036228111,
+        -0.1122091224011909,
+        -0.7310139110747076
+      ],
+      [
+        -0.3040942996770272,
+        0.11787194397077064,
+        -0.9453215652509415,
+        1.1098202101288148
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "orientation_scope": "signed axis from observed tapered face; axial yaw unobservable; canonical basis only",
+    "instance_identity_scope": "this RGB-D capture only; no simulator actor identity",
+    "geometrically_accessible": true,
+    "robot_reachability_verified": false
+  },
+  "occupancy_obstacles": 4642,
+  "selected_low_speed_profile": {
+    "path": "/tmp/OFFLINE-recorded-closure-e39ioyes/site/random-motion-low-speed.json",
+    "sha256": "a5c389f9be2e01dd14f2b8370b429722fa6ca47aa95f99e297ad2190873a46dc",
+    "joint_tracking_error_limit_rad": 0.005
+  },
+  "native_fixture": {
+    "mocked_SDK": true,
+    "actual_SDK_connection": false,
+    "curve_duration_s": 0.1,
+    "samples": 101,
+    "q0": [
+      -0.39189332723617554,
+      -1.6396421194076538,
+      0.1684885174036026,
+      -1.4654651880264282,
+      -1.7282496690750122,
+      0.8404603004455566,
+      0.7618110775947571
+    ],
+    "q1": [
+      -0.39170941710472107,
+      -1.639986515045166,
+      0.16841034591197968,
+      -1.4659159183502197,
+      -1.7282496690750122,
+      0.8405482769012451,
+      0.7619361877441406
+    ],
+    "whole_arm_model_columns": {
+      "left": 478,
+      "right": 478
+    },
+    "gripper_widths": {
+      "left": 0.07999255508184433,
+      "right": 0.07999255508184433
+    },
+    "tracking_error_bound_rad": 0.005
+  },
+  "source_package": "/home/gpuadmin/workspace/jake/field-demo-random-fair-search-20261022",
+  "campaign": [
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:0",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          0.9519578478311825,
+          4.192565187203585e-08,
+          -0.3062290906374202,
+          0.5257853732315134
+        ],
+        [
+          -0.036095773409122345,
+          -0.9930288056273644,
+          -0.11220911877511673,
+          -0.7310138963156699
+        ],
+        [
+          -0.3040943128284717,
+          0.11787192708312375,
+          -0.9453215631260564,
+          1.109820278671367
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link5_column_4_4 intersects measured obstacle residual_a93e4ae3b810_870"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:1",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          0.9961934562086789,
+          4.523954640809819e-08,
+          0.08716993637146393,
+          0.4969188870140485
+        ],
+        [
+          1.095691258206146e-07,
+          -0.9999999999997256,
+          -7.331942894608278e-07,
+          -0.626068700414733
+        ],
+        [
+          0.08716993637140683,
+          7.399544870751305e-07,
+          -0.99619345620841,
+          1.0928741384182465
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link5_column_7_3 intersects measured obstacle residual_94c3b149e035_656"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:3",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          0.9594837164077569,
+          4.4235185535190166e-08,
+          0.2817640820764015,
+          0.49436738722847484
+        ],
+        [
+          0.016948540844421753,
+          -0.9981892663410116,
+          -0.057714257552520166,
+          -0.8437947608087026
+        ],
+        [
+          0.28125387981609085,
+          0.060151380379769435,
+          -0.9577463476969278,
+          1.100173604792088
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link7_column_0_4 intersects measured obstacle residual_75c10b7b9291_336"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:0",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          0.6731358792333514,
+          -0.67313582205404,
+          -0.30622908607180865,
+          0.5257853793611438
+        ],
+        [
+          -0.7277009685289518,
+          -0.6766538369904946,
+          -0.1122091141042786,
+          -0.7310138941735164
+        ],
+        [
+          -0.13167911182404266,
+          0.2983751832067701,
+          -0.9453215651594742,
+          1.1098202764314515
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link5_column_4_4 intersects measured obstacle residual_a93e4ae3b810_870"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:1",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          0.7044151802530616,
+          -0.7044151156733416,
+          0.08716994114923042,
+          0.4969188934285107
+        ],
+        [
+          -0.7071067037092814,
+          -0.7071068586634303,
+          -7.283163294292385e-07,
+          -0.6260686980234891
+        ],
+        [
+          0.06163897629293985,
+          -0.06163793671148586,
+          -0.9961934557903446,
+          1.0928741389795296
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link7_column_0_5 intersects measured obstacle residual_94c3b149e035_2849"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:3",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          0.6784574736053199,
+          -0.6784574091035775,
+          0.28176408667810726,
+          0.49436739340656405
+        ],
+        [
+          -0.6938419709783898,
+          -0.7178108276944585,
+          -0.05771425260210775,
+          -0.8437947583126583
+        ],
+        [
+          0.24140997456176067,
+          -0.15634308324021856,
+          -0.9577463466414438,
+          1.1001736064592376
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link7_column_0_6 intersects measured obstacle residual_75c10b7b9291_154"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:0",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          4.041413677152968e-08,
+          -0.9519578513946364,
+          -0.30622907955990425,
+          0.5257853853050787
+        ],
+        [
+          -0.9930288061812168,
+          0.03609577210339414,
+          -0.11220911429365915,
+          -0.7310138972411191
+        ],
+        [
+          0.11787192241711332,
+          0.30409430182817915,
+          -0.9453215672464722,
+          1.1098202748700858
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link5_column_4_4 intersects measured obstacle residual_a93e4ae3b810_870"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:1",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          4.566980857420341e-08,
+          -0.9961934551943208,
+          0.08716994796373023,
+          0.49691889964864855
+        ],
+        [
+          -0.9999999999997289,
+          -1.0956913425402e-07,
+          -7.282583908133066e-07,
+          -0.6260687008856654
+        ],
+        [
+          7.350373783635276e-07,
+          -0.08716994796367329,
+          -0.9961934551940553,
+          1.0928741395238126
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link7_column_1_5 intersects measured obstacle residual_94c3b149e035_522"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:3",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          4.5625944437357544e-08,
+          -0.959483713128992,
+          0.28176409324149265,
+          0.4943673993974897
+        ],
+        [
+          -0.9981892666258829,
+          -0.01694854151601717,
+          -0.057714252428337644,
+          -0.8437947610638274
+        ],
+        [
+          0.06015137565243174,
+          -0.2812538909609652,
+          -0.9577463447210007,
+          1.1001736083875242
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link7_column_0_4 intersects measured obstacle residual_75c10b7b9291_153"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:0",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          -0.673135823565555,
+          -0.673135882796805,
+          -0.3062290749162922,
+          0.5257853875814416
+        ],
+        [
+          -0.6766538375443473,
+          0.7277009672232237,
+          -0.11220911923232184,
+          -0.7310139037215181
+        ],
+        [
+          0.2983751785407597,
+          0.1316791008237501,
+          -0.9453215681645155,
+          1.1098202749018966
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link5_column_4_4 intersects measured obstacle residual_a93e4ae3b810_870"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:1",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          -0.7044151152430793,
+          -0.7044151792387032,
+          0.08716995282312179,
+          0.4969189020307896
+        ],
+        [
+          -0.7071068586634338,
+          0.7071067037092732,
+          -7.330544132684597e-07,
+          -0.6260687073246376
+        ],
+        [
+          -0.06163794162859456,
+          -0.06163898788520632,
+          -0.9961934547688402,
+          1.0928741397322619
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link7_column_0_3 intersects measured obstacle residual_94c3b149e035_522"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:3",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          -0.6784574077128186,
+          -0.6784574703265548,
+          0.28176409792181556,
+          0.49436740169184884
+        ],
+        [
+          -0.71781082797933,
+          0.6938419703067947,
+          -0.05771425713300202,
+          -0.8437947674506127
+        ],
+        [
+          -0.15634308796755622,
+          -0.24140998570663502,
+          -0.9577463430605682,
+          1.1001736094473837
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "right_link7_column_0_3 intersects measured obstacle residual_75c10b7b9291_266"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:0",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          0.9519578529061514,
+          4.3977590077265525e-08,
+          0.3062290748611375,
+          0.5257853295246545
+        ],
+        [
+          -0.03609586115896454,
+          0.9930288023701321,
+          0.1122091193733132,
+          -0.7310139253929451
+        ],
+        [
+          -0.3040942865255822,
+          -0.11787195452413511,
+          0.9453215681656468,
+          1.1098201452998455
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "palm_y0_z1 intersects measured obstacle residual_a93e4ae3b810_712"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:1",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          0.9961934547640585,
+          4.465544989012531e-08,
+          -0.08716995288083941,
+          0.49691889945546797
+        ],
+        [
+          1.9330644490446435e-08,
+          0.9999999999997313,
+          7.331942883927347e-07,
+          -0.6260687135686492
+        ],
+        [
+          0.08716995288084872,
+          -7.320884026250412e-07,
+          0.9961934547637897,
+          1.092873996235527
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "palm_y0_z5 intersects measured obstacle residual_94c3b149e035_465"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:3",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          0.959483711738233,
+          4.234717901436077e-08,
+          -0.28176409797740626,
+          0.4943674274435426
+        ],
+        [
+          0.016948451725793262,
+          0.9981892678704184,
+          0.0577142572716419,
+          -0.8437947821760227
+        ],
+        [
+          0.2812539011162719,
+          -0.06015135499984217,
+          0.9577463430358591,
+          1.1001734688879818
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "palm_y0_z3 intersects measured obstacle residual_75c10b7b9291_3"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:0",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          0.6731358235655551,
+          0.6731358827968049,
+          0.3062290749162922,
+          0.525785326799983
+        ],
+        [
+          -0.7277010277295906,
+          0.6766537713238531,
+          0.11220912616407376,
+          -0.7310139190892544
+        ],
+        [
+          -0.13167906923281195,
+          -0.2983751950892928,
+          0.9453215673417206,
+          1.1098201454342358
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "palm_y0_z1 intersects measured obstacle residual_a93e4ae3b810_752"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:1",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          0.7044151152430794,
+          0.7044151792387031,
+          -0.08716995282312179,
+          0.4969188966041863
+        ],
+        [
+          -0.707106767517524,
+          0.7071067948551839,
+          7.400348270176584e-07,
+          -0.626068707324744
+        ],
+        [
+          0.06163898724020054,
+          0.06163794227369469,
+          0.9961934547688351,
+          1.0928739959860265
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "palm_y0_z5 intersects measured obstacle residual_94c3b149e035_1544"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:3",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          0.6784574077128187,
+          0.6784574703265548,
+          -0.28176409792181556,
+          0.4943674246973307
+        ],
+        [
+          -0.6938420347960876,
+          0.7178107650832016,
+          0.0577142641007761,
+          -0.8437947759919328
+        ],
+        [
+          0.24140997632580774,
+          0.15634310502469098,
+          0.9577463426406867,
+          1.100173467707404
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "palm_y0_z5 intersects measured obstacle residual_75c10b7b9291_0"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:0",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          -4.041413664107067e-08,
+          0.9519578513946364,
+          0.30622907955990425,
+          0.5257853290763459
+        ],
+        [
+          -0.9930288010644034,
+          -0.03609586171281702,
+          0.11220913075058857,
+          -0.7310139127814832
+        ],
+        [
+          0.11787196552442768,
+          -0.30409429119159254,
+          0.9453215652930442,
+          1.1098201439480981
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "palm_y0_z1 intersects measured obstacle residual_a93e4ae3b810_1362"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:1",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          -4.5669808452204894e-08,
+          0.9961934551943208,
+          -0.08716994796373023,
+          0.49691889898632735
+        ],
+        [
+          -0.9999999999997224,
+          1.9330641114843865e-08,
+          7.448308501015795e-07,
+          -0.6260687008857713
+        ],
+        [
+          7.436806690644919e-07,
+          0.08716994796374002,
+          0.996193455194043,
+          1.0928739961944665
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "current_native_DLS_IK",
+      "reason": "No bounded measured-model IK branch"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:3",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          -4.562594431985467e-08,
+          0.959483713128992,
+          -0.28176409324149265,
+          0.49436742699168984
+        ],
+        [
+          -0.9981892671988226,
+          0.016948451440921858,
+          0.057714268970788636,
+          -0.8437947695240916
+        ],
+        [
+          0.060151366144716396,
+          0.2812538963889343,
+          0.9577463437241446,
+          1.1001734679926376
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "current_native_DLS_IK",
+      "reason": "No bounded measured-model IK branch"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:0",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          -0.6731358792333513,
+          0.6731358220540401,
+          0.30622908607180865,
+          0.5257853350202808
+        ],
+        [
+          -0.6766537700181243,
+          -0.7277010282834434,
+          0.11220913044613946,
+          -0.7310139101646382
+        ],
+        [
+          0.29837520608958534,
+          -0.13167907389882233,
+          0.9453215632197047,
+          1.1098201417119917
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "hypothetical_endpoint_full_model_guard",
+      "reason": "palm_y0_z1 intersects measured obstacle residual_a93e4ae3b810_1452"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:1",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          -0.7044151802530615,
+          0.7044151156733417,
+          -0.08716994114923042,
+          0.4969189052064652
+        ],
+        [
+          -0.707106794855175,
+          -0.7071067675175278,
+          7.447729123673914e-07,
+          -0.6260686980235942
+        ],
+        [
+          -0.061637930681428234,
+          0.06163898232309183,
+          0.9961934557903325,
+          1.092873996738745
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "current_native_DLS_IK",
+      "reason": "No bounded measured-model IK branch"
+    },
+    {
+      "instance_id": "v280-same-snapshot-overhead:image:3",
+      "part": "ring1",
+      "T_cell_tcp": [
+        [
+          -0.6784574736053198,
+          0.6784574091035777,
+          -0.28176408667810726,
+          0.4943674329826155
+        ],
+        [
+          -0.7178107644116059,
+          -0.6938420350809594,
+          0.057714269028892214,
+          -0.8437947665612728
+        ],
+        [
+          -0.15634309387981665,
+          0.24140997159847008,
+          0.9577463456515577,
+          1.1001734695765963
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "seed": [
+        -1.0509302616119385,
+        -1.220984935760498,
+        0.9760252833366394,
+        -1.3192867040634155,
+        0.15331736207008362,
+        0.685775876045227,
+        2.3184409141540527
+      ],
+      "accepted": false,
+      "stage": "current_native_DLS_IK",
+      "reason": "No bounded measured-model IK branch"
+    }
+  ],
+  "screen_error": "No screened pickup candidate: bounded planning budget exhausted ['right_link5_column_4_4 intersects measured obstacle residual_a93e4ae3b810_870', 'right_link5_column_7_3 intersects measured obstacle residual_94c3b149e035_656', 'right_link7_column_0_4 intersects measured obstacle residual_75c10b7b9291_336', 'right_link5_column_4_4 intersects measured obstacle residual_a93e4ae3b810_870', 'right_link7_column_0_5 intersects measured obstacle residual_94c3b149e035_2849', 'right_link7_column_0_6 intersects measured obstacle residual_75c10b7b9291_154', 'right_link5_column_4_4 intersects measured obstacle residual_a93e4ae3b810_870', 'right_link7_column_1_5 intersects measured obstacle residual_94c3b149e035_522', 'right_link7_column_0_4 intersects measured obstacle residual_75c10b7b9291_153', 'right_link5_column_4_4 intersects measured obstacle residual_a93e4ae3b810_870', 'right_link7_column_0_3 intersects measured obstacle residual_94c3b149e035_522', 'right_link7_column_0_3 intersects measured obstacle residual_75c10b7b9291_266', 'palm_y0_z1 intersects measured obstacle residual_a93e4ae3b810_712', 'palm_y0_z5 intersects measured obstacle residual_94c3b149e035_465', 'palm_y0_z3 intersects measured obstacle residual_75c10b7b9291_3', 'palm_y0_z1 intersects measured obstacle residual_a93e4ae3b810_752', 'palm_y0_z5 intersects measured obstacle residual_94c3b149e035_1544', 'palm_y0_z5 intersects measured obstacle residual_75c10b7b9291_0', 'palm_y0_z1 intersects measured obstacle residual_a93e4ae3b810_1362', 'No bounded measured-model IK branch', 'No bounded measured-model IK branch', 'palm_y0_z1 intersects measured obstacle residual_a93e4ae3b810_1452', 'No bounded measured-model IK branch', 'No bounded measured-model IK branch']",
+  "screen_selected": null,
+  "reached_distinct_instances": [
+    "v280-same-snapshot-overhead:image:0",
+    "v280-same-snapshot-overhead:image:1",
+    "v280-same-snapshot-overhead:image:3"
+  ],
+  "branch_elapsed_s": 30.44709395605605,
+  "offline_frozen_clock": true,
+  "actual_sdk_connected": false,
+  "full_path_checked": false,
+  "approach_executed": false,
+  "closure_executed": false,
+  "tracking_bound_rad": 0.005,
+  "unknown_voxels": 66082
+}

@@ -1,0 +1,96 @@
+{
+  "source_run": "native-roas-table-scatter-stable-v348-gpu-carry-no-greedy-final-retreat-all3-446",
+  "full_task_pass": true,
+  "vision_end_to_end_pass": true,
+  "seed": 446,
+  "initial_stock": "10 mixed rings, physically dropped; RGBD recognition/encoder control",
+  "wall_s": 656.9598640759941,
+  "physics_s": 85.34999999996346,
+  "time_target_met": false,
+  "hardware_tested": false,
+  "random_reliability_validated": false,
+  "accepted_current_policy_seeds": [
+    446
+  ],
+  "failed_other_seed449": "No RGBD single-finger rearrangement route before pickup",
+  "final_checks": {
+    "ring1": {
+      "position_error_m": 0.000629369733156818,
+      "axis_error_rad": 0.0015820820947512486
+    },
+    "ring2": {
+      "position_error_m": 0.0004251255459102886,
+      "axis_error_rad": 0.00972074931809659
+    },
+    "pin": {
+      "position_error_m": 0.000759129255232356,
+      "axis_error_rad": 0.015240490015723194
+    }
+  },
+  "final_retention_wall_s": 0.6545799729647115,
+  "final_retention_physics_s": 0.5499999999994998,
+  "final_empty_retreat": {
+    "event": "final_empty_RIGHT_clearance",
+    "performed": true,
+    "world_delta_m": [
+      0.025,
+      -0.04,
+      0.0
+    ],
+    "physical_motion_s": 0.3125,
+    "exact_issued_rows": 150,
+    "right_openings_checked_m": [
+      0.017996611073613167,
+      0.01799745811149478,
+      0.017998305149376392,
+      0.017999152187258005,
+      0.017999999225139618
+    ],
+    "left_openings_checked_m": [
+      0.009999999776482582,
+      0.010000403504818678,
+      0.010000807233154774,
+      0.01000121096149087,
+      0.010001614689826965
+    ],
+    "calibrated_goal_clearance_before_m": [
+      0.1819509068495132,
+      0.15511674152521254,
+      0.15497399117720417
+    ],
+    "calibrated_goal_clearance_after_m": [
+      0.17540650956961423,
+      0.17654634282270296,
+      0.17236035834504007
+    ],
+    "installed_parts_checked": true,
+    "uses_free_body_poses": false
+  },
+  "command_limits": {
+    "samples": 40968,
+    "velocity_fraction_of_95_percent_PBV": 0.9610002516933884,
+    "max_acceleration_rad_s2": 8.83026123046875,
+    "max_jerk_rad_s3": 4113.28125,
+    "acceleration_limit_rad_s2": 9.5,
+    "jerk_limit_rad_s3": 4750,
+    "command_limit_checks": true,
+    "complete_issued_field_checked_at_end": true,
+    "validated_sample_count": 40968
+  },
+  "actual_encoder_velocity_limits": {
+    "samples": 40968,
+    "max_fraction_of_95_percent_PBV": 0.9580096263586637,
+    "max_finger_fraction_of_47p5_mm_s": 0.7286357252221358,
+    "max_coupled_finger_difference_m": 1.430511474609375e-06,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  },
+  "physical_attachments": false,
+  "workpiece_teleports_after_initialization": 0,
+  "known_sim_assumptions": [
+    "SIM pin collision shaft7.6mm vs nominal8mm bore; field original CAD separate and actual tolerance unverified",
+    "Virtual camera banks do not prove real fixed camera visibility",
+    "CPU physics and all capture/inference/planning waits counted after first snapshot; parallel runs are not causal timing comparisons",
+    "Field565 full preflight still blocked by actual UNKNOWN/geometry admission; no actual robot dispatch or hardware success"
+  ]
+}

@@ -2,7 +2,7 @@
 
 This archive contains research source and measured component evidence, **not a standalone Isaac scene or a verified field cycle**. The field executable and onboarding are in [FIELD_RGBD_20261022.md](../FIELD_RGBD_20261022.md). Server CAD, generated query meshes, previous run inputs and calibration assets are still required to run these Isaac scripts.
 
-Current policy:10 loose mixed rings, native Franka Hands, RGB-D recognition and encoder-based control; private actor poses serve image formation/evaluation only. No physical attachments or object teleports produce assembly. **No accepted full three-part result or real-hardware validation exists for the current policy.** The pin collision shaft is7.6mm against a nominal8mm bore, so real original-CAD insertion tolerance remains unverified.
+Current policy:10 loose mixed rings, native Franka Hands, RGB-D recognition and encoder-based control; private actor poses serve image formation/evaluation only. No physical attachments or object teleports produce assembly. **348 is the first accepted full three-part PhysX result for the current policy, on one randomseed446. Total656.96s wall/85.35s physics; generalized reliability,20/30s completion and actual hardware remain unverified.** The pin collision shaft is7.6mm against a nominal8mm bore, so real original-CAD insertion tolerance remains unverified.
 
 ## Runtime
 
@@ -11,6 +11,12 @@ GPU2 provides exact-reference cuRobo IK/RIGHT/LEFT route proposals; pickup pregr
 The measured loaded-aperture option uses actual stationary encoders plus fresh image-derived G for carrier-finger/held-CAD checks; finite-force spring targets are not treated as achieved geometry. Palm/arm/fixed/opposite-arm/installed-part checks retain full requested widths. Encoder lookahead/expiry is monitored at each control step. The100ms encoder window now starts before the final image and continues through delivery, preserving the250ms capture-age gate.
 
 Typed RIGHT pre-carry planning failure can select a checked handover before loaded motion begins. Observed completed parts are registered as obstacles to both arms. Alternative receiver angle, donor preorientation and double-handover features are experimental flags; model-only feasibility is not physical task success.
+
+## Accepted three-part assembly348
+
+[Measured acceptance summary](component-evidence/native-roas-table-scatter-stable-v348-gpu-carry-no-greedy-final-retreat-all3-446/acceptance-summary.json), [exact source](experiments/full-pass348/README.md), [1x excerpts with explicit cuts](media/all3-pass348-recorded-excerpts-1x.mp4), [full656.96s wall-clock replay](media/all3-pass348-recorded-full-wall-1x.mp4). LARGE/SMALL/PIN final position errors0.629/0.425/0.759mm and axis errors1.582/9.721/15.240mrad pass original1.5mm/50mrad gates. After0.3125s actual final emptyRIGHT lateral retreat, the original160mm Hand clearance and0.55s physics retention passed. Existing force, joint/finger velocity, acceleration and jerk checks were retained. Three local small-ring rearrangements were needed; they are shown in the excerpts. No hidden attachment or workpiece teleport produced assembly.
+
+The independent449 random layout350 still failed before pickup. One success is not a generalization result. Field565 camera-only screening is a separate, more conservative implementation and still blocked; the additional original-CAD/mount/UNKNOWN diagnostics are under results. No real robot was connected.
 
 ## Actual evidence
 
@@ -40,7 +46,7 @@ Typed RIGHT pre-carry planning failure can select a checked handover before load
 |345b |Deferred exact pair-CAD vertex/normal projection until an unchanged broadphase survivor needs it.6120 full-geometry arrays equal,48 SAT comparisons equal, four90-query full loaded-checker batches identical including known negative. Additional isolated1.325x over339b; not whole-cycle speedup.345 was explicitly stopped for redundant comparisons and replaced by this bounded component. |
 |347 |On actual341 RGBD grasp/stock and encoders, disabling only optional greedy shortcut search admitted the original full checked cuRobo carry/fixture route in14.39s. Original341 had spent~135s and rejected carry. This is model-only diagnosis, not motion or a comparable full-cycle result; physical348 composition is pending. |
 
-The full-CAD FCL accept-only acceleration experiment303 also preserved outcomes but gave no useful loaded speedup; it is not enabled. Current field561 packet replay remains blocked before approach/Hand dispatch by trueUNKNOWN clearance even after two virtual views. Field safety admission and SIM point-cloud checks are distinct implementations; neither result is relabeled as success in the other.
+The full-CAD FCL accept-only acceleration experiment303 also preserved outcomes but gave no useful loaded speedup; it is not enabled. Current field565 packet replay remains blocked before approach/Hand dispatch by trueUNKNOWN clearance even after two virtual views. Field safety admission and SIM point-cloud checks are distinct implementations; neither result is relabeled as success in the other.
 
 ## Video and source
 

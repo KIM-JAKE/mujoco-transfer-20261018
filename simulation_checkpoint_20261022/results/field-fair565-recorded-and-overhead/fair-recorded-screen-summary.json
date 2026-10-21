@@ -1,0 +1,130 @@
+{
+  "state": "BLOCKED_BEFORE_APPROACH_OR_CLOSURE",
+  "hardware_tested": false,
+  "field_ready": false,
+  "robot_or_Hand_commands_sent": false,
+  "uses_actor_object_poses_for_control": false,
+  "scope": "Actual sealed565 fair pickup scheduling with authentic RGB-D image instances and recorded SIM encoder/calibration FK. Native SDK-shaped OFFLINE interface and temporary synthetic installation/load/protocol fixtures only. Original field whole-body endpoint geometry admission, not actual native SDK or full-curve proof. Full machine geometry deliberately not certified in fixture; negative endpoint collision alone rejects.",
+  "source_package": "/home/gpuadmin/workspace/jake/field-demo-random-fair-search-20261022",
+  "source_manifest_sha256": "6a1efba402463b1cf717571c1af85e2750909ef84df5247ea75ab3df7b7c4b30",
+  "archived_two_view": {
+    "plans": 24,
+    "distinct_visible_large_targets": 3,
+    "first_target_order": [
+      "v280-same-snapshot-overhead:image:0",
+      "v280-same-snapshot-overhead:image:1",
+      "v280-same-snapshot-overhead:image:3"
+    ],
+    "endpoint_survivors": 0,
+    "IK_rejections": 4,
+    "whole_body_geometry_rejections": 20,
+    "unknown_voxels": 66082,
+    "elapsed_s": 30.44709395605605
+  },
+  "new_single_overhead": {
+    "plans": 24,
+    "distinct_visible_large_targets": 4,
+    "first_target_order": [
+      "v278-new-overhead-fair565:image:0",
+      "v278-new-overhead-fair565:image:1",
+      "v278-new-overhead-fair565:image:3",
+      "v278-new-overhead-fair565:image:5"
+    ],
+    "endpoint_survivors": 0,
+    "IK_rejections": 3,
+    "whole_body_geometry_rejections": 21,
+    "unknown_voxels": 75698,
+    "elapsed_s": 30.491969884955324
+  },
+  "new_capture": {
+    "scope": "One new virtual pinhole camera exposure of genuine recorded physically parked Isaac scene; private dynamic poses renderer-only; no robot/stock writes or physics steps",
+    "source_run": "/workspace/project/mujoco/isaac_port/runs/native-roas-table-scatter-stable-v278-self-clear-park-camera-446",
+    "source_wall_s": 6.206230962998234,
+    "source_trace_wall_s": 6.201493597938679,
+    "trace_index": 223,
+    "camera_eye": [
+      0.5516386926284014,
+      -0.7255239198752155,
+      2.264881666854589
+    ],
+    "camera_target": [
+      0.5516386926284014,
+      -0.7255239198752155,
+      1.114881666854589
+    ],
+    "span_m": 0.65,
+    "width": 1024,
+    "height": 1024,
+    "physical_camera_tested": false,
+    "robot_command_sent": false,
+    "render_s": 0.15629468101542443,
+    "source_trace_sha256": "20006756f52b967cae8735cfca383cc827bf928fa8e410bcb41ee017a96a0037"
+  },
+  "obstacle_reconstruction": "Same immutable packet, selected target and geometry with a fresh OFFLINE clock; original residual hash prefix changes with clock, so obstacle matched by deterministic box ordinal. No reconstructed obstacle enters controller.",
+  "obstacle_kinds": {
+    "unknown": 21
+  },
+  "first_obstacle": {
+    "instance_id": "v278-new-overhead-fair565:image:0",
+    "reason": "right_link5_column_7_3 intersects measured obstacle residual_34eb7e676060_50",
+    "obstacle": {
+      "name": "residual_1c35438684d2_50",
+      "T_cell_box": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.42833143111485744
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -0.7393573655744679
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          1.1933432502544659
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "half_extents_m": [
+        0.0019701434511465443,
+        0.1642708352556035,
+        0.0019527729348252088
+      ],
+      "source": "conservative_registered_RGBD_rays",
+      "occupancy_kind": "unknown",
+      "source_capture_ids": [
+        "v278-new-overhead-fair565"
+      ],
+      "voxel_resolution_m": [
+        0.0039402869022930965,
+        0.003958333379653095,
+        0.003905545869650483
+      ]
+    }
+  },
+  "observation_freshness": "Frozen OFFLINE comparison clock only. Original exposure/camera/source provenance retained; no live TTL or lease proof.",
+  "guards": {
+    "tracking_bound_rad": 0.005,
+    "default_profile_unchanged": 0.02,
+    "unknown_erased": false,
+    "collision_radii_or_tolerances_changed": false,
+    "hand_width_source": "Authentic recorded parked SIM Hand aperture (~70mm); no hypothetical Hand opening represented as measured state.",
+    "native_solver": "Same bounded DLS equations on saved native model FK; not actual libfranka model connection."
+  },
+  "conclusions": [
+    "Fair schedule reaches all actual visible required-class instances before another seed, without inventing fifth ring detection.",
+    "One new overhead exposure with empty robot out of basket view exposes four large-ring candidates rather than three, but none passes complete body endpoint admission.",
+    "New image geometry:21 original geometry rejections +3 bounded IK failures within24plans; original UNKNOWN remains blocking for link5/link7/palm.",
+    "No approach curve, scene lease, closure, physical pickup or hardware task is claimed. No further camera/pose grids performed."
+  ]
+}
