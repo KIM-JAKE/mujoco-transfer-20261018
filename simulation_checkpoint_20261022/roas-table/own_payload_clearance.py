@@ -6,7 +6,7 @@ obstacle. This never changes physical actors or opposite-arm contact policy.
 """
 import numpy as np
 from scipy.spatial import ConvexHull
-from predictive_pair_clearance import proxy, transform_proxy, shape_overlap
+from predictive_pair_clearance import proxy, transform_proxy, transform_proxy_bounds, shape_overlap
 try:
     import fcl
 except ImportError:
@@ -86,8 +86,12 @@ class OwnPayloadClearance:
                 _,swept,_,obj=self.loaded_robot_cache[key]
                 query_rows.append((body,source,swept));query_transforms.append(transforms[self.guard.arm.hand_path])
                 if fcl:query_objects.append(obj)
-        placed_robot=[transform_proxy(row[2],t)for row,t in zip(query_rows,query_transforms)]
-        placed_payload=[transform_proxy(g,transform)for _,_,g in payload]
+        # Exact FCL narrowphase consumes cached full local collision CAD;
+        # its broadphase needs only the identical transformed enclosing OBB.
+        # The SAT fallback still receives full transformed vertices/normals.
+        place_proxy=transform_proxy_bounds if fcl else transform_proxy
+        placed_robot=[place_proxy(row[2],t)for row,t in zip(query_rows,query_transforms)]
+        placed_payload=[place_proxy(g,transform)for _,_,g in payload]
         if fcl:
             for obj,t in zip(query_objects,query_transforms):
                 obj.setTransform(fcl.Transform(np.ascontiguousarray(t[:3,:3]),np.ascontiguousarray(t[:3,3])))

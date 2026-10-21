@@ -62,6 +62,17 @@ def transform_proxy(box, transform):
             vertices @ rotation.T + position, normals @ rotation.T)
 
 
+def transform_proxy_bounds(box, transform):
+    """Identical transformed enclosing OBB; no unused vertex/normal copies.
+
+    FCL callers retain the complete authored local hull in their cached
+    CollisionObjects. SAT callers must still request transform_proxy().
+    """
+    center, axes, extents = box[:3]
+    rotation, position = transform[:3, :3], transform[:3, 3]
+    return (rotation @ center + position, rotation @ axes, extents)
+
+
 def shape_overlap(a, b, margin=1e-6):
     if not overlaps((a[0],a[1],a[2]+margin),(b[0],b[1],b[2]+margin)):
         return False

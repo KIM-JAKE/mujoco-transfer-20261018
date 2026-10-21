@@ -1,0 +1,1883 @@
+{
+  "full_task_pass": false,
+  "vision_end_to_end_pass": false,
+  "end_to_end_under30": false,
+  "hardware_tested": false,
+  "part_attachments": false,
+  "workpiece_teleports_after_initialization": 0,
+  "physics_hz": 1920,
+  "python_thread_switch_interval_s": 0.005,
+  "timing_basis": "Monotonic wall time from first camera snapshot through >=0.5s verified retention",
+  "CPU_camera_waits_omitted": false,
+  "finger_effort_caps_n": {
+    "left_per_finger": 30.0,
+    "right_per_finger": 30.0,
+    "left_final_insertion_per_finger": 15.0
+  },
+  "clamp_target_update_hz": 30,
+  "wall_pacing": "Each 480 Hz control step advances two 960 Hz PhysX substeps and takes at least 1/480 s wall time; no catch-up fast-forward",
+  "native_finger_target_speed_cap_m_s": 0.0475,
+  "native_force_hold": "Scattered controller: single motor + coupled passive finger, velocity preload, finite force; no attachment",
+  "initial_big_ring_aperture_m": 0.076,
+  "neural_mask_cache_used": false,
+  "CPU_fast_kinematics": {
+    "enabled": true,
+    "device": "CPU",
+    "algorithm": "Same USD frames, joint bounds, DLS damping and 220-iteration limit; Eigen C++ implementation",
+    "library_sha256": "efaaa4965137f12bd60de206612217e3271a7b702c02ca6105479e9fbf470234",
+    "source_sha256": "b513b9dc1d624c79473fe5836cdc78bd13aaaf670e48cc7b024fc3866691835a"
+  },
+  "pin_clamp_assumed_center_z_m": 1.515,
+  "pin_clamp_hardware_calibrated": false,
+  "pin_method": "Tail grasp, uninterrupted axial insertion, release only after fresh full-depth RGB-D confirmation",
+  "clamp_tensor_drives": false,
+  "solver_iterations": {
+    "position": 16,
+    "velocity": 16
+  },
+  "physics_hz_range": [
+    1920,
+    1920
+  ],
+  "physics_worker_threads": 0,
+  "physics_cpu_dispatcher": true,
+  "continuous_collision_detection": true,
+  "controller_hz": 480,
+  "physics_substeps_per_command": 4,
+  "randomized_bin_config": {
+    "seed": 446,
+    "tensor_clamps": false,
+    "correction_joint7_weight": 0.05,
+    "width_guard": true,
+    "digital_clamps": true,
+    "digital_clamp_threshold": 0.95,
+    "fixed_visual_application": true,
+    "direct_pin": true,
+    "ring_seat_hold_s": 0.35,
+    "motion_time_scale": 1.01,
+    "early_width_guard": true,
+    "held_correction_ramp_s": 0.35,
+    "physics_substeps": 4,
+    "physics_substep_window_s": [
+      13.0,
+      16.5
+    ],
+    "pin_tail_candidate": 0,
+    "enforce_motor_speed_limits": true,
+    "randomization_mode": "full_bin_drop",
+    "randomization_settle_s": 3.0,
+    "scatter_probe_only": false,
+    "native_mimic_frequency_hz": 0.0,
+    "deadline_s": 900,
+    "scattered_control": true,
+    "pick_part": "ring2",
+    "native_motor_speed_cap_m_s": 0.032,
+    "scattered_full_task": true,
+    "handover_only": false,
+    "scattered_physics_substeps": 4,
+    "native_finger_convex_decomposition": false,
+    "solver_velocity_iterations": 16,
+    "shuffle_drop_order": true,
+    "randomization_protocol": "full_bin_drop_shuffled_v2",
+    "start_above_bin": true,
+    "experimental_sim_only": true,
+    "full_random_task_validated": false,
+    "allow_fingertip_nudging": true,
+    "allow_internal_grasp": false,
+    "allow_single_finger_rearrangement": true,
+    "native_shared_motor_drive": true,
+    "native_grip_pad_force_n": 30,
+    "optimization_report": "scatter-optimization-20261021.json",
+    "one_ring_only": false,
+    "fast_transport": true,
+    "allow_chord_grasp": true,
+    "allow_side_entry": true,
+    "optimized_motion_timing": true,
+    "tracking_image_width_px": 384,
+    "native_contact_offset_m": 0.0005,
+    "gentle_descent": true,
+    "handover_plan_budget_s": 60.0,
+    "stability_time_scale": 1.0,
+    "grasp_settle_s": 0.2,
+    "ring_contact_debug": false,
+    "optimization_phase": "randomized_reliability_first",
+    "stable_small_grasp": true,
+    "prefer_internal_small_grasp": false,
+    "ring_yaw_free": true,
+    "reliability_handover_hint": true,
+    "stability_finish_rings_before_pin": true,
+    "continuous_force_hold": true,
+    "stability_serial": true,
+    "pin_first": false,
+    "descent_contact_speed_m_s": 0.03,
+    "shortcut_checked_routes": true,
+    "parallel_transfer_approach": false,
+    "pregrasp_floor_m": 1.235,
+    "prefer_near_handover_branch": true,
+    "pregrasp_floor_small_m": 1.235,
+    "path_local_timing": true,
+    "warm_spline_routes": false,
+    "center_large_receiver_grasp": true,
+    "sort_donor_orientations": true,
+    "handover_offsets_override": [
+      [
+        0.1,
+        -0.1,
+        0.0
+      ]
+    ],
+    "pin_between_rings": false,
+    "local_left_park": true,
+    "wait_for_ring_transport_clear": true,
+    "small_receiver_opening_m": 0.074,
+    "receiver_approach_standoff_m": 0.02,
+    "receiver_approach_step_m": 0.002,
+    "receiver_approach_resolution_rad": 0.002,
+    "pickup_multiview": true,
+    "require_fresh_preclose_rgbd": true,
+    "small_ring_repick_on_unstable_hold": true,
+    "small_ring_com_x_limit_m": 0.0025,
+    "pickup_retry_limit": 3,
+    "initial_eye_offset_m": [
+      0,
+      0,
+      0.8
+    ],
+    "stable_receiver_grasp": true,
+    "rim_only_pickup": false,
+    "allow_local_rim_grasp": false,
+    "prefer_local_rim_grasp": true,
+    "initial_pickup_multiview": false,
+    "native_loaded_preload_ramp_s": 0.3,
+    "native_loaded_initial_preload_m_s": 0.003,
+    "native_loaded_preload_m_s": 0.0075,
+    "rim_encoder_recenter": true,
+    "strict_rim_clutter": true,
+    "native_loaded_preload_after_contact_m_s": 0.015,
+    "inner_only_pickup": false,
+    "native_inner_bore_grasp": false,
+    "operation_solver_position_iterations": 128,
+    "operation_solver_velocity_iterations": 64,
+    "inner_bore_friction_reserve_mu": 0.6,
+    "allow_bin_release_retry": true,
+    "verify_receiver_pad_contact": true,
+    "inner_bore_x_tilt_candidates_deg": [
+      0,
+      10,
+      -10,
+      15,
+      -15
+    ],
+    "inner_bore_center_correction_limit_m": 0.0025,
+    "right_ring_insert_probe": false,
+    "receiver_axial_only": false,
+    "axial_receiver_probe": false,
+    "right_insertion_fixture_probe": false,
+    "rearrange_probe": false,
+    "rearrange_then_pick": false,
+    "require_front_up_pickup": false,
+    "rearrange_front_up_only": false,
+    "allow_partial_preclose_tracking": true,
+    "preclose_occlusion_max_age_s": 2.0,
+    "verify_lifted_pad_contact": true,
+    "right_direct_empty_left_parking": true,
+    "right_left_park_fixture_probe": false,
+    "reuse_aperture_invariant_checks": true,
+    "axial_receiver_fixture_budget_s": 90.0,
+    "allow_direct_right_insert": true,
+    "prefer_right_carry_small_posture": true,
+    "right_carry_vertical_escape": false,
+    "avoid_other_stock_finger_contact": true,
+    "stable_outer_donor_grasp": true,
+    "allow_tilted_bore_hook": true,
+    "timing_comparison_eligible": false,
+    "rearrangement_retry_limit": 3,
+    "bin_axial_pick_probe": false,
+    "tilted_ring_hook_probe": false,
+    "broaden_tilted_bore_hook_proposals": true,
+    "rearrangement_pickup_extra_eye_offsets_m": [
+      [
+        0.28,
+        0.28,
+        0.5
+      ],
+      [
+        -0.28,
+        -0.28,
+        0.5
+      ]
+    ],
+    "donor_release_opening_cap_m": 0.078,
+    "adaptive_initial_ring_order": true,
+    "pickup_diagonal_offsets_m": [
+      [
+        -0.08,
+        0.0,
+        0.0
+      ]
+    ],
+    "receiver_depth_options_m": [
+      0.002
+    ],
+    "right_fixture_replan_on_alignment_failure": true,
+    "close_empty_left_for_pin": true,
+    "large_receiver_depth_options_m": [
+      0.004
+    ],
+    "large_encoder_pose_bias_compensation": true,
+    "require_broad_large_donor_support": true,
+    "right_fixture_oblique_camera_views": true,
+    "defer_handover_until_visible_clearance": true,
+    "verify_large_lift_grasp_retention": true,
+    "large_lift_grasp_translation_limit_m": 0.002,
+    "large_lift_grasp_axis_limit_rad": 0.05,
+    "verify_large_donor_after_carry": true,
+    "robust_annular_camera_view_bank": true,
+    "timing_metadata_correction": "No-motion exact FCL convex boundary indexing comparison, same volume/margins/queries, both arms empty and loaded. No wholecycle timing claim.",
+    "balanced_large_receiver_grasp": true,
+    "pin_visual_preinsert_alignment": true,
+    "pin_axis_goal_world_m": [
+      -0.30203095784,
+      0.22724999619,
+      1.52875
+    ],
+    "exact_axis_large_receiver_grasp": true,
+    "verify_selected_outer_approach": true,
+    "robust_pin_cap_circle": true,
+    "pin_precision_image_width_px": 768,
+    "pin_grasp_catalog_run": "native-roas-table-scatter-stable-v251-corrected-pin-catalog",
+    "pin_grasp_catalog_candidate": 0,
+    "pin_grasp_catalog_probe": false,
+    "pin_axis_frame_consistent_geometry": true,
+    "verify_native_pin_hold": true,
+    "ray_image_backend": "embree_cpu",
+    "gpu_ik_proposals": true,
+    "gpu_ik_socket": "/workspace/project/mujoco/.local/curobo-gpu2/ik.sock",
+    "pin_rgbd_sdk_hold_confirmation": true,
+    "pin_terminal_stroke_preflight": true,
+    "pin_axial_yaw_free": true,
+    "gpu_route_proposals": true,
+    "gpu_route_socket": "/workspace/project/mujoco/.local/curobo-gpu2/route.sock",
+    "gpu_route_timeout_s": 2.0,
+    "sequential_initial_ring_selection": true,
+    "initial_camera_width_px": 768,
+    "initial_camera_height_px": 768,
+    "initial_camera_span_m": 0.55,
+    "park_before_bin_pick": false,
+    "empty_park_known_empty": true,
+    "empty_park_preshape_m": 0.07,
+    "empty_park_planning_budget_s": 20.0,
+    "gpu_dual_arm_reference": true,
+    "gpu_left_route_proposals": true,
+    "gpu_left_route_socket": "/workspace/project/mujoco/.local/curobo-gpu2/route-dual.sock",
+    "gpu_route_static_probe": true,
+    "empty_park_camera_probe": false,
+    "completed_part_static_probe": false,
+    "gpu_left_route_static_probe": false,
+    "experiment_note": "No-motion original full loaded Checker profiling of90actual327encoders, authentic pixel-derivedG/actual other arm + completed SMALL. No physics replay/hardware execution."
+  },
+  "randomized_ring_count": 10,
+  "setup_depenetration_cap_m_s": 0.2,
+  "operation_depenetration_cap_m_s": 1000.0,
+  "fixed_standby_TCP_world_m": [
+    0.515,
+    -0.715,
+    1.255
+  ],
+  "standby_independent_of_images_or_object_poses": true,
+  "contact_material_audit": {
+    "steel": {
+      "static_friction": 0.6000000238418579,
+      "dynamic_friction": 0.5099999904632568,
+      "authored_friction_combine_mode": null,
+      "default_combine_mode": "average",
+      "hardware_friction_measured": false
+    },
+    "rubber": {
+      "static_friction": 1.0,
+      "dynamic_friction": 0.8500000238418579,
+      "authored_friction_combine_mode": null,
+      "default_combine_mode": "average",
+      "hardware_friction_measured": false
+    }
+  },
+  "initial_RGBD_camera_eye_offset_m": [
+    0,
+    0,
+    0.8
+  ],
+  "clamp_control": "Finite-force open/close commands, same jaw strokes and force caps",
+  "pickup_depth_increase_m": {
+    "ring1": 0.0,
+    "ring2": 0.0
+  },
+  "diagnostic_rings_only": false,
+  "pin_grasp_catalog_selection": {
+    "run": "native-roas-table-scatter-stable-v251-corrected-pin-catalog",
+    "candidate_index": 0,
+    "tilt_deg": -40,
+    "contact_z_m": 0.0,
+    "pickup_center_from_RGBD": [
+      0.19000387111393577,
+      -0.7897289286242213,
+      0.9160499607069958
+    ],
+    "physical_grasp_previously_tested": false
+  },
+  "usd_clamp_targets_batched": true,
+  "dof_names": [
+    "left_arm_fr3v2_joint1",
+    "right_arm_fr3v2_joint1",
+    "left_arm_fr3v2_joint2",
+    "right_arm_fr3v2_joint2",
+    "left_arm_fr3v2_joint3",
+    "right_arm_fr3v2_joint3",
+    "left_arm_fr3v2_joint4",
+    "right_arm_fr3v2_joint4",
+    "left_arm_fr3v2_joint5",
+    "right_arm_fr3v2_joint5",
+    "left_arm_fr3v2_joint6",
+    "right_arm_fr3v2_joint6",
+    "left_arm_fr3v2_joint7",
+    "right_arm_fr3v2_joint7",
+    "left_native_left",
+    "left_native_right",
+    "right_native_left",
+    "right_native_right"
+  ],
+  "link_names": [
+    "official_FR3_Duo",
+    "left_arm_base",
+    "right_arm_base",
+    "left_arm_fr3v2_link0",
+    "right_arm_fr3v2_link0",
+    "left_arm_fr3v2_link1",
+    "right_arm_fr3v2_link1",
+    "left_arm_fr3v2_link2",
+    "right_arm_fr3v2_link2",
+    "left_arm_fr3v2_link3",
+    "right_arm_fr3v2_link3",
+    "left_arm_fr3v2_link4",
+    "right_arm_fr3v2_link4",
+    "left_arm_fr3v2_link5",
+    "right_arm_fr3v2_link5",
+    "left_arm_fr3v2_link6",
+    "right_arm_fr3v2_link6",
+    "left_arm_fr3v2_link7",
+    "right_arm_fr3v2_link7",
+    "left_arm_fr3v2_link8",
+    "right_arm_fr3v2_link8",
+    "left_NativeHand",
+    "right_NativeHand",
+    "left_left_finger",
+    "left_right_finger",
+    "right_left_finger",
+    "right_right_finger"
+  ],
+  "camera_preparation_s": 0.0016561109805479646,
+  "reference_motion": "live RGB-D scattered controller; no taught pickup path",
+  "stationary_trim_s": 0.0,
+  "joint_headroom_retiming_saved_s": 0.0,
+  "retimed_free_motion_windows": [],
+  "starts_with_rings_already_installed": false,
+  "scene_ring_color": "same steel material",
+  "pin_collision_approximation": {
+    "model": "Four coaxial convex cylinders, approximate CAD outer dimensions",
+    "length_m": 0.0355,
+    "tail_diameter_m": 0.0105,
+    "collar_diameter_m": 0.013,
+    "shaft_diameter_m": 0.0076,
+    "CAD_nominal_shaft_diameter_m": 0.008,
+    "radial_clearance_allowance_m": 0.0002,
+    "tip_diameter_m": 0.005,
+    "parts": 4,
+    "original_slits_and_reliefs_not_simulated": true,
+    "hardware_validated": false
+  },
+  "grasp_obstacles_from_RGBD_cloud": true,
+  "loose_stock_contact_policy": "Fingertip nudging allowed; RGB-D palm sweep, fixed-structure queries and all physical contacts retained",
+  "fast_transport_planner": {
+    "enabled": true,
+    "version": "0.7.0.8",
+    "static_objects": 2793,
+    "skipped_static_colliders": [],
+    "preparation_s": 51.898783354088664,
+    "uses_free_body_poses": false,
+    "proposal_only": true,
+    "live_PhysX_path_verification_required": true
+  },
+  "native_contact_generation": {
+    "contact_offset_m": 0.0005,
+    "rest_offset_m": 0.0,
+    "colliders": 4,
+    "applied_after_random_setup": true,
+    "collision_geometry_unchanged": true,
+    "friction_unchanged": true
+  },
+  "operation_solver_iterations": {
+    "position": 128,
+    "velocity": 64,
+    "applied_after_random_setup": true
+  },
+  "standby_preparation_wall_s": 81.90458170592319,
+  "automatic_gc_deferred_during_cycle": true,
+  "first_capture_wall_epoch_s": 1792615326.5009863,
+  "motor_velocity_cap_policy": "Signed position-dependent FR3 bounds at encoder position plus one-step margin; 93% drive cap and unchanged 95% actual velocity acceptance",
+  "CPU_planning_advances_physics": false,
+  "hard_realtime_controller_validated": false,
+  "native_gripper_control": "One scalar width/velocity command + hard mechanical coupling; same reference on both pads; total effort cap 60.0 N and total damping 4000 N s/m, distributed equally; no additional motor capability; loaded grasp maintains closing force at 15 mm/s velocity preload instead of relaxing at a fixed minimum width; configured loaded preload 7.5 mm/s with 0.3 s force ramp",
+  "native_single_motor_coupling_validated": true,
+  "native_shared_motor_drive": true,
+  "native_loaded_preload_ramp": {
+    "duration_s": 0.3,
+    "initial_m_s": 0.003,
+    "final_m_s": 0.0075,
+    "motor_force_cap_n": 60.0,
+    "arm_timing_unchanged": true
+  },
+  "planning_diagnostics": [],
+  "state": "physical_acceptance_failed",
+  "scattered_pick": {
+    "state": "actual_RGBD_encoder_full_loaded_checker_profile",
+    "source": "native-roas-table-scatter-stable-v327-gpu-pickup-half-gain-all3-445",
+    "robot_motion_executed": false,
+    "physical_execution_replayed": false,
+    "hardware_tested": false,
+    "full_task_pass": false,
+    "free_body_actor_pose_inputs": false,
+    "queries": 90,
+    "profiled_wall_s": 1.0761079400544986,
+    "query_mean_ms": 11.95675488949443,
+    "side": "left",
+    "payload_class": "ring1",
+    "payload_sectors": 48,
+    "explicit_actual_other_arm_context": true,
+    "observed_completed_SMALL_pose": {
+      "part": "ring2",
+      "initial_arc_center_m": [
+        -0.239192273382738,
+        0.2839901981237215,
+        1.5317125895806045
+      ],
+      "initial_plane_axis": [
+        0.0008488981505305084,
+        0.006978285321577328,
+        0.9999752911476866
+      ],
+      "center_m": [
+        -0.23903493700018594,
+        0.28417777309183734,
+        1.5317111470307498
+      ],
+      "axis": [
+        0.0008488981505305084,
+        0.006978285321577328,
+        0.9999752911476866
+      ],
+      "visible_face_inner_radius_m": 0.025445402983800703,
+      "visible_CAD_end_sign": -1,
+      "front_back_orientation_margin_m": 0.002054597016199297,
+      "front_back_from_RGBD": true,
+      "rms_m": 0.00018744053012849696,
+      "depth_points": 4752,
+      "measured_classification_diameter_m": 0.06016836477919286,
+      "visible_arc_coverage_deg": 360,
+      "size_classification": "RGB-D observed annular arc metric diameter",
+      "uses_depth_sensor": true,
+      "uses_simulator_body_poses": false,
+      "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+      "lateral_CAD_correction_m": [
+        0.0001573363825520535,
+        0.0001875749681158334,
+        -1.4425498546799531e-06
+      ],
+      "lateral_CAD_registration_rms_m": 4.226192239392249e-05,
+      "lateral_CAD_iterations": 4,
+      "observed_cap_axis_and_depth_preserved": true
+    },
+    "first_rejection_counts": {
+      "CLEAR": 90
+    },
+    "warm_query": {
+      "clear": true,
+      "reason": null
+    },
+    "checks": "Original Checker.clear includes same-arm/full-payload/self, placed SMALL, full actual other-arm+payload pair, live original PhysX structural overlap. No guard substitution.",
+    "top_cumulative": [
+      {
+        "file": "/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v339-full-checker-profile/isaac_port/native_hand_layout/roas-table/probe_gpu_native_route.py",
+        "line": 27,
+        "function": "query",
+        "primitive_calls": 90,
+        "total_calls": 90,
+        "self_s": 0.001306324,
+        "cumulative_s": 1.075631143
+      },
+      {
+        "file": "/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v339-full-checker-profile/isaac_port/native_hand_layout/roas-table/isaac_collision_queries.py",
+        "line": 40,
+        "function": "clear",
+        "primitive_calls": 90,
+        "total_calls": 90,
+        "self_s": 0.00422984,
+        "cumulative_s": 0.9238236470000001
+      },
+      {
+        "file": "/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v339-full-checker-profile/isaac_port/native_hand_layout/roas-table/predictive_pair_clearance.py",
+        "line": 58,
+        "function": "transform_proxy",
+        "primitive_calls": 16740,
+        "total_calls": 16740,
+        "self_s": 0.541136462,
+        "cumulative_s": 0.541136462
+      },
+      {
+        "file": "/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v339-full-checker-profile/isaac_port/native_hand_layout/roas-table/same_arm_clearance.py",
+        "line": 91,
+        "function": "clear",
+        "primitive_calls": 90,
+        "total_calls": 90,
+        "self_s": 0.021675715,
+        "cumulative_s": 0.5388838850000001
+      },
+      {
+        "file": "/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v339-full-checker-profile/isaac_port/native_hand_layout/roas-table/own_payload_clearance.py",
+        "line": 50,
+        "function": "clear",
+        "primitive_calls": 90,
+        "total_calls": 90,
+        "self_s": 0.050051878,
+        "cumulative_s": 0.252304339
+      },
+      {
+        "file": "/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v339-full-checker-profile/isaac_port/native_hand_layout/roas-table/placed_part_clearance.py",
+        "line": 36,
+        "function": "clear",
+        "primitive_calls": 90,
+        "total_calls": 90,
+        "self_s": 0.035674106000000004,
+        "cumulative_s": 0.24178971500000002
+      },
+      {
+        "file": "/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v339-full-checker-profile/isaac_port/native_hand_layout/roas-table/predictive_pair_clearance.py",
+        "line": 92,
+        "function": "at_pose",
+        "primitive_calls": 180,
+        "total_calls": 180,
+        "self_s": 0.005439848000000001,
+        "cumulative_s": 0.23381648200000002
+      },
+      {
+        "file": "/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v339-full-checker-profile/isaac_port/native_hand_layout/roas-table/predictive_pair_clearance.py",
+        "line": 103,
+        "function": "pair_clear",
+        "primitive_calls": 90,
+        "total_calls": 90,
+        "self_s": 0.0035286120000000004,
+        "cumulative_s": 0.22369165900000001
+      },
+      {
+        "file": "/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v339-full-checker-profile/isaac_port/native_hand_layout/roas-table/isaac_collision_queries.py",
+        "line": 55,
+        "function": "_clear_transforms",
+        "primitive_calls": 90,
+        "total_calls": 90,
+        "self_s": 0.12403193000000001,
+        "cumulative_s": 0.138451665
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/site-packages/numpy/lib/_npyio_impl.py",
+        "line": 239,
+        "function": "__getitem__",
+        "primitive_calls": 180,
+        "total_calls": 180,
+        "self_s": 0.0011191810000000001,
+        "cumulative_s": 0.11563853900000001
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/site-packages/numpy/lib/_format_impl.py",
+        "line": 780,
+        "function": "read_array",
+        "primitive_calls": 180,
+        "total_calls": 180,
+        "self_s": 0.0031851270000000003,
+        "cumulative_s": 0.09659131700000001
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/zipfile/__init__.py",
+        "line": 983,
+        "function": "read",
+        "primitive_calls": 900,
+        "total_calls": 900,
+        "self_s": 0.002192428,
+        "cumulative_s": 0.08658164600000001
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/zipfile/__init__.py",
+        "line": 1065,
+        "function": "_read1",
+        "primitive_calls": 360,
+        "total_calls": 360,
+        "self_s": 0.002305731,
+        "cumulative_s": 0.084146712
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/site-packages/numpy/lib/_format_impl.py",
+        "line": 1000,
+        "function": "_read_bytes",
+        "primitive_calls": 720,
+        "total_calls": 720,
+        "self_s": 0.0009321920000000001,
+        "cumulative_s": 0.080271294
+      },
+      {
+        "file": "/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v339-full-checker-profile/isaac_port/native_hand_layout/roas-table/isaac_kinematics.py",
+        "line": 56,
+        "function": "bodies",
+        "primitive_calls": 360,
+        "total_calls": 360,
+        "self_s": 0.019130274000000003,
+        "cumulative_s": 0.07958596100000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'decompress' of 'zlib.Decompress' objects>",
+        "primitive_calls": 360,
+        "total_calls": 360,
+        "self_s": 0.072298214,
+        "cumulative_s": 0.072298214
+      },
+      {
+        "file": "/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v339-full-checker-profile/isaac_port/native_hand_layout/roas-table/isaac_kinematics.py",
+        "line": 19,
+        "function": "exp",
+        "primitive_calls": 2520,
+        "total_calls": 2520,
+        "self_s": 0.019761375,
+        "cumulative_s": 0.043030236
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.next>",
+        "primitive_calls": 180,
+        "total_calls": 180,
+        "self_s": 0.000248892,
+        "cumulative_s": 0.034099819
+      },
+      {
+        "file": "/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v339-full-checker-profile/isaac_port/native_hand_layout/roas-table/predictive_pair_clearance.py",
+        "line": 118,
+        "function": "other_at",
+        "primitive_calls": 180,
+        "total_calls": 180,
+        "self_s": 0.001160722,
+        "cumulative_s": 0.033850927
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/contextlib.py",
+        "line": 132,
+        "function": "__enter__",
+        "primitive_calls": 90,
+        "total_calls": 90,
+        "self_s": 0.00013432100000000002,
+        "cumulative_s": 0.033429414000000005
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/site-packages/numpy/lib/_twodim_base_impl.py",
+        "line": 178,
+        "function": "eye",
+        "primitive_calls": 6840,
+        "total_calls": 6840,
+        "self_s": 0.011777764000000001,
+        "cumulative_s": 0.015777482000000002
+      },
+      {
+        "file": "/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v339-full-checker-profile/isaac_port/native_hand_layout/roas-table/predictive_pair_clearance.py",
+        "line": 107,
+        "function": "bounds",
+        "primitive_calls": 180,
+        "total_calls": 180,
+        "self_s": 0.010395466,
+        "cumulative_s": 0.014900521000000002
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+        "line": 2586,
+        "function": "all",
+        "primitive_calls": 720,
+        "total_calls": 720,
+        "self_s": 0.0010390780000000001,
+        "cumulative_s": 0.013771294000000002
+      },
+      {
+        "file": "/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v339-full-checker-profile/isaac_port/native_hand_layout/roas-table/own_payload_clearance.py",
+        "line": 96,
+        "function": "limits",
+        "primitive_calls": 180,
+        "total_calls": 180,
+        "self_s": 0.008921127000000001,
+        "cumulative_s": 0.012992908000000001
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+        "line": 86,
+        "function": "_wrapreduction_any_all",
+        "primitive_calls": 720,
+        "total_calls": 720,
+        "self_s": 0.001592817,
+        "cumulative_s": 0.012732216000000001
+      },
+      {
+        "file": "/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v339-full-checker-profile/isaac_port/native_hand_layout/roas-table/placed_part_clearance.py",
+        "line": 33,
+        "function": "bounds",
+        "primitive_calls": 90,
+        "total_calls": 90,
+        "self_s": 0.008699090000000001,
+        "cumulative_s": 0.01257272
+      },
+      {
+        "file": "/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v339-full-checker-profile/isaac_port/native_hand_layout/roas-table/isaac_kinematics.py",
+        "line": 14,
+        "function": "frame",
+        "primitive_calls": 3600,
+        "total_calls": 3600,
+        "self_s": 0.005187419,
+        "cumulative_s": 0.012098516
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+        "primitive_calls": 990,
+        "total_calls": 990,
+        "self_s": 0.011968914,
+        "cumulative_s": 0.011968914
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/site-packages/numpy/lib/_format_impl.py",
+        "line": 621,
+        "function": "_read_array_header",
+        "primitive_calls": 180,
+        "total_calls": 180,
+        "self_s": 0.0018824260000000002,
+        "cumulative_s": 0.011733562000000001
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/site-packages/numpy/linalg/_linalg.py",
+        "line": 2598,
+        "function": "norm",
+        "primitive_calls": 2520,
+        "total_calls": 2520,
+        "self_s": 0.005941284000000001,
+        "cumulative_s": 0.01118218
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/zipfile/__init__.py",
+        "line": 1587,
+        "function": "open",
+        "primitive_calls": 180,
+        "total_calls": 180,
+        "self_s": 0.0019292290000000002,
+        "cumulative_s": 0.008766962000000001
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/ast.py",
+        "line": 56,
+        "function": "literal_eval",
+        "primitive_calls": 180,
+        "total_calls": 180,
+        "self_s": 0.0006616780000000001,
+        "cumulative_s": 0.00786359
+      },
+      {
+        "file": "/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v339-full-checker-profile/isaac_port/native_hand_layout/roas-table/isaac_collision_queries.py",
+        "line": 59,
+        "function": "callback",
+        "primitive_calls": 900,
+        "total_calls": 900,
+        "self_s": 0.003141692,
+        "cumulative_s": 0.006995334000000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.abs>",
+        "primitive_calls": 17190,
+        "total_calls": 17190,
+        "self_s": 0.006877111000000001,
+        "cumulative_s": 0.006877111000000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method numpy.ascontiguousarray>",
+        "primitive_calls": 21240,
+        "total_calls": 21240,
+        "self_s": 0.006200679000000001,
+        "cumulative_s": 0.006200679000000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'ravel' of 'numpy.ndarray' objects>",
+        "primitive_calls": 7740,
+        "total_calls": 7740,
+        "self_s": 0.0058584050000000006,
+        "cumulative_s": 0.0058584050000000006
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/zipfile/__init__.py",
+        "line": 820,
+        "function": "read",
+        "primitive_calls": 720,
+        "total_calls": 720,
+        "self_s": 0.0017961420000000001,
+        "cumulative_s": 0.005653254000000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'append' of 'list' objects>",
+        "primitive_calls": 22140,
+        "total_calls": 22140,
+        "self_s": 0.005312238,
+        "cumulative_s": 0.005312238
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method numpy.array>",
+        "primitive_calls": 2880,
+        "total_calls": 2880,
+        "self_s": 0.005116164,
+        "cumulative_s": 0.005116164
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/ast.py",
+        "line": 34,
+        "function": "parse",
+        "primitive_calls": 180,
+        "total_calls": 180,
+        "self_s": 0.00011481000000000001,
+        "cumulative_s": 0.004973498000000001
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/site-packages/numpy/_core/numeric.py",
+        "line": 620,
+        "function": "argwhere",
+        "primitive_calls": 270,
+        "total_calls": 270,
+        "self_s": 0.001010754,
+        "cumulative_s": 0.004950606000000001
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.compile>",
+        "primitive_calls": 180,
+        "total_calls": 180,
+        "self_s": 0.004858688,
+        "cumulative_s": 0.004858688
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/zipfile/__init__.py",
+        "line": 1018,
+        "function": "_update_crc",
+        "primitive_calls": 360,
+        "total_calls": 360,
+        "self_s": 0.00029859900000000003,
+        "cumulative_s": 0.0047544580000000005
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method zlib.crc32>",
+        "primitive_calls": 540,
+        "total_calls": 540,
+        "self_s": 0.004528818,
+        "cumulative_s": 0.004528818
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method numpy.asarray>",
+        "primitive_calls": 3420,
+        "total_calls": 3420,
+        "self_s": 0.004486736,
+        "cumulative_s": 0.004486736
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/zipfile/__init__.py",
+        "line": 1101,
+        "function": "_read2",
+        "primitive_calls": 360,
+        "total_calls": 360,
+        "self_s": 0.000688317,
+        "cumulative_s": 0.004196672
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+        "line": 48,
+        "function": "_wrapfunc",
+        "primitive_calls": 540,
+        "total_calls": 540,
+        "self_s": 0.0006849530000000001,
+        "cumulative_s": 0.003315483
+      },
+      {
+        "file": "<frozen _collections_abc>",
+        "line": 804,
+        "function": "get",
+        "primitive_calls": 900,
+        "total_calls": 900,
+        "self_s": 0.000297199,
+        "cumulative_s": 0.00288885
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method numpy.zeros>",
+        "primitive_calls": 7200,
+        "total_calls": 7200,
+        "self_s": 0.002636053,
+        "cumulative_s": 0.002636053
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'tolist' of 'numpy.ndarray' objects>",
+        "primitive_calls": 5220,
+        "total_calls": 5220,
+        "self_s": 0.002597294,
+        "cumulative_s": 0.002597294
+      },
+      {
+        "file": "<frozen os>",
+        "line": 709,
+        "function": "__getitem__",
+        "primitive_calls": 900,
+        "total_calls": 900,
+        "self_s": 0.000721618,
+        "cumulative_s": 0.0025916510000000004
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'read' of '_io.BufferedReader' objects>",
+        "primitive_calls": 720,
+        "total_calls": 720,
+        "self_s": 0.002487427,
+        "cumulative_s": 0.002487427
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/zipfile/__init__.py",
+        "line": 872,
+        "function": "__init__",
+        "primitive_calls": 180,
+        "total_calls": 180,
+        "self_s": 0.001065961,
+        "cumulative_s": 0.00225331
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'dot' of 'numpy.ndarray' objects>",
+        "primitive_calls": 2520,
+        "total_calls": 2520,
+        "self_s": 0.0022271120000000003,
+        "cumulative_s": 0.0022271120000000003
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/ast.py",
+        "line": 86,
+        "function": "_convert",
+        "primitive_calls": 180,
+        "total_calls": 1440,
+        "self_s": 0.0017163640000000002,
+        "cumulative_s": 0.00209733
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+        "line": 604,
+        "function": "transpose",
+        "primitive_calls": 270,
+        "total_calls": 270,
+        "self_s": 0.00017169,
+        "cumulative_s": 0.002007894
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'copy' of 'numpy.ndarray' objects>",
+        "primitive_calls": 2970,
+        "total_calls": 2970,
+        "self_s": 0.0017431740000000001,
+        "cumulative_s": 0.0017431740000000001
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+        "line": 2031,
+        "function": "nonzero",
+        "primitive_calls": 270,
+        "total_calls": 270,
+        "self_s": 0.000237893,
+        "cumulative_s": 0.001717172
+      },
+      {
+        "file": "/workspace/project/mujoco/.local/frozen-isaac/native-roas-table-scatter-stable-v339-full-checker-profile/isaac_port/native_hand_layout/roas-table/own_payload_clearance.py",
+        "line": 58,
+        "function": "<genexpr>",
+        "primitive_calls": 4410,
+        "total_calls": 4410,
+        "self_s": 0.001093479,
+        "cumulative_s": 0.001575718
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/site-packages/numpy/lib/_twodim_base_impl.py",
+        "line": 260,
+        "function": "diag",
+        "primitive_calls": 360,
+        "total_calls": 360,
+        "self_s": 0.0009393650000000001,
+        "cumulative_s": 0.001543251
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method _operator.index>",
+        "primitive_calls": 13680,
+        "total_calls": 13680,
+        "self_s": 0.0015138080000000002,
+        "cumulative_s": 0.0015138080000000002
+      },
+      {
+        "file": "/isaac-sim/kit/python/lib/python3.12/site-packages/numpy/_core/fromnumeric.py",
+        "line": 38,
+        "function": "_wrapit",
+        "primitive_calls": 270,
+        "total_calls": 270,
+        "self_s": 0.000837322,
+        "cumulative_s": 0.0013406630000000002
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<method 'decode' of 'bytes' objects>",
+        "primitive_calls": 1260,
+        "total_calls": 1260,
+        "self_s": 0.0009354360000000001,
+        "cumulative_s": 0.00124223
+      },
+      {
+        "file": "~",
+        "line": 0,
+        "function": "<built-in method builtins.id>",
+        "primitive_calls": 8640,
+        "total_calls": 8640,
+        "self_s": 0.001220133,
+        "cumulative_s": 0.001220133
+      },
+      {
+        "file": "<frozen os>",
+        "line": 791,
+        "function": "encode",
+        "primitive_calls": 900,
+        "total_calls": 900,
+        "self_s": 0.000549917,
+        "cumulative_s": 0.0012088630000000001
+      }
+    ],
+    "queries_and_first_rejections": [
+      {
+        "source_row": 15124,
+        "source_wall_s": 370.2668867720058,
+        "source_phase_s": 31.51041666667826,
+        "RGBD_capture_wall_s": 370.26718030299526,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15145,
+        "source_wall_s": 370.44948033301625,
+        "source_phase_s": 31.554166666678295,
+        "RGBD_capture_wall_s": 370.26718030299526,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15167,
+        "source_wall_s": 378.9106840970926,
+        "source_phase_s": 31.600000000011665,
+        "RGBD_capture_wall_s": 370.26718030299526,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15188,
+        "source_wall_s": 379.0922105660429,
+        "source_phase_s": 31.6437500000117,
+        "RGBD_capture_wall_s": 370.26718030299526,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15210,
+        "source_wall_s": 379.2827000290854,
+        "source_phase_s": 31.68958333334507,
+        "RGBD_capture_wall_s": 370.26718030299526,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15231,
+        "source_wall_s": 379.4642031270778,
+        "source_phase_s": 31.733333333345104,
+        "RGBD_capture_wall_s": 370.26718030299526,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15253,
+        "source_wall_s": 379.6544417560799,
+        "source_phase_s": 31.779166666678474,
+        "RGBD_capture_wall_s": 370.26718030299526,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15275,
+        "source_wall_s": 379.8446674910374,
+        "source_phase_s": 31.825000000011844,
+        "RGBD_capture_wall_s": 370.26718030299526,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15296,
+        "source_wall_s": 380.02613597002346,
+        "source_phase_s": 31.86875000001188,
+        "RGBD_capture_wall_s": 370.26718030299526,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15318,
+        "source_wall_s": 380.21603601204697,
+        "source_phase_s": 31.91458333334525,
+        "RGBD_capture_wall_s": 370.26718030299526,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15339,
+        "source_wall_s": 380.3973028319888,
+        "source_phase_s": 31.958333333345283,
+        "RGBD_capture_wall_s": 370.26718030299526,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15361,
+        "source_wall_s": 380.5870668600546,
+        "source_phase_s": 32.00416666667864,
+        "RGBD_capture_wall_s": 370.26718030299526,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15382,
+        "source_wall_s": 380.7674142770702,
+        "source_phase_s": 32.0479166666786,
+        "RGBD_capture_wall_s": 370.26718030299526,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15404,
+        "source_wall_s": 380.96038961503655,
+        "source_phase_s": 32.093750000011894,
+        "RGBD_capture_wall_s": 380.9514556929935,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15426,
+        "source_wall_s": 381.15048386109993,
+        "source_phase_s": 32.139583333345186,
+        "RGBD_capture_wall_s": 380.9514556929935,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15447,
+        "source_wall_s": 389.6728841360891,
+        "source_phase_s": 32.183333333345146,
+        "RGBD_capture_wall_s": 380.9514556929935,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15469,
+        "source_wall_s": 389.8633634609869,
+        "source_phase_s": 32.22916666667844,
+        "RGBD_capture_wall_s": 380.9514556929935,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15490,
+        "source_wall_s": 390.0451461550547,
+        "source_phase_s": 32.2729166666784,
+        "RGBD_capture_wall_s": 380.9514556929935,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15512,
+        "source_wall_s": 390.2359588360414,
+        "source_phase_s": 32.31875000001169,
+        "RGBD_capture_wall_s": 380.9514556929935,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15533,
+        "source_wall_s": 390.4176266300492,
+        "source_phase_s": 32.36250000001165,
+        "RGBD_capture_wall_s": 380.9514556929935,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15555,
+        "source_wall_s": 390.6080031520687,
+        "source_phase_s": 32.40833333334494,
+        "RGBD_capture_wall_s": 380.9514556929935,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15577,
+        "source_wall_s": 390.79819428303745,
+        "source_phase_s": 32.45416666667823,
+        "RGBD_capture_wall_s": 380.9514556929935,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15598,
+        "source_wall_s": 390.97964235709514,
+        "source_phase_s": 32.497916666678194,
+        "RGBD_capture_wall_s": 380.9514556929935,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15620,
+        "source_wall_s": 391.16961155901663,
+        "source_phase_s": 32.543750000011485,
+        "RGBD_capture_wall_s": 380.9514556929935,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15641,
+        "source_wall_s": 391.3507246590452,
+        "source_phase_s": 32.587500000011445,
+        "RGBD_capture_wall_s": 380.9514556929935,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15663,
+        "source_wall_s": 391.5397190140793,
+        "source_phase_s": 32.63333333334474,
+        "RGBD_capture_wall_s": 380.9514556929935,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15684,
+        "source_wall_s": 391.7247760000173,
+        "source_phase_s": 32.6770833333447,
+        "RGBD_capture_wall_s": 391.70716783904936,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15706,
+        "source_wall_s": 391.9150039800443,
+        "source_phase_s": 32.72291666667799,
+        "RGBD_capture_wall_s": 391.70716783904936,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15728,
+        "source_wall_s": 400.4623593700817,
+        "source_phase_s": 32.76875000001128,
+        "RGBD_capture_wall_s": 391.70716783904936,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15749,
+        "source_wall_s": 400.644199787057,
+        "source_phase_s": 32.81250000001124,
+        "RGBD_capture_wall_s": 391.70716783904936,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15771,
+        "source_wall_s": 400.8346450009849,
+        "source_phase_s": 32.85833333334453,
+        "RGBD_capture_wall_s": 391.70716783904936,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15792,
+        "source_wall_s": 401.01656490098685,
+        "source_phase_s": 32.90208333334449,
+        "RGBD_capture_wall_s": 391.70716783904936,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15814,
+        "source_wall_s": 401.20698871207424,
+        "source_phase_s": 32.947916666677784,
+        "RGBD_capture_wall_s": 391.70716783904936,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15835,
+        "source_wall_s": 401.3887241090415,
+        "source_phase_s": 32.991666666677745,
+        "RGBD_capture_wall_s": 391.70716783904936,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15857,
+        "source_wall_s": 401.57891096698586,
+        "source_phase_s": 33.037500000011036,
+        "RGBD_capture_wall_s": 391.70716783904936,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15879,
+        "source_wall_s": 401.7689526330214,
+        "source_phase_s": 33.08333333334433,
+        "RGBD_capture_wall_s": 391.70716783904936,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15900,
+        "source_wall_s": 401.95052467798814,
+        "source_phase_s": 33.12708333334429,
+        "RGBD_capture_wall_s": 391.70716783904936,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15922,
+        "source_wall_s": 402.1399921280099,
+        "source_phase_s": 33.17291666667758,
+        "RGBD_capture_wall_s": 391.70716783904936,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15943,
+        "source_wall_s": 402.32031751202885,
+        "source_phase_s": 33.21666666667754,
+        "RGBD_capture_wall_s": 391.70716783904936,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15965,
+        "source_wall_s": 402.51365755998995,
+        "source_phase_s": 33.26250000001083,
+        "RGBD_capture_wall_s": 402.47869980707765,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 15986,
+        "source_wall_s": 402.6952211940661,
+        "source_phase_s": 33.30625000001079,
+        "RGBD_capture_wall_s": 402.47869980707765,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16008,
+        "source_wall_s": 411.25918795901816,
+        "source_phase_s": 33.35208333334408,
+        "RGBD_capture_wall_s": 402.47869980707765,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16030,
+        "source_wall_s": 411.4495692460332,
+        "source_phase_s": 33.397916666677375,
+        "RGBD_capture_wall_s": 402.47869980707765,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16051,
+        "source_wall_s": 411.6311372560449,
+        "source_phase_s": 33.441666666677335,
+        "RGBD_capture_wall_s": 402.47869980707765,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16073,
+        "source_wall_s": 411.8211640859954,
+        "source_phase_s": 33.48750000001063,
+        "RGBD_capture_wall_s": 402.47869980707765,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16094,
+        "source_wall_s": 412.00277401308995,
+        "source_phase_s": 33.53125000001059,
+        "RGBD_capture_wall_s": 402.47869980707765,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16116,
+        "source_wall_s": 412.1927698330255,
+        "source_phase_s": 33.57708333334388,
+        "RGBD_capture_wall_s": 402.47869980707765,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16137,
+        "source_wall_s": 412.3740436390508,
+        "source_phase_s": 33.62083333334384,
+        "RGBD_capture_wall_s": 402.47869980707765,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16159,
+        "source_wall_s": 412.56374549504835,
+        "source_phase_s": 33.66666666667713,
+        "RGBD_capture_wall_s": 402.47869980707765,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16181,
+        "source_wall_s": 412.7554452820914,
+        "source_phase_s": 33.71250000001042,
+        "RGBD_capture_wall_s": 402.47869980707765,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16202,
+        "source_wall_s": 412.93634724605363,
+        "source_phase_s": 33.75625000001038,
+        "RGBD_capture_wall_s": 402.47869980707765,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16224,
+        "source_wall_s": 413.12506440409925,
+        "source_phase_s": 33.802083333343674,
+        "RGBD_capture_wall_s": 402.47869980707765,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16245,
+        "source_wall_s": 413.3100881020073,
+        "source_phase_s": 33.845833333343634,
+        "RGBD_capture_wall_s": 413.2665669490816,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16267,
+        "source_wall_s": 413.49998007609975,
+        "source_phase_s": 33.891666666676926,
+        "RGBD_capture_wall_s": 413.2665669490816,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16288,
+        "source_wall_s": 422.04554285109043,
+        "source_phase_s": 33.935416666676886,
+        "RGBD_capture_wall_s": 413.2665669490816,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16310,
+        "source_wall_s": 422.23545289202593,
+        "source_phase_s": 33.98125000001018,
+        "RGBD_capture_wall_s": 413.2665669490816,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16332,
+        "source_wall_s": 422.4254891340388,
+        "source_phase_s": 34.02708333334347,
+        "RGBD_capture_wall_s": 413.2665669490816,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16353,
+        "source_wall_s": 422.60673316102475,
+        "source_phase_s": 34.07083333334343,
+        "RGBD_capture_wall_s": 413.2665669490816,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16375,
+        "source_wall_s": 422.7965920170536,
+        "source_phase_s": 34.11666666667672,
+        "RGBD_capture_wall_s": 413.2665669490816,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16396,
+        "source_wall_s": 422.97775887406897,
+        "source_phase_s": 34.16041666667668,
+        "RGBD_capture_wall_s": 413.2665669490816,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16418,
+        "source_wall_s": 423.16755563998595,
+        "source_phase_s": 34.20625000000997,
+        "RGBD_capture_wall_s": 413.2665669490816,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16439,
+        "source_wall_s": 423.34856702701654,
+        "source_phase_s": 34.25000000000993,
+        "RGBD_capture_wall_s": 413.2665669490816,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16461,
+        "source_wall_s": 423.53813464706764,
+        "source_phase_s": 34.295833333343225,
+        "RGBD_capture_wall_s": 413.2665669490816,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16483,
+        "source_wall_s": 423.727646749001,
+        "source_phase_s": 34.34166666667652,
+        "RGBD_capture_wall_s": 413.2665669490816,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16504,
+        "source_wall_s": 423.90924333408475,
+        "source_phase_s": 34.38541666667648,
+        "RGBD_capture_wall_s": 413.2665669490816,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16526,
+        "source_wall_s": 424.10175745899323,
+        "source_phase_s": 34.43125000000977,
+        "RGBD_capture_wall_s": 423.9633638220839,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16547,
+        "source_wall_s": 433.2958919570083,
+        "source_phase_s": 34.47500000000973,
+        "RGBD_capture_wall_s": 423.9633638220839,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16569,
+        "source_wall_s": 433.4868484380422,
+        "source_phase_s": 34.52083333334302,
+        "RGBD_capture_wall_s": 423.9633638220839,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16590,
+        "source_wall_s": 433.6687666400103,
+        "source_phase_s": 34.56458333334298,
+        "RGBD_capture_wall_s": 423.9633638220839,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16612,
+        "source_wall_s": 433.8595689510694,
+        "source_phase_s": 34.61041666667627,
+        "RGBD_capture_wall_s": 423.9633638220839,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16634,
+        "source_wall_s": 434.0500584170222,
+        "source_phase_s": 34.656250000009564,
+        "RGBD_capture_wall_s": 423.9633638220839,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16655,
+        "source_wall_s": 434.2318304970395,
+        "source_phase_s": 34.700000000009524,
+        "RGBD_capture_wall_s": 423.9633638220839,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16677,
+        "source_wall_s": 434.4223101520911,
+        "source_phase_s": 34.745833333342816,
+        "RGBD_capture_wall_s": 423.9633638220839,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16698,
+        "source_wall_s": 434.60429994401056,
+        "source_phase_s": 34.789583333342776,
+        "RGBD_capture_wall_s": 423.9633638220839,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16720,
+        "source_wall_s": 434.7947109750239,
+        "source_phase_s": 34.83541666667607,
+        "RGBD_capture_wall_s": 423.9633638220839,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16741,
+        "source_wall_s": 434.97605300403666,
+        "source_phase_s": 34.87916666667603,
+        "RGBD_capture_wall_s": 423.9633638220839,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16763,
+        "source_wall_s": 435.1655215290375,
+        "source_phase_s": 34.92500000000932,
+        "RGBD_capture_wall_s": 423.9633638220839,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16785,
+        "source_wall_s": 435.3595472780289,
+        "source_phase_s": 34.97083333334261,
+        "RGBD_capture_wall_s": 435.28991808206774,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16806,
+        "source_wall_s": 443.96597501507495,
+        "source_phase_s": 35.01458333334257,
+        "RGBD_capture_wall_s": 435.28991808206774,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16828,
+        "source_wall_s": 444.1564018900972,
+        "source_phase_s": 35.06041666667586,
+        "RGBD_capture_wall_s": 435.28991808206774,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16849,
+        "source_wall_s": 444.33878976409324,
+        "source_phase_s": 35.10416666667582,
+        "RGBD_capture_wall_s": 435.28991808206774,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16871,
+        "source_wall_s": 444.5293947630562,
+        "source_phase_s": 35.150000000009115,
+        "RGBD_capture_wall_s": 435.28991808206774,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16892,
+        "source_wall_s": 444.7110176680144,
+        "source_phase_s": 35.193750000009075,
+        "RGBD_capture_wall_s": 435.28991808206774,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16914,
+        "source_wall_s": 444.9011925869854,
+        "source_phase_s": 35.23958333334237,
+        "RGBD_capture_wall_s": 435.28991808206774,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16936,
+        "source_wall_s": 445.09144442807883,
+        "source_phase_s": 35.28541666667566,
+        "RGBD_capture_wall_s": 435.28991808206774,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16957,
+        "source_wall_s": 445.27447967301123,
+        "source_phase_s": 35.32916666667562,
+        "RGBD_capture_wall_s": 435.28991808206774,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 16979,
+        "source_wall_s": 445.4648949500406,
+        "source_phase_s": 35.37500000000891,
+        "RGBD_capture_wall_s": 435.28991808206774,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 17000,
+        "source_wall_s": 445.6460992700886,
+        "source_phase_s": 35.41875000000887,
+        "RGBD_capture_wall_s": 435.28991808206774,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 17022,
+        "source_wall_s": 445.83528251806274,
+        "source_phase_s": 35.46458333334216,
+        "RGBD_capture_wall_s": 435.28991808206774,
+        "clear": true,
+        "first_rejection": null
+      },
+      {
+        "source_row": 17044,
+        "source_wall_s": 446.02792018000036,
+        "source_phase_s": 35.510416666675454,
+        "RGBD_capture_wall_s": 435.28991808206774,
+        "clear": true,
+        "first_rejection": null
+      }
+    ]
+  },
+  "scene_only": false,
+  "wall_verified_elapsed_s": 4.53411915502511,
+  "end_to_end_under20": false,
+  "verified_elapsed_s": 4.534089369000867,
+  "cycle_time_s": 4.534089369000867,
+  "simulation_elapsed_s": 0.0,
+  "final_checks": {
+    "ring1": {
+      "position_error_m": 1.1517287480179756,
+      "axis_error_rad": 3.0543263474824025
+    },
+    "ring2": {
+      "position_error_m": 1.406065624498071,
+      "axis_error_rad": 2.4948173444356465
+    },
+    "pin": {
+      "position_error_m": 1.285613421458405,
+      "axis_error_rad": 3.141592653589793
+    }
+  },
+  "final_retention_observation_s": 0.0,
+  "final_retention_physics_s": 0.0,
+  "FR3_command_limit_audit": {
+    "samples": 0,
+    "velocity_fraction_of_95_percent_PBV": 0.0,
+    "max_acceleration_rad_s2": 0.0,
+    "max_jerk_rad_s3": 0.0,
+    "acceleration_limit_rad_s2": 9.5,
+    "jerk_limit_rad_s3": 4750,
+    "command_limit_checks": true,
+    "complete_issued_field_checked_at_end": false,
+    "validated_sample_count": 0
+  },
+  "observation_driven_corrections": [],
+  "CPU_operation_profile": {
+    "control_s": 0.0,
+    "physics_s": 0.0,
+    "clamp_flush_s": 0.0
+  },
+  "GPU_route_statistics": {},
+  "fast_transport_statistics": {
+    "right": {
+      "routes": 0,
+      "proposals": 0,
+      "clear_calls": 0,
+      "seconds": 0.0,
+      "static_objects": 2793,
+      "static_skipped": 0,
+      "backend": "FCL CPU proposals + live PhysX verification"
+    },
+    "left": {
+      "routes": 0,
+      "proposals": 0,
+      "clear_calls": 0,
+      "seconds": 0.0,
+      "static_objects": 2793,
+      "static_skipped": 0,
+      "backend": "FCL CPU proposals + live PhysX verification"
+    }
+  },
+  "encoder_motor_speed_audit": {
+    "samples": 0,
+    "max_fraction_of_95_percent_PBV": 0.0,
+    "max_finger_fraction_of_47p5_mm_s": 0.0,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  }
+}

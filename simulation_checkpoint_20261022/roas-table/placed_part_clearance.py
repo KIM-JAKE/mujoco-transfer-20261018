@@ -4,7 +4,7 @@ Invisible FCL/SAT query shapes only. No physical actor is read for localization,
 created, moved or attached. Local templates are fixed class collision CAD.
 """
 import numpy as np
-from predictive_pair_clearance import proxy,transform_proxy,shape_overlap
+from predictive_pair_clearance import proxy,transform_proxy,transform_proxy_bounds,shape_overlap
 try:
     import fcl
 except ImportError:
@@ -35,12 +35,16 @@ class PlacedPartClearance:
         centers=np.asarray([p[0]for p in shapes]);extents=np.asarray([abs(p[1])@(p[2]+margin)for p in shapes]);return centers-extents,centers+extents
     def clear(self,checker,transforms,changed_bodies=None):
         if not self.parts:return True,None
-        self.stats['queries']+=1;guard=checker.same_arm_clearance;rows=list(guard.rows);robot=[transform_proxy(g,transforms[b])for b,_,g in rows];objects=list(guard.objects)if fcl and guard.geometries is not None else None
+        self.stats['queries']+=1;guard=checker.same_arm_clearance;rows=list(guard.rows)
+        objects=list(guard.objects)if fcl and guard.geometries is not None else None
+        # A missing FCL guard falls back to complete transformed SAT geometry.
+        place_proxy=transform_proxy_bounds if objects is not None else transform_proxy
+        robot=[place_proxy(g,transforms[b])for b,_,g in rows]
         if checker.payload_path:
             if checker.payload_relative is None:raise RuntimeError('Missing current image-derived payload transform')
             T=transforms[checker.arm.hand_path]@checker.payload_relative
             for b,source,g in checker.payload_boxes:
-                rows.append((b,source,g));robot.append(transform_proxy(g,T))
+                rows.append((b,source,g));robot.append(place_proxy(g,T))
                 if objects is not None:
                     from fcl_transport import convex
                     key=id(g)

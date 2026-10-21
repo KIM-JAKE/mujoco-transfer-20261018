@@ -1,0 +1,76 @@
+--- predictive_pair_clearance.py
++++ obb339b/predictive_pair_clearance.py
+@@ -60,6 +60,17 @@
+     rotation, position = transform[:3, :3], transform[:3, 3]
+     return (rotation @ center + position, rotation @ axes, extents,
+             vertices @ rotation.T + position, normals @ rotation.T)
++
++
++def transform_proxy_bounds(box, transform):
++    """Identical transformed enclosing OBB; no unused vertex/normal copies.
++
++    FCL callers retain the complete authored local hull in their cached
++    CollisionObjects. SAT callers must still request transform_proxy().
++    """
++    center, axes, extents = box[:3]
++    rotation, position = transform[:3, :3], transform[:3, 3]
++    return (rotation @ center + position, rotation @ axes, extents)
+ 
+ 
+ def shape_overlap(a, b, margin=1e-6):
+--- own_payload_clearance.py
++++ obb339b/own_payload_clearance.py
+@@ -6,7 +6,7 @@
+ """
+ import numpy as np
+ from scipy.spatial import ConvexHull
+-from predictive_pair_clearance import proxy, transform_proxy, shape_overlap
++from predictive_pair_clearance import proxy, transform_proxy, transform_proxy_bounds, shape_overlap
+ try:
+     import fcl
+ except ImportError:
+@@ -86,8 +86,12 @@
+                 _,swept,_,obj=self.loaded_robot_cache[key]
+                 query_rows.append((body,source,swept));query_transforms.append(transforms[self.guard.arm.hand_path])
+                 if fcl:query_objects.append(obj)
+-        placed_robot=[transform_proxy(row[2],t)for row,t in zip(query_rows,query_transforms)]
+-        placed_payload=[transform_proxy(g,transform)for _,_,g in payload]
++        # Exact FCL narrowphase consumes cached full local collision CAD;
++        # its broadphase needs only the identical transformed enclosing OBB.
++        # The SAT fallback still receives full transformed vertices/normals.
++        place_proxy=transform_proxy_bounds if fcl else transform_proxy
++        placed_robot=[place_proxy(row[2],t)for row,t in zip(query_rows,query_transforms)]
++        placed_payload=[place_proxy(g,transform)for _,_,g in payload]
+         if fcl:
+             for obj,t in zip(query_objects,query_transforms):
+                 obj.setTransform(fcl.Transform(np.ascontiguousarray(t[:3,:3]),np.ascontiguousarray(t[:3,3])))
+--- placed_part_clearance.py
++++ obb339b/placed_part_clearance.py
+@@ -4,7 +4,7 @@
+ created, moved or attached. Local templates are fixed class collision CAD.
+ """
+ import numpy as np
+-from predictive_pair_clearance import proxy,transform_proxy,shape_overlap
++from predictive_pair_clearance import proxy,transform_proxy,transform_proxy_bounds,shape_overlap
+ try:
+     import fcl
+ except ImportError:
+@@ -35,12 +35,16 @@
+         centers=np.asarray([p[0]for p in shapes]);extents=np.asarray([abs(p[1])@(p[2]+margin)for p in shapes]);return centers-extents,centers+extents
+     def clear(self,checker,transforms,changed_bodies=None):
+         if not self.parts:return True,None
+-        self.stats['queries']+=1;guard=checker.same_arm_clearance;rows=list(guard.rows);robot=[transform_proxy(g,transforms[b])for b,_,g in rows];objects=list(guard.objects)if fcl and guard.geometries is not None else None
++        self.stats['queries']+=1;guard=checker.same_arm_clearance;rows=list(guard.rows)
++        objects=list(guard.objects)if fcl and guard.geometries is not None else None
++        # A missing FCL guard falls back to complete transformed SAT geometry.
++        place_proxy=transform_proxy_bounds if objects is not None else transform_proxy
++        robot=[place_proxy(g,transforms[b])for b,_,g in rows]
+         if checker.payload_path:
+             if checker.payload_relative is None:raise RuntimeError('Missing current image-derived payload transform')
+             T=transforms[checker.arm.hand_path]@checker.payload_relative
+             for b,source,g in checker.payload_boxes:
+-                rows.append((b,source,g));robot.append(transform_proxy(g,T))
++                rows.append((b,source,g));robot.append(place_proxy(g,T))
+                 if objects is not None:
+                     from fcl_transport import convex
+                     key=id(g)

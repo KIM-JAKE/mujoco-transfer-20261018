@@ -1,0 +1,1876 @@
+{
+  "full_task_pass": false,
+  "vision_end_to_end_pass": false,
+  "end_to_end_under30": false,
+  "hardware_tested": false,
+  "part_attachments": false,
+  "workpiece_teleports_after_initialization": 0,
+  "physics_hz": 1920,
+  "python_thread_switch_interval_s": 0.005,
+  "timing_basis": "Monotonic wall time from first camera snapshot through >=0.5s verified retention",
+  "CPU_camera_waits_omitted": false,
+  "finger_effort_caps_n": {
+    "left_per_finger": 30.0,
+    "right_per_finger": 30.0,
+    "left_final_insertion_per_finger": 30.0
+  },
+  "clamp_target_update_hz": 30,
+  "wall_pacing": "Each 480 Hz control step advances two 960 Hz PhysX substeps and takes at least 1/480 s wall time; no catch-up fast-forward",
+  "native_finger_target_speed_cap_m_s": 0.0475,
+  "native_force_hold": "Scattered controller: single motor + coupled passive finger, velocity preload, finite force; no attachment",
+  "initial_big_ring_aperture_m": 0.076,
+  "neural_mask_cache_used": false,
+  "CPU_fast_kinematics": {
+    "enabled": true,
+    "device": "CPU",
+    "algorithm": "Same USD frames, joint bounds, DLS damping and 220-iteration limit; Eigen C++ implementation",
+    "library_sha256": "efaaa4965137f12bd60de206612217e3271a7b702c02ca6105479e9fbf470234",
+    "source_sha256": "b513b9dc1d624c79473fe5836cdc78bd13aaaf670e48cc7b024fc3866691835a"
+  },
+  "pin_clamp_assumed_center_z_m": 1.515,
+  "pin_clamp_hardware_calibrated": false,
+  "pin_method": "Tail grasp, uninterrupted axial insertion, release only after fresh full-depth RGB-D confirmation",
+  "clamp_tensor_drives": false,
+  "solver_iterations": {
+    "position": 16,
+    "velocity": 16
+  },
+  "physics_hz_range": [
+    1920,
+    1920
+  ],
+  "physics_worker_threads": 0,
+  "physics_cpu_dispatcher": true,
+  "continuous_collision_detection": true,
+  "controller_hz": 480,
+  "physics_substeps_per_command": 4,
+  "randomized_bin_config": {
+    "seed": 3491,
+    "tensor_clamps": false,
+    "correction_joint7_weight": 0.05,
+    "width_guard": true,
+    "digital_clamps": true,
+    "digital_clamp_threshold": 0.95,
+    "fixed_visual_application": true,
+    "direct_pin": true,
+    "ring_seat_hold_s": 0.35,
+    "motion_time_scale": 1.01,
+    "early_width_guard": true,
+    "held_correction_ramp_s": 0.35,
+    "physics_substeps": 4,
+    "physics_substep_window_s": [
+      13.0,
+      16.5
+    ],
+    "pin_tail_candidate": 0,
+    "enforce_motor_speed_limits": true,
+    "randomization_mode": "full_bin_drop",
+    "randomization_settle_s": 3.0,
+    "scatter_probe_only": false,
+    "native_mimic_frequency_hz": 0.0,
+    "deadline_s": 900,
+    "scattered_control": true,
+    "pick_part": "ring1",
+    "native_motor_speed_cap_m_s": 0.032,
+    "scattered_full_task": true,
+    "handover_only": false,
+    "scattered_physics_substeps": 4,
+    "native_finger_convex_decomposition": false,
+    "solver_velocity_iterations": 16,
+    "shuffle_drop_order": true,
+    "randomization_protocol": "full_bin_drop_shuffled_v2",
+    "start_above_bin": true,
+    "experimental_sim_only": true,
+    "full_random_task_validated": false,
+    "allow_fingertip_nudging": true,
+    "allow_internal_grasp": false,
+    "allow_single_finger_rearrangement": true,
+    "native_shared_motor_drive": true,
+    "native_grip_pad_force_n": 30,
+    "optimization_report": "scatter-optimization-20261021.json",
+    "one_ring_only": true,
+    "fast_transport": true,
+    "allow_chord_grasp": true,
+    "allow_side_entry": true,
+    "optimized_motion_timing": true,
+    "tracking_image_width_px": 384,
+    "native_contact_offset_m": 0.0005,
+    "gentle_descent": true,
+    "handover_plan_budget_s": 60.0,
+    "stability_time_scale": 1.0,
+    "grasp_settle_s": 0.2,
+    "ring_contact_debug": false,
+    "optimization_phase": "randomized_reliability_first",
+    "stable_small_grasp": true,
+    "prefer_internal_small_grasp": false,
+    "ring_yaw_free": true,
+    "reliability_handover_hint": true,
+    "stability_finish_rings_before_pin": true,
+    "continuous_force_hold": true,
+    "stability_serial": true,
+    "pin_first": false,
+    "descent_contact_speed_m_s": 0.03,
+    "shortcut_checked_routes": true,
+    "parallel_transfer_approach": false,
+    "pregrasp_floor_m": 1.235,
+    "prefer_near_handover_branch": true,
+    "pregrasp_floor_small_m": 1.235,
+    "path_local_timing": true,
+    "warm_spline_routes": false,
+    "center_large_receiver_grasp": true,
+    "sort_donor_orientations": true,
+    "handover_offsets_override": [
+      [
+        0.1,
+        -0.1,
+        0.0
+      ]
+    ],
+    "pin_between_rings": false,
+    "local_left_park": true,
+    "wait_for_ring_transport_clear": true,
+    "small_receiver_opening_m": 0.074,
+    "receiver_approach_standoff_m": 0.02,
+    "receiver_approach_step_m": 0.002,
+    "receiver_approach_resolution_rad": 0.002,
+    "pickup_multiview": true,
+    "require_fresh_preclose_rgbd": true,
+    "small_ring_repick_on_unstable_hold": true,
+    "small_ring_com_x_limit_m": 0.0025,
+    "pickup_retry_limit": 3,
+    "initial_eye_offset_m": [
+      0.04,
+      -0.04,
+      0.65
+    ],
+    "stable_receiver_grasp": true,
+    "rim_only_pickup": false,
+    "allow_local_rim_grasp": false,
+    "prefer_local_rim_grasp": true,
+    "initial_pickup_multiview": true,
+    "native_loaded_preload_ramp_s": 0.3,
+    "native_loaded_initial_preload_m_s": 0.003,
+    "native_loaded_preload_m_s": 0.0075,
+    "rim_encoder_recenter": true,
+    "strict_rim_clutter": true,
+    "native_loaded_preload_after_contact_m_s": 0.015,
+    "inner_only_pickup": false,
+    "native_inner_bore_grasp": false,
+    "operation_solver_position_iterations": 128,
+    "operation_solver_velocity_iterations": 64,
+    "inner_bore_friction_reserve_mu": 0.6,
+    "allow_bin_release_retry": true,
+    "verify_receiver_pad_contact": true,
+    "inner_bore_x_tilt_candidates_deg": [
+      0,
+      10,
+      -10,
+      15,
+      -15
+    ],
+    "inner_bore_center_correction_limit_m": 0.0025,
+    "right_ring_insert_probe": false,
+    "receiver_axial_only": true,
+    "axial_receiver_probe": false,
+    "right_insertion_fixture_probe": false,
+    "rearrange_probe": false,
+    "rearrange_then_pick": false,
+    "require_front_up_pickup": false,
+    "rearrange_front_up_only": false,
+    "allow_partial_preclose_tracking": true,
+    "preclose_occlusion_max_age_s": 2.0,
+    "verify_lifted_pad_contact": true,
+    "right_direct_empty_left_parking": true,
+    "right_left_park_fixture_probe": false,
+    "reuse_aperture_invariant_checks": true,
+    "axial_receiver_fixture_budget_s": 90.0,
+    "allow_direct_right_insert": false,
+    "prefer_right_carry_small_posture": true,
+    "right_carry_vertical_escape": false,
+    "avoid_other_stock_finger_contact": true,
+    "stable_outer_donor_grasp": true,
+    "allow_tilted_bore_hook": true,
+    "timing_comparison_eligible": false,
+    "rearrangement_retry_limit": 3,
+    "bin_axial_pick_probe": false,
+    "tilted_ring_hook_probe": false,
+    "broaden_tilted_bore_hook_proposals": true,
+    "rearrangement_pickup_extra_eye_offsets_m": [
+      [
+        0.28,
+        0.28,
+        0.5
+      ],
+      [
+        -0.28,
+        -0.28,
+        0.5
+      ]
+    ],
+    "donor_release_opening_cap_m": 0.078,
+    "adaptive_initial_ring_order": true,
+    "pickup_diagonal_offsets_m": [
+      [
+        -0.08,
+        0.0,
+        0.0
+      ]
+    ],
+    "receiver_depth_options_m": [
+      0.002
+    ],
+    "right_fixture_replan_on_alignment_failure": true,
+    "close_empty_left_for_pin": true,
+    "large_receiver_depth_options_m": [
+      0.005,
+      0.004
+    ],
+    "large_encoder_pose_bias_compensation": true,
+    "require_broad_large_donor_support": true,
+    "right_fixture_oblique_camera_views": true,
+    "defer_handover_until_visible_clearance": true,
+    "verify_large_lift_grasp_retention": true,
+    "large_lift_grasp_translation_limit_m": 0.002,
+    "large_lift_grasp_axis_limit_rad": 0.05,
+    "verify_large_donor_after_carry": true,
+    "robust_annular_camera_view_bank": true,
+    "timing_metadata_correction": "Frozen physical reliability test of6mm receiver with completed-parts protection and LEFT GPU proposals. Concurrent experiments; no optimization timing comparison.",
+    "balanced_large_receiver_grasp": true,
+    "pin_visual_preinsert_alignment": true,
+    "pin_axis_goal_world_m": [
+      -0.30203095784,
+      0.22724999619,
+      1.52875
+    ],
+    "exact_axis_large_receiver_grasp": true,
+    "verify_selected_outer_approach": true,
+    "robust_pin_cap_circle": true,
+    "pin_precision_image_width_px": 768,
+    "pin_grasp_catalog_run": "native-roas-table-scatter-stable-v251-corrected-pin-catalog",
+    "pin_grasp_catalog_candidate": 0,
+    "pin_grasp_catalog_probe": false,
+    "pin_axis_frame_consistent_geometry": true,
+    "verify_native_pin_hold": true,
+    "ray_image_backend": "embree_cpu",
+    "gpu_ik_proposals": true,
+    "gpu_ik_socket": "/workspace/project/mujoco/.local/curobo-gpu2/ik.sock",
+    "pin_rgbd_sdk_hold_confirmation": true,
+    "pin_terminal_stroke_preflight": true,
+    "pin_axial_yaw_free": true,
+    "gpu_route_proposals": true,
+    "gpu_route_socket": "/workspace/project/mujoco/.local/curobo-gpu2/route.sock",
+    "gpu_route_timeout_s": 2.0,
+    "sequential_initial_ring_selection": true,
+    "initial_camera_width_px": 768,
+    "initial_camera_height_px": 768,
+    "initial_camera_span_m": 0.55,
+    "gpu_dual_arm_reference": true,
+    "gpu_left_route_proposals": true,
+    "gpu_left_route_socket": "/workspace/project/mujoco/.local/curobo-gpu2/route-dual.sock",
+    "measured_loaded_contact_geometry": true,
+    "project_large_receiver_closing_axis": false,
+    "large_receiver_tool_axis_aligned": false,
+    "native_large_receiver_tilt25_only": false,
+    "large_handover_part_axis_aligned": true,
+    "prefer_direct_right_pickup": false,
+    "experiment_note": "Physicaldouble-handover343:342future-role admission of eachLEFTstandoff BEFOREactualemptyLEFT motion;332q only originalmodelIKseed. Actualmovefullguards+freshRGBD/liveencoderreplan unchanged.340optin firstcontact capmodel retained withalloriginalrules/legacyboolean. Nohardwareforce/stabilityclaim.",
+    "temporary_axial_double_handover_component": true,
+    "small_ring_first": false,
+    "gpu_ik_timeout_s": 2.0,
+    "temporary_axial_air_part_center_m": [
+      -0.3,
+      -0.15,
+      1.35
+    ],
+    "double_handover_endpoint_probe": false,
+    "axial_cap_first_contact_patch": true,
+    "temporary_axial_preposition_seed": [
+      0.07419154047966003,
+      1.7904382944107056,
+      -1.5105769634246826,
+      -1.3867888450622559,
+      -0.9423275589942932,
+      0.8487335443496704,
+      -0.5121020078659058
+    ]
+  },
+  "randomized_ring_count": 10,
+  "setup_depenetration_cap_m_s": 0.2,
+  "operation_depenetration_cap_m_s": 1000.0,
+  "fixed_standby_TCP_world_m": [
+    0.515,
+    -0.715,
+    1.255
+  ],
+  "standby_independent_of_images_or_object_poses": true,
+  "contact_material_audit": {
+    "steel": {
+      "static_friction": 0.6000000238418579,
+      "dynamic_friction": 0.5099999904632568,
+      "authored_friction_combine_mode": null,
+      "default_combine_mode": "average",
+      "hardware_friction_measured": false
+    },
+    "rubber": {
+      "static_friction": 1.0,
+      "dynamic_friction": 0.8500000238418579,
+      "authored_friction_combine_mode": null,
+      "default_combine_mode": "average",
+      "hardware_friction_measured": false
+    }
+  },
+  "initial_RGBD_camera_eye_offset_m": [
+    0.04,
+    -0.04,
+    0.65
+  ],
+  "clamp_control": "Finite-force open/close commands, same jaw strokes and force caps",
+  "pickup_depth_increase_m": {
+    "ring1": 0.0,
+    "ring2": 0.0
+  },
+  "diagnostic_rings_only": false,
+  "pin_grasp_catalog_selection": {
+    "run": "native-roas-table-scatter-stable-v251-corrected-pin-catalog",
+    "candidate_index": 0,
+    "tilt_deg": -40,
+    "contact_z_m": 0.0,
+    "pickup_center_from_RGBD": [
+      0.19000387111393577,
+      -0.7897289286242213,
+      0.9160499607069958
+    ],
+    "physical_grasp_previously_tested": false
+  },
+  "usd_clamp_targets_batched": true,
+  "dof_names": [
+    "left_arm_fr3v2_joint1",
+    "right_arm_fr3v2_joint1",
+    "left_arm_fr3v2_joint2",
+    "right_arm_fr3v2_joint2",
+    "left_arm_fr3v2_joint3",
+    "right_arm_fr3v2_joint3",
+    "left_arm_fr3v2_joint4",
+    "right_arm_fr3v2_joint4",
+    "left_arm_fr3v2_joint5",
+    "right_arm_fr3v2_joint5",
+    "left_arm_fr3v2_joint6",
+    "right_arm_fr3v2_joint6",
+    "left_arm_fr3v2_joint7",
+    "right_arm_fr3v2_joint7",
+    "left_native_left",
+    "left_native_right",
+    "right_native_left",
+    "right_native_right"
+  ],
+  "link_names": [
+    "official_FR3_Duo",
+    "left_arm_base",
+    "right_arm_base",
+    "left_arm_fr3v2_link0",
+    "right_arm_fr3v2_link0",
+    "left_arm_fr3v2_link1",
+    "right_arm_fr3v2_link1",
+    "left_arm_fr3v2_link2",
+    "right_arm_fr3v2_link2",
+    "left_arm_fr3v2_link3",
+    "right_arm_fr3v2_link3",
+    "left_arm_fr3v2_link4",
+    "right_arm_fr3v2_link4",
+    "left_arm_fr3v2_link5",
+    "right_arm_fr3v2_link5",
+    "left_arm_fr3v2_link6",
+    "right_arm_fr3v2_link6",
+    "left_arm_fr3v2_link7",
+    "right_arm_fr3v2_link7",
+    "left_arm_fr3v2_link8",
+    "right_arm_fr3v2_link8",
+    "left_NativeHand",
+    "right_NativeHand",
+    "left_left_finger",
+    "left_right_finger",
+    "right_left_finger",
+    "right_right_finger"
+  ],
+  "camera_preparation_s": 0.001667476026341319,
+  "reference_motion": "live RGB-D scattered controller; no taught pickup path",
+  "stationary_trim_s": 0.0,
+  "joint_headroom_retiming_saved_s": 0.0,
+  "retimed_free_motion_windows": [],
+  "starts_with_rings_already_installed": false,
+  "scene_ring_color": "same steel material",
+  "pin_collision_approximation": {
+    "model": "Four coaxial convex cylinders, approximate CAD outer dimensions",
+    "length_m": 0.0355,
+    "tail_diameter_m": 0.0105,
+    "collar_diameter_m": 0.013,
+    "shaft_diameter_m": 0.0076,
+    "CAD_nominal_shaft_diameter_m": 0.008,
+    "radial_clearance_allowance_m": 0.0002,
+    "tip_diameter_m": 0.005,
+    "parts": 4,
+    "original_slits_and_reliefs_not_simulated": true,
+    "hardware_validated": false
+  },
+  "grasp_obstacles_from_RGBD_cloud": true,
+  "loose_stock_contact_policy": "Fingertip nudging allowed; RGB-D palm sweep, fixed-structure queries and all physical contacts retained",
+  "fixed_receiver_catalog": {
+    "key": "969cd7cb05e482be133ef9d06a290537386e51bcd07ae404141b35a84288a5fa",
+    "cached": true,
+    "balanced_large_receiver_grasp": true,
+    "exact_axis_large_receiver_grasp": true,
+    "preparation_s": 1.801708598039113,
+    "counts": {
+      "ring1|depths=0.0050000000000000001,0.0040000000000000001|balanced-X=0.0051883790850085765|exact-axis-Y=0.60889605905295219": 113,
+      "ring2|depths=0.002": 60
+    },
+    "uses_free_body_poses": false,
+    "preparation_excluded_from_operation_clock": true
+  },
+  "fast_transport_planner": {
+    "enabled": true,
+    "version": "0.7.0.8",
+    "static_objects": 2793,
+    "skipped_static_colliders": [],
+    "preparation_s": 1.085880340076983,
+    "uses_free_body_poses": false,
+    "proposal_only": true,
+    "live_PhysX_path_verification_required": true
+  },
+  "native_contact_generation": {
+    "contact_offset_m": 0.0005,
+    "rest_offset_m": 0.0,
+    "colliders": 4,
+    "applied_after_random_setup": true,
+    "collision_geometry_unchanged": true,
+    "friction_unchanged": true
+  },
+  "operation_solver_iterations": {
+    "position": 128,
+    "velocity": 64,
+    "applied_after_random_setup": true
+  },
+  "standby_preparation_wall_s": 14.628080602036789,
+  "automatic_gc_deferred_during_cycle": true,
+  "first_capture_wall_epoch_s": 1792615629.943996,
+  "motor_velocity_cap_policy": "Signed position-dependent FR3 bounds at encoder position plus one-step margin; 93% drive cap and unchanged 95% actual velocity acceptance",
+  "CPU_planning_advances_physics": false,
+  "hard_realtime_controller_validated": false,
+  "native_gripper_control": "One scalar width/velocity command + hard mechanical coupling; same reference on both pads; total effort cap 60.0 N and total damping 4000 N s/m, distributed equally; no additional motor capability; loaded grasp maintains closing force at 15 mm/s velocity preload instead of relaxing at a fixed minimum width; configured loaded preload 7.5 mm/s with 0.3 s force ramp",
+  "native_single_motor_coupling_validated": true,
+  "native_shared_motor_drive": true,
+  "native_loaded_preload_ramp": {
+    "duration_s": 0.3,
+    "initial_m_s": 0.003,
+    "final_m_s": 0.0075,
+    "motor_force_cap_n": 60.0,
+    "arm_timing_unchanged": true
+  },
+  "planning_diagnostics": [
+    {
+      "event": "approved_handover",
+      "part": "ring1",
+      "incoming": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -0.3
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -0.15
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          1.35
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "receiver_parameters": [
+        0.0,
+        1.0,
+        0.034499999999999996,
+        0.0
+      ],
+      "right_q": [
+        -1.5178029198057474,
+        -1.4358149229978727,
+        1.4953756393880957,
+        -0.9796536448737683,
+        0.1950817042537585,
+        0.8964121547263735,
+        2.042582479749601
+      ],
+      "left_q": [
+        0.12677738070487976,
+        1.7670692205429077,
+        -1.5099736452102661,
+        -1.4750070571899414,
+        -0.9429430365562439,
+        0.8800579905509949,
+        -0.48442670702934265
+      ],
+      "approach_order": "donor_first",
+      "elapsed_s": 10.79791408602614,
+      "source": "RGB-D grasp + robot model; no free-body pose"
+    },
+    {
+      "event": "temporary_LEFT_actual_empty_preposition_verified",
+      "part": "ring1",
+      "robot_motion_executed": true,
+      "physical_motion_s": 1.5854166666666667,
+      "air_part_P": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -0.3
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -0.15
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          1.35
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "actual_LEFT_TCP": [
+        [
+          0.00013064044288964923,
+          9.924195310321539e-05,
+          -0.9999998377468011,
+          -0.24546722786775574
+        ],
+        [
+          -0.9999998556570183,
+          1.787169954874196e-05,
+          -0.0001306660537935594,
+          -0.15000531563924951
+        ],
+        [
+          1.788572014997777e-05,
+          0.9999998686114739,
+          9.92772141432051e-05,
+          1.3499841709973406
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "RIGHT_grip_translation_change_m": 0.0002053599116102922,
+      "RIGHT_grip_axis_change_rad": 0.005451638025582445,
+      "RIGHT_contact": {
+        "opposed_contact_compatible": true,
+        "both_hulls_near_CAD": true,
+        "actual_opening_m": 0.07470108568668365,
+        "contact_tolerance_m": 0.0008,
+        "jaws": [
+          {
+            "sign": -1,
+            "minimum_hull_clearance_m": -0.0001241398197139978,
+            "near_hull_samples": 356,
+            "distal_contact_samples": 339,
+            "opposed_wall_samples": 331,
+            "opposed_wall_normal_fraction": 0.976401179941003,
+            "all_contact_normal": [
+              -0.0022341310098658268,
+              -0.9997920049216078,
+              -0.020272038710067188
+            ],
+            "mean_finger_surface_normal_opposition": 0.936358412421406,
+            "opposed_finger_facet_fraction": 0.9380530973451328,
+            "contact_compatible": true
+          },
+          {
+            "sign": 1,
+            "minimum_hull_clearance_m": -0.00010589112204401813,
+            "near_hull_samples": 358,
+            "distal_contact_samples": 348,
+            "opposed_wall_samples": 333,
+            "opposed_wall_normal_fraction": 0.9568965517241379,
+            "all_contact_normal": [
+              0.013321040836444264,
+              0.9988361115960631,
+              -0.046357006403463866
+            ],
+            "mean_finger_surface_normal_opposition": 0.9267006001677588,
+            "opposed_finger_facet_fraction": 0.9252873563218391,
+            "contact_compatible": true
+          }
+        ],
+        "source": "Fresh RGB-D ring-to-receiver pose + actual finger encoder opening + fixed native finger CAD",
+        "uses_free_body_poses": false,
+        "force_contact_measured": false
+      },
+      "RIGHT_support": {
+        "broad_opposed_flat_pad_support": true,
+        "jaws": [
+          {
+            "sign": -1,
+            "active_samples": 182,
+            "active_flat_samples": 180,
+            "active_vertical_span_m": 0.013666117920810385,
+            "flat_native_facet_fraction": 0.989010989010989,
+            "minimum_hull_clearance_m": -0.0001241398197139978,
+            "supported": true
+          },
+          {
+            "sign": 1,
+            "active_samples": 191,
+            "active_flat_samples": 190,
+            "active_vertical_span_m": 0.01450772342509639,
+            "flat_native_facet_fraction": 0.9947643979057592,
+            "minimum_hull_clearance_m": -0.00010589112204401813,
+            "supported": true
+          }
+        ],
+        "first_contact_band_m": 0.0003,
+        "minimum_vertical_support_m": 0.005,
+        "minimum_flat_facet_fraction": 0.9,
+        "actual_opening_m": 0.07470108568668365,
+        "uses_free_body_poses": false,
+        "force_contact_measured": false
+      },
+      "endpoint_rejections": [],
+      "uses_free_body_poses": false
+    },
+    {
+      "event": "approved_handover",
+      "part": "ring1",
+      "incoming": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -0.3
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -0.15
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          1.35
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "receiver_parameters": [
+        0.0,
+        1.0,
+        0.034499999999999996,
+        0.0
+      ],
+      "right_q": [
+        -1.5164782821847302,
+        -1.4376855067019336,
+        1.496342875232408,
+        -0.9811070173776641,
+        0.1905718065734035,
+        0.8980268390886621,
+        2.040695474400225
+      ],
+      "left_q": [
+        0.1267801821231842,
+        1.7671011686325073,
+        -1.5100016593933105,
+        -1.4750112295150757,
+        -0.942918598651886,
+        0.8800804615020752,
+        -0.4844425916671753
+      ],
+      "approach_order": "donor_first",
+      "elapsed_s": 8.198232160066254,
+      "source": "RGB-D grasp + robot model; no free-body pose"
+    },
+    {
+      "event": "ring1_donor_after_carry_retention",
+      "retained": true,
+      "native_contact": {
+        "opposed_contact_compatible": true,
+        "both_hulls_near_CAD": true,
+        "actual_opening_m": 0.07472716271877289,
+        "contact_tolerance_m": 0.0008,
+        "jaws": [
+          {
+            "sign": -1,
+            "minimum_hull_clearance_m": -0.00010988824821295685,
+            "near_hull_samples": 291,
+            "distal_contact_samples": 281,
+            "opposed_wall_samples": 263,
+            "opposed_wall_normal_fraction": 0.9359430604982206,
+            "all_contact_normal": [
+              0.024534475537933805,
+              -0.9972790355020668,
+              -0.06951679551120118
+            ],
+            "mean_finger_surface_normal_opposition": 0.9359416084068519,
+            "opposed_finger_facet_fraction": 0.9323843416370107,
+            "contact_compatible": true
+          },
+          {
+            "sign": 1,
+            "minimum_hull_clearance_m": -3.140013412006246e-05,
+            "near_hull_samples": 268,
+            "distal_contact_samples": 257,
+            "opposed_wall_samples": 248,
+            "opposed_wall_normal_fraction": 0.9649805447470817,
+            "all_contact_normal": [
+              0.004111543345031301,
+              0.9992066219102475,
+              -0.039613406089778945
+            ],
+            "mean_finger_surface_normal_opposition": 0.9469396754719507,
+            "opposed_finger_facet_fraction": 0.9416342412451362,
+            "contact_compatible": true
+          }
+        ],
+        "source": "Fresh RGB-D ring-to-receiver pose + actual finger encoder opening + fixed native finger CAD",
+        "uses_free_body_poses": false,
+        "force_contact_measured": false
+      },
+      "support": {
+        "broad_opposed_flat_pad_support": true,
+        "jaws": [
+          {
+            "sign": -1,
+            "active_samples": 168,
+            "active_flat_samples": 167,
+            "active_vertical_span_m": 0.012609973725902987,
+            "flat_native_facet_fraction": 0.9940476190476191,
+            "minimum_hull_clearance_m": -0.00010988824821295685,
+            "supported": true
+          },
+          {
+            "sign": 1,
+            "active_samples": 151,
+            "active_flat_samples": 151,
+            "active_vertical_span_m": 0.013510013836459707,
+            "flat_native_facet_fraction": 1.0,
+            "minimum_hull_clearance_m": -3.140013412006246e-05,
+            "supported": true
+          }
+        ],
+        "first_contact_band_m": 0.0003,
+        "minimum_vertical_support_m": 0.005,
+        "minimum_flat_facet_fraction": 0.9,
+        "actual_opening_m": 0.07472716271877289,
+        "uses_free_body_poses": false,
+        "force_contact_measured": false
+      },
+      "translation_change_m": 0.0010696397839228967,
+      "axis_change_rad": 0.028363063783117867,
+      "translation_limit_m": 0.002,
+      "axis_limit_rad": 0.05,
+      "uses_free_body_poses": false
+    },
+    {
+      "event": "checked_joint_edge_execution",
+      "side": "left",
+      "duration_s": 0.8333333333333334,
+      "progress_law": "checked_joint_edges_with_corner_stops",
+      "corner_stops": 10,
+      "velocity_fraction": 0.9,
+      "acceleration_rad_s2": 9.2,
+      "jerk_rad_s3": 4400.0,
+      "geometry_overshoot_avoided": true,
+      "full_concatenated_command_check": true,
+      "peak_velocity_fraction_of_reserved_bound": 0.1970198924911538,
+      "max_acceleration_rad_s2": 8.8165283203125,
+      "max_jerk_rad_s3": 3981.4453125
+    },
+    {
+      "event": "ring1_receiver_contact",
+      "aperture_m": 0.015392858535051346,
+      "attempt": 0,
+      "stationary_near_CAD": true,
+      "completion": "stationary_near_CAD",
+      "encoder_samples": 20,
+      "maximum_wall_wait_s": 12.0,
+      "maximum_encoder_samples": 120,
+      "physics_wait_s": 0.475,
+      "encoder_window_span_s": 0.10000000000000142,
+      "per_finger_position_range_m": [
+        2.2625084966421127e-05,
+        2.2626016288995743e-05
+      ],
+      "gap_position_range_m": 4.525110125541687e-05,
+      "wall_s": 81.9765775250271
+    },
+    {
+      "event": "ring1_receiver_both_pad_contact",
+      "contact": {
+        "opposed_contact_compatible": true,
+        "both_hulls_near_CAD": true,
+        "actual_opening_m": 0.015387587249279022,
+        "contact_tolerance_m": 0.0008,
+        "jaws": [
+          {
+            "contact_mode": "axial_flat_caps",
+            "cap_support_samples": 119,
+            "cap_patch_span_m": [
+              0.017383432691058364,
+              3.650065901589488e-05,
+              0.005515718044590501
+            ],
+            "minimum_cap_clearance_m": -3.72027855775031e-06,
+            "nearest_noncap_clearance_m": 2.1416071969517815e-05,
+            "legacy_all_near_cap_contact_compatible": true,
+            "all_near_cap_support_samples": 119,
+            "all_near_cap_patch_span_m": [
+              0.017383432691058364,
+              3.650065901589488e-05,
+              0.005515718044590501
+            ],
+            "first_contact_hull_band_m": 0.0001,
+            "cap_patch_model": "first_contact_native_hull_band",
+            "force_contact_measured": false,
+            "sign": -1,
+            "minimum_hull_clearance_m": -3.72027855775031e-06,
+            "near_hull_samples": 194,
+            "distal_contact_samples": 194,
+            "opposed_wall_samples": 171,
+            "opposed_wall_normal_fraction": 0.8814432989690721,
+            "all_contact_normal": [
+              -0.001318407812473666,
+              -0.9999749899541563,
+              -0.006948472279928896
+            ],
+            "mean_finger_surface_normal_opposition": 0.7950749503920153,
+            "opposed_finger_facet_fraction": 0.7422680412371134,
+            "contact_compatible": true
+          },
+          {
+            "contact_mode": "axial_flat_caps",
+            "cap_support_samples": 26,
+            "cap_patch_span_m": [
+              0.017183653756439717,
+              3.330974278501278e-05,
+              0.0021930671470732285
+            ],
+            "minimum_cap_clearance_m": -2.7281080182493117e-07,
+            "nearest_noncap_clearance_m": 2.2382328750281545e-05,
+            "legacy_all_near_cap_contact_compatible": true,
+            "all_near_cap_support_samples": 26,
+            "all_near_cap_patch_span_m": [
+              0.017183653756439717,
+              3.330974278501278e-05,
+              0.0021930671470732285
+            ],
+            "first_contact_hull_band_m": 0.0001,
+            "cap_patch_model": "first_contact_native_hull_band",
+            "force_contact_measured": false,
+            "sign": 1,
+            "minimum_hull_clearance_m": -2.7281080182493117e-07,
+            "near_hull_samples": 74,
+            "distal_contact_samples": 74,
+            "opposed_wall_samples": 38,
+            "opposed_wall_normal_fraction": 0.5135135135135135,
+            "all_contact_normal": [
+              -0.016635488148008883,
+              0.9947872360028073,
+              -0.10060624046237121
+            ],
+            "mean_finger_surface_normal_opposition": 0.5350342137886328,
+            "opposed_finger_facet_fraction": 0.40540540540540543,
+            "contact_compatible": true
+          }
+        ],
+        "source": "Fresh RGB-D ring-to-receiver pose + actual finger encoder opening + fixed native finger CAD",
+        "uses_free_body_poses": false,
+        "force_contact_measured": false
+      },
+      "wall_s": 82.31635447801091
+    },
+    {
+      "event": "ring1_receiver_contact_after_force_ramp",
+      "contact": {
+        "opposed_contact_compatible": true,
+        "both_hulls_near_CAD": true,
+        "actual_opening_m": 0.015358447097241879,
+        "contact_tolerance_m": 0.0008,
+        "jaws": [
+          {
+            "contact_mode": "axial_flat_caps",
+            "cap_support_samples": 119,
+            "cap_patch_span_m": [
+              0.017265820686363988,
+              5.904574911510044e-06,
+              0.005516508764364096
+            ],
+            "minimum_cap_clearance_m": -5.149812491738495e-07,
+            "nearest_noncap_clearance_m": 6.3142215921025986e-06,
+            "legacy_all_near_cap_contact_compatible": true,
+            "all_near_cap_support_samples": 119,
+            "all_near_cap_patch_span_m": [
+              0.017265820686363988,
+              5.904574911510044e-06,
+              0.005516508764364096
+            ],
+            "first_contact_hull_band_m": 0.0001,
+            "cap_patch_model": "first_contact_native_hull_band",
+            "force_contact_measured": false,
+            "sign": -1,
+            "minimum_hull_clearance_m": -5.149812491738495e-07,
+            "near_hull_samples": 193,
+            "distal_contact_samples": 193,
+            "opposed_wall_samples": 169,
+            "opposed_wall_normal_fraction": 0.8756476683937824,
+            "all_contact_normal": [
+              -0.0021979120975208783,
+              -0.9999060217036694,
+              -0.013532070911458385
+            ],
+            "mean_finger_surface_normal_opposition": 0.7944538592742487,
+            "opposed_finger_facet_fraction": 0.7409326424870466,
+            "contact_compatible": true
+          },
+          {
+            "contact_mode": "axial_flat_caps",
+            "cap_support_samples": 26,
+            "cap_patch_span_m": [
+              0.017183680820385766,
+              1.7229408558741208e-06,
+              0.0021934718840111375
+            ],
+            "minimum_cap_clearance_m": -1.4640482905750552e-06,
+            "nearest_noncap_clearance_m": 1.710143727706851e-05,
+            "legacy_all_near_cap_contact_compatible": true,
+            "all_near_cap_support_samples": 26,
+            "all_near_cap_patch_span_m": [
+              0.017183680820385766,
+              1.7229408558741208e-06,
+              0.0021934718840111375
+            ],
+            "first_contact_hull_band_m": 0.0001,
+            "cap_patch_model": "first_contact_native_hull_band",
+            "force_contact_measured": false,
+            "sign": 1,
+            "minimum_hull_clearance_m": -1.4640482905750552e-06,
+            "near_hull_samples": 76,
+            "distal_contact_samples": 76,
+            "opposed_wall_samples": 38,
+            "opposed_wall_normal_fraction": 0.5,
+            "all_contact_normal": [
+              -0.002801938399373687,
+              0.9984361982279963,
+              -0.05583285062784489
+            ],
+            "mean_finger_surface_normal_opposition": 0.5302443507340281,
+            "opposed_finger_facet_fraction": 0.39473684210526316,
+            "contact_compatible": true
+          }
+        ],
+        "source": "Fresh RGB-D ring-to-receiver pose + actual finger encoder opening + fixed native finger CAD",
+        "uses_free_body_poses": false,
+        "force_contact_measured": false
+      }
+    },
+    {
+      "event": "ring1_receiver_final_stationary_contact",
+      "contact": {
+        "opposed_contact_compatible": true,
+        "both_hulls_near_CAD": true,
+        "actual_opening_m": 0.015357954427599907,
+        "contact_tolerance_m": 0.0008,
+        "jaws": [
+          {
+            "contact_mode": "axial_flat_caps",
+            "cap_support_samples": 119,
+            "cap_patch_span_m": [
+              0.017265844947199675,
+              7.0810566876362835e-06,
+              0.005516703431248857
+            ],
+            "minimum_cap_clearance_m": -2.546655315694286e-06,
+            "nearest_noncap_clearance_m": 4.255276483972306e-06,
+            "legacy_all_near_cap_contact_compatible": true,
+            "all_near_cap_support_samples": 119,
+            "all_near_cap_patch_span_m": [
+              0.017265844947199675,
+              7.0810566876362835e-06,
+              0.005516703431248857
+            ],
+            "first_contact_hull_band_m": 0.0001,
+            "cap_patch_model": "first_contact_native_hull_band",
+            "force_contact_measured": false,
+            "sign": -1,
+            "minimum_hull_clearance_m": -2.546655315694286e-06,
+            "near_hull_samples": 193,
+            "distal_contact_samples": 193,
+            "opposed_wall_samples": 169,
+            "opposed_wall_normal_fraction": 0.8756476683937824,
+            "all_contact_normal": [
+              -0.002310733725938319,
+              -0.9999035422762068,
+              -0.013695497549990027
+            ],
+            "mean_finger_surface_normal_opposition": 0.794450213236235,
+            "opposed_finger_facet_fraction": 0.7409326424870466,
+            "contact_compatible": true
+          },
+          {
+            "contact_mode": "axial_flat_caps",
+            "cap_support_samples": 26,
+            "cap_patch_span_m": [
+              0.017183679243745684,
+              3.5163722508285353e-06,
+              0.0021935716296191676
+            ],
+            "minimum_cap_clearance_m": -1.8305170025989498e-06,
+            "nearest_noncap_clearance_m": 1.8082930742799896e-05,
+            "legacy_all_near_cap_contact_compatible": true,
+            "all_near_cap_support_samples": 26,
+            "all_near_cap_patch_span_m": [
+              0.017183679243745684,
+              3.5163722508285353e-06,
+              0.0021935716296191676
+            ],
+            "first_contact_hull_band_m": 0.0001,
+            "cap_patch_model": "first_contact_native_hull_band",
+            "force_contact_measured": false,
+            "sign": 1,
+            "minimum_hull_clearance_m": -1.8305170025989498e-06,
+            "near_hull_samples": 75,
+            "distal_contact_samples": 75,
+            "opposed_wall_samples": 38,
+            "opposed_wall_normal_fraction": 0.5066666666666667,
+            "all_contact_normal": [
+              -0.008578707519967636,
+              0.99694739492558,
+              -0.07760346337881045
+            ],
+            "mean_finger_surface_normal_opposition": 0.5326719976510425,
+            "opposed_finger_facet_fraction": 0.4,
+            "contact_compatible": true
+          }
+        ],
+        "source": "Fresh RGB-D ring-to-receiver pose + actual finger encoder opening + fixed native finger CAD",
+        "uses_free_body_poses": false,
+        "force_contact_measured": false
+      },
+      "measured_grasp": [
+        [
+          -6.862351942513388e-05,
+          -1.0000001120240332,
+          0.00020431365077206042,
+          -0.00013661069589143704
+        ],
+        [
+          -8.24829082353046e-05,
+          0.00020434636393655,
+          1.000000105775703,
+          2.589163383026616e-06
+        ],
+        [
+          -1.0000001396747333,
+          6.863595778968548e-05,
+          -8.252763352673849e-05,
+          0.03444936710492014
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "per_finger_position_range_m": [
+        1.1175870895385742e-07,
+        1.1082738637924194e-07
+      ],
+      "gap_position_range_m": 2.2258609533309937e-07,
+      "encoder_window_span_s": 0.1,
+      "stationary": true,
+      "near_contact": true,
+      "force_contact_measured": false,
+      "uses_free_body_poses": false,
+      "wall_s": 85.04927513399161
+    },
+    {
+      "event": "loaded_receiver_encoder_geometry_bound",
+      "side": "left",
+      "part": "ring1",
+      "measured_grasp": [
+        [
+          -9.811103334173433e-05,
+          -0.9999906516613833,
+          0.004354017147552425,
+          -7.738773027746171e-05
+        ],
+        [
+          0.013668854918016938,
+          0.004352296380964181,
+          0.9998972347365807,
+          -0.0005025872826418532
+        ],
+        [
+          -0.9999067178883587,
+          0.00015764452469162695,
+          0.013668267668940713,
+          0.03458452617698404
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "measured_finger_samples_m": [
+        [
+          0.007678994443267584,
+          0.007678994443267584
+        ],
+        [
+          0.00767897954210639,
+          0.007678985130041838
+        ],
+        [
+          0.007678998168557882,
+          0.007679004687815905
+        ],
+        [
+          0.007678994908928871,
+          0.007678994443267584
+        ],
+        [
+          0.007678990252315998,
+          0.007678990252315998
+        ],
+        [
+          0.00767899164929986,
+          0.007678995840251446
+        ],
+        [
+          0.007678990717977285,
+          0.007678990252315998
+        ],
+        [
+          0.007678970694541931,
+          0.007678970694541931
+        ],
+        [
+          0.007678982336074114,
+          0.007678984198719263
+        ],
+        [
+          0.007678978610783815,
+          0.007678978145122528
+        ],
+        [
+          0.007679054979234934,
+          0.0076790545135736465
+        ],
+        [
+          0.0076789772137999535,
+          0.00767897954210639
+        ],
+        [
+          0.00767902098596096,
+          0.0076790242455899715
+        ],
+        [
+          0.007678969297558069,
+          0.007678970694541931
+        ],
+        [
+          0.0076789893209934235,
+          0.007678996305912733
+        ],
+        [
+          0.007678959984332323,
+          0.007678959518671036
+        ],
+        [
+          0.00767898466438055,
+          0.00767898466438055
+        ],
+        [
+          0.007678980473428965,
+          0.007678980007767677
+        ],
+        [
+          0.007678859401494265,
+          0.007678859401494265
+        ],
+        [
+          0.007679005153477192,
+          0.007679011207073927
+        ],
+        [
+          0.007678964175283909,
+          0.007678967900574207
+        ],
+        [
+          0.007678948808461428,
+          0.00767895020544529
+        ],
+        [
+          0.0076788607984781265,
+          0.007678868714720011
+        ],
+        [
+          0.00767884124070406,
+          0.007678840775042772
+        ],
+        [
+          0.007678952533751726,
+          0.007678952533751726
+        ],
+        [
+          0.00767893809825182,
+          0.007678939029574394
+        ],
+        [
+          0.007678965572267771,
+          0.007678966503590345
+        ],
+        [
+          0.00767893809825182,
+          0.00767893809825182
+        ],
+        [
+          0.007678974885493517,
+          0.007678981404751539
+        ],
+        [
+          0.007678961381316185,
+          0.007678961381316185
+        ],
+        [
+          0.0076789516024291515,
+          0.0076789516024291515
+        ],
+        [
+          0.0076788365840911865,
+          0.007678836118429899
+        ],
+        [
+          0.007679061032831669,
+          0.0076790605671703815
+        ],
+        [
+          0.007678978145122528,
+          0.0076789818704128265
+        ],
+        [
+          0.007678946480154991,
+          0.007678946480154991
+        ],
+        [
+          0.007678975351154804,
+          0.007678975351154804
+        ],
+        [
+          0.007678987458348274,
+          0.007678989786654711
+        ],
+        [
+          0.007678993046283722,
+          0.0076790000312030315
+        ],
+        [
+          0.0076789865270257,
+          0.007678986061364412
+        ],
+        [
+          0.0076790424063801765,
+          0.0076790424063801765
+        ],
+        [
+          0.007679050322622061,
+          0.0076790498569607735
+        ],
+        [
+          0.0076790680177509785,
+          0.007679075933992863
+        ],
+        [
+          0.007678987458348274,
+          0.007678986992686987
+        ],
+        [
+          0.007678947877138853,
+          0.007678947877138853
+        ],
+        [
+          0.007678944151848555,
+          0.007678944151848555
+        ],
+        [
+          0.007678944617509842,
+          0.007678944151848555
+        ],
+        [
+          0.007678945083171129,
+          0.007678944617509842
+        ],
+        [
+          0.007678946480154991,
+          0.0076789469458162785
+        ],
+        [
+          0.007678947411477566,
+          0.007678947877138853
+        ],
+        [
+          0.007679001893848181,
+          0.007679006550461054
+        ],
+        [
+          0.007678961846977472,
+          0.007678961381316185
+        ],
+        [
+          0.007678988855332136,
+          0.007678994908928871
+        ],
+        [
+          0.007678983733057976,
+          0.0076789865270257
+        ],
+        [
+          0.007678992580622435,
+          0.007678993511945009
+        ],
+        [
+          0.00767897255718708,
+          0.00767897255718708
+        ],
+        [
+          0.007678972091525793,
+          0.007678972091525793
+        ],
+        [
+          0.007678985595703125,
+          0.007678985130041838
+        ],
+        [
+          0.007678971625864506,
+          0.007678971625864506
+        ],
+        [
+          0.00767897255718708,
+          0.007678972091525793
+        ],
+        [
+          0.007678973022848368,
+          0.007678973954170942
+        ],
+        [
+          0.007678964640945196,
+          0.007678964640945196
+        ],
+        [
+          0.007678990717977285,
+          0.007678995840251446
+        ],
+        [
+          0.00767897255718708,
+          0.007678972091525793
+        ],
+        [
+          0.007678968366235495,
+          0.0076789711602032185
+        ],
+        [
+          0.007678962778300047,
+          0.00767896231263876
+        ],
+        [
+          0.007678983733057976,
+          0.007678983733057976
+        ],
+        [
+          0.007678971625864506,
+          0.0076789758168160915
+        ],
+        [
+          0.007678973488509655,
+          0.007678973022848368
+        ],
+        [
+          0.007678977679461241,
+          0.0076789832673966885
+        ],
+        [
+          0.007678965572267771,
+          0.007678965572267771
+        ],
+        [
+          0.00767894834280014,
+          0.007678947877138853
+        ],
+        [
+          0.007679019123315811,
+          0.007679026573896408
+        ],
+        [
+          0.007678986992686987,
+          0.007678994443267584
+        ],
+        [
+          0.007678943686187267,
+          0.00767894322052598
+        ],
+        [
+          0.007678947411477566,
+          0.00767895020544529
+        ],
+        [
+          0.007678944617509842,
+          0.007678944151848555
+        ],
+        [
+          0.007678960915654898,
+          0.00767896044999361
+        ],
+        [
+          0.007678980007767677,
+          0.00767897954210639
+        ],
+        [
+          0.00767899164929986,
+          0.007678997237235308
+        ],
+        [
+          0.0076792421750724316,
+          0.0076792482286691666
+        ],
+        [
+          0.007679071743041277,
+          0.007679071743041277
+        ],
+        [
+          0.007679102011024952,
+          0.0076791029423475266
+        ],
+        [
+          0.007679242640733719,
+          0.007679248694330454
+        ],
+        [
+          0.007679113652557135,
+          0.007679119240492582
+        ],
+        [
+          0.0076790740713477135,
+          0.007679075002670288
+        ],
+        [
+          0.00767907127737999,
+          0.00767907127737999
+        ],
+        [
+          0.007678979076445103,
+          0.007678979076445103
+        ],
+        [
+          0.007678980473428965,
+          0.007678980473428965
+        ],
+        [
+          0.007678982336074114,
+          0.0076789818704128265
+        ],
+        [
+          0.007679120637476444,
+          0.007679126691073179
+        ],
+        [
+          0.007679094094783068,
+          0.00767909362912178
+        ],
+        [
+          0.007679011672735214,
+          0.007679019123315811
+        ],
+        [
+          0.00767906941473484,
+          0.007679075468331575
+        ],
+        [
+          0.007678858935832977,
+          0.00767885847017169
+        ],
+        [
+          0.007678861264139414,
+          0.007678861264139414
+        ],
+        [
+          0.0076789879240095615,
+          0.007678993511945009
+        ],
+        [
+          0.007678958587348461,
+          0.007678958121687174
+        ],
+        [
+          0.007678860332816839,
+          0.007678861264139414
+        ],
+        [
+          0.0076789529994130135,
+          0.00767895532771945
+        ],
+        [
+          0.00767896743491292,
+          0.007678973488509655
+        ],
+        [
+          0.007678939029574394,
+          0.007678938563913107
+        ],
+        [
+          0.007679007016122341,
+          0.0076790135353803635
+        ],
+        [
+          0.007678944151848555,
+          0.007678951136767864
+        ],
+        [
+          0.007678734138607979,
+          0.007678736001253128
+        ],
+        [
+          0.007678772322833538,
+          0.007678772322833538
+        ]
+      ],
+      "sample_times_s": [
+        22.633333333333333,
+        22.635416666666668,
+        22.6375,
+        22.639583333333334,
+        22.641666666666666,
+        22.64375,
+        22.645833333333332,
+        22.647916666666667,
+        22.65,
+        22.652083333333334,
+        22.654166666666665,
+        22.65625,
+        22.65833333333333,
+        22.660416666666666,
+        22.6625,
+        22.664583333333333,
+        22.666666666666668,
+        22.66875,
+        22.670833333333334,
+        22.672916666666666,
+        22.675,
+        22.677083333333332,
+        22.679166666666667,
+        22.68125,
+        22.683333333333334,
+        22.685416666666665,
+        22.6875,
+        22.68958333333333,
+        22.691666666666666,
+        22.69375,
+        22.695833333333333,
+        22.697916666666668,
+        22.7,
+        22.702083333333334,
+        22.704166666666666,
+        22.70625,
+        22.708333333333332,
+        22.710416666666667,
+        22.7125,
+        22.714583333333334,
+        22.716666666666665,
+        22.71875,
+        22.72083333333333,
+        22.722916666666666,
+        22.725,
+        22.727083333333333,
+        22.729166666666668,
+        22.73125,
+        22.733333333333334,
+        22.735416666666666,
+        22.7375,
+        22.739583333333332,
+        22.741666666666667,
+        22.74375,
+        22.745833333333334,
+        22.747916666666665,
+        22.75,
+        22.75208333333333,
+        22.754166666666666,
+        22.75625,
+        22.758333333333333,
+        22.760416666666668,
+        22.7625,
+        22.764583333333334,
+        22.766666666666666,
+        22.76875,
+        22.770833333333332,
+        22.772916666666667,
+        22.775,
+        22.777083333333334,
+        22.779166666666665,
+        22.78125,
+        22.78333333333333,
+        22.785416666666666,
+        22.7875,
+        22.789583333333333,
+        22.791666666666668,
+        22.79375,
+        22.795833333333334,
+        22.797916666666666,
+        22.8,
+        22.802083333333332,
+        22.804166666666667,
+        22.80625,
+        22.808333333333334,
+        22.810416666666665,
+        22.8125,
+        22.81458333333333,
+        22.816666666666666,
+        22.81875,
+        22.820833333333333,
+        22.822916666666668,
+        22.825,
+        22.827083333333334,
+        22.829166666666666,
+        22.83125,
+        22.833333333333332,
+        22.835416666666667,
+        22.8375,
+        22.839583333333334,
+        22.841666666666665,
+        22.84375,
+        22.84583333333333,
+        22.847916666666666,
+        22.85
+      ],
+      "finger_lower_bounds_m": [
+        0.007428734138607979,
+        0.007428736001253128
+      ],
+      "finger_upper_bounds_m": [
+        0.007929242640733719,
+        0.007929248694330454
+      ],
+      "aperture_bounds_m": [
+        0.014857470139861106,
+        0.015858491335064173
+      ],
+      "minimum_total_aperture_interval_m": 0.001,
+      "encoder_lookahead_s": 0.0020833333333333333,
+      "per_finger_speed_cap_m_s": 0.0475,
+      "fresh_bilateral_CAD_contact": {
+        "opposed_contact_compatible": true,
+        "both_hulls_near_CAD": true,
+        "actual_opening_m": 0.015357544645667076,
+        "contact_tolerance_m": 0.0008,
+        "jaws": [
+          {
+            "contact_mode": "axial_flat_caps",
+            "cap_support_samples": 96,
+            "cap_patch_span_m": [
+              0.01720066313394897,
+              9.76601123897575e-05,
+              0.005088285832706364
+            ],
+            "minimum_cap_clearance_m": -0.00011385795500608595,
+            "nearest_noncap_clearance_m": -8.231498129910366e-05,
+            "legacy_all_near_cap_contact_compatible": true,
+            "all_near_cap_support_samples": 119,
+            "all_near_cap_patch_span_m": [
+              0.017383635471875245,
+              0.00013190456981142674,
+              0.00551705016785967
+            ],
+            "first_contact_hull_band_m": 0.0001,
+            "cap_patch_model": "first_contact_native_hull_band",
+            "force_contact_measured": false,
+            "sign": -1,
+            "minimum_hull_clearance_m": -0.00011385795500608595,
+            "near_hull_samples": 199,
+            "distal_contact_samples": 199,
+            "opposed_wall_samples": 169,
+            "opposed_wall_normal_fraction": 0.8492462311557789,
+            "all_contact_normal": [
+              -0.007893181203892647,
+              -0.999966535078777,
+              0.002150909813888061
+            ],
+            "mean_finger_surface_normal_opposition": 0.7636382725317878,
+            "opposed_finger_facet_fraction": 0.7185929648241206,
+            "contact_compatible": true
+          },
+          {
+            "contact_mode": "axial_flat_caps",
+            "cap_support_samples": 26,
+            "cap_patch_span_m": [
+              0.01718351491047388,
+              7.959894042524653e-05,
+              0.0021937861138797907
+            ],
+            "minimum_cap_clearance_m": -2.6985355711830325e-05,
+            "nearest_noncap_clearance_m": 1.3755147258716309e-05,
+            "legacy_all_near_cap_contact_compatible": true,
+            "all_near_cap_support_samples": 26,
+            "all_near_cap_patch_span_m": [
+              0.01718351491047388,
+              7.959894042524653e-05,
+              0.0021937861138797907
+            ],
+            "first_contact_hull_band_m": 0.0001,
+            "cap_patch_model": "first_contact_native_hull_band",
+            "force_contact_measured": false,
+            "sign": 1,
+            "minimum_hull_clearance_m": -2.6985355711830325e-05,
+            "near_hull_samples": 76,
+            "distal_contact_samples": 76,
+            "opposed_wall_samples": 38,
+            "opposed_wall_normal_fraction": 0.5,
+            "all_contact_normal": [
+              0.0014509101859602202,
+              0.999119302917603,
+              -0.04193463243043144
+            ],
+            "mean_finger_surface_normal_opposition": 0.528328076201879,
+            "opposed_finger_facet_fraction": 0.39473684210526316,
+            "contact_compatible": true
+          }
+        ],
+        "source": "Fresh RGB-D ring-to-receiver pose + actual finger encoder opening + fixed native finger CAD",
+        "uses_free_body_poses": false,
+        "force_contact_measured": false
+      },
+      "capture_age_physics_s": 0.11666666666666667,
+      "geometry_scope": "carrier native fingers against current held CAD only",
+      "spring_target_is_not_measured_geometry": true,
+      "uses_free_body_poses": false
+    }
+  ],
+  "empty_donor_contact_guard_events": [
+    {
+      "side": "right",
+      "armed": false,
+      "carried_part": null,
+      "physics_s": 0.0,
+      "force_threshold_n": 12.0
+    },
+    {
+      "side": "right",
+      "armed": true,
+      "carried_part": "ring1",
+      "physics_s": 22.633333333337863,
+      "force_threshold_n": 12.0
+    }
+  ],
+  "selected_actor_ids_for_validation_only": {
+    "ring1": "/World/BinStock/ring1_loose4"
+  },
+  "native_contact_force_stages": [
+    {
+      "side": "left",
+      "physics_s": 20.72083333333634,
+      "initial_preload_m_s": 0.0075,
+      "target_preload_m_s": 0.015,
+      "force_cap_n": 60.0
+    }
+  ],
+  "state": "failed",
+  "error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py\", line 482, in <module>\n    result=plugin.execute(task_ctx)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/loose_bin_task.py\", line 688, in execute\n    completed=module.execute(component_context,part,left_G)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/isaac_port/native_hand_layout/roas-table/double_native_handover.py\", line 187, in execute\n    if route is None:raise RuntimeError('No full fixed/pair/selected-CAD clear RIGHT positive receiver approach')\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No full fixed/pair/selected-CAD clear RIGHT positive receiver approach\n",
+  "end_to_end_under20": false,
+  "one_ring_component_accepted": false,
+  "wall_verified_elapsed_s": 107.67991543898825,
+  "observation_driven_corrections": [],
+  "CPU_operation_profile": {
+    "control_s": 3.074717044015415,
+    "physics_s": 39.0496361060068,
+    "clamp_flush_s": 0.0
+  },
+  "GPU_route_statistics": {
+    "right": {
+      "queries": 6,
+      "proposals": 2,
+      "CPU_fallbacks": 4,
+      "last_server_s": 0.14449100196361542,
+      "last_obstacle_boxes": 170,
+      "last_payload": false,
+      "last_error": "ValueError: No coarse collision-aware GPU route; [] / [{'sphere': 144, 'penetration_cost': 0.030939418822526932, 'world_xyzr': [-0.41449448466300964, -0.15877163410186768, 1.099814534187317, 0.0483040027320385], 'grid_nearest_feature': 0.1839599609375, 'voxel_params': [[[300.0, 350.0, 300.0, 0.00800000037997961]]], 'voxel_inv_pose': [[[-0.0, 0.20000000298023224, -1.2000000476837158, 1.0, -0.0, -0.0, -0.0, 0.0]]]}, {'sphere': 157, 'penetration_cost': 0.019680378958582878, 'world_xyzr': [-0.40694665908813477, -0.12951982021331787, 1.067062258720398, 0.005080951377749443], 'grid_nearest_feature': 0.1451416015625, 'voxel_params': [[[300.0, 350.0, 300.0, 0.00800000037997961]]], 'voxel_inv_pose': [[[-0.0, 0.20000000298023224, -1.2000000476837158, 1.0, -0.0, -0.0, -0.0, 0.0]]]}, {'sphere': 143, 'penetration_cost': 0.017263498157262802, 'world_xyzr': [-0.39688608050346375, -0.1523151993751526, 1.1407617330551147, 0.058657508343458176], 'grid_nearest_feature': 0.2030029296875, 'voxel_params': [[[300.0, 350.0, 300.0, 0.00800000037997961]]], 'voxel_inv_pose': [[[-0.0, 0.20000000298023224, -1.2000000476837158, 1.0, -0.0, -0.0, -0.0, 0.0]]]}, {'sphere': 156, 'penetration_cost': 0.012815607711672783, 'world_xyzr': [-0.4231381416320801, -0.12577876448631287, 1.0882972478866577, 0.015387503430247307], 'grid_nearest_feature': 0.155029296875, 'voxel_params': [[[300.0, 350.0, 300.0, 0.00800000037997961]]], 'voxel_inv_pose': [[[-0.0, 0.20000000298023224, -1.2000000476837158, 1.0, -0.0, -0.0, -0.0, 0.0]]]}, {'sphere': 138, 'penetration_cost': 0.010327990166842937, 'world_xyzr': [-0.294070303440094, -0.17631089687347412, 1.062854528427124, 0.023349730297923088], 'grid_nearest_feature': 0.17529296875, 'voxel_params': [[[300.0, 350.0, 300.0, 0.00800000037997961]]], 'voxel_inv_pose': [[[-0.0, 0.20000000298023224, -1.2000000476837158, 1.0, -0.0, -0.0, -0.0, 0.0]]]}]",
+      "last_wall_s": 0.2545134760439396,
+      "PhysX_verified_continuous_proposals": 2
+    }
+  },
+  "fast_transport_statistics": {
+    "right": {
+      "routes": 4,
+      "proposals": 1,
+      "clear_calls": 1975,
+      "seconds": 1.640476560103707,
+      "static_objects": 2793,
+      "static_skipped": 0,
+      "backend": "FCL CPU proposals + live PhysX verification",
+      "PhysX_rejected_proposals": 1,
+      "last_PhysX_rejection": {
+        "segment": 0,
+        "fraction": 0.35350318471337583,
+        "collision": {
+          "kind": "same_arm_self_collision",
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm",
+          "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5",
+          "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/Contact/right_arm_fr3v2_link5_collision",
+          "distance_m": 0.0007920886607619479,
+          "required_clearance_m": 0.001
+        }
+      }
+    },
+    "left": {
+      "routes": 0,
+      "proposals": 0,
+      "clear_calls": 0,
+      "seconds": 0.0,
+      "static_objects": 2793,
+      "static_skipped": 0,
+      "backend": "FCL CPU proposals + live PhysX verification"
+    }
+  },
+  "encoder_motor_speed_audit": {
+    "samples": 11024,
+    "max_fraction_of_95_percent_PBV": 0.9180906151513566,
+    "max_finger_fraction_of_47p5_mm_s": 0.6754741072654724,
+    "max_coupled_finger_difference_m": 5.21540641784668e-08,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  }
+}
