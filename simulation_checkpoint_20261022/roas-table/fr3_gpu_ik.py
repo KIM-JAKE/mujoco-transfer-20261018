@@ -15,7 +15,10 @@ def propose_ik(c,arm,P,R,current_q,label):
     try:
         target=np.eye(4);target[:3,:3]=np.asarray(R,float);target[:3,3]=np.asarray(P,float);current=np.asarray(current_q,float);bounds=np.asarray(arm.bounds,float)
         if current.shape!=(7,)or bounds.shape!=(7,2)or not np.isfinite(target).all()or not np.isfinite(current).all()or np.max(abs(target[:3,:3].T@target[:3,:3]-np.eye(3)))>1e-5 or np.linalg.det(target[:3,:3])<.99999:raise ValueError('Invalid current encoder/TCP target for GPU endpoint request')
-        request=dict(id=uuid.uuid4().hex,model_sha256=model_sha256(arm),target_TCP_world=target.tolist(),current_q=current.tolist());default=Path(__file__).resolve().parents[3]/'.local/curobo-gpu2/ik.sock';sockpath=Path(cfg.get('gpu_ik_socket',str(default)));timeout=float(np.clip(cfg.get('gpu_ik_timeout_s',.5),.05,2.))
+        from fr3_gpu_reference import reference_gauge
+        reference_hash,world_gauge,tip_gauge,gauge_used=reference_gauge(arm,cfg);request_target=world_gauge@target@np.linalg.inv(tip_gauge)
+        record.update(client_model_sha256=model_sha256(arm),reference_gauge_used=bool(gauge_used),intrinsic_chain_and_original_arm_FK_required=True)
+        request=dict(id=uuid.uuid4().hex,model_sha256=reference_hash,target_TCP_world=request_target.tolist(),current_q=current.tolist());default=Path(__file__).resolve().parents[3]/'.local/curobo-gpu2/ik.sock';sockpath=Path(cfg.get('gpu_ik_socket',str(default)));timeout=float(np.clip(cfg.get('gpu_ik_timeout_s',.5),.05,2.))
         with socket.socket(socket.AF_UNIX,socket.SOCK_STREAM)as conn:
             conn.settimeout(timeout);conn.connect(str(sockpath));conn.sendall(json.dumps(request).encode()+b'\n');data=b'';deadline=time.perf_counter()+timeout
             while b'\n'not in data:
@@ -27,7 +30,7 @@ def propose_ik(c,arm,P,R,current_q,label):
                 if len(data)>1048576:raise ValueError('Oversized GPU endpoint response')
         response=json.loads(data.split(b'\n',1)[0])
         if response.get('error'):raise ValueError(response['error'])
-        if response.get('id')!=request['id']or response.get('model_sha256')!=request['model_sha256']or response.get('proposal_only')is not True or not np.allclose(np.asarray(response.get('target_TCP_world'),float),target,atol=1e-10,rtol=0):raise ValueError('GPU response model/target/request identity mismatch')
+        if response.get('id')!=request['id']or response.get('model_sha256')!=request['model_sha256']or response.get('proposal_only')is not True or not np.allclose(np.asarray(response.get('target_TCP_world'),float),request_target,atol=1e-10,rtol=0):raise ValueError('GPU response model/target/request identity mismatch')
         for item in response.get('proposals',[]):
             q=np.asarray(item['q'],float)
             if q.shape!=(7,)or not np.isfinite(q).all()or np.any(q<bounds[:,0])or np.any(q>bounds[:,1]):continue

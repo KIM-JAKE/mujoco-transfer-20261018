@@ -27,6 +27,8 @@ class Checker:
                 half=UsdGeom.Cube(prim).GetSizeAttr().Get()/2;v=np.array([[x,y,z]for x in [-half,half]for y in [-half,half]for z in [-half,half]]);f=np.array([0,1,3,0,3,2,4,6,7,4,7,5,0,4,5,0,5,1,2,3,7,2,7,6,0,2,6,0,6,4,1,5,7,1,7,3]);counts=np.array([3]*12)
             else:continue
             vertices=v@local[:3,:3].T+local[:3,3];self.pair_boxes.append((bp,str(prim.GetPath()),proxy(vertices)));path='/World/PlanningQueries/'+side+'_shape'+str(len(self.rows));m=UsdGeom.Mesh.Define(stage,path);m.CreatePointsAttr(vertices.astype(np.float32));m.CreateFaceVertexCountsAttr(counts);m.CreateFaceVertexIndicesAttr(f);m.CreateSubdivisionSchemeAttr('none');m.CreateVisibilityAttr('invisible');xf=UsdGeom.Xformable(m);xf.ClearXformOpOrder();op=xf.AddTransformOp(UsdGeom.XformOp.PrecisionDouble);encoded=PhysicsSchemaTools.encodeSdfPath(Sdf.Path(path));self.rows.append((bp,str(prim.GetPath()),op,encoded))
+        from same_arm_clearance import SameArmClearance
+        self.same_arm_clearance=SameArmClearance(self)
     def other_arm_at(self,other,q,opening):return other_at(self,other,q,opening)
     def attach_payload(self,path,relative):
         """Collision planning only: never attach a physical workpiece."""
@@ -36,6 +38,8 @@ class Checker:
             mesh=UsdGeom.Mesh(prim);v=np.asarray(mesh.GetPointsAttr().Get());local=base@world(self.stage,str(prim.GetPath()));vertices=v@local[:3,:3].T+local[:3,3];self.payload_boxes.append((path,str(prim.GetPath()),proxy(vertices)));qpath='/World/PlanningQueries/'+self.side+'_payload'+str(len(self.payload_rows));m=UsdGeom.Mesh.Define(self.stage,qpath);m.CreatePointsAttr(vertices.astype(np.float32));m.CreateFaceVertexCountsAttr(mesh.GetFaceVertexCountsAttr().Get());m.CreateFaceVertexIndicesAttr(mesh.GetFaceVertexIndicesAttr().Get());m.CreateSubdivisionSchemeAttr('none');m.CreateVisibilityAttr('invisible');xf=UsdGeom.Xformable(m);xf.ClearXformOpOrder();op=xf.AddTransformOp(UsdGeom.XformOp.PrecisionDouble);encoded=PhysicsSchemaTools.encodeSdfPath(Sdf.Path(qpath));self.payload_rows.append((path,str(prim.GetPath()),op,encoded))
     def detach_payload(self):self.payload_path=None;self.payload_rows=[];self.payload_boxes=[];self.payload_relative=None
     def clear(self,q,opening,selected=None):
+        ok,why=self.same_arm_clearance.clear(q,opening)
+        if not ok:return ok,why
         if self.preview_other_boxes is not None:
             ok,why=pair_clear(self,q,opening)
             if not ok:return ok,why

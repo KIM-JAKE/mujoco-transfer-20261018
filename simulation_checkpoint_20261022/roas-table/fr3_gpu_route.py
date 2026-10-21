@@ -55,7 +55,14 @@ def propose_route(checker,start,goal,opening,selected=None):
         stats.update(last_server_s=response.get('solve_s'),last_obstacle_boxes=len(request['obstacle_boxes']),last_payload=bool(payload))
         if response.get('route')is None:raise ValueError('No coarse collision-aware GPU route; '+str(response.get('start_sphere_collisions'))+' / '+str(response.get('goal_sphere_collisions')))
         path=np.asarray(response['route'],float)
-        if path.ndim!=2 or path.shape[1]!=7 or not 2<=len(path)<=2048 or not np.isfinite(path).all()or np.any(path<bounds[:,0])or np.any(path>bounds[:,1])or np.linalg.norm(path[0]-a)>1e-7 or np.linalg.norm(path[-1]-b)>1e-7:raise ValueError('Invalid finite bounded GPU route/endpoints')
+        if path.ndim!=2 or path.shape[1]!=7 or not 2<=len(path)<=2048 or not np.isfinite(path).all():raise ValueError('Invalid finite GPU route shape')
+        # Network echo is exact float64. Raw solver rows are float32; permit
+        # only their representational endpoint error, then restore exact joints
+        # before bounds and ALL original PhysX/issued-curve checks.
+        tolerance_a=2*np.finfo(np.float32).eps*np.maximum(1.,abs(a));tolerance_b=2*np.finfo(np.float32).eps*np.maximum(1.,abs(b))
+        if np.any(abs(path[0]-a)>tolerance_a)or np.any(abs(path[-1]-b)>tolerance_b):raise ValueError('GPU route endpoint exceeds float32 representation tolerance')
+        path=path.copy();path[0]=a;path[-1]=b
+        if np.any(path<bounds[:,0])or np.any(path>bounds[:,1]):raise ValueError('GPU joint path outside original bounds')
         stats['proposals']+=1;stats['last_wall_s']=time.perf_counter()-started;print('GPU_ROUTE_PROPOSAL',dict(knots=len(path),wall_s=stats['last_wall_s'],server_s=stats['last_server_s'],payload=bool(payload),obstacle_boxes=stats['last_obstacle_boxes'],full_PhysX_and_FR3_retime_still_required=True),flush=True);return path
     except Exception as e:
         stats['CPU_fallbacks']+=1;stats.update(last_error=type(e).__name__+': '+str(e),last_wall_s=time.perf_counter()-started);print('GPU_ROUTE_CPU_FALLBACK',stats['last_error'],stats['last_wall_s'],flush=True);return None

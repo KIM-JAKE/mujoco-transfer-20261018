@@ -11,6 +11,23 @@ from fr3_motion_control import position_velocity_bounds
 from fr3_path_timing import retime,retime_safe_polyline
 
 
+def _left_endpoint_candidates(c,arm,target,seeds,current,preferred,label):
+    """GPU endpoint proposals first; lazy original CPU branches on rejection."""
+    from fr3_gpu_ik import propose_ik
+    seen=[]
+    gpu=propose_ik(c,arm,target[:3,3],target[:3,:3],current,label)
+    gpu.sort(key=lambda q:np.linalg.norm(q-preferred))
+    for q in gpu:
+        seen.append(q);yield q
+    fallback=[]
+    for seed in seeds:
+        q=arm.solve(target[:3,3],target[:3,:3],seed)
+        if q is not None and all(np.linalg.norm(q-old)>.05 for old in seen):
+            seen.append(q);fallback.append(q)
+    fallback.sort(key=lambda q:np.linalg.norm(q-preferred))
+    yield from fallback
+
+
 def _encoder_bias_compensated_target(command_H,actual_H,desired_actual_H):
     """One bounded SE(3) command correction using robot FK only.
 
@@ -602,10 +619,13 @@ def execute(c):
                         if not hand_ok:reject_insertion('fixed_pre_hand',hand_why);continue
                         hand_ok,hand_why=lc.hand_clear(final_H,D)
                         if not hand_ok:reject_insertion('fixed_final_hand',hand_why);continue
-                        for seed in seeds:
-                            q=arm.solve(pre_hand[:3,3],pre_hand[:3,:3],seed)
-                            if q is not None and all(np.linalg.norm(q-old)>.05 for old in solutions):solutions.append(q)
-                        solutions.sort(key=lambda q:np.linalg.norm(q-insertion_hint))
+                        if c['config'].get('gpu_dual_arm_reference'):
+                            solutions=_left_endpoint_candidates(c,arm,pre_hand,seeds,art.get_dof_positions()[0,indices['left']].copy(),insertion_hint,'left_ring2_preinsert')
+                        else:
+                            for seed in seeds:
+                                q=arm.solve(pre_hand[:3,3],pre_hand[:3,:3],seed)
+                                if q is not None and all(np.linalg.norm(q-old)>.05 for old in solutions):solutions.append(q)
+                            solutions.sort(key=lambda q:np.linalg.norm(q-insertion_hint))
                         if not solutions:reject_insertion('pre_IK')
                         for q in solutions:
                             # Intentional ring/jig contact is simulated during
@@ -633,10 +653,13 @@ def execute(c):
                 carry_width=max(float(art.get_dof_positions()[0,fingers['left']].sum()),float(cmd[0,fingers['left']].sum()))
                 carry_seeds=[seed_path[pre_index],row['left_insert_seed'],cmd[0,indices['left']]]+list(np.random.default_rng(231035).uniform(arm.bounds[:,0],arm.bounds[:,1],(32,7)))
                 carry_solutions=[]
-                for seed in carry_seeds:
-                    q=arm.solve(pre_hand[:3,3],pre_hand[:3,:3],seed)
-                    if q is not None and all(np.linalg.norm(q-old)>.05 for old in carry_solutions):carry_solutions.append(q)
-                carry_solutions.sort(key=lambda q:np.linalg.norm(q-cmd[0,indices['left']]))
+                if c['config'].get('gpu_dual_arm_reference'):
+                    carry_solutions=_left_endpoint_candidates(c,arm,pre_hand,carry_seeds,art.get_dof_positions()[0,indices['left']].copy(),cmd[0,indices['left']],part+'_left_preinsert')
+                else:
+                    for seed in carry_seeds:
+                        q=arm.solve(pre_hand[:3,3],pre_hand[:3,:3],seed)
+                        if q is not None and all(np.linalg.norm(q-old)>.05 for old in carry_solutions):carry_solutions.append(q)
+                    carry_solutions.sort(key=lambda q:np.linalg.norm(q-cmd[0,indices['left']]))
                 for q in carry_solutions:
                     if not lc.clear(q,carry_width)[0]:continue
                     candidate_route=transfer.hinted_route(c,part+'_left_carry',lc,cmd[0,indices['left']],q,carry_width,seconds=3.)

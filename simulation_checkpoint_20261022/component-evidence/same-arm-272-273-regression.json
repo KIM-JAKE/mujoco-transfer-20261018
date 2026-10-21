@@ -1,0 +1,71 @@
+{
+  "272_start": {
+    "clear": true,
+    "details": null
+  },
+  "272_before_impulse": {
+    "clear": false,
+    "details": {
+      "kind": "same_arm_self_collision",
+      "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/Contact/right_arm_fr3v2_link7_collision",
+      "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5",
+      "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/Contact/right_arm_fr3v2_link5_collision",
+      "distance_m": -1.0,
+      "required_clearance_m": 0.001
+    }
+  },
+  "272_abort": {
+    "clear": false,
+    "details": {
+      "kind": "same_arm_self_collision",
+      "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/Contact/right_arm_fr3v2_link7_collision",
+      "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5",
+      "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/Contact/right_arm_fr3v2_link5_collision",
+      "distance_m": -1.0,
+      "required_clearance_m": 0.001
+    }
+  },
+  "273_issued_curve": {
+    "available": false,
+    "reason": "static proposal run has no issued commands"
+  },
+  "statistics": {
+    "queries": 1406,
+    "rejected": 2,
+    "candidate_pairs": 43,
+    "geometry_rows": 11,
+    "backend": "FCL convex CAD",
+    "semantic_exclusions": "same rigid body, direct joint collision=false, exact authored FilteredPairs",
+    "last_rejection": {
+      "kind": "same_arm_self_collision",
+      "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/Contact/right_arm_fr3v2_link7_collision",
+      "actor": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5",
+      "collider": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/Contact/right_arm_fr3v2_link5_collision",
+      "distance_m": -1.0,
+      "required_clearance_m": 0.001
+    }
+  },
+  "273_accepted_cubic_curve": {
+    "rows": 541,
+    "clear": true,
+    "first_rejection": [],
+    "scope": "Full exact accepted geometric cubic, no physics movement",
+    "opening_m": 0.07475227117538452
+  },
+  "273_reconstructed_exact_float32_issued_curve": {
+    "rows": 862,
+    "clear": true,
+    "first_rejection": [],
+    "retiming": {
+      "duration_s": 1.79375,
+      "progress_law": "locally_constrained_path_speed_with_smoothed_progress",
+      "velocity_fraction": 0.95,
+      "acceleration_rad_s2": 9.5,
+      "jerk_rad_s3": 4750.0,
+      "unchanged_geometric_spline": true,
+      "full_float32_issued_field_check": true,
+      "saved_s": 0.9645833333333333
+    },
+    "scope": "Reconstructed exact source retimer and width; static no-motion verification"
+  }
+}

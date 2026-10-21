@@ -31,6 +31,10 @@ def verify_issued(c,part,G,rows,allow_fixture_contact=False):
                 # exemption never removes the loaded ring from arm-pair tests.
                 for opening in openings:
                     for _,_,q in _samples(lc,qs):
+                        self_guard=getattr(lc,'same_arm_clearance',None)
+                        if self_guard is not None:
+                            clear,why=self_guard.clear(q,float(opening))
+                            if not clear:raise RuntimeError('Loaded LEFT issued fixture curve intersects own nonadjacent robot '+str(why))
                         clear,why=pair_clear(lc,q,float(opening))
                         if not clear:raise RuntimeError('Loaded LEFT issued curve intersects current RIGHT '+str(why))
             else:

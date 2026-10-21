@@ -77,8 +77,10 @@ def path_openings(checker,qs,openings,selected=None,diagnostics=None):
                 if not changed:stats['invariant_configurations_reused']+=1;continue
                 stats['dependent_configurations']+=1
                 stats['changed_body_names']=sorted(set(stats['changed_body_names'])|changed)
-                if checker.preview_other_boxes is not None:clear,why=_changed_pair_clear(checker,current,changed)
+                self_guard=getattr(checker,'same_arm_clearance',None)
+                if self_guard is not None:clear,why=self_guard.clear(q,float(width),changed_bodies=changed)
                 else:clear,why=True,None
+                if clear and checker.preview_other_boxes is not None:clear,why=_changed_pair_clear(checker,current,changed)
                 if clear:
                     # Original callback retains own/stale actors, selected-tip,
                     # loose-stock and ignored-future filtering without changes.

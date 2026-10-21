@@ -16,6 +16,7 @@ from predictive_pair_clearance import proxy,transform_proxy,shape_overlap
 def execute(c):
     arm,art,cmd,ids,fi,checker,vision,dt=[c[k]for k in ['arm','art','cmd','ids','fi','checker','vision','dt']]
     cfg=c['config'];beg=time.perf_counter();diagnostics=[];rejections={}
+    if getattr(checker,'same_arm_clearance',None)is None:raise RuntimeError('Empty park requires same-arm nonadjacent CAD clearance checks')
     if cfg.get('empty_park_known_empty')is not True:raise RuntimeError('Physical parking probe requires explicit initial right-Hand-known-empty invariant')
     if 'left'not in c['checkers'] or not c.get('left_hand_known_empty'):raise RuntimeError('Physical parking probe requires current empty LEFT and its full pair checker')
     if checker.payload_path or c['checkers']['left'].payload_path:raise RuntimeError('Physical empty parking cannot detach an existing planned payload')
@@ -132,7 +133,7 @@ def execute(c):
         result=dict(state='empty_robot_park_no_safe_route',robot_motion_executed=False,rejections=rejections,examples=diagnostics,uses_free_body_poses=False,full_task_pass=False)
         (vision.out/'empty-park-observation.json').write_text(json.dumps(result,indent=2)+'\n');return result
     q,timing,query,position=chosen
-    c['planning_diagnostics'].append(dict(event='empty_right_park_exact_curve',target_world_m=position.tolist(),whole_robot_fixed_and_pair_checked=True,whole_robot_conservative_stock_volume_checked=True,stock_bounds_world_m=[low.tolist(),high.tolist()],checked_openings_m=openings.tolist(),**timing,aperture_query_diagnostics=query))
+    c['planning_diagnostics'].append(dict(event='empty_right_park_exact_curve',target_world_m=position.tolist(),whole_robot_fixed_and_pair_checked=True,same_arm_nonadjacent_CAD_checked=True,same_arm_query_statistics=dict(checker.same_arm_clearance.stats),whole_robot_conservative_stock_volume_checked=True,stock_bounds_world_m=[low.tolist(),high.tolist()],checked_openings_m=openings.tolist(),**timing,aperture_query_diagnostics=query))
     if c.get('set_grip_hold'):c['set_grip_hold']('right',False)
     for row in q[1:]:cmd[0,ids]=row;c['step']('empty_right_park_before_single_camera')
     for _ in range(int(np.ceil(.15/dt))):c['step']('empty_right_park_settle')
