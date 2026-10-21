@@ -257,6 +257,8 @@ def check_envelopes(active, other, scene, phase, envelope, *, payloads=(), dynam
         low_b=np.array([sweep_bounds[id(x)][0]for x in second]);high_b=np.array([sweep_bounds[id(x)][1]for x in second])
         delta=np.maximum(np.maximum(low_a[:,None]-high_b[None],low_b[None]-high_a[:,None]),0.)
         return np.einsum('ijk,ijk->ij',delta,delta)<=margin*margin
+    from .common_duo_mount import fixed_pair_allowed,KEY as common_duo_key
+    common_duo_enabled=envelope.get(common_duo_key)is not None;fixed_base_pair_count=0
     self_possible=broad_pairs(active,active);other_possible=broad_pairs(active,other)
     for index, first in enumerate(active):
         for second_index in np.flatnonzero(self_possible[index,index+1:])+index+1:
@@ -265,6 +267,8 @@ def check_envelopes(active, other, scene, phase, envelope, *, payloads=(), dynam
             if (index, second_index) not in ignored and not model_connected:
                 pair_check(first, active[second_index], 'Robot self collision')
         for second_index in np.flatnonzero(other_possible[index]):
+            if common_duo_enabled and fixed_pair_allowed(envelope,first,other[second_index]):
+                fixed_base_pair_count+=1;continue
             pair_check(first, other[second_index], 'Other-arm collision')
     payload_ignores = envelope.get('payload_robot_ignore_capsules', [])
     if any(type(index) is not int or index < 6 or index >= len(active) for index in payload_ignores):
@@ -298,5 +302,6 @@ def check_envelopes(active, other, scene, phase, envelope, *, payloads=(), dynam
                 pair_check(payload, obstacle, 'Held payload/observed loose-part collision',allowed)
     return {'scope': 'field-verified enclosing capsules against measured boxes, self, other arm and supplied observed geometry',
             'conservative_swept_envelopes_checked': True, 'minimum_clearance_m': minimum,
+            'common_duo_fixed_base_pairs_excluded':fixed_base_pair_count,
             'geometric_checks': count, 'robot_geometry_inferred_from_tcp': False,
             'physical_execution_certified': False}

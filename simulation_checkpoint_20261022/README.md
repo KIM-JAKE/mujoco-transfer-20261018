@@ -12,6 +12,12 @@ The measured loaded-aperture option uses actual stationary encoders plus fresh i
 
 Typed RIGHT pre-carry planning failure can select a checked handover before loaded motion begins. Observed completed parts are registered as obstacles to both arms. Alternative receiver angle, donor preorientation and double-handover features are experimental flags; model-only feasibility is not physical task success.
 
+## Accepted357 smooth-carry follow-up
+
+[1x motion excerpts with explicit CUT cards](media/all3-pass357-recorded-excerpts-1x.mp4), [full470.50s wall-clock replay](media/all3-pass357-recorded-full-wall-1x.mp4).
+
+[Exact source](experiments/full-pass357/README.md) and [acceptance summary](component-evidence/native-roas-table-scatter-stable-v357-smooth-GPU-carry-all3-446/acceptance-summary.json): same randomseed446 passes all three parts again,470.50wall/59.07physics seconds. Actual initial large-ring carry1.86875seconds, with original hardware/geometry guards. Two small-ring rearrangements were needed.20/30seconds, new-layout reliability and hardware remain unverified.
+
 ## Accepted three-part assembly348
 
 [Measured acceptance summary](component-evidence/native-roas-table-scatter-stable-v348-gpu-carry-no-greedy-final-retreat-all3-446/acceptance-summary.json), [exact source](experiments/full-pass348/README.md), [1x excerpts with explicit cuts](media/all3-pass348-recorded-excerpts-1x.mp4), [full656.96s wall-clock replay](media/all3-pass348-recorded-full-wall-1x.mp4). LARGE/SMALL/PIN final position errors0.629/0.425/0.759mm and axis errors1.582/9.721/15.240mrad pass original1.5mm/50mrad gates. After0.3125s actual final emptyRIGHT lateral retreat, the original160mm Hand clearance and0.55s physics retention passed. Existing force, joint/finger velocity, acceleration and jerk checks were retained. Three local small-ring rearrangements were needed; they are shown in the excerpts. No hidden attachment or workpiece teleport produced assembly.

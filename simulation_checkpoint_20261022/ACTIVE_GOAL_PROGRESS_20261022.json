@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-21T21:24:40.813858+00:00",
+  "updated_utc": "2026-10-21T21:29:48.339714+00:00",
   "active_goal": true,
   "deadline_local": "2026-10-22T11:00:00+09:00",
   "deadline_utc": "2026-10-22T02:00:00Z",
@@ -7,7 +7,7 @@
   "priority": "Fast parallel CaP generalization; RGBD and actual SDK only; hardware/basiccollisionstop unchanged; no excess fine inspections",
   "GPU2": "Persistent cuRobo IK + both-arm route services; guarded grasp/workspace searches",
   "GPU3": "Actual Warp RGBD cameras, parallel physical reliability trials and recorded video",
-  "field_copy": "/home/gpuadmin/workspace/jake/field-demo-random-fair-search-20261022",
+  "field_copy": "/home/gpuadmin/workspace/jake/field-demo-random-common-duo-mount-20261022",
   "sealed_originals_preserved": true,
   "real_hardware_tested": false,
   "random_reliability_validated": false,
@@ -107,6 +107,70 @@
         "CPU physics and all capture/inference/planning waits counted after first snapshot; parallel runs are not causal timing comparisons",
         "Field565 full preflight still blocked by actual UNKNOWN/geometry admission; no actual robot dispatch or hardware success"
       ]
+    },
+    {
+      "source_run": "native-roas-table-scatter-stable-v357-smooth-GPU-carry-all3-446",
+      "seed": 446,
+      "full_task_pass": true,
+      "vision_end_to_end_pass": true,
+      "wall_s": 470.5038592070341,
+      "physics_s": 59.06666666665403,
+      "time_target_met": false,
+      "hardware_tested": false,
+      "generalized_reliability": false,
+      "initial_stock": "10 mixed physically dropped rings",
+      "final_checks": {
+        "ring1": {
+          "position_error_m": 0.0007268122359620335,
+          "axis_error_rad": 0.005155722733935304
+        },
+        "ring2": {
+          "position_error_m": 0.00022597210012710993,
+          "axis_error_rad": 0.000989422331787227
+        },
+        "pin": {
+          "position_error_m": 0.0007586292106884084,
+          "axis_error_rad": 0.006799701864008704
+        }
+      },
+      "limits": {
+        "samples": 28352,
+        "velocity_fraction_of_95_percent_PBV": 0.9600346995530334,
+        "max_acceleration_rad_s2": 8.8165283203125,
+        "max_jerk_rad_s3": 4086.9140625,
+        "acceleration_limit_rad_s2": 9.5,
+        "jerk_limit_rad_s3": 4750,
+        "command_limit_checks": true,
+        "complete_issued_field_checked_at_end": true,
+        "validated_sample_count": 28352
+      },
+      "actual_velocity_audit": {
+        "samples": 28352,
+        "max_fraction_of_95_percent_PBV": 0.9572675497285714,
+        "max_finger_fraction_of_47p5_mm_s": 0.8030035778095848,
+        "max_coupled_finger_difference_m": 3.948807716369629e-07,
+        "enforced": true,
+        "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+      },
+      "contact_force_caps_n": {
+        "left_per_finger": 30.0,
+        "right_per_finger": 30.0,
+        "left_final_insertion_per_finger": 30.0
+      },
+      "smooth_carry": {
+        "physical_seconds": 1.86875,
+        "previous_same_route_corner_stop_seconds": 12.222916666666666,
+        "limits_unchanged": true,
+        "all_issued_geometry_checked": true
+      },
+      "small_ring_rearrangements": 2,
+      "parallel_total_timing_comparison_eligible": false,
+      "limitations": [
+        "SIM pin collision shaft7.6mm vs nominal8mm; actual CAD fit unverified",
+        "Movable virtual camera banks are not a validated physical RealSense installation",
+        "Field standalone approach remains blocked, no hardware dispatch",
+        "Nested scattered_pick.full_task_pass=false is provisional pre-final metadata; only top-level aggregate is final acceptance"
+      ]
     }
   ],
   "earlier_full_pass": "v229seed446 374.078761wall/55.89375physics seconds, earlierpolicy only",
@@ -125,10 +189,10 @@
     "hardware_readiness": "561 field sealed/published;339b full-CAD broadphase1.544x accepted,331 real recorded videos, final341emptyHand model preflight"
   },
   "next_actions": [
-    "Physical357 full446 smoothGPUcarry; LARGE actualinsertion/retention alreadypassed, remainingparts pending",
-    "359 fresh20mmstandoff camera retarget after proven358guarded80release+actualRIGHTapproach; no secondgripproofyet",
-    "326e existingprotectedLEFTpark orderedfirst thenone-rim carry/pivot; genericcontactFALSE scientificSIMonly",
-    "NEWfield fixedCOMMON-DUO-base installedproof: baselinecapsulesoverlapstaticbase despiteactualmeshgap.782mm; moving/UNKNOWN guards unchanged"
+    "360 physically validate150\u00b5m firstcontact selection and20mmstandoff RGBD feedback for second native regrasp",
+    "361 independent447 random layout using proven357 smoothcarry, all limits unchanged",
+    "326f exact7mm finite-rim depth test with all guards, no field contactcertificate waiver",
+    "Seal new default-off verifiedCOMMON-DUO-base proof treatment; retain moving/self/UNKNOWN checks"
   ],
   "trials": [
     {
@@ -378,7 +442,7 @@
     }
   ],
   "field_published_commit": "056e39d",
-  "field_published_files_verified": 565,
+  "field_published_files_verified": 577,
   "field_publish_branch": "main and codex/rgbd-random-field-20261022",
   "current_pin_success": "260pin single axial stroke31.7s; samefulltask latercrossarmabort",
   "GPU_route_component": {
@@ -394,16 +458,17 @@
   "same_arm_defect": "272 native link7 vs link5 collision before impulse; exact authored-filter guard now installed; initialPASS/preimpactREJECT/273all862commandsPASS",
   "single_camera_component": "278 real physical selfclear emptypark1.4083s \u2192one768overhead RGBD; largeclass approach+40/70mm lift geometriccomponent accepted; fullHand basket8.238mm min/ring sidewalls3.034mm; no fullgrasp or hardware claim",
   "active_trials": [
-    357,
-    359,
-    "326e"
+    360,
+    361,
+    362,
+    "326f"
   ],
-  "latest_fulltask": "280all3skills finished butlargefell nextsmallapproach. Completed observed parts registry added/287regression blocks recorded badapproach.288stops safely no smallpalmclear pose (fixedbasket0670), NOTall3success.",
-  "field_starter": "561sealedpublished0812fab,76runtime106deps. Native12CTestunchanged532; PINfeedback21Python + measuredcap7tests;4rawRGBDframespublicdetectorreplayPASS. DefaultsICP/PINfeedbackoff. ActualfieldapproachstillUNKNOWNblocked,hardwarefalse.",
-  "field_profile_dependencies_verified": 106,
+  "latest_fulltask": "357 same446 aggregatePASS470.50wall/59.07physics;2smallrearrangements. Newseed447361pending.",
+  "field_starter": "577sealed83runtime/113deps; optional proofboundfixedcommonDuo mount defaultoff;31focusedtests. No realhardware, fullapproachstillUNKNOWN/selfgeometryblocked.",
+  "field_profile_dependencies_verified": 113,
   "reverse_withdraw_fix": "274 originalworld80mmreproducedlink3machinecollision; actualpreinsert66.15mm target fulloriginalfixed/pair/self/289commands+5widthsPASS. Canonical installed; physics281+282 testing.",
-  "canonical_hold": "328stagingprobe; Hcorepickup327+cloud329SHAinstalled. Root331446fullGPU3 includesbothnewoptimizations;324/327halfgaingroup445inprogress.",
-  "next_root_version": 333,
+  "canonical_hold": "Vision360/primary1275 hold; root357/361 frozen isolated source",
+  "next_root_version": 363,
   "staged_trials": [
     326,
     330

@@ -1,0 +1,64 @@
+{
+  "source_run": "native-roas-table-scatter-stable-v357-smooth-GPU-carry-all3-446",
+  "seed": 446,
+  "full_task_pass": true,
+  "vision_end_to_end_pass": true,
+  "wall_s": 470.5038592070341,
+  "physics_s": 59.06666666665403,
+  "time_target_met": false,
+  "hardware_tested": false,
+  "generalized_reliability": false,
+  "initial_stock": "10 mixed physically dropped rings",
+  "final_checks": {
+    "ring1": {
+      "position_error_m": 0.0007268122359620335,
+      "axis_error_rad": 0.005155722733935304
+    },
+    "ring2": {
+      "position_error_m": 0.00022597210012710993,
+      "axis_error_rad": 0.000989422331787227
+    },
+    "pin": {
+      "position_error_m": 0.0007586292106884084,
+      "axis_error_rad": 0.006799701864008704
+    }
+  },
+  "limits": {
+    "samples": 28352,
+    "velocity_fraction_of_95_percent_PBV": 0.9600346995530334,
+    "max_acceleration_rad_s2": 8.8165283203125,
+    "max_jerk_rad_s3": 4086.9140625,
+    "acceleration_limit_rad_s2": 9.5,
+    "jerk_limit_rad_s3": 4750,
+    "command_limit_checks": true,
+    "complete_issued_field_checked_at_end": true,
+    "validated_sample_count": 28352
+  },
+  "actual_velocity_audit": {
+    "samples": 28352,
+    "max_fraction_of_95_percent_PBV": 0.9572675497285714,
+    "max_finger_fraction_of_47p5_mm_s": 0.8030035778095848,
+    "max_coupled_finger_difference_m": 3.948807716369629e-07,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  },
+  "contact_force_caps_n": {
+    "left_per_finger": 30.0,
+    "right_per_finger": 30.0,
+    "left_final_insertion_per_finger": 30.0
+  },
+  "smooth_carry": {
+    "physical_seconds": 1.86875,
+    "previous_same_route_corner_stop_seconds": 12.222916666666666,
+    "limits_unchanged": true,
+    "all_issued_geometry_checked": true
+  },
+  "small_ring_rearrangements": 2,
+  "parallel_total_timing_comparison_eligible": false,
+  "limitations": [
+    "SIM pin collision shaft7.6mm vs nominal8mm; actual CAD fit unverified",
+    "Movable virtual camera banks are not a validated physical RealSense installation",
+    "Field standalone approach remains blocked, no hardware dispatch",
+    "Nested scattered_pick.full_task_pass=false is provisional pre-final metadata; only top-level aggregate is final acceptance"
+  ]
+}

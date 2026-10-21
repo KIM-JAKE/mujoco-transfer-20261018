@@ -366,6 +366,8 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
         from .static_scene_lease import target_agrees
         phase['_target_instance_id']=target_agrees(observation['static_scene_lease'],observation,config)
     phase['_tcp_sweep_m'] = trace['speeds'][-1]*trace['gap']/2
+    from .common_duo_mount import binding as common_duo_binding,KEY as common_duo_key
+    common_mount=common_duo_binding(config,site_config,root,dependencies,now)
     base = collision.transform(site_config['robots'][side]['T_cell_base'])
     other_side = 'right' if side == 'left' else 'left'
     other_base = collision.transform(site_config['robots'][other_side]['T_cell_base'])
@@ -374,6 +376,8 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
     other_links = collision.finite(other_state['link_points_base_m'], (9, 3))@other_base[:3, :3].T+other_base[:3, 3]
     other_tcp = other_base@collision.transform(other_state['tcp_base'])
     envelope = copy.deepcopy(config['robots'][side]); envelope['_angular_speed_bound_rad_s'] = float(np.sum(trace['joint_velocities']))
+    envelope.pop(common_duo_key,None)
+    if common_mount is not None:envelope[common_duo_key]=common_mount
     if any(config['robots'][s].get('native_hand_aperture_geometry')for s in ['left','right'])and aperture_binding is None:raise ValueError('Actual both-Hand SDK aperture binding required for width-aware native geometry')
     if phase.get('bounded_loose_stock_contact')is not None:
         from .stock_contact import validate_stock_contact_policy
@@ -568,6 +572,7 @@ def geometry_check(model, other_state, config, site_config, phase_name, side, pa
             dynamic.append(row)
     result = collision.check_envelopes(active, other, scene, phase, envelope,
                                        payloads=payloads, dynamic_obstacles=dynamic, margin=config['collision_margin_m'])
+    result['common_duo_mount_proof']=dict(proof_sha256=common_mount.proof_sha256,description_sha256=common_mount.description_sha256,scope='Only installed static opposite link0 pairs; moving and obstacle guards unchanged')if common_mount is not None else None
     result.update(sample_count=trace['sample_count'], maximum_sample_gap_s=trace['gap'],
                   independent_c2_curve_bound=not stopped_aperture, unsampled_motion_inflation=not stopped_aperture,
                   stopped_SDK_aperture_sweep=stopped_aperture,checked_Hand_aperture_binding=aperture_binding,
