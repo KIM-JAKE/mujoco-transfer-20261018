@@ -1,0 +1,300 @@
+{
+  "run": "native-roas-table-fixed-front-v513-camera-priority-plus",
+  "run_path": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v513-camera-priority-plus",
+  "result_sha256": "d8ac2f99da4b58527dc1c196faed7980c08ec1d4288b5fe10e1646ae308a0026",
+  "frozen_manifest_sha256": "97b1b12fe71886341e0f3f687165fbc47caf380762114ddaa4fcf25a108ebe8b",
+  "relevant_frozen_source_files": {
+    "isaac_port/native_hand_layout/roas-table/direct_pin_skill.py": "5244ae81bd0161080848cfb11e1da864a571d99676f5f4de185bee756f6c48be",
+    "isaac_port/native_hand_layout/roas-table/loose_bin_task.py": "ccb9d621b1e0d4c40a0d8008cca124197f248bd9065b64b1fd3ed80e98ef7c4c",
+    "isaac_port/native_hand_layout/roas-table/pin_collar_contact_target.py": "3a275ea11ff67e0efffa97132ab3339e9772d78b0236986f0914f33db8cc3d74",
+    "isaac_port/native_hand_layout/roas-table/pin_terminal_geometry.py": "fb63276cf3eeaeaed1c7e1610877973e54ebd699b0b3ba2cee4e956616eeb48d",
+    "isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py": "71f5314cae64c8c2390dd0dcfd34e22536904b4853137f61495cc9bb86bd6c34"
+  },
+  "full_task_pass": true,
+  "pin_component_pass": null,
+  "pin_only_component": false,
+  "wall_s": 209.6988859899575,
+  "physics_s": 47.487499999997894,
+  "reset_event_count": 0,
+  "reset_efficacy_qualified": false,
+  "precision_image_count": 3,
+  "original_total_image_budget": 16,
+  "precision_sequence": [
+    {
+      "iteration": 0,
+      "radial_error_m": 0.0004718708898888306,
+      "axis_error_rad": 0.0010709108421084847,
+      "maximum_shaft_axis_radial_error_m": 0.000481246149108779,
+      "selected_feedback_gain": 0.65
+    },
+    {
+      "iteration": 1,
+      "radial_error_m": 0.00010295944623315057,
+      "axis_error_rad": 0.0005682444398080473,
+      "maximum_shaft_axis_radial_error_m": 0.00011018512959693188,
+      "selected_feedback_gain": 0.65
+    },
+    {
+      "iteration": 2,
+      "radial_error_m": 3.6209611133359276e-05,
+      "axis_error_rad": 0.0005748439600896454,
+      "maximum_shaft_axis_radial_error_m": 4.293238458664635e-05,
+      "selected_feedback_gain": null
+    }
+  ],
+  "qualified_final_precision": {
+    "radial_error_m": 3.6209611133359276e-05,
+    "radial_limit_m": 7.5e-05,
+    "axis_error_rad": 0.0005748439600896454,
+    "axis_limit_rad": 0.003,
+    "maximum_shaft_axis_radial_error_m": 4.293238458664635e-05,
+    "maximum_shaft_axis_radial_limit_m": 0.00015
+  },
+  "postcarry_max_center_drift_m": 4.1750332907459444e-05,
+  "postcarry_max_axis_drift_rad": 0.0005897655021677434,
+  "postcarry_confirmations": 3,
+  "command_limit_audit": {
+    "samples": 22794,
+    "velocity_fraction_of_95_percent_PBV": 0.945947107955137,
+    "max_acceleration_rad_s2": 8.8165283203125,
+    "max_jerk_rad_s3": 2966.30859375,
+    "acceleration_limit_rad_s2": 9.5,
+    "jerk_limit_rad_s3": 4750,
+    "command_limit_checks": true,
+    "complete_issued_field_checked_at_end": true,
+    "validated_sample_count": 22794
+  },
+  "actual_encoder_motor_audit": {
+    "samples": 22794,
+    "max_fraction_of_95_percent_PBV": 0.9399030464956508,
+    "max_finger_fraction_of_47p5_mm_s": 0.6796674508797494,
+    "max_coupled_finger_difference_m": 4.842877388000488e-08,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  },
+  "independent_saved_arrays": {
+    "command": {
+      "shape": [
+        22794,
+        18
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    "actual_dof_position": {
+      "shape": [
+        22794,
+        18
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    "actual_dof_velocity": {
+      "shape": [
+        22794,
+        18
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    }
+  },
+  "part_attachments": false,
+  "workpiece_teleports_after_initialization": 0,
+  "native_finger_target_speed_cap_m_s": 0.0475,
+  "finger_effort_caps_n": {
+    "left_per_finger": 30.0,
+    "right_per_finger": 30.0,
+    "left_final_insertion_per_finger": 30.0
+  },
+  "controller_hz": 480,
+  "physics_substeps_per_command": 4,
+  "final_acceptance_checks": {
+    "ring1": {
+      "position_error_m": 0.00039791379543030545,
+      "axis_error_rad": 0.005870320714412523
+    },
+    "ring2": {
+      "position_error_m": 0.0003060901202703253,
+      "axis_error_rad": 0.01075664727625723
+    },
+    "pin": {
+      "position_error_m": 0.000754487040537291,
+      "axis_error_rad": 0.0016184127902164553
+    }
+  },
+  "caveats": [
+    "Simulation only; no physical-robot or repeatability qualification.",
+    "Reset branch did not execute: no evidence of actual reset efficacy.",
+    "Component506 has stock rings and cannot qualify the whole three-part task."
+  ],
+  "canonical_branch": {
+    "requested": true,
+    "fixed_supply_only": true,
+    "same_fresh_RGBD_target": [
+      [
+        0.7660369371084058,
+        0.0,
+        0.6427965548955381,
+        0.23063694370861196
+      ],
+      [
+        3.905136023417783e-07,
+        -0.9999999999998155,
+        -4.653849519863731e-07,
+        -0.8547312035514507
+      ],
+      [
+        0.6427965548954194,
+        6.075228614211246e-07,
+        -0.766036937108265,
+        1.000797491140873
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "candidates": [
+      {
+        "source": "robot_seeds.pin_tail_approach",
+        "requested_seed": [
+          -1.8032544887750783,
+          -0.041379360636404246,
+          -2.1349274681213797,
+          -2.259977987827435,
+          1.14764249900318,
+          1.3966448473710373,
+          -1.3039344569767632
+        ],
+        "admitted": false,
+        "solved_q": [
+          -1.6684235054078527,
+          -0.34269558712424497,
+          -2.1018789504613573,
+          -2.1201622247213767,
+          1.2073970236086842,
+          1.587163812630249,
+          -1.2225938935763452
+        ],
+        "reason": "original_route_unavailable"
+      },
+      {
+        "source": "catalogue.pickup_q",
+        "requested_seed": [
+          -0.2736159774390373,
+          -0.08840124174097606,
+          2.7092279178931538,
+          -2.400226780387667,
+          1.376797022500781,
+          1.369246330994762,
+          -1.4654667102643635
+        ],
+        "admitted": true,
+        "solved_q": [
+          -0.30206349021044804,
+          -0.2097156819642782,
+          2.7014217687341735,
+          -2.103258590527248,
+          1.4345768647713986,
+          1.2815232185332963,
+          -1.2870404901749821
+        ],
+        "reason": "original_full_route_admitted"
+      },
+      {
+        "source": "catalogue.pre_q",
+        "requested_seed": [
+          -0.3341440959586242,
+          -0.07155828179784735,
+          2.652251668720108,
+          -2.302264870663841,
+          1.3089891503892828,
+          1.2710386129936264,
+          -1.3716438600842027
+        ],
+        "admitted": false,
+        "solved_q": [
+          -0.2995670273477551,
+          -0.20996222793134506,
+          2.6987372362764863,
+          -2.10324576415904,
+          1.4349327004425203,
+          1.2810261756675891,
+          -1.2870977688663074
+        ],
+        "reason": "duplicate_existing_candidate"
+      }
+    ],
+    "fallback_to_original_groups": false,
+    "uses_free_body_poses": false,
+    "selected_source": "catalogue.pickup_q",
+    "selected_pre_q": [
+      -0.30206349021044804,
+      -0.2097156819642782,
+      2.7014217687341735,
+      -2.103258590527248,
+      1.4345768647713986,
+      1.2815232185332963,
+      -1.2870404901749821
+    ],
+    "actual_pre_q": [
+      -0.3018425405025482,
+      -0.20988115668296814,
+      2.701667070388794,
+      -2.102740526199341,
+      1.4346712827682495,
+      1.2817524671554565,
+      -1.287175178527832
+    ],
+    "command_pre_q": [
+      -0.3020634949207306,
+      -0.20971567928791046,
+      2.7014217376708984,
+      -2.1032586097717285,
+      1.4345768690109253,
+      1.2815232276916504,
+      -1.2870404720306396
+    ]
+  },
+  "original_SMALL_binding_capture_age_physics_s": 0.20833333333333334,
+  "original_SMALL_binding_maximum_age_physics_s": 0.25,
+  "saved_route_admissions": {
+    "SMALL_donor": true,
+    "SMALL_LEFT720": true,
+    "LARGE_canonical1415": false
+  },
+  "camera_priority_public_observations": {
+    "mandatory_SMAll_held_left_index_0based": 19,
+    "deferred_next_ring_initial_index_0based": 20,
+    "mandatory_frame_precedes_next_initial": true,
+    "rows": [
+      {
+        "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v513-camera-priority-plus/rgb-perception/observation-020-held_left",
+        "mode": "held_left",
+        "part": "ring2",
+        "captured_wall_s": 51.616503558005206,
+        "ready_wall_s": 52.0466925209621,
+        "delivered_wall_s": 52.053845968912356,
+        "queue_wait_s": 0.0006595950108021498,
+        "capture_s": 0.029071824974380434,
+        "processing_s": 0.4004575429717079,
+        "scene_sim_time_s": 51.616503558005206
+      },
+      {
+        "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v513-camera-priority-plus/rgb-perception/observation-021-initial",
+        "mode": "initial",
+        "part": "ring1",
+        "captured_wall_s": 52.06156915798783,
+        "ready_wall_s": 52.5535460190149,
+        "delivered_wall_s": 58.402788508916274,
+        "queue_wait_s": 0.0005082050338387489,
+        "capture_s": 0.16556859388947487,
+        "processing_s": 0.32590006210375577,
+        "scene_sim_time_s": 52.06156915798783
+      }
+    ],
+    "causal_latency_benchmark": false
+  }
+}

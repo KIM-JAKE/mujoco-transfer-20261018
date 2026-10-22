@@ -10,6 +10,6 @@ PIN의 기존 canonical seed 우선순위에서 `catalogue.pickup_q`가 원래 �
 
 전체23,274개 명령 필드와 실제 encoder 한도 검사가 통과했습니다. 속도·가속도·jerk·47.5mm/s 손가락 속도·30N 힘·질량·마찰·원래 충돌/센서/유지 기준을 바꾸지 않았습니다. attachment·초기화 뒤 teleport는 없습니다.
 
-동일420개 Python/427개 소스·고정 입력의512 NOMINAL/513 PLUS 결과를 기록하며 MINUS514는 아직 대기 중입니다. 이 기록은 세 배치 통과·반복 성공률·임의 적층·실기 성공이나 순수 단일수정 속도 개선을 주장하지 않습니다. 이전 실패508/511도 각각 보존합니다.
+동일420개 Python/427개 소스·고정 입력의512 NOMINAL/513 PLUS는 전체 통과했고 MINUS514는 최초 PIN 삽입 뒤 추가 깊이 보정의 원래 충돌 검사에서 중단됐습니다. 이 기록은 세 배치 통과·반복 성공률·임의 적층·실기 성공이나 순수 단일수정 속도 개선을 주장하지 않습니다. 이전 실패508/511도 각각 보존합니다.
 
 `pipeline-results.json`, `acceptance-summary.json`, `camera-priority-qualification/actual512-audit.json`, 정확한 소스 및 원래 명령·관측을 함께 확인하세요. 외부 서비스 소스는495의 현재30개 파일 패키지와 byte 단위로 같으며 추가 근거는 `supplemental-source-evidence-manifest.json`으로 검증했습니다.

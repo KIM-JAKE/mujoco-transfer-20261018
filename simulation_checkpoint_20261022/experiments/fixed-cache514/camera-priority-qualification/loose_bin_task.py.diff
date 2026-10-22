@@ -1,0 +1,21 @@
+--- a/loose_bin_task.py
++++ b/loose_bin_task.py
+@@ -946,7 +946,7 @@
+                 cmd[0,indices['right']]=row_value[:7];cmd[0,fingers['right']]=row_value[7:];yield
+         clearing=empty_clearance_program()
+         left_G,pose=observe('left',part,left_G,part+'_receiver_RGBD',background=clearing);results.append(dict(part=part,pickup=p,receiver_pose=pose,handover_planning=dict(elapsed_s=handover['elapsed_s'],counts=handover['counts'])))
+-        if part==ring_order[0] and not c['config'].get('one_ring_only'):next_initial=vision.request(initial_ring_event(),arms['right'].fk(art.get_dof_positions()[0,indices['right']]))
++        if part==ring_order[0] and not c['config'].get('one_ring_only') and not c['config'].get('defer_next_initial_until_receiver_bound',False):next_initial=vision.request(initial_ring_event(),arms['right'].fk(art.get_dof_positions()[0,indices['right']]))
+         if part==ring_order[-1] and not c['config'].get('one_ring_only') and not pin_first and not c['config'].get('pin_between_rings'):
+             pin_event=dict(mode='pin_initial',part='pin',label='pin_initial');pin_initial=(pin_event,vision.request(pin_event,arms['right'].fk(art.get_dof_positions()[0,indices['right']])))
+         for _ in clearing:step(part+'_donor_leave_receiver_corridor')
+@@ -1058,6 +1058,9 @@
+                 evidence=dict(event='small_loaded_receiver_encoder_geometry_bound',**binding.record)
+                 c['planning_diagnostics'].append(evidence);print('LOOSE_SMALL_LOADED_APERTURE_BOUND',evidence,flush=True)
+             results[-1]['receiver_stable_hold_RGBD']=pose
++        # Mandatory fresh receiver/binding capture precedes optional next-part
++        # prefetch on the single camera worker; no extra image or dwell.
++        if part==ring_order[0] and not c['config'].get('one_ring_only') and c['config'].get('defer_next_initial_until_receiver_bound',False):next_initial=vision.request(initial_ring_event(),arms['right'].fk(art.get_dof_positions()[0,indices['right']]))
+         events.append(dict(event=part+'_donor_leave_receiver_corridor',wall_s=time.perf_counter()-c['started'],overlapped_receiver_RGBD=True,extra_lateral_clearance_used=extra_lateral_clearance,motion_s=len(clearing_rows)*dt))
+         if part=='ring1' and (c['config'].get('temporary_axial_double_handover_component') or c['config'].get('large_double_handover_full_task')):
+             module=types.ModuleType('double_native_handover');module.__file__=str(HERE/'double_native_handover.py');exec(compile(Path(module.__file__).read_text(),module.__file__,'exec'),module.__dict__)

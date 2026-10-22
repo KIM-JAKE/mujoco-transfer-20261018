@@ -1,0 +1,220 @@
+{
+  "run": "native-roas-table-fixed-front-v514-camera-priority-minus",
+  "full_task_pass": false,
+  "wall_s": 188.13120343198534,
+  "failure": "direct_pin_skill.PinCartesianPreflightBlocked: Pin Cartesian robot path obstructed pin_axial_depth_correction {'segment': 16, 'fraction': 1.0, 'collision': {'query': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger/tip', 'actor': '/World/Environment/m80/instance_0554', 'collider': '/World/Environment/m80/instance_0554'}}",
+  "canonical_branch": {
+    "requested": true,
+    "fixed_supply_only": true,
+    "same_fresh_RGBD_target": [
+      [
+        0.7660369371084058,
+        0.0,
+        0.6427965548955381,
+        0.23063694370861196
+      ],
+      [
+        3.905136023417783e-07,
+        -0.9999999999998155,
+        -4.653849519863731e-07,
+        -0.8547312035514507
+      ],
+      [
+        0.6427965548954194,
+        6.075228614211246e-07,
+        -0.766036937108265,
+        1.000797491140873
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "candidates": [
+      {
+        "source": "robot_seeds.pin_tail_approach",
+        "requested_seed": [
+          -1.8032544887750783,
+          -0.041379360636404246,
+          -2.1349274681213797,
+          -2.259977987827435,
+          1.14764249900318,
+          1.3966448473710373,
+          -1.3039344569767632
+        ],
+        "admitted": false,
+        "solved_q": [
+          -1.6684235054078527,
+          -0.34269558712424497,
+          -2.1018789504613573,
+          -2.1201622247213767,
+          1.2073970236086842,
+          1.587163812630249,
+          -1.2225938935763452
+        ],
+        "reason": "original_route_unavailable"
+      },
+      {
+        "source": "catalogue.pickup_q",
+        "requested_seed": [
+          -0.2736159774390373,
+          -0.08840124174097606,
+          2.7092279178931538,
+          -2.400226780387667,
+          1.376797022500781,
+          1.369246330994762,
+          -1.4654667102643635
+        ],
+        "admitted": true,
+        "solved_q": [
+          -0.30206349021044804,
+          -0.2097156819642782,
+          2.7014217687341735,
+          -2.103258590527248,
+          1.4345768647713986,
+          1.2815232185332963,
+          -1.2870404901749821
+        ],
+        "reason": "original_full_route_admitted"
+      },
+      {
+        "source": "catalogue.pre_q",
+        "requested_seed": [
+          -0.3341440959586242,
+          -0.07155828179784735,
+          2.652251668720108,
+          -2.302264870663841,
+          1.3089891503892828,
+          1.2710386129936264,
+          -1.3716438600842027
+        ],
+        "admitted": false,
+        "solved_q": [
+          -0.2995670273477551,
+          -0.20996222793134506,
+          2.6987372362764863,
+          -2.10324576415904,
+          1.4349327004425203,
+          1.2810261756675891,
+          -1.2870977688663074
+        ],
+        "reason": "duplicate_existing_candidate"
+      }
+    ],
+    "fallback_to_original_groups": false,
+    "uses_free_body_poses": false,
+    "selected_source": "catalogue.pickup_q",
+    "selected_pre_q": [
+      -0.30206349021044804,
+      -0.2097156819642782,
+      2.7014217687341735,
+      -2.103258590527248,
+      1.4345768647713986,
+      1.2815232185332963,
+      -1.2870404901749821
+    ],
+    "actual_pre_q": [
+      -0.3018418252468109,
+      -0.2098805010318756,
+      2.7016613483428955,
+      -2.102715253829956,
+      1.4346634149551392,
+      1.2817658185958862,
+      -1.287174105644226
+    ],
+    "command_pre_q": [
+      -0.3020634949207306,
+      -0.20971567928791046,
+      2.7014217376708984,
+      -2.1032586097717285,
+      1.4345768690109253,
+      1.2815232276916504,
+      -1.2870404720306396
+    ]
+  },
+  "precision_image_count": 7,
+  "original_precision_passed": {
+    "radial_error_m": 5.097452708307815e-05,
+    "radial_limit_m": 7.5e-05,
+    "axis_error_rad": 0.0004803508340634538,
+    "axis_limit_rad": 0.003,
+    "maximum_shaft_axis_radial_error_m": 5.618049665730301e-05,
+    "maximum_shaft_axis_radial_limit_m": 0.00015
+  },
+  "precision_sequence": [
+    {
+      "iteration": 0,
+      "radial_error_m": 0.0008449238670722426,
+      "axis_error_rad": 0.0012767606196117415
+    },
+    {
+      "iteration": 1,
+      "radial_error_m": 0.000492561250497033,
+      "axis_error_rad": 0.0011284067040506912
+    },
+    {
+      "iteration": 2,
+      "radial_error_m": 0.000257735830790786,
+      "axis_error_rad": 0.00069669607988139
+    },
+    {
+      "iteration": 3,
+      "radial_error_m": 0.00016860732783583452,
+      "axis_error_rad": 0.0007412911311344583
+    },
+    {
+      "iteration": 4,
+      "radial_error_m": 0.0001588677129958935,
+      "axis_error_rad": 0.0007005635065298856
+    },
+    {
+      "iteration": 5,
+      "radial_error_m": 9.342793060254878e-05,
+      "axis_error_rad": 0.00048495883677125766
+    },
+    {
+      "iteration": 6,
+      "radial_error_m": 5.097452708307815e-05,
+      "axis_error_rad": 0.0004803508340634538
+    }
+  ],
+  "initial_full_axial_insert_executed": true,
+  "post_insert_depth_RGBD": {
+    "position_error_m": 0.0042243863061053625,
+    "axis_error_rad": 0.00014316113718030555
+  },
+  "blocked_depth_correction_before_issue": true,
+  "final_release_withdraw_and_retention_qualified": false,
+  "final_complete_command_field_audit_available": false,
+  "actual_SDK_motor_audit": {
+    "samples": 23378,
+    "max_fraction_of_95_percent_PBV": 0.9401169093243681,
+    "max_finger_fraction_of_47p5_mm_s": 0.682536708681207,
+    "max_coupled_finger_difference_m": 5.075708031654358e-08,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  },
+  "independent_saved_all_arrays_finite": true,
+  "actual_issued_rows": 23378,
+  "part_attachments": false,
+  "workpiece_teleports_after_initialization": 0,
+  "SMALL_binding_capture_age_physics_s": 0.075,
+  "original_maximum_capture_age_s": 0.25,
+  "camera_observation_indices": {
+    "required_held_left": 19,
+    "deferred_next_initial": 20
+  },
+  "reset_count": 0,
+  "saved_route_admissions": {
+    "SMALL_donor": true,
+    "SMALL_LEFT720": true,
+    "LARGE_canonical1415": true
+  },
+  "caveats": [
+    "Original collision gate stopped axial depth correction before motion, after initial insert. No completed PIN or whole-task pass.",
+    "Actual motor audit covers issued samples; final complete-field audit is unavailable.",
+    "No three-case qualification/default promotion; retain failures."
+  ]
+}

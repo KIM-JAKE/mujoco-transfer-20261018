@@ -1,7 +1,5 @@
-# Same-source camera-priority cohort
+# Camera-priority cohort outcome
 
-512/513 are two completed cases; MINUS514 is pending. No three-case/default promotion is asserted in this per-case archive.
+512NOMINAL and513PLUS fullPASS;514MINUS originaldepth-correction collision stop after initial insertion. Same source cohort is NOT three-case qualified; default checkpoint is not promoted. This is not repeatability or hardware qualification.
 
-Every original sensor/retention/collision/actuator gate remains authoritative. Camera-priority patch is scheduling only; the SAME next-part request is moved after the existing original SMALL receiver binding, with no added frame or dwell. Actual mandatory/deferred frame ordering and original capture-age values are recorded in the per-case audit. The original 250ms physical image-age limit is unchanged.
-
-Canonical PIN branch proof is copied from510 as component history; this case’s actual admission/source/q and full original precision/actuator results are recorded separately. Any saved-route rejection runs original guarded fallback and is not counted as reuse.
+The original250ms binding image-age and all sensing/retention/collision/actuator gates remain unchanged. Original mandatory held-left camera packet precedes the deferred next-part initial packet in all three actual trials. Full PIN/three-part completion is claimed only for512/513.514 did not release/withdraw the PIN after its blocked correction.
