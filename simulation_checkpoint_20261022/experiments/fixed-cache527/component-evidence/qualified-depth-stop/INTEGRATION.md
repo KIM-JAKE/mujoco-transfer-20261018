@@ -1,0 +1,7 @@
+Private staged direct_pin_skill.py only, based on exact 522 three-stage source (base and staged SHA in source-manifest.json).
+
+Whitelist and set pin_avoid_unneeded_depth_correction=true. Default false preserves the original behavior. Enabled requires existing pin_full_depth_require_robust_circle; original robust-circle view acquisition and pose qualification remain unchanged.
+
+The unchanged final acceptance criterion is position error <1.5 mm AND signed-axis error <50 mrad. The original extra axial correction starting at 0.5 mm remaining depth is a refinement heuristic, not the final acceptance criterion. When a fresh qualified full-depth pose already passes BOTH original final gates, this opt-in skips that unnecessary extra movement. No image, step, timeout, geometry, force, motor limit, final gate, clamp, release, withdrawal or retention rule changes. Otherwise the original two-correction loop remains intact. Original observation and actuator errors propagate; no exception catches or retries are added.
+
+Focused critical tests run the literal staged full-depth block: actual523 error/axis admits without another push; outside position gate still corrects; outside axis gate still fails; robust observation failure stops before motion; issued faults propagate once; four default-off cases match the original block. Validation requires robust full-depth policy. No actual physical trial performed by this agent.

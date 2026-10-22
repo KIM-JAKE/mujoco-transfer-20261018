@@ -1,0 +1,89 @@
+{
+  "observation": "observation-070-held",
+  "record": {
+    "result": {
+      "pose": {
+        "cap_edge_coverage_deg": 342.75520878069983,
+        "cap_circular_edge_inliers": 64,
+        "cap_total_hull_edge_points": 64,
+        "cap_circular_edge_rms_m": 1.4151632193775525e-05,
+        "cap_expected_radius_m": 0.00525,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.3020115188126853,
+          0.2274289575370218,
+          1.5276458963119453
+        ],
+        "axis": [
+          -0.015552170139634846,
+          -0.01722311544015251,
+          0.9997307108909291
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.00521524848503222,
+        "cap_points": 5933,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 13616,
+        "plane_rms_m": 1.896664554631917e-08,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 158.36592705454677,
+        "neural_inference_this_frame": false
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 206.03867733699735,
+    "ready_wall_s": 206.2370869399747,
+    "capture_s": 0.03857702808454633,
+    "processing_s": 0.15843572688754648,
+    "queue_wait_s": 0.0013968480052426457,
+    "camera_profile": {
+      "upload_and_setup_s": 0.03324300004169345,
+      "gpu_ray_s": 0.004760424024425447,
+      "gpu_shading_and_download_s": 0.0005069340113550425,
+      "dynamic_s": 0.038003424066118896,
+      "static_s": 0.0,
+      "shading_s": 0.0005071499617770314,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 206.24430512008257,
+    "mode": "held",
+    "part": "pin",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v524-entry-before-contact-nominal/rgb-perception/observation-070-held",
+    "scene_sim_time_s": 206.03867733699735,
+    "hand_TCP_world": [
+      [
+        -0.7661734040705983,
+        0.0006281900326107126,
+        -0.6426333745772955,
+        -0.3026183457014041
+      ],
+      [
+        -0.018843236640574308,
+        -0.9995914045008643,
+        0.021488600788127657,
+        0.22719048756048352
+      ],
+      [
+        -0.6423573379366103,
+        0.028573329548361913,
+        0.765872219382293,
+        1.5137516277266911
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  "packet_SHA256": "5b57cc56e69acd8362465583d56a993f1cb6ac911d9cca804544ef7e0e0ef0ec",
+  "scope": "Fresh pre-release insertion-depth evidence ONLY; not postrelease retention"
+}

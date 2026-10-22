@@ -1,5 +1,5 @@
 {
-  "recorded_utc": "2026-10-22T10:00:22.225814+00:00",
+  "recorded_utc": "2026-10-22T10:46:06.236240+00:00",
   "implementation": "saved command fields + public RGBD approach/entry correction + current dynamic checks",
   "accepted_runs": {
     "446": 249.17807756795082,
@@ -37,26 +37,39 @@
   "latest_same_code_minus_qualified": false,
   "latest_same_code_three_case_generalization_pass": false,
   "wall_time_reduction_established": false,
-  "latest_exact_checkpoint": "494",
+  "latest_exact_checkpoint": 531,
   "latest_three_case_pending": {
-    "source_checkpoint": 522,
+    "source": "new423PY robustcanonical+wideproof+postreleaseclassROI",
     "runs": [
-      523,
-      524,
-      525
+      532,
+      533
     ],
-    "scope": "full3parts exactsame421PY/428sourceinputs, NOM/PLUS/MINUS fixedvariation",
+    "MINUS": "next",
     "not_yet_qualified": true
   },
   "arbitrary_random_layout_generalization_proven": false,
   "latest_single_nominal_checkpoint": "512",
   "latest_single_nominal_same_code_variations_qualified": false,
-  "latest_same_source_three_case_checkpoint": "512",
+  "latest_same_source_three_case_checkpoint": 529,
   "last_three_case_qualified_checkpoint": "494",
   "latest_same_source_three_case_results": {
-    "512": "PASS_NOMINAL",
-    "513": "PASS_PLUS",
-    "514": "FAIL_MINUS_PIN_POSTINSERT_DEPTH_CORRECTION_COLLISION"
+    "529_MINUS": {
+      "full_task_pass": false,
+      "wall_until_failure_s": 230.61451407603454,
+      "PINsavedcarry_executed": true,
+      "failure": "postreleaseRGBD originalcirclequality failed allviews"
+    },
+    "530_PLUS": {
+      "full_task_pass": false,
+      "wall_until_failure_s": 67.87085848802235,
+      "failure": "smallLEFToriginalnexttickwidth beyond250um proofdomain; PINnotreached"
+    },
+    "531_NOMINAL": {
+      "full_task_pass": true,
+      "wall_s": 214.30518595594913,
+      "publicpostreleaseRGBDcompletion": true,
+      "PINsavedcarry_executed": false
+    }
   },
   "concurrency": {
     "493": "single pipeline",
@@ -70,7 +83,7 @@
     "LARGE_canonical_carry": "512 admitted;513 original fresh fallback",
     "PIN_transport": "not cached; current planning and guards remain"
   },
-  "latest_same_source_audit": "component-evidence/fixed512-514-same-source-audit/same-source512-514-matrix.json",
+  "latest_same_source_audit": "component-evidence/fixed529-531-same-source-audit/matrix.json",
   "latest_diagnostic_trials": {
     "496": {
       "result": "FAIL_PIN_PRECISION_BUDGET",
@@ -247,7 +260,7 @@
     "494": "PASS_NOMINAL",
     "495": "PASS_MINUS"
   },
-  "latest_experimental_checkpoint": 522,
+  "latest_experimental_checkpoint": 531,
   "latest_experimental_single_plus": {
     "checkpoint": "510",
     "result": "PASS_ALL3",
@@ -256,9 +269,10 @@
     "not_three_case_qualification": true
   },
   "latest_experimental_single_nominal": {
-    "checkpoint": "511",
-    "result": "FAIL_SMALL_RECEIVER_IMAGE_AGE_BEFORE_PIN",
-    "canonical_pin_not_reached": true
+    "checkpoint": 524,
+    "full_task_pass": true,
+    "elapsed_s": 213.25644470204134,
+    "scope": "full measured-aperture PINcarry/qualifiedpre-releasecamera; postreleasePINretentionstilltruth-basedlegacy"
   },
   "qualification_scope_checkpoint": "512",
   "latest_canonical_pickup_trial": {
@@ -278,7 +292,7 @@
     "three_case_qualified": false,
     "default_checkpoint_promoted": false
   },
-  "default_qualification_scope_checkpoint": "494",
+  "default_qualification_scope_checkpoint": 531,
   "latest_exact_epoch_prime_trial": {
     "run": "515",
     "whole_task_pass": false,
@@ -310,5 +324,34 @@
     "native_result": "PINcomponentPASS; fulltaskpending523-525",
     "limits_unchanged": true
   },
-  "historical_qualification_limitation": "All historical fullpass records through520 lack current full PIN carry aperture coverage. Physical completion records preserved;494 reproduction default is not field execution qualification."
+  "historical_qualification_limitation": "All historical fullpass records through520 lack current full PIN carry aperture coverage. Physical completion records preserved;494 reproduction default is not field execution qualification.",
+  "latest_same_source_three_case_generalization_pass": false,
+  "latest_public_sensor_complete": {
+    "checkpoint": 531,
+    "case": "NOMINAL",
+    "full_task_pass": true,
+    "wall_s": 214.30518595594913,
+    "simulation_elapsed_s": 51.97499999999381,
+    "source_python_count": 423,
+    "source_input_count": 430,
+    "postrelease_RGBD_completion": true,
+    "postrelease_RGBD_position_error_m": 0.0001164023,
+    "PIN_saved_carry_executed": false,
+    "PIN_cache_miss": "public grasp outside independentlyproveddomain; rejectedbeforecoldprepare/motion",
+    "hardware_tested": false,
+    "repeat_or_three_case_qualification": false
+  },
+  "native_PIN_saved_carry_qualification": {
+    "run": 529,
+    "exact_middle_commands": 846,
+    "entry_commands": 24,
+    "exit_commands": 24,
+    "static_self_own_positive_hits_each": 5936,
+    "live_changed_row_misses": 343,
+    "full_current_width_guard_s": 7.867309,
+    "total_admission_including_cold_s": 12.124501,
+    "cold_preparation_s_included": 3.196303,
+    "whole_task_pass": false,
+    "speedup_causal_established": false
+  }
 }

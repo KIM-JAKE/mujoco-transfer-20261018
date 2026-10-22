@@ -1,0 +1,11 @@
+--- /tmp/fixed521-measured-entry-full/overrides/pin_terminal_geometry.py
++++ /tmp/fixed522-entry-before-contact/overrides/pin_terminal_geometry.py
+@@ -13,7 +13,7 @@
+ 
+ def check_terminal(ctx,arm,checker,q,depth,opening,selected,margin=.03,*,entry_stage=False,withdraw_H=None,requested_s=.8):
+     q=np.asarray(q,float);depth=float(depth);bounds=np.asarray(arm.bounds)
+-    depth_valid=.014<=depth<=.022 if entry_stage else .035<=depth<=.055
++    depth_valid=.022<=depth<=.028 if entry_stage else .035<=depth<=.055
+     if q.shape!=(7,)or not np.isfinite(q).all()or not depth_valid or not .0<=opening<=.08:raise ValueError('Invalid terminal stroke input')
+     if entry_stage:
+         withdraw_H=np.asarray(withdraw_H,float);requested_s=float(requested_s)

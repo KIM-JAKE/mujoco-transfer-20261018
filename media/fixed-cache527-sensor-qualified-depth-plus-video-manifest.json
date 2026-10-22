@@ -1,0 +1,62 @@
+{
+  "source_run": "native-roas-table-fixed-front-v527-sensor-qualified-depth-plus",
+  "source_full_task_pass": true,
+  "vision_end_to_end_pass": true,
+  "source_state": "completed_over_budget",
+  "end_to_end_under20": false,
+  "end_to_end_under30": false,
+  "display_scope": "ALL3 PHYSX PASS | TIME TARGET NOT MET | HARDWARE UNTESTED",
+  "source_physics_elapsed_s": 53.731249999992215,
+  "source_total_wall_s": 245.19169675104786,
+  "segments": [
+    {
+      "start_wall_s": 0.0,
+      "end_wall_s": 245.19169675104786,
+      "part": null,
+      "label": "Complete original wall-clock replay; all3 RGB-D / PhysX PASS"
+    }
+  ],
+  "speed_multiplier": 1.0,
+  "wall_clock_replay": true,
+  "full_original_wall_replay": true,
+  "explicit_cut_cards": false,
+  "source_PIN_postrelease_RGBD_confirmed": true,
+  "frame_count": 2452,
+  "cut_frames": 0,
+  "video_duration_s": 245.2,
+  "fps": 10,
+  "renderer": "Warp GPU ray camera of original CAD, notRTX",
+  "all_dynamic_bodies_replayed": true,
+  "render_only": true,
+  "new_physics_steps": 0,
+  "actor_poses_used_for_rendering_only": true,
+  "hardware_tested": false,
+  "source_only_not_multi_case_qualification": true,
+  "source_files_sha256": {
+    "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v527-sensor-qualified-depth-plus/pipeline-results.json": "2d6cee3aa3ba0a119486bc6b66cd2b7598e6a5df8398ccb3892f6dc3041aa200",
+    "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v527-sensor-qualified-depth-plus/physx-sequence-trace.npz": "e4c4e51b2d98f8408f3f50fc3261f1f51c66f0b3e23b935a115a8eb67f4b2c4f",
+    "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v527-sensor-qualified-depth-plus/executed-actuator-commands.npz": "d03d13b0f8a6bb2771c67fc39120906dd4b86e4d5a03fbd25a80f78a906cf020",
+    "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v527-sensor-qualified-depth-plus/camera-local-models.npz": "d144a59ce94052f33457cff960eb62fb0b5f222bfd768fb69feb48b255ee13d7",
+    "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v527-sensor-qualified-depth-plus/frozen-source-manifest.json": "767e6c6aa0c0e3a57ff1859e896a024d8b15da062b5c4ca7f9868380eaa6962e",
+    "/home/gpuadmin/workspace/jake/mujoco/.local/render-current/next-full-pass/native-roas-table-fixed-front-v527-sensor-qualified-depth-plus/render_all3_actual_excerpts_with_physics.py": "2c1e3850c20de302b2e76eb0fa1ec62e3244852c46fdbcab5d654857d97b6fd1",
+    "/home/gpuadmin/workspace/jake/mujoco/.local/render-current/next-full-pass/native-roas-table-fixed-front-v527-sensor-qualified-depth-plus/actual-excerpts.json": "47911c4ca637c4a70f225b209d3367fdd1206a22315bf43c037c4719cda9a954"
+  },
+  "decoded_verification": {
+    "return_code": 0,
+    "decoded_frames": 2452,
+    "duration_s": 245.2,
+    "duplicate_frames": 0,
+    "dropped_frames": 0,
+    "method": "ffmpeg full MP4 decode to null; no error output"
+  },
+  "PNG_visually_inspected": true,
+  "video_sha256": "9fff847753695347e98bb9abf431a4029d9dca444e89f90c3ea41983238da719",
+  "last_png_sha256": "1a77d2a607b906f6d582cb04d1b9404e4862575ea96ee7bed4035acfbfe1dde3",
+  "media_files": {
+    "video": "fixed-cache527-sensor-qualified-depth-plus-all3-pass-full-wall-1x.mp4",
+    "last_png": "fixed-cache527-sensor-qualified-depth-plus-last.png"
+  },
+  "recorded_camera_body_count": 34,
+  "public_postrelease_sensor_scope": "Fresh world-anchored RGB-D and public SDK after release and withdrawal; original final 1.5mm / 50mrad gates. Not preinsert 75um / 3mrad accuracy claim.",
+  "postrun_metrology_caveat": "Evaluation-only nearest-trace postrelease axis bias 6.489mrad and center bias 118.5um; controller did not consume evaluation truth."
+}

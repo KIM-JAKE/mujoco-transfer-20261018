@@ -1,0 +1,24 @@
+[
+  {
+    "mode": "cpu",
+    "sg_command": [
+      "sg",
+      "docker",
+      "-c",
+      "docker exec -d -e OMP_NUM_THREADS=1 -e OPENBLAS_NUM_THREADS=1 -e TBB_NUM_THREADS=1 -e CUDA_VISIBLE_DEVICES=0 isaac-jake-gpu-2-capacity-ac370e58 /bin/bash -c 'exec nice -n 10 /isaac-sim/kit/kit /workspace/project/mujoco/.local/gpu-dynamics-component-494/cpu/physx-component.kit --no-window --allow-root --exec /workspace/project/mujoco/.local/gpu-dynamics-component-494/cpu/run.py >/workspace/project/mujoco/.local/gpu-dynamics-component-494/cpu/kit.log 2>&1'"
+    ],
+    "parent_review_required_before_launch": true,
+    "sequential_only_when_GPU2_worker_idle": true
+  },
+  {
+    "mode": "gpu",
+    "sg_command": [
+      "sg",
+      "docker",
+      "-c",
+      "docker exec -d -e OMP_NUM_THREADS=1 -e OPENBLAS_NUM_THREADS=1 -e TBB_NUM_THREADS=1 -e CUDA_VISIBLE_DEVICES=0 isaac-jake-gpu-2-capacity-ac370e58 /bin/bash -c 'exec nice -n 10 /isaac-sim/kit/kit /workspace/project/mujoco/.local/gpu-dynamics-component-494/gpu/physx-component.kit --no-window --allow-root --exec /workspace/project/mujoco/.local/gpu-dynamics-component-494/gpu/run.py >/workspace/project/mujoco/.local/gpu-dynamics-component-494/gpu/kit.log 2>&1'"
+    ],
+    "parent_review_required_before_launch": true,
+    "sequential_only_when_GPU2_worker_idle": true
+  }
+]

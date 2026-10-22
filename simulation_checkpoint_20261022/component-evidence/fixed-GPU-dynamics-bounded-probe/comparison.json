@@ -1,0 +1,52 @@
+{
+  "scope": "Isolated native contact component, NOT full-task or hardware validation",
+  "source_command_field_sha256": "92c67b7e2026d74ec32735b2a1989a793e403559ce2908292b4e749230867589",
+  "host_not_fully_isolated": "GPU3 video rendering shared host; different GPU",
+  "CPU": {
+    "error": null,
+    "component_qualified": true,
+    "timed_sim_s": 2.0,
+    "timed_wall_s": 8.189697229070589,
+    "timed_physics_wall_s": 7.732852443819866,
+    "warmup_wall_s": 7.434648733003996,
+    "cold_setup_wall_s": 20.32198031502776,
+    "command_audit": {
+      "samples": 3142,
+      "velocity_fraction_of_95_percent_PBV": 0.9369012162132716,
+      "max_acceleration_rad_s2": 8.7890625,
+      "max_jerk_rad_s3": 3164.0625,
+      "acceleration_limit_rad_s2": 9.5,
+      "jerk_limit_rad_s3": 4750,
+      "command_limit_checks": true,
+      "complete_issued_field_checked_at_end": true,
+      "validated_sample_count": 3142
+    },
+    "motor_velocity_audit": {
+      "samples": 3142,
+      "max_fraction_of_95_percent_PBV": 0.9286564924862065,
+      "max_finger_fraction_of_47p5_mm_s": 0.6736849483690763,
+      "max_coupled_finger_difference_m": 1.862645149230957e-08
+    }
+  },
+  "GPU": {
+    "status": "ABORTED_UNQUALIFIED",
+    "full_task_pass": false,
+    "GPU_contact_component_qualified": false,
+    "timed_2s_window_reached": false,
+    "termination_epoch_s": 1792664838.7801647,
+    "component_running_elapsed_s": 109.3114697933197,
+    "container_pid": 125242,
+    "exact_verified_commandline": "/isaac-sim/kit/kit /workspace/project/mujoco/.local/gpu-dynamics-component-494/gpu/physx-component.kit --no-window --allow-root --exec /workspace/project/mujoco/.local/gpu-dynamics-component-494/gpu/run.py ",
+    "reason": "Parent bound the component: GPU warmup exceeded69s vsCPU7.37s; native qualification jobs take priority. This does not measure GPU steady-state ratio.",
+    "requested_GPU_dynamics": true,
+    "authored_broadphase": "GPU",
+    "original_TGS_CCD_readback_callbacks_retained": true,
+    "GPU_fallback_or_buffer_overflow_warning_seen": false,
+    "forced_kill_after_TERM": true,
+    "cleanup_verified_epoch_s": 1792664840.0433698
+  },
+  "GPU_error_warning_matches": [],
+  "recommendation": "Keep original CPU dynamics. GPU steady-state not measured; aborted before warmup completed and no full-task qualification.",
+  "changes_to_warm_workers": false,
+  "full_task_pass": false
+}

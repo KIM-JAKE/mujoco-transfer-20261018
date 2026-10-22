@@ -1,0 +1,112 @@
+{
+  "source_run": "native-roas-table-fixed-front-v527-sensor-qualified-depth-plus",
+  "full_task_pass": true,
+  "vision_end_to_end_pass": true,
+  "source_case": "PLUS only; not three-case qualification",
+  "wall_s": 245.19169675104786,
+  "physics_s": 53.731249999992215,
+  "PIN_completion_source": "Fresh postrelease RGB-D and public robot SDK only",
+  "postrelease_SDK": {
+    "confirmed": true,
+    "release_confirmed": true,
+    "withdraw_confirmed": true,
+    "actual_fingers_m": [
+      0.008998291566967964,
+      0.008998291566967964
+    ],
+    "command_fingers_m": [
+      0.008999999612569809,
+      0.008999999612569809
+    ],
+    "release_target_per_finger_m": 0.009,
+    "release_per_finger_tolerance_m": 0.0005,
+    "actual_withdraw_translation_m": 0.0005050395435189751,
+    "command_withdraw_translation_m": 7.04645206832117e-08,
+    "actual_withdraw_rotation_rad": 0.00213923519383228,
+    "command_withdraw_rotation_rad": 0.0008503807252003242,
+    "withdraw_translation_limit_m": 0.0015,
+    "withdraw_rotation_limit_rad": 0.05,
+    "source": "Current public gripper encoders, commanded positions and encoder FK only",
+    "uses_free_body_poses": false
+  },
+  "postrelease_RGBD": {
+    "confirmed": true,
+    "direct_class_end_circle": true,
+    "position_error_m": 0.0005145244889309355,
+    "axis_error_rad": 2.1073424255447017e-08,
+    "position_limit_m": 0.0015,
+    "axis_limit_rad": 0.05,
+    "cap_edge_coverage_deg": 346.77594673089567,
+    "cap_circular_edge_inliers": 61,
+    "cap_total_hull_edge_points": 61,
+    "cap_circular_edge_rms_m": 1.431469425138209e-05,
+    "center_m": [
+      -0.3021924666359187,
+      0.2275086850047649,
+      1.5283355962648986
+    ],
+    "axis": [
+      6.360558889943147e-09,
+      -1.607362270533484e-08,
+      0.9999999999999998
+    ],
+    "source": "New postrelease RGB-D pixels, original class-radius cap/plane gates and calibrated jig goal",
+    "uses_free_body_poses": false,
+    "captured_wall_s": 235.11876181093976,
+    "ready_wall_s": 235.37670886097476,
+    "after_release_withdraw_and_original_retention_wait": true,
+    "camera_world_anchor_from_last_qualified_RGBD": [
+      [
+        0.9999926097839351,
+        0.0,
+        0.0038445256553097866,
+        -0.3019622895174169
+      ],
+      [
+        4.302269573483874e-05,
+        0.9999373828476643,
+        -0.011190555518442726,
+        0.22732447347512838
+      ],
+      [
+        -0.00384428492206117,
+        0.011190638219677071,
+        0.9999299930943538,
+        1.5283136994832054
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "robot_Hand_does_not_move_world_anchor": true,
+    "original_retention_wait_s": 0.5,
+    "one_observation_operation": true
+  },
+  "pre_release_full_depth": {
+    "position_error_m": 0.0004479066258515988,
+    "axis_error_rad": 0.011832812217691046
+  },
+  "postrun_truth_EVALUATION_ONLY": {
+    "used_for_control": false,
+    "position_error_m": 0.0005738356580243461,
+    "axis_error_rad": 0.006486989092081785
+  },
+  "sensor_metrology_limit": "Read-only postrun527 comparison: postrelease center bias118.5um, plane-axis bias6.489mrad versus physics; do not claim preinsert3mrad precision for this final50mrad acceptance",
+  "no_speed_claim": true,
+  "time_goal_met": false,
+  "hardware_tested": false,
+  "source_count": 428,
+  "source_PY": 421,
+  "source_verified": true,
+  "services_from495": true,
+  "selected_public_observation_indices": [
+    52,
+    69,
+    73,
+    74,
+    75
+  ]
+}

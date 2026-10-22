@@ -1,0 +1,595 @@
+{
+  "EVALUATION_ONLY": true,
+  "used_for_control": false,
+  "physics_steps": 0,
+  "source": "native-roas-table-fixed-front-v529-fast-canonical-terminal-minus",
+  "method": "Nearest saved physical body trace to camera capture; axis midpoint=bodypos+R@[0,-.00025,0]; signed axis R[:,2]; cap endpoints +/-17.75mm; NOT runtime input",
+  "goal": [
+    -0.30203095784,
+    0.22724999619,
+    1.52875
+  ],
+  "rows": [
+    {
+      "observation_index0": 94,
+      "observation_work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v529-fast-canonical-terminal-minus/rgb-perception/observation-095-held",
+      "capture_wall_s": 226.2960000319872,
+      "trace_wall_s": 226.30492548807524,
+      "trace_capture_delta_ms": 8.925456088036299,
+      "trace_physical_s": 49.54999999999602,
+      "phase": "pin_full_depth_hold",
+      "actual_PIN_axis_center_EVAL_ONLY": [
+        -0.30200744350411757,
+        0.22726560987486816,
+        1.528619117019601
+      ],
+      "actual_PIN_signed_axis_EVAL_ONLY": [
+        0.00280061106436144,
+        -0.01648219086236023,
+        0.9998602372142033
+      ],
+      "actual_visible_tail_cap_center_EVAL_ONLY": [
+        -0.30205715435051,
+        0.22755816876267504,
+        1.510871597809049
+      ],
+      "actual_shaft_tip_cap_center_EVAL_ONLY": [
+        -0.30195773265772513,
+        0.22697305098706128,
+        1.5463666362301531
+      ],
+      "actual_goal_position_error_m": 0.00013389199268542824,
+      "actual_goal_axis_error_rad": 0.016719212991294762,
+      "public_pose": {
+        "cap_edge_coverage_deg": 344.8986004146393,
+        "cap_circular_edge_inliers": 67,
+        "cap_total_hull_edge_points": 67,
+        "cap_circular_edge_rms_m": 1.5702983411035906e-05,
+        "cap_expected_radius_m": 0.00525,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.3020191069296372,
+          0.22726663144203255,
+          1.5286191253023165
+        ],
+        "axis": [
+          0.002806054280883005,
+          -0.016470611578608137,
+          0.9998604127645017
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.005215148281653736,
+        "cap_points": 5885,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 13553,
+        "plane_rms_m": 1.8702626432046623e-08,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 150.21256497129798,
+        "neural_inference_this_frame": false
+      },
+      "public_error": null
+    },
+    {
+      "observation_index0": 95,
+      "observation_work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v529-fast-canonical-terminal-minus/rgb-perception/observation-096-held",
+      "capture_wall_s": 228.6823999650078,
+      "trace_wall_s": 228.68534911400639,
+      "trace_capture_delta_ms": 2.949148998595774,
+      "trace_physical_s": 51.07499999999463,
+      "phase": "pin_retention",
+      "actual_PIN_axis_center_EVAL_ONLY": [
+        -0.3021055406514182,
+        0.22728265710463214,
+        1.5286223237176713
+      ],
+      "actual_PIN_signed_axis_EVAL_ONLY": [
+        0.00020685701565977598,
+        -0.01595301525391637,
+        0.9998727211572898
+      ],
+      "actual_visible_tail_cap_center_EVAL_ONLY": [
+        -0.3021092123634462,
+        0.22756582312538914,
+        1.5108745829171293
+      ],
+      "actual_shaft_tip_cap_center_EVAL_ONLY": [
+        -0.30210186893939023,
+        0.22699949108387513,
+        1.5463700645182132
+      ],
+      "actual_goal_position_error_m": 0.00015142841270036515,
+      "actual_goal_axis_error_rad": 0.01595503323630849,
+      "public_pose": null,
+      "public_error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 80, in <module>\n    else:pose,mask=tracker.estimate(packet,request['part'],request['seed'],request['axis'],initial_pin=request['mode']=='pin_initial',robust_pin_cap_circle=bool(request.get('robust_pin_cap_circle')));result=dict(pose=pose,depth_sensor_input=True,simulator_body_pose_input=False)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 60, in estimate\n    visible_negative_end=bool((packet['T_cell_camera'][:3,3]-seed)@axis<0);result=fit_pin(points,seed,axis,visible_negative_end,measured_axis=n,robust_circle=robust_pin_cap_circle)\n                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_pin_axes.py\", line 64, in fit_pin\n    center2,radius,circle_evidence=_robust_cap_circle(xy,.00525 if initial else .0025);cap=origin+R[:,:2]@center2;part_center=cap-n*(-.01775 if initial else .01775)\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_pin_axes.py\", line 34, in _robust_cap_circle\n    if best is None:raise RuntimeError('Pin circular cap is occluded: no class-radius arc spanning240degrees')\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Pin circular cap is occluded: no class-radius arc spanning240degrees\n"
+    },
+    {
+      "observation_index0": 96,
+      "observation_work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v529-fast-canonical-terminal-minus/rgb-perception/observation-097-held",
+      "capture_wall_s": 228.8525805840036,
+      "trace_wall_s": 228.8494176530512,
+      "trace_capture_delta_ms": -3.162930952385068,
+      "trace_physical_s": 51.20833333332784,
+      "phase": "pin_retention",
+      "actual_PIN_axis_center_EVAL_ONLY": [
+        -0.3021055406514182,
+        0.22728265710463214,
+        1.5286223237176713
+      ],
+      "actual_PIN_signed_axis_EVAL_ONLY": [
+        0.00020685701565977598,
+        -0.01595301525391637,
+        0.9998727211572898
+      ],
+      "actual_visible_tail_cap_center_EVAL_ONLY": [
+        -0.3021092123634462,
+        0.22756582312538914,
+        1.5108745829171293
+      ],
+      "actual_shaft_tip_cap_center_EVAL_ONLY": [
+        -0.30210186893939023,
+        0.22699949108387513,
+        1.5463700645182132
+      ],
+      "actual_goal_position_error_m": 0.00015142841270036515,
+      "actual_goal_axis_error_rad": 0.01595503323630849,
+      "public_pose": null,
+      "public_error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 80, in <module>\n    else:pose,mask=tracker.estimate(packet,request['part'],request['seed'],request['axis'],initial_pin=request['mode']=='pin_initial',robust_pin_cap_circle=bool(request.get('robust_pin_cap_circle')));result=dict(pose=pose,depth_sensor_input=True,simulator_body_pose_input=False)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 60, in estimate\n    visible_negative_end=bool((packet['T_cell_camera'][:3,3]-seed)@axis<0);result=fit_pin(points,seed,axis,visible_negative_end,measured_axis=n,robust_circle=robust_pin_cap_circle)\n                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_pin_axes.py\", line 64, in fit_pin\n    center2,radius,circle_evidence=_robust_cap_circle(xy,.00525 if initial else .0025);cap=origin+R[:,:2]@center2;part_center=cap-n*(-.01775 if initial else .01775)\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_pin_axes.py\", line 34, in _robust_cap_circle\n    if best is None:raise RuntimeError('Pin circular cap is occluded: no class-radius arc spanning240degrees')\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Pin circular cap is occluded: no class-radius arc spanning240degrees\n"
+    },
+    {
+      "observation_index0": 97,
+      "observation_work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v529-fast-canonical-terminal-minus/rgb-perception/observation-098-held",
+      "capture_wall_s": 229.01587372506037,
+      "trace_wall_s": 229.0214425260201,
+      "trace_capture_delta_ms": 5.568800959736109,
+      "trace_physical_s": 51.341666666661055,
+      "phase": "pin_retention",
+      "actual_PIN_axis_center_EVAL_ONLY": [
+        -0.3021055406514182,
+        0.22728265710463214,
+        1.5286223237176713
+      ],
+      "actual_PIN_signed_axis_EVAL_ONLY": [
+        0.00020685701565977598,
+        -0.01595301525391637,
+        0.9998727211572898
+      ],
+      "actual_visible_tail_cap_center_EVAL_ONLY": [
+        -0.3021092123634462,
+        0.22756582312538914,
+        1.5108745829171293
+      ],
+      "actual_shaft_tip_cap_center_EVAL_ONLY": [
+        -0.30210186893939023,
+        0.22699949108387513,
+        1.5463700645182132
+      ],
+      "actual_goal_position_error_m": 0.00015142841270036515,
+      "actual_goal_axis_error_rad": 0.01595503323630849,
+      "public_pose": null,
+      "public_error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 80, in <module>\n    else:pose,mask=tracker.estimate(packet,request['part'],request['seed'],request['axis'],initial_pin=request['mode']=='pin_initial',robust_pin_cap_circle=bool(request.get('robust_pin_cap_circle')));result=dict(pose=pose,depth_sensor_input=True,simulator_body_pose_input=False)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 60, in estimate\n    visible_negative_end=bool((packet['T_cell_camera'][:3,3]-seed)@axis<0);result=fit_pin(points,seed,axis,visible_negative_end,measured_axis=n,robust_circle=robust_pin_cap_circle)\n                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_pin_axes.py\", line 64, in fit_pin\n    center2,radius,circle_evidence=_robust_cap_circle(xy,.00525 if initial else .0025);cap=origin+R[:,:2]@center2;part_center=cap-n*(-.01775 if initial else .01775)\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_pin_axes.py\", line 34, in _robust_cap_circle\n    if best is None:raise RuntimeError('Pin circular cap is occluded: no class-radius arc spanning240degrees')\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Pin circular cap is occluded: no class-radius arc spanning240degrees\n"
+    },
+    {
+      "observation_index0": 98,
+      "observation_work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v529-fast-canonical-terminal-minus/rgb-perception/observation-099-held",
+      "capture_wall_s": 229.1785113340011,
+      "trace_wall_s": 229.17543221008964,
+      "trace_capture_delta_ms": -3.079123911447823,
+      "trace_physical_s": 51.46666666666094,
+      "phase": "pin_retention",
+      "actual_PIN_axis_center_EVAL_ONLY": [
+        -0.3021055406514182,
+        0.22728265710463214,
+        1.5286223237176713
+      ],
+      "actual_PIN_signed_axis_EVAL_ONLY": [
+        0.00020685701565977598,
+        -0.01595301525391637,
+        0.9998727211572898
+      ],
+      "actual_visible_tail_cap_center_EVAL_ONLY": [
+        -0.3021092123634462,
+        0.22756582312538914,
+        1.5108745829171293
+      ],
+      "actual_shaft_tip_cap_center_EVAL_ONLY": [
+        -0.30210186893939023,
+        0.22699949108387513,
+        1.5463700645182132
+      ],
+      "actual_goal_position_error_m": 0.00015142841270036515,
+      "actual_goal_axis_error_rad": 0.01595503323630849,
+      "public_pose": null,
+      "public_error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 80, in <module>\n    else:pose,mask=tracker.estimate(packet,request['part'],request['seed'],request['axis'],initial_pin=request['mode']=='pin_initial',robust_pin_cap_circle=bool(request.get('robust_pin_cap_circle')));result=dict(pose=pose,depth_sensor_input=True,simulator_body_pose_input=False)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 49, in estimate\n    if len(u)<150:raise RuntimeError('RGB-D tracking ROI has insufficient metal surface')\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: RGB-D tracking ROI has insufficient metal surface\n"
+    },
+    {
+      "observation_index0": 99,
+      "observation_work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v529-fast-canonical-terminal-minus/rgb-perception/observation-100-held",
+      "capture_wall_s": 229.27942664606962,
+      "trace_wall_s": 229.2850331600057,
+      "trace_capture_delta_ms": 5.606513936072588,
+      "trace_physical_s": 51.5499999999942,
+      "phase": "pin_retention",
+      "actual_PIN_axis_center_EVAL_ONLY": [
+        -0.3021055406514182,
+        0.22728265710463214,
+        1.5286223237176713
+      ],
+      "actual_PIN_signed_axis_EVAL_ONLY": [
+        0.00020685701565977598,
+        -0.01595301525391637,
+        0.9998727211572898
+      ],
+      "actual_visible_tail_cap_center_EVAL_ONLY": [
+        -0.3021092123634462,
+        0.22756582312538914,
+        1.5108745829171293
+      ],
+      "actual_shaft_tip_cap_center_EVAL_ONLY": [
+        -0.30210186893939023,
+        0.22699949108387513,
+        1.5463700645182132
+      ],
+      "actual_goal_position_error_m": 0.00015142841270036515,
+      "actual_goal_axis_error_rad": 0.01595503323630849,
+      "public_pose": null,
+      "public_error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 80, in <module>\n    else:pose,mask=tracker.estimate(packet,request['part'],request['seed'],request['axis'],initial_pin=request['mode']=='pin_initial',robust_pin_cap_circle=bool(request.get('robust_pin_cap_circle')));result=dict(pose=pose,depth_sensor_input=True,simulator_body_pose_input=False)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 49, in estimate\n    if len(u)<150:raise RuntimeError('RGB-D tracking ROI has insufficient metal surface')\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: RGB-D tracking ROI has insufficient metal surface\n"
+    },
+    {
+      "observation_index0": 100,
+      "observation_work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v529-fast-canonical-terminal-minus/rgb-perception/observation-101-held",
+      "capture_wall_s": 229.37842756602913,
+      "trace_wall_s": 229.38146335701458,
+      "trace_capture_delta_ms": 3.0357909854501486,
+      "trace_physical_s": 51.62499999999413,
+      "phase": "pin_retention",
+      "actual_PIN_axis_center_EVAL_ONLY": [
+        -0.3021055406514182,
+        0.22728265710463214,
+        1.5286223237176713
+      ],
+      "actual_PIN_signed_axis_EVAL_ONLY": [
+        0.00020685701565977598,
+        -0.01595301525391637,
+        0.9998727211572898
+      ],
+      "actual_visible_tail_cap_center_EVAL_ONLY": [
+        -0.3021092123634462,
+        0.22756582312538914,
+        1.5108745829171293
+      ],
+      "actual_shaft_tip_cap_center_EVAL_ONLY": [
+        -0.30210186893939023,
+        0.22699949108387513,
+        1.5463700645182132
+      ],
+      "actual_goal_position_error_m": 0.00015142841270036515,
+      "actual_goal_axis_error_rad": 0.01595503323630849,
+      "public_pose": null,
+      "public_error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 80, in <module>\n    else:pose,mask=tracker.estimate(packet,request['part'],request['seed'],request['axis'],initial_pin=request['mode']=='pin_initial',robust_pin_cap_circle=bool(request.get('robust_pin_cap_circle')));result=dict(pose=pose,depth_sensor_input=True,simulator_body_pose_input=False)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 49, in estimate\n    if len(u)<150:raise RuntimeError('RGB-D tracking ROI has insufficient metal surface')\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: RGB-D tracking ROI has insufficient metal surface\n"
+    },
+    {
+      "observation_index0": 101,
+      "observation_work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v529-fast-canonical-terminal-minus/rgb-perception/observation-102-held",
+      "capture_wall_s": 229.4805347759975,
+      "trace_wall_s": 229.47419199405704,
+      "trace_capture_delta_ms": -6.342781940475106,
+      "trace_physical_s": 51.69999999999406,
+      "phase": "pin_retention",
+      "actual_PIN_axis_center_EVAL_ONLY": [
+        -0.3021055406514182,
+        0.22728265710463214,
+        1.5286223237176713
+      ],
+      "actual_PIN_signed_axis_EVAL_ONLY": [
+        0.00020685701565977598,
+        -0.01595301525391637,
+        0.9998727211572898
+      ],
+      "actual_visible_tail_cap_center_EVAL_ONLY": [
+        -0.3021092123634462,
+        0.22756582312538914,
+        1.5108745829171293
+      ],
+      "actual_shaft_tip_cap_center_EVAL_ONLY": [
+        -0.30210186893939023,
+        0.22699949108387513,
+        1.5463700645182132
+      ],
+      "actual_goal_position_error_m": 0.00015142841270036515,
+      "actual_goal_axis_error_rad": 0.01595503323630849,
+      "public_pose": null,
+      "public_error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 80, in <module>\n    else:pose,mask=tracker.estimate(packet,request['part'],request['seed'],request['axis'],initial_pin=request['mode']=='pin_initial',robust_pin_cap_circle=bool(request.get('robust_pin_cap_circle')));result=dict(pose=pose,depth_sensor_input=True,simulator_body_pose_input=False)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 58, in estimate\n    else:n,level,support=axial_plane(P[y0:y1,x0:x1],mask[y0:y1,x0:x1],axis)\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 16, in axial_plane\n    if len(anchors)<30:raise RuntimeError('No observable axial surface in RGB-D tracking ROI')\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No observable axial surface in RGB-D tracking ROI\n"
+    },
+    {
+      "observation_index0": 102,
+      "observation_work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v529-fast-canonical-terminal-minus/rgb-perception/observation-103-held",
+      "capture_wall_s": 229.59042634698562,
+      "trace_wall_s": 229.5961936210515,
+      "trace_capture_delta_ms": 5.767274065874517,
+      "trace_physical_s": 51.791666666660646,
+      "phase": "pin_retention",
+      "actual_PIN_axis_center_EVAL_ONLY": [
+        -0.3021055406514182,
+        0.22728265710463214,
+        1.5286223237176713
+      ],
+      "actual_PIN_signed_axis_EVAL_ONLY": [
+        0.00020685701565977598,
+        -0.01595301525391637,
+        0.9998727211572898
+      ],
+      "actual_visible_tail_cap_center_EVAL_ONLY": [
+        -0.3021092123634462,
+        0.22756582312538914,
+        1.5108745829171293
+      ],
+      "actual_shaft_tip_cap_center_EVAL_ONLY": [
+        -0.30210186893939023,
+        0.22699949108387513,
+        1.5463700645182132
+      ],
+      "actual_goal_position_error_m": 0.00015142841270036515,
+      "actual_goal_axis_error_rad": 0.01595503323630849,
+      "public_pose": null,
+      "public_error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 80, in <module>\n    else:pose,mask=tracker.estimate(packet,request['part'],request['seed'],request['axis'],initial_pin=request['mode']=='pin_initial',robust_pin_cap_circle=bool(request.get('robust_pin_cap_circle')));result=dict(pose=pose,depth_sensor_input=True,simulator_body_pose_input=False)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 58, in estimate\n    else:n,level,support=axial_plane(P[y0:y1,x0:x1],mask[y0:y1,x0:x1],axis)\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 16, in axial_plane\n    if len(anchors)<30:raise RuntimeError('No observable axial surface in RGB-D tracking ROI')\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No observable axial surface in RGB-D tracking ROI\n"
+    },
+    {
+      "observation_index0": 103,
+      "observation_work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v529-fast-canonical-terminal-minus/rgb-perception/observation-104-held",
+      "capture_wall_s": 229.69609054701868,
+      "trace_wall_s": 229.68938198208343,
+      "trace_capture_delta_ms": -6.70856493525207,
+      "trace_physical_s": 51.86666666666058,
+      "phase": "pin_retention",
+      "actual_PIN_axis_center_EVAL_ONLY": [
+        -0.3021055406514182,
+        0.22728265710463214,
+        1.5286223237176713
+      ],
+      "actual_PIN_signed_axis_EVAL_ONLY": [
+        0.00020685701565977598,
+        -0.01595301525391637,
+        0.9998727211572898
+      ],
+      "actual_visible_tail_cap_center_EVAL_ONLY": [
+        -0.3021092123634462,
+        0.22756582312538914,
+        1.5108745829171293
+      ],
+      "actual_shaft_tip_cap_center_EVAL_ONLY": [
+        -0.30210186893939023,
+        0.22699949108387513,
+        1.5463700645182132
+      ],
+      "actual_goal_position_error_m": 0.00015142841270036515,
+      "actual_goal_axis_error_rad": 0.01595503323630849,
+      "public_pose": null,
+      "public_error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 80, in <module>\n    else:pose,mask=tracker.estimate(packet,request['part'],request['seed'],request['axis'],initial_pin=request['mode']=='pin_initial',robust_pin_cap_circle=bool(request.get('robust_pin_cap_circle')));result=dict(pose=pose,depth_sensor_input=True,simulator_body_pose_input=False)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 58, in estimate\n    else:n,level,support=axial_plane(P[y0:y1,x0:x1],mask[y0:y1,x0:x1],axis)\n                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 16, in axial_plane\n    if len(anchors)<30:raise RuntimeError('No observable axial surface in RGB-D tracking ROI')\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No observable axial surface in RGB-D tracking ROI\n"
+    },
+    {
+      "observation_index0": 104,
+      "observation_work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v529-fast-canonical-terminal-minus/rgb-perception/observation-105-held",
+      "capture_wall_s": 229.79836260306183,
+      "trace_wall_s": 229.801532688085,
+      "trace_capture_delta_ms": 3.1700850231572986,
+      "trace_physical_s": 51.949999999993835,
+      "phase": "pin_retention",
+      "actual_PIN_axis_center_EVAL_ONLY": [
+        -0.3021055406514182,
+        0.22728265710463214,
+        1.5286223237176713
+      ],
+      "actual_PIN_signed_axis_EVAL_ONLY": [
+        0.00020685701565977598,
+        -0.01595301525391637,
+        0.9998727211572898
+      ],
+      "actual_visible_tail_cap_center_EVAL_ONLY": [
+        -0.3021092123634462,
+        0.22756582312538914,
+        1.5108745829171293
+      ],
+      "actual_shaft_tip_cap_center_EVAL_ONLY": [
+        -0.30210186893939023,
+        0.22699949108387513,
+        1.5463700645182132
+      ],
+      "actual_goal_position_error_m": 0.00015142841270036515,
+      "actual_goal_axis_error_rad": 0.01595503323630849,
+      "public_pose": null,
+      "public_error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 80, in <module>\n    else:pose,mask=tracker.estimate(packet,request['part'],request['seed'],request['axis'],initial_pin=request['mode']=='pin_initial',robust_pin_cap_circle=bool(request.get('robust_pin_cap_circle')));result=dict(pose=pose,depth_sensor_input=True,simulator_body_pose_input=False)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 60, in estimate\n    visible_negative_end=bool((packet['T_cell_camera'][:3,3]-seed)@axis<0);result=fit_pin(points,seed,axis,visible_negative_end,measured_axis=n,robust_circle=robust_pin_cap_circle)\n                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_pin_axes.py\", line 64, in fit_pin\n    center2,radius,circle_evidence=_robust_cap_circle(xy,.00525 if initial else .0025);cap=origin+R[:,:2]@center2;part_center=cap-n*(-.01775 if initial else .01775)\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_pin_axes.py\", line 34, in _robust_cap_circle\n    if best is None:raise RuntimeError('Pin circular cap is occluded: no class-radius arc spanning240degrees')\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Pin circular cap is occluded: no class-radius arc spanning240degrees\n"
+    },
+    {
+      "observation_index0": 105,
+      "observation_work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v529-fast-canonical-terminal-minus/rgb-perception/observation-106-held",
+      "capture_wall_s": 229.95904250408057,
+      "trace_wall_s": 229.95566812204197,
+      "trace_capture_delta_ms": -3.374382038600743,
+      "trace_physical_s": 52.07499999999372,
+      "phase": "pin_retention",
+      "actual_PIN_axis_center_EVAL_ONLY": [
+        -0.3021055406514182,
+        0.22728265710463214,
+        1.5286223237176713
+      ],
+      "actual_PIN_signed_axis_EVAL_ONLY": [
+        0.00020685701565977598,
+        -0.01595301525391637,
+        0.9998727211572898
+      ],
+      "actual_visible_tail_cap_center_EVAL_ONLY": [
+        -0.3021092123634462,
+        0.22756582312538914,
+        1.5108745829171293
+      ],
+      "actual_shaft_tip_cap_center_EVAL_ONLY": [
+        -0.30210186893939023,
+        0.22699949108387513,
+        1.5463700645182132
+      ],
+      "actual_goal_position_error_m": 0.00015142841270036515,
+      "actual_goal_axis_error_rad": 0.01595503323630849,
+      "public_pose": null,
+      "public_error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 80, in <module>\n    else:pose,mask=tracker.estimate(packet,request['part'],request['seed'],request['axis'],initial_pin=request['mode']=='pin_initial',robust_pin_cap_circle=bool(request.get('robust_pin_cap_circle')));result=dict(pose=pose,depth_sensor_input=True,simulator_body_pose_input=False)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 49, in estimate\n    if len(u)<150:raise RuntimeError('RGB-D tracking ROI has insufficient metal surface')\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: RGB-D tracking ROI has insufficient metal surface\n"
+    },
+    {
+      "observation_index0": 106,
+      "observation_work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v529-fast-canonical-terminal-minus/rgb-perception/observation-107-held",
+      "capture_wall_s": 230.05927962099668,
+      "trace_wall_s": 230.05225559405517,
+      "trace_capture_delta_ms": -7.024026941508055,
+      "trace_physical_s": 52.14999999999365,
+      "phase": "pin_retention",
+      "actual_PIN_axis_center_EVAL_ONLY": [
+        -0.3021055406514182,
+        0.22728265710463214,
+        1.5286223237176713
+      ],
+      "actual_PIN_signed_axis_EVAL_ONLY": [
+        0.00020685701565977598,
+        -0.01595301525391637,
+        0.9998727211572898
+      ],
+      "actual_visible_tail_cap_center_EVAL_ONLY": [
+        -0.3021092123634462,
+        0.22756582312538914,
+        1.5108745829171293
+      ],
+      "actual_shaft_tip_cap_center_EVAL_ONLY": [
+        -0.30210186893939023,
+        0.22699949108387513,
+        1.5463700645182132
+      ],
+      "actual_goal_position_error_m": 0.00015142841270036515,
+      "actual_goal_axis_error_rad": 0.01595503323630849,
+      "public_pose": null,
+      "public_error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 80, in <module>\n    else:pose,mask=tracker.estimate(packet,request['part'],request['seed'],request['axis'],initial_pin=request['mode']=='pin_initial',robust_pin_cap_circle=bool(request.get('robust_pin_cap_circle')));result=dict(pose=pose,depth_sensor_input=True,simulator_body_pose_input=False)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 49, in estimate\n    if len(u)<150:raise RuntimeError('RGB-D tracking ROI has insufficient metal surface')\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: RGB-D tracking ROI has insufficient metal surface\n"
+    },
+    {
+      "observation_index0": 107,
+      "observation_work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v529-fast-canonical-terminal-minus/rgb-perception/observation-108-held",
+      "capture_wall_s": 230.15936078305822,
+      "trace_wall_s": 230.16503730602562,
+      "trace_capture_delta_ms": 5.676522967405617,
+      "trace_physical_s": 52.23333333332691,
+      "phase": "pin_retention",
+      "actual_PIN_axis_center_EVAL_ONLY": [
+        -0.3021055406514182,
+        0.22728265710463214,
+        1.5286223237176713
+      ],
+      "actual_PIN_signed_axis_EVAL_ONLY": [
+        0.00020685701565977598,
+        -0.01595301525391637,
+        0.9998727211572898
+      ],
+      "actual_visible_tail_cap_center_EVAL_ONLY": [
+        -0.3021092123634462,
+        0.22756582312538914,
+        1.5108745829171293
+      ],
+      "actual_shaft_tip_cap_center_EVAL_ONLY": [
+        -0.30210186893939023,
+        0.22699949108387513,
+        1.5463700645182132
+      ],
+      "actual_goal_position_error_m": 0.00015142841270036515,
+      "actual_goal_axis_error_rad": 0.01595503323630849,
+      "public_pose": null,
+      "public_error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 80, in <module>\n    else:pose,mask=tracker.estimate(packet,request['part'],request['seed'],request['axis'],initial_pin=request['mode']=='pin_initial',robust_pin_cap_circle=bool(request.get('robust_pin_cap_circle')));result=dict(pose=pose,depth_sensor_input=True,simulator_body_pose_input=False)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 60, in estimate\n    visible_negative_end=bool((packet['T_cell_camera'][:3,3]-seed)@axis<0);result=fit_pin(points,seed,axis,visible_negative_end,measured_axis=n,robust_circle=robust_pin_cap_circle)\n                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_pin_axes.py\", line 64, in fit_pin\n    center2,radius,circle_evidence=_robust_cap_circle(xy,.00525 if initial else .0025);cap=origin+R[:,:2]@center2;part_center=cap-n*(-.01775 if initial else .01775)\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_pin_axes.py\", line 34, in _robust_cap_circle\n    if best is None:raise RuntimeError('Pin circular cap is occluded: no class-radius arc spanning240degrees')\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Pin circular cap is occluded: no class-radius arc spanning240degrees\n"
+    },
+    {
+      "observation_index0": 108,
+      "observation_work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v529-fast-canonical-terminal-minus/rgb-perception/observation-109-held",
+      "capture_wall_s": 230.33072544098832,
+      "trace_wall_s": 230.3337434810819,
+      "trace_capture_delta_ms": 3.0180400935932994,
+      "trace_physical_s": 52.36666666666012,
+      "phase": "pin_retention",
+      "actual_PIN_axis_center_EVAL_ONLY": [
+        -0.3021055406514182,
+        0.22728265710463214,
+        1.5286223237176713
+      ],
+      "actual_PIN_signed_axis_EVAL_ONLY": [
+        0.00020685701565977598,
+        -0.01595301525391637,
+        0.9998727211572898
+      ],
+      "actual_visible_tail_cap_center_EVAL_ONLY": [
+        -0.3021092123634462,
+        0.22756582312538914,
+        1.5108745829171293
+      ],
+      "actual_shaft_tip_cap_center_EVAL_ONLY": [
+        -0.30210186893939023,
+        0.22699949108387513,
+        1.5463700645182132
+      ],
+      "actual_goal_position_error_m": 0.00015142841270036515,
+      "actual_goal_axis_error_rad": 0.01595503323630849,
+      "public_pose": null,
+      "public_error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 80, in <module>\n    else:pose,mask=tracker.estimate(packet,request['part'],request['seed'],request['axis'],initial_pin=request['mode']=='pin_initial',robust_pin_cap_circle=bool(request.get('robust_pin_cap_circle')));result=dict(pose=pose,depth_sensor_input=True,simulator_body_pose_input=False)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 60, in estimate\n    visible_negative_end=bool((packet['T_cell_camera'][:3,3]-seed)@axis<0);result=fit_pin(points,seed,axis,visible_negative_end,measured_axis=n,robust_circle=robust_pin_cap_circle)\n                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_pin_axes.py\", line 64, in fit_pin\n    center2,radius,circle_evidence=_robust_cap_circle(xy,.00525 if initial else .0025);cap=origin+R[:,:2]@center2;part_center=cap-n*(-.01775 if initial else .01775)\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_pin_axes.py\", line 34, in _robust_cap_circle\n    if best is None:raise RuntimeError('Pin circular cap is occluded: no class-radius arc spanning240degrees')\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Pin circular cap is occluded: no class-radius arc spanning240degrees\n"
+    },
+    {
+      "observation_index0": 109,
+      "observation_work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v529-fast-canonical-terminal-minus/rgb-perception/observation-110-held",
+      "capture_wall_s": 230.50213224603795,
+      "trace_wall_s": 230.49800026300363,
+      "trace_capture_delta_ms": -4.131983034312725,
+      "trace_physical_s": 52.499999999993335,
+      "phase": "pin_retention",
+      "actual_PIN_axis_center_EVAL_ONLY": [
+        -0.3021055406514182,
+        0.22728265710463214,
+        1.5286223237176713
+      ],
+      "actual_PIN_signed_axis_EVAL_ONLY": [
+        0.00020685701565977598,
+        -0.01595301525391637,
+        0.9998727211572898
+      ],
+      "actual_visible_tail_cap_center_EVAL_ONLY": [
+        -0.3021092123634462,
+        0.22756582312538914,
+        1.5108745829171293
+      ],
+      "actual_shaft_tip_cap_center_EVAL_ONLY": [
+        -0.30210186893939023,
+        0.22699949108387513,
+        1.5463700645182132
+      ],
+      "actual_goal_position_error_m": 0.00015142841270036515,
+      "actual_goal_axis_error_rad": 0.01595503323630849,
+      "public_pose": null,
+      "public_error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 80, in <module>\n    else:pose,mask=tracker.estimate(packet,request['part'],request['seed'],request['axis'],initial_pin=request['mode']=='pin_initial',robust_pin_cap_circle=bool(request.get('robust_pin_cap_circle')));result=dict(pose=pose,depth_sensor_input=True,simulator_body_pose_input=False)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 49, in estimate\n    if len(u)<150:raise RuntimeError('RGB-D tracking ROI has insufficient metal surface')\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: RGB-D tracking ROI has insufficient metal surface\n"
+    }
+  ],
+  "last": {
+    "wall_s": 230.59535690408666,
+    "phase": "pin_retention",
+    "center_m": [
+      -0.3021055406514182,
+      0.22728265710463214,
+      1.5286223237176713
+    ],
+    "axis": [
+      0.00020685701565977598,
+      -0.01595301525391637,
+      0.9998727211572898
+    ],
+    "position_error_m": 0.00015142841270036515,
+    "axis_error_rad": 0.01595503323630849
+  },
+  "original_goal_gate_position_m": 0.0015,
+  "original_goal_gate_axis_rad": 0.05,
+  "files_sha256": {
+    "pipeline-results.json": "549fefb456acf24813bcb615451f9818aec3fb13a8cb5d2ce59420cedcbb1a45",
+    "rgb-observations.json": "909f006def3662a3874d051a2a30fce84f8c54c51d8259807a8d20ab5add8c31",
+    "physx-sequence-trace.npz": "dcc47114c5622209e4b03cac4afa23bf91d402e1a678b664849c04959bd5352c"
+  }
+}

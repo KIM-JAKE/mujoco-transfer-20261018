@@ -1,0 +1,131 @@
+--- /home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v522-entry-before-contact-pin-component/code_snapshot/direct_pin_skill.py
++++ /tmp/fixed526-postrelease-rgbd/overrides/direct_pin_skill.py
+@@ -213,6 +213,28 @@
+     return domain
+ 
+ 
++def _pin_postrelease_sdk_evidence(actual_H,command_H,withdraw_H,actual_fingers,command_fingers):
++    """Public SDK completion only; never a PIN pose or force measurement."""
++    A,C,W=[np.asarray(x,float)for x in [actual_H,command_H,withdraw_H]]
++    a,c=[np.asarray(x,float)for x in [actual_fingers,command_fingers]]
++    if any(x.shape!=(4,4)or not np.isfinite(x).all()for x in [A,C,W])or any(x.shape!=(2,)or not np.isfinite(x).all()for x in [a,c]):raise ValueError('Finite public SDK Hand/finger state required')
++    actual_translation=float(np.linalg.norm(A[:3,3]-W[:3,3]));command_translation=float(np.linalg.norm(C[:3,3]-W[:3,3]))
++    actual_rotation=float(np.linalg.norm(log(A[:3,:3]@W[:3,:3].T)));command_rotation=float(np.linalg.norm(log(C[:3,:3]@W[:3,:3].T)))
++    released=bool(np.max(abs(c-.009))<=1e-6 and np.max(abs(a-.009))<=.0005)
++    withdrawn=bool(max(actual_translation,command_translation)<.0015 and max(actual_rotation,command_rotation)<.05)
++    return dict(confirmed=bool(released and withdrawn),release_confirmed=released,withdraw_confirmed=withdrawn,actual_fingers_m=a.tolist(),command_fingers_m=c.tolist(),release_target_per_finger_m=.009,release_per_finger_tolerance_m=.0005,actual_withdraw_translation_m=actual_translation,command_withdraw_translation_m=command_translation,actual_withdraw_rotation_rad=actual_rotation,command_withdraw_rotation_rad=command_rotation,withdraw_translation_limit_m=.0015,withdraw_rotation_limit_rad=.05,source='Current public gripper encoders, commanded positions and encoder FK only',uses_free_body_poses=False)
++
++
++def _pin_postrelease_rgbd_evidence(pose,goal):
++    """Same robust cap and full-depth tolerances, independent of robot Hand."""
++    P=np.asarray(pose.get('center_m'),float);a=np.asarray(pose.get('axis'),float);goal=np.asarray(goal,float)
++    if P.shape!=(3,)or a.shape!=(3,)or goal.shape!=(3,)or not np.isfinite(np.r_[P,a,goal]).all()or abs(np.linalg.norm(a)-1)>1e-6:raise ValueError('Finite directly measured PIN center/axis required')
++    expected=float(pose.get('cap_expected_radius_m',float('nan')));radius=float(pose.get('visible_end_radius_m',float('nan')));count=int(pose.get('cap_circular_edge_inliers',0));total=int(pose.get('cap_total_hull_edge_points',0));coverage=float(pose.get('cap_edge_coverage_deg',0));rms=float(pose.get('cap_circular_edge_rms_m',float('inf')))
++    direct=bool(pose.get('part')=='pin' and pose.get('uses_depth_sensor')is True and pose.get('uses_simulator_body_poses')is False and pose.get('robust_cap_circle_from_pixels')is True and pose.get('lateral_from_previous_RGBD_grasp_and_encoders')is False and min(abs(expected-.00525),abs(expected-.0025))<1e-8 and np.isfinite(radius)and abs(radius-expected)<=.00015 and count>=12 and total>=12 and count/total>=.75 and coverage>=240 and np.isfinite(rms)and rms<=.00006)
++    position=float(np.linalg.norm(P-goal));angle=float(np.arccos(np.clip(a[2],-1,1)))
++    return dict(confirmed=bool(direct and position<.0015 and angle<.05),direct_class_end_circle=direct,position_error_m=position,axis_error_rad=angle,position_limit_m=.0015,axis_limit_rad=.05,cap_edge_coverage_deg=coverage,cap_circular_edge_inliers=count,cap_total_hull_edge_points=total,cap_circular_edge_rms_m=rms,center_m=P.tolist(),axis=a.tolist(),source='New postrelease RGB-D pixels, original class-radius cap/plane gates and calibrated jig goal',uses_free_body_poses=False)
++
++
+ def execute(ctx):
+     preclose_gain=float(ctx.get('config',{}).get('pin_preclose_servo_gain',.5))
+     if not np.isfinite(preclose_gain)or not .5<=preclose_gain<=.8:raise ValueError('PIN preclose gain must remain within0.5--0.8; original error and motion envelopes remain mandatory')
+@@ -238,6 +260,9 @@
+     body_goal=goal.copy();pin_config=ctx.get('config',{})
+     visual_preinsert=bool(pin_config.get('pin_visual_preinsert_alignment'))
+     qualified_full_depth=bool(pin_config.get('pin_full_depth_require_robust_circle'))
++    postrelease_rgbd=bool(pin_config.get('pin_postrelease_rgbd_retention',False))
++    if postrelease_rgbd and not(qualified_full_depth and visual_preinsert and pin_config.get('fixed_supply_mode') and pin_config.get('robust_pin_cap_circle') and pin_config.get('pin_full_depth_near_axis_views')):raise ValueError('Postrelease RGB-D requires existing fixed-mode qualified full-depth and near-axis robust-circle policies')
++    if postrelease_rgbd and ctx.get('defer_retention_to_recipe'):raise ValueError('Postrelease RGB-D requires the existing nondeferred0.5s retention window')
+     if qualified_full_depth and not(visual_preinsert and pin_config.get('robust_pin_cap_circle')):raise ValueError('Qualified PIN full-depth observation requires original visual preinsert and robust circle settings')
+     pin_axis_geometry=bool(pin_config.get('pin_axis_frame_consistent_geometry') or cand.get('pose_origin')=='RGB-D physical symmetry-axis midpoint')
+     pin_sensor_hold=bool(pin_config.get('pin_rgbd_sdk_hold_confirmation'))
+@@ -302,16 +327,23 @@
+                     report.setdefault('precision_encoder_windows',[]).append(evidence);print('PIN_PRECISION_ENCODER_WINDOW',evidence,flush=True);return
+             step()
+         raise RuntimeError('Pin precision encoder pose did not become stationary within2physical seconds')
+-    def observe(label,grasp=None,require_circle=False):
+-        H=arm.fk(art.get_dof_positions()[0,ids]);prefetched=ctx.pop('prefetched_initial',None) if grasp is None else None
++    def observe(label,grasp=None,require_circle=False,world_reference=None):
++        H=arm.fk(art.get_dof_positions()[0,ids]);prefetched=ctx.pop('prefetched_initial',None) if grasp is None and world_reference is None else None
++        anchored_world=None
++        if world_reference is not None:
++            if not(postrelease_rgbd and label=='pin_postrelease_retention_RGBD' and require_circle):raise ValueError('World-anchored observation is restricted to qualified postrelease retention')
++            anchored_world=np.asarray(world_reference,float).copy()
++            if anchored_world.shape!=(4,4)or not np.isfinite(anchored_world).all():raise ValueError('Finite last qualified public world PIN pose required')
++            grasp=np.linalg.inv(H)@anchored_world
+         offsets=[None] if grasp is None else [([-.22,0,.12] if label=="pin_lift_RGBD" else [-.22,-.15,-.12])]
+         if grasp is not None and visual_preinsert:
+             # Virtual simulated views, not one fixed physical RealSense.
+             axis=(H@grasp)[:3,2];axis/=np.linalg.norm(axis);reference=np.eye(3)[int(np.argmin(abs(axis)))];u=reference-axis*(reference@axis);u/=np.linalg.norm(u);v=np.cross(axis,u)
+             offsets += [(.20*sign*axis+.23*(np.cos(angle)*u+np.sin(angle)*v)).tolist() for sign in [1.,-1.] for angle in np.arange(6)*np.pi/3]
+         errors=[]
+-        views=_pin_ordered_camera_views(offsets,label,pin_config)
+-        views=_pin_full_depth_near_axis_views(H,grasp,offsets,label,pin_config,require_circle)+views
++        view_label='pin_full_depth_RGBD'if anchored_world is not None else label
++        views=_pin_ordered_camera_views(offsets,view_label,pin_config)
++        views=_pin_full_depth_near_axis_views(H,grasp,offsets,view_label,pin_config,require_circle)+views
+         if pin_config.get('fixed_supply_mode') and label=='pin_holder_preclose_RGBD' and pin_config.get('fixed_pin_preclose_overhead_views',True):
+             # Public encoder Hand FK times the camera-measured/catalog grasp
+             # sets the target as before. Original443 branch occluded every
+@@ -325,7 +357,10 @@
+             if grasp is not None:e.update(tracked_grasp=grasp.tolist(),camera_eye_offset=offset)
+             if require_circle and visual_preinsert and pin_config.get('pin_precision_image_width_px') is not None:e['pin_precision_image_width_px']=int(pin_config['pin_precision_image_width_px'])
+             if prefetched is not None:e,f=prefetched;prefetched=None
+-            else:f=vision.request(e,arm.fk(art.get_dof_positions()[0,ids]))
++            else:
++                capture_H=arm.fk(art.get_dof_positions()[0,ids])
++                if anchored_world is not None:e['tracked_grasp']=(np.linalg.inv(capture_H)@anchored_world).tolist()
++                f=vision.request(e,capture_H)
+             # Same3s capture-to-ready ceiling used by ring observations.
+             # Poll after a potentially long physics/queued-proof step before
+             # declaring a camera late; delivery delay is not inference delay.
+@@ -344,12 +379,12 @@
+             error=value['result'].get('error');pose=value['result'].get('pose')
+             if not error and require_circle and (not pose or pose.get('lateral_from_previous_RGBD_grasp_and_encoders',True)):
+                 error='Pin precision alignment needs directly observed end-circle XY, not propagated XY'
+-            if qualified_full_depth and label=='pin_full_depth_RGBD' and not(pose and pose.get('robust_cap_circle_from_pixels')is True):
++            if qualified_full_depth and label in ['pin_full_depth_RGBD','pin_postrelease_retention_RGBD'] and not(pose and pose.get('robust_cap_circle_from_pixels')is True):
+                 error=error or 'PIN full-depth requires the original robust class-radius circular-cap proof'
+             if error:
+                 errors.append(str(error).splitlines()[-1]);continue
+-            if qualified_full_depth and label=='pin_full_depth_RGBD':
+-                report.setdefault('pin_full_depth_qualified_observations',[]).append(dict(view_index=view_index,captured_wall_s=captured,ready_wall_s=ready,delivered_wall_s=e['delivered_wall_s'],robust_cap_circle_from_pixels=True,original_cap_quality={key:pose.get(key)for key in ['cap_expected_radius_m','visible_end_radius_m','cap_edge_coverage_deg','cap_circular_edge_inliers','cap_total_hull_edge_points','cap_circular_edge_rms_m','cap_points','depth_points','plane_rms_m']},same_existing_camera_view_bank=True,original_depth_axis_precision_and_motor_gates_unchanged=True,uses_free_body_poses=False))
++            if qualified_full_depth and label in ['pin_full_depth_RGBD','pin_postrelease_retention_RGBD']:
++                report.setdefault('pin_postrelease_qualified_observations'if anchored_world is not None else'pin_full_depth_qualified_observations',[]).append(dict(view_index=view_index,captured_wall_s=captured,ready_wall_s=ready,delivered_wall_s=e['delivered_wall_s'],robust_cap_circle_from_pixels=True,original_cap_quality={key:pose.get(key)for key in ['cap_expected_radius_m','visible_end_radius_m','cap_edge_coverage_deg','cap_circular_edge_inliers','cap_total_hull_edge_points','cap_circular_edge_rms_m','cap_points','depth_points','plane_rms_m']},same_existing_camera_view_bank=True,original_depth_axis_precision_and_motor_gates_unchanged=True,uses_free_body_poses=False))
+             report['events'].append(dict(event=label,wall_s=e['delivered_wall_s'],result=value['result'],view_index=view_index));print('PIN_CONTACT_VISION',label,e['delivered_wall_s'],flush=True);return value
+         raise RuntimeError('No valid pin RGB-D view '+label+' '+str(errors))
+     def motion(qs,requested,label,checked_edges=True):
+@@ -727,6 +762,7 @@
+         if not (.0005<remaining<.006 and radial<.0015 and ae<.05):break
+         H=arm.fk(cmd[0,ids]);end=H.copy();end[2,3]+=remaining;line(H,end,.25,'pin_axial_depth_correction');wait(.08,'pin_depth_check_hold');v=observe('pin_full_depth_RGBD',G,require_circle=qualified_full_depth);pose=v['result']['pose'];error=float(np.linalg.norm(np.array(pose['center_m'])-goal));ae=float(np.arccos(np.clip(np.array(pose['axis'])[2],-1,1)));report['RGBD_full_depth_check']=dict(position_error_m=error,axis_error_rad=ae);report['axial_visual_corrections_with_grip_closed']=correction_index+1
+     if error>=.0015 or ae>=.05:raise RuntimeError('Full depth not confirmed by RGB-D; fingers remain closed')
++    retained_world_pose=frame(pose['center_m'],axis_frame(pose['axis']))if postrelease_rgbd else None
+     for prim in stage.Traverse():
+         if ctx.get('close_pin_clamp',True) and prim.IsA(UsdPhysics.PrismaticJoint)and str(prim.GetPath()).startswith('/World/Clamps/pin/'):
+             joint=UsdPhysics.PrismaticJoint(prim);UsdPhysics.DriveAPI(prim,'linear').GetTargetPositionAttr().Set(joint.GetLowerLimitAttr().Get())
+@@ -734,5 +770,24 @@
+     if ctx.get('set_grip_hold'):ctx['set_grip_hold'](False)
+     # Return to the same preinsert pose that was checked and just traversed.
+     # The former extra 25 mm downward stroke drove link 4 into the machine.
+-    fingers(.018,'pin_release_after_full_depth');withdraw=pre.copy();line(end,withdraw,.65,'pin_axial_withdraw');wait(0. if ctx.get('defer_retention_to_recipe') else .5,'pin_retention');report['retention_deferred_to_recipe']=bool(ctx.get('defer_retention_to_recipe'));tr=truth['pin'].get_transforms()[0];ae=float(np.arccos(np.clip(1-2*(tr[3]**2+tr[4]**2),-1,1)));err=float(np.linalg.norm(tr[:3]-body_goal));report.update(state='pin_single_stroke_contact_pass'if err<.0015 and ae<.05 else'pin_retention_failed',pin_single_stroke_pass=bool(err<.0015 and ae<.05),final_position_error_m=err,final_axis_error_rad=ae,pin_trial_wall_s=time.perf_counter()-started)
++    fingers(.018,'pin_release_after_full_depth');withdraw=pre.copy();line(end,withdraw,.65,'pin_axial_withdraw');wait(0. if ctx.get('defer_retention_to_recipe') else .5,'pin_retention');report['retention_deferred_to_recipe']=bool(ctx.get('defer_retention_to_recipe'))
++    if postrelease_rgbd:
++        actual=art.get_dof_positions()[0]
++        sdk=_pin_postrelease_sdk_evidence(arm.fk(actual[ids]),arm.fk(cmd[0,ids]),withdraw,actual[fi],cmd[0,fi]);report['pin_postrelease_SDK_completion']=sdk
++        if not sdk['confirmed']:raise RuntimeError('Public SDK release/withdraw completion not confirmed; postrelease retention blocked')
++        requested_after=time.perf_counter()-started
++        retained=observe('pin_postrelease_retention_RGBD',require_circle=True,world_reference=retained_world_pose)
++        captured=float(retained.get('captured_wall_s',float('nan')))
++        if not np.isfinite(captured)or captured<requested_after:raise RuntimeError('Postrelease retention requires a new capture after release, withdrawal and original retention wait')
++        measured=_pin_postrelease_rgbd_evidence(retained['result']['pose'],goal);measured.update(captured_wall_s=captured,ready_wall_s=retained.get('ready_wall_s'),after_release_withdraw_and_original_retention_wait=True,camera_world_anchor_from_last_qualified_RGBD=retained_world_pose.tolist(),robot_Hand_does_not_move_world_anchor=True,original_retention_wait_s=.5,one_observation_operation=True)
++        report['pin_postrelease_RGBD_retention']=measured
++        if not measured['confirmed']:raise RuntimeError('Fresh postrelease RGB-D retention not confirmed within original1.5mm/.05rad; completion blocked')
++        # Simulator truth is explicitly EVALUATION ONLY under this flag.
++        # It cannot set or change the controller's public-sensor verdict.
++        try:
++            evaluated=truth['pin'].get_transforms()[0];report['pin_retention_EVALUATION_ONLY']=dict(used_for_control=False,position_error_m=float(np.linalg.norm(evaluated[:3]-body_goal)),axis_error_rad=float(np.arccos(np.clip(1-2*(evaluated[3]**2+evaluated[4]**2),-1,1))))
++        except Exception as evaluation_error:report['pin_retention_EVALUATION_ONLY']=dict(used_for_control=False,unavailable=str(evaluation_error))
++        report.update(state='pin_single_stroke_contact_pass',pin_single_stroke_pass=True,final_position_error_m=measured['position_error_m'],final_axis_error_rad=measured['axis_error_rad'],pin_trial_wall_s=time.perf_counter()-started,retention_completion_source='Fresh postrelease RGB-D and public robot SDK only')
++        return report
++    tr=truth['pin'].get_transforms()[0];ae=float(np.arccos(np.clip(1-2*(tr[3]**2+tr[4]**2),-1,1)));err=float(np.linalg.norm(tr[:3]-body_goal));report.update(state='pin_single_stroke_contact_pass'if err<.0015 and ae<.05 else'pin_retention_failed',pin_single_stroke_pass=bool(err<.0015 and ae<.05),final_position_error_m=err,final_axis_error_rad=ae,pin_trial_wall_s=time.perf_counter()-started)
+     return report

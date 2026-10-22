@@ -1,0 +1,16 @@
+This is a staged CPU/GPU dynamics comparison; no process has been launched. Parent must review launch-commands.json and run cases sequentially only after GPU2 is idle. It uses the frozen original494 source/tree, the same exact recorded robot command bytes, initial stock, original native single-motor/preload controller and safety contact callback. It replays the original4.5458sim-second prefix and measures the same2.0sim-second contact-rich grasp/lift interval. This is a component experiment, never a full-task pass.
+
+Only CPU/GPU dynamics plus corresponding MBP/GPU broadphase and the required CUDA device selection differ. Both use zero requested CPU worker threads. The authored original TGS and CCD are asserted and retained. The original1920Hz four substeps,128/64 solver,30N fingers, motor/SDK audits, material/shape data, CPU NumPy tensor readbacks, USD writes, trace and callbacks remain. No Direct GPU API, suppression of readback/contact processing, geometry simplification or GPU-compatible convex recooking policy is introduced. Timing includes all original synchronization and callback work.
+
+The prior CPU0 component measured5.5184seconds physics for2.0seconds simulation, with native grasp/lift qualified. That is historical evidence only; the staged fresh CPU case is the proper paired baseline. GPU dynamics may be slower for this small cell at1920Hz because of CPU tensor readbacks, callbacks and per-step synchronization. Do not infer speed before comparing actual results.
+
+GPU execution is requested, not established by the authored USD flag. Review kit.log for CUDA initialization/fallback, unsupported hulls, GPU buffer/contact/constraint overflow, CCD and articulation warnings. Any dropped contacts/constraints or unavailable GPU backend invalidates the comparison. Existing native palm/link hulls exceed64 vertices in planner hull reconstruction; this does not establish actual PhysX cooking behavior. Inspect actual cooking/fallback warnings without changing CAD/collision approximations. CPU contact processing mixed into a GPU scene must be disclosed.
+
+Compare timed.physics_profile.physics_s plus complete timed wall, prefix/cold setup, original command/SDK limits, contact-rich qualification, actual joint/part/Hand trajectories and contact records. Identical command fields do not guarantee numerically identical CPU/GPU dynamics; do not demand bit identity or hide differences. A promising component requires original3-part/full RGB-D pipeline and retention qualification before any default change.
+
+Primary NVIDIA references:
+- https://nvidia-omniverse.github.io/PhysX/physx/5.4.1/docs/GPURigidBodies.html (GPU articulations supported; CCD contacts remain CPU, convex restrictions/fallback, sufficient active-body workload important)
+- https://nvidia-omniverse.github.io/PhysX/physx/5.7.0/docs/DirectGPUAPI.html (Direct GPU API is a separate mode; excluded here)
+- https://docs.omniverse.nvidia.com/kit/docs/omni_physics/107.0/extensions/runtime/source/omni.physics.tensors/docs/api/python.html (NumPy frontend uses CPU; it is retained rather than rewriting to GPU tensors)
+
+Compatibility conclusion: feasible to test without changing TGS/CCD/geometry. This is not a proven speedup or a drop-in default. The staged run intentionally keeps readback and all original contact consumers.

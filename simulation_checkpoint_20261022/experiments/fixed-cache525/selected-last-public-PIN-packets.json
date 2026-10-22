@@ -1,0 +1,210 @@
+[
+  {
+    "observation_index": 63,
+    "captured_wall_s": 218.85220791690517,
+    "delivered_wall_s": 218.98936313495506,
+    "result": {
+      "error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 80, in <module>\n    else:pose,mask=tracker.estimate(packet,request['part'],request['seed'],request['axis'],initial_pin=request['mode']=='pin_initial',robust_pin_cap_circle=bool(request.get('robust_pin_cap_circle')));result=dict(pose=pose,depth_sensor_input=True,simulator_body_pose_input=False)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 49, in estimate\n    if len(u)<150:raise RuntimeError('RGB-D tracking ROI has insufficient metal surface')\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: RGB-D tracking ROI has insufficient metal surface\n"
+    }
+  },
+  {
+    "observation_index": 64,
+    "captured_wall_s": 218.98948872892652,
+    "delivered_wall_s": 219.24105676601175,
+    "result": {
+      "pose": {
+        "cap_edge_coverage_deg": 326.9105670576296,
+        "cap_circular_edge_inliers": 44,
+        "cap_total_hull_edge_points": 44,
+        "cap_circular_edge_rms_m": 1.8694072658174112e-05,
+        "cap_expected_radius_m": 0.0025,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.3020309621188989,
+          0.22727184000776784,
+          1.483550566502069
+        ],
+        "axis": [
+          -0.0003260961856898248,
+          0.0003810632777006336,
+          0.9999998742260202
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.0024803529021898826,
+        "cap_points": 802,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 16731,
+        "plane_rms_m": 9.499934450765701e-06,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 208.17775698378682,
+        "neural_inference_this_frame": false
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    }
+  },
+  {
+    "observation_index": 65,
+    "captured_wall_s": 223.5573181809159,
+    "delivered_wall_s": 223.81796663801651,
+    "result": {
+      "pose": {
+        "cap_edge_coverage_deg": 345.1245481759562,
+        "cap_circular_edge_inliers": 65,
+        "cap_total_hull_edge_points": 65,
+        "cap_circular_edge_rms_m": 2.2436579529818282e-05,
+        "cap_expected_radius_m": 0.00525,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.30192273727948876,
+          0.2266180383840088,
+          1.5051952813102325
+        ],
+        "axis": [
+          0.0008286877898203959,
+          -0.0009777529192692115,
+          0.9999991786375507
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.005214404880079185,
+        "cap_points": 5879,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 12245,
+        "plane_rms_m": 1.91064972600077e-08,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 213.9812579844147,
+        "neural_inference_this_frame": false
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    }
+  },
+  {
+    "observation_index": 66,
+    "captured_wall_s": 224.80768878594972,
+    "delivered_wall_s": 225.00319516693708,
+    "result": {
+      "pose": {
+        "cap_edge_coverage_deg": 342.603052208054,
+        "cap_circular_edge_inliers": 66,
+        "cap_total_hull_edge_points": 66,
+        "cap_circular_edge_rms_m": 1.8015856702026756e-05,
+        "cap_expected_radius_m": 0.00525,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.30208034377925747,
+          0.22675995205530558,
+          1.504954541100817
+        ],
+        "axis": [
+          0.00036294184393438324,
+          -0.0005559083812802641,
+          0.9999997796195204
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.005215382614725228,
+        "cap_points": 5876,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 12155,
+        "plane_rms_m": 1.893606293578674e-08,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 150.45134304091334,
+        "neural_inference_this_frame": false
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    }
+  },
+  {
+    "observation_index": 67,
+    "captured_wall_s": 226.0402508819243,
+    "delivered_wall_s": 226.22382552199997,
+    "result": {
+      "pose": {
+        "cap_edge_coverage_deg": 347.4129175322039,
+        "cap_circular_edge_inliers": 64,
+        "cap_total_hull_edge_points": 64,
+        "cap_circular_edge_rms_m": 2.4402246052167178e-05,
+        "cap_expected_radius_m": 0.00525,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.30206279844712325,
+          0.22720365893126543,
+          1.504743000318008
+        ],
+        "axis": [
+          9.519164739645982e-05,
+          -0.0001079462260825875,
+          0.9999999896430811
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.005211408642299156,
+        "cap_points": 5876,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 12146,
+        "plane_rms_m": 1.868463078108976e-08,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 145.24917991366237,
+        "neural_inference_this_frame": false
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    }
+  },
+  {
+    "observation_index": 68,
+    "captured_wall_s": 231.18518503697123,
+    "delivered_wall_s": 231.37703330395743,
+    "result": {
+      "pose": {
+        "cap_edge_coverage_deg": 346.7216259218248,
+        "cap_circular_edge_inliers": 60,
+        "cap_total_hull_edge_points": 60,
+        "cap_circular_edge_rms_m": 1.7549471276926833e-05,
+        "cap_expected_radius_m": 0.00525,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.3020068675745381,
+          0.22727982598547342,
+          1.527430010406721
+        ],
+        "axis": [
+          0.003465398369409694,
+          -0.014331278291273517,
+          0.9998912968301501
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.005216178378075782,
+        "cap_points": 5946,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 13595,
+        "plane_rms_m": 1.8646274777529118e-08,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 149.36385594774038,
+        "neural_inference_this_frame": false
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    }
+  }
+]

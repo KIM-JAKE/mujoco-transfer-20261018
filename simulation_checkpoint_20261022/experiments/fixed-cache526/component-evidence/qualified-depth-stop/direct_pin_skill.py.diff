@@ -1,0 +1,21 @@
+--- /tmp/fixed522-entry-before-contact/overrides/direct_pin_skill.py
++++ /tmp/fixed527-qualified-depth-stop/overrides/direct_pin_skill.py
+@@ -239,6 +239,8 @@
+     visual_preinsert=bool(pin_config.get('pin_visual_preinsert_alignment'))
+     qualified_full_depth=bool(pin_config.get('pin_full_depth_require_robust_circle'))
+     if qualified_full_depth and not(visual_preinsert and pin_config.get('robust_pin_cap_circle')):raise ValueError('Qualified PIN full-depth observation requires original visual preinsert and robust circle settings')
++    avoid_unneeded_depth_correction=bool(pin_config.get('pin_avoid_unneeded_depth_correction',False))
++    if avoid_unneeded_depth_correction and not qualified_full_depth:raise ValueError('Stopping at qualified PIN full depth requires original robust-circle full-depth policy')
+     pin_axis_geometry=bool(pin_config.get('pin_axis_frame_consistent_geometry') or cand.get('pose_origin')=='RGB-D physical symmetry-axis midpoint')
+     pin_sensor_hold=bool(pin_config.get('pin_rgbd_sdk_hold_confirmation'))
+     entry_feedback_enabled=bool(pin_config.get('pin_two_stage_entry_feedback'))
+@@ -723,6 +725,9 @@
+         pre=arm.fk(cmd[0,ids]);end=pre.copy();end[2,3]+=remaining_depth;line(pre,end,.8,'pin_single_axial_insert')
+     wait(.12,'pin_full_depth_hold');v=observe('pin_full_depth_RGBD',G,require_circle=qualified_full_depth);pose=v['result']['pose'];error=float(np.linalg.norm(np.array(pose['center_m'])-goal));ae=float(np.arccos(np.clip(np.array(pose['axis'])[2],-1,1)));report['RGBD_full_depth_check']=dict(position_error_m=error,axis_error_rad=ae)
+     for correction_index in range(2):
++        if avoid_unneeded_depth_correction and error<.0015 and ae<.05:
++            report['pin_unneeded_depth_correction_skipped']=dict(reason='Fresh qualified full-depth RGB-D already satisfies original final position/axis gates; 0.5 mm extra-push threshold is a refinement heuristic',position_error_m=error,axis_error_rad=ae,observed_center_m=list(pose['center_m']),observed_axis=list(pose['axis']),remaining_axial_depth_m=float(goal[2]-pose['center_m'][2]),robust_cap_circle_from_pixels=pose.get('robust_cap_circle_from_pixels') is True,completed_depth_corrections=correction_index,original_final_position_limit_m=.0015,original_final_axis_limit_rad=.05,extra_images_or_motion=0,uses_free_body_poses=False)
++            break
+         remaining=float(goal[2]-pose['center_m'][2]);radial=float(np.linalg.norm(np.array(pose['center_m'])[:2]-goal[:2]))
+         if not (.0005<remaining<.006 and radial<.0015 and ae<.05):break
+         H=arm.fk(cmd[0,ids]);end=H.copy();end[2,3]+=remaining;line(H,end,.25,'pin_axial_depth_correction');wait(.08,'pin_depth_check_hold');v=observe('pin_full_depth_RGBD',G,require_circle=qualified_full_depth);pose=v['result']['pose'];error=float(np.linalg.norm(np.array(pose['center_m'])-goal));ae=float(np.arccos(np.clip(np.array(pose['axis'])[2],-1,1)));report['RGBD_full_depth_check']=dict(position_error_m=error,axis_error_rad=ae);report['axial_visual_corrections_with_grip_closed']=correction_index+1

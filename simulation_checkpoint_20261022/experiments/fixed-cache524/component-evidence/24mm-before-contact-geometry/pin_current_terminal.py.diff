@@ -1,0 +1,11 @@
+--- /tmp/fixed521-measured-entry-full/overrides/pin_current_terminal.py
++++ /tmp/fixed522-entry-before-contact/overrides/pin_current_terminal.py
+@@ -64,7 +64,7 @@
+     actual=art.get_dof_positions()[0].copy();is_current=q is None;q=np.asarray(cmd[0,ids]if is_current else q,float)
+     widths=np.unique(np.linspace(min(float(actual[fi].sum()),float(cmd[0,fi].sum())),max(float(actual[fi].sum()),float(cmd[0,fi].sum())),5))
+     if partial_entry and(entry_stage or not .035<float(depth)<.055):raise ValueError('Partial entry approach requires original far depth state')
+-    issued_depth=float(depth)-.018 if partial_entry else float(depth)
++    issued_depth=float(depth)-.024 if partial_entry else float(depth)
+     issued_requested=.8*issued_depth/float(depth) if partial_entry else requested_s
+     began=time.perf_counter();other,contexts=_other_contexts(ctx)
+     with _held(ctx,body_G):

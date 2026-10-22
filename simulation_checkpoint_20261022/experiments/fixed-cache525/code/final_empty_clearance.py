@@ -1,0 +1,124 @@
+"""Checked empty RIGHT retreat after assembly; encoders and calibrated goals only."""
+from contextlib import ExitStack
+import time,numpy as np
+from isaac_kinematics import frame
+from fr3_gpu_ik import propose_ik
+
+
+def _complete_encoder_clearance(c,rc,lc,native_root,goals,step):
+    """At most100ms public-encoder completion, only while still moving.
+
+    No new command/route is generated after issuance. Before any extra physics
+    step, fully check the CURRENT actual-to-existing-command bridge, both LEFT
+    actual/command poses and all original aperture widths. An unknown/blocked
+    bridge or stationary short endpoint stops without another physical step.
+    """
+    art,cmd=c['art'],c['cmd'];ri,rf=c['ids'],c['fi'];li,lf=c['left_ids'],c['left_fi']
+    def measured():
+        q=art.get_dof_positions()[0].copy();distance=np.linalg.norm(goals-native_root(q[ri]),axis=1)
+        if not np.isfinite(distance).all():raise RuntimeError('Nonfinite final actual encoder clearance')
+        return q,distance
+    actual,after=measured();steps=0;proof=None;dt=float(c['dt'])
+    if after.min()<.165:
+        velocity=np.asarray(art.get_dof_velocities()[0,ri],float)
+        if not np.isfinite(velocity).all()or np.max(abs(velocity))<=.01:
+            raise RuntimeError('Actual encoder retreat is stationary short of165mm; no blind completion wait')
+        from aperture_path_check import _samples
+        from dual_aperture_path_check import rows_other_contexts
+        source_command=cmd.copy();widths=np.unique(np.linspace(min(float(actual[rf].sum()),float(cmd[0,rf].sum())),max(float(actual[rf].sum()),float(cmd[0,rf].sum())),5))
+        left_widths=np.unique(np.linspace(min(float(actual[lf].sum()),float(cmd[0,lf].sum())),max(float(actual[lf].sum()),float(cmd[0,lf].sum())),5))
+        old=rc.resolution_rad;rc.resolution_rad=min(old,.005)
+        try:bridge=np.asarray([q for _,_,q in _samples(rc,np.vstack([actual[ri],cmd[0,ri]]))])
+        finally:rc.resolution_rad=old
+        contexts=[(q.copy(),float(w))for q in [actual[li],cmd[0,li]]for w in left_widths]
+        stats={};ok,why=rows_other_contexts(rc,lc,contexts,np.tile(bridge,(len(widths),1)),np.repeat(widths,len(bridge)),diagnostics=stats)
+        if not ok:raise RuntimeError('Final actual-to-command completion bridge obstructed '+str(why))
+        if not np.array_equal(cmd,source_command)or not np.array_equal(art.get_dof_positions()[0],actual):
+            raise RuntimeError('Final encoder-completion source changed after original full proof')
+        proof=dict(full_current_bridge_checked=True,bridge_rows=len(bridge),RIGHT_widths=len(widths),LEFT_actual_and_command_contexts=len(contexts),query_diagnostics=stats)
+        # This is an encoder-qualified completion, never a fixed blind sleep.
+        # Original step retains all motor/contact/dynamic aborts each tick.
+        for _ in range(int(np.floor(.100/dt+1e-9))):
+            step('final_empty_RIGHT_encoder_completion');steps+=1;actual,after=measured()
+            if after.min()>=.165:break
+            velocity=np.asarray(art.get_dof_velocities()[0,ri],float)
+            if not np.isfinite(velocity).all()or np.max(abs(velocity))<=.01:break
+    if after.min()<.165:raise RuntimeError('Actual encoder RIGHT retreat did not establish165mm calibrated-goal clearance within100ms')
+    return dict(actual_clearance_m=after.tolist(),extra_control_steps=steps,extra_physics_s=steps*dt,maximum_extra_physics_s=.100,actual_gate_m=.165,full_precompletion_proof=proof,commands_unchanged=True,uses_free_body_poses=False)
+
+
+def execute(c,trajectory,step):
+    art=c['art'];arm=c['arm'];cmd=c['cmd'];ri,rf=c['ids'],c['fi'];li,lf=c['left_ids'],c['left_fi'];rc,lc=c['checkers']['right'],c['checkers']['left']
+    for checker in [rc,lc]:
+        binding=getattr(checker,'loaded_contact_aperture',None)
+        if binding is not None and binding.active:raise RuntimeError('Final empty retreat requires all loaded contact bindings released')
+    actual=art.get_dof_positions()[0].copy();source_command=cmd.copy();right_width=float(actual[rf].sum());left_width=float(actual[lf].sum())
+    if right_width<.014:raise RuntimeError('Final RIGHT opening does not establish clearance around released10.5mm pin head')
+    # These are measured fixture/class goal coordinates, not actor transforms.
+    goals=np.asarray([c['goals'][p]['P'] for p in ['ring1','ring2','pin']],float)
+    def native_root(q):return (arm.fk(q)@frame([0,0,-.1034],np.eye(3)))[:3,3]
+    before=np.linalg.norm(goals-native_root(actual[ri]),axis=1)
+    if before.min()>=.170:return dict(performed=False,calibrated_goal_clearance_m=before.tolist(),uses_free_body_poses=False)
+    H=arm.fk(cmd[0,ri]);openings=np.unique(np.linspace(min(right_width,float(cmd[0,rf].sum())),max(right_width,float(cmd[0,rf].sum())),5));left_openings=np.unique(np.linspace(min(left_width,float(cmd[0,lf].sum())),max(left_width,float(cmd[0,lf].sum())),5))
+    saved={s:(v.payload_path,v.payload_rows,v.payload_boxes,v.payload_relative)for s,v in [('right',rc),('left',lc)]};rejections=[];chosen=None
+    rc.detach_payload();lc.detach_payload()
+    try:
+        # Lateral alternatives avoid the known unsafe extra downward pin stroke.
+        for delta in [[.050,-.080,0.],[.04375,-.070,0.],[.025,-.040,0.],[0.,-.070,0.],[-.030,-.055,0.],[.035,-.045,0.]]:
+            target=H.copy();target[:3,3]+=delta
+            root=(target@frame([0,0,-.1034],np.eye(3)))[:3,3]
+            if np.linalg.norm(goals-root,axis=1).min()<.180:continue
+            solutions=propose_ik(c,arm,target[:3,3],target[:3,:3],actual[ri],'final_empty_RIGHT_retreat')
+            q=arm.solve(target[:3,3],target[:3,:3],cmd[0,ri])
+            if q is not None and all(np.linalg.norm(q-v)>.01 for v in solutions):solutions.append(q)
+            solutions.sort(key=lambda q:np.linalg.norm(q-cmd[0,ri]))
+            for q in solutions:
+                with rc.other_arm_at(lc,actual[li],left_width):
+                    path=[cmd[0,ri].copy(),q]
+                    if not rc.path(np.vstack([actual[ri],path]),max(openings))[0]:
+                        path=rc.route(cmd[0,ri],q,max(openings),seconds=.25)
+                    if path is None:continue
+                rows=trajectory('right',path,.25,checked_edges=True);accepted=True
+                # Test the ACTUALLY issued float32 endpoint after IK/retiming,
+                # not only the Cartesian request. Preserve165mm actual gate.
+                planned=np.linalg.norm(goals-native_root(np.asarray(rows[-1,:7],dtype=cmd.dtype)),axis=1)
+                if not np.isfinite(planned).all()or planned.min()<.180:
+                    rejections.append(dict(planned_endpoint_clearance_m=planned.tolist(),required_planned_clearance_m=.180));continue
+                qs=np.vstack([actual[ri],cmd[0,ri],rows[:,:7]])
+                if c['config'].get('reuse_actual_other_context_checks'):
+                    # Identical immutable Cartesian product to the legacy
+                    # loop below: every actual/cmd/issued q at every current
+                    # RIGHT width, against every current LEFT width. Reuse
+                    # only the unchanged own fixed/self/installed-part proof;
+                    # every changed LEFT finger retains exact pair checks.
+                    from dual_aperture_path_check import rows_other_contexts
+                    exact_qs=np.tile(qs,(len(openings),1))
+                    exact_widths=np.repeat(openings,len(qs))
+                    contexts=[(oq.copy(),float(lw))for oq in [actual[li],cmd[0,li]]for lw in left_openings]
+                    stats={}
+                    accepted,why=rows_other_contexts(rc,lc,contexts,exact_qs,exact_widths,diagnostics=stats)
+                    c['planning_diagnostics'].append(dict(event='final_empty_retreat_immutable_row_proof_reuse',original_issued_and_start_rows=len(qs),original_RIGHT_widths=len(openings),original_LEFT_widths=len(left_openings),LEFT_joint_contexts=2,exact_original_combinations=len(qs)*len(openings)*len(contexts),clear=bool(accepted),**stats))
+                    if not accepted:rejections.append(dict(collision=why))
+                else:
+                    for oq,lw in [(oq,lw)for oq in [actual[li],cmd[0,li]]for lw in left_openings]:
+                        with rc.other_arm_at(lc,oq,float(lw)):
+                            for opening in openings:
+                                for index,pose in enumerate(qs):
+                                    clear,why=rc.clear(pose,float(opening))
+                                    if not clear:rejections.append(dict(row=index,collision=why));accepted=False;break
+                                if not accepted:break
+                        if not accepted:break
+                if accepted:chosen=(rows,delta,planned);break
+            if chosen is not None:break
+        if chosen is None:raise RuntimeError('No full-CAD/pair/installed-part clear final empty RIGHT retreat '+str(rejections[:3]))
+        rows,delta,planned=chosen
+        if not np.array_equal(cmd,source_command)or not np.array_equal(art.get_dof_positions()[0],actual):
+            raise RuntimeError('Final retreat source changed after original complete issued-field proof')
+        for row in rows:
+            cmd[0,ri]=row[:7];cmd[0,rf]=row[7:];step('final_empty_RIGHT_clearance_retreat')
+        completion=_complete_encoder_clearance(c,rc,lc,native_root,goals,step)
+        after=np.asarray(completion['actual_clearance_m'])
+        result=dict(performed=True,world_delta_m=delta,physical_motion_s=len(rows)*c['dt'],exact_issued_rows=len(rows),right_openings_checked_m=openings.tolist(),left_openings_checked_m=left_openings.tolist(),calibrated_goal_clearance_before_m=before.tolist(),calibrated_goal_clearance_after_m=after.tolist(),planned_issued_endpoint_clearance_m=planned.tolist(),required_planned_clearance_m=.180,encoder_completion=completion,installed_parts_checked=True,uses_free_body_poses=False)
+        c['planning_diagnostics'].append(dict(event='final_empty_RIGHT_clearance',**result));print('FINAL_EMPTY_RIGHT_CLEARANCE',result,flush=True);return result
+    finally:
+        for side,checker in [('right',rc),('left',lc)]:checker.payload_path,checker.payload_rows,checker.payload_boxes,checker.payload_relative=saved[side]

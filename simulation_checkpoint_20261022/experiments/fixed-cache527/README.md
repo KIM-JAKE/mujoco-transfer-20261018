@@ -1,0 +1,15 @@
+# Actual527 PLUS whole-task PASS with fresh public postrelease PIN sensing
+
+Actual527 completed ring2+ring1+PIN at **245.191697s wall /53.73125s physics**. Both original whole-scene evaluator and the new PIN public-sensor completion passed. This is one PLUS-layout run, not three-case generalization or an isolated speed comparison. The20/30s targets remain unmet and hardware remains untested.
+
+PIN completion now requires a NEW RGB-D capture after actual release, the checked45mm-class withdrawal and the unchanged0.5s retention interval. Public SDK confirmed fingers8.99829mm each and withdrawal endpoint error0.505mm/2.139mrad. The first near-axis camera view13 succeeded without fallback: captured235.118762s, ready235.376709s. Fresh class-cap support was346.776degrees,61edge inliers and14.315µm circle RMS. Directly measured center error0.514524mm and axis approximatelyZ met the unchanged final1.5mm/50mrad gate. PropagatedXY and simulator-pose inputs were false.
+
+The camera aim/ROI remained fixed at the last qualified PRE-release public PIN world center/axis; it did not follow the withdrawn Hand. Source reports `retention_completion_source=Fresh postrelease RGB-D and public robot SDK only`. Under this flag the PIN controller pass/fail is public-sensor-authoritative; unavailable simulator truth cannot change it. The separate original whole-scene simulation evaluator still reports benchmark truth checks. Its postrun data is not a robot sensor.
+
+Metrology has practical limits: read-only postrun comparison found the final new image center within118.5µm of recorded physics, while its plane-axis estimate differed6.489mrad. Both remain within the final50mrad tolerance. Do not claim exact orientation or the3mrad PREINSERT accuracy for this postrelease image. Postrun evaluator final error0.57384mm/6.487mrad is explicitly noncontrol evidence.
+
+Fresh pre-release depth was already0.447907mm/11.833mrad, so no optional depth push executed. The new depth-stop branch recorded that qualification; this run does not prove that branch caused the success (remaining axial depth0.436mm was also below the old0.5mm refinement trigger). The MINUS526 run using the same source failed a genuinely larger depth deficit and remains a separate failure.
+
+`code/` and `support-code/` contain428 byte-verified frozen input files, including421Python sources; archived495 services are unchanged. Selected actual public RGB-D packets include lift, FAR, ENTRY, pre-release full-depth and POST-release retention, with all75 observation records retained. Sensor-postrelease source/focused tests, qualified-depth-stop policy and24mm geometry proof are preserved undercomponent-evidence. `postrun-EVALUATION-ONLY/` is never controller input.
+
+A full245.19s/10fps video job is prepared from all34 recorded body poses, at1x wall time including sensing/planning waits, Warp CAD ray rendering not RTX. It will launch only after physical workers are idle and root releasesGPU3; no simulation or new trajectory is generated. No main guide, RESULTS, Git index/commit or live job was modified by archiving.
