@@ -1,0 +1,465 @@
+{
+  "version": 547,
+  "gpu": 3,
+  "case": "nominal",
+  "repetition": 3,
+  "status": "PASS",
+  "eligible_full_task": true,
+  "run": "native-roas-table-fixed-front-v547-healthy-terminal-nominal-repeat3",
+  "config": {
+    "SHA256": "fbd683280d7bed966a70c904193a14fac43004048dc74a7e77a11cc0e24842a0",
+    "differences_from_nominal540": {},
+    "variation_only": true,
+    "PIN_saved_canonical_carry": false,
+    "fixed_supply_pose_variation": {},
+    "same_case_repeat_exact": true
+  },
+  "source_identity": {
+    "frozen_python_count": 425,
+    "frozen_python_aggregate_SHA256": "c90a297ee51bf2d8ba785c655137606abed751758e5e930e16168cc2a0c0a10c",
+    "matches_plan_python_aggregate": true,
+    "matches540_python_map": true,
+    "fixed_JSON_count": 7,
+    "fixed_JSON_map_matches540": true,
+    "captured_snapshot_entries_checked": 289,
+    "captured_snapshot_byte_mismatches": [],
+    "eligible_same_frozen_configuration": true
+  },
+  "authoritative": {
+    "state": "completed_over_budget",
+    "full_task_pass": true,
+    "vision_end_to_end_pass": true,
+    "wall_s": 224.95238722406793,
+    "physics_report_s": 51.762499999994006,
+    "time_goal_under20": false,
+    "time_goal_under30": false,
+    "hardware_tested": false,
+    "part_attachments": false,
+    "workpiece_teleports_after_initialization": 0
+  },
+  "PIN": {
+    "single_stroke_pass": true,
+    "state": "pin_single_stroke_contact_pass",
+    "completion_source": "Fresh postrelease RGB-D and public robot SDK only",
+    "public_SDK_release_withdraw": {
+      "confirmed": true,
+      "release_confirmed": true,
+      "withdraw_confirmed": true,
+      "actual_fingers_m": [
+        0.008998304605484009,
+        0.008998304605484009
+      ],
+      "command_fingers_m": [
+        0.008999999612569809,
+        0.008999999612569809
+      ],
+      "release_target_per_finger_m": 0.009,
+      "release_per_finger_tolerance_m": 0.0005,
+      "actual_withdraw_translation_m": 0.0003798390019508665,
+      "command_withdraw_translation_m": 1.0117477496888323e-07,
+      "actual_withdraw_rotation_rad": 0.002394837727949062,
+      "command_withdraw_rotation_rad": 0.0014608045401133375,
+      "withdraw_translation_limit_m": 0.0015,
+      "withdraw_rotation_limit_rad": 0.05,
+      "source": "Current public gripper encoders, commanded positions and encoder FK only",
+      "uses_free_body_poses": false
+    },
+    "fresh_postrelease_RGBD": {
+      "confirmed": true,
+      "direct_class_end_circle": true,
+      "position_error_m": 0.0009112307341814043,
+      "axis_error_rad": 0.01163852038561134,
+      "position_limit_m": 0.0015,
+      "axis_limit_rad": 0.05,
+      "cap_edge_coverage_deg": 344.91813014283895,
+      "cap_circular_edge_inliers": 68,
+      "cap_total_hull_edge_points": 68,
+      "cap_circular_edge_rms_m": 1.9450550558233953e-05,
+      "center_m": [
+        -0.3021868374903377,
+        0.22732802452751738,
+        1.527855598208817
+      ],
+      "axis": [
+        0.00023285161697769925,
+        -0.011635928023490406,
+        0.9999322731861175
+      ],
+      "source": "New postrelease RGB-D pixels, original class-radius cap/plane gates and calibrated jig goal",
+      "uses_free_body_poses": false,
+      "captured_wall_s": 220.61216687806882,
+      "ready_wall_s": 220.88609174103476,
+      "after_release_withdraw_and_original_retention_wait": true,
+      "camera_world_anchor_from_last_qualified_RGBD": [
+        [
+          0.9999935513719341,
+          0.0,
+          0.003591269211128707,
+          -0.3021387899178294
+        ],
+        [
+          4.3230679255231886e-05,
+          0.9999275440704395,
+          -0.01203763848800223,
+          0.22738630897418982
+        ],
+        [
+          -0.0035910090023797132,
+          0.012037716114756215,
+          0.9999210959096151,
+          1.5278223463632046
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "robot_Hand_does_not_move_world_anchor": true,
+      "original_retention_wait_s": 0.5,
+      "one_observation_operation": true
+    },
+    "fresh_postrelease_qualified_observations": [
+      {
+        "view_index": 13,
+        "captured_wall_s": 220.61216687806882,
+        "ready_wall_s": 220.88609174103476,
+        "delivered_wall_s": 220.892151038046,
+        "robust_cap_circle_from_pixels": true,
+        "original_cap_quality": {
+          "cap_expected_radius_m": 0.00525,
+          "visible_end_radius_m": 0.005211897622378181,
+          "cap_edge_coverage_deg": 344.91813014283895,
+          "cap_circular_edge_inliers": 68,
+          "cap_total_hull_edge_points": 68,
+          "cap_circular_edge_rms_m": 1.9450550558233953e-05,
+          "cap_points": 5879,
+          "depth_points": 8675,
+          "plane_rms_m": 1.8864215746644126e-08
+        },
+        "same_existing_camera_view_bank": true,
+        "original_depth_axis_precision_and_motor_gates_unchanged": true,
+        "uses_free_body_poses": false
+      }
+    ],
+    "fresh_full_depth_RGBD_error": {
+      "position_error_m": 0.0009437956357191213,
+      "axis_error_rad": 0.012562255215471952
+    },
+    "fresh_full_depth_current_grasp": [
+      {
+        "source": "Fresh qualified RGB-D center/axis plus SAME-capture public SDK Hand FK",
+        "grasp_before_observation": [
+          [
+            0.7655727253893965,
+            -0.002023009629729288,
+            -0.6433461817496778,
+            -0.01006227272012894
+          ],
+          [
+            -2.7894549216168733e-06,
+            0.9999950456123573,
+            -0.0031478155851556878,
+            -2.5681703960944713e-05
+          ],
+          [
+            0.6433493624245468,
+            0.002411676341723818,
+            0.7655689268022521,
+            0.011050759790892206
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "grasp_after_observation": [
+          [
+            0.763169197787563,
+            0.00564718152891837,
+            -0.646174036068509,
+            -0.009634617132871726
+          ],
+          [
+            7.648897908556229e-06,
+            0.9999617345068272,
+            0.00874811200153772,
+            -1.3539806197920834e-05
+          ],
+          [
+            0.6461987120768519,
+            -0.006681232137602366,
+            0.7631399515471204,
+            0.010528318158530725
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "same_capture_Hand": [
+          [
+            -0.7654814484621353,
+            0.0005892784932035908,
+            -0.643457497670483,
+            -0.30273937736039475
+          ],
+          [
+            0.0016671131107751807,
+            -0.999994303908739,
+            -0.002898981959996773,
+            0.22741935264606608
+          ],
+          [
+            -0.643455582662027,
+            -0.0032918015919756642,
+            0.7654761380925835,
+            1.5135636772872894
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "relative_center_change_m": 0.0006752643824592923,
+        "relative_axis_change_rad": 0.012466426380971196,
+        "axial_yaw_observed": false,
+        "uses_free_body_poses": false,
+        "payload_must_be_readmitted_before_correction": true
+      }
+    ],
+    "saved_carry_configured": false,
+    "saved_carry_execution_evidence": null,
+    "terminal_branch": [
+      {
+        "label": "pin_preinsert_carry",
+        "source": "existing_robot_seeds.pin_direct_preinsert",
+        "requested_seed": [
+          -0.28723139164366085,
+          0.6926105953402253,
+          0.8790169988076403,
+          -1.2902773431895862,
+          1.532832515486083,
+          2.4351729773476185,
+          1.3092658128772234
+        ],
+        "fresh_prepose_Hand": [
+          [
+            -0.7660448243773911,
+            4.729170588377393e-07,
+            -0.6427871553200083,
+            -0.3026337637429055
+          ],
+          [
+            0.00188797552009152,
+            -0.999995684849533,
+            -0.0022507400447590417,
+            0.2272811874537904
+          ],
+          [
+            -0.6427843826611283,
+            -0.002937734176180043,
+            0.7660415178858536,
+            1.4688191983266674
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "candidate_q": [
+          -0.18648746324464674,
+          0.6386082590748696,
+          0.7706707116971012,
+          -1.257845399347954,
+          1.3569197770155588,
+          2.5304234797146994,
+          1.8291333092094466
+        ],
+        "original_terminal_admitted": true,
+        "original_route_and_issued_guards_still_required": true,
+        "uses_free_body_poses": false
+      }
+    ]
+  },
+  "last_recorded_trace_physics_s": 51.75833333332734,
+  "last_recorded_trace_wall_s": 224.9051224499708,
+  "rings": {
+    "ring1": {
+      "structured_completed_part_available": true,
+      "whole_final_check_available": true,
+      "whole_final_check_EVALUATION_ONLY": {
+        "position_error_m": 0.0008372522311238187,
+        "axis_error_rad": 0.009305828712847415
+      },
+      "final_pass_inferred_if_check_missing": false,
+      "insertion_fresh_RGBD": {
+        "part": "ring1",
+        "center_m": [
+          -0.12318478712659513,
+          0.24000723145037803,
+          1.5303858382270814
+        ],
+        "axis": [
+          -0.008575247582191596,
+          -0.0012365417176866155,
+          0.9999624673423922
+        ],
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00011544841044560307,
+        "depth_points": 10513,
+        "measured_classification_diameter_m": 0.07308650266650657,
+        "visible_arc_coverage_deg": 330
+      },
+      "released_retention_RGBD": null,
+      "right_direct_returned_state": "right_native_ring_insert_executed_requires_physical_evaluation",
+      "right_direct_component_pass": false,
+      "right_direct_reported_attachments": false,
+      "recorded_command_stage_markers": [
+        "ring1_right_axial_insert",
+        "ring1_right_full_depth_RGBD",
+        "ring1_right_release_after_full_depth",
+        "ring1_right_released_retention_RGBD",
+        "ring1_right_world_down_withdraw"
+      ]
+    },
+    "ring2": {
+      "structured_completed_part_available": true,
+      "whole_final_check_available": true,
+      "whole_final_check_EVALUATION_ONLY": {
+        "position_error_m": 0.0002954160801567208,
+        "axis_error_rad": 0.010519102708111842
+      },
+      "final_pass_inferred_if_check_missing": false,
+      "insertion_fresh_RGBD": {
+        "part": "ring2",
+        "center_m": [
+          -0.23903933255277568,
+          0.28415383781569054,
+          1.5316865207891834
+        ],
+        "axis": [
+          0.0008537910284039386,
+          0.01024988273987678,
+          0.99994710407336
+        ],
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00015616048799311193,
+        "depth_points": 2752,
+        "measured_classification_diameter_m": 0.05996049529247798,
+        "visible_arc_coverage_deg": 195
+      },
+      "released_retention_RGBD": {
+        "part": "ring2",
+        "center_m": [
+          -0.23904382787482267,
+          0.2841457822533116,
+          1.531676031034901
+        ],
+        "axis": [
+          0.0010724251013106614,
+          0.010531083642636553,
+          0.9999439715212618
+        ],
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.0001763424224255704,
+        "depth_points": 4801,
+        "measured_classification_diameter_m": 0.06015261754750187,
+        "visible_arc_coverage_deg": 360
+      }
+    }
+  },
+  "saved_paths": {
+    "rings": [
+      {
+        "event": "saved_SMALL_donor_proposed",
+        "canonical_rows": 1068,
+        "fresh_entry_rows": 24,
+        "fresh_exit_rows": 32,
+        "fresh_RGBD_grasp": true,
+        "exact_original_middle": true,
+        "uses_free_body_poses": false
+      },
+      {
+        "event": "saved_SMALL_donor_admitted",
+        "original_actual_encoders_all_widths_both_other_contexts_and_payload_guards": true,
+        "static_certificate_hits": 5345,
+        "static_certificate_misses": 285,
+        "native_self_certificate_hits": 5345,
+        "own_payload_certificate_hits": 5345,
+        "own_certificate_misses": 285
+      },
+      {
+        "event": "saved_SMALL_LEFT_carry_admitted",
+        "canonical_rows": 720,
+        "fresh_entry_rows": 61,
+        "original_dt_s": 0.0020833333333333333,
+        "fresh_RGBD_grasp": true,
+        "original_full_payload_pair_guard": true,
+        "uses_free_body_poses": false
+      },
+      {
+        "event": "fixed_saved_fixture_branch_admitted",
+        "part": "ring1",
+        "wall_s": 0.092112238984555,
+        "uses_free_body_poses": false
+      },
+      {
+        "event": "fixed_saved_canonical_carry_admitted",
+        "rows": 1415,
+        "original_dt_s": 0.0020833333333333333,
+        "fresh_public_RGBD_grasp": true,
+        "static_certificate_hits": 7085,
+        "static_certificate_misses": 5,
+        "native_self_certificate_hits": 7085,
+        "own_payload_certificate_hits": 7085,
+        "own_certificate_misses": 5
+      }
+    ],
+    "ring2": {
+      "saved_donor_admitted": true,
+      "saved_LEFT_carry_admitted": true,
+      "evidence_scope": "Actual original-guard admission events, not an independent new command-byte proof"
+    },
+    "ring1": {
+      "saved_fixture_branch_admitted": true,
+      "saved_canonical_carry_admitted": true,
+      "evidence_scope": "Actual original-guard admission events"
+    },
+    "PIN_configured": false,
+    "PIN_execution_claim": false
+  },
+  "retreat_and_failure": {
+    "final_empty_RIGHT_retreat_command_phase_present": true,
+    "final_whole_retention_phase_present": true,
+    "authoritative_whole_final_checks_available": true,
+    "stage": null,
+    "last_exception": null,
+    "reported_collision_pairs": [],
+    "postrelease_PIN_can_be_confirmed_even_when_whole_task_failed": false
+  },
+  "raw_input_SHA256": {
+    "pipeline-results.json": "2825fea9aa19e34539a30267f61e6a49cf4fab779f97b006471dcfa857091498",
+    "trial-config.json": "fbd683280d7bed966a70c904193a14fac43004048dc74a7e77a11cc0e24842a0",
+    "frozen-source-manifest.json": "9e5004c23764a66a277a38098006d9c67f58322961eb36f58794a6668a44252d",
+    "code-manifest.json": "e543f525d903b5f617c31c2c255670c24aadf8167a84a3bcacfbac6f0debadbc",
+    "rgb-observations.json": "c2810cf23276e3f41074f2e672d3e2fdd1f74ff3224657d3fa276832bef752e7",
+    "executed-actuator-commands.npz": "b8a3f09c155530c7d02b102462b5c10fe8cbe8e20853c69c74492b2c63e552ae",
+    "physx-sequence-trace.npz": "2d27d73602efb29c533206d44ba2ab9fc6e6135a529f661dc9e8488939b245c0"
+  }
+}

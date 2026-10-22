@@ -1,0 +1,206 @@
+{
+  "generated_utc": "2026-10-22T12:40:05.971082+00:00",
+  "verdict": "REJECT_DROP_IN_GPU_SPEEDUP",
+  "reason": "GPU dynamics is markedly slower with unchanged original precision/controller. Keep frozen CPU baseline. No full-policy GPU success-rate claim.",
+  "full_task_GPU_qualified": false,
+  "hardware_tested": false,
+  "GPU_assignment": "User reserved physicalGPU1; GPU0 rope generation and GPU2/3 reliability workers untouched.",
+  "host_shared_CPU": true,
+  "CPU": {
+    "backend_settings": {
+      "requested": "cpu",
+      "authored_gpu_dynamics": false,
+      "broadphase": "MBP",
+      "cuda_device": -1,
+      "CCD": true,
+      "solver": "TGS",
+      "original_numpy_readbacks_and_callbacks_retained": true,
+      "source_run": "540/542/543"
+    },
+    "cold_setup_wall_s": 36.398525711963885,
+    "warmup_wall_s": 7.284361238940619,
+    "timed": {
+      "simulation_s": 1.5020833333333332,
+      "wall_s": 5.416083101998083,
+      "physics_s": 5.090458575985394,
+      "control_s": 0.29817467159591615
+    },
+    "small_ring_lift_m": 0.07459747791290283,
+    "contact_component_qualified": true,
+    "command_audit": {
+      "samples": 2864,
+      "velocity_fraction_of_95_percent_PBV": 0.9369012162132716,
+      "max_acceleration_rad_s2": 8.7890625,
+      "max_jerk_rad_s3": 3164.0625,
+      "acceleration_limit_rad_s2": 9.5,
+      "jerk_limit_rad_s3": 4750,
+      "command_limit_checks": true,
+      "complete_issued_field_checked_at_end": true,
+      "validated_sample_count": 2864
+    },
+    "motor_audit": {
+      "samples": 2864,
+      "max_fraction_of_95_percent_PBV": 0.9286564924862065,
+      "max_finger_fraction_of_47p5_mm_s": 0.6748619048218978,
+      "max_coupled_finger_difference_m": 1.862645149230957e-08
+    },
+    "error": null,
+    "elapsed_including_setup_s": 49.11006468196865,
+    "source_command_prefix_sha256": "816965b1b10ccc116f5bd3e97ed0367b1e2478648ccb911d81698cac32808f46"
+  },
+  "GPU": {
+    "backend_settings": {
+      "requested": "gpu",
+      "authored_gpu_dynamics": true,
+      "broadphase": "GPU",
+      "cuda_device": 0,
+      "CCD": true,
+      "solver": "TGS",
+      "original_numpy_readbacks_and_callbacks_retained": true,
+      "source_run": "540/542/543"
+    },
+    "cold_setup_wall_s": 18.35715513001196,
+    "warmup_wall_s": 244.63761112699285,
+    "timed": {
+      "simulation_s": 1.5020833333333332,
+      "wall_s": 140.55640669900458,
+      "physics_s": 140.2210771284299,
+      "control_s": 0.29632912785746157
+    },
+    "small_ring_lift_m": 0.07377129793167114,
+    "contact_component_qualified": true,
+    "command_audit": {
+      "samples": 2864,
+      "velocity_fraction_of_95_percent_PBV": 0.9369012162132716,
+      "max_acceleration_rad_s2": 8.7890625,
+      "max_jerk_rad_s3": 3164.0625,
+      "acceleration_limit_rad_s2": 9.5,
+      "jerk_limit_rad_s3": 4750,
+      "command_limit_checks": true,
+      "complete_issued_field_checked_at_end": true,
+      "validated_sample_count": 2864
+    },
+    "motor_audit": {
+      "samples": 2864,
+      "max_fraction_of_95_percent_PBV": 0.9286549806198919,
+      "max_finger_fraction_of_47p5_mm_s": 0.1641886602891119,
+      "max_coupled_finger_difference_m": 7.450580596923828e-09
+    },
+    "error": null,
+    "elapsed_including_setup_s": 403.562614049064,
+    "source_command_prefix_sha256": "816965b1b10ccc116f5bd3e97ed0367b1e2478648ccb911d81698cac32808f46"
+  },
+  "GPU_dynamics_original_CPU_MBP_short_probe": {
+    "component_only": true,
+    "full_task_pass": false,
+    "hardware_tested": false,
+    "scope": "First0.5sim-second throughput control; no contact qualification",
+    "error": null,
+    "backend_settings": {
+      "requested": "gpu",
+      "authored_gpu_dynamics": true,
+      "broadphase": "MBP",
+      "cuda_device": 0,
+      "CCD": true,
+      "solver": "TGS",
+      "original_numpy_readbacks_and_callbacks_retained": true,
+      "source_run": "540/542/543"
+    },
+    "cold_setup_wall_s": 19.22800625709351,
+    "simulation_s": 0.49999999999999883,
+    "wall_s": 27.54179941804614,
+    "physics_s": 27.380347719066776,
+    "control_s": 0.1424866939196363,
+    "command_audit": {
+      "samples": 240,
+      "velocity_fraction_of_95_percent_PBV": 0.16950037930566367,
+      "max_acceleration_rad_s2": 3.900146484375,
+      "max_jerk_rad_s3": 105.46875,
+      "acceleration_limit_rad_s2": 9.5,
+      "jerk_limit_rad_s3": 4750,
+      "command_limit_checks": true,
+      "complete_issued_field_checked_at_end": true,
+      "validated_sample_count": 240
+    },
+    "motor_audit": {
+      "samples": 240,
+      "max_fraction_of_95_percent_PBV": 0.16771540099619478,
+      "max_finger_fraction_of_47p5_mm_s": 0.011187547964877203,
+      "max_coupled_finger_difference_m": 3.725290298461914e-09
+    },
+    "elapsed_including_setup_s": 46.76861013902817
+  },
+  "contact_window": {
+    "simulation_s": 1.5020833333333332,
+    "CPU_physics_wall_s": 5.090458575985394,
+    "GPU_physics_wall_s": 140.2210771284299,
+    "GPU_over_CPU": 27.545863508237343,
+    "CPU_complete_window_wall_s": 5.416083101998083,
+    "GPU_complete_window_wall_s": 140.55640669900458
+  },
+  "early_half_sim_second": {
+    "CPU_physics_wall_s": 0.6961890342645347,
+    "GPU_broadphase_physics_wall_s": 27.34743334981613,
+    "CPU_MBP_broadphase_physics_wall_s": 27.380347719066776
+  },
+  "preservation": {
+    "original_core_files": 51,
+    "original_sources": [
+      {
+        "run": 540,
+        "source_files": 289,
+        "unchanged": true
+      },
+      {
+        "run": 542,
+        "source_files": 289,
+        "unchanged": true
+      },
+      {
+        "run": 543,
+        "source_files": 289,
+        "unchanged": true
+      }
+    ],
+    "shared_worker_code_or_queue_modified": false,
+    "shared_RPC_requests_sent": false,
+    "full_policy_cases_prepared_but_not_executed": [
+      "cpu-nominal",
+      "gpu-nominal",
+      "cpu-plus",
+      "gpu-plus",
+      "cpu-minus",
+      "gpu-minus"
+    ]
+  },
+  "diagnostics": {
+    "cpu": {
+      "physx_invalidating_warning_matches": [],
+      "common_headless_graphics_startup_error": true,
+      "common_original_Button_Quatd_coding_error": true
+    },
+    "gpu": {
+      "physx_invalidating_warning_matches": [],
+      "common_headless_graphics_startup_error": true,
+      "common_original_Button_Quatd_coding_error": true
+    },
+    "gpu-mbp-probe": {
+      "physx_invalidating_warning_matches": [],
+      "common_headless_graphics_startup_error": true,
+      "common_original_Button_Quatd_coding_error": true
+    }
+  },
+  "limitations": [
+    "One contact-rich replay per mode; not statistical success-rate evidence.",
+    "Fresh perception, handover, remaining ring and pin insertion excluded from this component.",
+    "Original540 command prefix was replayed; initial free-body states evolved from gravity and contacts, never restored from trace.",
+    "GPU timing cannot be extrapolated as an actual three-part cycle time.",
+    "GPU solver execution does not imply every contact/CCD/query operation is GPU accelerated.",
+    "Separate CPU host work persisted on other GPUs; no claim of an entirely isolated machine."
+  ],
+  "inference": "High-frequency fine substeps, high solver iterations, and CPU-facing tensor/callback/synchronization architecture are plausible contributors; no kernel-level attribution was measured.",
+  "references": [
+    "https://nvidia-omniverse.github.io/PhysX/physx/5.6.1/docs/GPURigidBodies.html",
+    "https://docs.isaacsim.omniverse.nvidia.com/latest/reference_material/sim_performance_optimization_handbook.html"
+  ]
+}
