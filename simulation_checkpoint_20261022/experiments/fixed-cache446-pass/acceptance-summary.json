@@ -1,0 +1,168 @@
+{
+  "full_task_pass": true,
+  "vision_end_to_end_pass": true,
+  "hardware_tested": false,
+  "part_attachments": false,
+  "workpiece_teleports_after_initialization": 0,
+  "wall_verified_elapsed_s": 249.17807756795082,
+  "simulation_elapsed_s": 47.922916666664165,
+  "end_to_end_under20": false,
+  "end_to_end_under30": false,
+  "final_checks": {
+    "ring1": {
+      "position_error_m": 0.00042523690287025643,
+      "axis_error_rad": 0.009493105237669877
+    },
+    "ring2": {
+      "position_error_m": 0.00039913383765354405,
+      "axis_error_rad": 0.012929495471330028
+    },
+    "pin": {
+      "position_error_m": 0.0006497935375035922,
+      "axis_error_rad": 0.00542508414533046
+    }
+  },
+  "FR3_command_limit_audit": {
+    "samples": 23003,
+    "velocity_fraction_of_95_percent_PBV": 0.9369012162132716,
+    "max_acceleration_rad_s2": 8.8165283203125,
+    "max_jerk_rad_s3": 3994.62890625,
+    "acceleration_limit_rad_s2": 9.5,
+    "jerk_limit_rad_s3": 4750,
+    "command_limit_checks": true,
+    "complete_issued_field_checked_at_end": true,
+    "validated_sample_count": 23003
+  },
+  "encoder_motor_speed_audit": {
+    "samples": 23003,
+    "max_fraction_of_95_percent_PBV": 0.9286564924862065,
+    "max_finger_fraction_of_47p5_mm_s": 0.6763582951144168,
+    "max_coupled_finger_difference_m": 2.9802322387695312e-08,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  },
+  "CPU_operation_profile": {
+    "control_s": 6.9348238981328905,
+    "physics_s": 97.7888631534297,
+    "clamp_flush_s": 0.0
+  },
+  "fixed_saved_route_preparation": {
+    "ready": true,
+    "cache_hit": false,
+    "preparation_s": 64.01102439907845,
+    "canonical_rows": 1416,
+    "static_certified_unique_rows": 1407,
+    "world_sha256": "24c82638ff88f8c8e6d9798b733aa7645338fbe8a3a02b20482699753da8b5f4",
+    "model_sha256": "5c206e806ed824c762d22606be35812a2aeb25aa4c60cc70c0d32ca896dd535a",
+    "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/093d40629cca2d39bd1699e7f4446fc774145eba8ad8082256045a36954e70d3.json",
+    "compile_excluded_from_cycle": true,
+    "only_static_queries_reused": true,
+    "actual_start_counterpart_payload_contact_limits_remain_live": true,
+    "saved_command_limit_audit": {
+      "velocity_fraction_of_95_percent_PBV": 0.8877358580675749,
+      "max_acceleration_rad_s2": 8.5693359375,
+      "max_jerk_rad_s3": 1311.767578125
+    }
+  },
+  "fixed_saved_small_left_preparation": {
+    "ready": true,
+    "cache_hit": false,
+    "preparation_s": 47.26833664497826,
+    "canonical_rows": 721,
+    "static_certified_unique_rows": 715,
+    "world_sha256": "24c82638ff88f8c8e6d9798b733aa7645338fbe8a3a02b20482699753da8b5f4",
+    "model_sha256": "2cd574811cfcf2b4c068e8f196d6ffa415e5bd1d9c9581ea68445c0a45e4a4f6",
+    "compile_excluded_from_cycle": true,
+    "saved_command_limit_audit": {
+      "velocity_fraction_of_95_percent_PBV": 0.7756429774160604,
+      "max_acceleration_rad_s2": 8.514404296875,
+      "max_jerk_rad_s3": 1081.0546875
+    }
+  },
+  "cache_events": [
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 6280,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "saved_LEFT_static_route_query_reuse",
+      "static_certificate_hits": 3605,
+      "static_certificate_misses": 365
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": true,
+      "physics_epoch": 6280,
+      "part": "ring2",
+      "issued_samples": 792,
+      "exact_current_encoders_commands_payload_binding_model_world_and_placed_geometry": true,
+      "cache_survives_physics": false
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 9191,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "saved_LEFT_static_route_query_reuse",
+      "static_certificate_hits": 0,
+      "static_certificate_misses": 970
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 9462,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "saved_LEFT_static_route_query_reuse",
+      "static_certificate_hits": 0,
+      "static_certificate_misses": 0
+    },
+    {
+      "event": "fixed_saved_fixture_branch_admitted",
+      "part": "ring1",
+      "wall_s": 1.6111748720286414,
+      "fresh_other_arm_checks": true,
+      "public_RGBD_grasp_envelope": true,
+      "online_fixture_search_omitted": true,
+      "uses_free_body_poses": false
+    },
+    {
+      "event": "fixed_saved_canonical_carry_admitted",
+      "rows": 1415,
+      "original_dt_s": 0.0020833333333333333,
+      "current_encoder_bridge_live": true,
+      "fresh_public_RGBD_grasp": true,
+      "apertures_m": [
+        0.07199864834547043,
+        0.07270949520170689,
+        0.07342034205794334,
+        0.0741311889141798,
+        0.07484203577041626
+      ],
+      "reference_full_paths": 1,
+      "dependent_configurations": 5672,
+      "invariant_configurations_reused": 0,
+      "fallback_full_configurations": 0,
+      "changed_body_names": [
+        "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger",
+        "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger"
+      ],
+      "path_sample_count": 1418,
+      "static_certificate_hits": 7085,
+      "static_certificate_misses": 5
+    }
+  ],
+  "timing_comparison_eligible": false,
+  "timing_note": "Observed wall time includes all live captures/compute/motion/retention. Concurrent jobs; not an isolated benchmark. First offline compile111.28s before first capture excluded and reported separately. Hardware and 20/30s cycle unqualified."
+}

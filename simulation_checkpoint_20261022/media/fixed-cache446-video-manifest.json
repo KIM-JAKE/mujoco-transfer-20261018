@@ -1,0 +1,86 @@
+{
+  "source_run": "native-roas-table-fixed-front-v446-cached-pipeline-pin-deadband",
+  "source_full_task_pass": true,
+  "vision_end_to_end_pass": true,
+  "source_state": "completed_over_budget",
+  "end_to_end_under20": false,
+  "end_to_end_under30": false,
+  "display_scope": "ALL3 PHYSX PASS | TIME TARGET NOT MET | HARDWARE UNTESTED",
+  "source_physics_elapsed_s": 47.922916666664165,
+  "source_total_wall_s": 249.17807756795082,
+  "segments": [
+    {
+      "start_wall_s": 8.0,
+      "end_wall_s": 19.2,
+      "label": "SMALL: camera-guided grip and lift",
+      "part": "ring2"
+    },
+    {
+      "start_wall_s": 39.0,
+      "end_wall_s": 44.3,
+      "label": "SMALL: RIGHT moves to handover",
+      "part": "ring2"
+    },
+    {
+      "start_wall_s": 48.6,
+      "end_wall_s": 58.5,
+      "label": "SMALL: LEFT receives; RIGHT releases",
+      "part": "ring2"
+    },
+    {
+      "start_wall_s": 83.3,
+      "end_wall_s": 89.0,
+      "label": "OVERLAP: LEFT carries while RIGHT approaches LARGE",
+      "part": "ring2"
+    },
+    {
+      "start_wall_s": 98.5,
+      "end_wall_s": 103.3,
+      "label": "LARGE: RIGHT grip and extraction",
+      "part": "ring1"
+    },
+    {
+      "start_wall_s": 118.0,
+      "end_wall_s": 138.6,
+      "label": "SMALL: LEFT alignment, insertion and release",
+      "part": "ring2"
+    },
+    {
+      "start_wall_s": 195.0,
+      "end_wall_s": 202.2,
+      "label": "LARGE: actual saved transport plus guarded join",
+      "part": "ring1"
+    },
+    {
+      "start_wall_s": 208.1,
+      "end_wall_s": 219.8,
+      "label": "LARGE: insertion, clamp, release and withdrawal",
+      "part": "ring1"
+    },
+    {
+      "start_wall_s": 225.7,
+      "end_wall_s": 231.2,
+      "label": "PIN: observed holder pickup and lift",
+      "part": "pin"
+    },
+    {
+      "start_wall_s": 237.7,
+      "end_wall_s": 249.178,
+      "label": "PIN: corrected alignment, insertion and ALL3 retention",
+      "part": "pin"
+    }
+  ],
+  "speed_multiplier": 1.0,
+  "wall_clock_replay": true,
+  "explicit_cut_cards": true,
+  "frame_count": 1006,
+  "cut_frames": 72,
+  "video_duration_s": 100.6,
+  "fps": 10,
+  "renderer": "Warp GPU ray camera of original CAD, notRTX",
+  "all_dynamic_bodies_replayed": true,
+  "render_only": true,
+  "new_physics_steps": 0,
+  "actor_poses_used_for_rendering_only": true,
+  "hardware_tested": false
+}
