@@ -1,0 +1,17 @@
+--- /tmp/fixed489-final-retreat-full/overrides/gpu_pair_width_scope.py	2026-10-22 01:26:41.275715151 +0000
++++ /tmp/fixed490-width-co-moving/overrides/gpu_pair_width_scope.py	2026-10-22 05:25:16.807857569 +0000
+@@ -64,7 +64,13 @@
+         if fallback:
+             original_pairs=[(q,float(w),other_q,other_width)if checker is left else(other_q,other_width,q,float(w))for w in openings for _,_,q in samples]
+             with certified_pair_scope(c,left,right,pairs=original_pairs):yield
+-        else:yield
++        else:
++            # The normal width-sweep path has the SAME immutable, no-step
++            # preflight lifetime as the existing pair-scope fallback. Own
++            # co-moving FCL reuse is independent of pair CLEAR/UNKNOWN bits.
++            from co_moving_own_clearance import co_moving_scope
++            with co_moving_scope(c,left,right):
++                yield
+     finally:
+         if installed:
+             if previous is sentinel:delattr(checker,'scoped_gpu_pair_clear_certificate')

@@ -7,11 +7,11 @@
 ```bash
 python3 simulation_checkpoint_20261022/tools/prepare_fixed_checkpoint.py \
   --base-repo /home/gpuadmin/workspace/jake/mujoco \
-  --checkpoint simulation_checkpoint_20261022/experiments/fixed-cache483 \
+  --checkpoint simulation_checkpoint_20261022/experiments/fixed-cache490 \
   --run native-roas-table-my-cache-test
 ```
 
-이 명령은 소스SHA-256을 확인하고 개인 snapshot과 결과 폴더만 준비합니다. 실제483 소스·입력419개로 준비·재검증을 통과했습니다. 새 실행기 자체로 전체 재실행한 성과를 기존483과 혼동하지 않습니다.483 기준 위치와482 MINUS는 같은 코드 전체 성공이며, PLUS484도 같은 코드 전체 성공입니다. 저장/보정 구조가 작동하지만 전체 시간 대폭 단축과 모든 위치에서의 반복 성공률을 보장하지 않습니다.
+이 명령은 소스SHA-256을 확인하고 개인 snapshot과 결과 폴더만 준비합니다. 실제490 소스·입력421개로 준비·재검증을 통과했습니다. 새 실행기 자체로 전체 재실행한 성과를 기존490과 혼동하지 않습니다.490 기준 배치는238.17초에 전체 성공했지만 다른 위치·반복 성공률은 미검증입니다. 이전483 기준 위치/482 MINUS/484 PLUS는 같은 이전 코드로 전체 통과했습니다. 저장/보정 구조가 작동하지만 전체 시간 대폭 단축과20/30초 목표는 미달입니다.
 
 예약한GPU가 해당 컨테이너에 배정되어 있고 기존 작업이 비어 있을 때, **다른 새run 이름**으로 같은 명령에 아래 옵션을 붙이면 Isaac이 시작됩니다. 현재 대화에서는 사용자에게GPU2·3 사용을 허가받았고, 공유 서버에서는 기존GPU 예약 도구를 먼저 사용합니다.
 
@@ -24,3 +24,6 @@ python3 simulation_checkpoint_20261022/tools/prepare_fixed_checkpoint.py \
 결과는원래작업 저장소의`isaac_port/runs/<run>/pipeline-results.json`에 생성됩니다. `full_task_pass`와`vision_end_to_end_pass`를 확인하세요. `state=completed_over_budget`는작업은완료했으나시간목표를넘겼다는뜻입니다. `.done`/프로세스정상종료만으로성공판정하지않습니다.
 
 첫 촬영 전에 모델·장면·클램프 스트로크·보정·파지영역을 검사하고 저장 증명을 불러오거나 새로 생성합니다. 첫 준비 시간과 촬영 이후 전체 시간을 각각 보고합니다. 런타임은 새 RGB-D 접근/진입 구간과현재동적조건을 검사하고저장된고정구간을재사용합니다. 물체위치를바꾸거나부착하지않고, 중간LLM/agent 호출없이함수와조건분기로실행합니다.
+
+
+490 외부 서비스는 GPU2의 `collision-gpu2-exact-dedup`과 GPU3의 `rgbd-gpu3-fast-spread`입니다. 바이너리 충돌 주소는 반드시 `pair-binary.sock`으로 끝나야 합니다. 서버의 원래 `pair-exact-dedup.sock`만 직접 지정하면 다른 전송 형식을 선택해 CPU 검사로 돌아갑니다. 현재 배포는 같은 폴더의 상대 symlink `pair-binary.sock -> pair-exact-dedup.sock`을 사용합니다. 서비스 소스·원래 커널·RGB-D 모델의 SHA-256과 실제 연결 검증은490의 `service-sources/`에 있습니다. 해당 서비스가 없거나 주소가 다르면 먼저 복원/경로 설정이 필요하며, 이 준비 도구가 서비스를 자동 생성하지는 않습니다.

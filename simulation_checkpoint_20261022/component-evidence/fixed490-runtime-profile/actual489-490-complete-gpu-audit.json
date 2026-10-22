@@ -1,0 +1,133 @@
+{
+  "scope": "Exact-state and width-sweep receipts audited separately. RPC timing calls can sum; context inclusive wall times may nest and must not sum as elapsed speed savings. Any missing-registration/unknown row uses unchanged CPU guards.",
+  "runs": [
+    {
+      "run": 489,
+      "groups": [
+        {
+          "event": "GPU_exact_pair_schedule_certificate",
+          "scopes": 21,
+          "inclusive_scope_wall_s": 42.85431527090259,
+          "transport_counts": {
+            "numpy_pickle5_exact_transform_bank": 20,
+            "None": 1
+          },
+          "errors": {
+            "None": 20,
+            "ValueError: Binary GPU pair response rejected ValueError: Geometry not registered": 1
+          },
+          "source_SHA_counts": {
+            "79b4337c1fdf748b5555c92751b9a801ce80ad4422af724b89829588fbd52453": 20,
+            "None": 1
+          },
+          "sum_service_timing": {
+            "client_wall_s": 8.572591825854033,
+            "server_s": 6.05472923477646,
+            "kernel_s": 5.886528922826983,
+            "transform_prepare_s": 1.714785911841318,
+            "geometry_prepare_s": 0.13343188096769154
+          },
+          "policy_receipts_unchanged": true,
+          "all_ambiguity_CPU_fallback": true,
+          "rows": 129775,
+          "clear_rows": 129144,
+          "CPU_fallback_rows": 631,
+          "context_misses": 1
+        },
+        {
+          "event": "GPU_native_width_sweep_pair_certificate",
+          "scopes": 11,
+          "inclusive_scope_wall_s": 30.139247647253796,
+          "transport_counts": {
+            "numpy_pickle5_exact_transform_bank": 11
+          },
+          "errors": {
+            "None": 11
+          },
+          "source_SHA_counts": {
+            "79b4337c1fdf748b5555c92751b9a801ce80ad4422af724b89829588fbd52453": 11
+          },
+          "sum_service_timing": {
+            "client_wall_s": 1.4363605928374454,
+            "server_s": 0.5837634700583294,
+            "kernel_s": 0.557315536076203,
+            "transform_prepare_s": 0.31536499795038253,
+            "geometry_prepare_s": 0.056855880189687014
+          },
+          "policy_receipts_unchanged": true,
+          "all_ambiguity_CPU_fallback": true,
+          "q_samples": 4560,
+          "clear_q_samples": 4560,
+          "uncertain_q_samples": 0
+        }
+      ],
+      "distinct_service_client_wall_s": 10.008952418691479,
+      "distinct_service_kernel_s": 6.443844458903186,
+      "pipeline_sha256": "1f44b88db62221a94b46b561a25a77b42a63ea422a4c26c96582359156e51e96"
+    },
+    {
+      "run": 490,
+      "groups": [
+        {
+          "event": "GPU_exact_pair_schedule_certificate",
+          "scopes": 22,
+          "inclusive_scope_wall_s": 37.57671031996142,
+          "transport_counts": {
+            "numpy_pickle5_exact_transform_bank": 21,
+            "None": 1
+          },
+          "errors": {
+            "None": 21,
+            "ValueError: Binary GPU pair response rejected ValueError: Geometry not registered": 1
+          },
+          "source_SHA_counts": {
+            "79b4337c1fdf748b5555c92751b9a801ce80ad4422af724b89829588fbd52453": 21,
+            "None": 1
+          },
+          "sum_service_timing": {
+            "client_wall_s": 7.501787189743482,
+            "server_s": 5.684042742825113,
+            "kernel_s": 5.530075669870712,
+            "transform_prepare_s": 1.3360421522520483,
+            "geometry_prepare_s": 0.14105110557284206
+          },
+          "policy_receipts_unchanged": true,
+          "all_ambiguity_CPU_fallback": true,
+          "rows": 124124,
+          "clear_rows": 123524,
+          "CPU_fallback_rows": 600,
+          "context_misses": 3
+        },
+        {
+          "event": "GPU_native_width_sweep_pair_certificate",
+          "scopes": 12,
+          "inclusive_scope_wall_s": 25.946548346197233,
+          "transport_counts": {
+            "numpy_pickle5_exact_transform_bank": 12
+          },
+          "errors": {
+            "None": 12
+          },
+          "source_SHA_counts": {
+            "79b4337c1fdf748b5555c92751b9a801ce80ad4422af724b89829588fbd52453": 12
+          },
+          "sum_service_timing": {
+            "client_wall_s": 1.5403471519239247,
+            "server_s": 0.583250382100232,
+            "kernel_s": 0.5559832848375663,
+            "transform_prepare_s": 0.3528972110943869,
+            "geometry_prepare_s": 0.072307979920879
+          },
+          "policy_receipts_unchanged": true,
+          "all_ambiguity_CPU_fallback": true,
+          "q_samples": 4688,
+          "clear_q_samples": 4688,
+          "uncertain_q_samples": 0
+        }
+      ],
+      "distinct_service_client_wall_s": 9.042134341667406,
+      "distinct_service_kernel_s": 6.086058954708278,
+      "pipeline_sha256": "9934f6e958450ba788a6b445c7f4b966a4e80b6ac980633b2aebb82b7af92a6d"
+    }
+  ]
+}
