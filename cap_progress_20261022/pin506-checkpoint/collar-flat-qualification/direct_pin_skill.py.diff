@@ -1,0 +1,17 @@
+--- /tmp/fixed502-air-pin-component-full/overrides/direct_pin_skill.py
++++ direct_pin_skill.py
+@@ -120,8 +120,12 @@
+     cand=ctx['candidate'];flat_tail_proposal=None
+     flat_tail_enabled=bool(ctx.get('config',{}).get('pin_tail_flat_contact_target',False))
+     parallel_tail_enabled=bool(ctx.get('config',{}).get('pin_parallel_tail_contact_target',False))
+-    if flat_tail_enabled and parallel_tail_enabled:raise ValueError('PIN physical target proposals are mutually exclusive')
+-    if parallel_tail_enabled:
++    collar_flat_enabled=bool(ctx.get('config',{}).get('pin_collar_flat_contact_target',False))
++    if int(flat_tail_enabled)+int(parallel_tail_enabled)+int(collar_flat_enabled)>1:raise ValueError('PIN physical target proposals are mutually exclusive')
++    if collar_flat_enabled:
++        from pin_collar_contact_target import retarget
++        cand,flat_tail_proposal=retarget(cand,offset_m=ctx.get('config',{}).get('pin_collar_flat_offset_m',-.002))
++    elif parallel_tail_enabled:
+         from pin_parallel_tail_target import retarget
+         cand,flat_tail_proposal=retarget(cand)
+     elif flat_tail_enabled:

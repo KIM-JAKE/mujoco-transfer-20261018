@@ -1,0 +1,236 @@
+{
+  "captured_at_KST": "2026-10-22T17:06:14.883070+09:00",
+  "previous_published_v460_elapsed_s": 234.9275613159407,
+  "latest_nominal_completed_elapsed_s": 190.70568123098928,
+  "observed_nominal_difference_s": 44.22188008495141,
+  "causal_speedup_or_repeatability_proven": false,
+  "latest_candidate_runs": [
+    {
+      "run": 506,
+      "source_run": "native-roas-table-fixed-front-v506-pin-collar-flat-reset-component",
+      "state": "pin_only_component_pass",
+      "full_task_pass": false,
+      "vision_end_to_end_pass": false,
+      "wall_verified_elapsed_s": 38.761025378946215,
+      "simulation_elapsed_s": 13.708333333332716,
+      "hardware_tested": false,
+      "pin_component_pass": true,
+      "component_only": true,
+      "supply_variation": {
+        "ring1": {
+          "translation_xy_m": [
+            -0.01,
+            0.01
+          ],
+          "tilt_xy_rad": [
+            -0.04,
+            0
+          ]
+        },
+        "ring2": {
+          "translation_xy_m": [
+            0.01,
+            -0.01
+          ],
+          "tilt_xy_rad": [
+            0,
+            0.04
+          ]
+        }
+      },
+      "final_checks": null,
+      "retention_wall_s": null,
+      "last_error": null,
+      "report_sha256": "ea71ee2033fe0d902275816cf3297a6a0fad839b452681aa658ce18045e0a610",
+      "same_frozen_python_source_files": 420,
+      "same_manifest_inputs": 284,
+      "timings_controlled_benchmark": false,
+      "standby_preparation_s_excluded": 31.074026449001394
+    },
+    {
+      "run": 507,
+      "source_run": "native-roas-table-fixed-front-v507-collar-flat-reset-nominal",
+      "state": "completed_over_budget",
+      "full_task_pass": true,
+      "vision_end_to_end_pass": true,
+      "wall_verified_elapsed_s": 190.70568123098928,
+      "simulation_elapsed_s": 48.937499999996575,
+      "hardware_tested": false,
+      "pin_component_pass": false,
+      "component_only": false,
+      "supply_variation": {},
+      "final_checks": {
+        "ring1": {
+          "position_error_m": 0.0007753600159604337,
+          "axis_error_rad": 0.01204088747474069
+        },
+        "ring2": {
+          "position_error_m": 0.00022250274981514096,
+          "axis_error_rad": 0.001314328475771631
+        },
+        "pin": {
+          "position_error_m": 0.0007809071805868533,
+          "axis_error_rad": 0.01701810555682184
+        }
+      },
+      "retention_wall_s": 0.6773093569790944,
+      "last_error": null,
+      "report_sha256": "87eaf3ec97ce4f53253b2c30ffa9000c65cc17a5ca77e25d3dcc34d69ba7aed9",
+      "same_frozen_python_source_files": 420,
+      "same_manifest_inputs": 284,
+      "timings_controlled_benchmark": false,
+      "standby_preparation_s_excluded": 33.89719837589655
+    },
+    {
+      "run": 508,
+      "source_run": "native-roas-table-fixed-front-v508-collar-flat-reset-plus",
+      "state": "failed",
+      "full_task_pass": false,
+      "vision_end_to_end_pass": false,
+      "wall_verified_elapsed_s": 251.27941334305797,
+      "simulation_elapsed_s": null,
+      "hardware_tested": false,
+      "pin_component_pass": false,
+      "component_only": false,
+      "supply_variation": {
+        "ring1": {
+          "translation_xy_m": [
+            0.01,
+            -0.01
+          ],
+          "tilt_xy_rad": [
+            0.04,
+            0
+          ]
+        },
+        "ring2": {
+          "translation_xy_m": [
+            -0.01,
+            0.01
+          ],
+          "tilt_xy_rad": [
+            0,
+            -0.04
+          ]
+        }
+      },
+      "final_checks": null,
+      "retention_wall_s": null,
+      "last_error": [
+        "RuntimeError: Pin RGB-D precision center/axis alignment did not converge; insertion blocked"
+      ],
+      "report_sha256": "179e82f7c61c30e44428813508328dad3b5f6fee6a7ba5380f4272243f808ffe",
+      "same_frozen_python_source_files": 420,
+      "same_manifest_inputs": 284,
+      "timings_controlled_benchmark": false,
+      "standby_preparation_s_excluded": 33.06398691504728
+    },
+    {
+      "run": 509,
+      "source_run": "native-roas-table-fixed-front-v509-collar-flat-reset-minus",
+      "state": "completed_over_budget",
+      "full_task_pass": true,
+      "vision_end_to_end_pass": true,
+      "wall_verified_elapsed_s": 202.6162391549442,
+      "simulation_elapsed_s": 46.560416666665404,
+      "hardware_tested": false,
+      "pin_component_pass": false,
+      "component_only": false,
+      "supply_variation": {
+        "ring1": {
+          "translation_xy_m": [
+            -0.01,
+            0.01
+          ],
+          "tilt_xy_rad": [
+            -0.04,
+            0
+          ]
+        },
+        "ring2": {
+          "translation_xy_m": [
+            0.01,
+            -0.01
+          ],
+          "tilt_xy_rad": [
+            0,
+            0.04
+          ]
+        }
+      },
+      "final_checks": {
+        "ring1": {
+          "position_error_m": 0.0007887476635318778,
+          "axis_error_rad": 0.007087788098529462
+        },
+        "ring2": {
+          "position_error_m": 0.00023191942727423523,
+          "axis_error_rad": 0.0016769567734073317
+        },
+        "pin": {
+          "position_error_m": 0.0007700155394963932,
+          "axis_error_rad": 0.002572115272794104
+        }
+      },
+      "retention_wall_s": 0.6508874309947714,
+      "last_error": null,
+      "report_sha256": "0d12df5d16ef18126ad4b92f6b37a8809e95a2021d0fa2b7bd2cc2a2d691ac19",
+      "same_frozen_python_source_files": 420,
+      "same_manifest_inputs": 284,
+      "timings_controlled_benchmark": false,
+      "standby_preparation_s_excluded": 37.450595156056806
+    }
+  ],
+  "prior_qualified_build": [
+    {
+      "run": 493,
+      "full_task_pass": true,
+      "vision_end_to_end_pass": true,
+      "wall_verified_elapsed_s": 212.53978356905282,
+      "report_sha256": "d54ae263bc3a4c0ec0128c78b29a23a4c16d394f21af6d7f91e948f5f848353c"
+    },
+    {
+      "run": 494,
+      "full_task_pass": true,
+      "vision_end_to_end_pass": true,
+      "wall_verified_elapsed_s": 196.6974354549311,
+      "report_sha256": "23fd1106fdad3afd3b6d3a64e90323ba540587ce6218b5051185e44207d4bcb5"
+    },
+    {
+      "run": 495,
+      "full_task_pass": true,
+      "vision_end_to_end_pass": true,
+      "wall_verified_elapsed_s": 256.0858648510184,
+      "report_sha256": "e582c438d56f9d886cb6d965d1ec4101dbac4af4ace19999fc1d812a519eda81"
+    },
+    {
+      "run": 496,
+      "full_task_pass": false,
+      "vision_end_to_end_pass": false,
+      "wall_verified_elapsed_s": 189.28289622301236,
+      "report_sha256": "aa5faebaad821d9a01d5f0d3065bad60fdd58c9e982561ba9a1b7b0e2e192d38"
+    },
+    {
+      "run": 497,
+      "full_task_pass": false,
+      "vision_end_to_end_pass": false,
+      "wall_verified_elapsed_s": 197.39960928296205,
+      "report_sha256": "75b533a1c1ea56820b73633bf114051f00ff67666d1b31ee23e4adbb6c451be9"
+    }
+  ],
+  "prior_three_case_qualified_runs": [
+    493,
+    494,
+    495
+  ],
+  "latest_same_source_three_case_all_pass": false,
+  "latest_same_source_three_case_result": "2 PASS (507,509), 1 FAIL (508 PIN precision)",
+  "latest_candidate_promoted_over_prior_three_case_build": false,
+  "source_manifest_files_verified": 427,
+  "frozen_python_files_identical_across_506_509": 420,
+  "under20": false,
+  "under30": false,
+  "full_hardware_policy_port_validated": false,
+  "hardware_commands_sent": 0,
+  "simulation_reexecuted_for_publication": false
+}
