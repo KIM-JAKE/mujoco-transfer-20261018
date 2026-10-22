@@ -1,0 +1,169 @@
+{
+  "status": "DO_NOT_IMPLEMENT_BASED_ON_CURRENT_EVIDENCE",
+  "recommendation": "Preserve current original fresh LEFT fallback. Recovering the saved720-row middle has no demonstrated live-wall benefit and adds park/guard work.",
+  "scope": "Read-only CPU geometry/retiming reconstruction from existing public robot commands/encoders and original native CAD. No source/runtime edits, CUDA, benchmark timing, worker mutations, new physics or hardware actuation. No full qualification of any proposed park.",
+  "actual_rejection": {
+    "event": "saved_SMALL_LEFT_carry_rejected",
+    "stage": "current_exact_issued_guard",
+    "reason": "Loaded LEFT issued curve blocked with payload/current RIGHT {'opening_index': 0, 'opening_m': 0.059004079550504684, 'segment': 162, 'fraction': 1.0, 'collision': {'query': '/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/Palm', 'actor': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4', 'collider': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision', 'predictive_pair_box': True, 'minimum_pair_clearance_m': 0.001}}"
+  },
+  "critical_pair_static": {
+    "pair": "LEFT NativeHand/Palm versus RIGHT link4 original collision hull",
+    "canonical_rows": 721,
+    "original_per_shape_margin_m": 0.0005,
+    "original_pair_margin_m": 0.001,
+    "blocked_canonical_rows": 36,
+    "blocked_canonical_range_zero_based": [
+      102,
+      137
+    ],
+    "FCL_literal_hulls_collision": true,
+    "FCL_negative_one_is_collision_sentinel_not_penetration_depth": true
+  },
+  "temporal_reconstruction": {
+    "LEFT_bridge_rows": 60,
+    "LEFT_bridge_physics_s": 0.125,
+    "LEFT_middle_rows": 720,
+    "LEFT_total_rows": 780,
+    "RIGHT_recorded_phase_rows": 1044,
+    "actual_paired_RIGHT_issued_rows": 1043,
+    "RIGHT_boundary_caveat": "Recorded phase extraction contains one boundary snapshot in addition to1043issued rows. This is a critical-pair counterfactual, not an exact full production preflight replay.",
+    "checks": "Original shape_overlap SAT/LP at issued rows of the reported critical pair only. A collision suffices to reject; CLEAR here would not qualify full rows/substeps/payload/self/fixed/placed checks.",
+    "candidates": [
+      {
+        "LEFT_lead_steps": 0,
+        "LEFT_lead_physics_s": 0.0,
+        "critical_pair_CLEAR": false,
+        "first_blocked_combined_row": 151,
+        "first_blocked_physics_s": 0.3145833333333333
+      },
+      {
+        "LEFT_lead_steps": 120,
+        "LEFT_lead_physics_s": 0.25,
+        "critical_pair_CLEAR": false,
+        "first_blocked_combined_row": 161,
+        "first_blocked_physics_s": 0.33541666666666664
+      },
+      {
+        "LEFT_lead_steps": 240,
+        "LEFT_lead_physics_s": 0.5,
+        "critical_pair_CLEAR": false,
+        "first_blocked_combined_row": 161,
+        "first_blocked_physics_s": 0.33541666666666664
+      },
+      {
+        "LEFT_lead_steps": 780,
+        "LEFT_lead_physics_s": 1.625,
+        "critical_pair_CLEAR": false,
+        "first_blocked_combined_row": 161,
+        "first_blocked_physics_s": 0.33541666666666664
+      }
+    ],
+    "conclusion": "All existing four LEFT-lead phases fail the same pair. Deferring the static verifier into existing temporal phases is insufficient."
+  },
+  "park_proposals": [
+    {
+      "alpha_toward_public495_command": 0.25,
+      "RIGHT_q": [
+        2.209996521472931,
+        0.6297029405832291,
+        -1.3074753880500793,
+        -1.176247090101242,
+        0.19896523281931877,
+        0.5402259603142738,
+        0.583431601524353
+      ],
+      "max_joint_delta_rad": 0.04057556390762329,
+      "Hand_root_displacement_m": 0.01920673200855572,
+      "original_retimer_physics_s": 0.13958333333333334,
+      "escape_rows": 67,
+      "canonical_critical_pair_blocked_rows": 0,
+      "minimum_literal_critical_pair_distance_m": 0.0038545028464752255,
+      "escape_critical_pair_blocked_rows": 0
+    },
+    {
+      "alpha_toward_public495_command": 0.375,
+      "RIGHT_q": [
+        2.2302843034267426,
+        0.6147346422076225,
+        -1.3179433643817902,
+        -1.1798005253076553,
+        0.19234449602663517,
+        0.5317017696797848,
+        0.5908939838409424
+      ],
+      "max_joint_delta_rad": 0.060863345861434937,
+      "Hand_root_displacement_m": 0.028511430969493393,
+      "original_retimer_physics_s": 0.17291666666666666,
+      "escape_rows": 83,
+      "canonical_critical_pair_blocked_rows": 0,
+      "minimum_literal_critical_pair_distance_m": 0.007839061774377121,
+      "escape_critical_pair_blocked_rows": 0
+    }
+  ],
+  "park_caveat": "Only the reported pair was checked, including its escape while LEFT remains at the current public hold command. Full original native/self/fixed/placed/payload/actual+command/width/issued-start/substep and hardware-cap preflights remain necessary before any motion. No pose is fully qualified.",
+  "benefit_evidence": {
+    "actual493_fresh_LEFT_issued_rows": 403,
+    "actual493_fresh_LEFT_field_physics_s": 0.8395833333333333,
+    "reconstructed_saved_LEFT_field_physics_s": 1.625,
+    "saved_minus_fresh_extra_physics_s": 0.7854166666666667,
+    "actual_insertion_search_wall_s": {
+      "493_fresh_fallback": 9.225624215905555,
+      "494_saved": 9.207282872055657,
+      "495_saved": 7.36593608208932
+    },
+    "actual_paired_proof_wall_s": {
+      "493_fresh_fallback": 3.744830701034516,
+      "494_saved": 5.4465856469469145,
+      "495_saved": 6.230383384972811
+    },
+    "interpretation": "Different poses, paths and concurrency: descriptive only, not a controlled causal benchmark. Extra park time and full live proof cost would also be incurred. Reuse itself is not a speed objective; current evidence does not justify implementation."
+  },
+  "input_files": {
+    "493_pipeline": {
+      "path": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v493-balanced-small-raw-cache-plus/pipeline-results.json",
+      "sha256": "d54ae263bc3a4c0ec0128c78b29a23a4c16d394f21af6d7f91e948f5f848353c"
+    },
+    "493_public_commands_encoders": {
+      "path": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v493-balanced-small-raw-cache-plus/executed-actuator-commands.npz",
+      "sha256": "2f40e1e81734de6fa7020bb1fa97fb0184446cd34eb6604bbc836f261d8cb7a1"
+    },
+    "494_pipeline": {
+      "path": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v494-balanced-small-raw-cache-nominal/pipeline-results.json",
+      "sha256": "23fd1106fdad3afd3b6d3a64e90323ba540587ce6218b5051185e44207d4bcb5"
+    },
+    "495_pipeline": {
+      "path": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v495-balanced-small-raw-cache-minus/pipeline-results.json",
+      "sha256": "e582c438d56f9d886cb6d965d1ec4101dbac4af4ace19999fc1d812a519eda81"
+    },
+    "495_public_commands_encoders": {
+      "path": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v495-balanced-small-raw-cache-minus/executed-actuator-commands.npz",
+      "sha256": "03c853ddbe98192c032fa466d61166d1e61e270c5f562f3dfb4e0185206361a2"
+    },
+    "original_native_local_CAD": {
+      "path": "/home/gpuadmin/workspace/jake/mujoco/.local/render-current/pair432-exact-locals.npz",
+      "sha256": "c0512fcbe063b92f4c9e9482b4d7c23862e0f0ac45f7964bb702c0ed60e26257"
+    },
+    "left_numeric_FK_model": {
+      "path": "/home/gpuadmin/workspace/jake/mujoco/.local/fixed-own-model450/left-native-kinematics.json",
+      "sha256": "494064feacbcfd519d50fde88ce463da0c16f8b5adc6725bc81b909b0d2bb6ec"
+    },
+    "right_numeric_FK_model": {
+      "path": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v493-balanced-small-raw-cache-plus/robot-kinematics.json",
+      "sha256": "4eab117dfad0e78aaa2b486f6ed25be7fd68594fde68ec21ecc82a33c9b0fade"
+    },
+    "saved_LEFT_field": {
+      "path": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v493-balanced-small-raw-cache-plus/code_snapshot/fixed_small_left_plan.py",
+      "sha256": "3f6e375b661f43062e3f10645208ed6722346e11dd7bb92089f028a8b7b31bb8"
+    },
+    "original_pair_policy": {
+      "path": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v493-balanced-small-raw-cache-plus/code_snapshot/predictive_pair_clearance.py",
+      "sha256": "3ddf85497babe7fc8faca42deead72d2f3612ba9cd8533b48227fb39c3ab49c8"
+    },
+    "original_retimer": {
+      "path": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v493-balanced-small-raw-cache-plus/code_snapshot/fr3_path_timing.py",
+      "sha256": "f73113d36469cc76d39cc9060bcfb26ca7a73e75bec6cd6a19572b3d26b24383"
+    }
+  },
+  "existing_published_audit": "/home/gpuadmin/workspace/jake/mujoco-field-publish-20261022/simulation_checkpoint_20261022/component-evidence/fixed493-495-same-source-audit/"
+}

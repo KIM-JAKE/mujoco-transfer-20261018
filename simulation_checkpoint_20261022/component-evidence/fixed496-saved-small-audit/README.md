@@ -1,0 +1,11 @@
+# Saved SMALL LEFT investigation: retain the existing fallback
+
+No implementation is recommended. This was a read-only CPU examination of existing public robot records and original CAD, with no new simulation, GPU work or runtime/source changes.
+
+493's stored LEFT route was correctly rejected. The original LEFT palm/RIGHT link4 pair policy blocks 36 of the 721 canonical samples (rows 102–137); the literal convex hulls also collide. A reconstructed 60-row entry plus 720-row middle fails the same pair against the recorded RIGHT pickup field under all four existing LEFT lead choices: 0, 0.25, 0.5 and 1.625 seconds. Thus simply deferring the serial proof into the existing timing choices would not recover this candidate. The reconstruction includes one recorded RIGHT boundary snapshot; it is not a full production preflight replay.
+
+A small empty-RIGHT posture adjustment can clear this particular pair. A quarter blend toward the public495 postwithdraw command moves the Hand root 19.21 mm, changes the largest joint by 0.04058 rad, and the original retimer produces 0.13958 seconds. Critical-pair minimum separation across the canonical field is 3.855 mm. A 28.51 mm alternative takes 0.17292 seconds and gives 7.839 mm separation. Neither is qualified against the full robot, held ring, machine, installed parts, all widths, actual/command starts or complete issued/subdivided paths. These are geometric proposals only.
+
+There is no demonstrated live-wall benefit.493's fresh fallback uses 403 LEFT rows (0.83958 physics seconds); the reconstructed stored field uses 780 rows (1.625 seconds), adding about 0.785 seconds before the extra park and its full proofs. Existing insertion-search wall times were 9.226 seconds for493's fallback and 9.207 for494's saved route; paired proof times were 3.745 versus 5.447 seconds. These differing cases are descriptive evidence, not an isolated causal benchmark. Recovering a cache hit is not worth introducing additional motion/proof work without a real speed benefit.
+
+Keep the original fresh replan. `evidence.json` retains the rejection, numerical proposals, timing counts, caveats, input paths and hashes. No controller guard, clearance, force, speed limit or fallback policy was changed.

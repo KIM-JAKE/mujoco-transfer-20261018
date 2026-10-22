@@ -1,0 +1,9 @@
+Bounded PIN tail-contact target (experimental, opt-in)
+
+Apply two override files on same416 build493/494/495. Driver whitelist pin_tail_flat_contact_target, settrue; fresh-import pin_tail_contact_target. No driver/live changes by this stage.
+
+Before ANY pickup target IK/routes/descent, copy original catalogue candidate and increase Hand-relative classG localZ by3mm. Derive REAL empty-Hand pickupH from SAME original public target partH @ inverse(newG); current freshinitialRGBD offset is still applied by original code. Original−40deg orientation, object target pose, all physics and hardware settings unchanged. Old nominal catalogue contact certificate removed from copy; no contact/heldG synthesized. Original fresh preclose, closing, SDK+RGBD actual grip qualification, postlift preload, currentG transport/terminal, all image-servo gates and final retention unchanged. Original motion(),line(),observe(),measured_grasp(),encoder window and holder-release functions AST identical.
+
+Meaning: avoid hitting13mm collar with fingertip/chamfer first; grip10.5mm tail using flat native pads. Exact original32-sided4-cylinder contact shapes + original nativefinger convex FCL model predicts firstcontact switches collar12.859mm aperture→tail10.359mm. At shiftedtarget collar clearance~1.207mm, native proximal7.824mm, sampled nativeflat support7.499mm (old0). This is COMPONENT geometric evidence, not actual grip stability or whole-scene admission; actual original FULL guards may reject pickup/terminal. No physics or actor edits.
+
+Public494/495 diagnosis: Hand-relativePIN center15.1um/axis1.258mrad excursion vs495380.4um/22.083mrad; repeated35–64um grip-inducedXY motion consumes75um precision gate. Existing actual496 baseline/candidateactual must determine whether physical contact improvement reduces corrections without changing original limits.

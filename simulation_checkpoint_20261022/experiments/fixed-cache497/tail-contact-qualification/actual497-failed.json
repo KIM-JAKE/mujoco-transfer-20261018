@@ -1,0 +1,412 @@
+{
+  "run": "native-roas-table-fixed-front-v497-tail-flat-contact-minus",
+  "full_task_pass": false,
+  "wall_s": 197.39960928296205,
+  "error": "RuntimeError: Fresh RGB-D/SDK pin postcarry retention changed beyond2mm/.05rad; correction blocked",
+  "scope": "PUBLIC directRGBD samecapture SDK and current recorded aperture gates only; no actor/force sensors",
+  "events": [
+    {
+      "type": "PIN_TAIL_FLAT_CONTACT_TARGET",
+      "data": {
+        "source": "Original public class-CAD/catalogue grasp; existing fresh initial RGB-D retarget still mandatory",
+        "physical_empty_Hand_target": true,
+        "original_grasp": [
+          [
+            0.766044443118978,
+            0.0,
+            -0.6427876096865393,
+            -0.009963207950141358
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.6427876096865393,
+            0.0,
+            0.766044443118978,
+            0.011873688868344159
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "proposed_grasp": [
+          [
+            0.766044443118978,
+            0.0,
+            -0.6427876096865393,
+            -0.009963207950141358
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.6427876096865393,
+            0.0,
+            0.766044443118978,
+            0.01487368886834416
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "positive_Hand_contact_z_offset_m": 0.003,
+        "physical_pickup_translation_m": 0.003000000000000009,
+        "original_part_pose_unchanged": true,
+        "original_orientation_family_unchanged": true,
+        "all_original_guards_required_before_motion": true,
+        "original_actual_RGBD_SDK_grasp_measured_after_lift": true,
+        "uses_free_body_poses": false
+      }
+    },
+    {
+      "type": "PIN_HOLDER_PRECLOSE",
+      "data": {
+        "attempt": 0,
+        "translation_m": 0.00030520494979238716,
+        "axis_rotation_rad": 0.000349986008619001,
+        "required_translation_m": 0.0003,
+        "required_rotation_rad": 0.01,
+        "source": "Fresh directly measured pin cap/axis + actual encoder FK before closure",
+        "uses_free_body_poses": false
+      }
+    },
+    {
+      "type": "PIN_HOLDER_PRECLOSE",
+      "data": {
+        "attempt": 1,
+        "translation_m": 0.00029712254070034147,
+        "axis_rotation_rad": 0.0003495653469808816,
+        "required_translation_m": 0.0003,
+        "required_rotation_rad": 0.01,
+        "source": "Fresh directly measured pin cap/axis + actual encoder FK before closure",
+        "uses_free_body_poses": false
+      }
+    },
+    {
+      "type": "PIN_SDK_POSTCLOSE_LIFT_ONLY",
+      "data": {
+        "attempt": 0,
+        "encoder_position_plateau": true,
+        "actual_encoder_aperture_m": 0.010087545961141586,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "controlled_lift_allowed": true,
+        "transport_allowed": false,
+        "direct_pose_confirmation": "Deferred until pin is lifted clear of hand/holder occlusion",
+        "sensor_basis": "Simulated SDK-like aperture/encoder plateau after controlled close; field adapter uses gripper is_grasped; no force sensor",
+        "uses_free_body_poses": false
+      }
+    },
+    {
+      "type": "PIN_NATIVE_POSTLIFT",
+      "data": {
+        "admitted": false,
+        "gap_m": 0.010064689442515373,
+        "flat_span_m": 0.006790083562881282
+      }
+    },
+    {
+      "type": "PIN_RGBD_SDK_POSTLIFT",
+      "data": {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.010064689442515373,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 6.823720269347847e-05,
+        "relative_axis_drift_rad": 0.0003562994077983758,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false
+      }
+    },
+    {
+      "type": "PIN_QUALIFIED_POSTLIFT_PRELOAD",
+      "data": {
+        "target_velocity_preload_m_s": 0.015,
+        "ramp_s": 0.3,
+        "effort_cap_per_pad_n": 30.0,
+        "effort_cap_unchanged": true,
+        "actual_contact_force_measured": false,
+        "confirmation": {
+          "confirmed": true,
+          "direct_class_end_circle": true,
+          "actual_encoder_aperture_m": 0.009892938658595085,
+          "required_aperture_band_m": [
+            0.0097,
+            0.0135
+          ],
+          "encoder_position_stationary": true,
+          "relative_center_drift_m": 4.2706891766941535e-05,
+          "relative_axis_drift_rad": 5.361411913674269e-05,
+          "center_drift_limit_m": 0.002,
+          "axis_drift_limit_rad": 0.05,
+          "unobservable_axial_yaw_used": false,
+          "native_sample_normals_advisory_only": true,
+          "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+          "uses_free_body_poses": false
+        },
+        "uses_free_body_poses": false
+      }
+    },
+    {
+      "type": "PIN_RGBD_SDK_POSTCARRY",
+      "data": {
+        "confirmed": false,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.009852118790149689,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 0.002054431777344759,
+        "relative_axis_drift_rad": 0.12756244173677217,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false,
+        "alignment_index": 0
+      }
+    }
+  ],
+  "observations": [
+    {
+      "mode": "pin_initial",
+      "work": "observation-060-pin_initial",
+      "t": 175.57335148204584,
+      "center_world": [
+        0.22999432815028914,
+        -0.8547312125026701,
+        0.9160635280790408
+      ],
+      "axis_world": [
+        -9.035083215279369e-06,
+        1.894982193197093e-05,
+        -0.9999999997796357
+      ],
+      "G_center_m": [
+        0.757631423952273,
+        0.8524988236484274,
+        -0.5433220268588519
+      ],
+      "G_axis": [
+        -0.018176618770131124,
+        9.21826219040146e-05,
+        -0.9998346326767927
+      ],
+      "cap_plane_rms_m": 3.509642576342913e-08,
+      "cap_edge_rms_m": null,
+      "edge_coverage_deg": null,
+      "ready_s": 0.04701448290143162
+    },
+    {
+      "mode": "held",
+      "work": "observation-061-held",
+      "t": 181.39505142800044,
+      "center_world": [
+        0.22999969376823584,
+        -0.8547520925000338,
+        0.9160635615263181
+      ],
+      "axis_world": [
+        -8.75883574807581e-06,
+        1.8938974421768352e-05,
+        -0.999999999782299
+      ],
+      "G_center_m": [
+        -0.009961376757026796,
+        -0.00011889803117977338,
+        0.015158072398267497
+      ],
+      "G_axis": [
+        -0.6427255744427328,
+        -0.000340595053445848,
+        0.7660962385488054
+      ],
+      "cap_plane_rms_m": 1.8885971991028292e-08,
+      "cap_edge_rms_m": 1.7576179086049625e-05,
+      "edge_coverage_deg": 346.5735444870462,
+      "ready_s": 0.30433652200736105
+    },
+    {
+      "mode": "held",
+      "work": "observation-062-held",
+      "t": 182.18774297705386,
+      "center_world": [
+        0.23000377333908426,
+        -0.8547478177511366,
+        0.9160634992397019
+      ],
+      "axis_world": [
+        -8.868556820907144e-06,
+        1.927677503083247e-05,
+        -0.9999999997748773
+      ],
+      "G_center_m": [
+        -0.00996325284830113,
+        -0.00011886060015309767,
+        0.015149493212796461
+      ],
+      "G_axis": [
+        -0.6427132427216652,
+        -0.000335932991857049,
+        0.7661065862831522
+      ],
+      "cap_plane_rms_m": 1.9196305644841286e-08,
+      "cap_edge_rms_m": 1.6299200933391065e-05,
+      "edge_coverage_deg": 346.5812385409927,
+      "ready_s": 0.25241094594821334,
+      "G_center_step_m": 8.782001075940604e-06,
+      "G_axis_step_rad": 0.0007394236601670006
+    },
+    {
+      "mode": "held",
+      "work": "observation-063-held",
+      "t": 183.98093669302762,
+      "center_world": [
+        0.23054636747417992,
+        -0.8550387757410961,
+        0.9868198388384493
+      ],
+      "axis_world": [
+        0.043168906394947845,
+        0.0039013602825838344,
+        -0.9990601708148564
+      ],
+      "G_center_m": [
+        -0.009363539495922613,
+        -2.428902332306769e-05,
+        0.01560907994516747
+      ],
+      "G_axis": [
+        -0.6091916575826849,
+        -0.004860639688937153,
+        0.7930079738730429
+      ],
+      "cap_plane_rms_m": 1.0792893516926376e-05,
+      "cap_edge_rms_m": 2.8519121162516566e-05,
+      "edge_coverage_deg": 266.0234033129746,
+      "ready_s": 0.23312814999371767,
+      "G_center_step_m": 0.0007614590289284506,
+      "G_axis_step_rad": 0.043228120375458194
+    },
+    {
+      "mode": "held",
+      "work": "observation-064-held",
+      "t": 184.29816705198027,
+      "center_world": [
+        0.23051143088188328,
+        -0.8549801648519553,
+        0.9868205547822944
+      ],
+      "axis_world": [
+        0.042842448357625976,
+        0.003759369645551196,
+        -0.9990747678520324
+      ],
+      "G_center_m": [
+        -0.009389823117574414,
+        -8.288472446239825e-05,
+        0.015586014150746341
+      ],
+      "G_axis": [
+        -0.6094511428643185,
+        -0.004718527486301322,
+        0.792809427301857
+      ],
+      "cap_plane_rms_m": 1.592802471480847e-05,
+      "cap_edge_rms_m": 2.2838915066135072e-05,
+      "edge_coverage_deg": 334.01825071089246,
+      "ready_s": 0.24459259200375527,
+      "G_center_step_m": 6.823720269341765e-05,
+      "G_axis_step_rad": 0.0007942150519286932
+    },
+    {
+      "mode": "held",
+      "work": "observation-065-held",
+      "t": 185.101070589968,
+      "center_world": [
+        0.23051340867584472,
+        -0.8549375045004388,
+        0.9868203080616866
+      ],
+      "axis_world": [
+        0.042818832677340296,
+        0.0038074953580784065,
+        -0.9990755980141083
+      ],
+      "G_center_m": [
+        -0.009388454486202624,
+        -0.00012554611175805792,
+        0.01558743241960947
+      ],
+      "G_axis": [
+        -0.6094697518339662,
+        -0.004766644153498979,
+        0.7927948339663038
+      ],
+      "cap_plane_rms_m": 1.5444175236691233e-05,
+      "cap_edge_rms_m": 1.7702052917530795e-05,
+      "edge_coverage_deg": 336.8140686490849,
+      "ready_s": 0.24920872203074396,
+      "G_center_step_m": 4.270689176690621e-05,
+      "G_axis_step_rad": 0.0007118671442554979
+    },
+    {
+      "mode": "held",
+      "work": "observation-070-held",
+      "t": 197.13037036499009,
+      "center_world": [
+        -0.3037833534749575,
+        0.22745946855062513,
+        1.4837780720145257
+      ],
+      "axis_world": [
+        -0.12706007075306844,
+        0.003896319878388017,
+        0.9918873711826512
+      ],
+      "G_center_m": [
+        -0.007720225854603413,
+        -0.00014359764116125308,
+        0.016786339131060313
+      ],
+      "G_axis": [
+        -0.5036905122368341,
+        -0.008363964349946792,
+        0.8638434919162604
+      ],
+      "cap_plane_rms_m": 8.235173019891249e-06,
+      "cap_edge_rms_m": 1.239647132824823e-05,
+      "edge_coverage_deg": 329.29927527715563,
+      "ready_s": 0.2531544519588351,
+      "G_center_step_m": 0.0020544317773445397,
+      "G_axis_step_rad": 0.12756465148560386
+    }
+  ],
+  "interpretation": "Target shifted actual physical contact to tail as predicted (10.09mm close/10.06mm postlift aperture instead12.7mm collar). Original independent lift+preload evidence stable, but transport changes grasp127.56mrad/2.054mm and correctly aborts before any insertion. Geometric footprint alone did not establish dynamic stability; NOT qualified."
+}

@@ -25,7 +25,7 @@
     "495": 256.0858648510184
   },
   "latest_plus_stored_middle_qualified": true,
-  "unresolved": "Same416Python/423source-input493PLUS/494NOMINAL/495MINUS allfullPASS. Initialtilts settle; these3cases are not repeat-success/random-stack/generalpose proof. Overall dramatic wait reduction/20s/30s goals remain unachieved;495slower thanolder491. Latestpolicy fullSDK/hardware execution untested.",
+  "unresolved": "Same416Python/423source-input493PLUS/494NOMINAL/495MINUS allfullPASS. Initialtilts settle; these3cases are not repeat-success/random-stack/generalpose proof. Overall dramatic wait reduction/20s/30s goals remain unachieved;495slower thanolder491. Latestpolicy fullSDK/hardware execution untested. Additional496 samephysicalpolicy+timerFAILprecisionbudget;497PIN3mmcandidateFAILpostcarryretention; candidate notpromoted. Original threecase passes do not establishrepeatability.",
   "hardware_tested": false,
   "under20": false,
   "under30": false,
@@ -55,5 +55,19 @@
     "LARGE_canonical_carry": "493/494/495 admitted",
     "SMALL_LEFT_720": "494/495 admitted;493 rejected current-RIGHT pair collision and replanned with original guards"
   },
-  "latest_same_source_audit": "component-evidence/fixed493-495-same-source-audit/same-source493-495-matrix.json"
+  "latest_same_source_audit": "component-evidence/fixed493-495-same-source-audit/same-source493-495-matrix.json",
+  "latest_diagnostic_trials": {
+    "496": {
+      "result": "FAIL_PIN_PRECISION_BUDGET",
+      "elapsed_until_failure_s": 189.28289622301236,
+      "contact_callback_s": 2.335103287710808,
+      "physics_block_s": 96.7975812718505
+    },
+    "497": {
+      "result": "FAIL_PIN_POSTCARRY_RETENTION",
+      "elapsed_until_failure_s": 197.39960928296205,
+      "candidate_promoted": false
+    }
+  },
+  "repeat_success_established": false
 }

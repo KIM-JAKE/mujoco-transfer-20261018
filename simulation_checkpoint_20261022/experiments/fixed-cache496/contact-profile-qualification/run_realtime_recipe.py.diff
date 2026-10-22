@@ -1,0 +1,37 @@
+--- run_realtime_recipe.py
++++ run_realtime_recipe.py
+@@ -260,7 +260,33 @@
+                         force=sum(float(np.linalg.norm(data[i].impulse))/(DT/active_physics_substeps) for i in range(h.contact_data_offset,h.contact_data_offset+h.num_contact_data))
+                         if force>empty_donor_payload_peak['force_n']:
+                             empty_donor_payload_peak.update(force_n=force,empty_robot_side=robot_side,carried_part=empty_donor_carried_part.get(robot_side),actor0=str(PhysicsSchemaTools.intToSdfPath(h.actor0)),actor1=str(PhysicsSchemaTools.intToSdfPath(h.actor1)),physics_s=physical)
+-    subscription=sim.subscribe_contact_report_events(contacts)
++    contact_callback=contacts
++    if startup_config.get('profile_contact_callback',False):
++        contact_callback_profile=dict(enabled=True,scope='All original callback invocations since subscription; inclusive timers, no contact filtering/sampling changes',callback_calls=0,header_records=0,data_records=0,empty_header_calls=0,max_headers=0,max_data_records=0,inclusive_wall_s=0.,inclusive_thread_cpu_s=0.,max_wall_s=0.,original_exceptions=0,instrumentation_errors=0,unique_actor_side_cache_entries=0)
++        report['contact_callback_profile']=contact_callback_profile
++        def profiled_contacts(headers,data):
++            wall_started=time.perf_counter();thread_started=time.thread_time()
++            contact_callback_profile['callback_calls']+=1
++            try:
++                nh=len(headers);nd=len(data)
++                contact_callback_profile['header_records']+=nh;contact_callback_profile['data_records']+=nd
++                contact_callback_profile['empty_header_calls']+=int(nh==0)
++                contact_callback_profile['max_headers']=max(contact_callback_profile['max_headers'],nh)
++                contact_callback_profile['max_data_records']=max(contact_callback_profile['max_data_records'],nd)
++            except Exception:
++                # Diagnostic failure cannot suppress or alter the safety callback.
++                contact_callback_profile['instrumentation_errors']+=1
++            try:return contacts(headers,data)
++            except BaseException:
++                contact_callback_profile['original_exceptions']+=1
++                raise
++            finally:
++                thread_elapsed=time.thread_time()-thread_started;wall_elapsed=time.perf_counter()-wall_started
++                contact_callback_profile['inclusive_wall_s']+=wall_elapsed;contact_callback_profile['inclusive_thread_cpu_s']+=thread_elapsed
++                contact_callback_profile['max_wall_s']=max(contact_callback_profile['max_wall_s'],wall_elapsed)
++                contact_callback_profile['unique_actor_side_cache_entries']=len(contact_side_cache)
++        contact_callback=profiled_contacts
++    subscription=sim.subscribe_contact_report_events(contact_callback)
+     def smooth(u):u=np.clip(u,0,1);return u**3*(10-15*u+6*u*u)
+     def add_correction(k,delta,rotvec,end,fade,label,ramp=.3,side='right'):
+         w=smooth((phase-phase[k])/ramp)*(1-smooth((phase-end)/fade));R=recipe['rot']if side=='right'else recipe['left_rot'];Ji=(recipe['held_Jinv']if random_config else recipe['Jinv'])if side=='right'else recipe['left_Jinv'];twist=np.c_[np.einsum('nij,j->ni',R,delta),np.einsum('nij,j->ni',R,rotvec)];dq=np.einsum('nij,nj->ni',Ji,twist);commands[:,aidx[side]]+=dq*w[:,None];corrections.append(dict(label=label,translation_m=delta.tolist(),rotation_rad=rotvec.tolist(),at_phase_s=float(phase[k])))

@@ -1,0 +1,16 @@
+--- /tmp/fixed493-intern-and-small-full/overrides/direct_pin_skill.py
++++ /tmp/fixed497-pin-tail-flat/overrides/direct_pin_skill.py
+@@ -117,7 +117,12 @@
+ 
+ def execute(ctx):
+     HERE=Path(__file__).resolve().parent
+-    art=ctx['art'];arm=ctx['arm'];ids=ctx['ids'];fi=ctx['fi'];cmd=ctx['cmd'];idx=ctx['idx'];vision=ctx['vision'];checker=ctx['checker'];stage=ctx['stage'];sim=ctx['sim'];paths=ctx['paths'];goal=np.array(ctx['goal']);truth=ctx['truth'];started=ctx['started'];stiff=ctx['stiffness'];damping=ctx['damping'];DT=ctx['dt'];cand=ctx['candidate'];G=np.array(cand['grasp_transform']);pickupH=np.array(cand['pickup_H']);preH=pickupH.copy();preH[:3,3]+=[0,0,.07];preq=arm.solve(preH[:3,3],preH[:3,:3],cand['pickup_q']);phase='pin_start';report=ctx.setdefault('report',{});report.update(events=[],pin_single_stroke_pass=False)
++    cand=ctx['candidate'];flat_tail_proposal=None
++    if ctx.get('config',{}).get('pin_tail_flat_contact_target',False):
++        from pin_tail_contact_target import retarget
++        cand,flat_tail_proposal=retarget(cand)
++    art=ctx['art'];arm=ctx['arm'];ids=ctx['ids'];fi=ctx['fi'];cmd=ctx['cmd'];idx=ctx['idx'];vision=ctx['vision'];checker=ctx['checker'];stage=ctx['stage'];sim=ctx['sim'];paths=ctx['paths'];goal=np.array(ctx['goal']);truth=ctx['truth'];started=ctx['started'];stiff=ctx['stiffness'];damping=ctx['damping'];DT=ctx['dt'];G=np.array(cand['grasp_transform']);pickupH=np.array(cand['pickup_H']);preH=pickupH.copy();preH[:3,3]+=[0,0,.07];preq=arm.solve(preH[:3,3],preH[:3,:3],cand['pickup_q']);phase='pin_start';report=ctx.setdefault('report',{});report.update(events=[],pin_single_stroke_pass=False)
++    if flat_tail_proposal is not None:report['pin_tail_flat_contact_target']=flat_tail_proposal;print('PIN_TAIL_FLAT_CONTACT_TARGET',flat_tail_proposal,flush=True)
+     body_goal=goal.copy();pin_config=ctx.get('config',{})
+     visual_preinsert=bool(pin_config.get('pin_visual_preinsert_alignment'))
+     pin_axis_geometry=bool(pin_config.get('pin_axis_frame_consistent_geometry') or cand.get('pose_origin')=='RGB-D physical symmetry-axis midpoint')
