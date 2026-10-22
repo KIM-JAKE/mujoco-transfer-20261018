@@ -1,0 +1,38 @@
+{
+  "all_pass": true,
+  "tests": [
+    {
+      "case": "enabled",
+      "passed": true,
+      "error": null,
+      "original_steps": 2
+    },
+    {
+      "case": "disabled",
+      "passed": true,
+      "error": null,
+      "original_steps": 2
+    },
+    {
+      "case": "partial_step_fault",
+      "passed": true,
+      "error": "original partial issue fault",
+      "original_steps": 1
+    },
+    {
+      "case": "proof_fault",
+      "passed": true,
+      "error": "original proof unavailable",
+      "original_steps": 0
+    },
+    {
+      "case": "source_stale",
+      "passed": true,
+      "error": "PIN terminal rebranch source changed after full field proof",
+      "original_steps": 0
+    }
+  ],
+  "original_feedback_laws_and_motion_guards_AST_unchanged": true,
+  "total_image_budget_16_unchanged": true,
+  "reset_after_full_original_proof_and_completed_motion_only": true
+}

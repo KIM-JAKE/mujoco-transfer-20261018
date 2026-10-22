@@ -1,0 +1,758 @@
+{
+  "PIN_feedback": {
+    "observations": 14,
+    "corrections": 13,
+    "physical_correction_s": 4.55,
+    "encoder_window_executed_control_steps": 672,
+    "encoder_window_executed_physics_s": 1.4,
+    "qualified_preinsert_radial_m": 6.842657825743942e-05,
+    "qualified_preinsert_axis_rad": 0.0024397399256989335
+  },
+  "CPU_operation_profile": {
+    "control_s": 8.81380465743132,
+    "physics_s": 119.90793589595705,
+    "clamp_flush_s": 0.0
+  },
+  "retained_evaluation_only_checks": {
+    "ring1": {
+      "position_error_m": 0.0005751543809965445,
+      "axis_error_rad": 0.0012867560736259792
+    },
+    "ring2": {
+      "position_error_m": 0.00023033457515411122,
+      "axis_error_rad": 0.0003592946262070678
+    },
+    "pin": {
+      "position_error_m": 0.0005405612635963026,
+      "axis_error_rad": 0.013731881035728796
+    }
+  },
+  "local_CAD_cache": {
+    "enabled": true,
+    "original_attachment_and_query_writes_preserved": true,
+    "local_geometry_only": true,
+    "posed_collision_results_cached": false,
+    "exact_full_field_confirmation": true,
+    "cached_content_revalidated": true,
+    "stats": {
+      "attachments": 67,
+      "interned": 63,
+      "new_content": 4,
+      "invalid": 0,
+      "cached_content_poisoned": 0,
+      "digest_collision_or_mismatch": 0,
+      "raw_proxy_calls": 2366,
+      "raw_proxy_hits": 2246,
+      "raw_proxy_original_calls": 120,
+      "raw_proxy_new_content": 120,
+      "raw_proxy_cached_poisoned": 0,
+      "raw_proxy_digest_collision_or_mismatch": 0,
+      "raw_proxy_unsupported": 0,
+      "raw_proxy_unsupported_output": 0
+    },
+    "raw_proxy_cache": {
+      "enabled": true,
+      "source_function_sha256": "1b964a54bf8eda1f543bb53c547578e1e452b732415abdcc8f8f4c02a13fae03",
+      "scope": "isaac_collision_queries original module alias only",
+      "predictive_original_function_unchanged": true,
+      "cache_entries_maximum": 256,
+      "raw_input_bytes_maximum": 1048576
+    }
+  },
+  "balanced_feedback": [
+    {
+      "event": "balanced_SMALL_receiver_target_proposed",
+      "source": "Current direct RGB-D part pose and original SDK/model receiver target",
+      "empty_Hand_physical_target": true,
+      "original_part_pose_unchanged": true,
+      "original_G": [
+        [
+          -0.43360346096811253,
+          -0.748800226217193,
+          0.501284950753539,
+          0.004668589376085164
+        ],
+        [
+          0.8662525385355111,
+          -0.49959752692691145,
+          0.0030149888517802146,
+          0.00028297385117689866
+        ],
+        [
+          0.24818298507242395,
+          0.4355466032320525,
+          0.8652771823129706,
+          0.0039189475222352055
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "proposed_G": [
+        [
+          -0.433972009202627,
+          -0.7494470202133031,
+          0.4999978010160274,
+          0.0022499901045721234
+        ],
+        [
+          0.8653855093806961,
+          -0.5011069348826309,
+          2.410097224053617e-19,
+          1.0845437508241277e-21
+        ],
+        [
+          0.2505522527233585,
+          0.4326907844954868,
+          0.8660268432446913,
+          0.00389712079460111
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_H": [
+        [
+          -0.4382186792819719,
+          0.865353873853777,
+          0.24316012195330566,
+          -0.0497498122937696
+        ],
+        [
+          -0.7522076314049272,
+          -0.5011401750529966,
+          0.42783395448671024,
+          -0.40018165885154555
+        ],
+        [
+          0.4920850805357187,
+          0.004577982156249925,
+          0.8705349062085592,
+          1.3950359168515611
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "translation_m": 0.002427931408420379,
+      "rotation_rad": 0.003785648969596455,
+      "closing_axis_dot_part_axis": 2.410097224053617e-19,
+      "preserved_part_axis_toolZ_tilt_rad": 0.5235958966706158,
+      "TCP_axis_offset_m": 0.0045,
+      "maximum_translation_m": 0.006,
+      "maximum_rotation_rad": 0.06,
+      "uses_free_body_poses": false,
+      "all_original_preflights_still_required": true,
+      "original_native_proximal_preflight": true,
+      "original_dual_release_and_current_route_preflight": true,
+      "original_actual_command_allwidth_issued_guard_still_required": true
+    },
+    {
+      "event": "balanced_SMALL_EMPTY_LEFT_actual_pose_feedback",
+      "requested_translation_m": 0.000137904581609179,
+      "requested_rotation_rad": 0.008630017942447325,
+      "command_actual_bias_m": 0.0001668700154722926,
+      "command_actual_bias_rad": 0.00021826972282002486,
+      "actual_grasp": [
+        [
+          -0.4349500661207681,
+          -0.7488853289673256,
+          0.4999895455543379,
+          0.002210575253415392
+        ],
+        [
+          0.8653557180292223,
+          -0.501153725600823,
+          0.002159775515987237,
+          -1.861620544435505e-05
+        ],
+        [
+          0.24895408696554316,
+          0.43360813924032576,
+          0.8660289163695293,
+          0.003929041222908047
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "intended_grasp": [
+        [
+          -0.43397200920262685,
+          -0.7494470202133032,
+          0.4999978010160275,
+          0.0022499901045722748
+        ],
+        [
+          0.8653855093806961,
+          -0.5011069348826308,
+          1.2931802538131037e-17,
+          -2.7755575615628914e-17
+        ],
+        [
+          0.25055225272335846,
+          0.4326907844954869,
+          0.8660268432446914,
+          0.0038971207946008057
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "uses_free_body_poses": false,
+      "force_speed_geometry_limits_unchanged": true,
+      "balanced_target": {
+        "selected_intended_grasp": [
+          [
+            -0.43397200920262685,
+            -0.7494470202133032,
+            0.4999978010160275,
+            0.0022499901045722748
+          ],
+          [
+            0.8653855093806961,
+            -0.5011069348826308,
+            1.2931802538131037e-17,
+            -2.7755575615628914e-17
+          ],
+          [
+            0.25055225272335846,
+            0.4326907844954869,
+            0.8660268432446914,
+            0.0038971207946008057
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "fixed_before_approach": true
+      },
+      "exact_original2mm_50mrad_correction_bounds": true,
+      "single_bounded_correction": true,
+      "one_additional_fresh_image": true
+    },
+    {
+      "event": "balanced_SMALL_corrected_preclose_future_opening_admitted",
+      "actual_command_both_arms": true,
+      "current_actual_command_and_planned_openings": true,
+      "fresh_RGBD_native_proximal": true,
+      "donor_release_width_m": 0.078,
+      "uses_free_body_poses": false
+    }
+  ],
+  "run": 495,
+  "source_run": "native-roas-table-fixed-front-v495-balanced-small-raw-cache-minus",
+  "state": "completed_over_budget",
+  "full_task_pass": true,
+  "vision_end_to_end_pass": true,
+  "wall_elapsed_s": 256.0858648510184,
+  "physics_elapsed_s": 57.929166666655064,
+  "under20": false,
+  "under30": false,
+  "source_file_count": 416,
+  "source_PY_count": 416,
+  "source_matches493": true,
+  "source_file_map_sha256": "d513ce8359dea0b56ed9dcd0d8d244098e5fac39d63be7b02c4f9f9667ee6e8c",
+  "source_differences": [],
+  "config_differences_from493": {
+    "fixed_supply_pose_variation": {
+      "reference": {
+        "ring1": {
+          "translation_xy_m": [
+            0.01,
+            -0.01
+          ],
+          "tilt_xy_rad": [
+            0.04,
+            0
+          ]
+        },
+        "ring2": {
+          "translation_xy_m": [
+            -0.01,
+            0.01
+          ],
+          "tilt_xy_rad": [
+            0,
+            -0.04
+          ]
+        }
+      },
+      "current": {
+        "ring1": {
+          "translation_xy_m": [
+            -0.01,
+            0.01
+          ],
+          "tilt_xy_rad": [
+            -0.04,
+            0
+          ]
+        },
+        "ring2": {
+          "translation_xy_m": [
+            0.01,
+            -0.01
+          ],
+          "tilt_xy_rad": [
+            0,
+            0.04
+          ]
+        }
+      }
+    }
+  },
+  "requested_initialization_variation": {
+    "ring1": {
+      "translation_xy_m": [
+        -0.01,
+        0.01
+      ],
+      "tilt_xy_rad": [
+        -0.04,
+        0
+      ]
+    },
+    "ring2": {
+      "translation_xy_m": [
+        0.01,
+        -0.01
+      ],
+      "tilt_xy_rad": [
+        0,
+        0.04
+      ]
+    }
+  },
+  "setup": {
+    "setup_before_physics_and_first_capture": true,
+    "online_pose_writes": 0,
+    "original_physical_settle_unchanged": true,
+    "extra_tables_or_ring_holders": 0,
+    "holder": {
+      "path": "/World/ProposedThreePinHolder",
+      "origin_world_m": [
+        0.17,
+        -0.8725,
+        0.884313439
+      ],
+      "yaw_deg": 0,
+      "size_m": [
+        0.12,
+        0.035,
+        0.018
+      ],
+      "status": "existing_photo_derived_proxy_not_field_verified",
+      "new_holder_added": false
+    }
+  },
+  "settled_public_initial_observations": {
+    "ring1": {
+      "source": "First accepted public initial RGB-D cap observation; not privileged body pose",
+      "frame": 20,
+      "captured_wall_s": 59.94405548705254,
+      "center_world_m": [
+        0.22055599952925325,
+        -0.5656005055655193,
+        0.8914481091519636
+      ],
+      "signed_axis_world": [
+        -0.018716548074168046,
+        6.613053655910963e-06,
+        -0.9998248300499718
+      ],
+      "tilt_from_vertical_rad": 0.018717642178027256
+    },
+    "ring2": {
+      "source": "First accepted public initial RGB-D cap observation; not privileged body pose",
+      "frame": 1,
+      "captured_wall_s": 0.1105337260523811,
+      "center_world_m": [
+        0.2096925251982539,
+        -0.7249970272411699,
+        0.891308800417987
+      ],
+      "signed_axis_world": [
+        -3.3001678801555856e-05,
+        3.7757769261439296e-05,
+        0.99999999874262
+      ],
+      "tilt_from_vertical_rad": 5.0147382348000035e-05
+    }
+  },
+  "safety": {
+    "part_attachments": false,
+    "workpiece_teleports_after_initialization": 0,
+    "finger_effort_caps_n": {
+      "left_per_finger": 30.0,
+      "right_per_finger": 30.0,
+      "left_final_insertion_per_finger": 30.0
+    },
+    "native_finger_target_speed_cap_m_s": 0.0475,
+    "hardware_tested": false,
+    "hard_realtime_controller_validated": false,
+    "FR3_command_limit_audit": {
+      "samples": 27806,
+      "velocity_fraction_of_95_percent_PBV": 0.9600806782263837,
+      "max_acceleration_rad_s2": 8.9263916015625,
+      "max_jerk_rad_s3": 3269.53125,
+      "acceleration_limit_rad_s2": 9.5,
+      "jerk_limit_rad_s3": 4750,
+      "command_limit_checks": true,
+      "complete_issued_field_checked_at_end": true,
+      "validated_sample_count": 27806
+    },
+    "encoder_motor_speed_audit": {
+      "samples": 27806,
+      "max_fraction_of_95_percent_PBV": 0.9688063767503284,
+      "max_finger_fraction_of_47p5_mm_s": 0.6794314635427374,
+      "max_coupled_finger_difference_m": 7.636845111846924e-08,
+      "enforced": true,
+      "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+    },
+    "complete_final_issued_command_audit_available": true
+  },
+  "GPU_groups": [
+    {
+      "event": "GPU_exact_pair_schedule_certificate",
+      "scopes": 24,
+      "inclusive_wall_s": 47.74692146561574,
+      "rows": 187344,
+      "clear_rows": 186740,
+      "CPU_fallback_rows": 604,
+      "context_misses": 1,
+      "transport_counts": {
+        "numpy_pickle5_exact_transform_bank": 23,
+        "None": 1
+      },
+      "error_counts": {
+        "None": 23,
+        "ValueError: Binary GPU pair response rejected ValueError: Geometry not registered": 1
+      },
+      "service_source_counts": {
+        "79b4337c1fdf748b5555c92751b9a801ce80ad4422af724b89829588fbd52453": 23,
+        "None": 1
+      },
+      "RPC_timing_s": {
+        "client_wall_s": 12.43130943912547,
+        "server_s": 9.442593950079754,
+        "kernel_s": 9.141592447296716
+      },
+      "original_policy_receipts": true
+    },
+    {
+      "event": "GPU_native_width_sweep_pair_certificate",
+      "scopes": 13,
+      "inclusive_wall_s": 27.78270516404882,
+      "rows": 5140,
+      "clear_rows": 5140,
+      "CPU_fallback_rows": 0,
+      "context_misses": 0,
+      "transport_counts": {
+        "numpy_pickle5_exact_transform_bank": 13
+      },
+      "error_counts": {
+        "None": 13
+      },
+      "service_source_counts": {
+        "79b4337c1fdf748b5555c92751b9a801ce80ad4422af724b89829588fbd52453": 13
+      },
+      "RPC_timing_s": {
+        "client_wall_s": 1.9268031977117062,
+        "server_s": 0.6608402612619102,
+        "kernel_s": 0.6302637286717072
+      },
+      "original_policy_receipts": true
+    }
+  ],
+  "co_moving_reuse": {
+    "left": {
+      "fast_attempts": 13816,
+      "fast_returns": 13719,
+      "clear_queries": 35,
+      "proofs": 35,
+      "unknown": 0,
+      "relative_misses": 0
+    },
+    "right": {
+      "fast_attempts": 4107,
+      "fast_returns": 3620,
+      "clear_queries": 433,
+      "proofs": 28,
+      "unknown": 0,
+      "relative_misses": 0
+    }
+  },
+  "saved_route_events": [
+    {
+      "event": "saved_SMALL_donor_admitted",
+      "original_actual_encoders_all_widths_both_other_contexts_and_payload_guards": true,
+      "static_certificate_hits": 5345,
+      "static_certificate_misses": 875,
+      "native_self_certificate_hits": 5345,
+      "own_payload_certificate_hits": 5345,
+      "own_certificate_misses": 875
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 6540,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "saved_LEFT_static_route_query_reuse",
+      "static_certificate_hits": 3605,
+      "static_certificate_misses": 295,
+      "own_domain_name": "original_broad_domain",
+      "native_self_certificate_hits": 3605,
+      "own_payload_certificate_hits": 0,
+      "own_certificate_misses": 3900
+    },
+    {
+      "event": "saved_SMALL_LEFT_carry_admitted",
+      "canonical_rows": 720,
+      "fresh_entry_rows": 58,
+      "original_dt_s": 0.0020833333333333333,
+      "fresh_RGBD_grasp": true,
+      "full_nominal_robot_stroke": true,
+      "original_full_payload_pair_guard": true,
+      "uses_free_body_poses": false
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 6984,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "saved_LEFT_static_route_query_reuse",
+      "static_certificate_hits": 3605,
+      "static_certificate_misses": 295,
+      "own_domain_name": "original_broad_domain",
+      "native_self_certificate_hits": 3605,
+      "own_payload_certificate_hits": 0,
+      "own_certificate_misses": 3900
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 9936,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "saved_LEFT_static_route_query_reuse",
+      "static_certificate_hits": 0,
+      "static_certificate_misses": 970,
+      "own_domain_name": "original_broad_domain",
+      "native_self_certificate_hits": 5,
+      "own_payload_certificate_hits": 0,
+      "own_certificate_misses": 970
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 10204,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "saved_LEFT_static_route_query_reuse",
+      "static_certificate_hits": 0,
+      "static_certificate_misses": 970,
+      "own_domain_name": "original_broad_domain",
+      "native_self_certificate_hits": 0,
+      "own_payload_certificate_hits": 0,
+      "own_certificate_misses": 970
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 10465,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "saved_LEFT_static_route_query_reuse",
+      "static_certificate_hits": 0,
+      "static_certificate_misses": 0,
+      "own_domain_name": "original_broad_domain",
+      "native_self_certificate_hits": 0,
+      "own_payload_certificate_hits": 0,
+      "own_certificate_misses": 1930
+    },
+    {
+      "event": "fixed_saved_fixture_branch_admitted",
+      "part": "ring1",
+      "wall_s": 0.1002927259542048,
+      "fresh_other_arm_checks": true,
+      "public_RGBD_grasp_envelope": true,
+      "online_fixture_search_omitted": true,
+      "uses_free_body_poses": false
+    },
+    {
+      "event": "fixed_saved_canonical_carry_admitted",
+      "rows": 1415,
+      "original_dt_s": 0.0020833333333333333,
+      "current_encoder_bridge_live": true,
+      "fresh_public_RGBD_grasp": true,
+      "reference_full_paths": 1,
+      "dependent_configurations": 5672,
+      "invariant_configurations_reused": 0,
+      "fallback_full_configurations": 0,
+      "path_sample_count": 1418,
+      "static_certificate_hits": 7085,
+      "static_certificate_misses": 5,
+      "public_G_domain": "public459_six_mm_chord_RGBD_domain",
+      "native_self_certificate_hits": 7085,
+      "own_payload_certificate_hits": 7085,
+      "own_certificate_misses": 5
+    }
+  ],
+  "camera": {
+    "frames": 103,
+    "capture_to_ready_max_s": 1.1203623350011185,
+    "capture_to_ready_median_s": 0.21251000906340778,
+    "capture_to_ready_p95_s": 0.3772258450044319,
+    "over3s_count": 0,
+    "inference_s": 20.550103633198887
+  },
+  "guard_profile": {
+    "scope": "Inclusive instance guard timers only; no actuation, collision or sensor changes",
+    "timing_basis": "Wall, calling-thread CPU, and whole-process CPU. Nested methods overlap; DO NOT sum them. Outermost counters remove same-instance-method recursion only. Process CPU can include concurrent simulator threads.",
+    "methods": {
+      "right.checker.clear": {
+        "calls": 27138,
+        "exceptions": 0,
+        "max_recursion_depth": 2,
+        "inclusive_wall_s": 34.90733481780626,
+        "inclusive_thread_cpu_s": 34.89521754000316,
+        "inclusive_process_cpu_s": 39.73393434997706,
+        "outermost_calls": 22457,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 29.53966715745628,
+        "outermost_thread_cpu_s": 29.52811614700431,
+        "outermost_process_cpu_s": 33.622682835994055
+      },
+      "right.checker._clear_transforms": {
+        "calls": 26244,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 10.755020864540711,
+        "inclusive_thread_cpu_s": 10.74906100399221,
+        "inclusive_process_cpu_s": 12.275731934059877,
+        "outermost_calls": 26244,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 10.755020864540711,
+        "outermost_thread_cpu_s": 10.74906100399221,
+        "outermost_process_cpu_s": 12.275731934059877
+      },
+      "right.own_payload_clearance.clear": {
+        "calls": 26066,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 6.176404313067906,
+        "inclusive_thread_cpu_s": 6.172800614974221,
+        "inclusive_process_cpu_s": 7.015206926924293,
+        "outermost_calls": 26066,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 6.176404313067906,
+        "outermost_thread_cpu_s": 6.172800614974221,
+        "outermost_process_cpu_s": 7.015206926924293
+      },
+      "left.checker.clear": {
+        "calls": 6751,
+        "exceptions": 0,
+        "max_recursion_depth": 2,
+        "inclusive_wall_s": 11.231586584704928,
+        "inclusive_thread_cpu_s": 11.228927218026001,
+        "inclusive_process_cpu_s": 12.761327219038321,
+        "outermost_calls": 6750,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 11.230042468640022,
+        "outermost_thread_cpu_s": 11.22738322902569,
+        "outermost_process_cpu_s": 12.75959049103858
+      },
+      "left.checker._clear_transforms": {
+        "calls": 12391,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 5.966067255358212,
+        "inclusive_thread_cpu_s": 5.960270088006382,
+        "inclusive_process_cpu_s": 6.795777890029058,
+        "outermost_calls": 12391,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 5.966067255358212,
+        "outermost_thread_cpu_s": 5.960270088006382,
+        "outermost_process_cpu_s": 6.795777890029058
+      },
+      "left.own_payload_clearance.clear": {
+        "calls": 22644,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 10.016314717242494,
+        "inclusive_thread_cpu_s": 10.017716992002079,
+        "inclusive_process_cpu_s": 11.370841761927295,
+        "outermost_calls": 22644,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 10.016314717242494,
+        "outermost_thread_cpu_s": 10.017716992002079,
+        "outermost_process_cpu_s": 11.370841761927295
+      },
+      "placed_part_clearance.clear": {
+        "calls": 70505,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 8.232115279068239,
+        "inclusive_thread_cpu_s": 8.233000682026159,
+        "inclusive_process_cpu_s": 9.341843204070756,
+        "outermost_calls": 70505,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 8.232115279068239,
+        "outermost_thread_cpu_s": 8.233000682026159,
+        "outermost_process_cpu_s": 9.341843204070756
+      }
+    },
+    "wrapped_instances": 7,
+    "detached": true,
+    "restoration_error_count": 0,
+    "restoration_errors": [],
+    "protected_proof_method_identity_unchanged": true,
+    "same_arm_clearance_clear_wrapped": false,
+    "arm_bodies_wrapped": false
+  },
+  "failure_traceback": null,
+  "artifact_SHA256": {
+    "pipeline-results.json": "e582c438d56f9d886cb6d965d1ec4101dbac4af4ace19999fc1d812a519eda81",
+    "trial-config.json": "5905103db1d50a564e117e26a6a9479f19d670fd37d6a21630bbac9d8f80d20d",
+    "frozen-source-manifest.json": "75ad28cd7c1fc79ac103245bf6c9a601fa25d938f348670ba91031100a2eee69",
+    "rgb-observations.json": "554cdfb84712286c313c3017cad6314be2e01cc35cc5e04528e6011264308383",
+    "fixed-supply-initialization.json": "f6954b567ed0add7df4eb05dbf00ea70c494092de0ae78c5a7b8f4161a7bff74",
+    "physx-sequence-trace.npz": "e413c1f86df13bcec3a440a92e1d7667ffb13f848d1e55e7e5e560396474b942"
+  }
+}
