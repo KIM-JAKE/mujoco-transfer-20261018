@@ -1,0 +1,1339 @@
+{
+  "scope": "Observed public RGB-D readiness costs from actual completed IsaacSim trials. Concurrent trials and changed terminal planner/source make this NOT an isolated speed benchmark or causal attribution. Aggregate per-image intervals overlap other work and are not cycle wall time. No image/mask/pose caching.",
+  "camera_order_flag": "fixed_large_pregrasp_preferred_views",
+  "all_trials_full_task_pass": true,
+  "all_trials_vision_pass": true,
+  "hardware_tested": false,
+  "profiles": [
+    {
+      "source_run": "native-roas-table-fixed-front-v480-runtime-own-pin-hold-plus",
+      "source_wall_s": 254.28384094999637,
+      "source_full_task_pass": true,
+      "source_vision_pass": true,
+      "observation_count": 73,
+      "capture_s": 1.8667781957192346,
+      "processing_s": 20.755110594211146,
+      "queue_s": 0.5260839498369023,
+      "ready_to_delivery_s": 44.214849452720955,
+      "source_rgb_observations_sha256": "f52b59b927b47e5bdb2360808b28e2b06d4455502cf4cf1b65605d4b084610a1",
+      "source_pipeline_results_sha256": "5969869164ef9b22c5bb723b60ff33fbccca0b582714e113d83a2bd36985fb15",
+      "groups": [
+        {
+          "mode": "initial",
+          "part": "ring2",
+          "images": 1,
+          "capture_s": 0.055520526017062366,
+          "processing_s": 1.190826321952045,
+          "supported_pose_frames": 0,
+          "frames": [
+            {
+              "observation": 1,
+              "captured_wall_s": 0.06729218794498593,
+              "has_pose": false
+            }
+          ]
+        },
+        {
+          "mode": "pregrasp_ring",
+          "part": "ring2",
+          "images": 7,
+          "capture_s": 0.12563741288613528,
+          "processing_s": 1.7682295640697703,
+          "supported_pose_frames": 7,
+          "frames": [
+            {
+              "observation": 2,
+              "captured_wall_s": 5.101038933964446,
+              "has_pose": true
+            },
+            {
+              "observation": 3,
+              "captured_wall_s": 10.778876115917228,
+              "has_pose": true
+            },
+            {
+              "observation": 4,
+              "captured_wall_s": 11.097913205972873,
+              "has_pose": true
+            },
+            {
+              "observation": 5,
+              "captured_wall_s": 13.359879501978867,
+              "has_pose": true
+            },
+            {
+              "observation": 6,
+              "captured_wall_s": 13.634436541935429,
+              "has_pose": true
+            },
+            {
+              "observation": 7,
+              "captured_wall_s": 15.582022640970536,
+              "has_pose": true
+            },
+            {
+              "observation": 8,
+              "captured_wall_s": 15.85128060891293,
+              "has_pose": true
+            }
+          ]
+        },
+        {
+          "mode": "held",
+          "part": "ring2",
+          "images": 7,
+          "capture_s": 0.2148248830344528,
+          "processing_s": 1.7293475040933117,
+          "supported_pose_frames": 7,
+          "frames": [
+            {
+              "observation": 9,
+              "captured_wall_s": 19.7097388029797,
+              "has_pose": true
+            },
+            {
+              "observation": 10,
+              "captured_wall_s": 19.97853106399998,
+              "has_pose": true
+            },
+            {
+              "observation": 11,
+              "captured_wall_s": 40.845340373925865,
+              "has_pose": true
+            },
+            {
+              "observation": 12,
+              "captured_wall_s": 48.49446068191901,
+              "has_pose": true
+            },
+            {
+              "observation": 13,
+              "captured_wall_s": 51.23063442693092,
+              "has_pose": true
+            },
+            {
+              "observation": 14,
+              "captured_wall_s": 52.446556741022505,
+              "has_pose": true
+            },
+            {
+              "observation": 15,
+              "captured_wall_s": 53.30840459500905,
+              "has_pose": true
+            }
+          ]
+        },
+        {
+          "mode": "held_left",
+          "part": "ring2",
+          "images": 8,
+          "capture_s": 0.2953662849031389,
+          "processing_s": 3.1935033990303054,
+          "supported_pose_frames": 8,
+          "frames": [
+            {
+              "observation": 16,
+              "captured_wall_s": 55.68156530894339,
+              "has_pose": true
+            },
+            {
+              "observation": 18,
+              "captured_wall_s": 56.857209958019666,
+              "has_pose": true
+            },
+            {
+              "observation": 42,
+              "captured_wall_s": 121.28044984897133,
+              "has_pose": true
+            },
+            {
+              "observation": 44,
+              "captured_wall_s": 121.80821202602237,
+              "has_pose": true
+            },
+            {
+              "observation": 46,
+              "captured_wall_s": 133.99813456600532,
+              "has_pose": true
+            },
+            {
+              "observation": 47,
+              "captured_wall_s": 141.9800279099727,
+              "has_pose": true
+            },
+            {
+              "observation": 48,
+              "captured_wall_s": 155.19034841493703,
+              "has_pose": true
+            },
+            {
+              "observation": 49,
+              "captured_wall_s": 163.8372921210248,
+              "has_pose": true
+            }
+          ]
+        },
+        {
+          "mode": "initial",
+          "part": "ring1",
+          "images": 1,
+          "capture_s": 0.07512832700740546,
+          "processing_s": 0.46270709903910756,
+          "supported_pose_frames": 0,
+          "frames": [
+            {
+              "observation": 17,
+              "captured_wall_s": 56.46500277298037,
+              "has_pose": false
+            }
+          ]
+        },
+        {
+          "mode": "pregrasp_ring",
+          "part": "ring1",
+          "images": 23,
+          "capture_s": 0.37306344672106206,
+          "processing_s": 7.541866687126458,
+          "supported_pose_frames": 11,
+          "frames": [
+            {
+              "observation": 19,
+              "captured_wall_s": 70.84889010491315,
+              "has_pose": true
+            },
+            {
+              "observation": 20,
+              "captured_wall_s": 72.19603867398109,
+              "has_pose": true
+            },
+            {
+              "observation": 21,
+              "captured_wall_s": 76.77797518495936,
+              "has_pose": true
+            },
+            {
+              "observation": 22,
+              "captured_wall_s": 101.58753185591195,
+              "has_pose": false
+            },
+            {
+              "observation": 23,
+              "captured_wall_s": 101.84297852497548,
+              "has_pose": false
+            },
+            {
+              "observation": 24,
+              "captured_wall_s": 102.07114125601947,
+              "has_pose": true
+            },
+            {
+              "observation": 25,
+              "captured_wall_s": 102.35905014595482,
+              "has_pose": false
+            },
+            {
+              "observation": 26,
+              "captured_wall_s": 102.57491290394682,
+              "has_pose": true
+            },
+            {
+              "observation": 27,
+              "captured_wall_s": 107.09722371702082,
+              "has_pose": false
+            },
+            {
+              "observation": 28,
+              "captured_wall_s": 107.36172244593035,
+              "has_pose": false
+            },
+            {
+              "observation": 29,
+              "captured_wall_s": 107.57547531393357,
+              "has_pose": true
+            },
+            {
+              "observation": 30,
+              "captured_wall_s": 107.86525343102403,
+              "has_pose": false
+            },
+            {
+              "observation": 31,
+              "captured_wall_s": 108.06277786695864,
+              "has_pose": true
+            },
+            {
+              "observation": 32,
+              "captured_wall_s": 112.08334511495195,
+              "has_pose": false
+            },
+            {
+              "observation": 33,
+              "captured_wall_s": 112.36512597894762,
+              "has_pose": false
+            },
+            {
+              "observation": 34,
+              "captured_wall_s": 112.63509928202257,
+              "has_pose": true
+            },
+            {
+              "observation": 35,
+              "captured_wall_s": 112.92171268793754,
+              "has_pose": false
+            },
+            {
+              "observation": 36,
+              "captured_wall_s": 113.17457323800772,
+              "has_pose": true
+            },
+            {
+              "observation": 37,
+              "captured_wall_s": 115.11106064997148,
+              "has_pose": false
+            },
+            {
+              "observation": 38,
+              "captured_wall_s": 115.36530646600295,
+              "has_pose": false
+            },
+            {
+              "observation": 39,
+              "captured_wall_s": 115.6161393179791,
+              "has_pose": true
+            },
+            {
+              "observation": 40,
+              "captured_wall_s": 115.88166975893546,
+              "has_pose": false
+            },
+            {
+              "observation": 41,
+              "captured_wall_s": 116.10706832399592,
+              "has_pose": true
+            }
+          ]
+        },
+        {
+          "mode": "held",
+          "part": "ring1",
+          "images": 10,
+          "capture_s": 0.18401514820288867,
+          "processing_s": 2.359618498943746,
+          "supported_pose_frames": 8,
+          "frames": [
+            {
+              "observation": 43,
+              "captured_wall_s": 121.61432369600516,
+              "has_pose": true
+            },
+            {
+              "observation": 45,
+              "captured_wall_s": 121.88907499192283,
+              "has_pose": true
+            },
+            {
+              "observation": 50,
+              "captured_wall_s": 165.6724317020271,
+              "has_pose": false
+            },
+            {
+              "observation": 51,
+              "captured_wall_s": 165.90954092598986,
+              "has_pose": true
+            },
+            {
+              "observation": 52,
+              "captured_wall_s": 177.4214293139521,
+              "has_pose": false
+            },
+            {
+              "observation": 53,
+              "captured_wall_s": 177.6604173249798,
+              "has_pose": true
+            },
+            {
+              "observation": 54,
+              "captured_wall_s": 200.36380896891933,
+              "has_pose": true
+            },
+            {
+              "observation": 55,
+              "captured_wall_s": 205.47623150900472,
+              "has_pose": true
+            },
+            {
+              "observation": 56,
+              "captured_wall_s": 211.50562511698809,
+              "has_pose": true
+            },
+            {
+              "observation": 57,
+              "captured_wall_s": 219.0997101200046,
+              "has_pose": true
+            }
+          ]
+        },
+        {
+          "mode": "pin_initial",
+          "part": "pin",
+          "images": 1,
+          "capture_s": 0.010154015035368502,
+          "processing_s": 0.0335392119595781,
+          "supported_pose_frames": 1,
+          "frames": [
+            {
+              "observation": 58,
+              "captured_wall_s": 220.6593717809301,
+              "has_pose": true
+            }
+          ]
+        },
+        {
+          "mode": "held",
+          "part": "pin",
+          "images": 15,
+          "capture_s": 0.5330681519117206,
+          "processing_s": 2.4754723079968244,
+          "supported_pose_frames": 11,
+          "frames": [
+            {
+              "observation": 59,
+              "captured_wall_s": 225.1197602240136,
+              "has_pose": true
+            },
+            {
+              "observation": 60,
+              "captured_wall_s": 225.9201101870276,
+              "has_pose": true
+            },
+            {
+              "observation": 61,
+              "captured_wall_s": 226.674375457922,
+              "has_pose": true
+            },
+            {
+              "observation": 62,
+              "captured_wall_s": 227.4259706279263,
+              "has_pose": true
+            },
+            {
+              "observation": 63,
+              "captured_wall_s": 229.3183700069785,
+              "has_pose": true
+            },
+            {
+              "observation": 64,
+              "captured_wall_s": 229.684952666983,
+              "has_pose": true
+            },
+            {
+              "observation": 65,
+              "captured_wall_s": 230.4822586569935,
+              "has_pose": true
+            },
+            {
+              "observation": 66,
+              "captured_wall_s": 244.55810201901477,
+              "has_pose": false
+            },
+            {
+              "observation": 67,
+              "captured_wall_s": 244.6988521689782,
+              "has_pose": false
+            },
+            {
+              "observation": 68,
+              "captured_wall_s": 244.9308458949672,
+              "has_pose": false
+            },
+            {
+              "observation": 69,
+              "captured_wall_s": 245.0767815229483,
+              "has_pose": false
+            },
+            {
+              "observation": 70,
+              "captured_wall_s": 245.21515725192148,
+              "has_pose": true
+            },
+            {
+              "observation": 71,
+              "captured_wall_s": 246.4099670209689,
+              "has_pose": true
+            },
+            {
+              "observation": 72,
+              "captured_wall_s": 247.563749643974,
+              "has_pose": true
+            },
+            {
+              "observation": 73,
+              "captured_wall_s": 249.55292635795195,
+              "has_pose": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_run": "native-roas-table-fixed-front-v482-fresh-terminal-camera-order-minus",
+      "source_wall_s": 261.5984960310161,
+      "source_full_task_pass": true,
+      "source_vision_pass": true,
+      "observation_count": 62,
+      "capture_s": 3.0455266973003745,
+      "processing_s": 18.00610439584125,
+      "queue_s": 0.3461942734429613,
+      "ready_to_delivery_s": 41.63258244993631,
+      "source_rgb_observations_sha256": "5f15aa1be6abc96e645041227ae7e92a49b6b9de07a8761117e06828fb09295c",
+      "source_pipeline_results_sha256": "fd5ca48779e9bb203b70473893dbbad7d59e4b55f3d7fababf42d86c2ba71447",
+      "groups": [
+        {
+          "mode": "initial",
+          "part": "ring2",
+          "images": 1,
+          "capture_s": 0.4987232459243387,
+          "processing_s": 1.2225153481122106,
+          "supported_pose_frames": 0,
+          "frames": [
+            {
+              "observation": 1,
+              "captured_wall_s": 0.06195543799549341,
+              "has_pose": false
+            }
+          ]
+        },
+        {
+          "mode": "pregrasp_ring",
+          "part": "ring2",
+          "images": 7,
+          "capture_s": 0.11704591696616262,
+          "processing_s": 1.849659893894568,
+          "supported_pose_frames": 7,
+          "frames": [
+            {
+              "observation": 2,
+              "captured_wall_s": 5.47370726603549,
+              "has_pose": true
+            },
+            {
+              "observation": 3,
+              "captured_wall_s": 11.948184383101761,
+              "has_pose": true
+            },
+            {
+              "observation": 4,
+              "captured_wall_s": 12.264098179992288,
+              "has_pose": true
+            },
+            {
+              "observation": 5,
+              "captured_wall_s": 14.540950282011181,
+              "has_pose": true
+            },
+            {
+              "observation": 6,
+              "captured_wall_s": 14.802366949035786,
+              "has_pose": true
+            },
+            {
+              "observation": 7,
+              "captured_wall_s": 17.618539334041998,
+              "has_pose": true
+            },
+            {
+              "observation": 8,
+              "captured_wall_s": 17.909614191041328,
+              "has_pose": true
+            }
+          ]
+        },
+        {
+          "mode": "held",
+          "part": "ring2",
+          "images": 7,
+          "capture_s": 0.12187154707498848,
+          "processing_s": 1.6026186789385974,
+          "supported_pose_frames": 7,
+          "frames": [
+            {
+              "observation": 9,
+              "captured_wall_s": 21.716584101086482,
+              "has_pose": true
+            },
+            {
+              "observation": 10,
+              "captured_wall_s": 21.942310550017282,
+              "has_pose": true
+            },
+            {
+              "observation": 11,
+              "captured_wall_s": 42.69655961904209,
+              "has_pose": true
+            },
+            {
+              "observation": 12,
+              "captured_wall_s": 50.16958218999207,
+              "has_pose": true
+            },
+            {
+              "observation": 13,
+              "captured_wall_s": 52.82531342108268,
+              "has_pose": true
+            },
+            {
+              "observation": 14,
+              "captured_wall_s": 54.08352256601211,
+              "has_pose": true
+            },
+            {
+              "observation": 15,
+              "captured_wall_s": 54.96433827409055,
+              "has_pose": true
+            }
+          ]
+        },
+        {
+          "mode": "held_left",
+          "part": "ring2",
+          "images": 7,
+          "capture_s": 0.262113843113184,
+          "processing_s": 1.6734938578447327,
+          "supported_pose_frames": 7,
+          "frames": [
+            {
+              "observation": 16,
+              "captured_wall_s": 57.305397505057044,
+              "has_pose": true
+            },
+            {
+              "observation": 18,
+              "captured_wall_s": 57.90120764099993,
+              "has_pose": true
+            },
+            {
+              "observation": 33,
+              "captured_wall_s": 119.40988050308079,
+              "has_pose": true
+            },
+            {
+              "observation": 35,
+              "captured_wall_s": 120.03384084801655,
+              "has_pose": true
+            },
+            {
+              "observation": 43,
+              "captured_wall_s": 135.7232274049893,
+              "has_pose": true
+            },
+            {
+              "observation": 44,
+              "captured_wall_s": 150.16213583608624,
+              "has_pose": true
+            },
+            {
+              "observation": 45,
+              "captured_wall_s": 162.45844744204078,
+              "has_pose": true
+            }
+          ]
+        },
+        {
+          "mode": "initial",
+          "part": "ring1",
+          "images": 1,
+          "capture_s": 0.06816190003883094,
+          "processing_s": 0.4608364229789004,
+          "supported_pose_frames": 0,
+          "frames": [
+            {
+              "observation": 17,
+              "captured_wall_s": 57.60785795201082,
+              "has_pose": false
+            }
+          ]
+        },
+        {
+          "mode": "pregrasp_ring",
+          "part": "ring1",
+          "images": 14,
+          "capture_s": 1.287489147274755,
+          "processing_s": 5.923570239101537,
+          "supported_pose_frames": 11,
+          "frames": [
+            {
+              "observation": 19,
+              "captured_wall_s": 65.89487952704076,
+              "has_pose": true
+            },
+            {
+              "observation": 20,
+              "captured_wall_s": 68.22285219200421,
+              "has_pose": true
+            },
+            {
+              "observation": 21,
+              "captured_wall_s": 72.5940394171048,
+              "has_pose": true
+            },
+            {
+              "observation": 22,
+              "captured_wall_s": 94.46259673009627,
+              "has_pose": true
+            },
+            {
+              "observation": 23,
+              "captured_wall_s": 94.88051896810066,
+              "has_pose": true
+            },
+            {
+              "observation": 24,
+              "captured_wall_s": 103.22259569901507,
+              "has_pose": false
+            },
+            {
+              "observation": 25,
+              "captured_wall_s": 103.55101868102793,
+              "has_pose": true
+            },
+            {
+              "observation": 26,
+              "captured_wall_s": 103.82615690305829,
+              "has_pose": true
+            },
+            {
+              "observation": 27,
+              "captured_wall_s": 109.02798504999373,
+              "has_pose": false
+            },
+            {
+              "observation": 28,
+              "captured_wall_s": 109.35589569807053,
+              "has_pose": true
+            },
+            {
+              "observation": 29,
+              "captured_wall_s": 109.621281638043,
+              "has_pose": true
+            },
+            {
+              "observation": 30,
+              "captured_wall_s": 111.59456732310355,
+              "has_pose": false
+            },
+            {
+              "observation": 31,
+              "captured_wall_s": 111.92277880199254,
+              "has_pose": true
+            },
+            {
+              "observation": 32,
+              "captured_wall_s": 112.15669003501534,
+              "has_pose": true
+            }
+          ]
+        },
+        {
+          "mode": "held",
+          "part": "ring1",
+          "images": 14,
+          "capture_s": 0.2658071690239012,
+          "processing_s": 3.3226700730156153,
+          "supported_pose_frames": 8,
+          "frames": [
+            {
+              "observation": 34,
+              "captured_wall_s": 119.85274426010437,
+              "has_pose": false
+            },
+            {
+              "observation": 36,
+              "captured_wall_s": 120.08310924808029,
+              "has_pose": false
+            },
+            {
+              "observation": 37,
+              "captured_wall_s": 125.43265493703075,
+              "has_pose": false
+            },
+            {
+              "observation": 38,
+              "captured_wall_s": 129.67131375602912,
+              "has_pose": true
+            },
+            {
+              "observation": 39,
+              "captured_wall_s": 129.94749258109368,
+              "has_pose": false
+            },
+            {
+              "observation": 40,
+              "captured_wall_s": 130.1888234950602,
+              "has_pose": false
+            },
+            {
+              "observation": 41,
+              "captured_wall_s": 130.3954362430377,
+              "has_pose": false
+            },
+            {
+              "observation": 42,
+              "captured_wall_s": 130.59194485808257,
+              "has_pose": true
+            },
+            {
+              "observation": 46,
+              "captured_wall_s": 164.95091884909198,
+              "has_pose": true
+            },
+            {
+              "observation": 47,
+              "captured_wall_s": 174.503693473991,
+              "has_pose": true
+            },
+            {
+              "observation": 48,
+              "captured_wall_s": 201.26130570704117,
+              "has_pose": true
+            },
+            {
+              "observation": 49,
+              "captured_wall_s": 206.22743867209647,
+              "has_pose": true
+            },
+            {
+              "observation": 50,
+              "captured_wall_s": 212.27585411106702,
+              "has_pose": true
+            },
+            {
+              "observation": 51,
+              "captured_wall_s": 219.29324070201255,
+              "has_pose": true
+            }
+          ]
+        },
+        {
+          "mode": "pin_initial",
+          "part": "pin",
+          "images": 1,
+          "capture_s": 0.009330329019576311,
+          "processing_s": 0.029699875973165035,
+          "supported_pose_frames": 1,
+          "frames": [
+            {
+              "observation": 52,
+              "captured_wall_s": 220.66491431905888,
+              "has_pose": true
+            }
+          ]
+        },
+        {
+          "mode": "held",
+          "part": "pin",
+          "images": 10,
+          "capture_s": 0.4149835988646373,
+          "processing_s": 1.9210400059819221,
+          "supported_pose_frames": 10,
+          "frames": [
+            {
+              "observation": 53,
+              "captured_wall_s": 227.23012486007065,
+              "has_pose": true
+            },
+            {
+              "observation": 54,
+              "captured_wall_s": 229.08118989900686,
+              "has_pose": true
+            },
+            {
+              "observation": 55,
+              "captured_wall_s": 229.47288477700204,
+              "has_pose": true
+            },
+            {
+              "observation": 56,
+              "captured_wall_s": 230.26294045406394,
+              "has_pose": true
+            },
+            {
+              "observation": 57,
+              "captured_wall_s": 242.6984134420054,
+              "has_pose": true
+            },
+            {
+              "observation": 58,
+              "captured_wall_s": 243.90879830298945,
+              "has_pose": true
+            },
+            {
+              "observation": 59,
+              "captured_wall_s": 245.95829725102521,
+              "has_pose": true
+            },
+            {
+              "observation": 60,
+              "captured_wall_s": 247.18357848899905,
+              "has_pose": true
+            },
+            {
+              "observation": 61,
+              "captured_wall_s": 248.38800576305948,
+              "has_pose": true
+            },
+            {
+              "observation": 62,
+              "captured_wall_s": 256.75402178498916,
+              "has_pose": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_run": "native-roas-table-fixed-front-v483-fresh-terminal-camera-order-nominal",
+      "source_wall_s": 253.46491022605915,
+      "source_full_task_pass": true,
+      "source_vision_pass": true,
+      "observation_count": 68,
+      "capture_s": 1.8020069281337783,
+      "processing_s": 18.00847631355282,
+      "queue_s": 0.5806927798548713,
+      "ready_to_delivery_s": 36.83087719324976,
+      "source_rgb_observations_sha256": "bc596ee7efc18633a478d86560bcae4e2ba7c2e4d4db914a47f775b661f005b8",
+      "source_pipeline_results_sha256": "61d979c27cb6bd58acabec5a41e68553185b8559967444e8fe70776bbf73d543",
+      "groups": [
+        {
+          "mode": "initial",
+          "part": "ring2",
+          "images": 1,
+          "capture_s": 0.06570360704790801,
+          "processing_s": 0.4183659899281338,
+          "supported_pose_frames": 0,
+          "frames": [
+            {
+              "observation": 1,
+              "captured_wall_s": 0.06511048797983676,
+              "has_pose": false
+            }
+          ]
+        },
+        {
+          "mode": "pregrasp_ring",
+          "part": "ring2",
+          "images": 7,
+          "capture_s": 0.12020503298845142,
+          "processing_s": 1.8643374722450972,
+          "supported_pose_frames": 7,
+          "frames": [
+            {
+              "observation": 2,
+              "captured_wall_s": 3.17739620199427,
+              "has_pose": true
+            },
+            {
+              "observation": 3,
+              "captured_wall_s": 8.665089876041748,
+              "has_pose": true
+            },
+            {
+              "observation": 4,
+              "captured_wall_s": 8.958448445075192,
+              "has_pose": true
+            },
+            {
+              "observation": 5,
+              "captured_wall_s": 11.231902603060007,
+              "has_pose": true
+            },
+            {
+              "observation": 6,
+              "captured_wall_s": 11.543199489009567,
+              "has_pose": true
+            },
+            {
+              "observation": 7,
+              "captured_wall_s": 14.150100308004767,
+              "has_pose": true
+            },
+            {
+              "observation": 8,
+              "captured_wall_s": 14.453324057045393,
+              "has_pose": true
+            }
+          ]
+        },
+        {
+          "mode": "held",
+          "part": "ring2",
+          "images": 7,
+          "capture_s": 0.1372594239655882,
+          "processing_s": 1.6871435169596225,
+          "supported_pose_frames": 7,
+          "frames": [
+            {
+              "observation": 9,
+              "captured_wall_s": 18.33013702102471,
+              "has_pose": true
+            },
+            {
+              "observation": 10,
+              "captured_wall_s": 18.592949156998657,
+              "has_pose": true
+            },
+            {
+              "observation": 11,
+              "captured_wall_s": 37.58479635603726,
+              "has_pose": true
+            },
+            {
+              "observation": 12,
+              "captured_wall_s": 45.81708146806341,
+              "has_pose": true
+            },
+            {
+              "observation": 13,
+              "captured_wall_s": 48.52239340997767,
+              "has_pose": true
+            },
+            {
+              "observation": 14,
+              "captured_wall_s": 49.81645023508463,
+              "has_pose": true
+            },
+            {
+              "observation": 15,
+              "captured_wall_s": 50.74163227097597,
+              "has_pose": true
+            }
+          ]
+        },
+        {
+          "mode": "held_left",
+          "part": "ring2",
+          "images": 14,
+          "capture_s": 0.4167389718350023,
+          "processing_s": 2.694946566945873,
+          "supported_pose_frames": 8,
+          "frames": [
+            {
+              "observation": 16,
+              "captured_wall_s": 53.159423548029736,
+              "has_pose": true
+            },
+            {
+              "observation": 18,
+              "captured_wall_s": 53.787885911995545,
+              "has_pose": true
+            },
+            {
+              "observation": 34,
+              "captured_wall_s": 110.0865165219875,
+              "has_pose": true
+            },
+            {
+              "observation": 36,
+              "captured_wall_s": 110.68232224008534,
+              "has_pose": true
+            },
+            {
+              "observation": 39,
+              "captured_wall_s": 125.01350165205076,
+              "has_pose": false
+            },
+            {
+              "observation": 40,
+              "captured_wall_s": 125.21660468901973,
+              "has_pose": true
+            },
+            {
+              "observation": 41,
+              "captured_wall_s": 132.99026385007892,
+              "has_pose": false
+            },
+            {
+              "observation": 42,
+              "captured_wall_s": 133.19188643607777,
+              "has_pose": false
+            },
+            {
+              "observation": 43,
+              "captured_wall_s": 133.4052197050769,
+              "has_pose": false
+            },
+            {
+              "observation": 44,
+              "captured_wall_s": 133.61529960401822,
+              "has_pose": false
+            },
+            {
+              "observation": 45,
+              "captured_wall_s": 133.8356658910634,
+              "has_pose": false
+            },
+            {
+              "observation": 46,
+              "captured_wall_s": 134.05309865204617,
+              "has_pose": true
+            },
+            {
+              "observation": 47,
+              "captured_wall_s": 149.43023521604482,
+              "has_pose": true
+            },
+            {
+              "observation": 48,
+              "captured_wall_s": 158.1584015809931,
+              "has_pose": true
+            }
+          ]
+        },
+        {
+          "mode": "initial",
+          "part": "ring1",
+          "images": 1,
+          "capture_s": 0.0652925519971177,
+          "processing_s": 0.45332573202904314,
+          "supported_pose_frames": 0,
+          "frames": [
+            {
+              "observation": 17,
+              "captured_wall_s": 53.47547211998608,
+              "has_pose": false
+            }
+          ]
+        },
+        {
+          "mode": "pregrasp_ring",
+          "part": "ring1",
+          "images": 15,
+          "capture_s": 0.3059702991740778,
+          "processing_s": 6.476577144814655,
+          "supported_pose_frames": 11,
+          "frames": [
+            {
+              "observation": 19,
+              "captured_wall_s": 59.02164932305459,
+              "has_pose": true
+            },
+            {
+              "observation": 20,
+              "captured_wall_s": 60.859819942037575,
+              "has_pose": true
+            },
+            {
+              "observation": 21,
+              "captured_wall_s": 65.30578492605127,
+              "has_pose": true
+            },
+            {
+              "observation": 22,
+              "captured_wall_s": 87.94910304108635,
+              "has_pose": false
+            },
+            {
+              "observation": 23,
+              "captured_wall_s": 88.23569508001674,
+              "has_pose": true
+            },
+            {
+              "observation": 24,
+              "captured_wall_s": 88.53593039198313,
+              "has_pose": true
+            },
+            {
+              "observation": 25,
+              "captured_wall_s": 94.59728376602288,
+              "has_pose": false
+            },
+            {
+              "observation": 26,
+              "captured_wall_s": 94.8509016620228,
+              "has_pose": true
+            },
+            {
+              "observation": 27,
+              "captured_wall_s": 95.13630736107007,
+              "has_pose": true
+            },
+            {
+              "observation": 28,
+              "captured_wall_s": 98.95138656697236,
+              "has_pose": false
+            },
+            {
+              "observation": 29,
+              "captured_wall_s": 99.18639369902667,
+              "has_pose": true
+            },
+            {
+              "observation": 30,
+              "captured_wall_s": 99.4425568850711,
+              "has_pose": true
+            },
+            {
+              "observation": 31,
+              "captured_wall_s": 102.20637988997623,
+              "has_pose": false
+            },
+            {
+              "observation": 32,
+              "captured_wall_s": 102.47563935897779,
+              "has_pose": true
+            },
+            {
+              "observation": 33,
+              "captured_wall_s": 102.73221627005842,
+              "has_pose": true
+            }
+          ]
+        },
+        {
+          "mode": "held",
+          "part": "ring1",
+          "images": 9,
+          "capture_s": 0.183906506979838,
+          "processing_s": 2.1930110298562795,
+          "supported_pose_frames": 8,
+          "frames": [
+            {
+              "observation": 35,
+              "captured_wall_s": 110.55553693999536,
+              "has_pose": false
+            },
+            {
+              "observation": 37,
+              "captured_wall_s": 110.79317914601415,
+              "has_pose": true
+            },
+            {
+              "observation": 38,
+              "captured_wall_s": 115.7716229170328,
+              "has_pose": true
+            },
+            {
+              "observation": 49,
+              "captured_wall_s": 160.58373673306778,
+              "has_pose": true
+            },
+            {
+              "observation": 50,
+              "captured_wall_s": 172.5019766370533,
+              "has_pose": true
+            },
+            {
+              "observation": 51,
+              "captured_wall_s": 197.3200127580203,
+              "has_pose": true
+            },
+            {
+              "observation": 52,
+              "captured_wall_s": 204.53793046600185,
+              "has_pose": true
+            },
+            {
+              "observation": 53,
+              "captured_wall_s": 209.96006365504581,
+              "has_pose": true
+            },
+            {
+              "observation": 54,
+              "captured_wall_s": 216.64452337508556,
+              "has_pose": true
+            }
+          ]
+        },
+        {
+          "mode": "pin_initial",
+          "part": "pin",
+          "images": 1,
+          "capture_s": 0.00919863407034427,
+          "processing_s": 0.029916017898358405,
+          "supported_pose_frames": 1,
+          "frames": [
+            {
+              "observation": 55,
+              "captured_wall_s": 218.02052485907916,
+              "has_pose": true
+            }
+          ]
+        },
+        {
+          "mode": "held",
+          "part": "pin",
+          "images": 13,
+          "capture_s": 0.49773190007545054,
+          "processing_s": 2.1908528428757563,
+          "supported_pose_frames": 9,
+          "frames": [
+            {
+              "observation": 56,
+              "captured_wall_s": 222.2875761090545,
+              "has_pose": true
+            },
+            {
+              "observation": 57,
+              "captured_wall_s": 224.18984834407456,
+              "has_pose": true
+            },
+            {
+              "observation": 58,
+              "captured_wall_s": 224.53671703801956,
+              "has_pose": true
+            },
+            {
+              "observation": 59,
+              "captured_wall_s": 225.36877053999342,
+              "has_pose": true
+            },
+            {
+              "observation": 60,
+              "captured_wall_s": 234.827358954004,
+              "has_pose": false
+            },
+            {
+              "observation": 61,
+              "captured_wall_s": 234.97699112503324,
+              "has_pose": false
+            },
+            {
+              "observation": 62,
+              "captured_wall_s": 235.23925351002254,
+              "has_pose": false
+            },
+            {
+              "observation": 63,
+              "captured_wall_s": 235.37915421300568,
+              "has_pose": false
+            },
+            {
+              "observation": 64,
+              "captured_wall_s": 235.5186033580685,
+              "has_pose": true
+            },
+            {
+              "observation": 65,
+              "captured_wall_s": 236.74333606602158,
+              "has_pose": true
+            },
+            {
+              "observation": 66,
+              "captured_wall_s": 237.98834914900362,
+              "has_pose": true
+            },
+            {
+              "observation": 67,
+              "captured_wall_s": 239.24164224008564,
+              "has_pose": true
+            },
+            {
+              "observation": 68,
+              "captured_wall_s": 248.33478848205414,
+              "has_pose": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

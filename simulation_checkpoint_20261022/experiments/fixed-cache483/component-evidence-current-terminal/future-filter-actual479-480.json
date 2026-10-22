@@ -1,0 +1,329 @@
+[
+  {
+    "run": "native-roas-table-fixed-front-v479-runtime-own-pin-hold-nominal",
+    "full_task_pass": true,
+    "wall_verified_elapsed_s": 266.1272821020102,
+    "result_sha256": "27003257d72ab46fc7a66d5410fcc73cf1b0311ce40fbe46dc984da580665a6e",
+    "future_candidate_filter": {
+      "applies": true,
+      "clear": true,
+      "collision": null,
+      "rows": 1416,
+      "wall_s": 3.6741509459679946,
+      "planned_future_LEFT_q": [
+        -0.13557329773902893,
+        -0.14186294376850128,
+        -0.01783299632370472,
+        -2.220045566558838,
+        -2.794273853302002,
+        1.8495267629623413,
+        -1.3566551208496094
+      ],
+      "left_widths_m": [
+        0.06398817151784897,
+        0.06399112939834595,
+        0.06399408727884293,
+        0.0639970451593399,
+        0.06400000303983688
+      ],
+      "right_widths_m": [
+        0.07199864834547043,
+        0.07271309196949005,
+        0.07342754304409027,
+        0.0741419866681099,
+        0.07485643029212952
+      ],
+      "candidate_pair_filter_only": true,
+      "full_saved_middle_pair_coverage_including_endpoint": true,
+      "hypothetical_static_own_placed_checks_deferred_to_original_actual_postpark_guard": true,
+      "original_full_terminal_and_issued_LEFT_guards_still_required": true,
+      "planned_endpoint_only_not_future_actual_encoder": true,
+      "fresh_actual_postpark_whole_path_required": true,
+      "public_G_unchanged": true,
+      "uses_free_body_poses": false,
+      "query_diagnostics": {
+        "future_candidate_pair_filter": {
+          "candidate_filter_only": true,
+          "full_actual_motion_checks_deferred_not_waived": true,
+          "no_physics_or_commands_issued": true,
+          "uses_free_body_poses": false,
+          "sampled_rows": 1873,
+          "pair_states": 46825,
+          "GPU_CLEAR_states": 46825,
+          "GPU_unknown_states": 0,
+          "geometry_sha256_before": "aea4e3b45e515250af4fcc5ebe2c62840bc1cab89ef641e5657fe8568104decf",
+          "geometry_sha256_after": "aea4e3b45e515250af4fcc5ebe2c62840bc1cab89ef641e5657fe8568104decf",
+          "exact_geometry_bindings_and_public_state_unchanged": true,
+          "service": {
+            "geometry_sha256": "aea4e3b45e515250af4fcc5ebe2c62840bc1cab89ef641e5657fe8568104decf",
+            "geometry_prepare_s": 0.007214378914795816,
+            "geometry_registration_sent": false,
+            "transform_prepare_s": 0.8477573830168694,
+            "unpacked_transform_bytes": 407564800,
+            "packed_transform_bytes": 17271952,
+            "unique_left_states": 5,
+            "unique_right_states": 9320,
+            "left_transform_bank": 18,
+            "right_transform_bank": 35416,
+            "certificate": "original_proxy_separation_only",
+            "proposal_only": false,
+            "device": "cuda:0",
+            "kernel_s": 2.6735181940020993,
+            "OBB_pairs_certified": 8598500,
+            "face_pairs_certified": 0,
+            "total_rows": 14825,
+            "local_left_shapes": 10,
+            "local_right_shapes": 58,
+            "outward_reserve_m": 1e-09,
+            "original_pair_margin_m": 0.001,
+            "float64": true,
+            "id": "f62df897ad444f4c81784474eddec0fe",
+            "protocol": "native-pair-numpy-float64-v1",
+            "request_bytes": 8568486,
+            "receive_decode_s": 0.005766030051745474,
+            "server_s": 2.7052382411202416,
+            "client_wall_s": 3.5858140049967915,
+            "rows": 46825,
+            "clear_rows": 46825,
+            "fallback_rows": 0,
+            "uses_free_body_poses": false,
+            "transport": "numpy_pickle5_exact_transform_bank",
+            "rpc_profile": [
+              {
+                "op": "prove",
+                "request_bytes": 8888086,
+                "reply_bytes": 16593,
+                "encode_s": 0.0038567750016227365,
+                "rpc_s": 0.9479469219222665
+              },
+              {
+                "op": "prove",
+                "request_bytes": 8888086,
+                "reply_bytes": 16593,
+                "encode_s": 0.001443904940970242,
+                "rpc_s": 0.9156789390835911
+              },
+              {
+                "op": "prove",
+                "request_bytes": 8568486,
+                "reply_bytes": 15416,
+                "encode_s": 0.001635190099477768,
+                "rpc_s": 0.8457095009507611
+              }
+            ],
+            "chunk_profiles": [
+              {
+                "first_row": 0,
+                "rows": 16000,
+                "clear_rows": 16000,
+                "server_s": 0.9464568239636719,
+                "kernel_s": 0.9321519020013511
+              },
+              {
+                "first_row": 16000,
+                "rows": 16000,
+                "clear_rows": 16000,
+                "server_s": 0.9143966630799696,
+                "kernel_s": 0.9051195860374719
+              },
+              {
+                "first_row": 32000,
+                "rows": 14825,
+                "clear_rows": 14825,
+                "server_s": 0.8443847540766001,
+                "kernel_s": 0.8362467059632763
+              }
+            ]
+          },
+          "wall_s": 3.6669950149953365
+        }
+      }
+    },
+    "fresh_actual_middle": {
+      "event": "fixed_saved_canonical_carry_admitted",
+      "rows": 1415,
+      "original_dt_s": 0.0020833333333333333,
+      "current_encoder_bridge_live": true,
+      "fresh_public_RGBD_grasp": true,
+      "apertures_m": [
+        0.07199864834547043,
+        0.07271252386271954,
+        0.07342639937996864,
+        0.07414027489721775,
+        0.07485415041446686
+      ],
+      "reference_full_paths": 1,
+      "dependent_configurations": 5672,
+      "invariant_configurations_reused": 0,
+      "fallback_full_configurations": 0,
+      "changed_body_names": [
+        "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger",
+        "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger"
+      ],
+      "path_sample_count": 1418,
+      "static_certificate_hits": 7085,
+      "static_certificate_misses": 5,
+      "public_G_domain": "nominal_public_G",
+      "native_self_certificate_hits": 7085,
+      "own_payload_certificate_hits": 7085,
+      "own_certificate_misses": 5
+    },
+    "exact_source_files_sha256": {
+      "future_saved_carry_guard.py": "a2e2141d76a327c17e3c98b74d969b4b6e53ea6aac71ea75e132664623037f6b",
+      "fixed_saved_executor.py": "12ff2955725f91f9306b7418ae4e61413b12e1320d999509d7b409be3b0619d2",
+      "large_goal_aware_empty_left.py": "7699397fc232426f346e96ff9bdf4d1bb6db6e261c7dca8ec1128920459367d5",
+      "gpu_pair_schedule_binary.py": "e2ae7cbb06a3966c77c5b2b66f7a0faa3d6879fb9d83cd4126881ca7991ba61c",
+      "gpu_pair_binary_protocol.py": "6f36f0892216fb55522bbe4d379276ab6afb696025b6afcf1ee815d3c9a60fbb"
+    },
+    "frozen_source_manifest_sha256": "529f3ef8a46bc1bf968360ed2a9c13cf3b904dbf072e97e3c7d6085ea6af171e"
+  },
+  {
+    "run": "native-roas-table-fixed-front-v480-runtime-own-pin-hold-plus",
+    "full_task_pass": true,
+    "wall_verified_elapsed_s": 254.28384094999637,
+    "result_sha256": "5969869164ef9b22c5bb723b60ff33fbccca0b582714e113d83a2bd36985fb15",
+    "future_candidate_filter": {
+      "applies": true,
+      "clear": true,
+      "collision": null,
+      "rows": 1416,
+      "wall_s": 3.4050979639869183,
+      "planned_future_LEFT_q": [
+        -0.13557329773902893,
+        -0.14186294376850128,
+        -0.01783299632370472,
+        -2.220045566558838,
+        -2.794273853302002,
+        1.8495267629623413,
+        -1.3566551208496094
+      ],
+      "left_widths_m": [
+        0.06398577243089676,
+        0.06398932635784149,
+        0.06399288773536682,
+        0.06399644911289215,
+        0.06400000303983688
+      ],
+      "right_widths_m": [
+        0.07199864834547043,
+        0.07271088659763336,
+        0.0734231173992157,
+        0.07413534820079803,
+        0.07484758645296097
+      ],
+      "candidate_pair_filter_only": true,
+      "full_saved_middle_pair_coverage_including_endpoint": true,
+      "hypothetical_static_own_placed_checks_deferred_to_original_actual_postpark_guard": true,
+      "original_full_terminal_and_issued_LEFT_guards_still_required": true,
+      "planned_endpoint_only_not_future_actual_encoder": true,
+      "fresh_actual_postpark_whole_path_required": true,
+      "public_G_unchanged": true,
+      "uses_free_body_poses": false,
+      "query_diagnostics": {
+        "future_candidate_pair_filter": {
+          "candidate_filter_only": true,
+          "full_actual_motion_checks_deferred_not_waived": true,
+          "no_physics_or_commands_issued": true,
+          "uses_free_body_poses": false,
+          "sampled_rows": 1873,
+          "pair_states": 46825,
+          "GPU_CLEAR_states": 46825,
+          "GPU_unknown_states": 0,
+          "geometry_sha256_before": "aea4e3b45e515250af4fcc5ebe2c62840bc1cab89ef641e5657fe8568104decf",
+          "geometry_sha256_after": "aea4e3b45e515250af4fcc5ebe2c62840bc1cab89ef641e5657fe8568104decf",
+          "exact_geometry_bindings_and_public_state_unchanged": true,
+          "service": {
+            "geometry_sha256": "aea4e3b45e515250af4fcc5ebe2c62840bc1cab89ef641e5657fe8568104decf",
+            "geometry_prepare_s": 0.005019482923671603,
+            "geometry_registration_sent": false,
+            "transform_prepare_s": 0.6202069480204955,
+            "unpacked_transform_bytes": 407564800,
+            "packed_transform_bytes": 17271952,
+            "unique_left_states": 5,
+            "unique_right_states": 9320,
+            "left_transform_bank": 18,
+            "right_transform_bank": 35416,
+            "certificate": "original_proxy_separation_only",
+            "proposal_only": false,
+            "device": "cuda:0",
+            "kernel_s": 2.662657403969206,
+            "OBB_pairs_certified": 8598500,
+            "face_pairs_certified": 0,
+            "total_rows": 14825,
+            "local_left_shapes": 10,
+            "local_right_shapes": 58,
+            "outward_reserve_m": 1e-09,
+            "original_pair_margin_m": 0.001,
+            "float64": true,
+            "id": "4fe8a65751264d07b2a1dfbba3b4ed8e",
+            "protocol": "native-pair-numpy-float64-v1",
+            "request_bytes": 8568486,
+            "receive_decode_s": 0.0036340280203148723,
+            "server_s": 2.684999000048265,
+            "client_wall_s": 3.332607569056563,
+            "rows": 46825,
+            "clear_rows": 46825,
+            "fallback_rows": 0,
+            "uses_free_body_poses": false,
+            "transport": "numpy_pickle5_exact_transform_bank",
+            "rpc_profile": [
+              {
+                "op": "prove",
+                "request_bytes": 8888086,
+                "reply_bytes": 16593,
+                "encode_s": 0.006069555063731968,
+                "rpc_s": 0.9359245829982683
+              },
+              {
+                "op": "prove",
+                "request_bytes": 8888086,
+                "reply_bytes": 16593,
+                "encode_s": 0.0017910039750859141,
+                "rpc_s": 0.9104682269971818
+              },
+              {
+                "op": "prove",
+                "request_bytes": 8568486,
+                "reply_bytes": 15416,
+                "encode_s": 0.0022487229434773326,
+                "rpc_s": 0.8413600180065259
+              }
+            ],
+            "chunk_profiles": [
+              {
+                "first_row": 0,
+                "rows": 16000,
+                "clear_rows": 16000,
+                "server_s": 0.9348111529834569,
+                "kernel_s": 0.9273330610012636
+              },
+              {
+                "first_row": 16000,
+                "rows": 16000,
+                "clear_rows": 16000,
+                "server_s": 0.9096361950505525,
+                "kernel_s": 0.9006019199732691
+              },
+              {
+                "first_row": 32000,
+                "rows": 14825,
+                "clear_rows": 14825,
+                "server_s": 0.8405516520142555,
+                "kernel_s": 0.8347224229946733
+              }
+            ]
+          },
+          "wall_s": 3.3969259969890118
+        }
+      }
+    },
+    "exact_source_files_sha256": {
+      "future_saved_carry_guard.py": "a2e2141d76a327c17e3c98b74d969b4b6e53ea6aac71ea75e132664623037f6b",
+      "fixed_saved_executor.py": "12ff2955725f91f9306b7418ae4e61413b12e1320d999509d7b409be3b0619d2",
+      "large_goal_aware_empty_left.py": "7699397fc232426f346e96ff9bdf4d1bb6db6e261c7dca8ec1128920459367d5",
+      "gpu_pair_schedule_binary.py": "e2ae7cbb06a3966c77c5b2b66f7a0faa3d6879fb9d83cd4126881ca7991ba61c",
+      "gpu_pair_binary_protocol.py": "6f36f0892216fb55522bbe4d379276ab6afb696025b6afcf1ee815d3c9a60fbb"
+    },
+    "frozen_source_manifest_sha256": "bb60b9f7e4df07d03fe371c19d4f563c4517eb2e624d5e46b16aa547905213d8"
+  }
+]

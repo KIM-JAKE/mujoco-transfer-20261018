@@ -1,0 +1,75 @@
+--- /tmp/fixed479-full/overrides/direct_pin_skill.py	2026-10-22 03:47:58.289816005 +0000
++++ /tmp/pin-current-terminal-481fix/overrides/direct_pin_skill.py	2026-10-22 04:13:28.700853466 +0000
+@@ -13,6 +13,10 @@
+ from fr3_path_timing import retime,retime_safe_polyline
+ 
+ 
++class PinCartesianPreflightBlocked(RuntimeError):
++    """Geometry rejected before motion(); never a partial-stroke error."""
++
++
+ def _pin_visual_preinsert_target(command_H,actual_H,measured_G,goal,goal_axis,observed_z,gain=1.,translation_deadband_m=0.,axis_deadband_rad=0.,axis_gain=None):
+     """Bounded geometric center/axis servo; only images, encoders and jig CAD."""
+     C,A,G=[np.asarray(x,float)for x in [command_H,actual_H,measured_G]]
+@@ -244,7 +248,7 @@
+             rows.append(q);last=q
+         opening=max(float(art.get_dof_positions()[0,fi].sum()),float(cmd[0,fi].sum()))
+         curve=CubicSpline(np.linspace(0,1,len(rows)),rows)(np.linspace(0,1,41));clear,why=checker.path(curve,opening,paths['workpiece_pin'])
+-        if not clear:raise RuntimeError('Pin Cartesian robot path obstructed '+label+' '+str(why))
++        if not clear:raise PinCartesianPreflightBlocked('Pin Cartesian robot path obstructed '+label+' '+str(why))
+         motion(rows,requested,label,checked_edges=False)
+     def fingers(width,label):
+         nonlocal phase
+@@ -438,6 +442,7 @@
+     recovery_ceiling=min(.65,correction_gain);radial_improvement_streak=0
+     previous_alignment_score=None
+     previous_radial_error=None
++    terminal_replans=0;axial_inserted=False
+     for alignment_index in range(alignment_budget if visual_preinsert else 1):
+         if visual_preinsert and pin_config.get('pin_precision_encoder_settle'):await_precision_encoder_window('pin_precision_encoder_settle')
+         v=observe('pin_preinsert_RGBD',G,require_circle=visual_preinsert);pose=v['result']['pose'];Pobs=np.asarray(pose['center_m']);remaining_depth=float(goal[2]-Pobs[2])
+@@ -452,7 +457,32 @@
+         if not .035<remaining_depth<.055:raise RuntimeError('Pin visual prealignment must remain35–55mm below the calibrated jig target')
+         measured=np.linalg.inv(v['H'])@frame(Pobs,axis_frame(pose['axis']))
+         old_axis=G[:3,2];new_axis=measured[:3,2];cross=np.cross(old_axis,new_axis);length=np.linalg.norm(cross);measured[:3,:3]=exp(cross/max(length,1e-12)*np.arctan2(length,old_axis@new_axis))@G[:3,:3];G=measured
+-        if radial<=.000075 and axis_error<=.003 and shaft_axis_max<=.00015:break
++        if radial<=.000075 and axis_error<=.003 and shaft_axis_max<=.00015:
++            if not pin_config.get('pin_terminal_stroke_preflight'):break
++            from pin_current_terminal import assess as assess_current_terminal,plan_rebranch
++            try:
++                admitted,terminal=assess_current_terminal(ctx,payload_grasp(),remaining_depth)
++                report.setdefault('fresh_image_terminal_checks',[]).append(terminal)
++                if not admitted:raise PinCartesianPreflightBlocked('Last qualified RGB-D pin terminal obstructed '+str(terminal))
++                pre=arm.fk(cmd[0,ids]);end=pre.copy();end[2,3]+=remaining_depth
++                line(pre,end,.8,'pin_single_axial_insert')
++            except PinCartesianPreflightBlocked as rejected:
++                # Only known pre-motion geometry rejection can rebranch.
++                # Original precision iterations are shared, never reset.
++                if terminal_replans>=2 or alignment_index==alignment_budget-1:raise
++                recovery=plan_rebranch(ctx,payload_grasp(),remaining_depth)
++                if not np.array_equal(cmd,recovery['source_command_all']) or not np.array_equal(art.get_dof_positions()[0],recovery['source_actual_all']):raise RuntimeError('PIN terminal rebranch source changed after full field proof')
++                phase='pin_current_G_terminal_rebranch'
++                for command in recovery['commands'][1:]:cmd[0,ids]=command;step()
++                terminal_replans+=1
++                entry=dict(event=phase,wall_s=time.perf_counter()-started,physical_duration_s=(len(recovery['commands'])-1)*DT)
++                report['events'].append(entry)
++                report.setdefault('fresh_image_terminal_replans',[]).append(dict(reason=str(rejected),replan=terminal_replans,alignment_index=alignment_index,candidate=recovery['candidate'],timing=recovery['timing'],terminal=recovery['terminal'],original_all_limits_and_collision_checks=True,fresh_precision_RGBD_required_before_insertion=True,extra_alignment_iterations=0,uses_free_body_poses=False))
++                print('PIN_CURRENT_G_TERMINAL_REBRANCH',entry,flush=True)
++                wait(.08,'pin_terminal_rebranch_settle')
++                continue
++            axial_inserted=True
++            break
+         if alignment_index==alignment_budget-1:raise RuntimeError('Pin RGB-D precision center/axis alignment did not converge; insertion blocked')
+         alignment_score=max(radial/.000075,axis_error/.003,shaft_axis_max/.00015)
+         if independent_component_feedback:
+@@ -475,7 +505,9 @@
+     report['preinsert_observed_center_m']=Pobs.tolist();report['RGBD_measured_remaining_axial_depth_m']=remaining_depth
+     if visual_preinsert:report['measured_grasp_after_preinsert_alignment']=G.tolist()
+     if np.linalg.norm(Pobs[:2]-goal[:2])>=.0015 or not .035<remaining_depth<.055:raise RuntimeError('Preinsert RGB-D alignment/depth outside direct insertion range')
+-    pre=arm.fk(cmd[0,ids]);end=pre.copy();end[2,3]+=remaining_depth;line(pre,end,.8,'pin_single_axial_insert');wait(.12,'pin_full_depth_hold');v=observe('pin_full_depth_RGBD',G);pose=v['result']['pose'];error=float(np.linalg.norm(np.array(pose['center_m'])-goal));ae=float(np.arccos(np.clip(np.array(pose['axis'])[2],-1,1)));report['RGBD_full_depth_check']=dict(position_error_m=error,axis_error_rad=ae)
++    if not axial_inserted:
++        pre=arm.fk(cmd[0,ids]);end=pre.copy();end[2,3]+=remaining_depth;line(pre,end,.8,'pin_single_axial_insert')
++    wait(.12,'pin_full_depth_hold');v=observe('pin_full_depth_RGBD',G);pose=v['result']['pose'];error=float(np.linalg.norm(np.array(pose['center_m'])-goal));ae=float(np.arccos(np.clip(np.array(pose['axis'])[2],-1,1)));report['RGBD_full_depth_check']=dict(position_error_m=error,axis_error_rad=ae)
+     for correction_index in range(2):
+         remaining=float(goal[2]-pose['center_m'][2]);radial=float(np.linalg.norm(np.array(pose['center_m'])[:2]-goal[:2]))
+         if not (.0005<remaining<.006 and radial<.0015 and ae<.05):break

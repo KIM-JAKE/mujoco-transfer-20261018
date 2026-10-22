@@ -1,0 +1,31 @@
+--- a/loose_ring_pick.py
++++ b/loose_ring_pick.py
+@@ -143,13 +143,17 @@
+         elif time.perf_counter()>deadline:raise RuntimeError(label+' (no timely-ready metadata)')
+         return value
+     def observe(mode,part=None,G=None,allow_missing=False):
++        # The distant pre-approach observation keeps its old view order. Only
++        # a nearby fixed LARGE pickup uses the two formerly successful views
++        # first; every original view and fresh-image consistency gate remains.
++        prefer_fixed_large=bool(fixed_supply and mode=='pregrasp_ring' and part=='ring1' and G is not None and c['config'].get('fixed_large_pregrasp_preferred_views',False) and np.linalg.norm(np.asarray(G)[:3,3])<=.10)
+         capture_gap=float(art.get_dof_positions()[0,fi].sum())
+         e=dict(mode=mode,part=part)
+         allow_partial=bool(mode=='pregrasp_ring' and c['config'].get('allow_partial_preclose_tracking'))
+         if allow_partial:e['allow_partial_preclose_tracking']=True
+         if G is not None:
+             e['tracked_grasp']=G.tolist();camera_H=arm.fk(art.get_dof_positions()[0,ids]);short=camera_H[:3,0].copy();short[2]=0.;short/=max(np.linalg.norm(short),1e-8)
+-            if mode=='pregrasp_ring' and part=='ring2':
++            if mode=='pregrasp_ring' and (part=='ring2' or prefer_fixed_large):
+                 # A long oblique ray to stock below the bin rim hits its wall.
+                 # These nearer overhead rays were validated on the same pixels
+                 # and unchanged hand pose that defeated the wider views.
+@@ -211,6 +215,9 @@
+                     # the fixed front-shelf task these two existing oblique
+                     # views expose both cap sides before the old blocked views.
+                     old_base=short*.06+[0,0,max(.30,lip+.005-predicted[2,3])]
++                    offsets=[np.array([-.28,-.20,.32]),old_base]+offsets
++                elif prefer_fixed_large:
++                    old_base=short*.38+np.array([0.,0.,.40])
+                     offsets=[np.array([-.28,-.20,.32]),old_base]+offsets
+                 if c['config'].get('preclose_occlusion_max_age_s') is not None and not c['config'].get('require_fresh_preclose_rgbd'):offsets=offsets[:1]
+             else:

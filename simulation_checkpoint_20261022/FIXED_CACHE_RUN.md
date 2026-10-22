@@ -7,11 +7,11 @@
 ```bash
 python3 simulation_checkpoint_20261022/tools/prepare_fixed_checkpoint.py \
   --base-repo /home/gpuadmin/workspace/jake/mujoco \
-  --checkpoint simulation_checkpoint_20261022/experiments/fixed-cache479 \
+  --checkpoint simulation_checkpoint_20261022/experiments/fixed-cache483 \
   --run native-roas-table-my-cache-test
 ```
 
-이 명령은 소스SHA-256을 확인하고 개인 snapshot과결과 폴더만 준비합니다. 실제479 소스·입력418개로 준비·재검증을 통과했습니다. 새 실행기 자체로 전체 재실행한 성과를 기존479와 혼동하지 않습니다.479는 기준 위치 성공,480은 같은 코드 PLUS 성공,481 MINUS는 핀 삽입 전 충돌 정지입니다. 최신 코드를 모든 위치에서 통과한 배포본으로 해석하면 안 됩니다.
+이 명령은 소스SHA-256을 확인하고 개인 snapshot과 결과 폴더만 준비합니다. 실제483 소스·입력419개로 준비·재검증을 통과했습니다. 새 실행기 자체로 전체 재실행한 성과를 기존483과 혼동하지 않습니다.483 기준 위치와482 MINUS는 같은 코드 전체 성공이며, PLUS484도 같은 코드 전체 성공입니다. 저장/보정 구조가 작동하지만 전체 시간 대폭 단축과 모든 위치에서의 반복 성공률을 보장하지 않습니다.
 
 예약한GPU가 해당 컨테이너에 배정되어 있고 기존 작업이 비어 있을 때, **다른 새run 이름**으로 같은 명령에 아래 옵션을 붙이면 Isaac이 시작됩니다. 현재 대화에서는 사용자에게GPU2·3 사용을 허가받았고, 공유 서버에서는 기존GPU 예약 도구를 먼저 사용합니다.
 
