@@ -9,3 +9,5 @@
 원래 1920Hz·128/64 solver·질량·마찰·힘·FR3/Hand 제한을 유지했고, 부품 부착/초기화 후 이동/허용값 완화는 없습니다. 실패한 작업이므로 마지막 전체 명령장 감사/전체 유지 판정은 없습니다. 실제 하드웨어는 미검증입니다.
 
 424개 소스·고정 입력은`exact-source-manifest.json`, 변경 근거/투명성 검사는`tail-contact-qualification`, 실제 공개 PIN RGB-D는`public-pin-rgbd`, 원래 실패·접촉 기록은`actual-job-stdout.txt`에 보존했습니다.
+
+실패 뒤 제어와 분리해 원래 PhysX 기록을 평가한 결과도 실제 파지 중심2.035mm/축127.095mrad 변화를 확인했습니다. 운반 뒤 영상 추정의 축 차이는0.168mrad·중심10.6µm 수준이었고 가장 가까운 기록 시각 차이는7.05ms였습니다. 이 진단은`tail-contact-qualification/actual497-EVALUATION-ONLY-trace.json`에만 보존했으며 내부 물체 좌표를 제어에 공급하지 않았습니다.
