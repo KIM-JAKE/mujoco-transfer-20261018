@@ -1,0 +1,493 @@
+{
+  "full_task_pass": true,
+  "vision_end_to_end_pass": true,
+  "hardware_tested": false,
+  "part_attachments": false,
+  "workpiece_teleports_after_initialization": 0,
+  "wall_verified_elapsed_s": 234.9275613159407,
+  "simulation_elapsed_s": 45.30624999999988,
+  "end_to_end_under20": false,
+  "end_to_end_under30": false,
+  "final_checks": {
+    "ring1": {
+      "position_error_m": 0.0006132877192143566,
+      "axis_error_rad": 0.009352506220178523
+    },
+    "ring2": {
+      "position_error_m": 0.0003610832937474431,
+      "axis_error_rad": 0.012539871008582558
+    },
+    "pin": {
+      "position_error_m": 0.0007352912597762176,
+      "axis_error_rad": 0.006552571500043356
+    }
+  },
+  "FR3_command_limit_audit": {
+    "samples": 21747,
+    "velocity_fraction_of_95_percent_PBV": 0.9369012162132716,
+    "max_acceleration_rad_s2": 8.8714599609375,
+    "max_jerk_rad_s3": 3164.0625,
+    "acceleration_limit_rad_s2": 9.5,
+    "jerk_limit_rad_s3": 4750,
+    "command_limit_checks": true,
+    "complete_issued_field_checked_at_end": true,
+    "validated_sample_count": 21747
+  },
+  "encoder_motor_speed_audit": {
+    "samples": 21747,
+    "max_fraction_of_95_percent_PBV": 0.9286564924862065,
+    "max_finger_fraction_of_47p5_mm_s": 0.6785135520131964,
+    "max_coupled_finger_difference_m": 3.3527612686157227e-08,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  },
+  "CPU_operation_profile": {
+    "control_s": 6.966237710788846,
+    "physics_s": 95.13475445611402,
+    "clamp_flush_s": 0.0
+  },
+  "fixed_saved_route_preparation": {
+    "ready": true,
+    "cache_hit": true,
+    "preparation_s": 3.8850724641233683,
+    "canonical_rows": 1416,
+    "static_certified_unique_rows": 1407,
+    "world_sha256": "24c82638ff88f8c8e6d9798b733aa7645338fbe8a3a02b20482699753da8b5f4",
+    "model_sha256": "f00ab818cd13bf5f6bdab43073594234ed67a4e9cff6d88cf95278dffd05d2c1",
+    "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/32d23c327452b9d5b9784d09a791e400f0108c068bcbdf5a43fef6a354e3a474.json",
+    "compile_excluded_from_cycle": true,
+    "only_static_queries_reused": true,
+    "actual_start_counterpart_payload_contact_limits_remain_live": true,
+    "saved_command_limit_audit": {
+      "velocity_fraction_of_95_percent_PBV": 0.8877358580675749,
+      "max_acceleration_rad_s2": 8.5693359375,
+      "max_jerk_rad_s3": 1311.767578125
+    },
+    "own_envelope_preparation": {
+      "ready": true,
+      "cache_hit": true,
+      "preparation_s": 0.007801603991538286,
+      "canonical_rows": 1416,
+      "native_self_certified_unique_rows": 1407,
+      "own_payload_certified_unique_rows": 1407,
+      "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/own-bf181bf3818f89755f50f5a787441c5e2b183f9dda8c3aef837e9ee922639e1d.json",
+      "compile_excluded_from_cycle": true,
+      "placed_opposite_entry_physics_checks_remain_live": true
+    },
+    "independently_compiled_public_G_domains": [
+      {
+        "ready": true,
+        "cache_hit": true,
+        "preparation_s": 1.9526938981143758,
+        "canonical_rows": 1416,
+        "static_certified_unique_rows": 1407,
+        "world_sha256": "24c82638ff88f8c8e6d9798b733aa7645338fbe8a3a02b20482699753da8b5f4",
+        "model_sha256": "f00ab818cd13bf5f6bdab43073594234ed67a4e9cff6d88cf95278dffd05d2c1",
+        "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/32d23c327452b9d5b9784d09a791e400f0108c068bcbdf5a43fef6a354e3a474.json",
+        "compile_excluded_from_cycle": true,
+        "only_static_queries_reused": true,
+        "actual_start_counterpart_payload_contact_limits_remain_live": true,
+        "saved_command_limit_audit": {
+          "velocity_fraction_of_95_percent_PBV": 0.8877358580675749,
+          "max_acceleration_rad_s2": 8.5693359375,
+          "max_jerk_rad_s3": 1311.767578125
+        },
+        "own_envelope_preparation": {
+          "ready": true,
+          "cache_hit": true,
+          "preparation_s": 0.007801603991538286,
+          "canonical_rows": 1416,
+          "native_self_certified_unique_rows": 1407,
+          "own_payload_certified_unique_rows": 1407,
+          "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/own-bf181bf3818f89755f50f5a787441c5e2b183f9dda8c3aef837e9ee922639e1d.json",
+          "compile_excluded_from_cycle": true,
+          "placed_opposite_entry_physics_checks_remain_live": true
+        },
+        "domain_label": "nominal_public_G"
+      },
+      {
+        "ready": true,
+        "cache_hit": true,
+        "preparation_s": 1.9323785660089925,
+        "canonical_rows": 1416,
+        "static_certified_unique_rows": 1407,
+        "world_sha256": "24c82638ff88f8c8e6d9798b733aa7645338fbe8a3a02b20482699753da8b5f4",
+        "model_sha256": "f00ab818cd13bf5f6bdab43073594234ed67a4e9cff6d88cf95278dffd05d2c1",
+        "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/b97fb3ca1df9ca31d61803d6c983e130cdacac0baa7c5dd4f1e7b0b2e4dad749.json",
+        "compile_excluded_from_cycle": true,
+        "only_static_queries_reused": true,
+        "actual_start_counterpart_payload_contact_limits_remain_live": true,
+        "saved_command_limit_audit": {
+          "velocity_fraction_of_95_percent_PBV": 0.8877358580675749,
+          "max_acceleration_rad_s2": 8.5693359375,
+          "max_jerk_rad_s3": 1311.767578125
+        },
+        "own_envelope_preparation": {
+          "ready": true,
+          "cache_hit": true,
+          "preparation_s": 0.007630100008100271,
+          "canonical_rows": 1416,
+          "native_self_certified_unique_rows": 1407,
+          "own_payload_certified_unique_rows": 1407,
+          "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/own-d9985ac5e3496995b514c29ef1755a93f8901a076668ea0b2af66972a6fc0f2b.json",
+          "compile_excluded_from_cycle": true,
+          "placed_opposite_entry_physics_checks_remain_live": true
+        },
+        "domain_label": "public_G_half_turn_domain"
+      }
+    ],
+    "public_G_unchanged": true,
+    "class_symmetry_assumed": false
+  },
+  "fixed_saved_small_left_preparation": {
+    "ready": true,
+    "cache_hit": true,
+    "preparation_s": 1.794403527979739,
+    "canonical_rows": 721,
+    "static_certified_unique_rows": 715,
+    "world_sha256": "24c82638ff88f8c8e6d9798b733aa7645338fbe8a3a02b20482699753da8b5f4",
+    "model_sha256": "e81cf70e64d63f1979bebb89b5fda60e4c04b86b1889c82be59efb2df979655e",
+    "compile_excluded_from_cycle": true,
+    "saved_command_limit_audit": {
+      "velocity_fraction_of_95_percent_PBV": 0.7756429774160604,
+      "max_acceleration_rad_s2": 8.514404296875,
+      "max_jerk_rad_s3": 1081.0546875
+    },
+    "own_envelope_preparation": {
+      "ready": true,
+      "cache_hit": true,
+      "preparation_s": 0.006941544008441269,
+      "canonical_rows": 721,
+      "native_self_certified_unique_rows": 715,
+      "own_payload_certified_unique_rows": 0,
+      "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/own-221d47e20cd1dfb02ad91bcfde20e0b31b4b5ccab83f6d7e51aca557f4c959bc.json",
+      "compile_excluded_from_cycle": true,
+      "placed_opposite_entry_physics_checks_remain_live": true
+    }
+  },
+  "cache_events": [
+    {
+      "event": "paired_saved_route_component_reuse",
+      "LEFT": {
+        "static_certificate_hits": 0,
+        "static_certificate_misses": 2,
+        "native_self_certificate_hits": 0,
+        "own_payload_certificate_hits": 0,
+        "own_certificate_misses": 0
+      },
+      "RIGHT": {},
+      "scope": "one immutable paired preflight",
+      "all_current_pairs_checked": true,
+      "changed_rows_use_original_full_guards": true
+    },
+    {
+      "event": "saved_SMALL_nominal_robot_stroke_batched",
+      "segments": 8,
+      "wall_s": 0.019245859934017062,
+      "clear": true,
+      "reason": null,
+      "original_fixed_self_pair_predicates": true,
+      "physical_steps": 0
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 6963,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "saved_LEFT_static_route_query_reuse",
+      "static_certificate_hits": 3605,
+      "static_certificate_misses": 320,
+      "native_self_certificate_hits": 3605,
+      "own_payload_certificate_hits": 0,
+      "own_certificate_misses": 3925
+    },
+    {
+      "event": "saved_SMALL_LEFT_carry_admitted",
+      "canonical_rows": 720,
+      "fresh_entry_rows": 63,
+      "original_dt_s": 0.0020833333333333333,
+      "fresh_RGBD_grasp": true,
+      "full_nominal_robot_stroke": true,
+      "original_full_payload_pair_guard": true,
+      "saved_command_limit_audit": {
+        "velocity_fraction_of_95_percent_PBV": 0.7756429774160604,
+        "max_acceleration_rad_s2": 8.734130859375,
+        "max_jerk_rad_s3": 2583.984375
+      },
+      "uses_free_body_poses": false
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 7539,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "saved_LEFT_static_route_query_reuse",
+      "static_certificate_hits": 3605,
+      "static_certificate_misses": 320,
+      "native_self_certificate_hits": 3605,
+      "own_payload_certificate_hits": 0,
+      "own_certificate_misses": 3925
+    },
+    {
+      "event": "paired_saved_route_component_reuse",
+      "LEFT": {
+        "static_certificate_hits": 685,
+        "static_certificate_misses": 460,
+        "native_self_certificate_hits": 685,
+        "own_payload_certificate_hits": 0,
+        "own_certificate_misses": 1145
+      },
+      "RIGHT": {},
+      "scope": "one immutable paired preflight",
+      "all_current_pairs_checked": true,
+      "changed_rows_use_original_full_guards": true
+    },
+    {
+      "event": "paired_saved_route_component_reuse",
+      "LEFT": {
+        "static_certificate_hits": 2,
+        "static_certificate_misses": 3,
+        "native_self_certificate_hits": 2,
+        "own_payload_certificate_hits": 0,
+        "own_certificate_misses": 5
+      },
+      "RIGHT": {},
+      "scope": "one immutable paired preflight",
+      "all_current_pairs_checked": true,
+      "changed_rows_use_original_full_guards": true
+    },
+    {
+      "event": "paired_saved_route_component_reuse",
+      "LEFT": {
+        "static_certificate_hits": 2,
+        "static_certificate_misses": 3,
+        "native_self_certificate_hits": 2,
+        "own_payload_certificate_hits": 0,
+        "own_certificate_misses": 5
+      },
+      "RIGHT": {},
+      "scope": "one immutable paired preflight",
+      "all_current_pairs_checked": true,
+      "changed_rows_use_original_full_guards": true
+    },
+    {
+      "event": "paired_saved_route_component_reuse",
+      "LEFT": {
+        "static_certificate_hits": 2,
+        "static_certificate_misses": 3,
+        "native_self_certificate_hits": 2,
+        "own_payload_certificate_hits": 0,
+        "own_certificate_misses": 5
+      },
+      "RIGHT": {},
+      "scope": "one immutable paired preflight",
+      "all_current_pairs_checked": true,
+      "changed_rows_use_original_full_guards": true
+    },
+    {
+      "event": "paired_saved_route_component_reuse",
+      "LEFT": {
+        "static_certificate_hits": 2,
+        "static_certificate_misses": 3,
+        "native_self_certificate_hits": 2,
+        "own_payload_certificate_hits": 0,
+        "own_certificate_misses": 5
+      },
+      "RIGHT": {
+        "static_certificate_hits": 0,
+        "static_certificate_misses": 136,
+        "public_G_domain": "nominal_public_G",
+        "native_self_certificate_hits": 0,
+        "own_payload_certificate_hits": 0,
+        "own_certificate_misses": 136
+      },
+      "scope": "one immutable paired preflight",
+      "all_current_pairs_checked": true,
+      "changed_rows_use_original_full_guards": true
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 10471,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "saved_LEFT_static_route_query_reuse",
+      "static_certificate_hits": 0,
+      "static_certificate_misses": 970,
+      "native_self_certificate_hits": 5,
+      "own_payload_certificate_hits": 0,
+      "own_certificate_misses": 970
+    },
+    {
+      "event": "paired_saved_route_component_reuse",
+      "LEFT": {
+        "static_certificate_hits": 0,
+        "static_certificate_misses": 197,
+        "native_self_certificate_hits": 2,
+        "own_payload_certificate_hits": 0,
+        "own_certificate_misses": 197
+      },
+      "RIGHT": {
+        "static_certificate_hits": 0,
+        "static_certificate_misses": 5,
+        "public_G_domain": "nominal_public_G",
+        "native_self_certificate_hits": 0,
+        "own_payload_certificate_hits": 0,
+        "own_certificate_misses": 5
+      },
+      "scope": "one immutable paired preflight",
+      "all_current_pairs_checked": true,
+      "changed_rows_use_original_full_guards": true
+    },
+    {
+      "event": "paired_saved_route_component_reuse",
+      "LEFT": {
+        "static_certificate_hits": 0,
+        "static_certificate_misses": 110,
+        "native_self_certificate_hits": 0,
+        "own_payload_certificate_hits": 0,
+        "own_certificate_misses": 110
+      },
+      "RIGHT": {
+        "static_certificate_hits": 0,
+        "static_certificate_misses": 5,
+        "public_G_domain": "nominal_public_G",
+        "native_self_certificate_hits": 0,
+        "own_payload_certificate_hits": 0,
+        "own_certificate_misses": 5
+      },
+      "scope": "one immutable paired preflight",
+      "all_current_pairs_checked": true,
+      "changed_rows_use_original_full_guards": true
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 10742,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "saved_LEFT_static_route_query_reuse",
+      "static_certificate_hits": 0,
+      "static_certificate_misses": 0,
+      "native_self_certificate_hits": 0,
+      "own_payload_certificate_hits": 0,
+      "own_certificate_misses": 1930
+    },
+    {
+      "event": "paired_saved_route_component_reuse",
+      "LEFT": {
+        "static_certificate_hits": 0,
+        "static_certificate_misses": 0,
+        "native_self_certificate_hits": 0,
+        "own_payload_certificate_hits": 0,
+        "own_certificate_misses": 389
+      },
+      "RIGHT": {
+        "static_certificate_hits": 0,
+        "static_certificate_misses": 5,
+        "public_G_domain": "nominal_public_G",
+        "native_self_certificate_hits": 0,
+        "own_payload_certificate_hits": 0,
+        "own_certificate_misses": 5
+      },
+      "scope": "one immutable paired preflight",
+      "all_current_pairs_checked": true,
+      "changed_rows_use_original_full_guards": true
+    },
+    {
+      "event": "paired_saved_route_component_reuse",
+      "LEFT": {
+        "static_certificate_hits": 0,
+        "static_certificate_misses": 101,
+        "native_self_certificate_hits": 0,
+        "own_payload_certificate_hits": 0,
+        "own_certificate_misses": 0
+      },
+      "RIGHT": {
+        "static_certificate_hits": 0,
+        "static_certificate_misses": 5,
+        "public_G_domain": "nominal_public_G",
+        "native_self_certificate_hits": 0,
+        "own_payload_certificate_hits": 0,
+        "own_certificate_misses": 5
+      },
+      "scope": "one immutable paired preflight",
+      "all_current_pairs_checked": true,
+      "changed_rows_use_original_full_guards": true
+    },
+    {
+      "event": "paired_saved_route_component_reuse",
+      "LEFT": {
+        "static_certificate_hits": 0,
+        "static_certificate_misses": 293,
+        "native_self_certificate_hits": 0,
+        "own_payload_certificate_hits": 0,
+        "own_certificate_misses": 0
+      },
+      "RIGHT": {
+        "static_certificate_hits": 0,
+        "static_certificate_misses": 5,
+        "public_G_domain": "nominal_public_G",
+        "native_self_certificate_hits": 0,
+        "own_payload_certificate_hits": 0,
+        "own_certificate_misses": 5
+      },
+      "scope": "one immutable paired preflight",
+      "all_current_pairs_checked": true,
+      "changed_rows_use_original_full_guards": true
+    },
+    {
+      "event": "fixed_saved_fixture_branch_admitted",
+      "part": "ring1",
+      "wall_s": 1.6498396759852767,
+      "fresh_other_arm_checks": true,
+      "public_RGBD_grasp_envelope": true,
+      "online_fixture_search_omitted": true,
+      "uses_free_body_poses": false
+    },
+    {
+      "event": "fixed_saved_canonical_carry_admitted",
+      "rows": 1415,
+      "original_dt_s": 0.0020833333333333333,
+      "current_encoder_bridge_live": true,
+      "fresh_public_RGBD_grasp": true,
+      "apertures_m": [
+        0.07199864834547043,
+        0.07271349243819714,
+        0.07342833653092384,
+        0.07414318062365055,
+        0.07485802471637726
+      ],
+      "reference_full_paths": 1,
+      "dependent_configurations": 5672,
+      "invariant_configurations_reused": 0,
+      "fallback_full_configurations": 0,
+      "changed_body_names": [
+        "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger",
+        "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger"
+      ],
+      "path_sample_count": 1418,
+      "static_certificate_hits": 7085,
+      "static_certificate_misses": 5,
+      "public_G_domain": "nominal_public_G",
+      "native_self_certificate_hits": 7085,
+      "own_payload_certificate_hits": 7085,
+      "own_certificate_misses": 5
+    }
+  ],
+  "timing_comparison_eligible": false
+}

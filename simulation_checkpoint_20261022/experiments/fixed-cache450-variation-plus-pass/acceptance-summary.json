@@ -1,0 +1,138 @@
+{
+  "full_task_pass": true,
+  "vision_end_to_end_pass": true,
+  "hardware_tested": false,
+  "part_attachments": false,
+  "workpiece_teleports_after_initialization": 0,
+  "wall_verified_elapsed_s": 244.97927156300284,
+  "simulation_elapsed_s": 53.68124999999226,
+  "end_to_end_under20": false,
+  "end_to_end_under30": false,
+  "final_checks": {
+    "ring1": {
+      "position_error_m": 0.0007243996670900678,
+      "axis_error_rad": 0.018248223911249167
+    },
+    "ring2": {
+      "position_error_m": 0.00041123268273601164,
+      "axis_error_rad": 0.013870143337903054
+    },
+    "pin": {
+      "position_error_m": 0.0007453237361611454,
+      "axis_error_rad": 0.014605224596650446
+    }
+  },
+  "FR3_command_limit_audit": {
+    "samples": 25767,
+    "velocity_fraction_of_95_percent_PBV": 0.9453345139631192,
+    "max_acceleration_rad_s2": 8.89892578125,
+    "max_jerk_rad_s3": 4001.220703125,
+    "acceleration_limit_rad_s2": 9.5,
+    "jerk_limit_rad_s3": 4750,
+    "command_limit_checks": true,
+    "complete_issued_field_checked_at_end": true,
+    "validated_sample_count": 25767
+  },
+  "encoder_motor_speed_audit": {
+    "samples": 25767,
+    "max_fraction_of_95_percent_PBV": 0.9405938693044791,
+    "max_finger_fraction_of_47p5_mm_s": 0.6771843684347052,
+    "max_coupled_finger_difference_m": 2.0489096641540527e-08,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  },
+  "CPU_operation_profile": {
+    "control_s": 8.031473512994125,
+    "physics_s": 102.60138778900728,
+    "clamp_flush_s": 0.0
+  },
+  "fixed_saved_route_preparation": {
+    "ready": true,
+    "cache_hit": true,
+    "preparation_s": 1.4632811920018867,
+    "canonical_rows": 1416,
+    "static_certified_unique_rows": 1407,
+    "world_sha256": "24c82638ff88f8c8e6d9798b733aa7645338fbe8a3a02b20482699753da8b5f4",
+    "model_sha256": "5c206e806ed824c762d22606be35812a2aeb25aa4c60cc70c0d32ca896dd535a",
+    "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/093d40629cca2d39bd1699e7f4446fc774145eba8ad8082256045a36954e70d3.json",
+    "compile_excluded_from_cycle": true,
+    "only_static_queries_reused": true,
+    "actual_start_counterpart_payload_contact_limits_remain_live": true,
+    "saved_command_limit_audit": {
+      "velocity_fraction_of_95_percent_PBV": 0.8877358580675749,
+      "max_acceleration_rad_s2": 8.5693359375,
+      "max_jerk_rad_s3": 1311.767578125
+    }
+  },
+  "fixed_saved_small_left_preparation": {
+    "ready": true,
+    "cache_hit": true,
+    "preparation_s": 1.612755625974387,
+    "canonical_rows": 721,
+    "static_certified_unique_rows": 715,
+    "world_sha256": "24c82638ff88f8c8e6d9798b733aa7645338fbe8a3a02b20482699753da8b5f4",
+    "model_sha256": "2cd574811cfcf2b4c068e8f196d6ffa415e5bd1d9c9581ea68445c0a45e4a4f6",
+    "compile_excluded_from_cycle": true,
+    "saved_command_limit_audit": {
+      "velocity_fraction_of_95_percent_PBV": 0.7756429774160604,
+      "max_acceleration_rad_s2": 8.514404296875,
+      "max_jerk_rad_s3": 1081.0546875
+    }
+  },
+  "cache_events": [
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 7055,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "saved_LEFT_static_route_query_reuse",
+      "static_certificate_hits": 3605,
+      "static_certificate_misses": 250
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 7638,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "saved_LEFT_static_route_query_reuse",
+      "static_certificate_hits": 3605,
+      "static_certificate_misses": 250
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 10905,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "saved_LEFT_static_route_query_reuse",
+      "static_certificate_hits": 0,
+      "static_certificate_misses": 1025
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 11337,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "saved_LEFT_static_route_query_reuse",
+      "static_certificate_hits": 0,
+      "static_certificate_misses": 0
+    }
+  ],
+  "timing_comparison_eligible": false,
+  "timing_note": "All live captures/compute/motion/retention included. Concurrent jobs, not isolated benchmark. Pre-capture route preparation 3.076s excluded and reported separately; hardware and20/30s unqualified."
+}

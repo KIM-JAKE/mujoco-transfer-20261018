@@ -1,0 +1,221 @@
+{
+  "source_run": "native-roas-table-fixed-front-v446-cached-pipeline-pin-deadband",
+  "full_task_pass": true,
+  "state": "completed_over_budget",
+  "wall_elapsed_s": 249.17807756795082,
+  "physics_elapsed_s": 47.922916666664165,
+  "CPU_operation_profile": {
+    "control_s": 6.9348238981328905,
+    "physics_s": 97.7888631534297,
+    "clamp_flush_s": 0.0
+  },
+  "preparation_before_first_capture": {
+    "RIGHT": {
+      "ready": true,
+      "cache_hit": false,
+      "preparation_s": 64.01102439907845,
+      "canonical_rows": 1416,
+      "static_certified_unique_rows": 1407,
+      "world_sha256": "24c82638ff88f8c8e6d9798b733aa7645338fbe8a3a02b20482699753da8b5f4",
+      "model_sha256": "5c206e806ed824c762d22606be35812a2aeb25aa4c60cc70c0d32ca896dd535a",
+      "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/093d40629cca2d39bd1699e7f4446fc774145eba8ad8082256045a36954e70d3.json",
+      "compile_excluded_from_cycle": true,
+      "only_static_queries_reused": true,
+      "actual_start_counterpart_payload_contact_limits_remain_live": true,
+      "saved_command_limit_audit": {
+        "velocity_fraction_of_95_percent_PBV": 0.8877358580675749,
+        "max_acceleration_rad_s2": 8.5693359375,
+        "max_jerk_rad_s3": 1311.767578125
+      }
+    },
+    "LEFT": {
+      "ready": true,
+      "cache_hit": false,
+      "preparation_s": 47.26833664497826,
+      "canonical_rows": 721,
+      "static_certified_unique_rows": 715,
+      "world_sha256": "24c82638ff88f8c8e6d9798b733aa7645338fbe8a3a02b20482699753da8b5f4",
+      "model_sha256": "2cd574811cfcf2b4c068e8f196d6ffa415e5bd1d9c9581ea68445c0a45e4a4f6",
+      "compile_excluded_from_cycle": true,
+      "saved_command_limit_audit": {
+        "velocity_fraction_of_95_percent_PBV": 0.7756429774160604,
+        "max_acceleration_rad_s2": 8.514404296875,
+        "max_jerk_rad_s3": 1081.0546875
+      }
+    }
+  },
+  "cache_admission_events": [
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 6280,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "saved_LEFT_static_route_query_reuse",
+      "static_certificate_hits": 3605,
+      "static_certificate_misses": 365
+    },
+    {
+      "event": "saved_SMALL_LEFT_carry_admitted",
+      "canonical_rows": 720,
+      "fresh_entry_rows": 72,
+      "original_dt_s": 0.0020833333333333333,
+      "fresh_RGBD_grasp": true,
+      "full_nominal_robot_stroke": true,
+      "original_full_payload_pair_guard": true,
+      "saved_command_limit_audit": {
+        "velocity_fraction_of_95_percent_PBV": 0.8433186053789031,
+        "max_acceleration_rad_s2": 8.782196044921875,
+        "max_jerk_rad_s3": 2847.65625
+      },
+      "uses_free_body_poses": false
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": true,
+      "physics_epoch": 6280,
+      "part": "ring2",
+      "issued_samples": 792,
+      "exact_current_encoders_commands_payload_binding_model_world_and_placed_geometry": true,
+      "cache_survives_physics": false
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 9191,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "saved_LEFT_static_route_query_reuse",
+      "static_certificate_hits": 0,
+      "static_certificate_misses": 970
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 9462,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "saved_LEFT_static_route_query_reuse",
+      "static_certificate_hits": 0,
+      "static_certificate_misses": 0
+    },
+    {
+      "event": "fixed_saved_fixture_branch_admitted",
+      "part": "ring1",
+      "wall_s": 1.6111748720286414,
+      "fresh_other_arm_checks": true,
+      "public_RGBD_grasp_envelope": true,
+      "online_fixture_search_omitted": true,
+      "uses_free_body_poses": false
+    },
+    {
+      "event": "fixed_saved_canonical_carry_admitted",
+      "rows": 1415,
+      "original_dt_s": 0.0020833333333333333,
+      "current_encoder_bridge_live": true,
+      "fresh_public_RGBD_grasp": true,
+      "apertures_m": [
+        0.07199864834547043,
+        0.07270949520170689,
+        0.07342034205794334,
+        0.0741311889141798,
+        0.07484203577041626
+      ],
+      "reference_full_paths": 1,
+      "dependent_configurations": 5672,
+      "invariant_configurations_reused": 0,
+      "fallback_full_configurations": 0,
+      "changed_body_names": [
+        "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger",
+        "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger"
+      ],
+      "path_sample_count": 1418,
+      "static_certificate_hits": 7085,
+      "static_certificate_misses": 5
+    }
+  ],
+  "largest_unstepped_gaps": [
+    {
+      "before_row": 6279,
+      "unstepped_wall_gap_s": 24.343213905929588,
+      "previous_phase": "ring2_receiver_stable_hold_RGBD",
+      "next_phase": "paired_LEFT_lead_before_RIGHT_pickup"
+    },
+    {
+      "before_row": 10605,
+      "unstepped_wall_gap_s": 21.216539269080386,
+      "previous_phase": "ring1_right_lifted_contact_RGBD",
+      "next_phase": "ring1_right_goal_aware_empty_left_park"
+    },
+    {
+      "before_row": 3137,
+      "unstepped_wall_gap_s": 20.048248989973217,
+      "previous_phase": "ring2_receiver_empty_preshape",
+      "next_phase": "ring2_carry_to_handover"
+    },
+    {
+      "before_row": 13735,
+      "unstepped_wall_gap_s": 15.988600801909342,
+      "previous_phase": "ring1_right_join_saved_carry",
+      "next_phase": "ring1_right_carry_to_preinsert"
+    },
+    {
+      "before_row": 229,
+      "unstepped_wall_gap_s": 4.671361087006517,
+      "previous_phase": "initial",
+      "next_phase": "loose_ring_pregrasp"
+    },
+    {
+      "before_row": 4269,
+      "unstepped_wall_gap_s": 4.597334138001315,
+      "previous_phase": "ring2_donor_before_transfer_RGBD",
+      "next_phase": "ring2_receive_approach"
+    },
+    {
+      "before_row": 9461,
+      "unstepped_wall_gap_s": 4.191550457035191,
+      "previous_phase": "paired_receiver_finishes_before_new_donor_contact",
+      "next_phase": "paired_receiver_finishes_before_new_donor_contact"
+    },
+    {
+      "before_row": 9017,
+      "unstepped_wall_gap_s": 3.8603318899404258,
+      "previous_phase": "loose_ring_after_supported_breakaway_encoder_window",
+      "next_phase": "loose_ring_lift"
+    },
+    {
+      "before_row": 15221,
+      "unstepped_wall_gap_s": 3.7503628429258242,
+      "previous_phase": "ring1_right_preinsert_RGBD",
+      "next_phase": "ring1_right_preinsert_visual_correction"
+    },
+    {
+      "before_row": 9190,
+      "unstepped_wall_gap_s": 3.5969651939813048,
+      "previous_phase": "loose_ring_lift_settle",
+      "next_phase": "loose_ring_lift_settle"
+    },
+    {
+      "before_row": 13711,
+      "unstepped_wall_gap_s": 3.4982514849398285,
+      "previous_phase": "ring1_right_after_goal_aware_empty_left_park_RGBD",
+      "next_phase": "ring1_right_join_saved_carry"
+    },
+    {
+      "before_row": 19918,
+      "unstepped_wall_gap_s": 3.414213854004629,
+      "previous_phase": "pin_empty_left_close_encoder_completion",
+      "next_phase": "pin_tail_direct_carry_to_preinsert"
+    }
+  ],
+  "interpretation": "Gaps include all non-step work between commands, including camera/geometry/planning. GPU certificate scope wall_s includes nested original CPU guards and is NOT GPU compute time. First-capture cycle excludes separate offline preparation; this is not under20s or realtime hardware qualification."
+}
