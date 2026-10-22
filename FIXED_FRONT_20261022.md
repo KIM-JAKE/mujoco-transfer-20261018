@@ -10,7 +10,7 @@
 
 416개 Python/423개 소스·고정 입력의 SHA-256이 같은 빌드입니다.493은 단독,494/495는 GPU2·3 작업자에서 병렬로 실행했고 원래 센서/검사 제한을 유지했습니다. 전용 속도 벤치마크가 아니며 세 사례가 모든 자세·반복 성공률을 증명하지 않습니다. 초기40mrad 기울기는 원래3초 물리 정착 중 달라집니다. 무작위 바구니 적층 시험은 아닙니다.495는 이전491의232.29초보다 길어 모든 경우가 빨라졌다고 주장하지 않습니다.
 
-[동일 최신 코드 세 배치 감사·해시](simulation_checkpoint_20261022/component-evidence/fixed493-495-same-source-audit/README.md) · [최신 기준 코드494](simulation_checkpoint_20261022/experiments/fixed-cache494/README.md) · [실패 배치를 수정한493 코드·접촉 근거](simulation_checkpoint_20261022/experiments/fixed-cache493/README.md) · [493 PLUS 실제 성공 영상](simulation_checkpoint_20261022/media/fixed-cache493-balanced-small-plus-all3-pass-excerpts-1x.mp4) · [서버 실행 방법](simulation_checkpoint_20261022/FIXED_CACHE_RUN.md)
+[동일 최신 코드 세 배치 감사·해시](simulation_checkpoint_20261022/component-evidence/fixed493-495-same-source-audit/SAME_SOURCE_493_495.md) · [최신 기준 코드494](simulation_checkpoint_20261022/experiments/fixed-cache494/README.md) · [실패 배치를 수정한493 코드·접촉 근거](simulation_checkpoint_20261022/experiments/fixed-cache493/README.md) · [493 PLUS 실제 성공 영상](simulation_checkpoint_20261022/media/fixed-cache493-balanced-small-plus-all3-pass-excerpts-1x.mp4) · [서버 실행 방법](simulation_checkpoint_20261022/FIXED_CACHE_RUN.md)
 
 고정 운반 명령과 조건부 검증 결과를 저장하고, 실행 때 RGB-D로 큰/작은 링의 중심·축·앞뒤를 구해 바뀐 집기/진입 구간을 새로 검사합니다. **현재 반대 팔, 실제 파지·엔코더·손가락 폭, 이미 삽입한 부품, 접촉, FR3 한도는 계속 확인합니다.** 조건 밖에서는 원래 전체 검사/계획을 실행하거나 이동 전에 정지합니다. 실행 중 agent 호출은 없습니다. 작은 링 공여손과 큰 링 운반 저장 경로는493–495 모두 사용했습니다. 작은 링 왼손720명령은494/495에서 재사용했고,493에서는 현재 오른팔과 간섭해 원래 검사로 새 경로를 계획했습니다. 따라서 모든 배치에서 모든 운반 구간을 재사용한 것은 아닙니다.
 
@@ -18,7 +18,7 @@
 
 또한 원래 CAD 함수의 전체 입력 바이트·버전과 출력이 같을 때만 같은 형상을 재사용해 불필요한 proxy/FCL 재생성을 줄였습니다. 원래 USD 읽기/쿼리 쓰기·현재 파지/좌표와 모든 충돌 판정은 유지합니다.493 실제57회 attach 중53회 재사용,2194회 proxy 중2074회 캐시 사용이 확인됐습니다. 부품 위치나 충돌 CLEAR를 물리 이동 사이에 저장한 것이 아닙니다.
 
-[이전492 실패와 원본 RGB-D](simulation_checkpoint_20261022/experiments/fixed-cache492/README.md), [490–492 두 통과·한 실패 감사](simulation_checkpoint_20261022/component-evidence/fixed490-492-same-source-audit/README.md)도 보존했습니다.492는 정지한 Hand 안에서 실제 링 회전이 이어져 실패했고, 촬영값을 별도로 다시 계산해 확인했습니다. 이후493–495에서 파지·실제 보정을 수정했습니다.
+[이전492 실패와 원본 RGB-D](simulation_checkpoint_20261022/experiments/fixed-cache492/README.md), [490–492 두 통과·한 실패 감사](simulation_checkpoint_20261022/component-evidence/fixed490-492-same-source-audit/SAME_SOURCE_490_492.md)도 보존했습니다.492는 정지한 Hand 안에서 실제 링 회전이 이어져 실패했고, 촬영값을 별도로 다시 계산해 확인했습니다. 이후493–495에서 파지·실제 보정을 수정했습니다.
 
 이번 결과는 Isaac Sim입니다. [현장 SDK 온보딩](FIELD_RGBD_20261022.md)은 별도 실험용 패키지이며 최신 시뮬 정책 전체가 실제 SDK에서 포팅·검증됐다는 뜻은 아닙니다. 실제 카메라/로봇/지그 보정·클램프/그리퍼·충돌 형상의 차이는 아래 현장 차이 항목을 확인하세요.
 
