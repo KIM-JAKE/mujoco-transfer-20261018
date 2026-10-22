@@ -1,0 +1,43 @@
+--- a/own_payload_clearance.py
++++ b/own_payload_clearance.py
+@@ -47,7 +47,7 @@
+         self.stats=dict(queries=0,rejected=0,distal_native_pad_contact_only=True,
+                         palm_and_arm_exempt=False,uses_free_body_poses=False)
+ 
+-    def clear(self,checker,transforms,*,changed_bodies=None):
++    def clear(self,checker,transforms,*,changed_bodies=None,requested_opening=None):
+         if not checker.payload_path:return True,None
+         if checker.payload_relative is None or not checker.payload_boxes:
+             raise RuntimeError('Planned payload missing its current image-estimated CAD transform')
+@@ -86,6 +86,11 @@
+                 _,swept,_,obj=self.loaded_robot_cache[key]
+                 query_rows.append((body,source,swept));query_transforms.append(transforms[self.guard.arm.hand_path])
+                 if fcl:query_objects.append(obj)
++        memo=getattr(self,'scoped_co_moving_proof',None)
++        if fcl and memo is not None:
++            try:
++                if memo.fast_clear(checker,transforms[self.guard.arm.hand_path],query_rows,query_transforms,payload,requested_opening,self.guard.margin_m):return True,None
++            except Exception:pass
+         # Exact FCL narrowphase consumes cached full local collision CAD;
+         # its broadphase needs only the identical transformed enclosing OBB.
+         # The SAT fallback still receives full transformed vertices/normals.
+@@ -96,12 +101,19 @@
+             for obj,t in zip(query_objects,query_transforms):
+                 obj.setTransform(fcl.Transform(np.ascontiguousarray(t[:3,:3]),np.ascontiguousarray(t[:3,3])))
+             for obj in payload_objects:obj.setTransform(fcl.Transform(np.ascontiguousarray(transform[:3,:3]),np.ascontiguousarray(transform[:3,3])))
++        certified_rows=set()
++        memo=getattr(self,'scoped_co_moving_proof',None)
++        if fcl and memo is not None:
++            try:certified_rows=memo.clear_rows(checker,transforms[self.guard.arm.hand_path],query_rows,query_transforms,query_objects,payload,payload_objects,requested_opening,self.guard.margin_m)
++            except Exception:certified_rows=set()
+         margin=self.guard.margin_m
+         def limits(placed):
+             center=np.asarray([v[0]for v in placed]);extent=np.asarray([abs(v[1])@(v[2]+margin)for v in placed]);return center-extent,center+extent
+         rlo,rhi=limits(placed_robot);plo,phi=limits(placed_payload)
+         candidates=np.all(rhi[:,None,:]>=plo[None,:,:],axis=2)&np.all(phi[None,:,:]>=rlo[:,None,:],axis=2)
+         for i,j in np.argwhere(candidates):
++            if i in certified_rows:
++                memo.stats['skipped_candidate_pairs']+=1;continue
+             if changed_bodies is not None and self.robot_rows[i][0]not in changed_bodies:continue
+             if fcl:
+                 distance=float(fcl.distance(query_objects[i],payload_objects[j],fcl.DistanceRequest(),fcl.DistanceResult()))

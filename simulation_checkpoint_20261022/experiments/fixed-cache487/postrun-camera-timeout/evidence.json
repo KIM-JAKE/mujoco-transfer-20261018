@@ -1,0 +1,310 @@
+{
+  "conclusion": "Actual capture-to-ready deadline breach, not a polling-delivery scheduling bug",
+  "failure_capture_to_ready_s": 4.608992447028868,
+  "capture_s": 1.131882255896926,
+  "processing_s": 3.4758556680753827,
+  "queue_wait_s": 0.0012545230565592647,
+  "earlier_delayed_delivery_correctly_accepted": {
+    "observation": 17,
+    "capture_to_ready_s": 1.016933529987,
+    "capture_to_delivery_s": 10.761353551992215
+  },
+  "production_changes": false,
+  "latency_gate_unchanged_s": 3,
+  "limitations": [
+    "Saved worker pose result omits GPU proposal/fallback timing metadata, so GPU-service wait versus CPU fallback cannot be established retrospectively from these records.",
+    "Detailed perception replay delegated to vision agent; no actor states used."
+  ],
+  "comparison": [
+    {
+      "run": "native-roas-table-fixed-front-v483-fresh-terminal-camera-order-nominal",
+      "frames": [
+        {
+          "observation": 19,
+          "captured_wall_s": 59.02164932305459,
+          "ready_wall_s": 60.84359772806056,
+          "delivered_wall_s": 60.858583500026725,
+          "capture_s": 0.05541396897751838,
+          "processing_s": 1.765448130085133,
+          "queue_wait_s": 0.0010863059433177114,
+          "camera_profile": {
+            "upload_and_setup_s": 0.05361884494777769,
+            "gpu_ray_s": 0.0009024650789797306,
+            "gpu_shading_and_download_s": 0.0007953339954838157,
+            "dynamic_s": 0.05452131002675742,
+            "static_s": 0.0,
+            "shading_s": 0.0007957220077514648,
+            "backend": "warp_gpu_triangle_rays",
+            "device": "cuda:0"
+          },
+          "capture_to_ready_s": 1.821948405005969
+        },
+        {
+          "observation": 20,
+          "captured_wall_s": 60.859819942037575,
+          "ready_wall_s": 62.15613044297788,
+          "delivered_wall_s": 62.17230193200521,
+          "capture_s": 0.06729772302787751,
+          "processing_s": 1.228027201956138,
+          "queue_wait_s": 0.0009855759562924504,
+          "camera_profile": {
+            "upload_and_setup_s": 0.06565895397216082,
+            "gpu_ray_s": 0.0008664759807288647,
+            "gpu_shading_and_download_s": 0.0006813859799876809,
+            "dynamic_s": 0.06652542995288968,
+            "static_s": 0.0,
+            "shading_s": 0.0006817009998485446,
+            "backend": "warp_gpu_triangle_rays",
+            "device": "cuda:0"
+          },
+          "capture_to_ready_s": 1.296310500940308
+        },
+        {
+          "observation": 21,
+          "captured_wall_s": 65.30578492605127,
+          "ready_wall_s": 65.68218335497659,
+          "delivered_wall_s": 84.92267241608351,
+          "capture_s": 0.011147567071020603,
+          "processing_s": 0.36418714793398976,
+          "queue_wait_s": 0.001063713920302689,
+          "camera_profile": {
+            "upload_and_setup_s": 0.010008195065893233,
+            "gpu_ray_s": 0.0007202469278126955,
+            "gpu_shading_and_download_s": 0.00035280198790133,
+            "dynamic_s": 0.010728441993705928,
+            "static_s": 0.0,
+            "shading_s": 0.00035299197770655155,
+            "backend": "warp_gpu_triangle_rays",
+            "device": "cuda:0"
+          },
+          "capture_to_ready_s": 0.37639842892531306
+        }
+      ],
+      "observations_sha256": "bc596ee7efc18633a478d86560bcae4e2ba7c2e4d4db914a47f775b661f005b8"
+    },
+    {
+      "run": "native-roas-table-fixed-front-v484-fresh-terminal-camera-order-plus",
+      "frames": [
+        {
+          "observation": 19,
+          "captured_wall_s": 74.22650209791027,
+          "ready_wall_s": 75.4922427139245,
+          "delivered_wall_s": 75.50774958299007,
+          "capture_s": 0.07173703797161579,
+          "processing_s": 1.1928987220162526,
+          "queue_wait_s": 0.0011048560263589025,
+          "camera_profile": {
+            "upload_and_setup_s": 0.06995010806713253,
+            "gpu_ray_s": 0.0009220949141308665,
+            "gpu_shading_and_download_s": 0.0007656420348212123,
+            "dynamic_s": 0.0708722029812634,
+            "static_s": 0.0,
+            "shading_s": 0.0007660860428586602,
+            "backend": "warp_gpu_triangle_rays",
+            "device": "cuda:0"
+          },
+          "capture_to_ready_s": 1.2657406160142273
+        },
+        {
+          "observation": 20,
+          "captured_wall_s": 75.50900280789938,
+          "ready_wall_s": 76.71709769894369,
+          "delivered_wall_s": 76.7299935859628,
+          "capture_s": 0.038351114955730736,
+          "processing_s": 1.169021198991686,
+          "queue_wait_s": 0.0007225770968943834,
+          "camera_profile": {
+            "upload_and_setup_s": 0.03673753491602838,
+            "gpu_ray_s": 0.0008922690758481622,
+            "gpu_shading_and_download_s": 0.0006278359796851873,
+            "dynamic_s": 0.03762980399187654,
+            "static_s": 0.0,
+            "shading_s": 0.0006281599635258317,
+            "backend": "warp_gpu_triangle_rays",
+            "device": "cuda:0"
+          },
+          "capture_to_ready_s": 1.2080948910443112
+        },
+        {
+          "observation": 21,
+          "captured_wall_s": 81.32875442993827,
+          "ready_wall_s": 81.69037813798059,
+          "delivered_wall_s": 105.1291437529726,
+          "capture_s": 0.011117379064671695,
+          "processing_s": 0.3495287169935182,
+          "queue_wait_s": 0.0009776119841262698,
+          "camera_profile": {
+            "upload_and_setup_s": 0.010153024108149111,
+            "gpu_ray_s": 0.0005912759806960821,
+            "gpu_shading_and_download_s": 0.0003129469696432352,
+            "dynamic_s": 0.010744300088845193,
+            "static_s": 0.0,
+            "shading_s": 0.00031315896194428205,
+            "backend": "warp_gpu_triangle_rays",
+            "device": "cuda:0"
+          },
+          "capture_to_ready_s": 0.36162370804231614
+        }
+      ],
+      "observations_sha256": "66c5d13be1f7702a1bba708e4cf7b19a8ff16f3ad53ec7942a65d756e282a88d"
+    },
+    {
+      "run": "native-roas-table-fixed-front-v485-co-moving-own-nominal",
+      "frames": [
+        {
+          "observation": 19,
+          "captured_wall_s": 87.66072472196538,
+          "ready_wall_s": 88.86536889895797,
+          "delivered_wall_s": 88.88290706195403,
+          "capture_s": 0.05199401604477316,
+          "processing_s": 1.151946487952955,
+          "queue_wait_s": 0.0007036729948595166,
+          "camera_profile": {
+            "upload_and_setup_s": 0.0505074430257082,
+            "gpu_ray_s": 0.0008748499676585197,
+            "gpu_shading_and_download_s": 0.0005331969587132335,
+            "dynamic_s": 0.05138229299336672,
+            "static_s": 0.0,
+            "shading_s": 0.0005334280431270599,
+            "backend": "warp_gpu_triangle_rays",
+            "device": "cuda:0"
+          },
+          "capture_to_ready_s": 1.2046441769925877
+        },
+        {
+          "observation": 20,
+          "captured_wall_s": 88.88413793302607,
+          "ready_wall_s": 90.08452003903221,
+          "delivered_wall_s": 90.10093130497262,
+          "capture_s": 0.04114113503601402,
+          "processing_s": 1.1584994089789689,
+          "queue_wait_s": 0.0007415619911625981,
+          "camera_profile": {
+            "upload_and_setup_s": 0.03969339793547988,
+            "gpu_ray_s": 0.0008220860036090016,
+            "gpu_shading_and_download_s": 0.0005476210499182343,
+            "dynamic_s": 0.04051548393908888,
+            "static_s": 0.0,
+            "shading_s": 0.0005479070823639631,
+            "backend": "warp_gpu_triangle_rays",
+            "device": "cuda:0"
+          },
+          "capture_to_ready_s": 1.2003821060061455
+        },
+        {
+          "observation": 21,
+          "captured_wall_s": 94.14952707302291,
+          "ready_wall_s": 94.54709888901561,
+          "delivered_wall_s": 116.48658139200415,
+          "capture_s": 0.01327546697575599,
+          "processing_s": 0.38313551899045706,
+          "queue_wait_s": 0.0011608300264924765,
+          "camera_profile": {
+            "upload_and_setup_s": 0.011922360979951918,
+            "gpu_ray_s": 0.000902898027561605,
+            "gpu_shading_and_download_s": 0.00037827796768397093,
+            "dynamic_s": 0.012825259007513523,
+            "static_s": 0.0,
+            "shading_s": 0.00037853000685572624,
+            "backend": "warp_gpu_triangle_rays",
+            "device": "cuda:0"
+          },
+          "capture_to_ready_s": 0.3975718159927055
+        }
+      ],
+      "observations_sha256": "7a565324e0554755427448d47dcbbd6f35389e0208afea5d8446a693b9817074"
+    },
+    {
+      "run": "native-roas-table-fixed-front-v486-co-moving-own-fast-vision-nominal",
+      "frames": [
+        {
+          "observation": 19,
+          "captured_wall_s": 69.28788982296828,
+          "ready_wall_s": 70.29702900897246,
+          "delivered_wall_s": 70.32317223295104,
+          "capture_s": 0.06418788305018097,
+          "processing_s": 0.943914761999622,
+          "queue_wait_s": 0.001036540954373777,
+          "camera_profile": {
+            "upload_and_setup_s": 0.062355233007110655,
+            "gpu_ray_s": 0.0009295589989051223,
+            "gpu_shading_and_download_s": 0.0007990360027179122,
+            "dynamic_s": 0.06328479200601578,
+            "static_s": 0.0,
+            "shading_s": 0.0007994100451469421,
+            "backend": "warp_gpu_triangle_rays",
+            "device": "cuda:0"
+          },
+          "capture_to_ready_s": 1.0091391860041767
+        },
+        {
+          "observation": 20,
+          "captured_wall_s": 70.32758708694018,
+          "ready_wall_s": 71.3134991619736,
+          "delivered_wall_s": 71.32855492795352,
+          "capture_s": 0.07496313296724111,
+          "processing_s": 0.9084601550130174,
+          "queue_wait_s": 0.002488787053152919,
+          "camera_profile": {
+            "upload_and_setup_s": 0.07322259503416717,
+            "gpu_ray_s": 0.0008747440297156572,
+            "gpu_shading_and_download_s": 0.0007680989801883698,
+            "dynamic_s": 0.07409733906388283,
+            "static_s": 0.0,
+            "shading_s": 0.0007684610318392515,
+            "backend": "warp_gpu_triangle_rays",
+            "device": "cuda:0"
+          },
+          "capture_to_ready_s": 0.9859120750334114
+        },
+        {
+          "observation": 21,
+          "captured_wall_s": 74.63175679801498,
+          "ready_wall_s": 74.99113140103873,
+          "delivered_wall_s": 95.9590626739664,
+          "capture_s": 0.019686977029778063,
+          "processing_s": 0.338635188061744,
+          "queue_wait_s": 0.0010524379322305322,
+          "camera_profile": {
+            "upload_and_setup_s": 0.018055754946544766,
+            "gpu_ray_s": 0.0009074080735445023,
+            "gpu_shading_and_download_s": 0.0006048979703336954,
+            "dynamic_s": 0.01896316302008927,
+            "static_s": 0.0,
+            "shading_s": 0.0006052369717508554,
+            "backend": "warp_gpu_triangle_rays",
+            "device": "cuda:0"
+          },
+          "capture_to_ready_s": 0.35937460302375257
+        }
+      ],
+      "observations_sha256": "942820e4176546c5b29323741320b1d2d8382851e13e6728da53cf18d65dafb3"
+    },
+    {
+      "run": "native-roas-table-fixed-front-v487-co-moving-own-exact-pair-nominal",
+      "frames": [
+        {
+          "observation": 19,
+          "captured_wall_s": 69.15884288703091,
+          "ready_wall_s": 73.76783533405978,
+          "delivered_wall_s": null,
+          "capture_s": 1.131882255896926,
+          "processing_s": 3.4758556680753827,
+          "queue_wait_s": 0.0012545230565592647,
+          "camera_profile": {
+            "upload_and_setup_s": 1.1297437129542232,
+            "gpu_ray_s": 0.0010042620124295354,
+            "gpu_shading_and_download_s": 0.0010050160344690084,
+            "dynamic_s": 1.1307479749666527,
+            "static_s": 0.0,
+            "shading_s": 0.0010055049788206816,
+            "backend": "warp_gpu_triangle_rays",
+            "device": "cuda:0"
+          },
+          "capture_to_ready_s": 4.608992447028868
+        }
+      ],
+      "observations_sha256": "3a96a27a608e70fd275b138efa932edbf7c55b48e9cee3d49752db08263b0e44"
+    }
+  ]
+}

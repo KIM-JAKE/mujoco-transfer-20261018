@@ -1,0 +1,175 @@
+{
+  "run": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v489-final-clearance-binary-gpu-nominal",
+  "state": "completed_over_budget",
+  "full_task_pass": true,
+  "vision_end_to_end_pass": true,
+  "wall_elapsed_s": 272.89456395292655,
+  "physics_elapsed_s": 52.84374999999302,
+  "time_goal_met": false,
+  "hardware_tested": false,
+  "profile": {
+    "scope": "Inclusive instance guard timers only; no actuation, collision or sensor changes",
+    "timing_basis": "Wall, calling-thread CPU, and whole-process CPU. Nested methods overlap; DO NOT sum them. Outermost counters remove same-instance-method recursion only. Process CPU can include concurrent simulator threads.",
+    "methods": {
+      "right.checker.clear": {
+        "calls": 22884,
+        "exceptions": 0,
+        "max_recursion_depth": 2,
+        "inclusive_wall_s": 47.51772537291981,
+        "inclusive_thread_cpu_s": 47.505044141775215,
+        "inclusive_process_cpu_s": 53.81485208085542,
+        "outermost_calls": 18154,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 39.484969664830714,
+        "outermost_thread_cpu_s": 39.47372867287049,
+        "outermost_process_cpu_s": 44.722833870824616
+      },
+      "right.checker._clear_transforms": {
+        "calls": 21744,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 9.041735994978808,
+        "inclusive_thread_cpu_s": 9.03605667701413,
+        "inclusive_process_cpu_s": 10.286636463029936,
+        "outermost_calls": 21744,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 9.041735994978808,
+        "outermost_thread_cpu_s": 9.03605667701413,
+        "outermost_process_cpu_s": 10.286636463029936
+      },
+      "right.own_payload_clearance.clear": {
+        "calls": 21624,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 14.014556195470504,
+        "inclusive_thread_cpu_s": 14.011169692037583,
+        "inclusive_process_cpu_s": 15.88996595106073,
+        "outermost_calls": 21624,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 14.014556195470504,
+        "outermost_thread_cpu_s": 14.011169692037583,
+        "outermost_process_cpu_s": 15.88996595106073
+      },
+      "left.checker.clear": {
+        "calls": 6313,
+        "exceptions": 0,
+        "max_recursion_depth": 2,
+        "inclusive_wall_s": 19.61223715695087,
+        "inclusive_thread_cpu_s": 19.607799307943424,
+        "inclusive_process_cpu_s": 22.222140076011783,
+        "outermost_calls": 6312,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 19.609577290015295,
+        "outermost_thread_cpu_s": 19.60513969994281,
+        "outermost_process_cpu_s": 22.21912326301208
+      },
+      "left.checker._clear_transforms": {
+        "calls": 10789,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 4.275816737557761,
+        "inclusive_thread_cpu_s": 4.272673869048958,
+        "inclusive_process_cpu_s": 4.866413218000162,
+        "outermost_calls": 10789,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 4.275816737557761,
+        "outermost_thread_cpu_s": 4.272673869048958,
+        "outermost_process_cpu_s": 4.866413218000162
+      },
+      "left.own_payload_clearance.clear": {
+        "calls": 13105,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 16.86956093471963,
+        "inclusive_thread_cpu_s": 16.866698792911848,
+        "inclusive_process_cpu_s": 19.09999044801225,
+        "outermost_calls": 13105,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 16.86956093471963,
+        "outermost_thread_cpu_s": 16.866698792911848,
+        "outermost_process_cpu_s": 19.09999044801225
+      },
+      "placed_part_clearance.clear": {
+        "calls": 55093,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 12.556316281552427,
+        "inclusive_thread_cpu_s": 12.557615079034804,
+        "inclusive_process_cpu_s": 14.23537507997571,
+        "outermost_calls": 55093,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 12.556316281552427,
+        "outermost_thread_cpu_s": 12.557615079034804,
+        "outermost_process_cpu_s": 14.23537507997571
+      }
+    },
+    "wrapped_instances": 7,
+    "detached": true,
+    "restoration_error_count": 0,
+    "restoration_errors": [],
+    "protected_proof_method_identity_unchanged": true,
+    "same_arm_clearance_clear_wrapped": false,
+    "arm_bodies_wrapped": false
+  },
+  "camera": {
+    "frames": 76,
+    "capture_to_ready_max_s": 1.344683458097279,
+    "capture_to_ready_p50_s": 0.22848550893831998,
+    "capture_to_ready_p95_s": 0.41013019997626543,
+    "capture_s": 3.492512011085637,
+    "inference_s": 15.374961248016916,
+    "queue_s": 0.3371122544631362,
+    "ready_to_delivered_s": 45.75905369676184,
+    "over_3s_count": 0
+  },
+  "pair_scope": {
+    "scopes": 21,
+    "scope_inclusive_wall_s": 42.85431527090259,
+    "schedule_states": 129775,
+    "GPU_clear_states": 129144,
+    "CPU_pair_fallback_states": 631,
+    "exact_scope_hits": 131741,
+    "context_misses": 1,
+    "client_wall_s": 8.572591825854033,
+    "server_s": 6.05472923477646,
+    "kernel_s": 5.886528922826983,
+    "transform_prepare_s": 1.714785911841318,
+    "geometry_prepare_s": 0.13343188096769154,
+    "transport_counts": {
+      "numpy_pickle5_exact_transform_bank": 20,
+      "None": 1
+    },
+    "errors": {
+      "None": 20,
+      "ValueError: Binary GPU pair response rejected ValueError: Geometry not registered": 1
+    },
+    "service_source_counts": {
+      "79b4337c1fdf748b5555c92751b9a801ce80ad4422af724b89829588fbd52453": 20,
+      "None": 1
+    },
+    "scoped_fallbacks": [
+      {
+        "scope": 4,
+        "rows": 1598,
+        "fallback_rows": 131,
+        "error": null,
+        "context_misses": 1
+      },
+      {
+        "scope": 16,
+        "rows": 500,
+        "fallback_rows": 500,
+        "error": "ValueError: Binary GPU pair response rejected ValueError: Geometry not registered",
+        "context_misses": 0
+      }
+    ]
+  },
+  "input_sha256": {
+    "pipeline-results.json": "1f44b88db62221a94b46b561a25a77b42a63ea422a4c26c96582359156e51e96",
+    "rgb-observations.json": "a6fe05cae1fd475f3c88ba5693c928c93907d6e793bfc6157e251d905c5ade6c",
+    "trial-config.json": "43d913806961c67927d0e95f380f0c04641b6696cc7ca0bfcf1ae70dc76d2d17",
+    "frozen-source-manifest.json": "a9665a8ee5c4ff2d8ce3eae29d9f80258f2c8c8bf3a7a02493f511fcb7cf5c1d",
+    "physx-sequence-trace.npz": "09df5fc2aae5eab939ae6c6f7e1094c5fca7d932d41259a1c18b84231a28f8c1"
+  },
+  "interpretation": "Nested method and scope totals overlap. Counts/paths/vision corrections and source differ between488/489, so no isolated causal overall speed gain. CPU fallbacks are required original policy. Camera ready-to-delivery often overlaps proof work, not removable sensor latency."
+}

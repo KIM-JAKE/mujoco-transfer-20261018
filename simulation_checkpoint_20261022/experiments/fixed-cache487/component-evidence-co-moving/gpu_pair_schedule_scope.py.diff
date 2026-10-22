@@ -1,0 +1,13 @@
+--- a/gpu_pair_schedule_scope.py
++++ b/gpu_pair_schedule_scope.py
+@@ -73,7 +73,9 @@
+                 left.scoped_gpu_pair_clear_certificate=accepts;right.scoped_gpu_pair_clear_certificate=accepts
+         except Exception as error:
+             stats['fallback_reason']=type(error).__name__+': '+str(error)
+-        yield
++        from co_moving_own_clearance import co_moving_scope
++        with co_moving_scope(c,left,right):
++            yield
+     finally:
+         if installed:
+             for checker,previous in[(left,old_left),(right,old_right)]:

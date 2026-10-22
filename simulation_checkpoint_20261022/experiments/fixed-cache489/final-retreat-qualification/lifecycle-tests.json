@@ -1,0 +1,57 @@
+{
+  "all_pass": true,
+  "tests": [
+    {
+      "name": "already_actual_clear",
+      "success": true,
+      "error": null,
+      "extra_steps": 0,
+      "proof_calls": 0
+    },
+    {
+      "name": "moving_crosses_gate_after_freshproof",
+      "success": true,
+      "error": null,
+      "extra_steps": 2,
+      "proof_calls": 1
+    },
+    {
+      "name": "stationary_short_no_blindwait",
+      "success": false,
+      "error": "Actual encoder retreat is stationary short of165mm; no blind completion wait",
+      "extra_steps": 0,
+      "proof_calls": 0
+    },
+    {
+      "name": "freshbridge_blocked_no_steps",
+      "success": false,
+      "error": "Final actual-to-command completion bridge obstructed {'blocked': True}",
+      "extra_steps": 0,
+      "proof_calls": 1
+    },
+    {
+      "name": "sourcechanged_no_steps",
+      "success": false,
+      "error": "Final encoder-completion source changed after original full proof",
+      "extra_steps": 0,
+      "proof_calls": 1
+    },
+    {
+      "name": "max100ms_not_relaxed",
+      "success": false,
+      "error": "Actual encoder RIGHT retreat did not establish165mm calibrated-goal clearance within100ms",
+      "extra_steps": 48,
+      "proof_calls": 1
+    },
+    {
+      "name": "stepfault_propagates_no_retry",
+      "success": false,
+      "error": "ORIGINAL_STEP_FAULT",
+      "extra_steps": 1,
+      "proof_calls": 1
+    }
+  ],
+  "original165mm_actual_gate_retained": true,
+  "planned180mm_float32_endpoint_required": true,
+  "only_this_module_changed": true
+}

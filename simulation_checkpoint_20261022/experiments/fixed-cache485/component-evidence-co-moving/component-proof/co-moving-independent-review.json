@@ -1,0 +1,22 @@
+{
+  "reviewed_helper": "/tmp/fixed484b-co-moving-own/co_moving_own_clearance.py",
+  "sha256": "db1800a2ae07c3b931fe9676d0941cd3b599f28fa9fb7b0e16680f37da36a21e",
+  "reviewed_hooks": [
+    "own_payload_clearance.py",
+    "same_arm_clearance.py",
+    "gpu_pair_schedule_scope.py",
+    "run_realtime_recipe.py"
+  ],
+  "findings": {
+    "no_qualified_input_guard_bypass_found": true,
+    "requires_immutable_no_actuation_scope": true,
+    "static_self_opposite_and_placed_guards_preserved": true,
+    "remaining_native_broadphase_recomputed_current": true,
+    "all_payload_vs_comoving_original_FCL_distance_threshold_retained": true,
+    "finite_bound_hardening_reviewed": true
+  },
+  "limitations": [
+    "Read-only source and mathematical bound review; this artifact does not claim an independent whole-task physical test.",
+    "In-place CAD geometry mutation within an immutable preflight is unsupported; no memo survives actuation."
+  ]
+}

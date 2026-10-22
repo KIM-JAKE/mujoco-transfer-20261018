@@ -1,0 +1,26 @@
+--- a/same_arm_clearance.py
++++ b/same_arm_clearance.py
+@@ -113,7 +113,7 @@
+         if full_native_clear:
+             # Completed-part FCL guards reuse these original native objects;
+             # their transforms above must be current even on a self-cache hit.
+-            return self._dynamic_clear(transforms,changed_bodies=changed_bodies,own_payload_proved=own_envelope_clear)
++            return self._dynamic_clear(transforms,changed_bodies=changed_bodies,own_payload_proved=own_envelope_clear,requested_opening=opening)
+         candidate_pairs = self.pairs
+         if self.geometries is not None and self.broadphase_enabled:
+             # Each transformed authored convex hull is contained by this OBB.
+@@ -151,11 +151,11 @@
+                 return False, why
+         if certificate is not None and changed_bodies is None:
+             certificate[0].record(certificate[1],q,opening)
+-        return self._dynamic_clear(transforms,changed_bodies=changed_bodies,own_payload_proved=own_envelope_clear)
++        return self._dynamic_clear(transforms,changed_bodies=changed_bodies,own_payload_proved=own_envelope_clear,requested_opening=opening)
+ 
+-    def _dynamic_clear(self,transforms,*,changed_bodies=None,own_payload_proved=False):
++    def _dynamic_clear(self,transforms,*,changed_bodies=None,own_payload_proved=False,requested_opening=None):
+         if not own_payload_proved:
+-            ok,why=self.own_payload_clearance.clear(self.checker,transforms,changed_bodies=changed_bodies)
++            ok,why=self.own_payload_clearance.clear(self.checker,transforms,changed_bodies=changed_bodies,requested_opening=requested_opening)
+             if not ok:return ok,why
+         completed=getattr(self.checker,'placed_part_clearance',None)
+         if completed is not None:return completed.clear(self.checker,transforms,changed_bodies=changed_bodies)

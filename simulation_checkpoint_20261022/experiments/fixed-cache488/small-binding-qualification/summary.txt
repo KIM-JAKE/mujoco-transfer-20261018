@@ -1,0 +1,27 @@
+{
+  "run": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal",
+  "entire_task_pass": false,
+  "entire_task_failure": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py\", line 516, in <module>\n    result=plugin.execute(task_ctx)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/loose_bin_task.py\", line 1343, in execute\n    final_retreat=module.execute(c,trajectory,step)\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/final_empty_clearance.py\", line 71, in execute\n    if after.min()<.165:raise RuntimeError('Actual encoder RIGHT retreat did not establish165mm calibrated-goal clearance')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Actual encoder RIGHT retreat did not establish165mm calibrated-goal clearance\n",
+  "wall_s": 298.0548558520386,
+  "SMALL_binding_admitted": true,
+  "original_class_half_interval_per_finger_m": 0.00025,
+  "actual_encoder_samples": 146,
+  "existing_window_duration_s": 0.30208333333333215,
+  "fresh_capture_age_physics_s": 0.15208333333333332,
+  "original_capture_TTL_s": 0.25,
+  "fresh_original_opposed_native_contact": true,
+  "full_conservative_aperture_bounds_m": [
+    0.061357445165514946,
+    0.062357668682932854
+  ],
+  "public_encoder_rows_before_first_release_aperture_change": 4108,
+  "minimum_per_finger_bound_reserve_after_full_original_step_reach_m": 8.465513090292635e-05,
+  "first_release_command_wall_s": 178.76072406896856,
+  "later_encoder_aperture_exceeds_released_bound": true,
+  "later_open_encoder_wall_s": 180.67238089896273,
+  "source_has_after_clamp_binding_release": true,
+  "no_bound_exit_failure_in_outcome": true,
+  "original_distal_pad_policy_and_all_other_guards_unchanged": true,
+  "hardware_tested": false,
+  "uses_free_body_poses": false
+}

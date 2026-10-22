@@ -1,0 +1,82 @@
+{
+  "run": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal",
+  "entire_task_pass": false,
+  "entire_task_failure": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py\", line 516, in <module>\n    result=plugin.execute(task_ctx)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/loose_bin_task.py\", line 1343, in execute\n    final_retreat=module.execute(c,trajectory,step)\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/final_empty_clearance.py\", line 71, in execute\n    if after.min()<.165:raise RuntimeError('Actual encoder RIGHT retreat did not establish165mm calibrated-goal clearance')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Actual encoder RIGHT retreat did not establish165mm calibrated-goal clearance\n",
+  "wall_s": 298.0548558520386,
+  "SMALL_binding_admitted": true,
+  "original_class_half_interval_per_finger_m": 0.00025,
+  "actual_encoder_samples": 146,
+  "existing_window_duration_s": 0.30208333333333215,
+  "fresh_capture_age_physics_s": 0.15208333333333332,
+  "original_capture_TTL_s": 0.25,
+  "fresh_original_opposed_native_contact": true,
+  "full_conservative_aperture_bounds_m": [
+    0.061357445165514946,
+    0.062357668682932854
+  ],
+  "public_encoder_rows_before_first_release_aperture_change": 4108,
+  "minimum_per_finger_bound_reserve_after_full_original_step_reach_m": 8.465513090292635e-05,
+  "first_release_command_wall_s": 178.76072406896856,
+  "later_encoder_aperture_exceeds_released_bound": true,
+  "later_open_encoder_wall_s": 180.67238089896273,
+  "SMALL_fresh_released_retention_registered": {
+    "event": "completed_part_added_to_both_arm_collision_worlds",
+    "part": "ring2",
+    "source": "Fresh RGB-D after release and withdrawal",
+    "pose_from_RGBD": {
+      "part": "ring2",
+      "initial_arc_center_m": [
+        -0.2392066187134841,
+        0.2840092025330032,
+        1.5317237838621556
+      ],
+      "initial_plane_axis": [
+        0.0019966745683647072,
+        0.0015541095203298026,
+        0.9999967990120103
+      ],
+      "center_m": [
+        -0.23904650427612228,
+        0.2842217345696033,
+        1.5317231338655883
+      ],
+      "axis": [
+        0.0019966745683647072,
+        0.0015541095203298026,
+        0.9999967990120103
+      ],
+      "visible_face_inner_radius_m": 0.025452204788354624,
+      "visible_CAD_end_sign": -1,
+      "front_back_orientation_margin_m": 0.0020477952116453764,
+      "front_back_from_RGBD": true,
+      "rms_m": 0.0002139562307318909,
+      "depth_points": 4714,
+      "measured_classification_diameter_m": 0.0601591524947779,
+      "visible_arc_coverage_deg": 360,
+      "size_classification": "RGB-D observed annular arc metric diameter",
+      "uses_depth_sensor": true,
+      "uses_simulator_body_poses": false,
+      "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+      "lateral_CAD_correction_m": [
+        0.00016011443736180242,
+        0.00021253203660009934,
+        -6.499965672368546e-07
+      ],
+      "lateral_CAD_registration_rms_m": 4.591199668848623e-05,
+      "lateral_CAD_iterations": 4,
+      "observed_cap_axis_and_depth_preserved": true
+    },
+    "uncertainty_m": 0.0035,
+    "uses_free_body_poses": false
+  },
+  "source_has_after_clamp_binding_release": true,
+  "no_bound_exit_failure_in_outcome": true,
+  "original_distal_pad_policy_and_all_other_guards_unchanged": true,
+  "hardware_tested": false,
+  "uses_free_body_poses": false,
+  "source_hashes": {
+    "pipeline-results.json": "8fcdb69e8c7a0d979c6a3545906278342ef7c848bf66e10e2bff239d5cc8101b",
+    "executed-actuator-commands.npz": "b8c848b11c51b7912deb5f6d22ddbdedbeaa8a35f2543b9c01237ffdc759b83a",
+    "rgb-observations.json": "bd7ac3e7018ad8ef8273921973696fc37de50a6d0fcb64ca21ab6a3abe0b4186"
+  }
+}

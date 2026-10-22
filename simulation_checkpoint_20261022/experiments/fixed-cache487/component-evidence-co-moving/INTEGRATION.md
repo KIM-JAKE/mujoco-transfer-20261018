@@ -1,0 +1,19 @@
+# Scoped co-moving native own-payload proof reuse
+
+Based frozen479. Add co_moving_own_clearance.py and apply the four narrow existing-file diffs: own_payload_clearance, same_arm_clearance, gpu_pair_schedule_scope and one driver fresh-import name. No perception, PIN, motion, physical actor or physics configuration edits.
+
+Each existing immutable GPU-pair preflight temporarily installs an own-payload memo. The first encounter of an exact public heldG/requested-width/geometry key uses the original checker. On repeat, the memo checks original world FCL objects for ALL heldCAD pieces against the native Hand and original clipped proximal finger rows. Only original separation greater than the original1mm threshold plus conservative numeric bounds can authorize reuse. No other own link is exempted.
+
+Every subsequent query verifies the actual Hand-relative transforms. Because authored FK matrices retain slight nonorthogonal roundoff, the memo bounds currentHand×inverse(referenceHand) departure from its nearest rigid rotation, multiplying Frobenius error by BOTH shapes' world point-radius bounds. The robot bound includes relative-body translations/rotation×allvertices radii; payload bound includes exactG translation and rotation×allheldCAD vertex radii. Actual relative-row drift adds its own bound. An extra1um is numerical conservatism only, not a calibrated sensor/control accuracy claim. No pose or matrix is normalized or changed.
+
+After co-moving clearance is certified, a fast path recomputes the ORIGINAL remaining-own-link OBB-margin broadphase at the CURRENT candidate transforms, vectorized and expanded outward by1um. Only if every remaining pair is disjoint does own-payload returnCLEAR without rebuilding48held-object FCL poses/projections. Any overlap, uncertainty, boundary, unsupported data or exception retains original full checking. Same-arm robot self, fixed world, current opposite arm, completed parts and all downstream guards remain. SameArm original FCL objects still update before this path, so completed-part checks retain current native objects.
+
+Exact key includes current fullG bytes, requested width, payload path and class/proxy identities; bound measured finger geometry gets its own proxy identity. Cache is local to one immutable preflight, cleared before returning to physical execution. Changed binding/G/width/geometry does not inherit acceptance. Geometry arrays are immutable within the same existing preflight contract; no acceptance survives actuation.
+
+## Native qualification
+
+Public480 current heldG reproduces0usable full-own envelope bits. On520full original native queries across104exact canonical q and5widths, all original verdicts match;510queries use fast return. Final hardened run1.778s original→1.037s memo (1.71×;~42% measured component reduction); concurrent host load means no isolated wall-time guarantee. Actual whole-task speed must be measured in the next physics trial.
+
+Native regressions preserve a changed-G palm collision, a freshly moved NON-co-moving own-link collision, changedG/width keys, and unexpected finger-relative-transform fallback. Explicit NaN full-T/proxy/cache-radius/relative-error fixtures all fall back. Eight originalFCL boundary fixtures around1mm, through0.5nm and1um uncertainties, have zero falseCLEAR; geometry replacement misses. Physical commands0/physics steps0 in these MODEL tests. Unchanged remaining-own-link checks remain dynamic eachquery.
+
+component-proof contains exact native/boundary scripts, qualifications, original public480 runtime metadata and baseline originalOwnPayloadClearance source. source-sha256.json identifies every staged file. New model-source fingerprint intentionally invalidates old native/static certificates; production preparation recompiles before the task clock.

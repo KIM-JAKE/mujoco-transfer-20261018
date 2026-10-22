@@ -1,0 +1,5296 @@
+[
+  {
+    "result": {
+      "poses": [
+        {
+          "part": "ring2",
+          "initial_arc_center_m": [
+            0.19879948405072131,
+            -0.7145313616184643,
+            0.8898728296081854
+          ],
+          "initial_plane_axis": [
+            0.050999623449118694,
+            6.154181245257211e-06,
+            0.9986986724584018
+          ],
+          "center_m": [
+            0.19879948405072131,
+            -0.7145313616184643,
+            0.8898728296081854
+          ],
+          "axis": [
+            0.050999623449118694,
+            6.154181245257211e-06,
+            0.9986986724584018
+          ],
+          "visible_face_inner_radius_m": 0.02855933136202149,
+          "visible_CAD_end_sign": 1,
+          "front_back_orientation_margin_m": 0.0010593313620214893,
+          "front_back_from_RGBD": true,
+          "rms_m": 0.0004612537959523889,
+          "depth_points": 788,
+          "measured_classification_diameter_m": 0.058902095935743255,
+          "visible_arc_coverage_deg": 240,
+          "size_classification": "RGB-D observed annular arc metric diameter",
+          "uses_depth_sensor": true,
+          "uses_simulator_body_poses": false,
+          "annular_cap_free_space_gate": {
+            "backend": "RGB-D annular CAD cap observed-free-space veto",
+            "uses_simulator_body_poses": false,
+            "support_count": 291,
+            "seen_count": 407,
+            "occluded_count": 313,
+            "contradiction_count": 116,
+            "contradiction_angle_bins": 53,
+            "free_fraction": 0.28501228501228504,
+            "rejected": false
+          }
+        }
+      ],
+      "instances": [
+        {
+          "part": "ring2",
+          "initial_arc_center_m": [
+            0.19879948405072131,
+            -0.7145313616184643,
+            0.8898728296081854
+          ],
+          "initial_plane_axis": [
+            0.050999623449118694,
+            6.154181245257211e-06,
+            0.9986986724584018
+          ],
+          "center_m": [
+            0.19879948405072131,
+            -0.7145313616184643,
+            0.8898728296081854
+          ],
+          "axis": [
+            0.050999623449118694,
+            6.154181245257211e-06,
+            0.9986986724584018
+          ],
+          "visible_face_inner_radius_m": 0.02855933136202149,
+          "visible_CAD_end_sign": 1,
+          "front_back_orientation_margin_m": 0.0010593313620214893,
+          "front_back_from_RGBD": true,
+          "rms_m": 0.0004612537959523889,
+          "depth_points": 788,
+          "measured_classification_diameter_m": 0.058902095935743255,
+          "visible_arc_coverage_deg": 240,
+          "size_classification": "RGB-D observed annular arc metric diameter",
+          "uses_depth_sensor": true,
+          "uses_simulator_body_poses": false,
+          "annular_cap_free_space_gate": {
+            "backend": "RGB-D annular CAD cap observed-free-space veto",
+            "uses_simulator_body_poses": false,
+            "support_count": 291,
+            "seen_count": 407,
+            "occluded_count": 313,
+            "contradiction_count": 116,
+            "contradiction_angle_bins": 53,
+            "free_fraction": 0.28501228501228504,
+            "rejected": false
+          }
+        }
+      ],
+      "segmentation": {
+        "backend": "RGB-D observed planes and annular diameter; asymmetric taper face identifies signed axis",
+        "initial_cap_free_space_veto": true,
+        "cap_veto_rejected_candidates": 2,
+        "SAM_used": false,
+        "cached_image_masks_used": false,
+        "processing_ms": 333.4541659569368
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false,
+      "both_sizes_visible": true,
+      "gpu_metric_proposals": {
+        "server_s": 0.33419603190850466,
+        "rpc_wall_s": 0.3394871139898896,
+        "device": "assigned server GPU2",
+        "final_CPU_annular_gates_retained": true,
+        "renderer_metadata_sent": false,
+        "source_sha256": "94af0e71ce65c7b6a1798f9667fccc1112fa0df65463162fafe30338641d9304"
+      }
+    },
+    "captured_wall_s": 0.061956726014614105,
+    "ready_wall_s": 0.4703689579619095,
+    "capture_s": 0.06777609197888523,
+    "processing_s": 0.33963774400763214,
+    "queue_wait_s": 0.000998395960777998,
+    "camera_profile": {
+      "upload_and_setup_s": 0.06280282407533377,
+      "gpu_ray_s": 0.004104904015548527,
+      "gpu_shading_and_download_s": 0.0007790249073877931,
+      "dynamic_s": 0.0669077280908823,
+      "static_s": 0.0,
+      "shading_s": 0.0007795359706506133,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 0.0,
+    "capture_native_hand_opening_m": 0.07999999821186066,
+    "delivered_wall_s": 0.4813162089558318,
+    "mode": "initial",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-001-initial",
+    "scene_sim_time_s": 0.061956726014614105,
+    "hand_TCP_world": [
+      [
+        0.9626984241309476,
+        0.2564086776094927,
+        -0.08640594225543152,
+        -0.04990530237913497
+      ],
+      [
+        0.2622776326436322,
+        -0.9627934990888147,
+        0.06510718013558238,
+        -0.14993169009895144
+      ],
+      [
+        -0.06649704904651814,
+        -0.08534088365166408,
+        -0.9941301617737699,
+        1.4028723938907965
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          0.20006396079582336,
+          -0.7150275964933722,
+          0.8913097211158977
+        ],
+        "initial_plane_axis": [
+          4.928585699418718e-06,
+          -6.4102309527217175e-06,
+          0.999999999967309
+        ],
+        "center_m": [
+          0.20006330584373058,
+          -0.7150492973907201,
+          0.8913097209800179
+        ],
+        "axis": [
+          4.928585699418718e-06,
+          -6.4102309527217175e-06,
+          0.999999999967309
+        ],
+        "visible_face_inner_radius_m": 0.029490855034741952,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.001990855034741952,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.0006616520800628372,
+        "depth_points": 4413,
+        "measured_classification_diameter_m": 0.06045499213203766,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          -6.549520927823238e-07,
+          -2.1700897347876058e-05,
+          -1.3587975189466306e-10
+        ],
+        "lateral_CAD_registration_rms_m": 0.0005107336448663831,
+        "lateral_CAD_iterations": 4,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 3.077941154013388,
+    "ready_wall_s": 3.352897615986876,
+    "capture_s": 0.032274303026497364,
+    "processing_s": 0.24171959701925516,
+    "queue_wait_s": 0.0009625619277358055,
+    "camera_profile": {
+      "upload_and_setup_s": 0.030293005984276533,
+      "gpu_ray_s": 0.0009486089693382382,
+      "gpu_shading_and_download_s": 0.0008679169695824385,
+      "dynamic_s": 0.03124161495361477,
+      "static_s": 0.0,
+      "shading_s": 0.0008687750669196248,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 7.521395446965471,
+    "mode": "pregrasp_ring",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-002-pregrasp_ring",
+    "scene_sim_time_s": 3.077941154013388,
+    "hand_TCP_world": [
+      [
+        0.9626984241309476,
+        0.2564086776094927,
+        -0.08640594225543152,
+        -0.04990530237913497
+      ],
+      [
+        0.2622776326436322,
+        -0.9627934990888147,
+        0.06510718013558238,
+        -0.14993169009895144
+      ],
+      [
+        -0.06649704904651814,
+        -0.08534088365166408,
+        -0.9941301617737699,
+        1.4028723938907965
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          0.19992995666553312,
+          -0.7149856995639524,
+          0.8913092890897611
+        ],
+        "initial_plane_axis": [
+          -3.7030711671907464e-05,
+          1.4710423424565419e-05,
+          0.999999999206165
+        ],
+        "center_m": [
+          0.19995475439263755,
+          -0.7149946653264384,
+          0.8913092901399289
+        ],
+        "axis": [
+          -3.7030711671907464e-05,
+          1.4710423424565419e-05,
+          0.999999999206165
+        ],
+        "visible_face_inner_radius_m": 0.029495381141829032,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.001995381141829032,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.0006324762950189083,
+        "depth_points": 3156,
+        "measured_classification_diameter_m": 0.06039699869897936,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          2.4797727104425293e-05,
+          -8.96576248599068e-06,
+          1.050167730554108e-09
+        ],
+        "lateral_CAD_registration_rms_m": 0.0003964997644692374,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 8.605614718981087,
+    "ready_wall_s": 8.852473243023269,
+    "capture_s": 0.032265455927699804,
+    "processing_s": 0.213530317065306,
+    "queue_wait_s": 0.0010627510491758585,
+    "camera_profile": {
+      "upload_and_setup_s": 0.030001710983924568,
+      "gpu_ray_s": 0.0011734580621123314,
+      "gpu_shading_and_download_s": 0.0009245489491149783,
+      "dynamic_s": 0.0311751690460369,
+      "static_s": 0.0,
+      "shading_s": 0.0009253260213881731,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 2.8520833333333333,
+    "delivered_wall_s": 8.85707623604685,
+    "mode": "pregrasp_ring",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-003-pregrasp_ring",
+    "scene_sim_time_s": 8.605614718981087,
+    "hand_TCP_world": [
+      [
+        0.9987120554773875,
+        0.001162494278966358,
+        0.05072024088277371,
+        0.20038097622118717
+      ],
+      [
+        0.001124331303653012,
+        -0.9999989518259161,
+        0.0007816783581077621,
+        -0.7148956234676267
+      ],
+      [
+        0.050721070980921004,
+        -0.000723559754765128,
+        -0.9987124637033288,
+        0.9106476916209157
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          0.19992531256764856,
+          -0.715045049527048,
+          0.8913085925566964
+        ],
+        "initial_plane_axis": [
+          -1.8543220199489717e-05,
+          6.048904583622431e-06,
+          0.9999999998097798
+        ],
+        "center_m": [
+          0.19996651951692146,
+          -0.7150247103340613,
+          0.891308593197776
+        ],
+        "axis": [
+          -1.8543220199489717e-05,
+          6.048904583622431e-06,
+          0.9999999998097798
+        ],
+        "visible_face_inner_radius_m": 0.029488690507783848,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.0019886905077838475,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.0006279048918767318,
+        "depth_points": 2454,
+        "measured_classification_diameter_m": 0.06039658869640885,
+        "visible_arc_coverage_deg": 300,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          4.120694927289836e-05,
+          2.0339192986607024e-05,
+          6.410796338229829e-10
+        ],
+        "lateral_CAD_registration_rms_m": 0.00039808256393960114,
+        "lateral_CAD_iterations": 4,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 8.858230622019619,
+    "ready_wall_s": 9.089622625964694,
+    "capture_s": 0.02379308093804866,
+    "processing_s": 0.2067373279714957,
+    "queue_wait_s": 0.0008615950355306268,
+    "camera_profile": {
+      "upload_and_setup_s": 0.02226999995764345,
+      "gpu_ray_s": 0.0007675020024180412,
+      "gpu_shading_and_download_s": 0.0006349310278892517,
+      "dynamic_s": 0.02303750196006149,
+      "static_s": 0.0,
+      "shading_s": 0.0006353870267048478,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 3.060416666666667,
+    "capture_native_hand_opening_m": 0.0680142492055893,
+    "delivered_wall_s": 9.09408179600723,
+    "mode": "pregrasp_ring",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-004-pregrasp_ring",
+    "scene_sim_time_s": 8.858230622019619,
+    "hand_TCP_world": [
+      [
+        0.9987114147565608,
+        0.0011598549258199857,
+        0.05073291590102439,
+        0.20038047413001053
+      ],
+      [
+        0.001121358360398782,
+        -0.9999989502051464,
+        0.0007879972118149789,
+        -0.714895792754989
+      ],
+      [
+        0.050733751170936855,
+        -0.0007300065420452289,
+        -0.9987118149486941,
+        0.9106472777606328
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          0.20007658412829382,
+          -0.714718858194505,
+          0.8913092545479443
+        ],
+        "initial_plane_axis": [
+          -6.861780807921353e-05,
+          2.2485910436821947e-05,
+          0.9999999973929901
+        ],
+        "center_m": [
+          0.19995188862344568,
+          -0.7149990739679487,
+          0.8913092522925189
+        ],
+        "axis": [
+          -6.861780807921353e-05,
+          2.2485910436821947e-05,
+          0.9999999973929901
+        ],
+        "visible_face_inner_radius_m": 0.029389649114361132,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.0018896491143611319,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.0005991230959829665,
+        "depth_points": 2499,
+        "measured_classification_diameter_m": 0.06086258859380671,
+        "visible_arc_coverage_deg": 300,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          -0.0001246955048481435,
+          -0.00028021577344372606,
+          -2.255425401997968e-09
+        ],
+        "lateral_CAD_registration_rms_m": 0.0004218982556671176,
+        "lateral_CAD_iterations": 4,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 11.148675870965235,
+    "ready_wall_s": 11.39798189199064,
+    "capture_s": 0.018738366081379354,
+    "processing_s": 0.22968639293685555,
+    "queue_wait_s": 0.0008812620071694255,
+    "camera_profile": {
+      "upload_and_setup_s": 0.01755924301687628,
+      "gpu_ray_s": 0.0005404229741543531,
+      "gpu_shading_and_download_s": 0.0005394010804593563,
+      "dynamic_s": 0.018099665991030633,
+      "static_s": 0.0,
+      "shading_s": 0.0005397910717874765,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 4.189583333333333,
+    "delivered_wall_s": 11.40267160302028,
+    "mode": "pregrasp_ring",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-005-pregrasp_ring",
+    "scene_sim_time_s": 11.148675870965235,
+    "hand_TCP_world": [
+      [
+        0.9987261536957976,
+        0.0002659449953417073,
+        0.050454558553212236,
+        0.20005936012234957
+      ],
+      [
+        0.00018632881817363126,
+        -0.9999986212115004,
+        0.001583418113197532,
+        -0.7147624232562634
+      ],
+      [
+        0.05045488488201479,
+        -0.0015719128785525677,
+        -0.9987249694280622,
+        0.8964695855741192
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          0.2001912126395113,
+          -0.7149336247432605,
+          0.891309204883694
+        ],
+        "initial_plane_axis": [
+          -2.0080985060107642e-05,
+          -1.1348740593766404e-05,
+          0.9999999997339799
+        ],
+        "center_m": [
+          0.19997707851741905,
+          -0.7150301216059689,
+          0.891309199488552
+        ],
+        "axis": [
+          -2.0080985060107642e-05,
+          -1.1348740593766404e-05,
+          0.9999999997339799
+        ],
+        "visible_face_inner_radius_m": 0.02955498765775825,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.0020549876577582483,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.0006260069372152074,
+        "depth_points": 1828,
+        "measured_classification_diameter_m": 0.06086740073191555,
+        "visible_arc_coverage_deg": 225,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          -0.00021413412209225768,
+          -9.649686270840618e-05,
+          -5.395141999819941e-09
+        ],
+        "lateral_CAD_registration_rms_m": 0.00041390532813313975,
+        "lateral_CAD_iterations": 4,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 11.402973087038845,
+    "ready_wall_s": 11.564222589950077,
+    "capture_s": 0.014486026018857956,
+    "processing_s": 0.14612537692300975,
+    "queue_wait_s": 0.0006380999693647027,
+    "camera_profile": {
+      "upload_and_setup_s": 0.013284594053402543,
+      "gpu_ray_s": 0.0006737399380654097,
+      "gpu_shading_and_download_s": 0.0004509519785642624,
+      "dynamic_s": 0.013958333991467953,
+      "static_s": 0.0,
+      "shading_s": 0.000451232073828578,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 4.4,
+    "capture_native_hand_opening_m": 0.0680142492055893,
+    "delivered_wall_s": 11.56752977904398,
+    "mode": "pregrasp_ring",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-006-pregrasp_ring",
+    "scene_sim_time_s": 11.402973087038845,
+    "hand_TCP_world": [
+      [
+        0.9987261536957976,
+        0.0002659449953417073,
+        0.050454558553212236,
+        0.20005936012234957
+      ],
+      [
+        0.00018632881817363126,
+        -0.9999986212115004,
+        0.001583418113197532,
+        -0.7147624232562634
+      ],
+      [
+        0.05045488488201479,
+        -0.0015719128785525677,
+        -0.9987249694280622,
+        0.8964695855741192
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          0.20014184700696735,
+          -0.7148751851034382,
+          0.8913193429249483
+        ],
+        "initial_plane_axis": [
+          -0.0001579578615121565,
+          -0.00025738089917150297,
+          0.9999999544021926
+        ],
+        "center_m": [
+          0.19994912190287004,
+          -0.7147379429521273,
+          0.8913193478060115
+        ],
+        "axis": [
+          -0.0001579578615121565,
+          -0.00025738089917150297,
+          0.9999999544021926
+        ],
+        "visible_face_inner_radius_m": 0.029498279228258005,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.001998279228258005,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.0006439866459074565,
+        "depth_points": 2502,
+        "measured_classification_diameter_m": 0.06079198260834116,
+        "visible_arc_coverage_deg": 300,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          -0.0001927251040973188,
+          0.00013724215131083461,
+          4.881063220274484e-09
+        ],
+        "lateral_CAD_registration_rms_m": 0.0004000154309413968,
+        "lateral_CAD_iterations": 5,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 13.497753371950239,
+    "ready_wall_s": 13.72896147496067,
+    "capture_s": 0.01580874901264906,
+    "processing_s": 0.2142739949049428,
+    "queue_wait_s": 0.0011253590928390622,
+    "camera_profile": {
+      "upload_and_setup_s": 0.01476376794744283,
+      "gpu_ray_s": 0.0005072240019217134,
+      "gpu_shading_and_download_s": 0.0004522360395640135,
+      "dynamic_s": 0.015270991949364543,
+      "static_s": 0.0,
+      "shading_s": 0.0004525559488683939,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 5.141666666666667,
+    "delivered_wall_s": 13.740415556007065,
+    "mode": "pregrasp_ring",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-007-pregrasp_ring",
+    "scene_sim_time_s": 13.497753371950239,
+    "hand_TCP_world": [
+      [
+        0.9987255286923846,
+        0.00021944519977551048,
+        0.05046715232302269,
+        0.20004795219047078
+      ],
+      [
+        0.00014094211648473304,
+        -0.999998665716977,
+        0.0015598249114665125,
+        -0.7147700064101538
+      ],
+      [
+        0.05046740207749093,
+        -0.0015506369407434007,
+        -0.9987243702504794,
+        0.896476845923624
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          0.20022338713729576,
+          -0.7146313411346029,
+          0.8913192740921216
+        ],
+        "initial_plane_axis": [
+          -8.678202994441355e-05,
+          -0.0003822119125339582,
+          0.9999999231914636
+        ],
+        "center_m": [
+          0.19997252511485844,
+          -0.7147779748473734,
+          0.8913191962766484
+        ],
+        "axis": [
+          -8.678202994441355e-05,
+          -0.0003822119125339582,
+          0.9999999231914636
+        ],
+        "visible_face_inner_radius_m": 0.029528502040171503,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.002028502040171503,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.0006230255054191695,
+        "depth_points": 1771,
+        "measured_classification_diameter_m": 0.06091643073424374,
+        "visible_arc_coverage_deg": 225,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          -0.00025086202243732036,
+          -0.0001466337127704609,
+          -7.781547328722382e-08
+        ],
+        "lateral_CAD_registration_rms_m": 0.0003963477993485155,
+        "lateral_CAD_iterations": 5,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 13.740708503988571,
+    "ready_wall_s": 13.941208787029609,
+    "capture_s": 0.017340881982818246,
+    "processing_s": 0.18248622305691242,
+    "queue_wait_s": 0.000673178001306951,
+    "camera_profile": {
+      "upload_and_setup_s": 0.01594109693542123,
+      "gpu_ray_s": 0.0006910880329087377,
+      "gpu_shading_and_download_s": 0.0006013789679855108,
+      "dynamic_s": 0.016632184968329966,
+      "static_s": 0.0,
+      "shading_s": 0.0006018290296196938,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 5.19375,
+    "capture_native_hand_opening_m": 0.06181832775473595,
+    "delivered_wall_s": 13.944699837011285,
+    "mode": "pregrasp_ring",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-008-pregrasp_ring",
+    "scene_sim_time_s": 13.740708503988571,
+    "hand_TCP_world": [
+      [
+        0.9987255216027201,
+        0.0002133265091400762,
+        0.050467318858913396,
+        0.200045755318847
+      ],
+      [
+        0.0001349798725090926,
+        -0.99999867161204,
+        0.0015565694622139952,
+        -0.7147710748793606
+      ],
+      [
+        0.050467558672346854,
+        -0.0015476865035095138,
+        -0.998724366914135,
+        0.8964779326525092
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          0.19969929819655238,
+          -0.7151238289822549,
+          0.96594073914887
+        ],
+        "initial_plane_axis": [
+          -0.0070624874658939156,
+          0.001268410365038459,
+          0.9999742558715901
+        ],
+        "center_m": [
+          0.19985784595748377,
+          -0.715133617281747,
+          0.9659418713351721
+        ],
+        "axis": [
+          -0.0070624874658939156,
+          0.001268410365038459,
+          0.9999742558715901
+        ],
+        "visible_face_inner_radius_m": 0.029470629592823955,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.0019706295928239546,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.0005324588923221793,
+        "depth_points": 1327,
+        "measured_classification_diameter_m": 0.06031733721686307,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          0.00015854776093138234,
+          -9.788299492052843e-06,
+          1.132186302044147e-06
+        ],
+        "lateral_CAD_registration_rms_m": 5.082641671329991e-05,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 17.633735595969483,
+    "ready_wall_s": 17.843055750941858,
+    "capture_s": 0.018539226963184774,
+    "processing_s": 0.18988269998226315,
+    "queue_wait_s": 0.0008982280269265175,
+    "camera_profile": {
+      "upload_and_setup_s": 0.017341553000733256,
+      "gpu_ray_s": 0.0005626250058412552,
+      "gpu_shading_and_download_s": 0.0005356300389394164,
+      "dynamic_s": 0.01790417800657451,
+      "static_s": 0.0,
+      "shading_s": 0.0005359899951145053,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 5.872916666666667,
+    "delivered_wall_s": 17.847848127945326,
+    "mode": "held",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-009-held",
+    "scene_sim_time_s": 17.633735595969483,
+    "hand_TCP_world": [
+      [
+        0.9986854362311652,
+        3.110510460406249e-05,
+        0.0512548979873059,
+        0.1999375606600449
+      ],
+      [
+        6.911213217018158e-05,
+        -0.9999996042615606,
+        -0.0007390419696146507,
+        -0.7151496680300882
+      ],
+      [
+        0.051254829908501186,
+        0.0007416878140954191,
+        -0.998685208295097,
+        0.9711944347241637
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          0.19988046305129648,
+          -0.7149180493409814,
+          0.9659408132616875
+        ],
+        "initial_plane_axis": [
+          -0.01003454606564508,
+          0.0011800858851484194,
+          0.9999489563385522
+        ],
+        "center_m": [
+          0.19988218644945968,
+          -0.7151153966849711,
+          0.9659410634547916
+        ],
+        "axis": [
+          -0.01003454606564508,
+          0.0011800858851484194,
+          0.9999489563385522
+        ],
+        "visible_face_inner_radius_m": 0.029457990809893454,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.001957990809893454,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.0005512710111538743,
+        "depth_points": 928,
+        "measured_classification_diameter_m": 0.06032266989884751,
+        "visible_arc_coverage_deg": 285,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          1.7233981632058804e-06,
+          -0.00019734734398979548,
+          2.501931041232197e-07
+        ],
+        "lateral_CAD_registration_rms_m": 4.8968580545836586e-05,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 17.848116165958345,
+    "ready_wall_s": 18.042519873008132,
+    "capture_s": 0.017823140020482242,
+    "processing_s": 0.17594577802810818,
+    "queue_wait_s": 0.0006347890011966228,
+    "camera_profile": {
+      "upload_and_setup_s": 0.016475017997436225,
+      "gpu_ray_s": 0.0006396350217983127,
+      "gpu_shading_and_download_s": 0.0005991240032017231,
+      "dynamic_s": 0.017114653019234538,
+      "static_s": 0.0,
+      "shading_s": 0.0005996410036459565,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 5.96875,
+    "capture_native_hand_opening_m": 0.061817433685064316,
+    "delivered_wall_s": 18.04889281303622,
+    "mode": "held",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-010-held",
+    "scene_sim_time_s": 17.848116165958345,
+    "hand_TCP_world": [
+      [
+        0.9986854362311652,
+        3.110510460406249e-05,
+        0.0512548979873059,
+        0.1999375606600449
+      ],
+      [
+        6.911213217018158e-05,
+        -0.9999996042615606,
+        -0.0007390419696146507,
+        -0.7151496680300882
+      ],
+      [
+        0.051254829908501186,
+        0.0007416878140954191,
+        -0.998685208295097,
+        0.9711944347241637
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          -0.04975716752936168,
+          -0.40006727903574757,
+          1.3996039304460604
+        ],
+        "initial_plane_axis": [
+          0.02202496904066089,
+          -0.0027660823120304262,
+          0.9997535944058421
+        ],
+        "center_m": [
+          -0.049705477272565815,
+          -0.4000922651876642,
+          1.3996027225583716
+        ],
+        "axis": [
+          0.02202496904066089,
+          -0.0027660823120304262,
+          0.9997535944058421
+        ],
+        "visible_face_inner_radius_m": 0.025480050076969765,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0020199499230302356,
+        "front_back_from_RGBD": true,
+        "rms_m": 9.445789160359504e-05,
+        "depth_points": 10134,
+        "measured_classification_diameter_m": 0.0605287063764653,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          5.169025679586242e-05,
+          -2.4986151916650545e-05,
+          -1.2078876887589018e-06
+        ],
+        "lateral_CAD_registration_rms_m": 5.118553884996363e-05,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 36.29560103395488,
+    "ready_wall_s": 36.527066241018474,
+    "capture_s": 0.025730210938490927,
+    "processing_s": 0.2045904330443591,
+    "queue_wait_s": 0.0011445630807429552,
+    "camera_profile": {
+      "upload_and_setup_s": 0.024424445000477135,
+      "gpu_ray_s": 0.0006686889100819826,
+      "gpu_shading_and_download_s": 0.000536605017259717,
+      "dynamic_s": 0.025093133910559118,
+      "static_s": 0.0,
+      "shading_s": 0.0005369631107896566,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 36.53799356194213,
+    "mode": "held",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-011-held",
+    "scene_sim_time_s": 36.29560103395488,
+    "hand_TCP_world": [
+      [
+        -0.999035782569862,
+        9.632890182034634e-05,
+        -0.04390100932116026,
+        -0.04994271786907191
+      ],
+      [
+        2.6726049102379265e-05,
+        0.999998595637809,
+        0.0015862963660119526,
+        -0.40008227625773873
+      ],
+      [
+        0.043901085891215955,
+        0.0015835558787539706,
+        -0.999034461088352,
+        1.4052007658551122
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          -0.04977972539270068,
+          -0.40003257260741376,
+          1.3995953996017965
+        ],
+        "initial_plane_axis": [
+          0.022825145012047195,
+          -0.002619340666171728,
+          0.9997360410676678
+        ],
+        "center_m": [
+          -0.049722184881605326,
+          -0.4000875129287048,
+          1.399593941939106
+        ],
+        "axis": [
+          0.022825145012047195,
+          -0.002619340666171728,
+          0.9997360410676678
+        ],
+        "visible_face_inner_radius_m": 0.029490889748797794,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.0019908897487977938,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.0006071300347729797,
+        "depth_points": 2159,
+        "measured_classification_diameter_m": 0.06034608841046724,
+        "visible_arc_coverage_deg": 315,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          5.7540511095355296e-05,
+          -5.494032129105264e-05,
+          -1.4576626905515866e-06
+        ],
+        "lateral_CAD_registration_rms_m": 6.605618869449252e-05,
+        "lateral_CAD_iterations": 4,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 44.982863759971224,
+    "ready_wall_s": 45.21661813103128,
+    "capture_s": 0.023940713028423488,
+    "processing_s": 0.2087836239952594,
+    "queue_wait_s": 0.0010300340363755822,
+    "camera_profile": {
+      "upload_and_setup_s": 0.022459576022811234,
+      "gpu_ray_s": 0.0007097990019246936,
+      "gpu_shading_and_download_s": 0.0006447869818657637,
+      "dynamic_s": 0.023169375024735928,
+      "static_s": 0.0,
+      "shading_s": 0.0006452170200645924,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 45.23248794104438,
+    "mode": "held",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-012-held",
+    "scene_sim_time_s": 44.982863759971224,
+    "hand_TCP_world": [
+      [
+        -0.9990360546388214,
+        0.00010666449594496513,
+        -0.04389479362573252,
+        -0.04994603735598316
+      ],
+      [
+        3.659395451446881e-05,
+        0.9999985776631878,
+        0.0015973919586925289,
+        -0.40008613584913877
+      ],
+      [
+        0.04389488699283943,
+        0.0015942082246397117,
+        -0.9990347165288108,
+        1.405199663084596
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          -0.050161199403615006,
+          -0.4000378246249915,
+          1.399600984380646
+        ],
+        "initial_plane_axis": [
+          0.018013991895758103,
+          -0.0025014068386990046,
+          0.9998346058522913
+        ],
+        "center_m": [
+          -0.05008937487395044,
+          -0.4000348278780828,
+          1.399599697817444
+        ],
+        "axis": [
+          0.018013991895758103,
+          -0.0025014068386990046,
+          0.9998346058522913
+        ],
+        "visible_face_inner_radius_m": 0.029490993873458084,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.0019909938734580836,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.0006059804154647661,
+        "depth_points": 2177,
+        "measured_classification_diameter_m": 0.06035765644413684,
+        "visible_arc_coverage_deg": 315,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          7.182452966456726e-05,
+          2.9967469086789045e-06,
+          -1.286563201974289e-06
+        ],
+        "lateral_CAD_registration_rms_m": 6.531530441777042e-05,
+        "lateral_CAD_iterations": 4,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 47.88759362301789,
+    "ready_wall_s": 48.12164644396398,
+    "capture_s": 0.021852261968888342,
+    "processing_s": 0.21114857494831085,
+    "queue_wait_s": 0.001051984028890729,
+    "camera_profile": {
+      "upload_and_setup_s": 0.02046400506515056,
+      "gpu_ray_s": 0.0006640509236603975,
+      "gpu_shading_and_download_s": 0.0006093441043049097,
+      "dynamic_s": 0.021128055988810956,
+      "static_s": 0.0,
+      "shading_s": 0.0006097940495237708,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 48.13525729300454,
+    "mode": "held",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-013-held",
+    "scene_sim_time_s": 47.88759362301789,
+    "hand_TCP_world": [
+      [
+        -0.9990326144088683,
+        0.00031681230496606616,
+        -0.04397201065595163,
+        -0.049959110499452924
+      ],
+      [
+        0.00024028036934966188,
+        0.9999983010313616,
+        0.001746005991734493,
+        -0.40003716466689443
+      ],
+      [
+        0.04397247452660022,
+        0.0017337136761695832,
+        -0.9990310721671036,
+        1.4052090826462806
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          -0.0501466573379547,
+          -0.39999735563161537,
+          1.3995580663611449
+        ],
+        "initial_plane_axis": [
+          0.017191131441411992,
+          -0.0035798130673770135,
+          0.9998458130822805
+        ],
+        "center_m": [
+          -0.05007791775644979,
+          -0.4000197331128425,
+          1.3995568043481785
+        ],
+        "axis": [
+          0.017191131441411992,
+          -0.0035798130673770135,
+          0.9998458130822805
+        ],
+        "visible_face_inner_radius_m": 0.029474581030484958,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.001974581030484958,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.0006060188021367462,
+        "depth_points": 2177,
+        "measured_classification_diameter_m": 0.06032824464695095,
+        "visible_arc_coverage_deg": 330,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          6.873958150491188e-05,
+          -2.2377481227131568e-05,
+          -1.2620129663520885e-06
+        ],
+        "lateral_CAD_registration_rms_m": 6.629425217078866e-05,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 49.200186221976765,
+    "ready_wall_s": 49.40058443194721,
+    "capture_s": 0.02368066704366356,
+    "processing_s": 0.1755571619141847,
+    "queue_wait_s": 0.00116038101259619,
+    "camera_profile": {
+      "upload_and_setup_s": 0.022228791960515082,
+      "gpu_ray_s": 0.0006583160720765591,
+      "gpu_shading_and_download_s": 0.0006699130171909928,
+      "dynamic_s": 0.02288710803259164,
+      "static_s": 0.0,
+      "shading_s": 0.0006704209372401237,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 49.41604936704971,
+    "mode": "held",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-014-held",
+    "scene_sim_time_s": 49.200186221976765,
+    "hand_TCP_world": [
+      [
+        -0.9990316103540203,
+        0.0003026589552242889,
+        -0.04399491624985021,
+        -0.04994964323577726
+      ],
+      [
+        0.0002270355510430017,
+        0.9999983420288798,
+        0.00172416082947641,
+        -0.40002152143646463
+      ],
+      [
+        0.04399535056654324,
+        0.0017124651147697218,
+        -0.9990301016616804,
+        1.4052129739262664
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          -0.050160185970064414,
+          -0.3999999857521755,
+          1.3995529089296546
+        ],
+        "initial_plane_axis": [
+          0.017066018239164708,
+          -0.00356626609671742,
+          0.9998480048325283
+        ],
+        "center_m": [
+          -0.05007762873633884,
+          -0.4000045666638048,
+          1.3995514834529827
+        ],
+        "axis": [
+          0.017066018239164708,
+          -0.00356626609671742,
+          0.9998480048325283
+        ],
+        "visible_face_inner_radius_m": 0.029469555220199662,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.001969555220199662,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.0006057599050944577,
+        "depth_points": 2176,
+        "measured_classification_diameter_m": 0.0603139862451711,
+        "visible_arc_coverage_deg": 330,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          8.255723372557061e-05,
+          -4.580911629303852e-06,
+          -1.4254766718124756e-06
+        ],
+        "lateral_CAD_registration_rms_m": 6.001814619411987e-05,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 50.0826055649668,
+    "ready_wall_s": 50.30421350104734,
+    "capture_s": 0.022173948935233057,
+    "processing_s": 0.19848331809043884,
+    "queue_wait_s": 0.0009506690548732877,
+    "camera_profile": {
+      "upload_and_setup_s": 0.020765113993547857,
+      "gpu_ray_s": 0.0006541759939864278,
+      "gpu_shading_and_download_s": 0.0006389900809153914,
+      "dynamic_s": 0.021419289987534285,
+      "static_s": 0.0,
+      "shading_s": 0.000639396021142602,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 50.31881759001408,
+    "mode": "held",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-015-held",
+    "scene_sim_time_s": 50.0826055649668,
+    "hand_TCP_world": [
+      [
+        -0.9990308897160574,
+        0.00026711959953132114,
+        -0.04401150744085646,
+        -0.04993521138924152
+      ],
+      [
+        0.00019324698900547574,
+        0.9999984192628336,
+        0.001682991888505205,
+        -0.4000058521163334
+      ],
+      [
+        0.044011872861244,
+        0.0016728181444813919,
+        -0.9990294410881556,
+        1.4052165410771373
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          -0.0499928970647493,
+          -0.3994971857701799,
+          1.3994836708308083
+        ],
+        "initial_plane_axis": [
+          0.017406164410315745,
+          -0.0028649001812913167,
+          0.9998443967875564
+        ],
+        "center_m": [
+          -0.04996426250909865,
+          -0.39950190713379674,
+          1.3994831588071168
+        ],
+        "axis": [
+          0.017406164410315745,
+          -0.0028649001812913167,
+          0.9998443967875564
+        ],
+        "visible_face_inner_radius_m": 0.029483935139310313,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.0019839351393103125,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.0006403549658583686,
+        "depth_points": 3255,
+        "measured_classification_diameter_m": 0.06038251052835885,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          2.8634555650650095e-05,
+          -4.721363616844165e-06,
+          -5.120236914457621e-07
+        ],
+        "lateral_CAD_registration_rms_m": 6.213156974780771e-05,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 52.47178217594046,
+    "ready_wall_s": 52.72065201099031,
+    "capture_s": 0.048455793992616236,
+    "processing_s": 0.19939305796287954,
+    "queue_wait_s": 0.0010209830943495035,
+    "camera_profile": {
+      "upload_and_setup_s": 0.02295375894755125,
+      "gpu_ray_s": 0.000391394947655499,
+      "gpu_shading_and_download_s": 0.0006077330326661468,
+      "dynamic_s": 0.02334515389520675,
+      "static_s": 0.0,
+      "shading_s": 0.0006081589963287115,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 52.731098313000984,
+    "mode": "held_left",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-016-held_left",
+    "scene_sim_time_s": 52.47178217594046,
+    "hand_TCP_world": [
+      [
+        -0.42338296322244645,
+        0.8661023752761579,
+        0.2657316768148863,
+        -0.049370680684601376
+      ],
+      [
+        -0.7507583953786268,
+        -0.49959308836034355,
+        0.43216694604602696,
+        -0.3983665390193986
+      ],
+      [
+        0.5070585347939284,
+        -0.016528118077334595,
+        0.8617529626455277,
+        1.3942187208702235
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "poses": [
+        {
+          "part": "ring1",
+          "initial_arc_center_m": [
+            0.22999599704830434,
+            -0.5750528571616497,
+            0.8920611478820013
+          ],
+          "initial_plane_axis": [
+            1.209547188470976e-06,
+            8.718016642000339e-06,
+            0.9999999999612665
+          ],
+          "center_m": [
+            0.22999599704830434,
+            -0.5750528571616497,
+            0.8920611478820013
+          ],
+          "axis": [
+            -1.209547188470976e-06,
+            -8.718016642000339e-06,
+            -0.9999999999612665
+          ],
+          "visible_face_inner_radius_m": 0.031927616064746075,
+          "visible_CAD_end_sign": -1,
+          "front_back_orientation_margin_m": 0.002072383935253927,
+          "front_back_from_RGBD": true,
+          "rms_m": 0.000192839176520714,
+          "depth_points": 2279,
+          "measured_classification_diameter_m": 0.07266358854626066,
+          "visible_arc_coverage_deg": 360,
+          "size_classification": "RGB-D observed annular arc metric diameter",
+          "uses_depth_sensor": true,
+          "uses_simulator_body_poses": false,
+          "annular_cap_free_space_gate": {
+            "backend": "RGB-D annular CAD cap observed-free-space veto",
+            "uses_simulator_body_poses": false,
+            "support_count": 720,
+            "seen_count": 720,
+            "occluded_count": 0,
+            "contradiction_count": 0,
+            "contradiction_angle_bins": 0,
+            "free_fraction": 0.0,
+            "rejected": false
+          }
+        }
+      ],
+      "instances": [
+        {
+          "part": "ring1",
+          "initial_arc_center_m": [
+            0.22999599704830434,
+            -0.5750528571616497,
+            0.8920611478820013
+          ],
+          "initial_plane_axis": [
+            1.209547188470976e-06,
+            8.718016642000339e-06,
+            0.9999999999612665
+          ],
+          "center_m": [
+            0.22999599704830434,
+            -0.5750528571616497,
+            0.8920611478820013
+          ],
+          "axis": [
+            -1.209547188470976e-06,
+            -8.718016642000339e-06,
+            -0.9999999999612665
+          ],
+          "visible_face_inner_radius_m": 0.031927616064746075,
+          "visible_CAD_end_sign": -1,
+          "front_back_orientation_margin_m": 0.002072383935253927,
+          "front_back_from_RGBD": true,
+          "rms_m": 0.000192839176520714,
+          "depth_points": 2279,
+          "measured_classification_diameter_m": 0.07266358854626066,
+          "visible_arc_coverage_deg": 360,
+          "size_classification": "RGB-D observed annular arc metric diameter",
+          "uses_depth_sensor": true,
+          "uses_simulator_body_poses": false,
+          "annular_cap_free_space_gate": {
+            "backend": "RGB-D annular CAD cap observed-free-space veto",
+            "uses_simulator_body_poses": false,
+            "support_count": 720,
+            "seen_count": 720,
+            "occluded_count": 0,
+            "contradiction_count": 0,
+            "contradiction_angle_bins": 0,
+            "free_fraction": 0.0,
+            "rejected": false
+          }
+        }
+      ],
+      "segmentation": {
+        "backend": "RGB-D observed planes and annular diameter; asymmetric taper face identifies signed axis",
+        "initial_cap_free_space_veto": true,
+        "cap_veto_rejected_candidates": 0,
+        "SAM_used": false,
+        "cached_image_masks_used": false,
+        "processing_ms": 358.42264199163765
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false,
+      "both_sizes_visible": true,
+      "gpu_metric_proposals": {
+        "server_s": 0.3591335560195148,
+        "rpc_wall_s": 0.3654780520591885,
+        "device": "assigned server GPU2",
+        "final_CPU_annular_gates_retained": true,
+        "renderer_metadata_sent": false,
+        "source_sha256": "94af0e71ce65c7b6a1798f9667fccc1112fa0df65463162fafe30338641d9304"
+      }
+    },
+    "captured_wall_s": 52.73138747597113,
+    "ready_wall_s": 53.16719520196784,
+    "capture_s": 0.0694381290813908,
+    "processing_s": 0.3656955389305949,
+    "queue_wait_s": 0.0006740579847246408,
+    "camera_profile": {
+      "upload_and_setup_s": 0.06793021899648011,
+      "gpu_ray_s": 0.0006308580050244927,
+      "gpu_shading_and_download_s": 0.0007926049875095487,
+      "dynamic_s": 0.0685610770015046,
+      "static_s": 0.0,
+      "shading_s": 0.0007930190768092871,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_native_hand_opening_m": 0.07798747718334198,
+    "delivered_wall_s": 59.807208308018744,
+    "mode": "initial",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-017-initial",
+    "scene_sim_time_s": 52.73138747597113,
+    "hand_TCP_world": [
+      [
+        -0.9990104419639053,
+        -0.00011683084897892902,
+        -0.044473894187334426,
+        -0.014643283898318944
+      ],
+      [
+        -0.00019993792001084956,
+        0.9999980981710853,
+        0.0018644834083821828,
+        -0.4001989036571863
+      ],
+      [
+        0.04447357838755821,
+        0.001871497270782914,
+        -0.999008638677819,
+        1.4052657424098793
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          -0.04994574455861815,
+          -0.39939669541315953,
+          1.399482596912501
+        ],
+        "initial_plane_axis": [
+          0.017864661065813737,
+          -0.0020380263348601306,
+          0.9998383370993842
+        ],
+        "center_m": [
+          -0.049929195963582536,
+          -0.3994411011172521,
+          1.3994822107150315
+        ],
+        "axis": [
+          0.017864661065813737,
+          -0.0020380263348601306,
+          0.9998383370993842
+        ],
+        "visible_face_inner_radius_m": 0.02948618139648584,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.0019861813964858407,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.000636001272903593,
+        "depth_points": 3238,
+        "measured_classification_diameter_m": 0.0604048072346464,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          1.6548595035616176e-05,
+          -4.440570409258715e-05,
+          -3.8619746955959044e-07
+        ],
+        "lateral_CAD_registration_rms_m": 6.592138345498132e-05,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 53.04521030501928,
+    "ready_wall_s": 53.37752353399992,
+    "capture_s": 0.038236738997511566,
+    "processing_s": 0.16383714403491467,
+    "queue_wait_s": 0.13023934594821185,
+    "camera_profile": {
+      "upload_and_setup_s": 0.017958163050934672,
+      "gpu_ray_s": 0.0005612199893221259,
+      "gpu_shading_and_download_s": 0.0005221179453656077,
+      "dynamic_s": 0.0185193830402568,
+      "static_s": 0.0,
+      "shading_s": 0.0005224699852988124,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 53.39612535201013,
+    "mode": "held_left",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-018-held_left",
+    "scene_sim_time_s": 53.04521030501928,
+    "hand_TCP_world": [
+      [
+        -0.4233826463829056,
+        0.8661025384848615,
+        0.2657316496783522,
+        -0.049370605869812165
+      ],
+      [
+        -0.7507583327465047,
+        -0.4995928081745092,
+        0.43216737875004513,
+        -0.3983661948961361
+      ],
+      [
+        0.5070588920819469,
+        -0.01652803478922318,
+        0.8617527540132851,
+        1.3942186713943605
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          0.22999300111625587,
+          -0.5749885769835686,
+          0.8920607754154625
+        ],
+        "initial_plane_axis": [
+          6.904904603647764e-08,
+          -1.1646723623991115e-07,
+          0.9999999999999908
+        ],
+        "center_m": [
+          0.22999300111625587,
+          -0.5749885769835686,
+          0.8920607754154625
+        ],
+        "axis": [
+          -6.904904603647764e-08,
+          1.1646723623991115e-07,
+          -0.9999999999999908
+        ],
+        "visible_face_inner_radius_m": 0.03192455747424821,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.002075442525751793,
+        "front_back_from_RGBD": true,
+        "rms_m": 3.649179557849225e-05,
+        "depth_points": 67835,
+        "measured_classification_diameter_m": 0.07327526224394075,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis"
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 59.80746390798595,
+    "ready_wall_s": 60.823630330036394,
+    "capture_s": 0.07488647196441889,
+    "processing_s": 0.9402068380732089,
+    "queue_wait_s": 0.0010731120128184557,
+    "camera_profile": {
+      "upload_and_setup_s": 0.0730862149503082,
+      "gpu_ray_s": 0.0008963949512690306,
+      "gpu_shading_and_download_s": 0.000809523044154048,
+      "dynamic_s": 0.07398260990157723,
+      "static_s": 0.0,
+      "shading_s": 0.0008098729886114597,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 12.7,
+    "delivered_wall_s": 60.835415823967196,
+    "mode": "pregrasp_ring",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-019-pregrasp_ring",
+    "scene_sim_time_s": 59.80746390798595,
+    "hand_TCP_world": [
+      [
+        -0.9990104419639053,
+        -0.00011683084897892902,
+        -0.044473894187334426,
+        -0.014643283898318944
+      ],
+      [
+        -0.00019993792001084956,
+        0.9999980981710853,
+        0.0018644834083821828,
+        -0.4001989036571863
+      ],
+      [
+        0.04447357838755821,
+        0.001871497270782914,
+        -0.999008638677819,
+        1.4052657424098793
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          0.22999913439877376,
+          -0.574988522672713,
+          0.892060682143331
+        ],
+        "initial_plane_axis": [
+          1.3794516704635537e-06,
+          1.6351625143704859e-06,
+          0.9999999999977117
+        ],
+        "center_m": [
+          0.22999913439877376,
+          -0.574988522672713,
+          0.892060682143331
+        ],
+        "axis": [
+          -1.3794516704635537e-06,
+          -1.6351625143704859e-06,
+          -0.9999999999977117
+        ],
+        "visible_face_inner_radius_m": 0.03192708581225503,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0020729141877449744,
+        "front_back_from_RGBD": true,
+        "rms_m": 3.6249702603229846e-05,
+        "depth_points": 67128,
+        "measured_classification_diameter_m": 0.07327877896946569,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis"
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 60.837265328969806,
+    "ready_wall_s": 61.809745623962954,
+    "capture_s": 0.06011934299021959,
+    "processing_s": 0.9114032769575715,
+    "queue_wait_s": 0.0009576750453561544,
+    "camera_profile": {
+      "upload_and_setup_s": 0.05849497998133302,
+      "gpu_ray_s": 0.0008540900889784098,
+      "gpu_shading_and_download_s": 0.0006853889208287001,
+      "dynamic_s": 0.05934907007031143,
+      "static_s": 0.0,
+      "shading_s": 0.0006857370026409626,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 13.170833333333333,
+    "delivered_wall_s": 61.82242040196434,
+    "mode": "pregrasp_ring",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-020-pregrasp_ring",
+    "scene_sim_time_s": 60.837265328969806,
+    "hand_TCP_world": [
+      [
+        -0.9990104419639053,
+        -0.00011683084897892902,
+        -0.044473894187334426,
+        -0.014643283898318944
+      ],
+      [
+        -0.00019993792001084956,
+        0.9999980981710853,
+        0.0018644834083821828,
+        -0.4001989036571863
+      ],
+      [
+        0.04447357838755821,
+        0.001871497270782914,
+        -0.999008638677819,
+        1.4052657424098793
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          0.23002076078440523,
+          -0.5750119655811966,
+          0.8920607517335817
+        ],
+        "initial_plane_axis": [
+          4.967814433220625e-06,
+          -3.8381276833115195e-06,
+          0.9999999999802948
+        ],
+        "center_m": [
+          0.23101369810844402,
+          -0.5755753328812497,
+          0.8920607446385779
+        ],
+        "axis": [
+          -4.967814433220625e-06,
+          3.8381276833115195e-06,
+          -0.9999999999802948
+        ],
+        "visible_face_inner_radius_m": 0.03192504087083933,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0020749591291606695,
+        "front_back_from_RGBD": true,
+        "rms_m": 7.117378797130205e-05,
+        "depth_points": 16097,
+        "measured_classification_diameter_m": 0.0731238885313687,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          0.000992937324038795,
+          -0.0005633673000531303,
+          -7.095003806689704e-09
+        ],
+        "lateral_CAD_registration_rms_m": 0.0005884210441971624,
+        "lateral_CAD_iterations": 18,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 64.96283267601393,
+    "ready_wall_s": 65.28991451894399,
+    "capture_s": 0.014500180026516318,
+    "processing_s": 0.3117142819100991,
+    "queue_wait_s": 0.0008673809934407473,
+    "camera_profile": {
+      "upload_and_setup_s": 0.013340111006982625,
+      "gpu_ray_s": 0.0006729629822075367,
+      "gpu_shading_and_download_s": 0.00041003909427672625,
+      "dynamic_s": 0.014013073989190161,
+      "static_s": 0.0,
+      "shading_s": 0.00041030498687177896,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 91.74448287498672,
+    "mode": "pregrasp_ring",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-021-pregrasp_ring",
+    "scene_sim_time_s": 64.96283267601393,
+    "hand_TCP_world": [
+      [
+        -0.9990104419639053,
+        -0.00011683084897892902,
+        -0.044473894187334426,
+        -0.014643283898318944
+      ],
+      [
+        -0.00019993792001084956,
+        0.9999980981710853,
+        0.0018644834083821828,
+        -0.4001989036571863
+      ],
+      [
+        0.04447357838755821,
+        0.001871497270782914,
+        -0.999008638677819,
+        1.4052657424098793
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_gpu_client.py\", line 15, in detect\n    if not value.get('ok'):raise RuntimeError(value.get('error','GPU RGB-D failure'))\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/rgbd-gpu3-fast-spread/server.py\", line 25, in <module>\n    result,masks=detect(packet,dict(req['calibration'],gpu_metric_proposals=True,gpu_plane_budget=6 if req['calibration'].get('fixed_supply_mode') or req.get('desired_part')in['ring1','ring2'] else 14),estimator,desired_part=req.get('desired_part'),seed=req.get('seed'))\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/rgbd-gpu3-fast-spread/rgbd_scattered_rings.py\", line 36, in detect\n    if not valid.any():raise RuntimeError('No visible annular surface in bin RGB-D')\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No visible annular surface in bin RGB-D\n\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 50, in <module>\n    found,masks=gpu_scatter_detect(packet,local_cal,estimator,desired_part=request['part'],seed=seed,socket_path=request['calibration'].get('rgbd_gpu_socket'),expected_source_sha256=request['calibration'].get('rgbd_gpu_source_sha256'))\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_gpu_client.py\", line 23, in detect\n    result,masks=cpu_detect(packet,calibration,estimator,desired_part=desired_part,seed=seed)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_scattered_rings.py\", line 27, in detect\n    if not valid.any():raise RuntimeError('No visible annular surface in bin RGB-D')\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No visible annular surface in bin RGB-D\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 65, in <module>\n    pose,mask=tracker.estimate(packet,request['part'],seed,request['axis'])\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 49, in estimate\n    if len(u)<150:raise RuntimeError('RGB-D tracking ROI has insufficient metal surface')\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: RGB-D tracking ROI has insufficient metal surface\n"
+    },
+    "captured_wall_s": 96.46465890703257,
+    "ready_wall_s": 96.69003194000106,
+    "capture_s": 0.02184537099674344,
+    "processing_s": 0.20232365804258734,
+    "capture_control_time_s": 16.55625,
+    "delivered_wall_s": 96.69190765696112,
+    "mode": "pregrasp_ring",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-022-pregrasp_ring",
+    "scene_sim_time_s": 96.46465890703257,
+    "hand_TCP_world": [
+      [
+        -0.9999997680064392,
+        0.0003982152574723892,
+        -5.586862331670327e-05,
+        0.2308754078442803
+      ],
+      [
+        0.00039827032893744867,
+        0.9999997198136503,
+        0.0004138914571485649,
+        -0.5755452096915246
+      ],
+      [
+        5.603590133194764e-05,
+        0.00041383371605370326,
+        -0.9999997684273053,
+        0.9120497042113724
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          0.22983947926228065,
+          -0.574990655182327,
+          0.8920608114584457
+        ],
+        "initial_plane_axis": [
+          -1.1927518713853613e-05,
+          1.7711602026235657e-06,
+          0.9999999999272985
+        ],
+        "center_m": [
+          0.22995553178627923,
+          -0.5750056507151113,
+          0.8920608128692239
+        ],
+        "axis": [
+          1.1927518713853613e-05,
+          -1.7711602026235657e-06,
+          -0.9999999999272985
+        ],
+        "visible_face_inner_radius_m": 0.0318971544586635,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0021028455413365024,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00014202585712060512,
+        "depth_points": 9608,
+        "measured_classification_diameter_m": 0.07295899705011108,
+        "visible_arc_coverage_deg": 315,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          0.00011605252399857213,
+          -1.4995532784389809e-05,
+          1.4107781609595804e-09
+        ],
+        "lateral_CAD_registration_rms_m": 0.0003412325311193127,
+        "lateral_CAD_iterations": 4,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 96.69215851300396,
+    "ready_wall_s": 96.9190345989773,
+    "capture_s": 0.011215334990993142,
+    "processing_s": 0.2152299250010401,
+    "queue_wait_s": 0.00043082598131150007,
+    "camera_profile": {
+      "upload_and_setup_s": 0.010190072003751993,
+      "gpu_ray_s": 0.0006235470063984394,
+      "gpu_shading_and_download_s": 0.0003414249513298273,
+      "dynamic_s": 0.010813619010150433,
+      "static_s": 0.0,
+      "shading_s": 0.0003415809478610754,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 16.647916666666667,
+    "delivered_wall_s": 96.93123776500579,
+    "mode": "pregrasp_ring",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-023-pregrasp_ring",
+    "scene_sim_time_s": 96.69215851300396,
+    "hand_TCP_world": [
+      [
+        -0.9999997671938684,
+        0.0004041184307912193,
+        -2.5012560123654856e-06,
+        0.2308759259627111
+      ],
+      [
+        0.00040419573714342447,
+        0.999999739301361,
+        0.00035717466977054835,
+        -0.5755482269279028
+      ],
+      [
+        2.6480617990063283e-06,
+        0.0003571381686992102,
+        -0.9999997918521103,
+        0.9120719247747098
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          0.22991670731287553,
+          -0.5749783895456233,
+          0.8920605553810501
+        ],
+        "initial_plane_axis": [
+          -4.329786976290994e-06,
+          1.7364561402959156e-06,
+          0.9999999999891188
+        ],
+        "center_m": [
+          0.2299416142845993,
+          -0.5749958856559593,
+          0.8920605555192732
+        ],
+        "axis": [
+          4.329786976290994e-06,
+          -1.7364561402959156e-06,
+          -0.9999999999891188
+        ],
+        "visible_face_inner_radius_m": 0.031934336538597716,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0020656634614022867,
+        "front_back_from_RGBD": true,
+        "rms_m": 9.70814357068526e-05,
+        "depth_points": 11803,
+        "measured_classification_diameter_m": 0.07307378818610755,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          2.4906971723775984e-05,
+          -1.7496110335968318e-05,
+          1.3822309963273938e-10
+        ],
+        "lateral_CAD_registration_rms_m": 0.0003840827073826859,
+        "lateral_CAD_iterations": 4,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 96.93193682900164,
+    "ready_wall_s": 97.15927939105313,
+    "capture_s": 0.016534692025743425,
+    "processing_s": 0.2099092280259356,
+    "queue_wait_s": 0.0008986419998109341,
+    "camera_profile": {
+      "upload_and_setup_s": 0.01519523502793163,
+      "gpu_ray_s": 0.0007115938933566213,
+      "gpu_shading_and_download_s": 0.0005186860216781497,
+      "dynamic_s": 0.015906828921288252,
+      "static_s": 0.0,
+      "shading_s": 0.0005191121017560363,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 16.741666666666667,
+    "capture_native_hand_opening_m": 0.07998714596033096,
+    "delivered_wall_s": 97.16637210699264,
+    "mode": "pregrasp_ring",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-024-pregrasp_ring",
+    "scene_sim_time_s": 96.93193682900164,
+    "hand_TCP_world": [
+      [
+        -0.9999997671938684,
+        0.0004041184307912193,
+        -2.5012560123654856e-06,
+        0.2308759259627111
+      ],
+      [
+        0.00040419573714342447,
+        0.999999739301361,
+        0.00035717466977054835,
+        -0.5755482269279028
+      ],
+      [
+        2.6480617990063283e-06,
+        0.0003571381686992102,
+        -0.9999997918521103,
+        0.9120719247747098
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_gpu_client.py\", line 15, in detect\n    if not value.get('ok'):raise RuntimeError(value.get('error','GPU RGB-D failure'))\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/rgbd-gpu3-fast-spread/server.py\", line 25, in <module>\n    result,masks=detect(packet,dict(req['calibration'],gpu_metric_proposals=True,gpu_plane_budget=6 if req['calibration'].get('fixed_supply_mode') or req.get('desired_part')in['ring1','ring2'] else 14),estimator,desired_part=req.get('desired_part'),seed=req.get('seed'))\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/rgbd-gpu3-fast-spread/rgbd_scattered_rings.py\", line 36, in detect\n    if not valid.any():raise RuntimeError('No visible annular surface in bin RGB-D')\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No visible annular surface in bin RGB-D\n\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 50, in <module>\n    found,masks=gpu_scatter_detect(packet,local_cal,estimator,desired_part=request['part'],seed=seed,socket_path=request['calibration'].get('rgbd_gpu_socket'),expected_source_sha256=request['calibration'].get('rgbd_gpu_source_sha256'))\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_gpu_client.py\", line 23, in detect\n    result,masks=cpu_detect(packet,calibration,estimator,desired_part=desired_part,seed=seed)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_scattered_rings.py\", line 27, in detect\n    if not valid.any():raise RuntimeError('No visible annular surface in bin RGB-D')\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No visible annular surface in bin RGB-D\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 65, in <module>\n    pose,mask=tracker.estimate(packet,request['part'],seed,request['axis'])\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 49, in estimate\n    if len(u)<150:raise RuntimeError('RGB-D tracking ROI has insufficient metal surface')\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: RGB-D tracking ROI has insufficient metal surface\n"
+    },
+    "captured_wall_s": 106.34614500799216,
+    "ready_wall_s": 106.59539155394305,
+    "capture_s": 0.02166841400321573,
+    "processing_s": 0.22597380902152508,
+    "capture_control_time_s": 17.76875,
+    "delivered_wall_s": 106.60772647999693,
+    "mode": "pregrasp_ring",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-025-pregrasp_ring",
+    "scene_sim_time_s": 106.34614500799216,
+    "hand_TCP_world": [
+      [
+        -0.9999998293120298,
+        4.217194758720511e-05,
+        0.00019725879685445068,
+        0.2298038377384348
+      ],
+      [
+        4.2465827298303086e-05,
+        0.9999992837867334,
+        0.0010963515196043374,
+        -0.5749402923094702
+      ],
+      [
+        -0.0001972070540022759,
+        0.0010963233646021694,
+        -0.9999992335108616,
+        0.8979271848389803
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          0.22987695790552276,
+          -0.5749998440431299,
+          0.8920607422138946
+        ],
+        "initial_plane_axis": [
+          -1.87353408341659e-05,
+          7.730848755007673e-07,
+          0.9999999998241946
+        ],
+        "center_m": [
+          0.22994480317969088,
+          -0.5750146956806799,
+          0.8920607434964805
+        ],
+        "axis": [
+          1.87353408341659e-05,
+          -7.730848755007673e-07,
+          -0.9999999998241946
+        ],
+        "visible_face_inner_radius_m": 0.03188817716987144,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0021118228301285624,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00013090484325501125,
+        "depth_points": 6994,
+        "measured_classification_diameter_m": 0.07300495573380109,
+        "visible_arc_coverage_deg": 225,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          6.78452741681157e-05,
+          -1.4851637549995189e-05,
+          1.2825858153320269e-09
+        ],
+        "lateral_CAD_registration_rms_m": 0.00039256080767837776,
+        "lateral_CAD_iterations": 4,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 106.60826926503796,
+    "ready_wall_s": 106.8643457479775,
+    "capture_s": 0.015441415016539395,
+    "processing_s": 0.23971359501592815,
+    "queue_wait_s": 0.0009214729070663452,
+    "camera_profile": {
+      "upload_and_setup_s": 0.013975937035866082,
+      "gpu_ray_s": 0.000724185025319457,
+      "gpu_shading_and_download_s": 0.0006408549379557371,
+      "dynamic_s": 0.014700122061185539,
+      "static_s": 0.0,
+      "shading_s": 0.0006411659996956587,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 17.841666666666665,
+    "delivered_wall_s": 106.87142028694507,
+    "mode": "pregrasp_ring",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-026-pregrasp_ring",
+    "scene_sim_time_s": 106.60826926503796,
+    "hand_TCP_world": [
+      [
+        -0.9999998293120298,
+        4.217194758720511e-05,
+        0.00019725879685445068,
+        0.2298038377384348
+      ],
+      [
+        4.2465827298303086e-05,
+        0.9999992837867334,
+        0.0010963515196043374,
+        -0.5749402923094702
+      ],
+      [
+        -0.0001972070540022759,
+        0.0010963233646021694,
+        -0.9999992335108616,
+        0.8979271848389803
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          0.2299354867759044,
+          -0.5749941978939949,
+          0.8920607897787367
+        ],
+        "initial_plane_axis": [
+          -1.2767451898502346e-05,
+          1.4035083164002268e-07,
+          0.9999999999184862
+        ],
+        "center_m": [
+          0.22992471880799148,
+          -0.5749894626026941,
+          0.8920607896405925
+        ],
+        "axis": [
+          1.2767451898502346e-05,
+          -1.4035083164002268e-07,
+          -0.9999999999184862
+        ],
+        "visible_face_inner_radius_m": 0.03193361909155646,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0020663809084435422,
+        "front_back_from_RGBD": true,
+        "rms_m": 9.559497996550813e-05,
+        "depth_points": 8760,
+        "measured_classification_diameter_m": 0.0730950455211991,
+        "visible_arc_coverage_deg": 270,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          -1.0767967912911347e-05,
+          4.735291300739242e-06,
+          -1.3814416277568853e-10
+        ],
+        "lateral_CAD_registration_rms_m": 0.00044972023066945275,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 106.87169604201335,
+    "ready_wall_s": 107.12319457903504,
+    "capture_s": 0.01871605694759637,
+    "processing_s": 0.23164387606084347,
+    "queue_wait_s": 0.001138604013249278,
+    "camera_profile": {
+      "upload_and_setup_s": 0.017199222929775715,
+      "gpu_ray_s": 0.0007183370180428028,
+      "gpu_shading_and_download_s": 0.0006793610518798232,
+      "dynamic_s": 0.017917559947818518,
+      "static_s": 0.0,
+      "shading_s": 0.0006797380046918988,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 17.916666666666668,
+    "capture_native_hand_opening_m": 0.07998714596033096,
+    "delivered_wall_s": 107.13423509697895,
+    "mode": "pregrasp_ring",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-027-pregrasp_ring",
+    "scene_sim_time_s": 106.87169604201335,
+    "hand_TCP_world": [
+      [
+        -0.9999998293120298,
+        4.217194758720511e-05,
+        0.00019725879685445068,
+        0.2298038377384348
+      ],
+      [
+        4.2465827298303086e-05,
+        0.9999992837867334,
+        0.0010963515196043374,
+        -0.5749402923094702
+      ],
+      [
+        -0.0001972070540022759,
+        0.0010963233646021694,
+        -0.9999992335108616,
+        0.8979271848389803
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_gpu_client.py\", line 15, in detect\n    if not value.get('ok'):raise RuntimeError(value.get('error','GPU RGB-D failure'))\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/rgbd-gpu3-fast-spread/server.py\", line 25, in <module>\n    result,masks=detect(packet,dict(req['calibration'],gpu_metric_proposals=True,gpu_plane_budget=6 if req['calibration'].get('fixed_supply_mode') or req.get('desired_part')in['ring1','ring2'] else 14),estimator,desired_part=req.get('desired_part'),seed=req.get('seed'))\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/rgbd-gpu3-fast-spread/rgbd_scattered_rings.py\", line 36, in detect\n    if not valid.any():raise RuntimeError('No visible annular surface in bin RGB-D')\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No visible annular surface in bin RGB-D\n\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 50, in <module>\n    found,masks=gpu_scatter_detect(packet,local_cal,estimator,desired_part=request['part'],seed=seed,socket_path=request['calibration'].get('rgbd_gpu_socket'),expected_source_sha256=request['calibration'].get('rgbd_gpu_source_sha256'))\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_gpu_client.py\", line 23, in detect\n    result,masks=cpu_detect(packet,calibration,estimator,desired_part=desired_part,seed=seed)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_scattered_rings.py\", line 27, in detect\n    if not valid.any():raise RuntimeError('No visible annular surface in bin RGB-D')\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No visible annular surface in bin RGB-D\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 65, in <module>\n    pose,mask=tracker.estimate(packet,request['part'],seed,request['axis'])\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 49, in estimate\n    if len(u)<150:raise RuntimeError('RGB-D tracking ROI has insufficient metal surface')\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: RGB-D tracking ROI has insufficient metal surface\n"
+    },
+    "captured_wall_s": 114.2485253859777,
+    "ready_wall_s": 114.4949899680214,
+    "capture_s": 0.01987283700145781,
+    "processing_s": 0.22528443799819797,
+    "capture_control_time_s": 18.53333333333333,
+    "delivered_wall_s": 114.52248549798969,
+    "mode": "pregrasp_ring",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-028-pregrasp_ring",
+    "scene_sim_time_s": 114.2485253859777,
+    "hand_TCP_world": [
+      [
+        -0.9999998293120298,
+        4.217194758720511e-05,
+        0.00019725879685445068,
+        0.2298038377384348
+      ],
+      [
+        4.2465827298303086e-05,
+        0.9999992837867334,
+        0.0010963515196043374,
+        -0.5749402923094702
+      ],
+      [
+        -0.0001972070540022759,
+        0.0010963233646021694,
+        -0.9999992335108616,
+        0.8979271848389803
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          0.2298539942809674,
+          -0.5749349373804848,
+          0.8920612471138052
+        ],
+        "initial_plane_axis": [
+          -2.819952831286482e-05,
+          9.797264904474353e-07,
+          0.9999999996019133
+        ],
+        "center_m": [
+          0.22995439921596114,
+          -0.5749806468419669,
+          0.8920612499899598
+        ],
+        "axis": [
+          2.819952831286482e-05,
+          -9.797264904474353e-07,
+          -0.9999999996019133
+        ],
+        "visible_face_inner_radius_m": 0.031885967636955205,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0021140323630447974,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00010803315312596476,
+        "depth_points": 6710,
+        "measured_classification_diameter_m": 0.07295782082601293,
+        "visible_arc_coverage_deg": 225,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          0.00010040493499374747,
+          -4.570946148207966e-05,
+          2.876154647779572e-09
+        ],
+        "lateral_CAD_registration_rms_m": 0.00039146752584307904,
+        "lateral_CAD_iterations": 5,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 114.52303255803417,
+    "ready_wall_s": 114.77593924303073,
+    "capture_s": 0.015327641041949391,
+    "processing_s": 0.23678047698922455,
+    "queue_wait_s": 0.0007985669653862715,
+    "camera_profile": {
+      "upload_and_setup_s": 0.013976998045109212,
+      "gpu_ray_s": 0.0007124249823391438,
+      "gpu_shading_and_download_s": 0.0005405009724199772,
+      "dynamic_s": 0.014689423027448356,
+      "static_s": 0.0,
+      "shading_s": 0.0005408809520304203,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 18.566666666666666,
+    "delivered_wall_s": 114.79251137399115,
+    "mode": "pregrasp_ring",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-029-pregrasp_ring",
+    "scene_sim_time_s": 114.52303255803417,
+    "hand_TCP_world": [
+      [
+        -0.9999998293120298,
+        4.217194758720511e-05,
+        0.00019725879685445068,
+        0.2298038377384348
+      ],
+      [
+        4.2465827298303086e-05,
+        0.9999992837867334,
+        0.0010963515196043374,
+        -0.5749402923094702
+      ],
+      [
+        -0.0001972070540022759,
+        0.0010963233646021694,
+        -0.9999992335108616,
+        0.8979271848389803
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          0.2299564497952215,
+          -0.5749423125654213,
+          0.8920608202931986
+        ],
+        "initial_plane_axis": [
+          -1.8300529002708003e-05,
+          -4.588249781170901e-07,
+          0.99999999983244
+        ],
+        "center_m": [
+          0.22992854019611494,
+          -0.5749346923730269,
+          0.8920608197859343
+        ],
+        "axis": [
+          1.8300529002708003e-05,
+          4.588249781170901e-07,
+          -0.99999999983244
+        ],
+        "visible_face_inner_radius_m": 0.03194143476334221,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.002058565236657796,
+        "front_back_from_RGBD": true,
+        "rms_m": 9.551004766683893e-05,
+        "depth_points": 8760,
+        "measured_classification_diameter_m": 0.07311931581419613,
+        "visible_arc_coverage_deg": 270,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          -2.7909599106562544e-05,
+          7.620192394419689e-06,
+          -5.072642306203079e-10
+        ],
+        "lateral_CAD_registration_rms_m": 0.0004151119369455187,
+        "lateral_CAD_iterations": 4,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 114.79265752795618,
+    "ready_wall_s": 115.03981447697151,
+    "capture_s": 0.01474028592929244,
+    "processing_s": 0.23172215302474797,
+    "queue_wait_s": 0.0006945100612938404,
+    "camera_profile": {
+      "upload_and_setup_s": 0.013400748954154551,
+      "gpu_ray_s": 0.0006893470417708158,
+      "gpu_shading_and_download_s": 0.0005543089937418699,
+      "dynamic_s": 0.014090095995925367,
+      "static_s": 0.0,
+      "shading_s": 0.000554680940695107,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 18.6,
+    "capture_native_hand_opening_m": 0.07485859841108322,
+    "delivered_wall_s": 115.04634336195886,
+    "mode": "pregrasp_ring",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-030-pregrasp_ring",
+    "scene_sim_time_s": 114.79265752795618,
+    "hand_TCP_world": [
+      [
+        -0.9999998293120298,
+        4.217194758720511e-05,
+        0.00019725879685445068,
+        0.2298038377384348
+      ],
+      [
+        4.2465827298303086e-05,
+        0.9999992837867334,
+        0.0010963515196043374,
+        -0.5749402923094702
+      ],
+      [
+        -0.0001972070540022759,
+        0.0010963233646021694,
+        -0.9999992335108616,
+        0.8979271848389803
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_gpu_client.py\", line 15, in detect\n    if not value.get('ok'):raise RuntimeError(value.get('error','GPU RGB-D failure'))\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/rgbd-gpu3-fast-spread/server.py\", line 25, in <module>\n    result,masks=detect(packet,dict(req['calibration'],gpu_metric_proposals=True,gpu_plane_budget=6 if req['calibration'].get('fixed_supply_mode') or req.get('desired_part')in['ring1','ring2'] else 14),estimator,desired_part=req.get('desired_part'),seed=req.get('seed'))\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/rgbd-gpu3-fast-spread/rgbd_scattered_rings.py\", line 36, in detect\n    if not valid.any():raise RuntimeError('No visible annular surface in bin RGB-D')\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No visible annular surface in bin RGB-D\n\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 50, in <module>\n    found,masks=gpu_scatter_detect(packet,local_cal,estimator,desired_part=request['part'],seed=seed,socket_path=request['calibration'].get('rgbd_gpu_socket'),expected_source_sha256=request['calibration'].get('rgbd_gpu_source_sha256'))\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_gpu_client.py\", line 23, in detect\n    result,masks=cpu_detect(packet,calibration,estimator,desired_part=desired_part,seed=seed)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_scattered_rings.py\", line 27, in detect\n    if not valid.any():raise RuntimeError('No visible annular surface in bin RGB-D')\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No visible annular surface in bin RGB-D\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 65, in <module>\n    pose,mask=tracker.estimate(packet,request['part'],seed,request['axis'])\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_fast_tracker.py\", line 49, in estimate\n    if len(u)<150:raise RuntimeError('RGB-D tracking ROI has insufficient metal surface')\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: RGB-D tracking ROI has insufficient metal surface\n"
+    },
+    "captured_wall_s": 117.34715170704294,
+    "ready_wall_s": 117.58936308999546,
+    "capture_s": 0.0194135969504714,
+    "processing_s": 0.2217914389912039,
+    "capture_control_time_s": 19.014583333333334,
+    "delivered_wall_s": 117.60113136004657,
+    "mode": "pregrasp_ring",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-031-pregrasp_ring",
+    "scene_sim_time_s": 117.34715170704294,
+    "hand_TCP_world": [
+      [
+        -0.9999997549437655,
+        -0.0004273164295006691,
+        -7.16025566668426e-05,
+        0.2300591330616924
+      ],
+      [
+        -0.0004272599025000855,
+        0.9999997475945409,
+        0.0003031627671440234,
+        -0.5749050010171894
+      ],
+      [
+        7.147525981497334e-05,
+        0.0003031575587197413,
+        -0.9999998071202464,
+        0.9121694931256102
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          0.23009153375280142,
+          -0.5749203768076343,
+          0.9062400940613318
+        ],
+        "initial_plane_axis": [
+          0.0017596917300401586,
+          0.0010651606863001457,
+          0.999997884456626
+        ],
+        "center_m": [
+          0.2302248752142398,
+          -0.5749394574518497,
+          0.9062398797449636
+        ],
+        "axis": [
+          -0.0017596917300401586,
+          -0.0010651606863001457,
+          -0.999997884456626
+        ],
+        "visible_face_inner_radius_m": 0.03188801909711424,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0021119809028857656,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00010640532789526687,
+        "depth_points": 6715,
+        "measured_classification_diameter_m": 0.07298827269919442,
+        "visible_arc_coverage_deg": 225,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          0.00013334146143836878,
+          -1.9080644215407894e-05,
+          -2.1431636820778976e-07
+        ],
+        "lateral_CAD_registration_rms_m": 5.3826702781922564e-05,
+        "lateral_CAD_iterations": 4,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 117.60158333694562,
+    "ready_wall_s": 117.80479355994612,
+    "capture_s": 0.017222282011061907,
+    "processing_s": 0.18501856399234384,
+    "queue_wait_s": 0.0009693769970908761,
+    "camera_profile": {
+      "upload_and_setup_s": 0.016237898031249642,
+      "gpu_ray_s": 0.0005981969879940152,
+      "gpu_shading_and_download_s": 0.00031968799885362387,
+      "dynamic_s": 0.016836095019243658,
+      "static_s": 0.0,
+      "shading_s": 0.0003198969643563032,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 19.06875,
+    "delivered_wall_s": 117.81003427703399,
+    "mode": "pregrasp_ring",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-032-pregrasp_ring",
+    "scene_sim_time_s": 117.60158333694562,
+    "hand_TCP_world": [
+      [
+        -0.9999997549437655,
+        -0.0004273164295006691,
+        -7.16025566668426e-05,
+        0.2300591330616924
+      ],
+      [
+        -0.0004272599025000855,
+        0.9999997475945409,
+        0.0003031627671440234,
+        -0.5749050010171894
+      ],
+      [
+        7.147525981497334e-05,
+        0.0003031575587197413,
+        -0.9999998071202464,
+        0.9121694931256102
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          0.2301671828272575,
+          -0.5749194670997682,
+          0.9062393874514023
+        ],
+        "initial_plane_axis": [
+          0.0019078954256356408,
+          0.001065837204334375,
+          0.999997611960198
+        ],
+        "center_m": [
+          0.23020815616502407,
+          -0.5749131616061954,
+          0.9062393025577262
+        ],
+        "axis": [
+          -0.0019078954256356408,
+          -0.001065837204334375,
+          -0.999997611960198
+        ],
+        "visible_face_inner_radius_m": 0.03193173830255672,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0020682616974432855,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00011024360996337474,
+        "depth_points": 8761,
+        "measured_classification_diameter_m": 0.07310974038673419,
+        "visible_arc_coverage_deg": 270,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          4.097333776656442e-05,
+          6.305493572722476e-06,
+          -8.489367608888188e-08
+        ],
+        "lateral_CAD_registration_rms_m": 6.000120677036854e-05,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 117.81022275495343,
+    "ready_wall_s": 118.00381350005046,
+    "capture_s": 0.015202383045107126,
+    "processing_s": 0.1776175310369581,
+    "queue_wait_s": 0.0007708310149610043,
+    "camera_profile": {
+      "upload_and_setup_s": 0.014046553056687117,
+      "gpu_ray_s": 0.0006386509630829096,
+      "gpu_shading_and_download_s": 0.0004332050448283553,
+      "dynamic_s": 0.014685204019770026,
+      "static_s": 0.0,
+      "shading_s": 0.00043352204374969006,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 19.1125,
+    "capture_native_hand_opening_m": 0.07485862821340561,
+    "delivered_wall_s": 118.00743339501787,
+    "mode": "pregrasp_ring",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-033-pregrasp_ring",
+    "scene_sim_time_s": 117.81022275495343,
+    "hand_TCP_world": [
+      [
+        -0.9999997549437655,
+        -0.0004273164295006691,
+        -7.16025566668426e-05,
+        0.2300591330616924
+      ],
+      [
+        -0.0004272599025000855,
+        0.9999997475945409,
+        0.0003031627671440234,
+        -0.5749050010171894
+      ],
+      [
+        7.147525981497334e-05,
+        0.0003031575587197413,
+        -0.9999998071202464,
+        0.9121694931256102
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          -0.23944234715010468,
+          0.28414367599749407,
+          1.4522232683420122
+        ],
+        "initial_plane_axis": [
+          0.0013881062029424843,
+          0.03302196039546291,
+          0.9994536624040204
+        ],
+        "center_m": [
+          -0.23942872250174257,
+          0.2844796957107852,
+          1.4522121473240588
+        ],
+        "axis": [
+          0.0013881062029424843,
+          0.03302196039546291,
+          0.9994536624040204
+        ],
+        "visible_face_inner_radius_m": 0.025302003986317868,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0021979960136821325,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00017072493491780455,
+        "depth_points": 3211,
+        "measured_classification_diameter_m": 0.060000902136067166,
+        "visible_arc_coverage_deg": 240,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          1.3624648362103864e-05,
+          0.0003360197132911136,
+          -1.1121017953419354e-05
+        ],
+        "lateral_CAD_registration_rms_m": 4.188737111004663e-05,
+        "lateral_CAD_iterations": 4,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 128.55185628600884,
+    "ready_wall_s": 128.77922820602544,
+    "capture_s": 0.037447470938786864,
+    "processing_s": 0.18870081705972552,
+    "queue_wait_s": 0.0012236320180818439,
+    "camera_profile": {
+      "upload_and_setup_s": 0.016940524918027222,
+      "gpu_ray_s": 0.0007431800477206707,
+      "gpu_shading_and_download_s": 0.0005145419854670763,
+      "dynamic_s": 0.017683704965747893,
+      "static_s": 0.0,
+      "shading_s": 0.000514926970936358,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 128.80210452293977,
+    "mode": "held_left",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-034-held_left",
+    "scene_sim_time_s": 128.55185628600884,
+    "hand_TCP_world": [
+      [
+        0.0008680482441257775,
+        0.9999994691733266,
+        -0.00031830011106002764,
+        -0.23940754523316868
+      ],
+      [
+        -0.861919396483397,
+        0.0009096682892777466,
+        0.507044197207663,
+        0.2855491596304968
+      ],
+      [
+        0.5070442236368083,
+        -0.0001658343934182977,
+        0.8619198464292508,
+        1.4469658960377867
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_gpu_client.py\", line 15, in detect\n    if not value.get('ok'):raise RuntimeError(value.get('error','GPU RGB-D failure'))\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/rgbd-gpu3-fast-spread/server.py\", line 25, in <module>\n    result,masks=detect(packet,dict(req['calibration'],gpu_metric_proposals=True,gpu_plane_budget=6 if req['calibration'].get('fixed_supply_mode') or req.get('desired_part')in['ring1','ring2'] else 14),estimator,desired_part=req.get('desired_part'),seed=req.get('seed'))\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/rgbd-gpu3-fast-spread/rgbd_scattered_rings.py\", line 36, in detect\n    if not valid.any():raise RuntimeError('No visible annular surface in bin RGB-D')\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No visible annular surface in bin RGB-D\n\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/realtime_camera_worker.py\", line 50, in <module>\n    found,masks=gpu_scatter_detect(packet,local_cal,estimator,desired_part=request['part'],seed=seed,socket_path=request['calibration'].get('rgbd_gpu_socket'),expected_source_sha256=request['calibration'].get('rgbd_gpu_source_sha256'))\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_gpu_client.py\", line 23, in detect\n    result,masks=cpu_detect(packet,calibration,estimator,desired_part=desired_part,seed=seed)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/rgbd_scattered_rings.py\", line 27, in detect\n    if not valid.any():raise RuntimeError('No visible annular surface in bin RGB-D')\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: No visible annular surface in bin RGB-D\n"
+    },
+    "captured_wall_s": 129.0248206179822,
+    "ready_wall_s": 129.26577602897305,
+    "capture_s": 0.030366043094545603,
+    "processing_s": 0.2097281359601766,
+    "capture_control_time_s": 19.53125,
+    "delivered_wall_s": 129.27317639498506,
+    "mode": "held",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-035-held",
+    "scene_sim_time_s": 129.0248206179822,
+    "hand_TCP_world": [
+      [
+        -0.9999998081053814,
+        -0.00014334907485516883,
+        0.00023216150209191786,
+        0.2300064134461282
+      ],
+      [
+        -0.00014341512011002206,
+        0.9999996829654708,
+        -0.000613437243949742,
+        -0.5751108693857575
+      ],
+      [
+        -0.00023207914816390646,
+        -0.0006134988716573076,
+        -0.9999996474053983,
+        0.9723636838504145
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          -0.2394183676453005,
+          0.2841214363574768,
+          1.4522245944106722
+        ],
+        "initial_plane_axis": [
+          0.0013686748040502754,
+          0.03279033903087655,
+          0.9994613151070536
+        ],
+        "center_m": [
+          -0.23942667676119012,
+          0.28447976003853626,
+          1.4522128499015754
+        ],
+        "axis": [
+          0.0013686748040502754,
+          0.03279033903087655,
+          0.9994613151070536
+        ],
+        "visible_face_inner_radius_m": 0.025288591209562103,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.002211408790437897,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00016358307125819425,
+        "depth_points": 3219,
+        "measured_classification_diameter_m": 0.05995111363268038,
+        "visible_arc_coverage_deg": 240,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          -8.30911588961536e-06,
+          0.0003583236810594803,
+          -1.174450909680047e-05
+        ],
+        "lateral_CAD_registration_rms_m": 4.706140590372266e-05,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 129.1718185179634,
+    "ready_wall_s": 129.45448890305124,
+    "capture_s": 0.019947507069446146,
+    "processing_s": 0.16298839100636542,
+    "queue_wait_s": 0.0997344870120287,
+    "camera_profile": {
+      "upload_and_setup_s": 0.008770432090386748,
+      "gpu_ray_s": 0.0006068889051675797,
+      "gpu_shading_and_download_s": 0.00029383902437984943,
+      "dynamic_s": 0.009377320995554328,
+      "static_s": 0.0,
+      "shading_s": 0.0002940170234069228,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 129.4634029789595,
+    "mode": "held_left",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-036-held_left",
+    "scene_sim_time_s": 129.1718185179634,
+    "hand_TCP_world": [
+      [
+        0.0008680430322948309,
+        0.9999994691776057,
+        -0.0003183008823272764,
+        -0.23940754426427255
+      ],
+      [
+        -0.8619193974310624,
+        0.0009096641884722672,
+        0.5070441956040924,
+        0.2855491574346803
+      ],
+      [
+        0.5070442220348041,
+        -0.00016583108432547062,
+        0.8619198473723033,
+        1.446965898248528
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          0.23017219215958143,
+          -0.5754818877431874,
+          0.9663192221760423
+        ],
+        "initial_plane_axis": [
+          0.0012550341442366059,
+          0.0018208501639169674,
+          0.999997554693999
+        ],
+        "center_m": [
+          0.23013573834103157,
+          -0.575138293867574,
+          0.9663186422924466
+        ],
+        "axis": [
+          -0.0012550341442366059,
+          -0.0018208501639169674,
+          -0.999997554693999
+        ],
+        "visible_face_inner_radius_m": 0.03192451995221739,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0020754800477826157,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00021028389253828497,
+        "depth_points": 3252,
+        "measured_classification_diameter_m": 0.07268964337429512,
+        "visible_arc_coverage_deg": 300,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          -3.645381854985863e-05,
+          0.000343593875613446,
+          -5.798835956971615e-07
+        ],
+        "lateral_CAD_registration_rms_m": 5.0454576876365e-05,
+        "lateral_CAD_iterations": 4,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 129.27353205601685,
+    "ready_wall_s": 129.6525326720439,
+    "capture_s": 0.018272136920131743,
+    "processing_s": 0.17191522708162665,
+    "queue_wait_s": 0.18881325202528387,
+    "camera_profile": {
+      "upload_and_setup_s": 0.016984835034236312,
+      "gpu_ray_s": 0.0006543489871546626,
+      "gpu_shading_and_download_s": 0.0005320089403539896,
+      "dynamic_s": 0.017639184021390975,
+      "static_s": 0.0,
+      "shading_s": 0.0005323829827830195,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 19.583333333333332,
+    "delivered_wall_s": 138.5300216890173,
+    "mode": "held",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-037-held",
+    "scene_sim_time_s": 129.27353205601685,
+    "hand_TCP_world": [
+      [
+        -0.9999998081053814,
+        -0.00014334907485516883,
+        0.00023216150209191786,
+        0.2300064134461282
+      ],
+      [
+        -0.00014341512011002206,
+        0.9999996829654708,
+        -0.000613437243949742,
+        -0.5751108693857575
+      ],
+      [
+        -0.00023207914816390646,
+        -0.0006134988716573076,
+        -0.9999996474053983,
+        0.9723636838504145
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          0.23010189403311687,
+          -0.5748022660241449,
+          0.9663178498242743
+        ],
+        "initial_plane_axis": [
+          0.0010635805427425269,
+          0.0019527278665638051,
+          0.9999975278220983
+        ],
+        "center_m": [
+          0.23013750342617345,
+          -0.5751071326616354,
+          0.9663184072737734
+        ],
+        "axis": [
+          -0.0010635805427425269,
+          -0.0019527278665638051,
+          -0.9999975278220983
+        ],
+        "visible_face_inner_radius_m": 0.031905034772596715,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.002094965227403288,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00020895213410692236,
+        "depth_points": 3297,
+        "measured_classification_diameter_m": 0.07270930724352037,
+        "visible_arc_coverage_deg": 300,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          3.5609393056579286e-05,
+          -0.00030486663749051957,
+          5.574494991167356e-07
+        ],
+        "lateral_CAD_registration_rms_m": 5.205058295966508e-05,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 138.5303907620255,
+    "ready_wall_s": 138.75535153294913,
+    "capture_s": 0.021620351006276906,
+    "processing_s": 0.20219743193592876,
+    "queue_wait_s": 0.0011429879814386368,
+    "camera_profile": {
+      "upload_and_setup_s": 0.01981292199343443,
+      "gpu_ray_s": 0.00081164191942662,
+      "gpu_shading_and_download_s": 0.0008446190040558577,
+      "dynamic_s": 0.02062456391286105,
+      "static_s": 0.0,
+      "shading_s": 0.0008452670881524682,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "capture_control_time_s": 19.625,
+    "capture_native_hand_opening_m": 0.07485859841108322,
+    "delivered_wall_s": 146.6312114839675,
+    "mode": "held",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-038-held",
+    "scene_sim_time_s": 138.5303907620255,
+    "hand_TCP_world": [
+      [
+        -0.9999998081017654,
+        -0.00014342267883329246,
+        0.00023213164195685782,
+        0.23000643046180694
+      ],
+      [
+        -0.00014348868512303268,
+        0.9999996830094503,
+        -0.0006133483355034841,
+        -0.5751108584159
+      ],
+      [
+        -0.00023204925563901767,
+        -0.0006134099760026221,
+        -0.9999996474668662,
+        0.9723636588373319
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          -0.2388728036152221,
+          0.28389064480484333,
+          1.4520236621070404
+        ],
+        "initial_plane_axis": [
+          0.0004938380483065729,
+          0.00457998154219513,
+          0.9999893898902403
+        ],
+        "center_m": [
+          -0.23888143654792862,
+          0.28427460035390223,
+          1.4520219078423704
+        ],
+        "axis": [
+          0.0004938380483065729,
+          0.00457998154219513,
+          0.9999893898902403
+        ],
+        "visible_face_inner_radius_m": 0.025315638554022905,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0021843614459770948,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00022232697027546586,
+        "depth_points": 3304,
+        "measured_classification_diameter_m": 0.05989893681619486,
+        "visible_arc_coverage_deg": 270,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          -8.632932706531538e-06,
+          0.00038395554905890084,
+          -1.7542646699730824e-06
+        ],
+        "lateral_CAD_registration_rms_m": 4.010859418285489e-05,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 155.165570343961,
+    "ready_wall_s": 155.41702778695617,
+    "capture_s": 0.06227720505557954,
+    "processing_s": 0.18783883191645145,
+    "queue_wait_s": 0.0013414060231298208,
+    "camera_profile": {
+      "upload_and_setup_s": 0.026888536987826228,
+      "gpu_ray_s": 0.0007942590164020658,
+      "gpu_shading_and_download_s": 0.000624961918219924,
+      "dynamic_s": 0.027682796004228294,
+      "static_s": 0.0,
+      "shading_s": 0.0006254209438338876,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 155.4328133299714,
+    "mode": "held_left",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-039-held_left",
+    "scene_sim_time_s": 155.165570343961,
+    "hand_TCP_world": [
+      [
+        -0.0004137210394190183,
+        0.9999993853480189,
+        -0.0009215527450321633,
+        -0.23885569463566741
+      ],
+      [
+        -0.8777933407211362,
+        7.838820031470641e-05,
+        0.47903918084203595,
+        0.28553638131003867
+      ],
+      [
+        0.4790389635582657,
+        0.0010070768688341797,
+        0.8777928870996685,
+        1.4467917524231364
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          -0.23908541491704713,
+          0.28395445472582315,
+          1.53175099249967
+        ],
+        "initial_plane_axis": [
+          0.000897860480124438,
+          0.0017234948083484024,
+          0.9999981117043191
+        ],
+        "center_m": [
+          -0.23904841834095655,
+          0.2842311408318111,
+          1.5317504824138757
+        ],
+        "axis": [
+          0.000897860480124438,
+          0.0017234948083484024,
+          0.9999981117043191
+        ],
+        "visible_face_inner_radius_m": 0.025363415536245205,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0021365844637547954,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00020252550840617212,
+        "depth_points": 3314,
+        "measured_classification_diameter_m": 0.06004965136903048,
+        "visible_arc_coverage_deg": 270,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          3.6996576090575495e-05,
+          0.0002766861059879666,
+          -5.10085794269699e-07
+        ],
+        "lateral_CAD_registration_rms_m": 4.327399664529509e-05,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 175.1645986980293,
+    "ready_wall_s": 175.41965326399077,
+    "capture_s": 0.06589358299970627,
+    "processing_s": 0.18795548402704298,
+    "queue_wait_s": 0.0012054989347234368,
+    "camera_profile": {
+      "upload_and_setup_s": 0.020754762925207615,
+      "gpu_ray_s": 0.009830392082221806,
+      "gpu_shading_and_download_s": 0.0005162759916856885,
+      "dynamic_s": 0.03058515500742942,
+      "static_s": 0.0,
+      "shading_s": 0.0005166459595784545,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 175.48675537703093,
+    "mode": "held_left",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-040-held_left",
+    "scene_sim_time_s": 175.1645986980293,
+    "hand_TCP_world": [
+      [
+        0.0009956587456213387,
+        0.9999987202902515,
+        -0.001182160392390734,
+        -0.23904011882592988
+      ],
+      [
+        -0.8803252105851643,
+        0.001437364140516897,
+        0.47436812525864347,
+        0.2855688862245836
+      ],
+      [
+        0.4743692350934885,
+        0.0005683122683390044,
+        0.8803256183043088,
+        1.5266583704387289
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          -0.2392066187134841,
+          0.2840092025330032,
+          1.5317237838621556
+        ],
+        "initial_plane_axis": [
+          0.0019966745683647072,
+          0.0015541095203298026,
+          0.9999967990120103
+        ],
+        "center_m": [
+          -0.23904650427612228,
+          0.2842217345696033,
+          1.5317231338655883
+        ],
+        "axis": [
+          0.0019966745683647072,
+          0.0015541095203298026,
+          0.9999967990120103
+        ],
+        "visible_face_inner_radius_m": 0.025452204788354624,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0020477952116453764,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.0002139562307318909,
+        "depth_points": 4714,
+        "measured_classification_diameter_m": 0.0601591524947779,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          0.00016011443736180242,
+          0.00021253203660009934,
+          -6.499965672368546e-07
+        ],
+        "lateral_CAD_registration_rms_m": 4.591199668848623e-05,
+        "lateral_CAD_iterations": 4,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 186.28414456103928,
+    "ready_wall_s": 186.55652354902122,
+    "capture_s": 0.06809497100766748,
+    "processing_s": 0.2030597460689023,
+    "queue_wait_s": 0.00122427090536803,
+    "camera_profile": {
+      "upload_and_setup_s": 0.024068841012194753,
+      "gpu_ray_s": 0.010271103936247528,
+      "gpu_shading_and_download_s": 0.0005581360310316086,
+      "dynamic_s": 0.03433994494844228,
+      "static_s": 0.0,
+      "shading_s": 0.0005585760809481144,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 186.57161459198687,
+    "mode": "held_left",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-041-held_left",
+    "scene_sim_time_s": 186.28414456103928,
+    "hand_TCP_world": [
+      [
+        -0.00018733483749821693,
+        0.9999988053149679,
+        -0.0014647234683007688,
+        -0.23902314879129635
+      ],
+      [
+        -0.8775355633012888,
+        0.0005380484045930268,
+        0.47951093599774486,
+        0.28575328318624704
+      ],
+      [
+        0.47951115611295675,
+        0.001375131414428879,
+        0.8775345323436978,
+        1.446672012696179
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          0.2297650488904499,
+          -0.5751449482946707,
+          0.9662746334950469
+        ],
+        "initial_plane_axis": [
+          0.016874155190116442,
+          0.004730105990451456,
+          0.9998464327005114
+        ],
+        "center_m": [
+          0.22984248397793852,
+          -0.5751391186809803,
+          0.9662732990637479
+        ],
+        "axis": [
+          -0.016874155190116442,
+          -0.004730105990451456,
+          -0.9998464327005114
+        ],
+        "visible_face_inner_radius_m": 0.03192562922292911,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0020743707770708927,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00011278120816238528,
+        "depth_points": 9415,
+        "measured_classification_diameter_m": 0.07305168645986955,
+        "visible_arc_coverage_deg": 300,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          7.743508748861427e-05,
+          5.829613690333524e-06,
+          -1.3344312990160034e-06
+        ],
+        "lateral_CAD_registration_rms_m": 5.4471554850396206e-05,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 188.08252715005074,
+    "ready_wall_s": 188.32598889397923,
+    "capture_s": 0.02781788702122867,
+    "processing_s": 0.21464239398483187,
+    "queue_wait_s": 0.0010014629224315286,
+    "camera_profile": {
+      "upload_and_setup_s": 0.0260704510146752,
+      "gpu_ray_s": 0.0008565629832446575,
+      "gpu_shading_and_download_s": 0.0007508710259571671,
+      "dynamic_s": 0.026927013997919858,
+      "static_s": 0.0,
+      "shading_s": 0.0007514910539612174,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 188.33627790294122,
+    "mode": "held",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-042-held",
+    "scene_sim_time_s": 188.08252715005074,
+    "hand_TCP_world": [
+      [
+        -0.9999998080917886,
+        -0.00014362508975836646,
+        0.0002320495265526748,
+        0.23000647725491538
+      ],
+      [
+        -0.00014369098892243987,
+        0.9999996831303257,
+        -0.0006131038372876825,
+        -0.575110828248774
+      ],
+      [
+        -0.00023196705122918062,
+        -0.0006131655129407634,
+        -0.999999647635857,
+        0.9723635900513564
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          0.22972951274769354,
+          -0.575128888282147,
+          0.9662645735181677
+        ],
+        "initial_plane_axis": [
+          0.023977426999493387,
+          0.005849181283545682,
+          0.9996953886423585
+        ],
+        "center_m": [
+          0.22978499763123025,
+          -0.5751479351637341,
+          0.9662633541706594
+        ],
+        "axis": [
+          -0.023977426999493387,
+          -0.005849181283545682,
+          -0.9996953886423585
+        ],
+        "visible_face_inner_radius_m": 0.03191907419707226,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0020809258029277425,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00011109357993535624,
+        "depth_points": 9367,
+        "measured_classification_diameter_m": 0.07307133472820948,
+        "visible_arc_coverage_deg": 300,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          5.548488353671055e-05,
+          -1.9046881587048148e-05,
+          -1.2193475082966643e-06
+        ],
+        "lateral_CAD_registration_rms_m": 6.297098450113716e-05,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 218.08664081303868,
+    "ready_wall_s": 218.34208039497025,
+    "capture_s": 0.03163622401189059,
+    "processing_s": 0.2226097349775955,
+    "queue_wait_s": 0.001193622942082584,
+    "camera_profile": {
+      "upload_and_setup_s": 0.029798487899824977,
+      "gpu_ray_s": 0.0010024691000580788,
+      "gpu_shading_and_download_s": 0.0007090099388733506,
+      "dynamic_s": 0.030800956999883056,
+      "static_s": 0.0,
+      "shading_s": 0.0007094539469107985,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 218.34866391203832,
+    "mode": "held",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-043-held",
+    "scene_sim_time_s": 218.08664081303868,
+    "hand_TCP_world": [
+      [
+        -0.9999998080917886,
+        -0.00014362508975836646,
+        0.0002320495265526748,
+        0.23000647725491538
+      ],
+      [
+        -0.00014369098892243987,
+        0.9999996831303257,
+        -0.0006131038372876825,
+        -0.575110828248774
+      ],
+      [
+        -0.00023196705122918062,
+        -0.0006131655129407634,
+        -0.999999647635857,
+        0.9723635900513564
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          -0.12341211712588435,
+          0.2397722671249105,
+          1.4859319148918027
+        ],
+        "initial_plane_axis": [
+          0.0013141696517519567,
+          -0.0051680134510381425,
+          0.9999857821964752
+        ],
+        "center_m": [
+          -0.12343965148455764,
+          0.23972124247835228,
+          1.4859316873773265
+        ],
+        "axis": [
+          0.0013141696517519567,
+          -0.0051680134510381425,
+          0.9999857821964752
+        ],
+        "visible_face_inner_radius_m": 0.031903972009110826,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0020960279908891766,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00011993910091362451,
+        "depth_points": 10226,
+        "measured_classification_diameter_m": 0.07307931616809245,
+        "visible_arc_coverage_deg": 315,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          -2.7534358673295123e-05,
+          -5.1024646558234243e-05,
+          -2.2751447614766107e-07
+        ],
+        "lateral_CAD_registration_rms_m": 5.859181730051153e-05,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 242.45610018994194,
+    "ready_wall_s": 242.6970715270145,
+    "capture_s": 0.03260667796712369,
+    "processing_s": 0.20726964704226702,
+    "queue_wait_s": 0.0010950120631605387,
+    "camera_profile": {
+      "upload_and_setup_s": 0.02548485598526895,
+      "gpu_ray_s": 0.00651377800386399,
+      "gpu_shading_and_download_s": 0.0005017380462959409,
+      "dynamic_s": 0.03199863398913294,
+      "static_s": 0.0,
+      "shading_s": 0.0005021010292693973,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 242.71170966804493,
+    "mode": "held",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-044-held",
+    "scene_sim_time_s": 242.45610018994194,
+    "hand_TCP_world": [
+      [
+        -0.49999771170968543,
+        0.8660200100918182,
+        0.0033717129584991713,
+        -0.12328207409201927
+      ],
+      [
+        -0.8660066081462195,
+        -0.500008927539443,
+        0.0048350064862154336,
+        0.24005047885930528
+      ],
+      [
+        0.005873061032399358,
+        -0.0005024314265147327,
+        0.9999824723112865,
+        1.4797687020406851
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          -0.12330379861692495,
+          0.23983870019147585,
+          1.5305422321511546
+        ],
+        "initial_plane_axis": [
+          0.0075084476589626446,
+          0.008707751700661508,
+          0.9999338969522297
+        ],
+        "center_m": [
+          -0.12334899595156242,
+          0.23978760013674968,
+          1.5305430165314144
+        ],
+        "axis": [
+          0.0075084476589626446,
+          0.008707751700661508,
+          0.9999338969522297
+        ],
+        "visible_face_inner_radius_m": 0.03191215859869142,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.0020878414013085836,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00012231471559503177,
+        "depth_points": 10093,
+        "measured_classification_diameter_m": 0.07307865563864357,
+        "visible_arc_coverage_deg": 285,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          -4.5197334637467335e-05,
+          -5.110005472616641e-05,
+          7.843802598550553e-07
+        ],
+        "lateral_CAD_registration_rms_m": 0.0004001822921694046,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 247.85931476100814,
+    "ready_wall_s": 248.11412035801914,
+    "capture_s": 0.02502071508206427,
+    "processing_s": 0.22846103098709136,
+    "queue_wait_s": 0.0013238509418442845,
+    "camera_profile": {
+      "upload_and_setup_s": 0.01879288791678846,
+      "gpu_ray_s": 0.005536510027013719,
+      "gpu_shading_and_download_s": 0.0005786470137536526,
+      "dynamic_s": 0.024329397943802178,
+      "static_s": 0.0,
+      "shading_s": 0.0005789940478280187,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 248.1348953830311,
+    "mode": "held",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-045-held",
+    "scene_sim_time_s": 247.85931476100814,
+    "hand_TCP_world": [
+      [
+        -0.5011878134134572,
+        0.8653368685030595,
+        0.0016230171990597984,
+        -0.12324493832735225
+      ],
+      [
+        -0.8652910729472527,
+        -0.5011792575705193,
+        0.009510376167023691,
+        0.2400115069459311
+      ],
+      [
+        0.00904306791982222,
+        0.003362111720258455,
+        0.9999533022882409,
+        1.5250072644706765
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "ring1",
+        "initial_arc_center_m": [
+          -0.12328236073020933,
+          0.23990348200227218,
+          1.5305219297358212
+        ],
+        "initial_plane_axis": [
+          0.007981423515861069,
+          0.008962730116909725,
+          0.9999279805803576
+        ],
+        "center_m": [
+          -0.1233347683560085,
+          0.23982008945391436,
+          1.530523095532143
+        ],
+        "axis": [
+          0.007981423515861069,
+          0.008962730116909725,
+          0.9999279805803576
+        ],
+        "visible_face_inner_radius_m": 0.031919089896964584,
+        "visible_CAD_end_sign": -1,
+        "front_back_orientation_margin_m": 0.002080910103035419,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.00010037743235130019,
+        "depth_points": 11075,
+        "measured_classification_diameter_m": 0.0730369987668637,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          -5.24076257991668e-05,
+          -8.339254835781906e-05,
+          1.1657963217004408e-06
+        ],
+        "lateral_CAD_registration_rms_m": 0.00041311714963886034,
+        "lateral_CAD_iterations": 4,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 253.64999968302436,
+    "ready_wall_s": 253.92099507700186,
+    "capture_s": 0.024344185017980635,
+    "processing_s": 0.24558031698688865,
+    "queue_wait_s": 0.001070891972631216,
+    "camera_profile": {
+      "upload_and_setup_s": 0.017615315970033407,
+      "gpu_ray_s": 0.006133415969088674,
+      "gpu_shading_and_download_s": 0.0004960140213370323,
+      "dynamic_s": 0.02374873193912208,
+      "static_s": 0.0,
+      "shading_s": 0.0004963839892297983,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 253.9288901600521,
+    "mode": "held",
+    "part": "ring1",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-046-held",
+    "scene_sim_time_s": 253.64999968302436,
+    "hand_TCP_world": [
+      [
+        -0.4990945483039792,
+        0.8665429592225663,
+        0.00276750350671233,
+        -0.1229895700623683
+      ],
+      [
+        -0.8664787870659911,
+        -0.4990927959830628,
+        0.010984231143971878,
+        0.24034299568324738
+      ],
+      [
+        0.010899509745375279,
+        0.0030841849484253446,
+        0.9999356873489262,
+        1.4449423883734065
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "pin",
+        "center_m": [
+          0.22999432815028914,
+          -0.8547312125026701,
+          0.9160635280790408
+        ],
+        "axis": [
+          -9.035083215279369e-06,
+          1.894982193197093e-05,
+          -0.9999999997796357
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.005156882364595332,
+        "cap_points": 952,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 1396,
+        "plane_rms_m": 3.509642576342913e-08,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 44.90722098853439,
+        "neural_inference_this_frame": false
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 254.93576860195026,
+    "ready_wall_s": 254.99534493603278,
+    "capture_s": 0.01359380001667887,
+    "processing_s": 0.0449854499893263,
+    "queue_wait_s": 0.0009970840765163302,
+    "camera_profile": {
+      "upload_and_setup_s": 0.012407609960064292,
+      "gpu_ray_s": 0.0005234490381553769,
+      "gpu_shading_and_download_s": 0.0005528760375455022,
+      "dynamic_s": 0.012931058998219669,
+      "static_s": 0.0,
+      "shading_s": 0.0005533619550988078,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 254.9975037330296,
+    "mode": "pin_initial",
+    "part": "pin",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-047-pin_initial",
+    "scene_sim_time_s": 254.93576860195026,
+    "hand_TCP_world": [
+      [
+        -0.4990945483039792,
+        0.8665429592225663,
+        0.00276750350671233,
+        -0.1229895700623683
+      ],
+      [
+        -0.8664787870659911,
+        -0.4990927959830628,
+        0.010984231143971878,
+        0.24034299568324738
+      ],
+      [
+        0.010899509745375279,
+        0.0030841849484253446,
+        0.9999356873489262,
+        1.4449423883734065
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "cap_edge_coverage_deg": 348.12964695421243,
+        "cap_circular_edge_inliers": 63,
+        "cap_total_hull_edge_points": 63,
+        "cap_circular_edge_rms_m": 1.1874909110753024e-05,
+        "cap_expected_radius_m": 0.00525,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          0.23000476234037928,
+          -0.8547531558511999,
+          0.9160636039005063
+        ],
+        "axis": [
+          -9.095911727751103e-06,
+          1.9188657183346303e-05,
+          -0.99999999977453
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.005218827859630323,
+        "cap_points": 5900,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 8218,
+        "plane_rms_m": 1.9104578167945923e-08,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 226.65227495599538,
+        "neural_inference_this_frame": false
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 262.16431297396775,
+    "ready_wall_s": 262.4749761810526,
+    "capture_s": 0.08278472500387579,
+    "processing_s": 0.22672776808030903,
+    "queue_wait_s": 0.0011507140006870031,
+    "camera_profile": {
+      "upload_and_setup_s": 0.08004795899614692,
+      "gpu_ray_s": 0.0005502339918166399,
+      "gpu_shading_and_download_s": 0.0007851530099287629,
+      "dynamic_s": 0.08059819298796356,
+      "static_s": 0.0,
+      "shading_s": 0.0007855580188333988,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 262.48892615002114,
+    "mode": "held",
+    "part": "pin",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-048-held",
+    "scene_sim_time_s": 262.16431297396775,
+    "hand_TCP_world": [
+      [
+        0.7663417540733614,
+        0.0003286977959498405,
+        0.642432803315662,
+        0.22995081180259502
+      ],
+      [
+        -0.00032348710724802135,
+        -0.9999994129099152,
+        0.0008975200210034424,
+        -0.8546043250841263
+      ],
+      [
+        0.6424328022247509,
+        -0.0008955417940784826,
+        -0.7663413314478138,
+        0.9312522154454346
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "cap_edge_coverage_deg": 348.12964695421243,
+        "cap_circular_edge_inliers": 63,
+        "cap_total_hull_edge_points": 63,
+        "cap_circular_edge_rms_m": 1.1874909110753024e-05,
+        "cap_expected_radius_m": 0.00525,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          0.23000476234037928,
+          -0.8547531558511999,
+          0.9160636039005063
+        ],
+        "axis": [
+          -9.095911727751103e-06,
+          1.9188657183346303e-05,
+          -0.99999999977453
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.005218827859630323,
+        "cap_points": 5900,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 8218,
+        "plane_rms_m": 1.9104578167945923e-08,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 214.36968294437975,
+        "neural_inference_this_frame": false
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 262.97950844303705,
+    "ready_wall_s": 263.23082223394886,
+    "capture_s": 0.03607222402933985,
+    "processing_s": 0.21444145997520536,
+    "queue_wait_s": 0.0008001069072633982,
+    "camera_profile": {
+      "upload_and_setup_s": 0.034920673933811486,
+      "gpu_ray_s": 0.0004578150110319257,
+      "gpu_shading_and_download_s": 0.0006214859895408154,
+      "dynamic_s": 0.03537848894484341,
+      "static_s": 0.0,
+      "shading_s": 0.0006217639893293381,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 263.24661616201047,
+    "mode": "held",
+    "part": "pin",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-049-held",
+    "scene_sim_time_s": 262.97950844303705,
+    "hand_TCP_world": [
+      [
+        0.7663417540733614,
+        0.0003286977959498405,
+        0.642432803315662,
+        0.22995081180259502
+      ],
+      [
+        -0.00032348710724802135,
+        -0.9999994129099152,
+        0.0008975200210034424,
+        -0.8546043250841263
+      ],
+      [
+        0.6424328022247509,
+        -0.0008955417940784826,
+        -0.7663413314478138,
+        0.9312522154454346
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "cap_edge_coverage_deg": 348.12964695421243,
+        "cap_circular_edge_inliers": 63,
+        "cap_total_hull_edge_points": 63,
+        "cap_circular_edge_rms_m": 1.1874909110753024e-05,
+        "cap_expected_radius_m": 0.00525,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          0.23000476234037928,
+          -0.8547531558511999,
+          0.9160636039005063
+        ],
+        "axis": [
+          -9.095911727751103e-06,
+          1.9188657183346303e-05,
+          -0.99999999977453
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.005218827859630323,
+        "cap_points": 5900,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 8218,
+        "plane_rms_m": 1.9104578167945923e-08,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 216.8314449954778,
+        "neural_inference_this_frame": false
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 263.73427567002364,
+    "ready_wall_s": 263.99389305897057,
+    "capture_s": 0.041122121969237924,
+    "processing_s": 0.21690869296435267,
+    "queue_wait_s": 0.0015865740133449435,
+    "camera_profile": {
+      "upload_and_setup_s": 0.03939178795553744,
+      "gpu_ray_s": 0.00045723700895905495,
+      "gpu_shading_and_download_s": 0.0005636949790641665,
+      "dynamic_s": 0.03984902496449649,
+      "static_s": 0.0,
+      "shading_s": 0.000563989975489676,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 264.0038756149588,
+    "mode": "held",
+    "part": "pin",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-050-held",
+    "scene_sim_time_s": 263.73427567002364,
+    "hand_TCP_world": [
+      [
+        0.7663417540733614,
+        0.0003286977959498405,
+        0.642432803315662,
+        0.22995081180259502
+      ],
+      [
+        -0.00032348710724802135,
+        -0.9999994129099152,
+        0.0008975200210034424,
+        -0.8546043250841263
+      ],
+      [
+        0.6424328022247509,
+        -0.0008955417940784826,
+        -0.7663413314478138,
+        0.9312522154454346
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "cap_edge_coverage_deg": 346.81616674325267,
+        "cap_circular_edge_inliers": 68,
+        "cap_total_hull_edge_points": 68,
+        "cap_circular_edge_rms_m": 2.0102646387306156e-05,
+        "cap_expected_radius_m": 0.00525,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          0.2300051538926366,
+          -0.8547487518025703,
+          0.9160635632363237
+        ],
+        "axis": [
+          -8.774551817355478e-06,
+          1.901976784359698e-05,
+          -0.9999999997806279
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.005209661052602163,
+        "cap_points": 5889,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 8213,
+        "plane_rms_m": 1.935043458221405e-08,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 209.11657204851508,
+        "neural_inference_this_frame": false
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 264.50086392695084,
+    "ready_wall_s": 264.74658103997353,
+    "capture_s": 0.03595029504504055,
+    "processing_s": 0.20918517792597413,
+    "queue_wait_s": 0.0005816400516778231,
+    "camera_profile": {
+      "upload_and_setup_s": 0.03479173802770674,
+      "gpu_ray_s": 0.00046931090764701366,
+      "gpu_shading_and_download_s": 0.000615603057667613,
+      "dynamic_s": 0.035261048935353756,
+      "static_s": 0.0,
+      "shading_s": 0.0006158479955047369,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 264.76335275999736,
+    "mode": "held",
+    "part": "pin",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-051-held",
+    "scene_sim_time_s": 264.50086392695084,
+    "hand_TCP_world": [
+      [
+        0.7662654521949477,
+        0.00044322007425919637,
+        0.6425237421268766,
+        0.23000982274102405
+      ],
+      [
+        -0.0001581995918915932,
+        -0.9999994696217218,
+        0.0008784729713126221,
+        -0.8545854832571778
+      ],
+      [
+        0.6425238717788295,
+        -0.0007747064513647322,
+        -0.7662651092708062,
+        0.9313340730469775
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "cap_edge_coverage_deg": 340.80403257457385,
+        "cap_circular_edge_inliers": 47,
+        "cap_total_hull_edge_points": 47,
+        "cap_circular_edge_rms_m": 2.389418899558756e-05,
+        "cap_expected_radius_m": 0.0025,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          0.2300617829563749,
+          -0.8548718828325573,
+          0.9869161872881204
+        ],
+        "axis": [
+          0.00515194717593549,
+          -0.03541673766728286,
+          -0.9993593508509855
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.00246939666556528,
+        "cap_points": 828,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 13465,
+        "plane_rms_m": 7.44748923140813e-06,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 201.0650630109012,
+        "neural_inference_this_frame": false
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 266.35579314804636,
+    "ready_wall_s": 266.60045852698386,
+    "capture_s": 0.04186478490009904,
+    "processing_s": 0.20113599603064358,
+    "queue_wait_s": 0.0016645980067551136,
+    "camera_profile": {
+      "upload_and_setup_s": 0.04073912196327001,
+      "gpu_ray_s": 0.00045308901462703943,
+      "gpu_shading_and_download_s": 0.0005967089673504233,
+      "dynamic_s": 0.04119221097789705,
+      "static_s": 0.0,
+      "shading_s": 0.0005969969788566232,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 266.6119897860335,
+    "mode": "held",
+    "part": "pin",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-052-held",
+    "scene_sim_time_s": 266.35579314804636,
+    "hand_TCP_world": [
+      [
+        0.7655312494559794,
+        2.8242813659830808e-05,
+        0.643398492492891,
+        0.23000081225663782
+      ],
+      [
+        0.0018497877017254925,
+        -0.9999958214109809,
+        -0.0021570347744349753,
+        -0.8546197124209193
+      ],
+      [
+        0.6433958217406243,
+        0.0028415066077949838,
+        -0.7655282416318392,
+        1.0022497544580373
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "cap_edge_coverage_deg": 341.0083690558298,
+        "cap_circular_edge_inliers": 40,
+        "cap_total_hull_edge_points": 40,
+        "cap_circular_edge_rms_m": 2.173148105791402e-05,
+        "cap_expected_radius_m": 0.0025,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          0.23002986185392432,
+          -0.8548802734474196,
+          0.986918255740353
+        ],
+        "axis": [
+          0.005374642955210315,
+          -0.03563521496204179,
+          -0.9993504113511501
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.0024636244556315965,
+        "cap_points": 483,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 16365,
+        "plane_rms_m": 1.4614325619390444e-05,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 207.02620700467378,
+        "neural_inference_this_frame": false
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 266.6936360229738,
+    "ready_wall_s": 266.94330660405103,
+    "capture_s": 0.041264661005698144,
+    "processing_s": 0.20710142306052148,
+    "queue_wait_s": 0.0013044970110058784,
+    "camera_profile": {
+      "upload_and_setup_s": 0.04019351303577423,
+      "gpu_ray_s": 0.0004099719226360321,
+      "gpu_shading_and_download_s": 0.000587164075113833,
+      "dynamic_s": 0.04060348495841026,
+      "static_s": 0.0,
+      "shading_s": 0.0005875549977645278,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 266.9534399060067,
+    "mode": "held",
+    "part": "pin",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-053-held",
+    "scene_sim_time_s": 266.6936360229738,
+    "hand_TCP_world": [
+      [
+        0.7655314686658474,
+        2.7879468283225783e-05,
+        0.6433982316873522,
+        0.23000064904339124
+      ],
+      [
+        0.0018492981733732724,
+        -0.9999958223514102,
+        -0.002157018552024969,
+        -0.8546197965077843
+      ],
+      [
+        0.6433955623254075,
+        0.002841179217689112,
+        -0.7655284608749993,
+        1.0022495293925582
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "cap_edge_coverage_deg": 329.720692177096,
+        "cap_circular_edge_inliers": 42,
+        "cap_total_hull_edge_points": 43,
+        "cap_circular_edge_rms_m": 2.2078744883878003e-05,
+        "cap_expected_radius_m": 0.0025,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          0.2300139066659677,
+          -0.8548818770338763,
+          0.9869174514129
+        ],
+        "axis": [
+          0.005489389805373174,
+          -0.035533065939426234,
+          -0.9993534248825633
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.002452868817261272,
+        "cap_points": 478,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 16313,
+        "plane_rms_m": 1.2198036509550661e-05,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 204.98818904161453,
+        "neural_inference_this_frame": false
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 267.49272808094975,
+    "ready_wall_s": 267.7412414320279,
+    "capture_s": 0.04208669299259782,
+    "processing_s": 0.20505501807201654,
+    "queue_wait_s": 0.0013716400135308504,
+    "camera_profile": {
+      "upload_and_setup_s": 0.040383041952736676,
+      "gpu_ray_s": 0.00040848797652870417,
+      "gpu_shading_and_download_s": 0.0005770510761067271,
+      "dynamic_s": 0.04079152992926538,
+      "static_s": 0.0,
+      "shading_s": 0.0005773140583187342,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 267.7502701160265,
+    "mode": "held",
+    "part": "pin",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-054-held",
+    "scene_sim_time_s": 267.49272808094975,
+    "hand_TCP_world": [
+      [
+        0.7655314686658474,
+        2.7879468283225783e-05,
+        0.6433982316873522,
+        0.23000064904339124
+      ],
+      [
+        0.0018492981733732724,
+        -0.9999958223514102,
+        -0.002157018552024969,
+        -0.8546197965077843
+      ],
+      [
+        0.6433955623254075,
+        0.002841179217689112,
+        -0.7655284608749993,
+        1.0022495293925582
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "cap_edge_coverage_deg": 332.3746714500461,
+        "cap_circular_edge_inliers": 46,
+        "cap_total_hull_edge_points": 46,
+        "cap_circular_edge_rms_m": 2.0234488812503827e-05,
+        "cap_expected_radius_m": 0.0025,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.3027178881996195,
+          0.22704800390197136,
+          1.4834912009781704
+        ],
+        "axis": [
+          -0.010335677837147738,
+          0.0014149682709471147,
+          0.9999455843336871
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.0024681453319095794,
+        "cap_points": 805,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 15484,
+        "plane_rms_m": 9.144165455246698e-06,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 204.52930103056133,
+        "neural_inference_this_frame": false
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 282.1125836559804,
+    "ready_wall_s": 282.35949638602324,
+    "capture_s": 0.041128930053673685,
+    "processing_s": 0.20462469500489533,
+    "queue_wait_s": 0.001159104984253645,
+    "camera_profile": {
+      "upload_and_setup_s": 0.0370977099519223,
+      "gpu_ray_s": 0.0033113660756498575,
+      "gpu_shading_and_download_s": 0.0006365069421008229,
+      "dynamic_s": 0.040409076027572155,
+      "static_s": 0.0,
+      "shading_s": 0.0006377339595928788,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 282.3752094239462,
+    "mode": "held",
+    "part": "pin",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-055-held",
+    "scene_sim_time_s": 282.1125836559804,
+    "hand_TCP_world": [
+      [
+        -0.7685946049785621,
+        0.0010954335217873603,
+        -0.6397349860699337,
+        -0.302669656933716
+      ],
+      [
+        -0.022176196990740773,
+        -0.9994430563159665,
+        0.02493178255051434,
+        0.22670736527177748
+      ],
+      [
+        -0.6393514380860167,
+        0.03334937884496791,
+        0.7681908724870783,
+        1.468147327331366
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "cap_edge_coverage_deg": 337.7188891186041,
+        "cap_circular_edge_inliers": 45,
+        "cap_total_hull_edge_points": 45,
+        "cap_circular_edge_rms_m": 1.2213679348461286e-05,
+        "cap_expected_radius_m": 0.0025,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.3019594458716889,
+          0.22740017871725038,
+          1.4834914627318025
+        ],
+        "axis": [
+          -0.0024922364126655993,
+          0.0009402090536204253,
+          0.9999964523760067
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.0024778999548573507,
+        "cap_points": 800,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 15585,
+        "plane_rms_m": 1.0694139760352273e-05,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 214.75342207122594,
+        "neural_inference_this_frame": false
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 283.33381639805157,
+    "ready_wall_s": 283.59665490302723,
+    "capture_s": 0.045945914927870035,
+    "processing_s": 0.21483150008134544,
+    "queue_wait_s": 0.0020610899664461613,
+    "camera_profile": {
+      "upload_and_setup_s": 0.0417226169956848,
+      "gpu_ray_s": 0.0035498759243637323,
+      "gpu_shading_and_download_s": 0.0005839690566062927,
+      "dynamic_s": 0.045272492920048535,
+      "static_s": 0.0,
+      "shading_s": 0.0005842680111527443,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 283.6039316379465,
+    "mode": "held",
+    "part": "pin",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-056-held",
+    "scene_sim_time_s": 283.33381639805157,
+    "hand_TCP_world": [
+      [
+        -0.7725049966679371,
+        -3.329364360818947e-05,
+        -0.6350084631893456,
+        -0.302032198620445
+      ],
+      [
+        -0.020463804642758127,
+        -0.9994791976752702,
+        0.024947257317930866,
+        0.22708391812980483
+      ],
+      [
+        -0.6346786399658361,
+        0.03226662662131729,
+        0.772102032410089,
+        1.468142958752832
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "cap_edge_coverage_deg": 332.76028118709024,
+        "cap_circular_edge_inliers": 46,
+        "cap_total_hull_edge_points": 46,
+        "cap_circular_edge_rms_m": 1.816699588190183e-05,
+        "cap_expected_radius_m": 0.0025,
+        "robust_cap_circle_from_pixels": true,
+        "part": "pin",
+        "center_m": [
+          -0.30200689239114664,
+          0.2273171209053951,
+          1.4834977840319563
+        ],
+        "axis": [
+          -0.0007418302476205275,
+          0.0006203452772985964,
+          0.9999995324297011
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.0024675455174062925,
+        "cap_points": 797,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 15565,
+        "plane_rms_m": 1.0046439975912968e-05,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 210.6625339947641,
+        "neural_inference_this_frame": false
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 284.571198118967,
+    "ready_wall_s": 284.8293822549749,
+    "capture_s": 0.04578244895674288,
+    "processing_s": 0.21073108399286866,
+    "queue_wait_s": 0.0016706030583009124,
+    "camera_profile": {
+      "upload_and_setup_s": 0.040743247023783624,
+      "gpu_ray_s": 0.0037016059504821897,
+      "gpu_shading_and_download_s": 0.0006159560289233923,
+      "dynamic_s": 0.044444852974265814,
+      "static_s": 0.0,
+      "shading_s": 0.0006162549834698439,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 284.8399001599755,
+    "mode": "held",
+    "part": "pin",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-057-held",
+    "scene_sim_time_s": 284.571198118967,
+    "hand_TCP_world": [
+      [
+        -0.7733726819493949,
+        -6.132885645687351e-05,
+        -0.6339514259140111,
+        -0.30209737174754747
+      ],
+      [
+        -0.0200237490844127,
+        -0.9994985797694541,
+        0.024524230039782966,
+        0.2270033413107372
+      ],
+      [
+        -0.633635114092323,
+        0.031660510417950746,
+        0.7729837088010868,
+        1.4681477960960154
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  {
+    "result": {
+      "pose": {
+        "part": "pin",
+        "center_m": [
+          -0.3017378685523696,
+          0.22711803114497214,
+          1.5290119300766012
+        ],
+        "axis": [
+          6.88484549109371e-08,
+          -8.063758314860521e-08,
+          0.9999999999999944
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.003632540305062727,
+        "cap_points": 165,
+        "lateral_from_previous_RGBD_grasp_and_encoders": true,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 2320,
+        "plane_rms_m": 2.883373885185414e-05,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 28.208133997395635,
+        "neural_inference_this_frame": false
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 293.2135341729736,
+    "ready_wall_s": 293.258828238002,
+    "capture_s": 0.01590077206492424,
+    "processing_s": 0.028252930962480605,
+    "queue_wait_s": 0.0011403620010241866,
+    "camera_profile": {
+      "upload_and_setup_s": 0.010476777097210288,
+      "gpu_ray_s": 0.005018270923756063,
+      "gpu_shading_and_download_s": 0.00033857207745313644,
+      "dynamic_s": 0.015495048020966351,
+      "static_s": 0.0,
+      "shading_s": 0.0003387660253793001,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 293.2639117150102,
+    "mode": "held",
+    "part": "pin",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v488-small-binding-split-gpu-profile-nominal/rgb-perception/observation-058-held",
+    "scene_sim_time_s": 293.2135341729736,
+    "hand_TCP_world": [
+      [
+        -0.7745862639501263,
+        0.0010517912383330931,
+        -0.6324671912316964,
+        -0.3018579731304487
+      ],
+      [
+        -0.019996479800197076,
+        -0.9995393141140727,
+        0.022827640075698978,
+        0.22682457215461246
+      ],
+      [
+        -0.6321518539799063,
+        0.030329137434932832,
+        0.7742504892363059,
+        1.5137291998291758
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  }
+]
