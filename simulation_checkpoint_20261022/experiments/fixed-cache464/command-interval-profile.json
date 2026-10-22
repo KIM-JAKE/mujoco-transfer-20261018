@@ -1,0 +1,795 @@
+{
+  "run": "native-roas-table-fixed-front-v464-whole-carry-aware-park-plus",
+  "full_task_pass": true,
+  "wall_s": 303.86995879595634,
+  "physics_s": 53.83541666665879,
+  "physics_CPU_s": 114.55385879194364,
+  "control_CPU_s": 7.828047610237263,
+  "long_command_gaps_over50ms_s": 180.10841788514517,
+  "regular_command_intervals_s": 123.72300303075463,
+  "after_last_command_s": 0.03853788005653769,
+  "gaps": [
+    {
+      "wall_s": 29.577156185056083,
+      "at_wall_s": 202.84651943098288,
+      "next_phase": "ring1_right_goal_aware_empty_left_park",
+      "previous_phase": "ring1_right_lifted_contact_RGBD"
+    },
+    {
+      "wall_s": 21.54250621702522,
+      "at_wall_s": 92.34145023999736,
+      "next_phase": "paired_LEFT_lead_before_RIGHT_pickup",
+      "previous_phase": "initial"
+    },
+    {
+      "wall_s": 20.07926157908514,
+      "at_wall_s": 39.10441497899592,
+      "next_phase": "ring2_carry_to_handover",
+      "previous_phase": "ring2_receiver_empty_preshape"
+    },
+    {
+      "wall_s": 19.64191692089662,
+      "at_wall_s": 224.81470254890155,
+      "next_phase": "ring1_right_join_saved_carry",
+      "previous_phase": "ring1_right_after_goal_aware_empty_left_park_RGBD"
+    },
+    {
+      "wall_s": 9.528517052996904,
+      "at_wall_s": 239.1983476789901,
+      "next_phase": "ring1_right_carry_to_preinsert",
+      "previous_phase": "ring1_right_join_saved_carry"
+    },
+    {
+      "wall_s": 7.758710758993402,
+      "at_wall_s": 68.20128978893626,
+      "next_phase": "initial",
+      "previous_phase": "ring2_receiver_stable_hold_RGBD"
+    },
+    {
+      "wall_s": 5.1704949690029025,
+      "at_wall_s": 49.79114699992351,
+      "next_phase": "ring2_receive_approach",
+      "previous_phase": "ring2_donor_before_transfer_RGBD"
+    },
+    {
+      "wall_s": 4.701256992062554,
+      "at_wall_s": 6.049691959982738,
+      "next_phase": "loose_ring_pregrasp",
+      "previous_phase": "initial"
+    },
+    {
+      "wall_s": 4.59643882792443,
+      "at_wall_s": 281.17383605393115,
+      "next_phase": "pin_tail_direct_carry_to_preinsert",
+      "previous_phase": "pin_empty_left_close_encoder_completion"
+    },
+    {
+      "wall_s": 4.155784811009653,
+      "at_wall_s": 151.40470290300436,
+      "next_phase": "paired_receiver_finishes_before_new_donor_contact",
+      "previous_phase": "paired_receiver_finishes_before_new_donor_contact"
+    },
+    {
+      "wall_s": 4.019536321051419,
+      "at_wall_s": 118.85195281996857,
+      "next_phase": "loose_ring_lift",
+      "previous_phase": "loose_ring_after_supported_breakaway_encoder_window"
+    },
+    {
+      "wall_s": 3.717838212964125,
+      "at_wall_s": 249.5497600439703,
+      "next_phase": "ring1_right_preinsert_visual_correction",
+      "previous_phase": "ring1_right_preinsert_RGBD"
+    },
+    {
+      "wall_s": 3.6223096209578216,
+      "at_wall_s": 143.1383308529621,
+      "next_phase": "paired_receiver_finishes_before_new_donor_contact",
+      "previous_phase": "paired_receiver_finishes_before_new_donor_contact"
+    },
+    {
+      "wall_s": 3.6029493869282305,
+      "at_wall_s": 135.14273683493957,
+      "next_phase": "paired_receiver_finishes_before_new_donor_contact",
+      "previous_phase": "paired_receiver_finishes_before_new_donor_contact"
+    },
+    {
+      "wall_s": 3.5772057729773223,
+      "at_wall_s": 123.61100967298262,
+      "next_phase": "loose_ring_lift_settle",
+      "previous_phase": "loose_ring_lift_settle"
+    },
+    {
+      "wall_s": 2.9658122539985925,
+      "at_wall_s": 126.57682192698121,
+      "next_phase": "loose_ring_lift_settle",
+      "previous_phase": "loose_ring_lift_settle"
+    },
+    {
+      "wall_s": 2.920805249013938,
+      "at_wall_s": 130.28627888299525,
+      "next_phase": "paired_receiver_finishes_before_new_donor_contact",
+      "previous_phase": "loose_ring_camera_confirmed_hold"
+    },
+    {
+      "wall_s": 2.646648016059771,
+      "at_wall_s": 274.9463999510044,
+      "next_phase": "pin_empty_left_close_for_clearance",
+      "previous_phase": "pin_lift_independent_confirmation"
+    },
+    {
+      "wall_s": 2.3974890059325844,
+      "at_wall_s": 153.80219190893695,
+      "next_phase": "paired_receiver_finishes_before_new_donor_contact",
+      "previous_phase": "paired_receiver_finishes_before_new_donor_contact"
+    },
+    {
+      "wall_s": 2.3619629259919748,
+      "at_wall_s": 137.50469976093154,
+      "next_phase": "paired_receiver_finishes_before_new_donor_contact",
+      "previous_phase": "paired_receiver_finishes_before_new_donor_contact"
+    },
+    {
+      "wall_s": 2.3567123039392754,
+      "at_wall_s": 145.49504315690137,
+      "next_phase": "paired_receiver_finishes_before_new_donor_contact",
+      "previous_phase": "paired_receiver_finishes_before_new_donor_contact"
+    },
+    {
+      "wall_s": 2.1943884060019627,
+      "at_wall_s": 172.74924999696668,
+      "next_phase": "paired_receiver_finishes_before_new_donor_contact",
+      "previous_phase": "paired_receiver_finishes_before_new_donor_contact"
+    },
+    {
+      "wall_s": 2.19173058308661,
+      "at_wall_s": 104.11814389098436,
+      "next_phase": "loose_ring_descend_prior_contact",
+      "previous_phase": "loose_ring_descend_prior_free"
+    },
+    {
+      "wall_s": 1.9539192860247567,
+      "at_wall_s": 99.64406536798924,
+      "next_phase": "loose_ring_descend_prior_free",
+      "previous_phase": "loose_ring_pregrasp"
+    },
+    {
+      "wall_s": 1.789401327027008,
+      "at_wall_s": 17.46895475499332,
+      "next_phase": "loose_ring_lift",
+      "previous_phase": "loose_ring_lift_breakaway"
+    }
+  ],
+  "phases": [
+    {
+      "phase": "loose_ring_pregrasp",
+      "command_samples": 2020,
+      "physics_s": 4.208333333333332,
+      "observed_command_interval_wall_s": 7.060206203954294,
+      "long_gap_wall_s_before_commands": 4.701256992062554,
+      "arm_static_command_samples": 22
+    },
+    {
+      "phase": "paired_receiver_finishes_before_new_donor_contact",
+      "command_samples": 1820,
+      "physics_s": 3.7916666666666665,
+      "observed_command_interval_wall_s": 20.83531657117419,
+      "long_gap_wall_s_before_commands": 24.548459791811183,
+      "arm_static_command_samples": 691
+    },
+    {
+      "phase": "loose_ring_descend_prior_contact",
+      "command_samples": 1451,
+      "physics_s": 3.0229166666666667,
+      "observed_command_interval_wall_s": 5.050901705981232,
+      "long_gap_wall_s_before_commands": 3.1214316540863365,
+      "arm_static_command_samples": 559
+    },
+    {
+      "phase": "ring1_right_carry_to_preinsert",
+      "command_samples": 1415,
+      "physics_s": 2.947916666666666,
+      "observed_command_interval_wall_s": 6.347121500992216,
+      "long_gap_wall_s_before_commands": 9.528517052996904,
+      "arm_static_command_samples": 9
+    },
+    {
+      "phase": "pin_precision_encoder_settle",
+      "command_samples": 1406,
+      "physics_s": 2.9291666666666663,
+      "observed_command_interval_wall_s": 5.110182715114206,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 1406
+    },
+    {
+      "phase": "ring2_carry_to_handover",
+      "command_samples": 1171,
+      "physics_s": 2.439583333333333,
+      "observed_command_interval_wall_s": 5.254361207014881,
+      "long_gap_wall_s_before_commands": 20.07926157908514,
+      "arm_static_command_samples": 1
+    },
+    {
+      "phase": "initial",
+      "command_samples": 1159,
+      "physics_s": 2.414583333333333,
+      "observed_command_interval_wall_s": 3.8781459250021726,
+      "long_gap_wall_s_before_commands": 7.826654035947286,
+      "arm_static_command_samples": 1159
+    },
+    {
+      "phase": "ring1_right_join_saved_carry",
+      "command_samples": 1044,
+      "physics_s": 2.1750000000000003,
+      "observed_command_interval_wall_s": 4.855128077091649,
+      "long_gap_wall_s_before_commands": 19.64191692089662,
+      "arm_static_command_samples": 6
+    },
+    {
+      "phase": "loose_ring_descend_prior_free",
+      "command_samples": 945,
+      "physics_s": 1.9687499999999998,
+      "observed_command_interval_wall_s": 3.3563873819075525,
+      "long_gap_wall_s_before_commands": 2.478887460078113,
+      "arm_static_command_samples": 513
+    },
+    {
+      "phase": "pin_tail_approach",
+      "command_samples": 842,
+      "physics_s": 1.7541666666666664,
+      "observed_command_interval_wall_s": 2.1074015059275553,
+      "long_gap_wall_s_before_commands": 0.1134030120447278,
+      "arm_static_command_samples": 0
+    },
+    {
+      "phase": "pin_tail_direct_carry_to_preinsert",
+      "command_samples": 818,
+      "physics_s": 1.7041666666666664,
+      "observed_command_interval_wall_s": 8.11547590000555,
+      "long_gap_wall_s_before_commands": 4.59643882792443,
+      "arm_static_command_samples": 10
+    },
+    {
+      "phase": "pin_preinsert_visual_correction",
+      "command_samples": 672,
+      "physics_s": 1.4,
+      "observed_command_interval_wall_s": 2.0767584808636457,
+      "long_gap_wall_s_before_commands": 0.4119373740395531,
+      "arm_static_command_samples": 18
+    },
+    {
+      "phase": "pin_empty_preshape",
+      "command_samples": 531,
+      "physics_s": 1.10625,
+      "observed_command_interval_wall_s": 1.3351479490520433,
+      "long_gap_wall_s_before_commands": 0.05218781600706279,
+      "arm_static_command_samples": 531
+    },
+    {
+      "phase": "ring2_receive_approach",
+      "command_samples": 468,
+      "physics_s": 0.9749999999999999,
+      "observed_command_interval_wall_s": 2.0563752950401977,
+      "long_gap_wall_s_before_commands": 5.1704949690029025,
+      "arm_static_command_samples": 30
+    },
+    {
+      "phase": "pin_empty_left_close_for_clearance",
+      "command_samples": 442,
+      "physics_s": 0.9208333333333332,
+      "observed_command_interval_wall_s": 1.369605855899863,
+      "long_gap_wall_s_before_commands": 2.646648016059771,
+      "arm_static_command_samples": 442
+    },
+    {
+      "phase": "pin_holder_regrasp_alignment",
+      "command_samples": 432,
+      "physics_s": 0.8999999999999999,
+      "observed_command_interval_wall_s": 1.0733538288623095,
+      "long_gap_wall_s_before_commands": 0.21582211612258106,
+      "arm_static_command_samples": 23
+    },
+    {
+      "phase": "pin_tail_descend",
+      "command_samples": 409,
+      "physics_s": 0.8520833333333333,
+      "observed_command_interval_wall_s": 1.0292069520801306,
+      "long_gap_wall_s_before_commands": 0.06121226097457111,
+      "arm_static_command_samples": 121
+    },
+    {
+      "phase": "ring1_right_axial_insert",
+      "command_samples": 384,
+      "physics_s": 0.7999999999999999,
+      "observed_command_interval_wall_s": 2.9055363360093907,
+      "long_gap_wall_s_before_commands": 1.1701343699824065,
+      "arm_static_command_samples": 0
+    },
+    {
+      "phase": "ring1_right_retention",
+      "command_samples": 384,
+      "physics_s": 0.7999999999999999,
+      "observed_command_interval_wall_s": 0.9626377270324156,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 384
+    },
+    {
+      "phase": "pin_single_axial_insert",
+      "command_samples": 384,
+      "physics_s": 0.7999999999999999,
+      "observed_command_interval_wall_s": 1.4271002149907872,
+      "long_gap_wall_s_before_commands": 0.0700431150617078,
+      "arm_static_command_samples": 0
+    },
+    {
+      "phase": "loose_ring_grasp_controller_completion",
+      "command_samples": 383,
+      "physics_s": 0.7979166666666666,
+      "observed_command_interval_wall_s": 3.5883468850515783,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 383
+    },
+    {
+      "phase": "pin_holder_preclose_settle",
+      "command_samples": 371,
+      "physics_s": 0.7729166666666666,
+      "observed_command_interval_wall_s": 0.95103024400305,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 371
+    },
+    {
+      "phase": "ring2_receiver_grasp_controller_completion",
+      "command_samples": 360,
+      "physics_s": 0.75,
+      "observed_command_interval_wall_s": 1.7619654410518706,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 360
+    },
+    {
+      "phase": "ring1_right_goal_aware_empty_left_park",
+      "command_samples": 316,
+      "physics_s": 0.6583333333333332,
+      "observed_command_interval_wall_s": 1.8600845619803295,
+      "long_gap_wall_s_before_commands": 29.577156185056083,
+      "arm_static_command_samples": 0
+    },
+    {
+      "phase": "pin_axial_withdraw",
+      "command_samples": 312,
+      "physics_s": 0.6499999999999999,
+      "observed_command_interval_wall_s": 1.015986914979294,
+      "long_gap_wall_s_before_commands": 0.06645356200169772,
+      "arm_static_command_samples": 0
+    },
+    {
+      "phase": "loose_ring_lift_settle",
+      "command_samples": 295,
+      "physics_s": 0.6145833333333333,
+      "observed_command_interval_wall_s": 1.6372743130195886,
+      "long_gap_wall_s_before_commands": 6.543018026975915,
+      "arm_static_command_samples": 188
+    },
+    {
+      "phase": "ring1_right_world_down_withdraw",
+      "command_samples": 288,
+      "physics_s": 0.6,
+      "observed_command_interval_wall_s": 0.7384883549530059,
+      "long_gap_wall_s_before_commands": 0.8521792839746922,
+      "arm_static_command_samples": 0
+    },
+    {
+      "phase": "loose_ring_lift",
+      "command_samples": 275,
+      "physics_s": 0.5729166666666666,
+      "observed_command_interval_wall_s": 1.5309404919389635,
+      "long_gap_wall_s_before_commands": 5.808937648078427,
+      "arm_static_command_samples": 0
+    },
+    {
+      "phase": "loose_all_parts_retention",
+      "command_samples": 264,
+      "physics_s": 0.55,
+      "observed_command_interval_wall_s": 0.6609372058883309,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 264
+    },
+    {
+      "phase": "pin_retention",
+      "command_samples": 240,
+      "physics_s": 0.49999999999999994,
+      "observed_command_interval_wall_s": 0.6006020080531016,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 240
+    },
+    {
+      "phase": "loose_ring_after_supported_breakaway_encoder_window",
+      "command_samples": 224,
+      "physics_s": 0.4666666666666666,
+      "observed_command_interval_wall_s": 1.4921065319795161,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 224
+    },
+    {
+      "phase": "loose_ring_grasp_settle",
+      "command_samples": 192,
+      "physics_s": 0.39999999999999997,
+      "observed_command_interval_wall_s": 0.6705067700240761,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 192
+    },
+    {
+      "phase": "ring1_right_preinsert_visual_correction",
+      "command_samples": 192,
+      "physics_s": 0.39999999999999997,
+      "observed_command_interval_wall_s": 0.8032753430306911,
+      "long_gap_wall_s_before_commands": 3.717838212964125,
+      "arm_static_command_samples": 0
+    },
+    {
+      "phase": "ring2_receiver_holding_force_ramp",
+      "command_samples": 168,
+      "physics_s": 0.35,
+      "observed_command_interval_wall_s": 1.0410915479296818,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 168
+    },
+    {
+      "phase": "ring2_donor_open",
+      "command_samples": 156,
+      "physics_s": 0.32499999999999996,
+      "observed_command_interval_wall_s": 0.7686001278925687,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 156
+    },
+    {
+      "phase": "pin_preinsert_visual_hold",
+      "command_samples": 152,
+      "physics_s": 0.31666666666666665,
+      "observed_command_interval_wall_s": 0.4728327119955793,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 152
+    },
+    {
+      "phase": "pin_lift_settle",
+      "command_samples": 151,
+      "physics_s": 0.31458333333333327,
+      "observed_command_interval_wall_s": 0.47346044902224094,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 151
+    },
+    {
+      "phase": "final_empty_RIGHT_clearance_retreat",
+      "command_samples": 151,
+      "physics_s": 0.31458333333333327,
+      "observed_command_interval_wall_s": 0.3836352110374719,
+      "long_gap_wall_s_before_commands": 1.3145796559983864,
+      "arm_static_command_samples": 0
+    },
+    {
+      "phase": "loose_ring_close",
+      "command_samples": 142,
+      "physics_s": 0.2958333333333333,
+      "observed_command_interval_wall_s": 0.48195581405889243,
+      "long_gap_wall_s_before_commands": 2.083467210875824,
+      "arm_static_command_samples": 142
+    },
+    {
+      "phase": "loose_ring_lift_breakaway",
+      "command_samples": 140,
+      "physics_s": 0.29166666666666663,
+      "observed_command_interval_wall_s": 0.8420427370583639,
+      "long_gap_wall_s_before_commands": 0.13851874694228172,
+      "arm_static_command_samples": 0
+    },
+    {
+      "phase": "ring1_right_preinsert_RGBD",
+      "command_samples": 139,
+      "physics_s": 0.2895833333333333,
+      "observed_command_interval_wall_s": 0.594195171026513,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 139
+    },
+    {
+      "phase": "pin_tail_close",
+      "command_samples": 138,
+      "physics_s": 0.2875,
+      "observed_command_interval_wall_s": 0.39790508698206395,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 138
+    },
+    {
+      "phase": "pin_tail_lift",
+      "command_samples": 132,
+      "physics_s": 0.27499999999999997,
+      "observed_command_interval_wall_s": 0.4199226949131116,
+      "long_gap_wall_s_before_commands": 0.06502481398638338,
+      "arm_static_command_samples": 0
+    },
+    {
+      "phase": "ring2_receiver_stable_hold_RGBD",
+      "command_samples": 124,
+      "physics_s": 0.2583333333333333,
+      "observed_command_interval_wall_s": 0.5528593059862033,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 124
+    },
+    {
+      "phase": "ring2_receiver_close",
+      "command_samples": 123,
+      "physics_s": 0.25625,
+      "observed_command_interval_wall_s": 0.5469874349655584,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 123
+    },
+    {
+      "phase": "ring1_right_released_retention_RGBD",
+      "command_samples": 123,
+      "physics_s": 0.25625,
+      "observed_command_interval_wall_s": 0.31712497398257256,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 123
+    },
+    {
+      "phase": "loose_ring_outer_contact_final_encoder_window",
+      "command_samples": 120,
+      "physics_s": 0.24999999999999997,
+      "observed_command_interval_wall_s": 1.232156656915322,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 120
+    },
+    {
+      "phase": "paired_LEFT_lead_before_RIGHT_pickup",
+      "command_samples": 120,
+      "physics_s": 0.24999999999999997,
+      "observed_command_interval_wall_s": 0.5239119679899886,
+      "long_gap_wall_s_before_commands": 21.54250621702522,
+      "arm_static_command_samples": 0
+    },
+    {
+      "phase": "ring1_right_release_settle",
+      "command_samples": 120,
+      "physics_s": 0.24999999999999997,
+      "observed_command_interval_wall_s": 0.7612456839997321,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 120
+    },
+    {
+      "phase": "ring2_donor_clear",
+      "command_samples": 112,
+      "physics_s": 0.2333333333333333,
+      "observed_command_interval_wall_s": 0.47465549199841917,
+      "long_gap_wall_s_before_commands": 0.658234159112908,
+      "arm_static_command_samples": 0
+    },
+    {
+      "phase": "pin_lift_independent_confirmation",
+      "command_samples": 102,
+      "physics_s": 0.21249999999999994,
+      "observed_command_interval_wall_s": 0.32960377901326865,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 102
+    },
+    {
+      "phase": "ring1_right_after_goal_aware_empty_left_park_RGBD",
+      "command_samples": 99,
+      "physics_s": 0.20624999999999996,
+      "observed_command_interval_wall_s": 0.46618163504172117,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 99
+    },
+    {
+      "phase": "ring1_right_release_after_full_depth",
+      "command_samples": 96,
+      "physics_s": 0.19999999999999998,
+      "observed_command_interval_wall_s": 1.3941257040714845,
+      "long_gap_wall_s_before_commands": 0.2960470640100539,
+      "arm_static_command_samples": 96
+    },
+    {
+      "phase": "pin_empty_left_close_encoder_completion",
+      "command_samples": 84,
+      "physics_s": 0.17499999999999996,
+      "observed_command_interval_wall_s": 0.2613914191024378,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 84
+    },
+    {
+      "phase": "pin_release_after_full_depth",
+      "command_samples": 81,
+      "physics_s": 0.16874999999999998,
+      "observed_command_interval_wall_s": 0.3560573779977858,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 81
+    },
+    {
+      "phase": "ring1_right_lifted_contact_RGBD",
+      "command_samples": 74,
+      "physics_s": 0.15416666666666665,
+      "observed_command_interval_wall_s": 0.520113248960115,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 74
+    },
+    {
+      "phase": "ring2_receiver_stable_hold",
+      "command_samples": 72,
+      "physics_s": 0.15,
+      "observed_command_interval_wall_s": 0.30953824799507856,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 72
+    },
+    {
+      "phase": "pin_tail_grasp_hold",
+      "command_samples": 72,
+      "physics_s": 0.15,
+      "observed_command_interval_wall_s": 0.2699356860248372,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 72
+    },
+    {
+      "phase": "pin_full_depth_hold",
+      "command_samples": 66,
+      "physics_s": 0.13749999999999998,
+      "observed_command_interval_wall_s": 0.28338713792618364,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 66
+    },
+    {
+      "phase": "ring2_receiver_RGBD",
+      "command_samples": 62,
+      "physics_s": 0.12916666666666665,
+      "observed_command_interval_wall_s": 0.2744109119521454,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 62
+    },
+    {
+      "phase": "ring2_donor_after_receiver_approach_RGBD",
+      "command_samples": 59,
+      "physics_s": 0.12291666666666667,
+      "observed_command_interval_wall_s": 0.2645580420503393,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 59
+    },
+    {
+      "phase": "ring2_donor_before_transfer_RGBD",
+      "command_samples": 58,
+      "physics_s": 0.12083333333333333,
+      "observed_command_interval_wall_s": 0.26187584490980953,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 58
+    },
+    {
+      "phase": "ring2_bilateral_handover_hold",
+      "command_samples": 58,
+      "physics_s": 0.12083333333333333,
+      "observed_command_interval_wall_s": 0.36452672199811786,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 58
+    },
+    {
+      "phase": "ring1_right_full_depth_hold",
+      "command_samples": 58,
+      "physics_s": 0.12083333333333333,
+      "observed_command_interval_wall_s": 0.717322391923517,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 58
+    },
+    {
+      "phase": "ring1_right_clamp_hold",
+      "command_samples": 58,
+      "physics_s": 0.12083333333333333,
+      "observed_command_interval_wall_s": 0.8884268449619412,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 58
+    },
+    {
+      "phase": "pin_clamp_hold",
+      "command_samples": 58,
+      "physics_s": 0.12083333333333333,
+      "observed_command_interval_wall_s": 0.29161527601536363,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 58
+    },
+    {
+      "phase": "ring2_receiver_empty_preshape",
+      "command_samples": 50,
+      "physics_s": 0.10416666666666667,
+      "observed_command_interval_wall_s": 0.24319455795921385,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 50
+    },
+    {
+      "phase": "ring2_receiver_final_contact_plateau",
+      "command_samples": 48,
+      "physics_s": 0.09999999999999999,
+      "observed_command_interval_wall_s": 0.2953576910076663,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 48
+    },
+    {
+      "phase": "ring2_receiver_final_encoder_window",
+      "command_samples": 48,
+      "physics_s": 0.09999999999999999,
+      "observed_command_interval_wall_s": 0.29626444005407393,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 48
+    },
+    {
+      "phase": "pin_native_close_settle",
+      "command_samples": 48,
+      "physics_s": 0.09999999999999999,
+      "observed_command_interval_wall_s": 0.17981250502634794,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 48
+    },
+    {
+      "phase": "ring2_bilateral_contact_RGBD",
+      "command_samples": 45,
+      "physics_s": 0.09375000000000003,
+      "observed_command_interval_wall_s": 0.28162070002872497,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 45
+    },
+    {
+      "phase": "ring2_receiver_final_contact_RGBD",
+      "command_samples": 44,
+      "physics_s": 0.09166666666666669,
+      "observed_command_interval_wall_s": 0.2749847440281883,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 44
+    },
+    {
+      "phase": "ring2_receiver_holding_force_RGBD",
+      "command_samples": 41,
+      "physics_s": 0.08541666666666667,
+      "observed_command_interval_wall_s": 0.25758673099335283,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 41
+    },
+    {
+      "phase": "ring2_receiver_contact_check",
+      "command_samples": 39,
+      "physics_s": 0.08125000000000004,
+      "observed_command_interval_wall_s": 0.17181499593425542,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 39
+    },
+    {
+      "phase": "ring1_right_alignment_settle",
+      "command_samples": 39,
+      "physics_s": 0.08125000000000004,
+      "observed_command_interval_wall_s": 0.16382489900570363,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 39
+    },
+    {
+      "phase": "ring1_right_full_depth_RGBD",
+      "command_samples": 23,
+      "physics_s": 0.04791666666666666,
+      "observed_command_interval_wall_s": 0.3410303150303662,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 23
+    },
+    {
+      "phase": "loose_ring_camera_confirmed_hold",
+      "command_samples": 20,
+      "physics_s": 0.041666666666666664,
+      "observed_command_interval_wall_s": 0.11529206903651357,
+      "long_gap_wall_s_before_commands": 0.0,
+      "arm_static_command_samples": 10
+    },
+    {
+      "phase": "pin_start",
+      "command_samples": 19,
+      "physics_s": 0.03958333333333333,
+      "observed_command_interval_wall_s": 0.04666964500211179,
+      "long_gap_wall_s_before_commands": 1.0097497339593247,
+      "arm_static_command_samples": 19
+    }
+  ],
+  "warning": "Observed intervals, not a pure planner profile. Camera/render/OS/other processes can contribute. Concurrent runs are not an isolated speed benchmark.",
+  "source_sha256": {
+    "pipeline-results.json": "251a79020b26d2a2af7de233e272ee15e58675550094bd83cc29b83ed49f25e8",
+    "executed-actuator-commands.npz": "0838e06f075dbfeab9c0a80825d7853dd1c8fae49981709220f09a3793c8f342",
+    "frozen-source-manifest.json": "51e57a85e0655b39802cfd1194257db3a51656d67957569af90e6d2df3764350"
+  }
+}

@@ -4,7 +4,7 @@
 
 [기준 위치 정확한 코드·결과](simulation_checkpoint_20261022/experiments/fixed-cache460/README.md) · [기준 위치 실제 영상](simulation_checkpoint_20261022/media/fixed-cache460-nominal-all3-pass-excerpts-1x.mp4) · [서버 실행 방법](simulation_checkpoint_20261022/FIXED_CACHE_RUN.md)
 
-**남은 제한:** 최신3영역 코드의 다른 PLUS 시험462/463은 입구 또는 상대 팔 간섭으로 안전 정지했습니다. 위 성공 기록은 서로 다른 수정 단계의 사례이며, 동일 최신 빌드의 모든 위치에서 안정적으로 된다는 뜻은 아닙니다. [원본 실패와 적용 범위](simulation_checkpoint_20261022/experiments/fixed-cache-entry-failures/README.md).
+**추가 수정:** PLUS 시험462/463의 입구·상대 팔 간섭은 [464 전체 작업](simulation_checkpoint_20261022/experiments/fixed-cache464/README.md)에서 수정하고 통과했습니다. 저장 경로 전체를 고려해 왼팔 대기 자세를 정하고, 도착 후 실제 상태로 다시 검사합니다. 추가 검사 비용 때문에 이 실행은303.87초로 늘었습니다. [468](simulation_checkpoint_20261022/experiments/fixed-cache468/README.md)에서는 작은 링의 오른손 전달 경로도 재사용해 전체 완료했으며, 계산 대기를 더 줄이는 중입니다. 서로 다른 수정 단계의 사례를 동일 빌드의 모든 위치에서 안정적으로 된다는 뜻으로 해석하면 안 됩니다. [이전 실패 기록](simulation_checkpoint_20261022/experiments/fixed-cache-entry-failures/README.md)도 보존했습니다.
 
 ## 동작 구조
 
@@ -23,12 +23,17 @@
 |450|큰 링XY(+10,−10)mm/작은 링(−10,+10)mm, 세 부품 완료; 큰 링 경로는 원래 계획으로fallback|244.98초|
 |459|반대 위치 변경,6mm 편심 파지로 세 부품 완료; 큰 링 경로fallback|254.19초|
 |461|반대 위치 변경, 새 파지 영역도 사전 검증해 저장 경로 재사용, 세 부품 완료|241.14초|
+|464|PLUS, 전체 저장 경로를 고려한 왼팔 대기 자세와 새 입구 연결, 세 부품 완료|303.87초|
+|467|MINUS, articulation sleep 설정 진단, 세 부품 완료; 정밀 보정 중 관절 정지 현상은 남음|228.66초|
+|468|기준 위치, 작은 링 오른손 전달 경로도1068명령 재사용, 세 부품 완료|269.17초|
 
 초기 기울기0.04rad를 적용한 뒤 원래 물리 정착 과정을 거쳤습니다. 이것은 성공한 몇 개 사례이며 무작위 모든 자세·동일 빌드의 반복 성공률을 보장하지 않습니다. 실행 부하와 정책이 달라 위 시간은 통제된 속도 벤치마크가 아닙니다. 영상은 실제 기록의 동작1배속이며 긴 대기CUT와 원래 전체 시간을 표시합니다.
 
 460에서는 두 팔의 저장 증명을 다시 불러오는 데 합계5.68초가 걸렸습니다. 최초446 증명 생성은 약111.28초였습니다. 새로운 파지 영역은 별도 준비가 추가되며 이 준비는 첫 촬영 전이라 표의 전체 시간과 별도입니다. 같은7075개 상태의 GPU 양팔 검사 비교에서는 결과·원래 형상·여유값을 유지해 약12.0초→1.61초였습니다. 전체 주기가 그 비율로 줄어드는 것은 아닙니다.
 
 [PLUS 실제 영상](simulation_checkpoint_20261022/media/fixed-cache450-variation-plus-all3-pass-excerpts-1x.mp4) · [MINUS 실제 영상](simulation_checkpoint_20261022/media/fixed-cache459-variation-minus-all3-pass-excerpts-1x.mp4) · [MINUS 저장 경로 코드](simulation_checkpoint_20261022/experiments/fixed-cache461/README.md)
+
+[수정 후 PLUS464 실제 영상](simulation_checkpoint_20261022/media/fixed-cache464-variation-plus-all3-pass-excerpts-1x.mp4) · [MINUS467 진단 결과](simulation_checkpoint_20261022/experiments/fixed-cache467/README.md). 467의 시간 차이는 독립적인 성능 측정이 아니며 sleep 설정이 원인이라고 결론 내리지 않습니다. 관절 위치가 멈춘 구간에 속도 신호가 남는 시뮬레이터 현상은 실기와 비교하기 전 해결·확인이 필요합니다.
 
 ## 공급 위치
 

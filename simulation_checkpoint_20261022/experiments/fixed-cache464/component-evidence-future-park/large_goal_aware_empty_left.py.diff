@@ -1,0 +1,49 @@
+--- a/large_goal_aware_empty_left.py
++++ b/large_goal_aware_empty_left.py
+@@ -1,6 +1,8 @@
+-"""One empty LEFT park, admitted by a future complete native RIGHT stroke.
++"""One empty LEFT park, admitted by the future saved carry and full RIGHT stroke.
+ 
+-The unchanged CAD/robot fixture checker proves full nominal insertion,
++When a public grasp domain matches, the ENTIRE saved RIGHT middle is proved
++against the proposed LEFT endpoint and both width ranges BEFORE LEFT moves.
++The unchanged CAD/robot fixture checker also proves full nominal insertion,
+ release and withdrawal BEFORE moving LEFT. Actual current RIGHT plus its
+ fresh image-derived held CAD remain protected through every issued LEFT row.
+ The caller MUST then obtain fresh RIGHT RGB-D and plan its full actual carry.
+@@ -42,6 +44,14 @@
+         payload=(rc.payload_path,rc.payload_rows,rc.payload_boxes,rc.payload_relative)
+         stage_stats=[]
+         try:
++            # A terminal-only park can block the carrier elbow/fingers
++            # halfway through the saved approach. Reject it BEFORE moving
++            # LEFT, using the full middle and all current aperture contexts.
++            from future_saved_carry_guard import check as check_saved_middle
++            middle_proof=check_saved_middle(c,park_q,G,right_widths,left_widths)
++            if middle_proof.get('applies') and not middle_proof['clear']:
++                proof_failures.append(dict(stage='future_entire_saved_RIGHT_middle',proof=middle_proof))
++                return None
+             if search_fallback:
+                 search=dict(c,_right_direct_measured_q=qr.copy(),_right_direct_fixture_context_key=('future_empty_LEFT',tuple(park_q),float(left_widths[0])),_right_direct_fixture_cache={},_right_direct_fixture_counts={},_right_direct_fixture_examples={})
+                 search.pop('_right_direct_carry_route_callback',None)
+@@ -75,7 +85,7 @@
+             ok,why=guarded_group([(stroke,[float(width)]),(np.array([stroke[-1],stroke[-1]]),release),(withdraw,[float(branch['release_width_m'])])])
+             if not ok:
+                 proof_failures.append(dict(stage='saved_robot_terminal',collision=why));return None
+-            return [dict(full_nominal_terminal=branch,left_openings_m=left_widths.tolist(),right_release_openings_m=release.tolist(),original_sampling_rad=.005,all_aperture_contexts_checked=True,query_diagnostics=stage_stats,proposal='one_original_search'if search_fallback else 'stored432_branch')]
++            return [dict(future_entire_saved_RIGHT_middle=middle_proof,full_nominal_terminal=branch,left_openings_m=left_widths.tolist(),right_release_openings_m=release.tolist(),original_sampling_rad=.005,all_aperture_contexts_checked=True,query_diagnostics=stage_stats,proposal='one_original_search'if search_fallback else 'stored432_branch')]
+         finally:
+             rc.payload_path,rc.payload_rows,rc.payload_boxes,rc.payload_relative=payload
+             rc.resolution_rad=old_resolution
+@@ -168,7 +178,10 @@
+             # Try the public saved terminal first; no per-width IK searches.
+             future=terminal(np.asarray(rows[-1],float))
+             if future is None:
+-                if fallback_plan is None:fallback_plan=(rows,timing,rows[-1].copy(),candidate_label,target.copy(),knots.copy())
++                middle_blocked=bool(proof_failures and proof_failures[-1].get('stage')=='future_entire_saved_RIGHT_middle')
++                # A different terminal IK branch cannot repair a collision
++                # in this same required saved middle/future LEFT pose.
++                if fallback_plan is None and not middle_blocked:fallback_plan=(rows,timing,rows[-1].copy(),candidate_label,target.copy(),knots.copy())
+                 continue
+             clear,why,stats,rows,timing=guard_timed_route(rows,timing,knots)
+             if not clear:
