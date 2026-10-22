@@ -1,0 +1,16 @@
+Narrow473 postrelease withdrawal fix based immutable474. No live source mutation or trial launched.
+
+Original accepted Cartesian withdrawal path is unchanged and gets no extra obstacle. Only original final issued-curve PREMOTION collision rejection now has a distinct RuntimeError subclass, raised before ANY row; that type alone permits fallback. All unexpected/actuator/camera errors propagate, so no retry after partial motion.
+
+For rejected LARGE postrelease withdrawal: seek GPU/CPU alternate IK to EXACT SAME current-command Hand pose translated worldZ minus80mm with unchanged orientation. Original10um/.1mrad FK residual checks apply. Existing approved withdrawal/preinsert q are IK SEEDS only, never substitute targets. Current original checker.route proposes an obstacle-aware route; original move verifies ALL actual/command starts, aperture widths, native self/fixed/opposite/placed and every retimed field before first physical row. If no route or all retimed fields rejected, remain failed/stopped. No stale META route is issued.
+
+Fresh released LARGE was not in global completed parts yet. Fallback alone scopes original PlacedPartClearance with existing parts unchanged at3.5mm and ADDITIONAL fresh seated-ring RGBD CAD. Fresh ring reserve=max(1mm,3x recorded circle/lateral fit residual), default3.5mm if residual absent;473freshdata yields1.1893mm plus original1mm collision margin. This is an explicit simulation residual reserve, not calibrated real-camera confidence. No free actor pose, global registration, geometry change, force/mass/cap change. Scope restored even if rejected/error.
+
+All original release, clamp, retention camera/pose thresholds and8cm withdrawal metadata remain. New withdrawal_evidence identifies fallback. Root add newhelper to fresh-import names when composing source.
+
+Lifecycle tests pass originalsuccess unchanged; typed premotion fallback; exactsame target; unknown/partialmovement errors propagate; no-route/issuedfieldreject remainfailure; typedthrow statically precedes first command. Native473 readonly subset and full native-SELF/fresh-placed MODEL evidence completed; full original scene/retimed actual fallback still requires physical execution.
+
+Native MODEL473 confirms original desired endpoint itself intersects0172 (~.877mm), so route to same q cannot repair it. Four bounded original-approved-seed offsets ±.2rad joint1/3 solve SAME80mm Cartesian target and propose other elbow branches. Native subset0172 clearance4.408/5.748mm found for two variants; full original runtime all-fixture/pair/placed/retimed checks remain required. No literal q endpoint replay.
+Fresh released-ring placed MODEL: original3.5mm reserve rejects start at3.889–3.938mm fingertip gap vs4.5mm required. Fresh measured1.1893mm reserve (plus original1mm margin) clears BOTH actual and commanded original473 starts, full native own+fresh placed CAD. Existing previously completed-part reserves unchanged. Duplicate ring registration explicitly fails closed before scope replacement.
+
+Actual475: original Cartesian withdrawal succeeded245.140826744s, smooth0.6s, so helper kept original accepted behavior and did NOT exercise fallback (diagnostic count0). Overall trial FAILED290.828617468s at separate original PIN RGBD precision convergence gate. This is not a full task pass or physical fallback qualification.

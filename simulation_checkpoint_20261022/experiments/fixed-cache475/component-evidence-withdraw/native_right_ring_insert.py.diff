@@ -1,0 +1,42 @@
+--- /tmp/fixed474-full/overrides/native_right_ring_insert.py	2026-10-22 02:16:56.395622500 +0000
++++ /tmp/checked-empty-withdraw-473fix/overrides/native_right_ring_insert.py	2026-10-22 03:15:49.618094687 +0000
+@@ -17,6 +17,10 @@
+ from aperture_path_check import path_openings
+ 
+ 
++class ExecutedCurvePreflightBlocked(RuntimeError):
++    """Exact issued-curve rejection before the first row; no actuation."""
++
++
+ class PrecarryPlanUnavailable(RuntimeError):
+     """Only first fixture preflight failed; no loaded RIGHT move was issued."""
+     def __init__(self, reason, measured_grasp, observed_pose):
+@@ -85,7 +89,7 @@
+                 q,h,timing=retime(qs,requested,dt,start,target,optimize=bool(c['config'].get('optimized_motion_timing')))
+                 if scale>1:q,h,timing=retime(qs,timing['duration_s']*scale,dt,start,target,optimize=False)
+             clear,why,aperture_stats=verify(q)
+-            if not clear:raise RuntimeError('Right ring executed curve hits fixed structure '+label+' '+str(why))
++            if not clear:raise ExecutedCurvePreflightBlocked('Right ring executed curve hits fixed structure '+label+' '+str(why))
+         c['planning_diagnostics'].append(dict(event='right_ring_checked_executed_curve',part=part,label=label,checked_openings_m=openings.tolist(),payload_checked=G is not None,aperture_invariants_reused=reuse_width_invariants,aperture_query_diagnostics=aperture_stats,smooth_cubic_proposed=bool(smooth),smooth_cubic_accepted=smooth_accepted,smooth_pre_motion_rejection=smooth_rejection,**timing))
+         for row,u in zip(q[1:],h[1:]):cmd[0,ids]=row;cmd[0,fi]=start+(target-start)*u;step(label)
+         record(label,physical_duration_s=(len(q)-1)*dt,smooth_cubic_accepted=smooth_accepted)
+@@ -307,7 +311,12 @@
+     release=.08 if part=='ring1'else min(.08,width+.002)
+     move([cmd[0,ids],cmd[0,ids]],.20,'release_after_full_depth',width=release)
+     wait(.25,'release_settle');H=arm.fk(cmd[0,ids]);H[2,3]-=.08
+-    line(H,.6,'world_down_withdraw',width=release)
++    if part=='ring1':
++        from empty_right_release_withdraw import execute as withdraw_empty_right
++        withdrawal=withdraw_empty_right(c,part,H,release,approved,seated_world,pose,line,move,query_context,record,ExecutedCurvePreflightBlocked)
++    else:
++        line(H,.6,'world_down_withdraw',width=release)
++        withdrawal=dict(strategy='original_checked_Cartesian_world_down',same_original_target=True)
+     wait(.8,'retention')
+     # After release this is an optical world-pose seed from the last RGB-D
+     # measurement, not a hand attachment or a claim that the part still moves
+@@ -320,4 +329,4 @@
+     except RuntimeError as error:
+         if retention is not None or not str(error).startswith(('No directly observed signed annular face','Right ring RGB-D deadline')):raise
+         record('released_retention_not_visible',reason=str(error))
+-    return dict(state='right_native_ring_insert_executed_requires_physical_evaluation',part=part,pickup=pickup,grasp_type='outer',measured_grasp=G.tolist(),right_direct_insertion=True,native_ring_result=dict(part=part,full_depth_RGBD_pass=True,full_depth_pose=pose,release_opening_m=release,world_down_withdrawal_m=.08,retention_minimum_s=.8,retention_RGBD=retention,physical_retention_validated=False),events=events,elapsed_s=time.perf_counter()-c['started'],full_task_pass=False,uses_simulator_body_poses=False,workpiece_attachments=False,workpiece_teleports=False)
++    return dict(state='right_native_ring_insert_executed_requires_physical_evaluation',part=part,pickup=pickup,grasp_type='outer',measured_grasp=G.tolist(),right_direct_insertion=True,native_ring_result=dict(part=part,full_depth_RGBD_pass=True,full_depth_pose=pose,release_opening_m=release,world_down_withdrawal_m=.08,withdrawal_evidence=withdrawal,retention_minimum_s=.8,retention_RGBD=retention,physical_retention_validated=False),events=events,elapsed_s=time.perf_counter()-c['started'],full_task_pass=False,uses_simulator_body_poses=False,workpiece_attachments=False,workpiece_teleports=False)

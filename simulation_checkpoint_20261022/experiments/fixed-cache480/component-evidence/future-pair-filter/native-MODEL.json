@@ -1,0 +1,219 @@
+{
+  "scope": "Exact native+heldCAD original463 public RGBD/robot FK. GPU CLEAR candidatefilter only; unknown retains original full future guard. Actual motion gates unchanged.",
+  "results": [
+    {
+      "label": "bad463_local2",
+      "candidate_pair_ALL_CLEAR": false,
+      "original_CPU_pair_at_known_critical_row1171": {
+        "clear": false,
+        "left": "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/Palm",
+        "right": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/Contact/right_arm_fr3v2_link6_collision"
+      },
+      "stats": {
+        "candidate_filter_only": true,
+        "full_actual_motion_checks_deferred_not_waived": true,
+        "no_physics_or_commands_issued": true,
+        "uses_free_body_poses": false,
+        "sampled_rows": 1873,
+        "pair_states": 46825,
+        "GPU_CLEAR_states": 40550,
+        "GPU_unknown_states": 6275,
+        "geometry_sha256_before": "098455f2958ae77a2abe69578f7a3a6cb35edf699182663e4d2e09661d31ac3d",
+        "geometry_sha256_after": "098455f2958ae77a2abe69578f7a3a6cb35edf699182663e4d2e09661d31ac3d",
+        "exact_geometry_bindings_and_public_state_unchanged": true,
+        "service": {
+          "geometry_sha256": "098455f2958ae77a2abe69578f7a3a6cb35edf699182663e4d2e09661d31ac3d",
+          "geometry_prepare_s": 0.0059119900688529015,
+          "geometry_registration_sent": true,
+          "transform_prepare_s": 1.5365453129634261,
+          "unpacked_transform_bytes": 407564800,
+          "packed_transform_bytes": 17271952,
+          "unique_left_states": 5,
+          "unique_right_states": 9320,
+          "left_transform_bank": 18,
+          "right_transform_bank": 35416,
+          "certificate": "original_proxy_separation_only",
+          "proposal_only": false,
+          "device": "cuda:0",
+          "kernel_s": 3.610152052831836,
+          "OBB_pairs_certified": 8564725,
+          "face_pairs_certified": 17475,
+          "total_rows": 14825,
+          "local_left_shapes": 10,
+          "local_right_shapes": 58,
+          "outward_reserve_m": 1e-09,
+          "original_pair_margin_m": 0.001,
+          "float64": true,
+          "id": "0b73ebb1b4a6462f918e077c6ae7d5d1",
+          "protocol": "native-pair-numpy-float64-v1",
+          "request_bytes": 8568486,
+          "receive_decode_s": 0.005414026905782521,
+          "server_s": 3.636776415980421,
+          "client_wall_s": 5.248663440928794,
+          "rows": 46825,
+          "clear_rows": 40550,
+          "fallback_rows": 6275,
+          "uses_free_body_poses": false,
+          "transport": "numpy_pickle5_exact_transform_bank",
+          "rpc_profile": [
+            {
+              "op": "register",
+              "request_bytes": 6815643,
+              "reply_bytes": 266,
+              "encode_s": 0.004407342988997698,
+              "rpc_s": 0.040327477036044
+            },
+            {
+              "op": "prove",
+              "request_bytes": 8888086,
+              "reply_bytes": 16593,
+              "encode_s": 0.005199652980081737,
+              "rpc_s": 0.9376626110170037
+            },
+            {
+              "op": "prove",
+              "request_bytes": 8888086,
+              "reply_bytes": 16593,
+              "encode_s": 0.005502184969373047,
+              "rpc_s": 0.9080243860371411
+            },
+            {
+              "op": "prove",
+              "request_bytes": 8568486,
+              "reply_bytes": 15417,
+              "encode_s": 0.006236032000742853,
+              "rpc_s": 1.7939984650583938
+            }
+          ],
+          "chunk_profiles": [
+            {
+              "first_row": 0,
+              "rows": 16000,
+              "clear_rows": 16000,
+              "server_s": 0.9365080479765311,
+              "kernel_s": 0.9247067719697952
+            },
+            {
+              "first_row": 16000,
+              "rows": 16000,
+              "clear_rows": 16000,
+              "server_s": 0.9071259710472077,
+              "kernel_s": 0.9000378719065338
+            },
+            {
+              "first_row": 32000,
+              "rows": 14825,
+              "clear_rows": 8550,
+              "server_s": 1.7931423969566822,
+              "kernel_s": 1.785407408955507
+            }
+          ]
+        },
+        "wall_s": 5.309296088991687,
+        "fallback_reason": "GPU uncertainty is NOT collision; original whole future guard required"
+      }
+    },
+    {
+      "label": "public444",
+      "candidate_pair_ALL_CLEAR": true,
+      "original_CPU_pair_at_known_critical_row1171": {
+        "clear": true
+      },
+      "stats": {
+        "candidate_filter_only": true,
+        "full_actual_motion_checks_deferred_not_waived": true,
+        "no_physics_or_commands_issued": true,
+        "uses_free_body_poses": false,
+        "sampled_rows": 1873,
+        "pair_states": 46825,
+        "GPU_CLEAR_states": 46825,
+        "GPU_unknown_states": 0,
+        "geometry_sha256_before": "098455f2958ae77a2abe69578f7a3a6cb35edf699182663e4d2e09661d31ac3d",
+        "geometry_sha256_after": "098455f2958ae77a2abe69578f7a3a6cb35edf699182663e4d2e09661d31ac3d",
+        "exact_geometry_bindings_and_public_state_unchanged": true,
+        "service": {
+          "geometry_sha256": "098455f2958ae77a2abe69578f7a3a6cb35edf699182663e4d2e09661d31ac3d",
+          "geometry_prepare_s": 0.007490732008591294,
+          "geometry_registration_sent": false,
+          "transform_prepare_s": 1.5281136580742896,
+          "unpacked_transform_bytes": 407564800,
+          "packed_transform_bytes": 17271952,
+          "unique_left_states": 5,
+          "unique_right_states": 9320,
+          "left_transform_bank": 18,
+          "right_transform_bank": 35416,
+          "certificate": "original_proxy_separation_only",
+          "proposal_only": false,
+          "device": "cuda:0",
+          "kernel_s": 2.6553178201429546,
+          "OBB_pairs_certified": 8598500,
+          "face_pairs_certified": 0,
+          "total_rows": 14825,
+          "local_left_shapes": 10,
+          "local_right_shapes": 58,
+          "outward_reserve_m": 1e-09,
+          "original_pair_margin_m": 0.001,
+          "float64": true,
+          "id": "cb99be2e4db34c3a906f32878099d83f",
+          "protocol": "native-pair-numpy-float64-v1",
+          "request_bytes": 8568486,
+          "receive_decode_s": 0.006816959008574486,
+          "server_s": 2.678336075041443,
+          "client_wall_s": 4.2402446729829535,
+          "rows": 46825,
+          "clear_rows": 46825,
+          "fallback_rows": 0,
+          "uses_free_body_poses": false,
+          "transport": "numpy_pickle5_exact_transform_bank",
+          "rpc_profile": [
+            {
+              "op": "prove",
+              "request_bytes": 8888086,
+              "reply_bytes": 16593,
+              "encode_s": 0.005199706996791065,
+              "rpc_s": 0.9220466589322314
+            },
+            {
+              "op": "prove",
+              "request_bytes": 8888086,
+              "reply_bytes": 16593,
+              "encode_s": 0.005487701972015202,
+              "rpc_s": 0.9123085590545088
+            },
+            {
+              "op": "prove",
+              "request_bytes": 8568486,
+              "reply_bytes": 15416,
+              "encode_s": 0.006826026015914977,
+              "rpc_s": 0.8468593440484256
+            }
+          ],
+          "chunk_profiles": [
+            {
+              "first_row": 0,
+              "rows": 16000,
+              "clear_rows": 16000,
+              "server_s": 0.9209336580242962,
+              "kernel_s": 0.9128124330891296
+            },
+            {
+              "first_row": 16000,
+              "rows": 16000,
+              "clear_rows": 16000,
+              "server_s": 0.9114921180298552,
+              "kernel_s": 0.905826817965135
+            },
+            {
+              "first_row": 32000,
+              "rows": 14825,
+              "clear_rows": 14825,
+              "server_s": 0.8459102989872918,
+              "kernel_s": 0.83667856908869
+            }
+          ]
+        },
+        "wall_s": 4.321977476938628
+      }
+    }
+  ]
+}

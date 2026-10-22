@@ -1,0 +1,128 @@
+{
+  "source_run": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v474-tight-own-prealign-nominal",
+  "RGBD_observation_index": 18,
+  "source": "held_left stable-hold current carry RGB-D+SDK",
+  "original_public_observation": {
+    "result": {
+      "pose": {
+        "part": "ring2",
+        "initial_arc_center_m": [
+          -0.05003561268158591,
+          -0.39943743619696787,
+          1.3996561421219893
+        ],
+        "initial_plane_axis": [
+          -0.001981932941124931,
+          -0.018698183283519475,
+          0.9998232093143831
+        ],
+        "center_m": [
+          -0.05002818044353074,
+          -0.3994875252484227,
+          1.3996552201149197
+        ],
+        "axis": [
+          -0.001981932941124931,
+          -0.018698183283519475,
+          0.9998232093143831
+        ],
+        "visible_face_inner_radius_m": 0.029489197682905463,
+        "visible_CAD_end_sign": 1,
+        "front_back_orientation_margin_m": 0.001989197682905463,
+        "front_back_from_RGBD": true,
+        "rms_m": 0.000637327348127204,
+        "depth_points": 3250,
+        "measured_classification_diameter_m": 0.06041761385318333,
+        "visible_arc_coverage_deg": 360,
+        "size_classification": "RGB-D observed annular arc metric diameter",
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "Fresh RGB-D annular face relocalization after lift/transfer, arbitrary axis",
+        "lateral_CAD_correction_m": [
+          7.432238055174456e-06,
+          -5.008905145481579e-05,
+          -9.220070695814542e-07
+        ],
+        "lateral_CAD_registration_rms_m": 6.852112804528019e-05,
+        "lateral_CAD_iterations": 3,
+        "observed_cap_axis_and_depth_preserved": true
+      },
+      "depth_sensor_input": true,
+      "simulator_body_pose_input": false
+    },
+    "captured_wall_s": 53.65138743107673,
+    "ready_wall_s": 54.74083043704741,
+    "capture_s": 0.20156452502124012,
+    "processing_s": 0.19341914996039122,
+    "queue_wait_s": 0.6944593309890479,
+    "camera_profile": {
+      "upload_and_setup_s": 0.010026686009950936,
+      "gpu_ray_s": 0.00019298202823847532,
+      "gpu_shading_and_download_s": 0.00028724793810397387,
+      "dynamic_s": 0.010219668038189411,
+      "static_s": 0.0,
+      "shading_s": 0.00028741895221173763,
+      "backend": "warp_gpu_triangle_rays",
+      "device": "cuda:0"
+    },
+    "delivered_wall_s": 54.750879278057255,
+    "mode": "held_left",
+    "part": "ring2",
+    "work": "/workspace/project/mujoco/.local/warm-worker-gpu2/snapshot/isaac_port/runs/native-roas-table-fixed-front-v474-tight-own-prealign-nominal/rgb-perception/observation-018-held_left",
+    "scene_sim_time_s": 53.65138743107673,
+    "hand_TCP_world": [
+      [
+        -0.429209536489112,
+        0.866174679300773,
+        0.25596949481307846,
+        -0.04938092886953498
+      ],
+      [
+        -0.7516795757352125,
+        -0.4996825615411896,
+        0.43045887459994253,
+        -0.3983534240001746
+      ],
+      [
+        0.5007560763105827,
+        -0.007649938738456873,
+        0.8655544672828022,
+        1.3943697401183774
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "timestamp_basis": "monotonic wall time since cycle start; legacy scene_sim_time_s is an alias"
+  },
+  "measured_grasp": [
+    [
+      -0.4281886745935779,
+      -0.7421851578678871,
+      0.5155734590122872,
+      0.0037770249379187604
+    ],
+    [
+      0.8661765248147101,
+      -0.4997384000006252,
+      -2.2179392700078455e-05,
+      -3.43761245322205e-05
+    ],
+    [
+      0.25766820325877954,
+      0.4465680601538938,
+      0.8568455542569594,
+      0.003921011284142795
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "uses_free_body_poses": false
+}

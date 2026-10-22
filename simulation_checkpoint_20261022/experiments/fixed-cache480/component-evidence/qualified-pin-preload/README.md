@@ -1,0 +1,9 @@
+# Qualified PIN postlift native preload candidate
+
+Private stage against actual476. The direct_pin_skill.py diff also contains the already-staged bounded component recovery candidate from `/tmp/fixed477-pin-bounded-recovery`. Driver callback diff is separate, to avoid overwriting root's other driver changes. Add new `pin_qualified_postlift_preload` and `pin_visual_bounded_component_recovery` keys to the driver's config whitelist; merge config-delta.json. Existing trial native_loaded_preload_after_contact_m_s is0.015 and native_loaded_preload_ramp_s is0.3.
+
+Before this change, native PIN hold only toggled a bool. Its configured loaded velocity preload stayed0.0075m/s, while rings already used the native postcontact API to request0.015m/s. This candidate reuses that exact API only AFTER existing fresh postlift RGB-D plus actual gripper encoder hold confirmation. It waits the existing0.3s ramp plus0.05s, then captures another fresh image using the existing calibrated lift-confirm views. The original directly observed cap-circle, aperture,2mm relative center and50mrad relative axis hold gates must pass before accepting freshG and transporting.
+
+The requested velocity preload increases0.0075→0.015m/s. This is not a measured normal force. The existing30N per-pad effort cap, gripper velocity limits, shared-motor model, pin mass/friction, physical contact model and robot motion/collision limits are unchanged. No attachments, force sensor or simulator object poses are introduced. The future servo retains75µm/3mrad/150µm final gates and16 observations.
+
+qualification.json executes the real extracted driver ramp and postlift block with mocked sensors only: verifies target and0.3s ramp, unchanged60N total effort cap, fresh-capture order, invalid-target rejection, and failed original hold evidence blocking beforeG acceptance. It is not physical success evidence. A complete new IsaacSim run is required, followed by same-source position variations.

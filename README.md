@@ -1,4 +1,4 @@
-> **2026-10-22 RGB-D/native Franka Hand 현장 시험:** [현재 온보딩과 구현 상태](FIELD_RGBD_20261022.md). 실험용 저속 패키지이며 전체 랜덤 조립 실기 성공은 아직 검증하지 않았습니다.
+> **현재 우선 작업: 기존 선반의 핀 → 작은 링 → 큰 링 고정 배치, native Franka Hand, 저장 경로 + RGB-D 보정.** [최신 시뮬레이션 코드·성공/실패·시간·영상](FIXED_FRONT_20261022.md)을 먼저 확인하세요. [현장 SDK 온보딩](FIELD_RGBD_20261022.md)은 별도 실험용 저속 패키지이며, 최신 시뮬 정책의 전체 실기 실행을 검증했다는 뜻은 아닙니다.
 
 # MuJoCo handoff for AIDAS GPU server
 
@@ -6,7 +6,7 @@
 
 **Franka Hand 현장 실행은 [전용 빠른 시작](isaac_port/fieldkit/FRANKA_HAND_QUICKSTART.md)을 먼저 읽는다.** native Hand 통신·저속 팔 실행·실물 경로 기록·PLC 피드백 기반 순차 CaP 어댑터를 제공한다. 실제 자동 조립은 현장 경로/입출력 commissioning 후에 실행한다. 기존 Robotiq 9초 경로는 native Hand 실기에 재생하지 않는다.
 
-현장 엔지니어는 **[FR3 온보딩](isaac_port/fieldkit/ONBOARDING_FR3.md)**부터 읽는다. 원본 배치의 최신 검증은 동일 초기 조건 2회에서 **9.466667초**이며, [1배속 영상과 측정 근거](isaac_port/reports/contact-trim-03/summary.json)를 제공한다. 실제 양팔·그리퍼·PLC 통합 어댑터와 현장 동작은 아직 미검증이다.
+현장 엔지니어용 **[기존 FR3 온보딩](isaac_port/fieldkit/ONBOARDING_FR3.md)**과 [과거 원본 배치9.466667초 기록](isaac_port/reports/contact-trim-03/summary.json)은 보존한다. 이 과거 수치를 현재 native Hand 고정 공급 배치의 RGB-D 촬영·인식·검사 포함 시간으로 사용하면 안 된다. 현재 검증 범위와 시간은 위 최신 안내를 기준으로 한다. 실제 양팔·그리퍼·PLC 통합 동작은 아직 미검증이다.
 
 새 PhysX 포팅과 현장용 점검 도구는 [isaac_port](isaac_port/README.md), 실기 연결 절차와 미검증 조건은 [fieldkit 안내](isaac_port/fieldkit/README.md)에 있다. Python만으로 `python3 -m isaac_port.fieldkit preflight`와 `dry-run`을 실행할 수 있다. 이 점검에는 아래 전체 아카이브·SAM3 복원이 필요 없다. 현재 실기 자동 조립은 미검증이며, 10초 미만 최적화 목표와 실제 로봇의 가동 가능 여부를 구분한다.
 

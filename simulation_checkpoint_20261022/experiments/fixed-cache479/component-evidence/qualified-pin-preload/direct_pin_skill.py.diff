@@ -1,0 +1,81 @@
+--- a/direct_pin_skill.py
++++ b/direct_pin_skill.py
+@@ -51,6 +51,19 @@
+         target[:3,:3]=exp(gain*log(target[:3,:3]@C[:3,:3].T))@C[:3,:3]
+     if np.linalg.norm(target[:3,3]-C[:3,3])>.008 or np.linalg.norm(log(target[:3,:3]@C[:3,:3].T))>.1:raise RuntimeError('Pin prealignment correction exceeds8mm/.1rad local envelope')
+     return target,dict(command_vs_actual_translation_m=bias_translation,command_vs_actual_rotation_rad=bias_angle,geometric_feedback_gain=gain,independent_axis_feedback_gain=axis_gain,part_space_component_feedback=component_gains,qualified_XY_preserved=translation_held,qualified_axis_preserved=rotation_held,component_translation_deadband_m=translation_deadband_m,component_axis_deadband_rad=axis_deadband_rad)
++
++def _pin_bounded_xy_gain(gain,radial,previous,streak,ceiling=.65):
++    """Recover bounded XY response only after two measured strong improvements."""
++    gain,radial,ceiling=float(gain),float(radial),float(ceiling)
++    if not .3<=gain<=ceiling<=.65 or radial<0 or not np.isfinite([gain,radial,ceiling]).all():raise ValueError('Invalid bounded PIN XY feedback state')
++    if previous is None:return gain,0
++    previous=float(previous)
++    if not np.isfinite(previous)or previous<0:raise ValueError('Invalid previous PIN radial error')
++    if radial<=.000075:return gain,0
++    if radial>=.95*previous:return max(.3,gain*.65),0
++    streak=int(streak)+1 if radial<.9*previous else 0
++    if streak>=2:return min(ceiling,gain/.65),0
++    return gain,streak
+ 
+ def _pin_engine_readonly_diagnostics(stage,sim,arm):
+     """Evaluator metadata only: engine state NEVER enters the servo policy."""
+@@ -347,6 +360,23 @@
+         if pin_sensor_hold:
+             sensor_evidence=_pin_rgbd_sdk_hold_evidence(v['result']['pose'],first_direct_lift_G,G,gap);report['pin_RGBD_SDK_postlift']=sensor_evidence;postlift_confirmed=sensor_evidence['confirmed'];print('PIN_RGBD_SDK_POSTLIFT',sensor_evidence,flush=True)
+         if not postlift_confirmed:raise RuntimeError('Fresh RGB-D/encoder pin postlift retention confirmation failed before carry; fingers remain closed')
++    if pin_config.get('pin_qualified_postlift_preload',False):
++        if not pin_sensor_hold or not pin_axis_geometry or not ctx.get('set_grip_hold'):raise ValueError('Qualified PIN preload requires fresh physical-axis RGB-D/SDK hold confirmation and native hold callback')
++        target_preload=float(pin_config.get('native_loaded_preload_after_contact_m_s',.015));ramp_s=float(pin_config.get('native_loaded_preload_ramp_s',.3))
++        if not 0<target_preload<=.015 or not 0<=ramp_s<=2.:raise ValueError('Invalid qualified PIN preload ramp')
++        preload_reference_G=G.copy()
++        # Reuse the same validated native postcontact ramp as ring pickups.
++        # This changes velocity PRELOAD, not the30N/pad effort cap or model.
++        ctx['set_grip_hold'](True,preload_m_s=target_preload)
++        wait(ramp_s+.05,'pin_confirmed_postlift_preload_ramp')
++        # Same existing calibrated lift-confirm view order and fresh image;
++        # no cached pose and no transport until the original hold gate passes.
++        v=observe('pin_lift_confirm_RGBD',G,require_circle=True);confirmed_G=measured_grasp(v,G);gap=float(art.get_dof_positions()[0,fi].sum())
++        force_confirmation=_pin_rgbd_sdk_hold_evidence(v['result']['pose'],preload_reference_G,confirmed_G,gap)
++        report['pin_qualified_postlift_preload']=dict(target_velocity_preload_m_s=target_preload,ramp_s=ramp_s,effort_cap_per_pad_n=float(pin_config.get('native_grip_pad_force_n',30.)),effort_cap_unchanged=True,actual_contact_force_measured=False,confirmation=force_confirmation,uses_free_body_poses=False)
++        print('PIN_QUALIFIED_POSTLIFT_PRELOAD',report['pin_qualified_postlift_preload'],flush=True)
++        if not force_confirmation['confirmed']:raise RuntimeError('Fresh RGB-D/SDK PIN hold changed after qualified native preload ramp; transport blocked')
++        G=confirmed_G
+     pin_hold_reference_G=G.copy()
+     if ctx.get('before_transport'):report['left_work_zone_clearance']=ctx['before_transport'](payload_grasp())
+     R=np.array(cand['goal_part_R']);safe=frame([-.10,-.25,1.35],R)@np.linalg.inv(G);pre=frame(goal-[0,0,.045],R)@np.linalg.inv(G);end=frame(goal,R)@np.linalg.inv(G)
+@@ -402,7 +432,10 @@
+     adaptive_pin_gain=bool(pin_config.get('pin_visual_adaptive_gain',False))
+     alignment_budget=16 if adaptive_pin_gain and visual_preinsert else 8
+     independent_component_feedback=bool(pin_config.get('pin_visual_independent_component_feedback',False))
+-    correction_gain=float(pin_config.get('pin_visual_servo_gain',.5 if independent_component_feedback else 1.))
++    bounded_component_recovery=bool(pin_config.get('pin_visual_bounded_component_recovery',False))
++    if bounded_component_recovery and not independent_component_feedback:raise ValueError('Bounded PIN recovery requires independent part-space feedback')
++    correction_gain=float(pin_config.get('pin_visual_servo_gain',.65 if bounded_component_recovery else .5 if independent_component_feedback else 1.))
++    recovery_ceiling=min(.65,correction_gain);radial_improvement_streak=0
+     previous_alignment_score=None
+     previous_radial_error=None
+     for alignment_index in range(alignment_budget if visual_preinsert else 1):
+@@ -423,17 +456,17 @@
+         if alignment_index==alignment_budget-1:raise RuntimeError('Pin RGB-D precision center/axis alignment did not converge; insertion blocked')
+         alignment_score=max(radial/.000075,axis_error/.003,shaft_axis_max/.00015)
+         if independent_component_feedback:
+-            # XY overshoot must not damp an independently unqualified axis.
+-            # The original unit axis correction worked on474 (6.19→0.88mrad);
+-            # its later0.3 damping was triggered by the coupled XY score.
+-            if adaptive_pin_gain and previous_radial_error is not None and radial>.000075 and radial>=.95*previous_radial_error:
++            # Translation adaptation never damps the independent axis servo.
++            if bounded_component_recovery and adaptive_pin_gain:
++                correction_gain,radial_improvement_streak=_pin_bounded_xy_gain(correction_gain,radial,previous_radial_error,radial_improvement_streak,recovery_ceiling)
++            elif adaptive_pin_gain and previous_radial_error is not None and radial>.000075 and radial>=.95*previous_radial_error:
+                 correction_gain=max(.3,correction_gain*.65)
+         elif adaptive_pin_gain and previous_alignment_score is not None and alignment_score>=.95*previous_alignment_score:
+             correction_gain=max(.3,correction_gain*.65)
+         previous_radial_error=radial
+         evidence.update(adaptive_gain_enabled=adaptive_pin_gain,alignment_budget=alignment_budget,normalized_error=alignment_score,previous_normalized_error=previous_alignment_score,selected_feedback_gain=correction_gain)
+         previous_alignment_score=alignment_score
+-        actual_H=arm.fk(art.get_dof_positions()[0,ids]);command_H=arm.fk(cmd[0,ids]);target,bias=_pin_visual_preinsert_target(command_H,actual_H,G,goal,R[:,2],float(Pobs[2]),gain=correction_gain,translation_deadband_m=.000075 if pin_config.get('pin_precision_component_deadband') else 0.,axis_deadband_rad=.003 if pin_config.get('pin_precision_component_deadband') else 0.,axis_gain=1. if independent_component_feedback else None);evidence.update(bias)
++        actual_H=arm.fk(art.get_dof_positions()[0,ids]);command_H=arm.fk(cmd[0,ids]);target,bias=_pin_visual_preinsert_target(command_H,actual_H,G,goal,R[:,2],float(Pobs[2]),gain=correction_gain,translation_deadband_m=.000075 if pin_config.get('pin_precision_component_deadband') else 0.,axis_deadband_rad=(.001 if bounded_component_recovery else .003) if pin_config.get('pin_precision_component_deadband') else 0.,axis_gain=(.65 if bounded_component_recovery else 1.) if independent_component_feedback else None);evidence.update(bias);evidence.update(bounded_component_recovery=bounded_component_recovery,radial_improvement_streak=radial_improvement_streak,XY_recovery_ceiling=recovery_ceiling)
+         saved=(checker.payload_path,checker.payload_rows,checker.payload_boxes,checker.payload_relative)
+         checker.attach_payload(paths['workpiece_pin'],frame([0,0,.1034],np.eye(3))@payload_grasp())
+         try:line(command_H,target,.35,'pin_preinsert_visual_correction')

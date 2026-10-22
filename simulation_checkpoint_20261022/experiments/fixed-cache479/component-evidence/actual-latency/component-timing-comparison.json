@@ -1,0 +1,92 @@
+{
+  "scope": "Measured component times, no isolated causal speed benchmark; concurrent trials and different variation/servo/park paths affect full wall time.",
+  "rows": [
+    {
+      "run": 474,
+      "full_task_pass": false,
+      "wall_s": 246.1273937470978,
+      "physics_CPU_s": 104.20699389430229,
+      "LEFT_full_field_rechecks": [
+        {
+          "wall_s": 6.212428941973485,
+          "GPU_client_s": 0.21288676897529513,
+          "own_domain": "original_broad_domain",
+          "own_payload_hits": 0,
+          "own_misses": 3865
+        },
+        {
+          "wall_s": 6.176817563944496,
+          "GPU_client_s": 0.1780260510277003,
+          "own_domain": "original_broad_domain",
+          "own_payload_hits": 0,
+          "own_misses": 3865
+        }
+      ],
+      "sum_LEFT_full_field_recheck_s": 12.389246505917981,
+      "paired_lead_proof_s": [
+        8.848951394902542
+      ],
+      "runtime_preparation_s": 0,
+      "runtime_loaded_bits": []
+    },
+    {
+      "run": 479,
+      "full_task_pass": true,
+      "wall_s": 266.1272821020102,
+      "physics_CPU_s": 112.3504988757195,
+      "LEFT_full_field_rechecks": [
+        {
+          "wall_s": 4.119883446954191,
+          "GPU_client_s": 0.24528729997109622,
+          "own_domain": "public460_SMALL_LEFT_stable_RGBD",
+          "own_payload_hits": 3605,
+          "own_misses": 310
+        },
+        {
+          "wall_s": 2.807968319975771,
+          "GPU_client_s": 0.15466191596351564,
+          "own_domain": "public460_SMALL_LEFT_stable_RGBD",
+          "own_payload_hits": 3605,
+          "own_misses": 310
+        }
+      ],
+      "sum_LEFT_full_field_recheck_s": 6.927851766929962,
+      "paired_lead_proof_s": [
+        8.20414405001793
+      ],
+      "runtime_preparation_s": 0,
+      "runtime_loaded_bits": []
+    },
+    {
+      "run": 480,
+      "full_task_pass": true,
+      "wall_s": 254.28384094999637,
+      "physics_CPU_s": 100.26163865951821,
+      "LEFT_full_field_rechecks": [
+        {
+          "wall_s": 6.607139611034654,
+          "GPU_client_s": 0.2677739190403372,
+          "own_domain": "original_broad_domain",
+          "own_payload_hits": 0,
+          "own_misses": 3915
+        },
+        {
+          "wall_s": 6.57088878005743,
+          "GPU_client_s": 0.22172176896128803,
+          "own_domain": "original_broad_domain",
+          "own_payload_hits": 0,
+          "own_misses": 3915
+        }
+      ],
+      "sum_LEFT_full_field_recheck_s": 13.178028391092084,
+      "paired_lead_proof_s": [
+        6.981654756935313
+      ],
+      "runtime_preparation_s": 4.076680779922754,
+      "runtime_loaded_bits": [
+        0
+      ]
+    }
+  ],
+  "interpretation": "Nominal479 reused7210 own-payload checks across its two full LEFT rechecks; their summed measured wall time6.928s versus12.389s in474. PLUS480 conservative runtime envelope certified0loaded rows, retained original checks, and cost4.077s inside the task clock. Full task time remained266.127/254.284s; under30s is not achieved."
+}

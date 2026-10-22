@@ -1,0 +1,82 @@
+--- a/direct_pin_skill.py
++++ b/direct_pin_skill.py
+@@ -13,7 +13,7 @@
+ from fr3_path_timing import retime,retime_safe_polyline
+ 
+ 
+-def _pin_visual_preinsert_target(command_H,actual_H,measured_G,goal,goal_axis,observed_z,gain=1.,translation_deadband_m=0.,axis_deadband_rad=0.):
++def _pin_visual_preinsert_target(command_H,actual_H,measured_G,goal,goal_axis,observed_z,gain=1.,translation_deadband_m=0.,axis_deadband_rad=0.,axis_gain=None):
+     """Bounded geometric center/axis servo; only images, encoders and jig CAD."""
+     C,A,G=[np.asarray(x,float)for x in [command_H,actual_H,measured_G]]
+     goal=np.asarray(goal,float);goal_axis=np.asarray(goal_axis,float)
+@@ -27,17 +27,30 @@
+     # Keep a component already inside its ORIGINAL final acceptance gate.
+     # Other components still correct, and the coupled shaft gate remains live.
+     rotation=A[:3,:3].copy() if rotation_held else exp(cross/max(length,1e-12)*np.arctan2(length,axis@goal_axis))@A[:3,:3]
+-    target_xy=observed[:2,3] if translation_held else goal[:2]
+-    desired=frame(np.r_[target_xy,min(float(observed_z),float(goal[2]-.045))]-rotation@G[:3,3],rotation)
++    gain=float(gain)
++    if not .3<=gain<=1.:raise ValueError('Pin geometric feedback gain must be0.3--1')
++    component_gains=axis_gain is not None
++    if component_gains:
++        axis_gain=float(axis_gain)
++        if not .3<=axis_gain<=1.:raise ValueError('Pin axis feedback gain must be0.3--1')
++        # Apply independent gains in OBSERVED PART space. Scaling the Hand
++        # translation separately from its rotation would move the pin center
++        # around the grasp lever arm and break a previously qualified XY.
++        rotation=exp(axis_gain*log(rotation@A[:3,:3].T))@A[:3,:3]
++        target_xy=observed[:2,3] if translation_held else observed[:2,3]+gain*(goal[:2]-observed[:2,3])
++        target_z=float(observed_z)+gain*(min(float(observed_z),float(goal[2]-.045))-float(observed_z))
++    else:
++        target_xy=observed[:2,3] if translation_held else goal[:2]
++        target_z=min(float(observed_z),float(goal[2]-.045))
++    desired=frame(np.r_[target_xy,target_z]-rotation@G[:3,3],rotation)
+     bias_translation=float(np.linalg.norm(C[:3,3]-A[:3,3]));bias_angle=float(np.linalg.norm(log(C[:3,:3]@A[:3,:3].T)))
+     if bias_translation>.002 or bias_angle>.01:raise RuntimeError('Pin encoder tracking bias exceeds bounded2mm/.01rad prealignment correction')
+     target=C@np.linalg.inv(A)@desired
+-    gain=float(gain)
+-    if not .3<=gain<=1.:raise ValueError('Pin geometric feedback gain must be0.3--1')
+-    target[:3,3]=C[:3,3]+gain*(target[:3,3]-C[:3,3])
+-    target[:3,:3]=exp(gain*log(target[:3,:3]@C[:3,:3].T))@C[:3,:3]
++    if not component_gains:
++        target[:3,3]=C[:3,3]+gain*(target[:3,3]-C[:3,3])
++        target[:3,:3]=exp(gain*log(target[:3,:3]@C[:3,:3].T))@C[:3,:3]
+     if np.linalg.norm(target[:3,3]-C[:3,3])>.008 or np.linalg.norm(log(target[:3,:3]@C[:3,:3].T))>.1:raise RuntimeError('Pin prealignment correction exceeds8mm/.1rad local envelope')
+-    return target,dict(command_vs_actual_translation_m=bias_translation,command_vs_actual_rotation_rad=bias_angle,geometric_feedback_gain=gain,qualified_XY_preserved=translation_held,qualified_axis_preserved=rotation_held,component_translation_deadband_m=translation_deadband_m,component_axis_deadband_rad=axis_deadband_rad)
++    return target,dict(command_vs_actual_translation_m=bias_translation,command_vs_actual_rotation_rad=bias_angle,geometric_feedback_gain=gain,independent_axis_feedback_gain=axis_gain,part_space_component_feedback=component_gains,qualified_XY_preserved=translation_held,qualified_axis_preserved=rotation_held,component_translation_deadband_m=translation_deadband_m,component_axis_deadband_rad=axis_deadband_rad)
+ 
+ def _pin_engine_readonly_diagnostics(stage,sim,arm):
+     """Evaluator metadata only: engine state NEVER enters the servo policy."""
+@@ -388,8 +401,10 @@
+         motion(route,.9,label)
+     adaptive_pin_gain=bool(pin_config.get('pin_visual_adaptive_gain',False))
+     alignment_budget=16 if adaptive_pin_gain and visual_preinsert else 8
+-    correction_gain=float(pin_config.get('pin_visual_servo_gain',1.))
++    independent_component_feedback=bool(pin_config.get('pin_visual_independent_component_feedback',False))
++    correction_gain=float(pin_config.get('pin_visual_servo_gain',.5 if independent_component_feedback else 1.))
+     previous_alignment_score=None
++    previous_radial_error=None
+     for alignment_index in range(alignment_budget if visual_preinsert else 1):
+         if visual_preinsert and pin_config.get('pin_precision_encoder_settle'):await_precision_encoder_window('pin_precision_encoder_settle')
+         v=observe('pin_preinsert_RGBD',G,require_circle=visual_preinsert);pose=v['result']['pose'];Pobs=np.asarray(pose['center_m']);remaining_depth=float(goal[2]-Pobs[2])
+@@ -407,11 +422,18 @@
+         if radial<=.000075 and axis_error<=.003 and shaft_axis_max<=.00015:break
+         if alignment_index==alignment_budget-1:raise RuntimeError('Pin RGB-D precision center/axis alignment did not converge; insertion blocked')
+         alignment_score=max(radial/.000075,axis_error/.003,shaft_axis_max/.00015)
+-        if adaptive_pin_gain and previous_alignment_score is not None and alignment_score>=.95*previous_alignment_score:
++        if independent_component_feedback:
++            # XY overshoot must not damp an independently unqualified axis.
++            # The original unit axis correction worked on474 (6.19→0.88mrad);
++            # its later0.3 damping was triggered by the coupled XY score.
++            if adaptive_pin_gain and previous_radial_error is not None and radial>.000075 and radial>=.95*previous_radial_error:
++                correction_gain=max(.3,correction_gain*.65)
++        elif adaptive_pin_gain and previous_alignment_score is not None and alignment_score>=.95*previous_alignment_score:
+             correction_gain=max(.3,correction_gain*.65)
++        previous_radial_error=radial
+         evidence.update(adaptive_gain_enabled=adaptive_pin_gain,alignment_budget=alignment_budget,normalized_error=alignment_score,previous_normalized_error=previous_alignment_score,selected_feedback_gain=correction_gain)
+         previous_alignment_score=alignment_score
+-        actual_H=arm.fk(art.get_dof_positions()[0,ids]);command_H=arm.fk(cmd[0,ids]);target,bias=_pin_visual_preinsert_target(command_H,actual_H,G,goal,R[:,2],float(Pobs[2]),gain=correction_gain,translation_deadband_m=.000075 if pin_config.get('pin_precision_component_deadband') else 0.,axis_deadband_rad=.003 if pin_config.get('pin_precision_component_deadband') else 0.);evidence.update(bias)
++        actual_H=arm.fk(art.get_dof_positions()[0,ids]);command_H=arm.fk(cmd[0,ids]);target,bias=_pin_visual_preinsert_target(command_H,actual_H,G,goal,R[:,2],float(Pobs[2]),gain=correction_gain,translation_deadband_m=.000075 if pin_config.get('pin_precision_component_deadband') else 0.,axis_deadband_rad=.003 if pin_config.get('pin_precision_component_deadband') else 0.,axis_gain=1. if independent_component_feedback else None);evidence.update(bias)
+         saved=(checker.payload_path,checker.payload_rows,checker.payload_boxes,checker.payload_relative)
+         checker.attach_payload(paths['workpiece_pin'],frame([0,0,.1034],np.eye(3))@payload_grasp())
+         try:line(command_H,target,.35,'pin_preinsert_visual_correction')

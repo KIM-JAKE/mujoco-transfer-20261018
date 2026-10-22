@@ -1,0 +1,11 @@
+--- a/run_realtime_recipe.py
++++ b/run_realtime_recipe.py
+@@ -507,7 +507,7 @@
+         task_ctx['fixed_prevalidated_routes']=prepared_fixed_routes
+         task_ctx['fixed_prevalidated_small_left_routes']=prepared_small_left_routes
+         task_ctx['fixed_prevalidated_small_donor_routes']=prepared_small_donor_routes
+-        task_ctx['pin_context']=dict(art=art,arm=arm,ids=aidx['right'],fi=finger_ids['right'],cmd=cmd,idx=idx,vision=vision,checker=scattered_checker,stage=stage,sim=sim,paths=paths,goal=goals['pin']['P'],truth=truth,started=started,stiffness=stiffness,damping=damping,dt=DT,candidate=pin_candidate,step=scattered_step,handoff_withdraw=False,report={},optimized_motion_timing=bool(startup_config.get('optimized_motion_timing')),stability_time_scale=float(startup_config.get('stability_time_scale',1.)),set_grip_hold=lambda enabled:set_native_grip_hold('right',enabled))
++        task_ctx['pin_context']=dict(art=art,arm=arm,ids=aidx['right'],fi=finger_ids['right'],cmd=cmd,idx=idx,vision=vision,checker=scattered_checker,stage=stage,sim=sim,paths=paths,goal=goals['pin']['P'],truth=truth,started=started,stiffness=stiffness,damping=damping,dt=DT,candidate=pin_candidate,step=scattered_step,handoff_withdraw=False,report={},optimized_motion_timing=bool(startup_config.get('optimized_motion_timing')),stability_time_scale=float(startup_config.get('stability_time_scale',1.)),set_grip_hold=lambda enabled,preload_m_s=None:set_native_grip_hold('right',enabled,preload_m_s=preload_m_s))
+         result=plugin.execute(task_ctx)
+         report.update(state='scattered_ring_pick_probe',scattered_pick=result,scene_only=False,wall_verified_elapsed_s=time.perf_counter()-started)
+         if startup_config.get('scattered_full_task'):

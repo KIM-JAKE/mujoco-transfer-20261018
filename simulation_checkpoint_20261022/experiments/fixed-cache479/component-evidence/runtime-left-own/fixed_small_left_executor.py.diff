@@ -1,0 +1,11 @@
+--- a/fixed_small_left_executor.py
++++ b/fixed_small_left_executor.py
+@@ -129,6 +129,8 @@
+         c['planning_diagnostics'].append(dict(event='saved_SMALL_nominal_robot_stroke_batched',segments=len(stroke)-1,wall_s=time.perf_counter()-started_stroke,clear=bool(stroke_clear),reason=stroke_reason,original_fixed_self_pair_predicates=True,physical_steps=0))
+         if not stroke_clear:return None
+     finally:lc.payload_path,lc.payload_rows,lc.payload_boxes,lc.payload_relative=saved
++    from fixed_small_own_domains import prepare_current_for_carry
++    prepare_current_for_carry(c,lc,G)
+     try:verify(c,part,G,issued)
+     except RuntimeError as error:
+         if not str(error).startswith('Loaded LEFT issued curve'):raise
