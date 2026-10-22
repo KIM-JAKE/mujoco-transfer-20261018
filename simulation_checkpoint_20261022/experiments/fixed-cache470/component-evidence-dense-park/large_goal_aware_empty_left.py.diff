@@ -1,0 +1,22 @@
+--- /tmp/fixed468-full/overrides/large_goal_aware_empty_left.py	2026-10-22 02:42:01.947352817 +0000
++++ /tmp/fixed470-dense-park/overrides/large_goal_aware_empty_left.py	2026-10-22 02:50:09.978871516 +0000
+@@ -90,14 +90,14 @@
+             rc.payload_path,rc.payload_rows,rc.payload_boxes,rc.payload_relative=payload
+             rc.resolution_rad=old_resolution
+     def current_LEFT_route(rows):
+-        from gpu_pair_path_scope import certified_path_scope
++        from serial_gpu_pair_scope import serial_path_scope
+         contexts=[(np.asarray(rq,float),float(gap))for rq in[qr,cr]for gap in right_widths]
+         curve=np.asarray(np.vstack([ql,cl,rows]),float);stats={}
+-        # Batch the full-own reference context. Other exact encoder/aperture
+-        # contexts retain the unchanged changed-body CPU pair checks, avoiding
+-        # a huge Cartesian-product RPC of duplicate whole-robot transforms.
++        # Certify the complete unchanged actual/command RIGHT q/width grid.
++        # The bounded binary client chunks large batches; unknown/error keeps
++        # every original path_other_contexts query and narrowphase fallback.
+         with lc.other_arm_at(rc,*contexts[0]):
+-            with certified_path_scope(c,lc,curve,left_widths):
++            with serial_path_scope(c,lc,rc,contexts,curve,left_widths):
+                 clear,why=path_other_contexts(lc,rc,contexts,curve,left_widths,diagnostics=stats)
+         return clear,why,stats
+     def guard_timed_route(rows,timing,knots):
