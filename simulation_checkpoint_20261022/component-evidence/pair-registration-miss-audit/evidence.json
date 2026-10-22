@@ -1,0 +1,117 @@
+{
+  "recommendation": "Retain existing safe CPU fallback; do not implement a retry for this measured workload.",
+  "scope": "Read-only current production source and existing actual-run diagnostic inspection only. No server/socket/process/driver/worker/source changes, no GPU work, no benchmark or physics execution.",
+  "cases": [
+    {
+      "run": 493,
+      "source_run": "native-roas-table-fixed-front-v493-balanced-small-raw-cache-plus",
+      "full_task_pass": true,
+      "whole_wall_s": 212.53978356905282,
+      "missing_registration_scopes": [
+        {
+          "diagnostic_index": 128,
+          "event": "GPU_exact_pair_schedule_certificate",
+          "rows": 500,
+          "scope_wall_s": 0.14753587800078094,
+          "failed_client_wall_s": 0.011849140981212258,
+          "all_rows_original_CPU_fallback": true
+        }
+      ],
+      "pipeline_path": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v493-balanced-small-raw-cache-plus/pipeline-results.json",
+      "pipeline_sha256": "d54ae263bc3a4c0ec0128c78b29a23a4c16d394f21af6d7f91e948f5f848353c"
+    },
+    {
+      "run": 494,
+      "source_run": "native-roas-table-fixed-front-v494-balanced-small-raw-cache-nominal",
+      "full_task_pass": true,
+      "whole_wall_s": 196.6974354549311,
+      "missing_registration_scopes": [
+        {
+          "diagnostic_index": 125,
+          "event": "GPU_exact_pair_schedule_certificate",
+          "rows": 500,
+          "scope_wall_s": 0.17438959702849388,
+          "failed_client_wall_s": 0.018097816966474056,
+          "all_rows_original_CPU_fallback": true
+        }
+      ],
+      "pipeline_path": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v494-balanced-small-raw-cache-nominal/pipeline-results.json",
+      "pipeline_sha256": "23fd1106fdad3afd3b6d3a64e90323ba540587ce6218b5051185e44207d4bcb5"
+    },
+    {
+      "run": 495,
+      "source_run": "native-roas-table-fixed-front-v495-balanced-small-raw-cache-minus",
+      "full_task_pass": true,
+      "whole_wall_s": 256.0858648510184,
+      "missing_registration_scopes": [
+        {
+          "diagnostic_index": 139,
+          "event": "GPU_exact_pair_schedule_certificate",
+          "rows": 500,
+          "scope_wall_s": 0.17779981694184244,
+          "failed_client_wall_s": 0.013758232933469117,
+          "all_rows_original_CPU_fallback": true
+        }
+      ],
+      "pipeline_path": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v495-balanced-small-raw-cache-minus/pipeline-results.json",
+      "pipeline_sha256": "e582c438d56f9d886cb6d965d1ec4101dbac4af4ace19999fc1d812a519eda81"
+    },
+    {
+      "run": 496,
+      "source_run": "native-roas-table-fixed-front-v496-contact-profile-minus",
+      "full_task_pass": false,
+      "whole_wall_s": 189.28289622301236,
+      "missing_registration_scopes": [
+        {
+          "diagnostic_index": 125,
+          "event": "GPU_exact_pair_schedule_certificate",
+          "rows": 500,
+          "scope_wall_s": 0.16684503701981157,
+          "failed_client_wall_s": 0.016430068062618375,
+          "all_rows_original_CPU_fallback": true
+        }
+      ],
+      "pipeline_path": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v496-contact-profile-minus/pipeline-results.json",
+      "pipeline_sha256": "aa5faebaad821d9a01d5f0d3065bad60fdd58c9e982561ba9a1b7b0e2e192d38"
+    }
+  ],
+  "benefit": {
+    "maximum_entire_observed_missing_scope_wall_s": 0.17779981694184244,
+    "interpretation": "Entire scope includes original nonpair guards, so removing this complete interval is a deliberately loose opportunity bound. A retry would still perform registration/proof and all nonpair guards. Three passing cases197\u2013256s imply less than0.1percent opportunity; no controlled causal performance claim."
+  },
+  "mechanism": {
+    "server_registration_cache_entries": 8,
+    "server_eviction": "Insertion-order FIFO, not LRU; cache.pop(next(iter(cache)))",
+    "client_registration_key_limit": 128,
+    "key": "(socket path, canonical exact geometry SHA256)",
+    "current_failed_scope_behavior": "Discard registration key and return all-false bits, requiring unchanged original CPU pair guards. Next scope re-registers.",
+    "current_timeout": "Socket timeout resets per RPC; current client does not enforce one absolute prove() deadline."
+  },
+  "future_opt_in_contract_if_workload_changes": [
+    "Default off; narrow typed/structured exact server Geometry not registered error only, with response id/protocol/geometry SHA validated first.",
+    "One recovery attempt per prove invocation, never retry unknown masks, policy mismatch, malformed replies or arbitrary errors.",
+    "Reconfirm unchanged current canonical local geometry SHA and immutable exact transform-bank/index bytes; resend the identical frozen prove input after acknowledged exact registration.",
+    "Use remaining time from one original invocation budget; do not grant another full configured socket timeout on retry.",
+    "Any second miss, input change, timeout or invalid reply invalidates ALL masks and retains original CPU fallback.",
+    "Keep original float64, margin, outward reserve, full-pair kernel, row validation and all original own/self/fixed/placed/issued guards."
+  ],
+  "implementation_staged": false,
+  "source_files": {
+    "current_client": {
+      "path": "/tmp/fixed493-intern-and-small-full/overrides/gpu_pair_schedule_binary.py",
+      "sha256": "e2ae7cbb06a3966c77c5b2b66f7a0faa3d6879fb9d83cd4126881ca7991ba61c"
+    },
+    "current_server": {
+      "path": "/home/gpuadmin/workspace/jake/mujoco/.local/collision-gpu2-exact-dedup/pair_binary_server.py",
+      "sha256": "cefe4893312b27a2c490920c4729aa780021028e6118e96e6474355fd8fbb480"
+    },
+    "unchanged_kernel": {
+      "path": "/home/gpuadmin/workspace/jake/mujoco/.local/collision-gpu2-exact-dedup/pair_kernel.py",
+      "sha256": "39c740a824f8861038519dd08fc5a3e49fba0caf7cb65985dc7b2684cab57096"
+    },
+    "protocol": {
+      "path": "/home/gpuadmin/workspace/jake/mujoco/.local/collision-gpu2-exact-dedup/gpu_pair_binary_protocol.py",
+      "sha256": "6f36f0892216fb55522bbe4d379276ab6afb696025b6afcf1ee815d3c9a60fbb"
+    }
+  }
+}

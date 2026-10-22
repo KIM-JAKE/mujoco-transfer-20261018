@@ -1,0 +1,16 @@
+--- /tmp/fixed497-pin-tail-flat/overrides/direct_pin_skill.py
++++ direct_pin_skill.py
+@@ -399,6 +399,13 @@
+             # No axial yaw is inferred from RGB-D or sent as object truth.
+             nominal_R=R.copy()
+             yaw_options=[0.,90.,-90.,180.] if pin_config.get('pin_axial_yaw_free') else [0.]
++            if pin_config.get('pin_tangent_flip_yaw_first',False) and pin_config.get('pin_axial_yaw_free'):
++                # Reorder the SAME originally allowed axial yaw candidates.
++                # Endpoint flip may rotate about a pad tangent instead of the
++                # opposed contact-normal line. Actual route/retention unproven.
++                yaw_options=[180.,90.,-90.,0.]
++            report['pin_axial_yaw_candidate_order_deg']=list(yaw_options)
++            report['pin_tangent_flip_yaw_first_requested']=bool(pin_config.get('pin_tangent_flip_yaw_first',False))
+             for yaw_deg in yaw_options:
+                 candidate_R=nominal_R@exp(np.array([0.,0.,np.deg2rad(yaw_deg)]))
+                 candidate_pre=frame(goal-[0,0,.045],candidate_R)@np.linalg.inv(G)

@@ -1,0 +1,42 @@
+--- /home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v497-tail-flat-contact-minus/code_snapshot/run_realtime_recipe.py
++++ run_realtime_recipe.py
+@@ -223,6 +223,11 @@
+         empty_donor_carried_part[side]=part;empty_donor_payload_peak.clear();empty_donor_payload_peak['force_n']=0.
+         report.setdefault('empty_donor_contact_guard_events',[]).append(dict(side=side,armed=empty_donor_contact_guard[side],carried_part=part,physics_s=globals().get('physical'),force_threshold_n=12.))
+     contact_side_cache={};ring_contact_debug=[]
++    pin_contact_evaluator=None
++    if startup_config.get('pin_contact_debug_evaluator',False):
++        from pin_contact_evaluator import PinContactEvaluator
++        pin_contact_evaluator=PinContactEvaluator(paths['workpiece_pin'],lambda encoded:str(PhysicsSchemaTools.intToSdfPath(encoded)))
++        report['pin_contact_evaluator_only']=pin_contact_evaluator.report
+     def actor_side(encoded):
+         if encoded not in contact_side_cache:
+             path=str(PhysicsSchemaTools.intToSdfPath(encoded));contact_side_cache[encoded]=0 if('left_arm_'in path or 'left_NativeHand'in path)else 1 if('right_arm_'in path or 'right_NativeHand'in path)else -1
+@@ -260,6 +265,7 @@
+                         force=sum(float(np.linalg.norm(data[i].impulse))/(DT/active_physics_substeps) for i in range(h.contact_data_offset,h.contact_data_offset+h.num_contact_data))
+                         if force>empty_donor_payload_peak['force_n']:
+                             empty_donor_payload_peak.update(force_n=force,empty_robot_side=robot_side,carried_part=empty_donor_carried_part.get(robot_side),actor0=str(PhysicsSchemaTools.intToSdfPath(h.actor0)),actor1=str(PhysicsSchemaTools.intToSdfPath(h.actor1)),physics_s=physical)
++        if pin_contact_evaluator is not None:pin_contact_evaluator.capture(headers,data,physical,DT,active_physics_substeps)
+     contact_callback=contacts
+     if startup_config.get('profile_contact_callback',False):
+         contact_callback_profile=dict(enabled=True,scope='All original callback invocations since subscription; inclusive timers, no contact filtering/sampling changes',callback_calls=0,header_records=0,data_records=0,empty_header_calls=0,max_headers=0,max_data_records=0,inclusive_wall_s=0.,inclusive_thread_cpu_s=0.,max_wall_s=0.,original_exceptions=0,instrumentation_errors=0,unique_actor_side_cache_entries=0)
+@@ -536,6 +542,7 @@
+         task_ctx['fixed_prevalidated_small_left_routes']=prepared_small_left_routes
+         task_ctx['fixed_prevalidated_small_donor_routes']=prepared_small_donor_routes
+         task_ctx['pin_context']=dict(art=art,arm=arm,ids=aidx['right'],fi=finger_ids['right'],cmd=cmd,idx=idx,vision=vision,checker=scattered_checker,stage=stage,sim=sim,paths=paths,goal=goals['pin']['P'],truth=truth,started=started,stiffness=stiffness,damping=damping,dt=DT,candidate=pin_candidate,step=scattered_step,handoff_withdraw=False,report={},optimized_motion_timing=bool(startup_config.get('optimized_motion_timing')),stability_time_scale=float(startup_config.get('stability_time_scale',1.)),set_grip_hold=lambda enabled,preload_m_s=None:set_native_grip_hold('right',enabled,preload_m_s=preload_m_s))
++        if startup_config.get('pin_only_component',False):report.update(pin_only_component=True,component_part='pin',full_task_pass=False,vision_end_to_end_pass=False,requires_whole_three_part_trial=True)
+         issued_guard_profiler=None
+         if startup_config.get('profile_issued_guards',False):
+             from issued_guard_timer import install as install_issued_guard_timer
+@@ -546,7 +553,10 @@
+             if issued_guard_profiler is not None:
+                 report['issued_guard_profile']=issued_guard_profiler.detach_collect()
+         report.update(state='scattered_ring_pick_probe',scattered_pick=result,scene_only=False,wall_verified_elapsed_s=time.perf_counter()-started)
+-        if startup_config.get('scattered_full_task'):
++        if startup_config.get('pin_only_component',False):
++            if result.get('state')!='pin_only_component_executed' or result.get('full_task_pass') is not False:raise RuntimeError('Invalid PIN-only component result boundary')
++            report.update(state='pin_only_component_pass'if result['pin'].get('pin_single_stroke_pass')else'pin_only_component_failed',pin_only_component=True,component_part='pin',pin_component_pass=bool(result['pin'].get('pin_single_stroke_pass')),full_task_pass=False,vision_end_to_end_pass=False,end_to_end_under20=False,end_to_end_under30=False,requires_whole_three_part_trial=True,ring_tasks_executed=0,simulation_elapsed_s=physical)
++        if startup_config.get('scattered_full_task') and not startup_config.get('pin_only_component',False):
+             final_rows=[r for r in tape if r['sim']>=physical-.55];checks=[]
+             for row in final_rows:
+                 part_checks={part:dict(position_error_m=float(np.linalg.norm(row['parts'][i,:3]-goals[part]['P'])),axis_error_rad=float(np.arccos(np.clip(rotation(row['parts'][i,3:])[2,2],-1,1)))) for i,part in enumerate(truth)}

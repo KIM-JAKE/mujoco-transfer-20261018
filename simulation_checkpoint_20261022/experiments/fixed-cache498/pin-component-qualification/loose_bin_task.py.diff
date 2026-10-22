@@ -1,0 +1,19 @@
+--- /tmp/fixed493-intern-and-small-full/overrides/loose_bin_task.py
++++ loose_bin_task.py
+@@ -456,6 +456,16 @@
+         seated=next((e['result']['pose']for e in reversed(pin_result['events'])if e['event']=='pin_full_depth_RGBD'and e.get('result',{}).get('pose')),None)
+         register_completed('pin',seated,'Last fresh full-depth RGB-D; conservative placement obstacle, retention not certified')
+         return pin_result
++    if c['config'].get('pin_only_component',False):
++        # Exercise the CURRENT pin skill in the CURRENT full scene. Both rings
++        # remain in their ORIGINAL stock locations; neither is installed/held
++        # synthetically, and no ring task or old-physics script is executed.
++        if c['config'].get('one_ring_only') or c['config'].get('pin_first') or c['config'].get('pin_between_rings'):
++            raise ValueError('PIN-only diagnostic cannot combine task-order/component flags')
++        if c.get('left_hand_known_empty') is not True or left_program is not None or results:
++            raise RuntimeError('PIN-only component must start before all ring tasks with known EMPTY LEFT')
++        pin_component=run_pin()
++        return dict(state='pin_only_component_executed',component_only=True,full_task_pass=False,vision_end_to_end_pass=False,pin=pin_component,parts=[],ring_tasks_executed=0,rings_initialization='Original stock; no initially installed or held workpieces',events=events,elapsed_s=time.perf_counter()-c['started'],requires_whole_three_part_trial=True)
+     if c['config'].get('park_before_bin_pick'):
+         if c['config'].get('pin_first'):raise ValueError('Initial known-empty park must precede ring-first task')
+         park=types.ModuleType('probe_empty_park_observe');park.__file__=str(HERE/'probe_empty_park_observe.py');exec(compile(Path(park.__file__).read_text(),park.__file__,'exec'),park.__dict__)

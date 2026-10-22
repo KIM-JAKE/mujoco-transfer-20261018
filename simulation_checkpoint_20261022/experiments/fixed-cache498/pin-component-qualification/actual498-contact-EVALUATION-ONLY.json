@@ -1,0 +1,398 @@
+{
+  "EVALUATION_ONLY": true,
+  "used_for_control": false,
+  "commands_or_steps": 0,
+  "run": "native-roas-table-fixed-front-v498-pin-contact-component",
+  "full_task_pass": false,
+  "pin_only_component": true,
+  "state": "failed",
+  "wall_s": 27.868121864041314,
+  "telemetry_stats": {
+    "EVALUATION_ONLY": true,
+    "used_for_control": false,
+    "geometry_or_physics_changes": false,
+    "force_control_input": false,
+    "sampling_control_step_stride": 4,
+    "maximum_records": 20000,
+    "dropped_records": 0,
+    "decode_errors": 0,
+    "physical_commands_issued": 0,
+    "physics_steps": 0
+  },
+  "input_sha256": {
+    "pipeline-results.json": "cb0255ebe590bc0e82570ecbe8cd5909643635d6459b05a28ea6fb5f2623799c",
+    "physx-sequence-trace.npz": "97736796b38f041305bdcb9ed10449b30590e4cf36a8722a9e4d305c689d112a"
+  },
+  "method": "Match callbackphysics_s to nearest trace simulation_time; publicq FK for Hand axes; evaluator-only bodyposition for torque reference. Per-manifold force is normalimpulse/substep, not motor torque/force command.",
+  "limitations": [
+    "Contact impulse stream may expose normal impulse only: no inference of friction/torsional torque absence.",
+    "Peak contact reaction may exceed30N evenwhen actuator effortcapremains30N; this is not a motorcapaudit.",
+    "Multiple substeps share controlstep timestamp; per-record statistics, not paired simultaneousnetwrench.",
+    "Component starts originalrings stock/emptyarms; not fulltask or afterringscontext."
+  ],
+  "phases": [
+    {
+      "phase": "pin_tail_close",
+      "records": 16,
+      "normal_force_n": {
+        "q10": 5.79252675379782,
+        "median": 13.576835448340244,
+        "q90": 19.744634025137895,
+        "max": 20.001567016138186
+      },
+      "nonzero_normal_points": {
+        "q10": 1.0,
+        "median": 1.0,
+        "q90": 2.0,
+        "max": 2.0
+      },
+      "effective_normal_points": {
+        "q10": 1.0,
+        "median": 1.0,
+        "q90": 1.7226230074671571,
+        "max": 1.7390014666535953
+      },
+      "closingY_normal_alignment": {
+        "q10": 0.9999993688061388,
+        "median": 0.9999993999079042,
+        "q90": 0.9999994309729467,
+        "max": 0.9999998811416406
+      },
+      "normal_only_torque_median_abs_handXYZ_Nm": [
+        0.16493759771380778,
+        6.072639636649464e-07,
+        0.13493534813627756
+      ]
+    },
+    {
+      "phase": "pin_tail_grasp_hold",
+      "records": 144,
+      "normal_force_n": {
+        "q10": 6.999982102081226,
+        "median": 7.901689780143192,
+        "q90": 10.793432413835248,
+        "max": 15.08875263417562
+      },
+      "nonzero_normal_points": {
+        "q10": 1.0,
+        "median": 1.0,
+        "q90": 2.0,
+        "max": 2.0
+      },
+      "effective_normal_points": {
+        "q10": 1.0,
+        "median": 1.0,
+        "q90": 1.1815022534221615,
+        "max": 1.577530254151842
+      },
+      "closingY_normal_alignment": {
+        "q10": 0.9999993717300413,
+        "median": 0.999999665741055,
+        "q90": 0.9999999001378971,
+        "max": 0.9999999009376274
+      },
+      "normal_only_torque_median_abs_handXYZ_Nm": [
+        0.10739041867587237,
+        1.3976301069162458e-06,
+        0.09014958259415898
+      ]
+    },
+    {
+      "phase": "pin_native_close_settle",
+      "records": 96,
+      "normal_force_n": {
+        "q10": 10.448840264568112,
+        "median": 12.098554020561487,
+        "q90": 13.56918479742082,
+        "max": 13.8649253919802
+      },
+      "nonzero_normal_points": {
+        "q10": 1.0,
+        "median": 1.5,
+        "q90": 2.0,
+        "max": 2.0
+      },
+      "effective_normal_points": {
+        "q10": 1.0,
+        "median": 1.1258072454097217,
+        "q90": 1.4849444419710296,
+        "max": 1.516523156691708
+      },
+      "closingY_normal_alignment": {
+        "q10": 0.9999994498448901,
+        "median": 0.9999996759345491,
+        "q90": 0.9999999019268653,
+        "max": 0.9999999027999079
+      },
+      "normal_only_torque_median_abs_handXYZ_Nm": [
+        0.15661906698763284,
+        8.813789986441736e-06,
+        0.12920321535131837
+      ]
+    },
+    {
+      "phase": "pin_tail_lift",
+      "records": 240,
+      "normal_force_n": {
+        "q10": 14.434899827589872,
+        "median": 14.881436090927814,
+        "q90": 15.054868636964887,
+        "max": 15.787988005837603
+      },
+      "nonzero_normal_points": {
+        "q10": 1.0,
+        "median": 1.5,
+        "q90": 2.0,
+        "max": 2.0
+      },
+      "effective_normal_points": {
+        "q10": 1.0,
+        "median": 1.180569460649284,
+        "q90": 1.571576132367787,
+        "max": 1.6457313511062863
+      },
+      "closingY_normal_alignment": {
+        "q10": 0.999995304700824,
+        "median": 0.9999992298370467,
+        "q90": 0.9999998926740513,
+        "max": 0.9999999584906387
+      },
+      "normal_only_torque_median_abs_handXYZ_Nm": [
+        0.19251027134356713,
+        0.00019084079819409842,
+        0.1575835809312608
+      ]
+    },
+    {
+      "phase": "pin_lift_settle",
+      "records": 288,
+      "normal_force_n": {
+        "q10": 14.892949305088917,
+        "median": 14.955956728180293,
+        "q90": 15.017172846331563,
+        "max": 15.08778435546435
+      },
+      "nonzero_normal_points": {
+        "q10": 1.0,
+        "median": 1.5,
+        "q90": 2.0,
+        "max": 2.0
+      },
+      "effective_normal_points": {
+        "q10": 1.0,
+        "median": 1.1770120674775084,
+        "q90": 1.374680233635904,
+        "max": 1.394517170432177
+      },
+      "closingY_normal_alignment": {
+        "q10": 0.9999986987912955,
+        "median": 0.9999987258805648,
+        "q90": 0.9999988068030972,
+        "max": 0.9999997567513259
+      },
+      "normal_only_torque_median_abs_handXYZ_Nm": [
+        0.19982442579164567,
+        0.00034778858131168436,
+        0.15532542932112764
+      ]
+    },
+    {
+      "phase": "pin_lift_independent_confirmation",
+      "records": 200,
+      "normal_force_n": {
+        "q10": 14.933728157221138,
+        "median": 14.985277244930106,
+        "q90": 15.035060706354008,
+        "max": 15.108460214367483
+      },
+      "nonzero_normal_points": {
+        "q10": 1.0,
+        "median": 1.5,
+        "q90": 2.0,
+        "max": 2.0
+      },
+      "effective_normal_points": {
+        "q10": 1.0,
+        "median": 1.1866166177791435,
+        "q90": 1.3920475201222915,
+        "max": 1.3976158329641046
+      },
+      "closingY_normal_alignment": {
+        "q10": 0.999998661899236,
+        "median": 0.9999986948606636,
+        "q90": 0.99999874857643,
+        "max": 0.9999987567603119
+      },
+      "normal_only_torque_median_abs_handXYZ_Nm": [
+        0.2000009135868098,
+        0.0003764977482216069,
+        0.1563586437330508
+      ]
+    },
+    {
+      "phase": "pin_confirmed_postlift_preload_ramp",
+      "records": 488,
+      "normal_force_n": {
+        "q10": 15.677433823109505,
+        "median": 28.41185898415186,
+        "q90": 29.99085396715699,
+        "max": 30.13589363066469
+      },
+      "nonzero_normal_points": {
+        "q10": 1.0,
+        "median": 2.0,
+        "q90": 3.0,
+        "max": 3.0
+      },
+      "effective_normal_points": {
+        "q10": 1.0,
+        "median": 1.200745881628051,
+        "q90": 2.0756582916259196,
+        "max": 2.083853294112778
+      },
+      "closingY_normal_alignment": {
+        "q10": 0.9999985454689692,
+        "median": 0.9999986041401399,
+        "q90": 0.9999986710130212,
+        "max": 0.9999987344388875
+      },
+      "normal_only_torque_median_abs_handXYZ_Nm": [
+        0.33434634073878455,
+        0.0006699970126096029,
+        0.253032288581925
+      ]
+    },
+    {
+      "phase": "pin_empty_left_close_for_clearance",
+      "records": 1144,
+      "normal_force_n": {
+        "q10": 29.932476664547053,
+        "median": 29.969843673391026,
+        "q90": 30.013254391344827,
+        "max": 30.137515312299183
+      },
+      "nonzero_normal_points": {
+        "q10": 2.0,
+        "median": 2.5,
+        "q90": 3.0,
+        "max": 3.0
+      },
+      "effective_normal_points": {
+        "q10": 1.006447424493038,
+        "median": 1.5397554586486195,
+        "q90": 2.0774037065007627,
+        "max": 2.0845865087664266
+      },
+      "closingY_normal_alignment": {
+        "q10": 0.999998543837635,
+        "median": 0.9999985473050168,
+        "q90": 0.9999986049608917,
+        "max": 0.999998662468754
+      },
+      "normal_only_torque_median_abs_handXYZ_Nm": [
+        0.3760325366850851,
+        0.0007615293662909968,
+        0.2913273661337767
+      ]
+    },
+    {
+      "phase": "pin_empty_left_close_encoder_completion",
+      "records": 168,
+      "normal_force_n": {
+        "q10": 29.93369653257257,
+        "median": 29.969775228521996,
+        "q90": 30.006907757641436,
+        "max": 30.104526268054734
+      },
+      "nonzero_normal_points": {
+        "q10": 2.0,
+        "median": 2.5,
+        "q90": 3.0,
+        "max": 3.0
+      },
+      "effective_normal_points": {
+        "q10": 1.0063961864284956,
+        "median": 1.5421098905198565,
+        "q90": 2.0768554097632244,
+        "max": 2.0811245023566416
+      },
+      "closingY_normal_alignment": {
+        "q10": 0.9999985447432516,
+        "median": 0.9999985469549,
+        "q90": 0.9999985496717888,
+        "max": 0.9999986050587282
+      },
+      "normal_only_torque_median_abs_handXYZ_Nm": [
+        0.3760574239792288,
+        0.0007645028878422099,
+        0.29135992166016766
+      ]
+    },
+    {
+      "phase": "pin_tail_direct_carry_to_preinsert",
+      "records": 3615,
+      "normal_force_n": {
+        "q10": 29.519739987404503,
+        "median": 29.8241351957158,
+        "q90": 30.09430151449219,
+        "max": 42.28615130702789
+      },
+      "nonzero_normal_points": {
+        "q10": 1.0,
+        "median": 2.0,
+        "q90": 4.0,
+        "max": 4.0
+      },
+      "effective_normal_points": {
+        "q10": 1.0,
+        "median": 1.2149564650311506,
+        "q90": 1.5679738522221374,
+        "max": 3.8406830637549514
+      },
+      "closingY_normal_alignment": {
+        "q10": 0.9980642828868033,
+        "median": 0.9999948483563615,
+        "q90": 0.9999998800076302,
+        "max": 0.999999975219882
+      },
+      "normal_only_torque_median_abs_handXYZ_Nm": [
+        0.37895428541146264,
+        0.0009188702673988274,
+        0.337458131031831
+      ]
+    },
+    {
+      "phase": "pin_precision_encoder_settle",
+      "records": 304,
+      "normal_force_n": {
+        "q10": 29.856909363974644,
+        "median": 29.92295795563183,
+        "q90": 30.01874934882908,
+        "max": 30.393429096313586
+      },
+      "nonzero_normal_points": {
+        "q10": 1.0,
+        "median": 1.5,
+        "q90": 3.0,
+        "max": 3.0
+      },
+      "effective_normal_points": {
+        "q10": 1.0,
+        "median": 1.1110213270745994,
+        "q90": 1.232241185606075,
+        "max": 1.2407550520990172
+      },
+      "closingY_normal_alignment": {
+        "q10": 0.9980624382327817,
+        "median": 0.9990324367450568,
+        "q90": 0.9999999117230917,
+        "max": 0.9999999218953189
+      },
+      "normal_only_torque_median_abs_handXYZ_Nm": [
+        0.3868783302280311,
+        0.0161527709987426,
+        0.3451073421487668
+      ]
+    }
+  ]
+}

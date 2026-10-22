@@ -1,0 +1,84 @@
+{
+  "status": "DESIGN_ONLY_NOT_AUTHORIZED_TO_LAUNCH",
+  "CPU_PhysX_only": true,
+  "GPU_physics": false,
+  "renderer": false,
+  "fresh_Kit_process_per_setting": true,
+  "requested_thread_counts": [
+    0,
+    2
+  ],
+  "followup_counts": [
+    1,
+    4
+  ],
+  "zero_semantics": "Undocumented in installed API; do not infer auto or single thread",
+  "set_before_attach": true,
+  "plugin_rejects_thread_changes_after_simulation_start": true,
+  "source_run": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v494-balanced-small-raw-cache-nominal",
+  "source_seals": {
+    "trial-config.json": "2ca4718679206289cb864803bb27cc81adc3dc3e5175df043ad8f267d6709881",
+    "executed-actuator-commands.npz": "5ec8b02b780787e358325f415380bee05e5bc8785e35c0460a6c7024509fa3f2",
+    "code_snapshot/run_realtime_recipe.py": "a787cea542083cfa8930de9f5d74df306d5b886b4b423e8b3d5a0ac1d44c376d",
+    "code_snapshot/fixed_supply_setup.py": "5d244d4b37e00cddd717a5d2a8c78231d985879c151b15b0427ce890f2322b1d"
+  },
+  "warmup": {
+    "rows": [
+      0,
+      2182
+    ],
+    "controls": 2182,
+    "sim_s": 4.545833333333333,
+    "timed": false
+  },
+  "timed": {
+    "rows": [
+      2182,
+      3142
+    ],
+    "controls": 960,
+    "sim_s": 2.0,
+    "phases": [
+      "loose_ring_camera_confirmed_hold",
+      "loose_ring_close",
+      "loose_ring_grasp_controller_completion",
+      "loose_ring_grasp_settle",
+      "loose_ring_lift",
+      "loose_ring_lift_breakaway",
+      "loose_ring_lift_settle",
+      "loose_ring_outer_contact_final_encoder_window",
+      "ring2_carry_to_handover",
+      "ring2_receiver_empty_preshape"
+    ]
+  },
+  "controller_hz": 480,
+  "substeps_per_control": 4,
+  "substep_hz": 1920,
+  "solver_position_iterations": 128,
+  "solver_velocity_iterations": 64,
+  "issued_field_dtype": "<f4",
+  "issued_field_shape": [
+    3142,
+    18
+  ],
+  "issued_field_sha256": "92c67b7e2026d74ec32735b2a1989a793e403559ce2908292b4e749230867589",
+  "first_hold_onset_row": 2182,
+  "recorded_phase_basis": "loose_ring_pick sets RIGHT finite-force hold immediately before first loose_ring_close row",
+  "preserve": [
+    "Original authored native CAD/masses/materials/scene/CCD/contact-offsets/mimic/coupling",
+    "Original source494 configuration and fixed_supply_setup.author",
+    "Original 480Hz control field and current-SDK motor speed/coupling guards",
+    "Original native finite-force 30N-per-pad / preload .003\u2192.0075m/s ramp.3s",
+    "Original 4 simulate/fetch calls at1/1920s per control",
+    "Original report scope, contacts callback and12N cross-arm/empty-donor guards",
+    "Both operation writeback settings alreadyfalse",
+    "Full exact physics parameters unchanged apart from requested thread count"
+  ],
+  "exclude_from_timed_window": [
+    "Kit/plugin/stage/initial-settle cold startup",
+    "Unmeasured exact prefix warmup",
+    "Cameras/perception/planning/GPU services"
+  ],
+  "pose_metrics": "EVALUATION ONLY tensor body and SDK q/v traces, no target feedback from free-body poses",
+  "launch_prohibited_until_parent_review": true
+}

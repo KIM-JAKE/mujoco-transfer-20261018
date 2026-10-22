@@ -1,0 +1,26 @@
+[
+  {
+    "threads": 0,
+    "case": "/home/gpuadmin/workspace/jake/mujoco/.local/thread-component-494/threads-0",
+    "sg_command": [
+      "sg",
+      "docker",
+      "-c",
+      "docker exec -d -e OMP_NUM_THREADS=1 -e OPENBLAS_NUM_THREADS=1 -e TBB_NUM_THREADS=1 -e CUDA_VISIBLE_DEVICES= isaac-jake-gpu-3-9aeb439d20 /bin/bash -c 'exec nice -n 10 /isaac-sim/kit/kit /workspace/project/mujoco/.local/thread-component-494/tree/isaac_port/native_hand_layout/roas-table/physx-cpu.kit --no-window --allow-root --exec /workspace/project/mujoco/.local/thread-component-494/threads-0/run.py >/workspace/project/mujoco/.local/thread-component-494/threads-0/kit.log 2>&1'"
+    ],
+    "run_sequentially_only": true,
+    "requires_parent_review_before_launch": true
+  },
+  {
+    "threads": 2,
+    "case": "/home/gpuadmin/workspace/jake/mujoco/.local/thread-component-494/threads-2",
+    "sg_command": [
+      "sg",
+      "docker",
+      "-c",
+      "docker exec -d -e OMP_NUM_THREADS=1 -e OPENBLAS_NUM_THREADS=1 -e TBB_NUM_THREADS=1 -e CUDA_VISIBLE_DEVICES= isaac-jake-gpu-3-9aeb439d20 /bin/bash -c 'exec nice -n 10 /isaac-sim/kit/kit /workspace/project/mujoco/.local/thread-component-494/tree/isaac_port/native_hand_layout/roas-table/physx-cpu.kit --no-window --allow-root --exec /workspace/project/mujoco/.local/thread-component-494/threads-2/run.py >/workspace/project/mujoco/.local/thread-component-494/threads-2/kit.log 2>&1'"
+    ],
+    "run_sequentially_only": true,
+    "requires_parent_review_before_launch": true
+  }
+]

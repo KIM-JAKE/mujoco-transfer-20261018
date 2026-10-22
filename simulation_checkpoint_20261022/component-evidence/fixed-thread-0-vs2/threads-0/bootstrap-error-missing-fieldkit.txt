@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/workspace/project/mujoco/.local/thread-component-494/threads-0/run.py", line 9, in <module>
+    runpy.run_path('/workspace/project/mujoco/.local/thread-component-494/component.py',run_name='__main__')
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/project/mujoco/.local/thread-component-494/component.py", line 22, in <module>
+    exec(compile((C_BASE/'setup_prefix.py').read_text(),__file__,'exec'),globals())
+  File "/workspace/project/mujoco/.local/thread-component-494/tree/isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py", line 26, in <module>
+    module_path=HERE/(module_name+'.py');module=types.ModuleType(module_name);module.__file__=str(module_path);module.__package__='';sys.modules[module_name]=module;exec(compile(module_path.read_text(),str(module_path),'exec'),module.__dict__);fresh_modules[module_name]=module
+                                                                                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/project/mujoco/.local/thread-component-494/tree/isaac_port/native_hand_layout/roas-table/realtime_vision.py", line 8, in <module>
+    from isaac_port.fieldkit.perception import CadPoseEstimator
+ModuleNotFoundError: No module named 'isaac_port.fieldkit'

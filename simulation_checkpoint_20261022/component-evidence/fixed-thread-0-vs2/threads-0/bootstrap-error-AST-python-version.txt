@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/workspace/project/mujoco/.local/thread-component-494/threads-0/run.py", line 9, in <module>
+    runpy.run_path('/workspace/project/mujoco/.local/thread-component-494/component.py',run_name='__main__')
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/project/mujoco/.local/thread-component-494/component.py", line 55, in <module>
+    assert len(C_nodes)==1 and hashlib.sha256(ast.dump(C_nodes[0],include_attributes=False).encode()).hexdigest()==C_META['literal_function_AST_sha256'][C_name],C_name
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: contacts
