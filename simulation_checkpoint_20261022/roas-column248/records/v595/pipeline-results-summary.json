@@ -1,0 +1,287 @@
+{
+  "state": "pin_grip_transport_component_pass",
+  "full_task_pass": false,
+  "vision_end_to_end_pass": false,
+  "pin_grip_transport_component_pass": true,
+  "wall_verified_elapsed_s": 44.1152198810596,
+  "simulation_elapsed_s": 11.620833333332834,
+  "error": null,
+  "encoder_motor_speed_audit": {
+    "samples": 5578,
+    "max_fraction_of_95_percent_PBV": 0.9439501622119428,
+    "max_finger_fraction_of_47p5_mm_s": 0.673685654213554,
+    "max_coupled_finger_difference_m": 3.3527612686157227e-08,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  },
+  "hardware_tested": false,
+  "pin_skill_progress": {
+    "pin_RGBD_SDK_postlift": {
+      "confirmed": true,
+      "direct_class_end_circle": true,
+      "actual_encoder_aperture_m": 0.012708161026239395,
+      "required_aperture_band_m": [
+        0.0097,
+        0.0135
+      ],
+      "encoder_position_stationary": true,
+      "relative_center_drift_m": 3.167881834438107e-06,
+      "relative_axis_drift_rad": 0.00019316236768576912,
+      "center_drift_limit_m": 0.002,
+      "axis_drift_limit_rad": 0.05,
+      "unobservable_axial_yaw_used": false,
+      "native_sample_normals_advisory_only": true,
+      "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+      "uses_free_body_poses": false
+    },
+    "pin_qualified_postlift_preload": {
+      "target_velocity_preload_m_s": 0.015,
+      "ramp_s": 0.3,
+      "effort_cap_per_pad_n": 30.0,
+      "effort_cap_unchanged": true,
+      "actual_contact_force_measured": false,
+      "confirmation": {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012556007131934166,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 1.6705118673652767e-06,
+        "relative_axis_drift_rad": 5.340419008884376e-06,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false
+      },
+      "uses_free_body_poses": false
+    },
+    "normal_fixed_pickup": {
+      "fixed_command_H": [
+        [
+          0.7664056181497704,
+          0.0003036508256174861,
+          0.6423568605716328,
+          0.23106963233270847
+        ],
+        [
+          -0.017847993211811426,
+          -0.999603739673825,
+          0.02176723517870872,
+          -0.85517517057408
+        ],
+        [
+          0.6421089297250997,
+          -0.02814731253309695,
+          -0.7660965026331492,
+          0.9310613158353821
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "fixed_relative_G": [
+        [
+          0.7664766692205639,
+          0.01833064343238273,
+          -0.6420105163094331,
+          -0.010034592221506378
+        ],
+        [
+          -9.597551747658837e-06,
+          0.9995929692856015,
+          0.028528856666215532,
+          0.0001772274928386608
+        ],
+        [
+          0.6422721506094103,
+          -0.021860541305038946,
+          0.7661648656036202,
+          0.011072615306258582
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "current_initial_position_error_m": 2.1548352496093564e-05,
+      "current_initial_axis_error_rad": 2.7717762049642705e-07,
+      "online_target_updates": false,
+      "preclose_servo_allowed": false,
+      "recovery_used": false,
+      "uses_free_body_poses": false
+    },
+    "normal_fixed_preclose_verification": {
+      "translation_m": 9.668572298042392e-06,
+      "axis_rotation_rad": 0.00010933035964416488,
+      "original_translation_limit_m": 0.0003,
+      "original_rotation_limit_rad": 0.01,
+      "target_corrected": false,
+      "uses_free_body_poses": false
+    },
+    "pin_grip_transport_reference_G": [
+      [
+        0.7572454353541673,
+        0.021815214348224463,
+        -0.6527659971676054,
+        -0.010125812186950078
+      ],
+      [
+        0.0004370497458832776,
+        0.9994248819701056,
+        0.03390743703909031,
+        0.0002095786113693876
+      ],
+      [
+        0.6531302776803393,
+        -0.0259615431355933,
+        0.7568003955173527,
+        0.011027303447589842
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "pin_grip_transport_samples": [
+      {
+        "observation": 0,
+        "original_hold": {
+          "confirmed": true,
+          "direct_class_end_circle": true,
+          "actual_encoder_aperture_m": 0.012555399909615517,
+          "required_aperture_band_m": [
+            0.0097,
+            0.0135
+          ],
+          "encoder_position_stationary": true,
+          "relative_center_drift_m": 2.3654620787776267e-05,
+          "relative_axis_drift_rad": 0.00014640450869716937,
+          "center_drift_limit_m": 0.002,
+          "axis_drift_limit_rad": 0.05,
+          "unobservable_axial_yaw_used": false,
+          "native_sample_normals_advisory_only": true,
+          "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+          "uses_free_body_poses": false
+        },
+        "fixed_path_grasp_repeatability_qualified": true,
+        "repeatability_translation_limit_m": 7.5e-05,
+        "repeatability_axis_limit_rad": 0.003,
+        "current_axis_TCP_G": [
+          [
+            0.7572453972193757,
+            0.0217196462340947,
+            -0.6527692282556948,
+            -0.01011316720721922
+          ],
+          [
+            0.00043705172248730635,
+            0.9994298354603736,
+            0.03376111635361363,
+            0.00019400087496790341
+          ],
+          [
+            0.653130321892853,
+            -0.025850743879357565,
+            0.7568041501372874,
+            0.011039832601624555
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "uses_free_body_poses": false
+      },
+      {
+        "observation": 1,
+        "original_hold": {
+          "confirmed": true,
+          "direct_class_end_circle": true,
+          "actual_encoder_aperture_m": 0.012555399909615517,
+          "required_aperture_band_m": [
+            0.0097,
+            0.0135
+          ],
+          "encoder_position_stationary": true,
+          "relative_center_drift_m": 1.9199837722913367e-05,
+          "relative_axis_drift_rad": 0.00014333128907325507,
+          "center_drift_limit_m": 0.002,
+          "axis_drift_limit_rad": 0.05,
+          "unobservable_axial_yaw_used": false,
+          "native_sample_normals_advisory_only": true,
+          "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+          "uses_free_body_poses": false
+        },
+        "fixed_path_grasp_repeatability_qualified": true,
+        "repeatability_translation_limit_m": 7.5e-05,
+        "repeatability_axis_limit_rad": 0.003,
+        "current_axis_TCP_G": [
+          [
+            0.7572470780257284,
+            0.021721666890446824,
+            -0.6527672111932372,
+            -0.010116002056869577
+          ],
+          [
+            0.0004369645988406469,
+            0.9994297309548716,
+            0.0337642110142062,
+            0.00019642134582614768
+          ],
+          [
+            0.6531283732034887,
+            -0.02585308629492714,
+            0.7568057518581577,
+            0.01103726745681377
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "uses_free_body_poses": false
+      }
+    ],
+    "pin_transport_actual_q": [
+      -0.6653721332550049,
+      0.5315779447555542,
+      0.8459252715110779,
+      -1.7549822330474854,
+      1.570389747619629,
+      2.253138303756714,
+      1.4569809436798096
+    ],
+    "pin_transport_command_q": [
+      -0.6650667786598206,
+      0.5318683385848999,
+      0.8462166786193848,
+      -1.7556923627853394,
+      1.5706990957260132,
+      2.2526893615722656,
+      1.456652045249939
+    ],
+    "normal_fixed_execution": true,
+    "visual_micro_alignment_executed": false,
+    "insertion_executed": false,
+    "pin_single_stroke_pass": false
+  },
+  "original_result_SHA256": "2709d6920c00b90908b7cb5f84a66de01b03b06682ee535fe3df1184724c478c",
+  "original_result_preserved_at": "/home/gpuadmin/workspace/jake/isaac-roas-column248-20261022/experiments/v595/pipeline-results.json",
+  "summary_only": true
+}

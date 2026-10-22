@@ -1,0 +1,1149 @@
+{
+  "updated_KST": "2026-10-23T00:40:21.604238+09:00",
+  "scope": "Fresh physical PIN grasp/lift/carry only; NOT insertion/full3/hardware",
+  "planned": 5,
+  "finished": 5,
+  "component_pass": 5,
+  "whole3_pass": 0,
+  "normal_micro_corrections": 0,
+  "source_426_Python_SHA256": "01dbf89c42c4b34f939ed2077b5768488e70f6b76578c5bf5b1f69b6f1e5d94c",
+  "config_SHA256_excluding_note": "49f1816a9cadfa251ef00a104dfe9c177d06bd404d4b56bca5c5ae6df600779c",
+  "environment_limitations": "Stock rings, empty ring jig, open clamps; initial both empty robot encoder postures copied from575 before PIN; fresh ungrasped PIN on original holder, no PIN attachment or carried-state restoration. Actual left parking and carry executed, not frozen q_preinsert qualified.",
+  "trials": [
+    {
+      "version": 592,
+      "run": "native-roas-table-pin-grip-transport-v592-fixed-lift-camera-repeat1",
+      "status": "pin_grip_transport_component_pass",
+      "component_pass": true,
+      "whole3_pass": false,
+      "insertion_executed": false,
+      "visual_micro_alignment_executed": false,
+      "fixed_preclose": {
+        "translation_m": 9.668572298042392e-06,
+        "axis_rotation_rad": 0.00010933035964416488,
+        "original_translation_limit_m": 0.0003,
+        "original_rotation_limit_rad": 0.01,
+        "target_corrected": false,
+        "uses_free_body_poses": false
+      },
+      "lift_evidence": {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012708164751529694,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 6.485156196633901e-06,
+        "relative_axis_drift_rad": 0.00013913131628501022,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false
+      },
+      "preload_evidence": {
+        "target_velocity_preload_m_s": 0.015,
+        "ramp_s": 0.3,
+        "effort_cap_per_pad_n": 30.0,
+        "effort_cap_unchanged": true,
+        "actual_contact_force_measured": false,
+        "confirmation": {
+          "confirmed": true,
+          "direct_class_end_circle": true,
+          "actual_encoder_aperture_m": 0.012555960565805435,
+          "required_aperture_band_m": [
+            0.0097,
+            0.0135
+          ],
+          "encoder_position_stationary": true,
+          "relative_center_drift_m": 5.428617255139764e-07,
+          "relative_axis_drift_rad": 6.296758915026388e-06,
+          "center_drift_limit_m": 0.002,
+          "axis_drift_limit_rad": 0.05,
+          "unobservable_axial_yaw_used": false,
+          "native_sample_normals_advisory_only": true,
+          "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+          "uses_free_body_poses": false
+        },
+        "uses_free_body_poses": false
+      },
+      "postcarry_samples": [
+        {
+          "observation": 0,
+          "original_hold": {
+            "confirmed": true,
+            "direct_class_end_circle": true,
+            "actual_encoder_aperture_m": 0.01255539245903492,
+            "required_aperture_band_m": [
+              0.0097,
+              0.0135
+            ],
+            "encoder_position_stationary": true,
+            "relative_center_drift_m": 2.365151626586773e-05,
+            "relative_axis_drift_rad": 0.00048506736260870597,
+            "center_drift_limit_m": 0.002,
+            "axis_drift_limit_rad": 0.05,
+            "unobservable_axial_yaw_used": false,
+            "native_sample_normals_advisory_only": true,
+            "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+            "uses_free_body_poses": false
+          },
+          "fixed_path_grasp_repeatability_qualified": true,
+          "repeatability_translation_limit_m": 7.5e-05,
+          "repeatability_axis_limit_rad": 0.003,
+          "current_axis_TCP_G": [
+            [
+              0.7567586130334926,
+              0.02157432555544759,
+              -0.6533383121143683,
+              -0.010115120196315108
+            ],
+            [
+              0.0004604138408086242,
+              0.9994373909488061,
+              0.03353639206202403,
+              0.00018797114237581458
+            ],
+            [
+              0.6536942631067827,
+              -0.02567975954463278,
+              0.7563229206701394,
+              0.011040815593992725
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "uses_free_body_poses": false
+        },
+        {
+          "observation": 1,
+          "original_hold": {
+            "confirmed": true,
+            "direct_class_end_circle": true,
+            "actual_encoder_aperture_m": 0.01255539245903492,
+            "required_aperture_band_m": [
+              0.0097,
+              0.0135
+            ],
+            "encoder_position_stationary": true,
+            "relative_center_drift_m": 2.514817634383883e-05,
+            "relative_axis_drift_rad": 0.0005231422154402782,
+            "center_drift_limit_m": 0.002,
+            "axis_drift_limit_rad": 0.05,
+            "unobservable_axial_yaw_used": false,
+            "native_sample_normals_advisory_only": true,
+            "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+            "uses_free_body_poses": false
+          },
+          "fixed_path_grasp_repeatability_qualified": true,
+          "repeatability_translation_limit_m": 7.5e-05,
+          "repeatability_axis_limit_rad": 0.003,
+          "current_axis_TCP_G": [
+            [
+              0.7567264566479303,
+              0.021573237739048148,
+              -0.6533755927661533,
+              -0.010114846353540208
+            ],
+            [
+              0.00046207223295897487,
+              0.9994374464753001,
+              0.03353471443418811,
+              0.00018655026223474147
+            ],
+            [
+              0.6537314863904901,
+              -0.025678512347593763,
+              0.7562907891183752,
+              0.011041250697802596
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "uses_free_body_poses": false
+        }
+      ],
+      "actual_q": [
+        -0.6652719378471375,
+        0.5313553810119629,
+        0.8458173274993896,
+        -1.7550138235092163,
+        1.5701841115951538,
+        2.2533717155456543,
+        1.4572583436965942
+      ],
+      "command_q": [
+        -0.6649667620658875,
+        0.5316453576087952,
+        0.8461090326309204,
+        -1.7557244300842285,
+        1.5704931020736694,
+        2.2529234886169434,
+        1.456929326057434
+      ],
+      "postlift_reference_G": [
+        [
+          0.7569899709641381,
+          0.02179080906386278,
+          -0.6530630478752072,
+          -0.010122291006925077
+        ],
+        [
+          0.00044847685785645157,
+          0.9994262214162029,
+          0.03386778431250588,
+          0.0002090177313016639
+        ],
+        [
+          0.6534263407058374,
+          -0.025930456727036803,
+          0.7565458536570707,
+          0.011032752418969394
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "repeat_reference_drift": {
+        "translation_m": 0.0,
+        "axis_rad": 3.332000937312528e-08
+      },
+      "wall_s": 46.75046327407472,
+      "error": null,
+      "source_426_Python_SHA256": "01dbf89c42c4b34f939ed2077b5768488e70f6b76578c5bf5b1f69b6f1e5d94c",
+      "config_SHA256_excluding_note": "49f1816a9cadfa251ef00a104dfe9c177d06bd404d4b56bca5c5ae6df600779c",
+      "result_SHA256": "3ca6863e2d23db57315a820286ffefc7e77dc6be1cb062fab959c019f623e5cc",
+      "config_raw_SHA256": "7131f4fe493862e2ce8d082b64d2adac8a36f11e11db776ff28dcee49e096236",
+      "encoder_speed_audit": {
+        "samples": 5761,
+        "max_fraction_of_95_percent_PBV": 0.9439501622119428,
+        "max_finger_fraction_of_47p5_mm_s": 0.673685654213554,
+        "max_coupled_finger_difference_m": 3.3527612686157227e-08,
+        "enforced": true,
+        "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+      }
+    },
+    {
+      "version": 593,
+      "run": "native-roas-table-pin-grip-transport-v593-fixed-lift-camera-repeat2",
+      "status": "pin_grip_transport_component_pass",
+      "component_pass": true,
+      "whole3_pass": false,
+      "insertion_executed": false,
+      "visual_micro_alignment_executed": false,
+      "fixed_preclose": {
+        "translation_m": 9.668572298042392e-06,
+        "axis_rotation_rad": 0.00010933035964416488,
+        "original_translation_limit_m": 0.0003,
+        "original_rotation_limit_rad": 0.01,
+        "target_corrected": false,
+        "uses_free_body_poses": false
+      },
+      "lift_evidence": {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012708029709756374,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 1.7305955015326561e-06,
+        "relative_axis_drift_rad": 0.00015096120124313142,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false
+      },
+      "preload_evidence": {
+        "target_velocity_preload_m_s": 0.015,
+        "ramp_s": 0.3,
+        "effort_cap_per_pad_n": 30.0,
+        "effort_cap_unchanged": true,
+        "actual_contact_force_measured": false,
+        "confirmation": {
+          "confirmed": true,
+          "direct_class_end_circle": true,
+          "actual_encoder_aperture_m": 0.012555964291095734,
+          "required_aperture_band_m": [
+            0.0097,
+            0.0135
+          ],
+          "encoder_position_stationary": true,
+          "relative_center_drift_m": 2.435454087977369e-06,
+          "relative_axis_drift_rad": 7.90254814475021e-06,
+          "center_drift_limit_m": 0.002,
+          "axis_drift_limit_rad": 0.05,
+          "unobservable_axial_yaw_used": false,
+          "native_sample_normals_advisory_only": true,
+          "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+          "uses_free_body_poses": false
+        },
+        "uses_free_body_poses": false
+      },
+      "postcarry_samples": [
+        {
+          "observation": 0,
+          "original_hold": {
+            "confirmed": true,
+            "direct_class_end_circle": true,
+            "actual_encoder_aperture_m": 0.012555398978292942,
+            "required_aperture_band_m": [
+              0.0097,
+              0.0135
+            ],
+            "encoder_position_stationary": true,
+            "relative_center_drift_m": 2.8286508203834087e-05,
+            "relative_axis_drift_rad": 0.0010990750985255063,
+            "center_drift_limit_m": 0.002,
+            "axis_drift_limit_rad": 0.05,
+            "unobservable_axial_yaw_used": false,
+            "native_sample_normals_advisory_only": true,
+            "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+            "uses_free_body_poses": false
+          },
+          "fixed_path_grasp_repeatability_qualified": true,
+          "repeatability_translation_limit_m": 7.5e-05,
+          "repeatability_axis_limit_rad": 0.003,
+          "current_axis_TCP_G": [
+            [
+              0.7577674199594947,
+              0.02176677373724791,
+              -0.6521615940922938,
+              -0.010115399535259861
+            ],
+            [
+              0.0004089600360698963,
+              0.9994274360099328,
+              0.033832423831297746,
+              0.00018270727693275868
+            ],
+            [
+              0.6525246125623302,
+              -0.025903816546662024,
+              0.7573246478814071,
+              0.01103988118620558
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "uses_free_body_poses": false
+        },
+        {
+          "observation": 1,
+          "original_hold": {
+            "confirmed": true,
+            "direct_class_end_circle": true,
+            "actual_encoder_aperture_m": 0.012555398978292942,
+            "required_aperture_band_m": [
+              0.0097,
+              0.0135
+            ],
+            "encoder_position_stationary": true,
+            "relative_center_drift_m": 2.876372344972004e-05,
+            "relative_axis_drift_rad": 0.001039089239738244,
+            "center_drift_limit_m": 0.002,
+            "axis_drift_limit_rad": 0.05,
+            "unobservable_axial_yaw_used": false,
+            "native_sample_normals_advisory_only": true,
+            "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+            "uses_free_body_poses": false
+          },
+          "fixed_path_grasp_repeatability_qualified": true,
+          "repeatability_translation_limit_m": 7.5e-05,
+          "repeatability_axis_limit_rad": 0.003,
+          "current_axis_TCP_G": [
+            [
+              0.7577279904882396,
+              0.02176632922468417,
+              -0.6522074204903962,
+              -0.010110504548678345
+            ],
+            [
+              0.0004110094864267754,
+              0.9994274589083963,
+              0.033831722556024416,
+              0.0001863610628304313
+            ],
+            [
+              0.6525703973533092,
+              -0.02590330658407154,
+              0.7572852139096308,
+              0.011043898983385647
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "uses_free_body_poses": false
+        }
+      ],
+      "actual_q": [
+        -0.6653146147727966,
+        0.5313959717750549,
+        0.8458719253540039,
+        -1.7550406455993652,
+        1.570316195487976,
+        2.2533609867095947,
+        1.4571778774261475
+      ],
+      "command_q": [
+        -0.6650086045265198,
+        0.5316858887672424,
+        0.8461635112762451,
+        -1.755751132965088,
+        1.5706264972686768,
+        2.2529118061065674,
+        1.4568486213684082
+      ],
+      "postlift_reference_G": [
+        [
+          0.7570545921561158,
+          0.021846097746164528,
+          -0.652986288147463,
+          -0.010124009696736547
+        ],
+        [
+          0.00044598239265253975,
+          0.9994233161345157,
+          0.033953442629475285,
+          0.00020801126238589873
+        ],
+        [
+          0.6533514717172083,
+          -0.025995830049310817,
+          0.7566082680125858,
+          0.011030623757518399
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "repeat_reference_drift": {
+        "translation_m": 2.9151456086110035e-06,
+        "axis_rad": 0.00013086235487038862
+      },
+      "wall_s": 46.88729105098173,
+      "error": null,
+      "source_426_Python_SHA256": "01dbf89c42c4b34f939ed2077b5768488e70f6b76578c5bf5b1f69b6f1e5d94c",
+      "config_SHA256_excluding_note": "49f1816a9cadfa251ef00a104dfe9c177d06bd404d4b56bca5c5ae6df600779c",
+      "result_SHA256": "641067b67bc73f09c8d0e9833426a68b982f7950988b7f0b3391dcf98296a825",
+      "config_raw_SHA256": "7131f4fe493862e2ce8d082b64d2adac8a36f11e11db776ff28dcee49e096236",
+      "encoder_speed_audit": {
+        "samples": 5608,
+        "max_fraction_of_95_percent_PBV": 0.9439501622119428,
+        "max_finger_fraction_of_47p5_mm_s": 0.673685654213554,
+        "max_coupled_finger_difference_m": 3.3527612686157227e-08,
+        "enforced": true,
+        "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+      }
+    },
+    {
+      "version": 594,
+      "run": "native-roas-table-pin-grip-transport-v594-fixed-lift-camera-repeat3",
+      "status": "pin_grip_transport_component_pass",
+      "component_pass": true,
+      "whole3_pass": false,
+      "insertion_executed": false,
+      "visual_micro_alignment_executed": false,
+      "fixed_preclose": {
+        "translation_m": 9.668572298042392e-06,
+        "axis_rotation_rad": 0.00010933035964416488,
+        "original_translation_limit_m": 0.0003,
+        "original_rotation_limit_rad": 0.01,
+        "target_corrected": false,
+        "uses_free_body_poses": false
+      },
+      "lift_evidence": {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012707974761724472,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 5.502014355815145e-06,
+        "relative_axis_drift_rad": 0.00014128463684093858,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false
+      },
+      "preload_evidence": {
+        "target_velocity_preload_m_s": 0.015,
+        "ramp_s": 0.3,
+        "effort_cap_per_pad_n": 30.0,
+        "effort_cap_unchanged": true,
+        "actual_contact_force_measured": false,
+        "confirmation": {
+          "confirmed": true,
+          "direct_class_end_circle": true,
+          "actual_encoder_aperture_m": 0.012555960565805435,
+          "required_aperture_band_m": [
+            0.0097,
+            0.0135
+          ],
+          "encoder_position_stationary": true,
+          "relative_center_drift_m": 2.934390137896173e-06,
+          "relative_axis_drift_rad": 5.5642819462183505e-06,
+          "center_drift_limit_m": 0.002,
+          "axis_drift_limit_rad": 0.05,
+          "unobservable_axial_yaw_used": false,
+          "native_sample_normals_advisory_only": true,
+          "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+          "uses_free_body_poses": false
+        },
+        "uses_free_body_poses": false
+      },
+      "postcarry_samples": [
+        {
+          "observation": 0,
+          "original_hold": {
+            "confirmed": true,
+            "direct_class_end_circle": true,
+            "actual_encoder_aperture_m": 0.012555398046970367,
+            "required_aperture_band_m": [
+              0.0097,
+              0.0135
+            ],
+            "encoder_position_stationary": true,
+            "relative_center_drift_m": 1.7473538449623925e-05,
+            "relative_axis_drift_rad": 0.00018651982777634487,
+            "center_drift_limit_m": 0.002,
+            "axis_drift_limit_rad": 0.05,
+            "unobservable_axial_yaw_used": false,
+            "native_sample_normals_advisory_only": true,
+            "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+            "uses_free_body_poses": false
+          },
+          "fixed_path_grasp_repeatability_qualified": true,
+          "repeatability_translation_limit_m": 7.5e-05,
+          "repeatability_axis_limit_rad": 0.003,
+          "current_axis_TCP_G": [
+            [
+              0.7569412925624482,
+              0.02171135593891081,
+              -0.6531221146441024,
+              -0.010114800452766026
+            ],
+            [
+              0.000450868107641812,
+              0.9994303393462014,
+              0.03374601476153581,
+              0.00019344565809087388
+            ],
+            [
+              0.6534827284112715,
+              -0.02583822396431697,
+              0.7565003039328735,
+              0.011037784540710582
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "uses_free_body_poses": false
+        },
+        {
+          "observation": 1,
+          "original_hold": {
+            "confirmed": true,
+            "direct_class_end_circle": true,
+            "actual_encoder_aperture_m": 0.012555398046970367,
+            "required_aperture_band_m": [
+              0.0097,
+              0.0135
+            ],
+            "encoder_position_stationary": true,
+            "relative_center_drift_m": 1.9406692058835054e-05,
+            "relative_axis_drift_rad": 0.0002385975085339608,
+            "center_drift_limit_m": 0.002,
+            "axis_drift_limit_rad": 0.05,
+            "unobservable_axial_yaw_used": false,
+            "native_sample_normals_advisory_only": true,
+            "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+            "uses_free_body_poses": false
+          },
+          "fixed_path_grasp_repeatability_qualified": true,
+          "repeatability_translation_limit_m": 7.5e-05,
+          "repeatability_axis_limit_rad": 0.003,
+          "current_axis_TCP_G": [
+            [
+              0.7569906383825388,
+              0.02170299183777018,
+              -0.6530651985418349,
+              -0.010113705267056461
+            ],
+            [
+              0.00044831296068539275,
+              0.999430771678527,
+              0.033733242321974145,
+              0.0001922126445575989
+            ],
+            [
+              0.6534255676178318,
+              -0.025828526232703007,
+              0.7565500081395551,
+              0.011038827089480785
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "uses_free_body_poses": false
+        }
+      ],
+      "actual_q": [
+        -0.6652368903160095,
+        0.5312625765800476,
+        0.8457980751991272,
+        -1.7550495862960815,
+        1.5701733827590942,
+        2.2535133361816406,
+        1.4573529958724976
+      ],
+      "command_q": [
+        -0.6649307608604431,
+        0.5315524935722351,
+        0.8460899591445923,
+        -1.7557607889175415,
+        1.5704823732376099,
+        2.2530646324157715,
+        1.457024097442627
+      ],
+      "postlift_reference_G": [
+        [
+          0.7568897035546984,
+          0.021821719050321344,
+          -0.653178221644422,
+          -0.010123043368745144
+        ],
+        [
+          0.0004535402014355207,
+          0.9994246230008419,
+          0.03391485280685271,
+          0.0002062646577980498
+        ],
+        [
+          0.653542478308921,
+          -0.025966045469297903,
+          0.7564443096015198,
+          0.01102923748691298
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "repeat_reference_drift": {
+        "translation_m": 4.527715691803623e-06,
+        "axis_rad": 0.0001605977459166574
+      },
+      "wall_s": 39.896956896060146,
+      "error": null,
+      "source_426_Python_SHA256": "01dbf89c42c4b34f939ed2077b5768488e70f6b76578c5bf5b1f69b6f1e5d94c",
+      "config_SHA256_excluding_note": "49f1816a9cadfa251ef00a104dfe9c177d06bd404d4b56bca5c5ae6df600779c",
+      "result_SHA256": "04f9ff61b796ab8bd409809a0f0930e25922f3ed363f5f7c1545561cf315c108",
+      "config_raw_SHA256": "7131f4fe493862e2ce8d082b64d2adac8a36f11e11db776ff28dcee49e096236",
+      "encoder_speed_audit": {
+        "samples": 5762,
+        "max_fraction_of_95_percent_PBV": 0.9439501622119428,
+        "max_finger_fraction_of_47p5_mm_s": 0.673685654213554,
+        "max_coupled_finger_difference_m": 3.3527612686157227e-08,
+        "enforced": true,
+        "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+      }
+    },
+    {
+      "version": 595,
+      "run": "native-roas-table-pin-grip-transport-v595-fixed-lift-camera-repeat4",
+      "status": "pin_grip_transport_component_pass",
+      "component_pass": true,
+      "whole3_pass": false,
+      "insertion_executed": false,
+      "visual_micro_alignment_executed": false,
+      "fixed_preclose": {
+        "translation_m": 9.668572298042392e-06,
+        "axis_rotation_rad": 0.00010933035964416488,
+        "original_translation_limit_m": 0.0003,
+        "original_rotation_limit_rad": 0.01,
+        "target_corrected": false,
+        "uses_free_body_poses": false
+      },
+      "lift_evidence": {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012708161026239395,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 3.167881834438107e-06,
+        "relative_axis_drift_rad": 0.00019316236768576912,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false
+      },
+      "preload_evidence": {
+        "target_velocity_preload_m_s": 0.015,
+        "ramp_s": 0.3,
+        "effort_cap_per_pad_n": 30.0,
+        "effort_cap_unchanged": true,
+        "actual_contact_force_measured": false,
+        "confirmation": {
+          "confirmed": true,
+          "direct_class_end_circle": true,
+          "actual_encoder_aperture_m": 0.012556007131934166,
+          "required_aperture_band_m": [
+            0.0097,
+            0.0135
+          ],
+          "encoder_position_stationary": true,
+          "relative_center_drift_m": 1.6705118673652767e-06,
+          "relative_axis_drift_rad": 5.340419008884376e-06,
+          "center_drift_limit_m": 0.002,
+          "axis_drift_limit_rad": 0.05,
+          "unobservable_axial_yaw_used": false,
+          "native_sample_normals_advisory_only": true,
+          "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+          "uses_free_body_poses": false
+        },
+        "uses_free_body_poses": false
+      },
+      "postcarry_samples": [
+        {
+          "observation": 0,
+          "original_hold": {
+            "confirmed": true,
+            "direct_class_end_circle": true,
+            "actual_encoder_aperture_m": 0.012555399909615517,
+            "required_aperture_band_m": [
+              0.0097,
+              0.0135
+            ],
+            "encoder_position_stationary": true,
+            "relative_center_drift_m": 2.3654620787776267e-05,
+            "relative_axis_drift_rad": 0.00014640450869716937,
+            "center_drift_limit_m": 0.002,
+            "axis_drift_limit_rad": 0.05,
+            "unobservable_axial_yaw_used": false,
+            "native_sample_normals_advisory_only": true,
+            "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+            "uses_free_body_poses": false
+          },
+          "fixed_path_grasp_repeatability_qualified": true,
+          "repeatability_translation_limit_m": 7.5e-05,
+          "repeatability_axis_limit_rad": 0.003,
+          "current_axis_TCP_G": [
+            [
+              0.7572453972193757,
+              0.0217196462340947,
+              -0.6527692282556948,
+              -0.01011316720721922
+            ],
+            [
+              0.00043705172248730635,
+              0.9994298354603736,
+              0.03376111635361363,
+              0.00019400087496790341
+            ],
+            [
+              0.653130321892853,
+              -0.025850743879357565,
+              0.7568041501372874,
+              0.011039832601624555
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "uses_free_body_poses": false
+        },
+        {
+          "observation": 1,
+          "original_hold": {
+            "confirmed": true,
+            "direct_class_end_circle": true,
+            "actual_encoder_aperture_m": 0.012555399909615517,
+            "required_aperture_band_m": [
+              0.0097,
+              0.0135
+            ],
+            "encoder_position_stationary": true,
+            "relative_center_drift_m": 1.9199837722913367e-05,
+            "relative_axis_drift_rad": 0.00014333128907325507,
+            "center_drift_limit_m": 0.002,
+            "axis_drift_limit_rad": 0.05,
+            "unobservable_axial_yaw_used": false,
+            "native_sample_normals_advisory_only": true,
+            "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+            "uses_free_body_poses": false
+          },
+          "fixed_path_grasp_repeatability_qualified": true,
+          "repeatability_translation_limit_m": 7.5e-05,
+          "repeatability_axis_limit_rad": 0.003,
+          "current_axis_TCP_G": [
+            [
+              0.7572470780257284,
+              0.021721666890446824,
+              -0.6527672111932372,
+              -0.010116002056869577
+            ],
+            [
+              0.0004369645988406469,
+              0.9994297309548716,
+              0.0337642110142062,
+              0.00019642134582614768
+            ],
+            [
+              0.6531283732034887,
+              -0.02585308629492714,
+              0.7568057518581577,
+              0.01103726745681377
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "uses_free_body_poses": false
+        }
+      ],
+      "actual_q": [
+        -0.6653721332550049,
+        0.5315779447555542,
+        0.8459252715110779,
+        -1.7549822330474854,
+        1.570389747619629,
+        2.253138303756714,
+        1.4569809436798096
+      ],
+      "command_q": [
+        -0.6650667786598206,
+        0.5318683385848999,
+        0.8462166786193848,
+        -1.7556923627853394,
+        1.5706990957260132,
+        2.2526893615722656,
+        1.456652045249939
+      ],
+      "postlift_reference_G": [
+        [
+          0.7572454353541673,
+          0.021815214348224463,
+          -0.6527659971676054,
+          -0.010125812186950078
+        ],
+        [
+          0.0004370497458832776,
+          0.9994248819701056,
+          0.03390743703909031,
+          0.0002095786113693876
+        ],
+        [
+          0.6531302776803393,
+          -0.0259615431355933,
+          0.7568003955173527,
+          0.011027303447589842
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "repeat_reference_drift": {
+        "translation_m": 6.511880244138961e-06,
+        "axis_rad": 0.0003931959095232995
+      },
+      "wall_s": 44.1152198810596,
+      "error": null,
+      "source_426_Python_SHA256": "01dbf89c42c4b34f939ed2077b5768488e70f6b76578c5bf5b1f69b6f1e5d94c",
+      "config_SHA256_excluding_note": "49f1816a9cadfa251ef00a104dfe9c177d06bd404d4b56bca5c5ae6df600779c",
+      "result_SHA256": "2709d6920c00b90908b7cb5f84a66de01b03b06682ee535fe3df1184724c478c",
+      "config_raw_SHA256": "7131f4fe493862e2ce8d082b64d2adac8a36f11e11db776ff28dcee49e096236",
+      "encoder_speed_audit": {
+        "samples": 5578,
+        "max_fraction_of_95_percent_PBV": 0.9439501622119428,
+        "max_finger_fraction_of_47p5_mm_s": 0.673685654213554,
+        "max_coupled_finger_difference_m": 3.3527612686157227e-08,
+        "enforced": true,
+        "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+      }
+    },
+    {
+      "version": 596,
+      "run": "native-roas-table-pin-grip-transport-v596-fixed-lift-camera-repeat5",
+      "status": "pin_grip_transport_component_pass",
+      "component_pass": true,
+      "whole3_pass": false,
+      "insertion_executed": false,
+      "visual_micro_alignment_executed": false,
+      "fixed_preclose": {
+        "translation_m": 9.668572298042392e-06,
+        "axis_rotation_rad": 0.00010933035964416488,
+        "original_translation_limit_m": 0.0003,
+        "original_rotation_limit_rad": 0.01,
+        "target_corrected": false,
+        "uses_free_body_poses": false
+      },
+      "lift_evidence": {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012707974761724472,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 4.106585118512517e-06,
+        "relative_axis_drift_rad": 0.0001463876918587343,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false
+      },
+      "preload_evidence": {
+        "target_velocity_preload_m_s": 0.015,
+        "ramp_s": 0.3,
+        "effort_cap_per_pad_n": 30.0,
+        "effort_cap_unchanged": true,
+        "actual_contact_force_measured": false,
+        "confirmation": {
+          "confirmed": true,
+          "direct_class_end_circle": true,
+          "actual_encoder_aperture_m": 0.012555968016386032,
+          "required_aperture_band_m": [
+            0.0097,
+            0.0135
+          ],
+          "encoder_position_stationary": true,
+          "relative_center_drift_m": 1.764350891174453e-06,
+          "relative_axis_drift_rad": 5.852097883725967e-06,
+          "center_drift_limit_m": 0.002,
+          "axis_drift_limit_rad": 0.05,
+          "unobservable_axial_yaw_used": false,
+          "native_sample_normals_advisory_only": true,
+          "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+          "uses_free_body_poses": false
+        },
+        "uses_free_body_poses": false
+      },
+      "postcarry_samples": [
+        {
+          "observation": 0,
+          "original_hold": {
+            "confirmed": true,
+            "direct_class_end_circle": true,
+            "actual_encoder_aperture_m": 0.012555396184325218,
+            "required_aperture_band_m": [
+              0.0097,
+              0.0135
+            ],
+            "encoder_position_stationary": true,
+            "relative_center_drift_m": 1.6909170402107115e-05,
+            "relative_axis_drift_rad": 0.00037167193764021695,
+            "center_drift_limit_m": 0.002,
+            "axis_drift_limit_rad": 0.05,
+            "unobservable_axial_yaw_used": false,
+            "native_sample_normals_advisory_only": true,
+            "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+            "uses_free_body_poses": false
+          },
+          "fixed_path_grasp_repeatability_qualified": true,
+          "repeatability_translation_limit_m": 7.5e-05,
+          "repeatability_axis_limit_rad": 0.003,
+          "current_axis_TCP_G": [
+            [
+              0.7569158668712811,
+              0.021581234972996865,
+              -0.6531558931645165,
+              -0.010114019239895078
+            ],
+            [
+              0.0004521906536313902,
+              0.999437042025847,
+              0.033546900754583296,
+              0.00019391588550227157
+            ],
+            [
+              0.6535121773938952,
+              -0.025687532455753503,
+              0.7564799962155144,
+              0.011039327542534672
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "uses_free_body_poses": false
+        },
+        {
+          "observation": 1,
+          "original_hold": {
+            "confirmed": true,
+            "direct_class_end_circle": true,
+            "actual_encoder_aperture_m": 0.012555396184325218,
+            "required_aperture_band_m": [
+              0.0097,
+              0.0135
+            ],
+            "encoder_position_stationary": true,
+            "relative_center_drift_m": 1.96208679763273e-05,
+            "relative_axis_drift_rad": 0.00037534571888254254,
+            "center_drift_limit_m": 0.002,
+            "axis_drift_limit_rad": 0.05,
+            "unobservable_axial_yaw_used": false,
+            "native_sample_normals_advisory_only": true,
+            "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+            "uses_free_body_poses": false
+          },
+          "fixed_path_grasp_repeatability_qualified": true,
+          "repeatability_translation_limit_m": 7.5e-05,
+          "repeatability_axis_limit_rad": 0.003,
+          "current_axis_TCP_G": [
+            [
+              0.7568736962463634,
+              0.021577129208264063,
+              -0.6532048954390172,
+              -0.010118286353559602
+            ],
+            [
+              0.0004543683604622963,
+              0.999437252401535,
+              0.03354060317679638,
+              0.00018752469150923323
+            ],
+            [
+              0.6535610158812724,
+              -0.025682795938140972,
+              0.7564379634266376,
+              0.011035878380881492
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "uses_free_body_poses": false
+        }
+      ],
+      "actual_q": [
+        -0.6652387380599976,
+        0.5312536358833313,
+        0.8457980155944824,
+        -1.755055546760559,
+        1.5701723098754883,
+        2.2535159587860107,
+        1.4573601484298706
+      ],
+      "command_q": [
+        -0.6649327874183655,
+        0.5315434336662292,
+        0.8460896611213684,
+        -1.7557653188705444,
+        1.5704809427261353,
+        2.2530674934387207,
+        1.4570304155349731
+      ],
+      "postlift_reference_G": [
+        [
+          0.7568850724420725,
+          0.021822038798622104,
+          -0.6531835773632325,
+          -0.010121697622702097
+        ],
+        [
+          0.00045378094560235633,
+          0.999424606387314,
+          0.03391533916114905,
+          0.00020605572182708087
+        ],
+        [
+          0.6535478415519496,
+          -0.025966416199271578,
+          0.756439663180451,
+          0.011030406396018488
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "repeat_reference_drift": {
+        "translation_m": 3.824843611152724e-06,
+        "axis_rad": 0.00016752683161016358
+      },
+      "wall_s": 38.564733535051346,
+      "error": null,
+      "source_426_Python_SHA256": "01dbf89c42c4b34f939ed2077b5768488e70f6b76578c5bf5b1f69b6f1e5d94c",
+      "config_SHA256_excluding_note": "49f1816a9cadfa251ef00a104dfe9c177d06bd404d4b56bca5c5ae6df600779c",
+      "result_SHA256": "47be02346865565ea6194fccd3044627959dc33b427f3ecee46259fffa718b38",
+      "config_raw_SHA256": "7131f4fe493862e2ce8d082b64d2adac8a36f11e11db776ff28dcee49e096236",
+      "encoder_speed_audit": {
+        "samples": 5325,
+        "max_fraction_of_95_percent_PBV": 0.9439501622119428,
+        "max_finger_fraction_of_47p5_mm_s": 0.673685654213554,
+        "max_coupled_finger_difference_m": 3.3527612686157227e-08,
+        "enforced": true,
+        "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+      }
+    }
+  ]
+}
