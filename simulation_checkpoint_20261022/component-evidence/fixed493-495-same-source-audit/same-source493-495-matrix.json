@@ -1,0 +1,280 @@
+{
+  "status": "3_PASS_0_FAIL",
+  "full_successes": 3,
+  "cases": 3,
+  "all_416_Python_source_hashes_match": true,
+  "source_file_map_sha256": "d513ce8359dea0b56ed9dcd0d8d244098e5fac39d63be7b02c4f9f9667ee6e8c",
+  "scope": "Fixed existing shelf supply, native FR3 Hand, RGB-D feedback. Nominal and two opposed \u00b110mm initial XY shifts with \u00b1.04rad initialization tilts. This is not random-bin, stacked-ring, broad reliability or real hardware qualification.",
+  "settling_caveat": "Requested initial tilts physically settle before observations; measured settled axes are included. Do not claim all requested .04rad tilts persist or that a full tilt envelope was tested.",
+  "speed_caveat": "All three passing complete cycles exceed20/30seconds. Physics and whole wall times are different. No causal whole-cycle latency claim across differing paths/corrections.",
+  "failure": null,
+  "prior_build_caveat": "Different 414-Python build:490/491passed and492failed SMALL stability. Retained separately; not relabeled as this416-Python build.",
+  "concurrency": "493 PLUS ran without another physical trial;494NOMINAL and495MINUS ran concurrently onGPU3/GPU2 and shared GPU3vision/GPU2pair services. Times are actual case outcomes, not isolated latency benchmarks.",
+  "cases_summary": [
+    {
+      "run": 493,
+      "source_run": "native-roas-table-fixed-front-v493-balanced-small-raw-cache-plus",
+      "state": "completed_over_budget",
+      "full_task_pass": true,
+      "vision_end_to_end_pass": true,
+      "wall_elapsed_s": 212.53978356905282,
+      "physics_elapsed_s": 50.23333333332873,
+      "under20": false,
+      "under30": false,
+      "source_matches493": true,
+      "requested_initialization_variation": {
+        "ring1": {
+          "translation_xy_m": [
+            0.01,
+            -0.01
+          ],
+          "tilt_xy_rad": [
+            0.04,
+            0
+          ]
+        },
+        "ring2": {
+          "translation_xy_m": [
+            -0.01,
+            0.01
+          ],
+          "tilt_xy_rad": [
+            0,
+            -0.04
+          ]
+        }
+      },
+      "settled_public_initial_observations": {
+        "ring1": {
+          "source": "First accepted public initial RGB-D cap observation; not privileged body pose",
+          "frame": 23,
+          "captured_wall_s": 51.02527131000534,
+          "center_world_m": [
+            0.2400044211051422,
+            -0.5847020924361542,
+            0.8920608739063364
+          ],
+          "signed_axis_world": [
+            -1.2043463338693227e-05,
+            8.229367409029463e-06,
+            -0.9999999998936163
+          ],
+          "tilt_from_vertical_rad": 1.4586547202488705e-05
+        },
+        "ring2": {
+          "source": "First accepted public initial RGB-D cap observation; not privileged body pose",
+          "frame": 1,
+          "captured_wall_s": 0.06361368205398321,
+          "center_world_m": [
+            0.19032537520882978,
+            -0.7050236766211713,
+            0.8913088563063768
+          ],
+          "signed_axis_world": [
+            7.660147917558347e-05,
+            3.333902786495447e-05,
+            0.9999999965103614
+          ],
+          "tilt_from_vertical_rad": 8.354206820676716e-05
+        }
+      },
+      "artifact_SHA256": {
+        "pipeline-results.json": "d54ae263bc3a4c0ec0128c78b29a23a4c16d394f21af6d7f91e948f5f848353c",
+        "trial-config.json": "0409e9e24b8d3dc94baf0a093d7e7602351b86680133e25406cecf75a8bb5949",
+        "frozen-source-manifest.json": "d83d595aadd98b443d61acf68c9d431d4aa979acac1c7423862ed496adcaecc7",
+        "rgb-observations.json": "74df0e05692aff0f764f45c62866f5d0949a82d0d7ed2785a599c312dcdc733b",
+        "fixed-supply-initialization.json": "52af8a6e050b6b1d8615e824f4d6d89cffd1aec53c6a124e5a8d354ffc2df3f9",
+        "physx-sequence-trace.npz": "1e502ada97df71c8e2f75a1ef227396609785a066202b6cd4e9602c76369c264"
+      }
+    },
+    {
+      "run": 494,
+      "source_run": "native-roas-table-fixed-front-v494-balanced-small-raw-cache-nominal",
+      "state": "completed_over_budget",
+      "full_task_pass": true,
+      "vision_end_to_end_pass": true,
+      "wall_elapsed_s": 196.6974354549311,
+      "physics_elapsed_s": 46.12499999999913,
+      "under20": false,
+      "under30": false,
+      "source_matches493": true,
+      "requested_initialization_variation": null,
+      "settled_public_initial_observations": {
+        "ring1": {
+          "source": "First accepted public initial RGB-D cap observation; not privileged body pose",
+          "frame": 20,
+          "captured_wall_s": 45.34716717293486,
+          "center_world_m": [
+            0.22999599704830434,
+            -0.5750528571616497,
+            0.8920611478820013
+          ],
+          "signed_axis_world": [
+            -1.209547188470976e-06,
+            -8.718016642000339e-06,
+            -0.9999999999612665
+          ],
+          "tilt_from_vertical_rad": 8.801529512916776e-06
+        },
+        "ring2": {
+          "source": "First accepted public initial RGB-D cap observation; not privileged body pose",
+          "frame": 1,
+          "captured_wall_s": 0.07134786189999431,
+          "center_world_m": [
+            0.19879948405072131,
+            -0.7145313616184643,
+            0.8898728296081854
+          ],
+          "signed_axis_world": [
+            0.050999623449118694,
+            6.154181245257211e-06,
+            0.9986986724584018
+          ],
+          "tilt_from_vertical_rad": 0.05102175774728799
+        }
+      },
+      "artifact_SHA256": {
+        "pipeline-results.json": "23fd1106fdad3afd3b6d3a64e90323ba540587ce6218b5051185e44207d4bcb5",
+        "trial-config.json": "2ca4718679206289cb864803bb27cc81adc3dc3e5175df043ad8f267d6709881",
+        "frozen-source-manifest.json": "d83d595aadd98b443d61acf68c9d431d4aa979acac1c7423862ed496adcaecc7",
+        "rgb-observations.json": "ebd192324fb192fa139e62c548ecb643d0cfc1d3f8b2c91fc2d0278c933ede1c",
+        "fixed-supply-initialization.json": "0e796d1d1c32c7fd47c8d31e1fcd5211ea6d27093a7204785e09535383c37f0c",
+        "physx-sequence-trace.npz": "6d1de1edb69e56b6d593f4088b511e82b00f72ccc5a1208801a8195b20790b56"
+      }
+    },
+    {
+      "run": 495,
+      "source_run": "native-roas-table-fixed-front-v495-balanced-small-raw-cache-minus",
+      "state": "completed_over_budget",
+      "full_task_pass": true,
+      "vision_end_to_end_pass": true,
+      "wall_elapsed_s": 256.0858648510184,
+      "physics_elapsed_s": 57.929166666655064,
+      "under20": false,
+      "under30": false,
+      "source_matches493": true,
+      "requested_initialization_variation": {
+        "ring1": {
+          "translation_xy_m": [
+            -0.01,
+            0.01
+          ],
+          "tilt_xy_rad": [
+            -0.04,
+            0
+          ]
+        },
+        "ring2": {
+          "translation_xy_m": [
+            0.01,
+            -0.01
+          ],
+          "tilt_xy_rad": [
+            0,
+            0.04
+          ]
+        }
+      },
+      "settled_public_initial_observations": {
+        "ring1": {
+          "source": "First accepted public initial RGB-D cap observation; not privileged body pose",
+          "frame": 20,
+          "captured_wall_s": 59.94405548705254,
+          "center_world_m": [
+            0.22055599952925325,
+            -0.5656005055655193,
+            0.8914481091519636
+          ],
+          "signed_axis_world": [
+            -0.018716548074168046,
+            6.613053655910963e-06,
+            -0.9998248300499718
+          ],
+          "tilt_from_vertical_rad": 0.018717642178027256
+        },
+        "ring2": {
+          "source": "First accepted public initial RGB-D cap observation; not privileged body pose",
+          "frame": 1,
+          "captured_wall_s": 0.1105337260523811,
+          "center_world_m": [
+            0.2096925251982539,
+            -0.7249970272411699,
+            0.891308800417987
+          ],
+          "signed_axis_world": [
+            -3.3001678801555856e-05,
+            3.7757769261439296e-05,
+            0.99999999874262
+          ],
+          "tilt_from_vertical_rad": 5.0147382348000035e-05
+        }
+      },
+      "artifact_SHA256": {
+        "pipeline-results.json": "e582c438d56f9d886cb6d965d1ec4101dbac4af4ace19999fc1d812a519eda81",
+        "trial-config.json": "5905103db1d50a564e117e26a6a9479f19d670fd37d6a21630bbac9d8f80d20d",
+        "frozen-source-manifest.json": "75ad28cd7c1fc79ac103245bf6c9a601fa25d938f348670ba91031100a2eee69",
+        "rgb-observations.json": "554cdfb84712286c313c3017cad6314be2e01cc35cc5e04528e6011264308383",
+        "fixed-supply-initialization.json": "f6954b567ed0add7df4eb05dbf00ea70c494092de0ae78c5a7b8f4161a7bff74",
+        "physx-sequence-trace.npz": "e413c1f86df13bcec3a440a92e1d7667ffb13f848d1e55e7e5e560396474b942"
+      }
+    }
+  ],
+  "published_fixed_input_audit": {
+    "status": "PASS",
+    "all423_published_exact_input_maps_identical": true,
+    "checks": [
+      {
+        "run": 493,
+        "input_files": 423,
+        "Python_files": 416,
+        "all_actual_file_bytes_match_manifest": true,
+        "failed_files": [],
+        "source_map_sha256": "b4f367fe66d245b7a9a8a1cefee1a4645af119118289ff39b5b04d3bf55da5da"
+      },
+      {
+        "run": 494,
+        "input_files": 423,
+        "Python_files": 416,
+        "all_actual_file_bytes_match_manifest": true,
+        "failed_files": [],
+        "source_map_sha256": "b4f367fe66d245b7a9a8a1cefee1a4645af119118289ff39b5b04d3bf55da5da"
+      },
+      {
+        "run": 495,
+        "input_files": 423,
+        "Python_files": 416,
+        "all_actual_file_bytes_match_manifest": true,
+        "failed_files": [],
+        "source_map_sha256": "b4f367fe66d245b7a9a8a1cefee1a4645af119118289ff39b5b04d3bf55da5da"
+      }
+    ],
+    "scope": "Read-only byte hash verification of archived423fixed inputs only. No launcher/physics/hardware execution performed. Different source manifest metadata timestamps/container names are not input-map differences."
+  },
+  "conditional_saved_route_reuse": {
+    "493": {
+      "SMALL_donor_admitted": true,
+      "SMALL_LEFT_carry_admitted": false,
+      "SMALL_LEFT_rejection": [
+        {
+          "event": "saved_SMALL_LEFT_carry_rejected",
+          "stage": "current_exact_issued_guard",
+          "reason": "Loaded LEFT issued curve blocked with payload/current RIGHT {'opening_index': 0, 'opening_m': 0.059004079550504684, 'segment': 162, 'fraction': 1.0, 'collision': {'query': '/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/Palm', 'actor': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4', 'collider': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision', 'predictive_pair_box': True, 'minimum_pair_clearance_m': 0.001}}"
+        }
+      ],
+      "LARGE_canonical_carry_admitted": true
+    },
+    "494": {
+      "SMALL_donor_admitted": true,
+      "SMALL_LEFT_carry_admitted": true,
+      "SMALL_LEFT_rejection": [],
+      "LARGE_canonical_carry_admitted": true
+    },
+    "495": {
+      "SMALL_donor_admitted": true,
+      "SMALL_LEFT_carry_admitted": true,
+      "SMALL_LEFT_rejection": [],
+      "LARGE_canonical_carry_admitted": true
+    }
+  },
+  "cache_policy_caveat": "Saved routes/certificates are conditional proposals. In493PLUS the stored SMALL LEFT middle was rejected by current RIGHTlink4 vsLEFTpalm original1mm pair guard; original fresh replan completed instead. Do not claim all three cases reused every middle or checked only changed segments. Current dynamic pairs/unknowns retain original guards."
+}

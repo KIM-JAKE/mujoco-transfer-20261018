@@ -1,0 +1,257 @@
+{
+  "run": "native-roas-table-fixed-front-v494-balanced-small-raw-cache-nominal",
+  "pipeline_results_sha256": "23fd1106fdad3afd3b6d3a64e90323ba540587ce6218b5051185e44207d4bcb5",
+  "full_task_pass": true,
+  "vision_end_to_end_pass": true,
+  "hardware_tested": false,
+  "wall_verified_elapsed_s": 196.6974354549311,
+  "verified_elapsed_s": 196.668998563895,
+  "cycle_time_s": 196.668998563895,
+  "simulation_elapsed_s": 46.12499999999913,
+  "end_to_end_under30": false,
+  "end_to_end_under20": false,
+  "part_attachments": false,
+  "workpiece_teleports_after_initialization": 0,
+  "FR3_command_limit_audit": {
+    "samples": 22140,
+    "velocity_fraction_of_95_percent_PBV": 0.9459107691494926,
+    "max_acceleration_rad_s2": 8.89892578125,
+    "max_jerk_rad_s3": 3889.16015625,
+    "acceleration_limit_rad_s2": 9.5,
+    "jerk_limit_rad_s3": 4750,
+    "command_limit_checks": true,
+    "complete_issued_field_checked_at_end": true,
+    "validated_sample_count": 22140
+  },
+  "balanced_SMALL_events": [
+    {
+      "event": "balanced_SMALL_receiver_target_proposed",
+      "source": "Current direct RGB-D part pose and original SDK/model receiver target",
+      "empty_Hand_physical_target": true,
+      "original_part_pose_unchanged": true,
+      "original_G": [
+        [
+          -0.4336034609681126,
+          -0.748800226217193,
+          0.501284950753539,
+          0.004668589376085164
+        ],
+        [
+          0.8662525385355112,
+          -0.49959752692691145,
+          0.003014988851780225,
+          0.00028297385117689866
+        ],
+        [
+          0.24818298507242403,
+          0.4355466032320526,
+          0.8652771823129707,
+          0.003918947522234761
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "proposed_G": [
+        [
+          -0.4339720092026271,
+          -0.7494470202133031,
+          0.4999978010160274,
+          0.0022499901045721234
+        ],
+        [
+          0.8653855093806962,
+          -0.5011069348826309,
+          1.3097524784338955e-19,
+          5.893886152952529e-22
+        ],
+        [
+          0.25055225272335857,
+          0.43269078449548687,
+          0.8660268432446914,
+          0.003897120794601111
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_H": [
+        [
+          -0.42393729638991134,
+          0.8652140000763133,
+          0.2677343641467992,
+          -0.0497998610110215
+        ],
+        [
+          -0.7496413972074821,
+          -0.5011001502282311,
+          0.43236108026906034,
+          -0.40001076104616934
+        ],
+        [
+          0.5082465960768628,
+          -0.017410728867537355,
+          0.8610354040172262,
+          1.394950620902723
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "translation_m": 0.002427931408420176,
+      "rotation_rad": 0.003785648969596536,
+      "closing_axis_dot_part_axis": 1.3097524784338955e-19,
+      "preserved_part_axis_toolZ_tilt_rad": 0.5235958966706156,
+      "TCP_axis_offset_m": 0.0045,
+      "maximum_translation_m": 0.006,
+      "maximum_rotation_rad": 0.06,
+      "uses_free_body_poses": false,
+      "all_original_preflights_still_required": true,
+      "original_native_proximal_preflight": true,
+      "original_dual_release_and_current_route_preflight": true,
+      "original_actual_command_allwidth_issued_guard_still_required": true
+    },
+    {
+      "event": "balanced_SMALL_EMPTY_LEFT_actual_pose_feedback",
+      "requested_translation_m": 0.0004652436950721782,
+      "requested_rotation_rad": 0.0018701803413645865,
+      "command_actual_bias_m": 0.0004553849215553479,
+      "command_actual_bias_rad": 0.0018979601022201145,
+      "actual_grasp": [
+        [
+          -0.433864645002887,
+          -0.7494363586701189,
+          0.500106943066047,
+          0.002330454942156557
+        ],
+        [
+          0.8654770238587943,
+          -0.5009488441553823,
+          0.00014119285905975774,
+          7.3528687917212565e-06
+        ],
+        [
+          0.2504220686585036,
+          0.4328922590584429,
+          0.8659638083974992,
+          0.003867505588446951
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "intended_grasp": [
+        [
+          -0.433972009202627,
+          -0.7494470202133029,
+          0.4999978010160273,
+          0.0022499901045722748
+        ],
+        [
+          0.8653855093806961,
+          -0.5011069348826309,
+          -2.7460867191380272e-17,
+          -2.7755575615628914e-17
+        ],
+        [
+          0.2505522527233585,
+          0.4326907844954869,
+          0.8660268432446913,
+          0.00389712079460125
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "uses_free_body_poses": false,
+      "force_speed_geometry_limits_unchanged": true,
+      "balanced_target": {
+        "selected_intended_grasp": [
+          [
+            -0.433972009202627,
+            -0.7494470202133029,
+            0.4999978010160273,
+            0.0022499901045722748
+          ],
+          [
+            0.8653855093806961,
+            -0.5011069348826309,
+            -2.7460867191380272e-17,
+            -2.7755575615628914e-17
+          ],
+          [
+            0.2505522527233585,
+            0.4326907844954869,
+            0.8660268432446913,
+            0.00389712079460125
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "fixed_before_approach": true
+      },
+      "exact_original2mm_50mrad_correction_bounds": true,
+      "single_bounded_correction": true,
+      "one_additional_fresh_image": true
+    },
+    {
+      "event": "balanced_SMALL_corrected_preclose_future_opening_admitted",
+      "actual_command_both_arms": true,
+      "current_actual_command_and_planned_openings": true,
+      "fresh_RGBD_native_proximal": true,
+      "donor_release_width_m": 0.078,
+      "uses_free_body_poses": false
+    }
+  ],
+  "payload_CAD_content_intern": {
+    "enabled": true,
+    "original_attachment_and_query_writes_preserved": true,
+    "local_geometry_only": true,
+    "posed_collision_results_cached": false,
+    "exact_full_field_confirmation": true,
+    "cached_content_revalidated": true,
+    "stats": {
+      "attachments": 54,
+      "interned": 50,
+      "new_content": 4,
+      "invalid": 0,
+      "cached_content_poisoned": 0,
+      "digest_collision_or_mismatch": 0,
+      "raw_proxy_calls": 2182,
+      "raw_proxy_hits": 2062,
+      "raw_proxy_original_calls": 120,
+      "raw_proxy_new_content": 120,
+      "raw_proxy_cached_poisoned": 0,
+      "raw_proxy_digest_collision_or_mismatch": 0,
+      "raw_proxy_unsupported": 0,
+      "raw_proxy_unsupported_output": 0
+    },
+    "raw_proxy_cache": {
+      "enabled": true,
+      "source_function_sha256": "1b964a54bf8eda1f543bb53c547578e1e452b732415abdcc8f8f4c02a13fae03",
+      "scope": "isaac_collision_queries original module alias only",
+      "predictive_original_function_unchanged": true,
+      "cache_entries_maximum": 256,
+      "raw_input_bytes_maximum": 1048576
+    }
+  }
+}

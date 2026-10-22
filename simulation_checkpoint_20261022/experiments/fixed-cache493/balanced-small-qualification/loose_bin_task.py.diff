@@ -1,0 +1,107 @@
+--- /tmp/fixed490-width-and-placed-full/overrides/loose_bin_task.py
++++ /tmp/fixed493-small-balanced/overrides/loose_bin_task.py
+@@ -631,7 +631,15 @@
+         incoming=frame(donor_pose['center_m'],axis_frame(donor_pose['axis']))
+         receiving_H=incoming@np.linalg.inv(intended_receiver_grasp)
+         route=None
+-        candidates=[(receiving_H,None)]+list(transfer.receiving_poses(c,part,incoming))
++        balanced_small=bool(part=='ring2' and c['config'].get('small_balanced_receiver_axis30',False))
++        if balanced_small:
++            if c.get('left_hand_known_empty') is not True:raise RuntimeError('Balanced SMALL receiver proposal requires confirmed EMPTY LEFT Hand')
++            from balanced_small_receiver import propose as propose_balanced_small
++            balanced_H,balanced_metadata=propose_balanced_small(receiving_H,incoming)
++            # One bounded physical candidate. If its original full gates fail,
++            # stop while RIGHT holds; never silently close at the rejected pose.
++            candidates=[(balanced_H,balanced_metadata)]
++        else:candidates=[(receiving_H,None)]+list(transfer.receiving_poses(c,part,incoming))
+         for candidate_H,metadata in candidates:
+             receiving_q=arms['left'].solve(candidate_H[:3,3],candidate_H[:3,:3],handover['receiver_q'])
+             if receiving_q is None:continue
+@@ -644,6 +652,17 @@
+             # Checking only the incoming held width missed that swept volume.
+             candidate_G=np.linalg.inv(candidate_H)@incoming;expected_receiver_width=transfer.receiver_aperture(c,part,candidate_G)
+             if expected_receiver_width is None:continue
++            if balanced_small:
++                # Additional ORIGINAL full native-self/held-CAD proximal proof
++                # at the proposed endpoint. Intended distal pad contact retains
++                # its original exemption; no physical actor or achievedG changes.
++                lc=checkers['left'];saved_small=(lc.payload_path,lc.payload_rows,lc.payload_boxes,lc.payload_relative)
++                planned_G=np.linalg.inv(arms['left'].fk(receiving_q))@incoming
++                lc.attach_payload(c['part_collision_templates'][part],frame([0,0,.1034],np.eye(3))@planned_G)
++                try:native_ok,native_why=lc.same_arm_clearance.clear(receiving_q,float(expected_receiver_width))
++                finally:lc.payload_path,lc.payload_rows,lc.payload_boxes,lc.payload_relative=saved_small
++                if not native_ok:
++                    c['planning_diagnostics'].append(dict(event='balanced_SMALL_receiver_native_rejected',collision=native_why));continue
+             donor_H=arms['right'].fk(cmd[0,indices['right']]);donor_width=float(art.get_dof_positions()[0,fingers['right']].sum())
+             if not transfer.sequential_transfer_clear(checkers['right'],donor_H,donor_width,checkers['left'],candidate_H,expected_receiver_width,receiver_opening,donor_release_width=release_width):continue
+             with checkers['left'].other_arm_at(checkers['right'],cmd[0,indices['right']],donor_width):
+@@ -657,19 +676,31 @@
+                     route=transfer.receiver_approach_route(c,part+'_receiver_approach',checkers['left'],cmd[0,indices['left']],receiving_q,receiver_opening,seconds=.50)
+             finally:checkers['right'].detach_payload()
+             if route is not None:
+-                receiving_H=candidate_H;intended_receiver_grasp=np.linalg.inv(receiving_H)@incoming;break
++                receiving_H=candidate_H;intended_receiver_grasp=np.linalg.inv(receiving_H)@incoming
++                if balanced_small:c['planning_diagnostics'].append(dict(event='balanced_SMALL_receiver_target_proposed',**metadata,original_native_proximal_preflight=True,original_dual_release_and_current_route_preflight=True,original_actual_command_allwidth_issued_guard_still_required=True))
++                break
+         if route is None:raise RuntimeError('No fresh-RGBD receiver route that permits giver opening')
+         move('left',route,.4,part+'_receive_approach',receiver_opening,other_carried_part=part,other_carried_grasp=G)
+         G,preclose_pose=observe('right',part,G,part+'_donor_after_receiver_approach_RGBD')
+         preclose_part=frame(preclose_pose['center_m'],axis_frame(preclose_pose['axis']))
+         if np.linalg.norm(preclose_part[:3,3]-incoming[:3,3])>.003 or np.arccos(np.clip(preclose_part[:3,2]@incoming[:3,2],-1,1))>.05:
+             raise RuntimeError('Receiver approach disturbed held ring; closing is blocked')
+-        if part=='ring1' and c['config'].get('temporary_holder_preclose_pose_feedback',False) and (c['config'].get('temporary_axial_double_handover_component') or c['config'].get('large_double_handover_full_task')):
++        small_balanced_feedback=bool(part=='ring2' and c['config'].get('small_balanced_receiver_axis30',False))
++        if small_balanced_feedback or (part=='ring1' and c['config'].get('temporary_holder_preclose_pose_feedback',False) and (c['config'].get('temporary_axial_double_handover_component') or c['config'].get('large_double_handover_full_task'))):
+             # Match the actual EMPTY receiver to its original intended grasp.
+             # Targets use only the fresh donor image and current robot encoders;
+             # no new grasp family, force target, speed or clearance is selected.
+             left_arm=arms['left'];left_ids=indices['left'];right_ids=indices['right']
+             actual_H=left_arm.fk(art.get_dof_positions()[0,left_ids]);command_H=left_arm.fk(cmd[0,left_ids])
++            if small_balanced_feedback:
++                # Correct the actual EMPTY Hand from this LAST preclose image,
++                # rather than assuming its earlier planned target was achieved.
++                # The existing full guarded correction and fresh-image policy
++                # below is shared unchanged with the proven LARGE mechanism.
++                if c.get('left_hand_known_empty') is not True:raise RuntimeError('Balanced SMALL preclose feedback requires confirmed EMPTY LEFT Hand')
++                # Keep the BEFORE-approach selected grasp fixed: use the new
++                # image to move the Hand toward it, not a moving grasp reference.
++                balanced_feedback_metadata=dict(selected_intended_grasp=intended_receiver_grasp.tolist(),fixed_before_approach=True)
+             desired_H=preclose_part@np.linalg.inv(intended_receiver_grasp)
+             translation=float(np.linalg.norm(desired_H[:3,3]-actual_H[:3,3]));angle=float(np.linalg.norm(log(desired_H[:3,:3]@actual_H[:3,:3].T)))
+             bias_translation=float(np.linalg.norm(command_H[:3,3]-actual_H[:3,3]));bias_angle=float(np.linalg.norm(log(command_H[:3,:3]@actual_H[:3,:3].T)))
+@@ -695,11 +726,34 @@
+             if np.linalg.norm(preclose_part[:3,3]-prior_part[:3,3])>.003 or np.arccos(np.clip(preclose_part[:3,2]@prior_part[:3,2],-1,1))>.05:
+                 raise RuntimeError('Empty receiver feedback disturbed donor-held ring; no closing issued')
+             after_H=left_arm.fk(art.get_dof_positions()[0,left_ids]);actual_G=np.linalg.inv(after_H)@preclose_part
+-            evidence=dict(event='temporary_EMPTY_LEFT_actual_pose_feedback',requested_translation_m=translation,requested_rotation_rad=angle,command_actual_bias_m=bias_translation,command_actual_bias_rad=bias_angle,actual_grasp=actual_G.tolist(),intended_grasp=intended_receiver_grasp.tolist(),uses_free_body_poses=False,force_speed_geometry_limits_unchanged=True)
++            evidence=dict(event='balanced_SMALL_EMPTY_LEFT_actual_pose_feedback' if small_balanced_feedback else 'temporary_EMPTY_LEFT_actual_pose_feedback',requested_translation_m=translation,requested_rotation_rad=angle,command_actual_bias_m=bias_translation,command_actual_bias_rad=bias_angle,actual_grasp=actual_G.tolist(),intended_grasp=intended_receiver_grasp.tolist(),uses_free_body_poses=False,force_speed_geometry_limits_unchanged=True)
++            if small_balanced_feedback:evidence.update(balanced_target=balanced_feedback_metadata,exact_original2mm_50mrad_correction_bounds=True,single_bounded_correction=True,one_additional_fresh_image=True)
+             c['planning_diagnostics'].append(evidence);print('LOOSE_TEMPORARY_RECEIVER_FEEDBACK',evidence,flush=True)
+         actual_receiving_H=arms['left'].fk(art.get_dof_positions()[0,indices['left']])
+         expected_receiver_width=transfer.receiver_aperture(c,part,np.linalg.inv(actual_receiving_H)@preclose_part)
+         if expected_receiver_width is None:raise RuntimeError('Fresh preclose RGB-D does not confirm opposing receiver pad geometry')
++        if small_balanced_feedback:
++            # The corrected physical endpoint changes the future donor-opening
++            # geometry. Requalify it NOW, before either gripper starts closing.
++            positions=art.get_dof_positions()[0].copy()
++            donor_widths=[float(positions[fingers['right']].sum()),float(cmd[0,fingers['right']].sum())]
++            receiver_openings=[receiver_opening,float(positions[fingers['left']].sum()),float(cmd[0,fingers['left']].sum())]
++            lc=checkers['left'];rc=checkers['right'];saved=(lc.payload_path,lc.payload_rows,lc.payload_boxes,lc.payload_relative)
++            try:
++                for left_q in [positions[indices['left']],cmd[0,indices['left']]]:
++                    left_H=arms['left'].fk(left_q);fresh_left_G=np.linalg.inv(left_H)@preclose_part
++                    fresh_width=transfer.receiver_aperture(c,part,fresh_left_G)
++                    if fresh_width is None:raise RuntimeError('Balanced SMALL corrected receiver aperture invalid; donor stays closed')
++                    lc.attach_payload(c['part_collision_templates'][part],frame([0,0,.1034],np.eye(3))@fresh_left_G)
++                    native_ok,native_why=lc.same_arm_clearance.clear(left_q,float(fresh_width))
++                    if not native_ok:raise RuntimeError('Balanced SMALL corrected native proximal geometry blocked '+str(native_why))
++                    for right_q in [positions[indices['right']],cmd[0,indices['right']]]:
++                        for donor_width in donor_widths:
++                            for opening in receiver_openings:
++                                if not transfer.sequential_transfer_clear(rc,arms['right'].fk(right_q),donor_width,lc,left_H,fresh_width,opening,donor_release_width=release_width):
++                                    raise RuntimeError('Balanced SMALL corrected future donor opening blocked; donor stays closed')
++            finally:lc.payload_path,lc.payload_rows,lc.payload_boxes,lc.payload_relative=saved
++            c['planning_diagnostics'].append(dict(event='balanced_SMALL_corrected_preclose_future_opening_admitted',actual_command_both_arms=True,current_actual_command_and_planned_openings=True,fresh_RGBD_native_proximal=True,donor_release_width_m=float(release_width),uses_free_body_poses=False))
+         incoming=preclose_part
+         c['stiffness'][0,fingers['left']]=0.;c['damping'][0,fingers['left']]=[4000.,.001];art.set_dof_stiffnesses(c['stiffness'],c['idx']);art.set_dof_dampings(c['damping'],c['idx'])
+         c['set_left_force'](float(c['config'].get('native_grip_pad_force_n',30.)))

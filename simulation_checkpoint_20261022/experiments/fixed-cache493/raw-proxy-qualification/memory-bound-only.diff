@@ -1,0 +1,24 @@
+--- pre_bound_native_qualified_helper.py
++++ payload_proxy_content_intern.py
+@@ -41,8 +41,11 @@
+     return h.digest()
+ 
+ 
++MAX_RAW_INPUT_BYTES=1024*1024
++
++
+ def _raw_snapshot(vertices):
+-    if type(vertices)is not np.ndarray or vertices.dtype.kind!='f'or vertices.dtype.itemsize not in (4,8)or vertices.ndim!=2 or vertices.shape[1]!=3 or len(vertices)<4 or not np.isfinite(vertices).all():
++    if type(vertices)is not np.ndarray or vertices.nbytes>MAX_RAW_INPUT_BYTES or vertices.dtype.kind!='f'or vertices.dtype.itemsize not in (4,8)or vertices.ndim!=2 or vertices.shape[1]!=3 or len(vertices)<4 or not np.isfinite(vertices).all():
+         raise ValueError('Unsupported original proxy input')
+     return(vertices.dtype.str,vertices.shape,vertices.strides,vertices.tobytes(order='C'))
+ 
+@@ -104,7 +107,7 @@
+         return result
+ 
+     namespace['proxy']=cached_proxy
+-    return dict(enabled=True,source_function_sha256=source_sha,scope='isaac_collision_queries original module alias only',predictive_original_function_unchanged=True,cache_entries_maximum=256)
++    return dict(enabled=True,source_function_sha256=source_sha,scope='isaac_collision_queries original module alias only',predictive_original_function_unchanged=True,cache_entries_maximum=256,raw_input_bytes_maximum=MAX_RAW_INPUT_BYTES)
+ 
+ 
+ def enable(Checker):

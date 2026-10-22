@@ -1,0 +1,108 @@
+{
+  "all_pass": true,
+  "original_full_move_issued_guard_AST_unchanged": true,
+  "tests": [
+    {
+      "case": "pass",
+      "pass_": true,
+      "error": null,
+      "events": [
+        "attach",
+        "preliminary_proof",
+        "move",
+        "fresh_image",
+        "attach",
+        "native_proof",
+        "future_opening",
+        "future_opening",
+        "future_opening",
+        "future_opening",
+        "future_opening",
+        "future_opening",
+        "future_opening",
+        "future_opening",
+        "future_opening",
+        "future_opening",
+        "future_opening",
+        "future_opening",
+        "attach",
+        "native_proof",
+        "future_opening",
+        "future_opening",
+        "future_opening",
+        "future_opening",
+        "future_opening",
+        "future_opening",
+        "future_opening",
+        "future_opening",
+        "future_opening",
+        "future_opening",
+        "future_opening",
+        "future_opening"
+      ]
+    },
+    {
+      "case": "bound",
+      "pass_": true,
+      "error": "Empty temporary receiver feedback exceeds2mm/.05rad; no closing issued",
+      "events": []
+    },
+    {
+      "case": "path_block",
+      "pass_": true,
+      "error": "Empty temporary receiver feedback original path blocked blocked",
+      "events": [
+        "attach",
+        "preliminary_proof"
+      ]
+    },
+    {
+      "case": "move_fault",
+      "pass_": true,
+      "error": "partial step fault",
+      "events": [
+        "attach",
+        "preliminary_proof",
+        "move"
+      ]
+    },
+    {
+      "case": "disturbance",
+      "pass_": true,
+      "error": "Empty receiver feedback disturbed donor-held ring; no closing issued",
+      "events": [
+        "attach",
+        "preliminary_proof",
+        "move",
+        "fresh_image"
+      ]
+    },
+    {
+      "case": "native_block",
+      "pass_": true,
+      "error": "Balanced SMALL corrected native proximal geometry blocked blocked",
+      "events": [
+        "attach",
+        "preliminary_proof",
+        "move",
+        "fresh_image",
+        "attach",
+        "native_proof"
+      ]
+    },
+    {
+      "case": "opening_block",
+      "pass_": true,
+      "error": "Balanced SMALL corrected future donor opening blocked; donor stays closed",
+      "events": [
+        "attach",
+        "preliminary_proof",
+        "move",
+        "fresh_image",
+        "attach",
+        "native_proof",
+        "future_opening"
+      ]
+    }
+  ]
+}

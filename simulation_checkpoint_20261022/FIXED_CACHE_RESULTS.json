@@ -1,5 +1,5 @@
 {
-  "recorded_utc": "2026-10-22T05:36:53.334783+00:00",
+  "recorded_utc": "2026-10-22T06:32:26.198274+00:00",
   "implementation": "saved command fields + public RGBD approach/entry correction + current dynamic checks",
   "accepted_runs": {
     "446": 249.17807756795082,
@@ -19,26 +19,41 @@
     "485": 272.8345945,
     "489": 272.89456395292655,
     "490": 238.17224171303678,
-    "491": 232.2948861779878
+    "491": 232.2948861779878,
+    "493": 212.53978356905282,
+    "494": 196.6974354549311,
+    "495": 256.0858648510184
   },
-  "latest_plus_stored_middle_qualified": false,
-  "unresolved": "Same414Python490NOMINAL238.17224s/491MINUS232.29489s fullPASS;492PLUS failed62.90738s at small receiver settled reconfirmation. Current3casegeneralization false. Original prior412Python482MINUS/483NOMINAL/484PLUS all fullPASS. Overall dramatic wait reduction/timegoals remain unachieved; hardware untested.",
+  "latest_plus_stored_middle_qualified": true,
+  "unresolved": "Same416Python/423source-input493PLUS/494NOMINAL/495MINUS allfullPASS. Initialtilts settle; these3cases are not repeat-success/random-stack/generalpose proof. Overall dramatic wait reduction/20s/30s goals remain unachieved;495slower thanolder491. Latestpolicy fullSDK/hardware execution untested.",
   "hardware_tested": false,
   "under20": false,
   "under30": false,
   "latest_same_code_minus_qualified": true,
-  "latest_same_code_three_case_generalization_pass": false,
+  "latest_same_code_three_case_generalization_pass": true,
   "wall_time_reduction_established": false,
-  "latest_exact_checkpoint": "490",
+  "latest_exact_checkpoint": "494",
   "latest_three_case_pending": null,
   "arbitrary_random_layout_generalization_proven": false,
-  "latest_single_nominal_checkpoint": "490",
-  "latest_single_nominal_same_code_variations_qualified": false,
-  "latest_same_source_three_case_checkpoint": "483",
-  "last_three_case_qualified_checkpoint": "483",
+  "latest_single_nominal_checkpoint": "494",
+  "latest_single_nominal_same_code_variations_qualified": true,
+  "latest_same_source_three_case_checkpoint": "494",
+  "last_three_case_qualified_checkpoint": "494",
   "latest_same_source_three_case_results": {
-    "490": "PASS_NOMINAL",
-    "491": "PASS_MINUS",
-    "492": "FAIL_PLUS_SMALL_RECEIVER_STABILITY"
-  }
+    "493": "PASS_PLUS",
+    "494": "PASS_NOMINAL",
+    "495": "PASS_MINUS"
+  },
+  "concurrency": {
+    "493": "single pipeline",
+    "494": "GPU3 worker parallel with495",
+    "495": "GPU2 worker parallel with494",
+    "controlled_latency_benchmark": false
+  },
+  "latest_saved_route_usage": {
+    "SMALL_donor": "493/494/495 admitted",
+    "LARGE_canonical_carry": "493/494/495 admitted",
+    "SMALL_LEFT_720": "494/495 admitted;493 rejected current-RIGHT pair collision and replanned with original guards"
+  },
+  "latest_same_source_audit": "component-evidence/fixed493-495-same-source-audit/three-case-matrix.json"
 }

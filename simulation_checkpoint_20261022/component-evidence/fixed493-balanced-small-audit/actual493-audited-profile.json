@@ -1,0 +1,601 @@
+{
+  "run": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v493-balanced-small-raw-cache-plus",
+  "state": "completed_over_budget",
+  "full_task_pass": true,
+  "vision_end_to_end_pass": true,
+  "wall_s": 212.53978356905282,
+  "physics_s": 50.23333333332873,
+  "under20": false,
+  "under30": false,
+  "source_file_count": 416,
+  "source_file_map_sha256": "d513ce8359dea0b56ed9dcd0d8d244098e5fac39d63be7b02c4f9f9667ee6e8c",
+  "source_changes_from492": [
+    "isaac_port/native_hand_layout/roas-table/balanced_small_receiver.py",
+    "isaac_port/native_hand_layout/roas-table/loose_bin_task.py",
+    "isaac_port/native_hand_layout/roas-table/payload_proxy_content_intern.py",
+    "isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py"
+  ],
+  "safety": {
+    "part_attachments": false,
+    "workpiece_teleports_after_initialization": 0,
+    "finger_effort_caps_n": {
+      "left_per_finger": 30.0,
+      "right_per_finger": 30.0,
+      "left_final_insertion_per_finger": 30.0
+    },
+    "native_finger_target_speed_cap_m_s": 0.0475,
+    "hardware_tested": false,
+    "hard_realtime_controller_validated": false,
+    "FR3_command_limit_audit": {
+      "samples": 24112,
+      "velocity_fraction_of_95_percent_PBV": 0.937179860009653,
+      "max_acceleration_rad_s2": 8.9813232421875,
+      "max_jerk_rad_s3": 3005.859375,
+      "acceleration_limit_rad_s2": 9.5,
+      "jerk_limit_rad_s3": 4750,
+      "command_limit_checks": true,
+      "complete_issued_field_checked_at_end": true,
+      "validated_sample_count": 24112
+    },
+    "encoder_motor_speed_audit": {
+      "samples": 24112,
+      "max_fraction_of_95_percent_PBV": 0.9325993337894489,
+      "max_finger_fraction_of_47p5_mm_s": 0.684049411823875,
+      "max_coupled_finger_difference_m": 5.2619725465774536e-08,
+      "enforced": true,
+      "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+    }
+  },
+  "balanced_feedback": [
+    {
+      "event": "balanced_SMALL_receiver_target_proposed",
+      "source": "Current direct RGB-D part pose and original SDK/model receiver target",
+      "empty_Hand_physical_target": true,
+      "original_part_pose_unchanged": true,
+      "original_G": [
+        [
+          -0.4336034609681126,
+          -0.7488002262171929,
+          0.501284950753539,
+          0.004668589376084942
+        ],
+        [
+          0.8662525385355111,
+          -0.4995975269269115,
+          0.0030149888517802337,
+          0.0002829738511768709
+        ],
+        [
+          0.24818298507242403,
+          0.4355466032320525,
+          0.8652771823129706,
+          0.0039189475222349834
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "proposed_G": [
+        [
+          -0.4339720092026271,
+          -0.749447020213303,
+          0.4999978010160274,
+          0.0022499901045721234
+        ],
+        [
+          0.8653855093806961,
+          -0.501106934882631,
+          1.850057804867246e-19,
+          8.325260121902606e-22
+        ],
+        [
+          0.25055225272335857,
+          0.4326907844954868,
+          0.8660268432446913,
+          0.00389712079460111
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "target_H": [
+        [
+          -0.4400248279599072,
+          0.8653212313019264,
+          0.23999395756308725,
+          -0.0497413115864179
+        ],
+        [
+          -0.751902734475053,
+          -0.5011530429260692,
+          0.4283545189397598,
+          -0.40021231302839894
+        ],
+        [
+          0.49093796631456754,
+          0.008034562251245929,
+          0.8711573146594834,
+          1.3950203174778681
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "translation_m": 0.0024279314084202797,
+      "rotation_rad": 0.0037856489695965068,
+      "closing_axis_dot_part_axis": 1.850057804867246e-19,
+      "preserved_part_axis_toolZ_tilt_rad": 0.5235958966706158,
+      "TCP_axis_offset_m": 0.0045,
+      "maximum_translation_m": 0.006,
+      "maximum_rotation_rad": 0.06,
+      "uses_free_body_poses": false,
+      "all_original_preflights_still_required": true,
+      "original_native_proximal_preflight": true,
+      "original_dual_release_and_current_route_preflight": true,
+      "original_actual_command_allwidth_issued_guard_still_required": true
+    },
+    {
+      "event": "balanced_SMALL_EMPTY_LEFT_actual_pose_feedback",
+      "requested_translation_m": 0.00014168920778441873,
+      "requested_rotation_rad": 0.007581303479864087,
+      "command_actual_bias_m": 0.00015335625429156456,
+      "command_actual_bias_rad": 0.00019618866875177864,
+      "actual_grasp": [
+        [
+          -0.4347110015767237,
+          -0.7493710613950113,
+          0.49946941757287483,
+          0.0023071626759669783
+        ],
+        [
+          0.8654069873026207,
+          -0.5010677890798152,
+          0.0014340193942229402,
+          -5.01485514099731e-05
+        ],
+        [
+          0.24919331191684077,
+          0.4328676408505241,
+          0.8663305023542496,
+          0.003908472366260796
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "intended_grasp": [
+        [
+          -0.43397200920262713,
+          -0.749447020213303,
+          0.4999978010160275,
+          0.0022499901045720527
+        ],
+        [
+          0.8653855093806962,
+          -0.501106934882631,
+          2.565690465769658e-17,
+          -2.7755575615628914e-17
+        ],
+        [
+          0.25055225272335857,
+          0.4326907844954868,
+          0.8660268432446913,
+          0.0038971207946010278
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "uses_free_body_poses": false,
+      "force_speed_geometry_limits_unchanged": true,
+      "balanced_target": {
+        "selected_intended_grasp": [
+          [
+            -0.43397200920262713,
+            -0.749447020213303,
+            0.4999978010160275,
+            0.0022499901045720527
+          ],
+          [
+            0.8653855093806962,
+            -0.501106934882631,
+            2.565690465769658e-17,
+            -2.7755575615628914e-17
+          ],
+          [
+            0.25055225272335857,
+            0.4326907844954868,
+            0.8660268432446913,
+            0.0038971207946010278
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "fixed_before_approach": true
+      },
+      "exact_original2mm_50mrad_correction_bounds": true,
+      "single_bounded_correction": true,
+      "one_additional_fresh_image": true
+    },
+    {
+      "event": "balanced_SMALL_corrected_preclose_future_opening_admitted",
+      "actual_command_both_arms": true,
+      "current_actual_command_and_planned_openings": true,
+      "fresh_RGBD_native_proximal": true,
+      "donor_release_width_m": 0.078,
+      "uses_free_body_poses": false
+    }
+  ],
+  "public_relative_grasp_evidence": {
+    "method": "Same-frame saved public RGB-D and SDK TCP only; no actorposes",
+    "rows": [
+      {
+        "frame": 22,
+        "captured_wall_s": 50.848270626040176,
+        "relative_center_m": [
+          0.0023424547811300694,
+          4.8925044572196665e-05,
+          0.003904566452778413
+        ],
+        "relative_axis": [
+          0.4997159043506083,
+          0.0009039481297278325,
+          0.8661887224609254
+        ],
+        "relative_axis_norm": 0.9999998525508179
+      },
+      {
+        "frame": 27,
+        "captured_wall_s": 52.38712072710041,
+        "relative_center_m": [
+          0.00234393404548072,
+          4.8105682920769476e-05,
+          0.0039030095805654315
+        ],
+        "relative_axis": [
+          0.49975360832109605,
+          0.0009374197570424278,
+          0.8661669338608609
+        ],
+        "delta_from_previous_m": 2.2985707782204365e-06,
+        "axis_delta_from_previous_rad": 0.0007699450452900632,
+        "relative_axis_norm": 0.9999998525498298,
+        "normalized_axis_delta_from_previous_rad": 5.4924342038170246e-05
+      },
+      {
+        "frame": 39,
+        "captured_wall_s": 95.12782821711153,
+        "relative_center_m": [
+          0.0027388812028100386,
+          -2.393240906894749e-05,
+          0.003497392388392483
+        ],
+        "relative_axis": [
+          0.5348434694538677,
+          5.752733141202551e-05,
+          0.8449509649519711
+        ],
+        "delta_from_previous_m": 0.0005706996148292857,
+        "axis_delta_from_previous_rad": 0.04102496243498095,
+        "relative_axis_norm": 0.9999998366500423,
+        "normalized_axis_delta_from_previous_rad": 0.041017390107002304
+      },
+      {
+        "frame": 41,
+        "captured_wall_s": 95.6264881460229,
+        "relative_center_m": [
+          0.0027383855298134595,
+          -2.5083551983128554e-05,
+          0.003497350788379211
+        ],
+        "relative_axis": [
+          0.5339007839821407,
+          8.00106564728546e-05,
+          0.8455469353399646
+        ],
+        "delta_from_previous_m": 1.2540144694186065e-06,
+        "axis_delta_from_previous_rad": 0.0013775489228547463,
+        "relative_axis_norm": 0.9999998367006147,
+        "normalized_axis_delta_from_previous_rad": 0.00111550107020154
+      },
+      {
+        "frame": 43,
+        "captured_wall_s": 101.05054384702817,
+        "relative_center_m": [
+          0.0027253401868018124,
+          -2.618356620063395e-05,
+          0.0034768573861785885
+        ],
+        "relative_axis": [
+          0.5292626454249331,
+          5.5708744068206614e-05,
+          0.8484578506034949
+        ],
+        "delta_from_previous_m": 2.431811134374383e-05,
+        "axis_delta_from_previous_rad": 0.005535144815834919,
+        "relative_axis_norm": 0.9999998375981693,
+        "normalized_axis_delta_from_previous_rad": 0.005475986872599924
+      },
+      {
+        "frame": 44,
+        "captured_wall_s": 109.98456034704577,
+        "relative_center_m": [
+          0.0026549089988299954,
+          -1.0265705799083596e-05,
+          0.0033391680856183345
+        ],
+        "relative_axis": [
+          0.532316441398844,
+          5.9450189183956615e-05,
+          0.8465452535995589
+        ],
+        "delta_from_previous_m": 0.00015547435160712732,
+        "axis_delta_from_previous_rad": 0.0036938896170234676,
+        "relative_axis_norm": 0.9999998318548836,
+        "normalized_axis_delta_from_previous_rad": 0.003603294254982862
+      },
+      {
+        "frame": 45,
+        "captured_wall_s": 118.52966372505762,
+        "relative_center_m": [
+          0.04580890066320025,
+          -6.421930375671984e-05,
+          0.07108608532866725
+        ],
+        "relative_axis": [
+          0.5374672165926319,
+          -0.00029357552755882184,
+          0.843284399867539
+        ],
+        "delta_from_previous_m": 0.08032381155980951,
+        "axis_delta_from_previous_rad": 0.00616040024373779,
+        "relative_axis_norm": 0.9999998370791751,
+        "normalized_axis_delta_from_previous_rad": 0.006106423464563903
+      }
+    ]
+  },
+  "local_CAD_cache": {
+    "enabled": true,
+    "original_attachment_and_query_writes_preserved": true,
+    "local_geometry_only": true,
+    "posed_collision_results_cached": false,
+    "exact_full_field_confirmation": true,
+    "cached_content_revalidated": true,
+    "stats": {
+      "attachments": 57,
+      "interned": 53,
+      "new_content": 4,
+      "invalid": 0,
+      "cached_content_poisoned": 0,
+      "digest_collision_or_mismatch": 0,
+      "raw_proxy_calls": 2194,
+      "raw_proxy_hits": 2074,
+      "raw_proxy_original_calls": 120,
+      "raw_proxy_new_content": 120,
+      "raw_proxy_cached_poisoned": 0,
+      "raw_proxy_digest_collision_or_mismatch": 0,
+      "raw_proxy_unsupported": 0,
+      "raw_proxy_unsupported_output": 0
+    },
+    "raw_proxy_cache": {
+      "enabled": true,
+      "source_function_sha256": "1b964a54bf8eda1f543bb53c547578e1e452b732415abdcc8f8f4c02a13fae03",
+      "scope": "isaac_collision_queries original module alias only",
+      "predictive_original_function_unchanged": true,
+      "cache_entries_maximum": 256,
+      "raw_input_bytes_maximum": 1048576
+    }
+  },
+  "GPU_groups": [
+    {
+      "event": "GPU_exact_pair_schedule_certificate",
+      "scopes": 21,
+      "inclusive_scope_wall_s": 27.39652920793742,
+      "rows": 133713,
+      "clear_rows": 133201,
+      "CPU_fallback_rows": 512,
+      "context_misses": 24,
+      "transport_counts": {
+        "numpy_pickle5_exact_transform_bank": 20,
+        "None": 1
+      },
+      "errors": {
+        "None": 20,
+        "ValueError: Binary GPU pair response rejected ValueError: Geometry not registered": 1
+      },
+      "service_sources": {
+        "79b4337c1fdf748b5555c92751b9a801ce80ad4422af724b89829588fbd52453": 20,
+        "None": 1
+      },
+      "RPC_times_s": {
+        "client_wall_s": 7.821241862257011,
+        "server_s": 6.162097539170645,
+        "kernel_s": 5.945095624541864
+      },
+      "original_policy_receipts": true
+    },
+    {
+      "event": "GPU_native_width_sweep_pair_certificate",
+      "scopes": 12,
+      "inclusive_scope_wall_s": 28.22941382532008,
+      "rows": 5685,
+      "clear_rows": 5277,
+      "CPU_fallback_rows": 408,
+      "context_misses": 1413,
+      "transport_counts": {
+        "numpy_pickle5_exact_transform_bank": 12
+      },
+      "errors": {
+        "None": 12
+      },
+      "service_sources": {
+        "79b4337c1fdf748b5555c92751b9a801ce80ad4422af724b89829588fbd52453": 12
+      },
+      "RPC_times_s": {
+        "client_wall_s": 1.5620705011533573,
+        "server_s": 0.6419358691200614,
+        "kernel_s": 0.6105535801034421
+      },
+      "original_policy_receipts": true
+    }
+  ],
+  "co_moving": {
+    "left": {
+      "fast_attempts": 8515,
+      "fast_returns": 8433,
+      "clear_queries": 29,
+      "proofs": 29,
+      "unknown": 0,
+      "relative_misses": 0
+    },
+    "right": {
+      "fast_attempts": 7672,
+      "fast_returns": 7060,
+      "clear_queries": 567,
+      "proofs": 22,
+      "unknown": 0,
+      "relative_misses": 0
+    }
+  },
+  "camera": {
+    "frames": 70,
+    "capture_to_ready_max_s": 1.1770676680607721,
+    "capture_to_ready_p50_s": 0.23375164694152772,
+    "capture_to_ready_p95_s": 0.41628845094237477,
+    "over3s_count": 0,
+    "capture_s": 1.9833016796037555,
+    "inference_s": 16.230849148589186,
+    "ready_to_delivery_s": 32.39469458523672
+  },
+  "timers": {
+    "scope": "Inclusive instance guard timers only; no actuation, collision or sensor changes",
+    "timing_basis": "Wall, calling-thread CPU, and whole-process CPU. Nested methods overlap; DO NOT sum them. Outermost counters remove same-instance-method recursion only. Process CPU can include concurrent simulator threads.",
+    "methods": {
+      "right.checker.clear": {
+        "calls": 22271,
+        "exceptions": 0,
+        "max_recursion_depth": 2,
+        "inclusive_wall_s": 28.516966978437267,
+        "inclusive_thread_cpu_s": 28.5072613631055,
+        "inclusive_process_cpu_s": 32.58987525521479,
+        "outermost_calls": 17553,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 23.409062987775542,
+        "outermost_thread_cpu_s": 23.400350424155477,
+        "outermost_process_cpu_s": 26.76102460614129
+      },
+      "right.checker._clear_transforms": {
+        "calls": 26102,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 9.693222449743189,
+        "inclusive_thread_cpu_s": 9.688749805063708,
+        "inclusive_process_cpu_s": 11.130882759109227,
+        "outermost_calls": 26102,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 9.693222449743189,
+        "outermost_thread_cpu_s": 9.688749805063708,
+        "outermost_process_cpu_s": 11.130882759109227
+      },
+      "right.own_payload_clearance.clear": {
+        "calls": 25891,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 6.791666179778986,
+        "inclusive_thread_cpu_s": 6.790501880932425,
+        "inclusive_process_cpu_s": 7.736281088858959,
+        "outermost_calls": 25891,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 6.791666179778986,
+        "outermost_thread_cpu_s": 6.790501880932425,
+        "outermost_process_cpu_s": 7.736281088858959
+      },
+      "left.checker.clear": {
+        "calls": 5300,
+        "exceptions": 0,
+        "max_recursion_depth": 2,
+        "inclusive_wall_s": 10.383865434327163,
+        "inclusive_thread_cpu_s": 10.381016585008183,
+        "inclusive_process_cpu_s": 11.719792367066475,
+        "outermost_calls": 5299,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 10.38240758725442,
+        "outermost_thread_cpu_s": 10.379559019007502,
+        "outermost_process_cpu_s": 11.71817464106607
+      },
+      "left.checker._clear_transforms": {
+        "calls": 14503,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 5.836257839226164,
+        "inclusive_thread_cpu_s": 5.834336485986569,
+        "inclusive_process_cpu_s": 6.626704455971776,
+        "outermost_calls": 14503,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 5.836257839226164,
+        "outermost_thread_cpu_s": 5.834336485986569,
+        "outermost_process_cpu_s": 6.626704455971776
+      },
+      "left.own_payload_clearance.clear": {
+        "calls": 16989,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 5.941547355614603,
+        "inclusive_thread_cpu_s": 5.941104692979934,
+        "inclusive_process_cpu_s": 6.698375426078201,
+        "outermost_calls": 16989,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 5.941547355614603,
+        "outermost_thread_cpu_s": 5.941104692979934,
+        "outermost_process_cpu_s": 6.698375426078201
+      },
+      "placed_part_clearance.clear": {
+        "calls": 55310,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 5.244181917631067,
+        "inclusive_thread_cpu_s": 5.246756400183585,
+        "inclusive_process_cpu_s": 6.005788612312244,
+        "outermost_calls": 55310,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 5.244181917631067,
+        "outermost_thread_cpu_s": 5.246756400183585,
+        "outermost_process_cpu_s": 6.005788612312244
+      }
+    },
+    "wrapped_instances": 7,
+    "detached": true,
+    "restoration_error_count": 0,
+    "restoration_errors": [],
+    "protected_proof_method_identity_unchanged": true,
+    "same_arm_clearance_clear_wrapped": false,
+    "arm_bodies_wrapped": false
+  },
+  "interpretation": "One complete PLUS variation pass of new416Python source, not the same414source that failed492. Balanced target, bounded feedback and raw local geometry intern were combined, so no isolated cause or whole-cycle speed attribution. Posthandover stability passed, but later .571mm/41mrad public relative-grasp carry change remains; do not claim all slip eliminated. No generalized random-bin/hardware qualification. Nested timers overlap.",
+  "artifact_SHA256": {
+    "pipeline-results.json": "d54ae263bc3a4c0ec0128c78b29a23a4c16d394f21af6d7f91e948f5f848353c",
+    "rgb-observations.json": "74df0e05692aff0f764f45c62866f5d0949a82d0d7ed2785a599c312dcdc733b",
+    "frozen-source-manifest.json": "d83d595aadd98b443d61acf68c9d431d4aa979acac1c7423862ed496adcaecc7",
+    "trial-config.json": "0409e9e24b8d3dc94baf0a093d7e7602351b86680133e25406cecf75a8bb5949",
+    "physx-sequence-trace.npz": "1e502ada97df71c8e2f75a1ef227396609785a066202b6cd4e9602c76369c264"
+  }
+}

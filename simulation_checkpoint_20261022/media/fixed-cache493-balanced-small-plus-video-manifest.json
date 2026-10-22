@@ -1,0 +1,119 @@
+{
+  "source_run": "native-roas-table-fixed-front-v493-balanced-small-raw-cache-plus",
+  "source_full_task_pass": true,
+  "vision_end_to_end_pass": true,
+  "source_state": "completed_over_budget",
+  "end_to_end_under20": false,
+  "end_to_end_under30": false,
+  "display_scope": "ALL3 PHYSX PASS | TIME TARGET NOT MET | HARDWARE UNTESTED",
+  "source_physics_elapsed_s": 50.23333333332873,
+  "source_total_wall_s": 212.53978356905282,
+  "segments": [
+    {
+      "start_wall_s": 6.3,
+      "end_wall_s": 17.8,
+      "part": "ring2",
+      "label": "SMALL: native pickup, close and supported lift"
+    },
+    {
+      "start_wall_s": 27.7,
+      "end_wall_s": 33.8,
+      "part": "ring2",
+      "label": "SMALL: carry to handover"
+    },
+    {
+      "start_wall_s": 39.1,
+      "end_wall_s": 52.8,
+      "part": "ring2",
+      "label": "SMALL: balanced30deg target, bounded fresh feedback, native handover"
+    },
+    {
+      "start_wall_s": 76.5,
+      "end_wall_s": 81.0,
+      "part": "ring2",
+      "label": "Paired LEFT advance / RIGHT LARGE approach"
+    },
+    {
+      "start_wall_s": 87.9,
+      "end_wall_s": 92.5,
+      "part": "ring1",
+      "label": "RIGHT LARGE: close and supported breakaway"
+    },
+    {
+      "start_wall_s": 94.0,
+      "end_wall_s": 95.5,
+      "part": "ring1",
+      "label": "RIGHT LARGE: loaded lift while LEFT active"
+    },
+    {
+      "start_wall_s": 103.8,
+      "end_wall_s": 111.5,
+      "part": "ring2",
+      "label": "LEFT SMALL: insertion, release and withdrawal"
+    },
+    {
+      "start_wall_s": 150.4,
+      "end_wall_s": 157.2,
+      "part": "ring1",
+      "label": "RIGHT LARGE: actual stored carry to preinsert"
+    },
+    {
+      "start_wall_s": 158.6,
+      "end_wall_s": 174.6,
+      "part": "ring1",
+      "label": "LARGE: fresh RGB-D alignment, insertion, release and withdrawal"
+    },
+    {
+      "start_wall_s": 178.6,
+      "end_wall_s": 183.0,
+      "part": "pin",
+      "label": "PIN: holder pickup, lift and qualified native preload"
+    },
+    {
+      "start_wall_s": 188.2,
+      "end_wall_s": 191.0,
+      "part": "pin",
+      "label": "PIN: carry and fresh RGB-D precision observation"
+    },
+    {
+      "start_wall_s": 191.6,
+      "end_wall_s": 198.8,
+      "part": "pin",
+      "label": "PIN: bounded feedback corrections, original precision gates"
+    },
+    {
+      "start_wall_s": 205.3,
+      "end_wall_s": 212.53978356905282,
+      "part": "pin",
+      "label": "PIN: axial insertion and final clearance; ALL3 retained"
+    }
+  ],
+  "speed_multiplier": 1.0,
+  "wall_clock_replay": true,
+  "explicit_cut_cards": true,
+  "frame_count": 1037,
+  "cut_frames": 96,
+  "video_duration_s": 103.7,
+  "fps": 10,
+  "renderer": "Warp GPU ray camera of original CAD, notRTX",
+  "all_dynamic_bodies_replayed": true,
+  "render_only": true,
+  "new_physics_steps": 0,
+  "actor_poses_used_for_rendering_only": true,
+  "hardware_tested": false,
+  "original_recorded_dynamic_body_count": 34,
+  "source_file_hashes": {
+    "pipeline-results.json": "d54ae263bc3a4c0ec0128c78b29a23a4c16d394f21af6d7f91e948f5f848353c",
+    "frozen-source-manifest.json": "d83d595aadd98b443d61acf68c9d431d4aa979acac1c7423862ed496adcaecc7",
+    "trial-config.json": "0409e9e24b8d3dc94baf0a093d7e7602351b86680133e25406cecf75a8bb5949",
+    "physx-sequence-trace.npz": "1e502ada97df71c8e2f75a1ef227396609785a066202b6cd4e9602c76369c264",
+    "rgb-observations.json": "74df0e05692aff0f764f45c62866f5d0949a82d0d7ed2785a599c312dcdc733b",
+    "camera-local-models.npz": "d144a59ce94052f33457cff960eb62fb0b5f222bfd768fb69feb48b255ee13d7"
+  },
+  "renderer_source_sha256": "9e0355dca65f4522fd184393dec82d5ab0f3817eb7692a5264716a8a8413587c",
+  "video_sha256": "59b632d3a7f04d71e8aad05f4f522ce51bd88d44705c9eae8dd02d5275e04514",
+  "last_frame_sha256": "5f42f0a51ff7ece89e4342bdb25a943aa5a5c8dad23cd1157085adac9e193195",
+  "full_ffmpeg_decode_pass": true,
+  "visually_inspected_last_frame": true,
+  "original_trace_new_physics_steps": 0
+}
