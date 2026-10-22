@@ -1,0 +1,134 @@
+--- a/direct_pin_skill.py
++++ b/direct_pin_skill.py
+@@ -158,6 +158,59 @@
+     # The lens is0.25m below the signed tail axis. The second public Hand-Z
+     # projection provides a small alternative if that first view is occluded.
+     return [(len(offsets)+i,(-.25*axis+lateral*tangent).tolist())for i,lateral in enumerate([0.,.04])]
++
++
++def _pin_carry_aperture_domain(ctx):
++    """Existing actual hold band plus fresh spring command and one full tick."""
++    actual=np.asarray(ctx['art'].get_dof_positions()[0,ctx['fi']],float)
++    command=np.asarray(ctx['cmd'][0,ctx['fi']],float);dt=float(ctx['dt'])
++    if actual.shape!=(2,) or command.shape!=(2,) or not np.isfinite(np.r_[actual,command,dt]).all() or dt<=0:
++        raise RuntimeError('Invalid current PIN carry aperture state')
++    gap=float(actual.sum());target=float(command.sum());reach=2*.0475*dt
++    if not .0097<gap<.0135 or not 0<=target<=.08:
++        raise RuntimeError('Actual PIN carry aperture outside original hold band')
++    low=min(.0097,gap,target)-reach;high=max(.0135,gap,target)+reach
++    if not 0<=low<=high<=.08:raise RuntimeError('Invalid PIN carry aperture proof domain')
++    return dict(lower_m=low,upper_m=high,one_tick_total_reach_m=reach,
++        actual_hold_band_m=[.0097,.0135],actual_at_admission_m=gap,command_at_admission_m=target,
++        widths_m=np.unique(np.r_[np.linspace(low,high,5),gap,target]).tolist())
++
++
++def _pin_check_carry_aperture(ctx,domain):
++    actual=np.asarray(ctx['art'].get_dof_positions()[0,ctx['fi']],float)
++    command=np.asarray(ctx['cmd'][0,ctx['fi']],float)
++    if actual.shape!=(2,) or command.shape!=(2,) or not np.isfinite(np.r_[actual,command]).all():
++        raise RuntimeError('Invalid current PIN carry aperture state')
++    gap=float(actual.sum());target=float(command.sum());reach=domain['one_tick_total_reach_m']
++    if not .0097<gap<.0135 or gap-reach<domain['lower_m'] or gap+reach>domain['upper_m'] or not domain['lower_m']<=target<=domain['upper_m']:
++        raise RuntimeError('PIN carry aperture left original actual hold band or admitted command/lookahead domain')
++
++
++def _pin_admit_measured_carry(ctx,issued,body_G,label):
++    """Fresh full-payload/current-state admission, no actuation or sensors."""
++    from pin_current_terminal import _other_contexts
++    from dual_aperture_path_check import path_other_contexts
++    from serial_gpu_pair_scope import serial_path_scope
++    checker=ctx['checker'];domain=_pin_carry_aperture_domain(ctx)
++    actual=ctx['art'].get_dof_positions()[0].copy()
++    rows=np.vstack([actual[ctx['ids']],ctx['cmd'][0,ctx['ids']],issued])
++    other,contexts=_other_contexts(ctx);widths=np.asarray(domain['widths_m'])
++    saved=(checker.payload_path,checker.payload_rows,checker.payload_boxes,checker.payload_relative)
++    stats={};began=time.perf_counter()
++    scope=dict(ctx,checkers={'right':checker,'left':other},planning_diagnostics=ctx['report'].setdefault('pin_carry_pair_diagnostics',[]))
++    try:
++        checker.attach_payload(ctx['paths']['workpiece_pin'],frame([0,0,.1034],np.eye(3))@np.asarray(body_G,float))
++        with serial_path_scope(scope,checker,other,contexts,rows,widths):
++            clear,why=path_other_contexts(checker,other,contexts,rows,widths,ctx['paths']['workpiece_pin'],diagnostics=stats)
++    finally:checker.payload_path,checker.payload_rows,checker.payload_boxes,checker.payload_relative=saved
++    if not clear:raise RuntimeError('Fresh full-width loaded PIN carry blocked before motion '+str(why))
++    _pin_check_carry_aperture(ctx,domain)
++    evidence=dict(label=label,issued_rows=len(issued)-1,actual_command_start_rows_added=2,
++        other_contexts=len(contexts),full_payload_current_RGBD_G=True,uses_free_body_poses=False,
++        wall_s=time.perf_counter()-began,**domain,guard=stats)
++    ctx['report'].setdefault('pin_measured_carry_aperture_admissions',[]).append(evidence)
++    print('PIN_MEASURED_CARRY_APERTURE_ADMITTED',evidence,flush=True)
++    return domain
+ 
+ 
+ def execute(ctx):
+@@ -222,6 +275,10 @@
+             if q is not None and all(np.linalg.norm(q-old)>.05 for old in seen):
+                 seen.append(q)
+                 if terminal_admitted(q):yield q
++    def carry_opening():
++        if not pin_config.get('pin_measured_carry_aperture_guard',False):return .0105
++        domain=_pin_carry_aperture_domain(ctx)
++        return max(domain['actual_at_admission_m'],domain['command_at_admission_m'])
+     def step():ctx['step'](phase)
+     def wait(seconds,label):
+         nonlocal phase
+@@ -307,11 +364,16 @@
+         else:
+             q,h,timing=retime(qs,T,DT,opening,np.full(2,pickup_opening_m/2) if preshape else opening,velocity_fraction=.95,acceleration=9.5,jerk=4750.,finger_command_speed=.0475,optimize=optimized)
+             if scale>1:q,h,timing=retime(qs,timing['duration_s']*scale,DT,opening,np.full(2,pickup_opening_m/2) if preshape else opening,velocity_fraction=.95,acceleration=9.5,jerk=4750.,finger_command_speed=.0475,optimize=False)
++        carry_domain=None
++        if pin_config.get('pin_measured_carry_aperture_guard',False) and label in ['pin_tail_direct_carry_to_preinsert','pin_tail_carry_to_preinsert','pin_tail_orient_free']:
++            carry_domain=_pin_admit_measured_carry(ctx,q,payload_grasp(),label)
+         phase=label
+         for row,hvalue in zip(q[1:],h[1:]):
++            if carry_domain is not None:_pin_check_carry_aperture(ctx,carry_domain)
+             cmd[0,ids]=row
+             if preshape:cmd[0,fi]=opening+(pickup_opening_m/2-opening)*hvalue
+             step()
++            if carry_domain is not None:_pin_check_carry_aperture(ctx,carry_domain)
+         report['events'].append(dict(event=label,wall_s=time.perf_counter()-started,physical_duration_s=(len(q)-1)*DT));print('PIN_CONTACT_MOVE',label,time.perf_counter()-started,flush=True)
+     def line(H0,H1,requested,label):
+         H0=arm.fk(cmd[0,ids]);rows=[cmd[0,ids].copy()];last=rows[0]
+@@ -516,19 +578,19 @@
+                 candidate_R=nominal_R@exp(np.array([0.,0.,np.deg2rad(yaw_deg)]))
+                 candidate_pre=frame(goal-[0,0,.045],candidate_R)@np.linalg.inv(G)
+                 for q in endpoint_candidates(candidate_pre,[robot_seeds.get('pin_direct_preinsert',robot_seeds['pin_tail_carry_to_preinsert']),robot_seeds['pin_tail_carry_to_preinsert'],cmd[0,ids]],'pin_preinsert_carry'):
+-                    if checker.path([cmd[0,ids],q],.0105,paths['workpiece_pin'])[0]:shortcut=[cmd[0,ids].copy(),q];report['direct_joint_edge_used']=True;break
++                    if checker.path([cmd[0,ids],q],carry_opening(),paths['workpiece_pin'])[0]:shortcut=[cmd[0,ids].copy(),q];report['direct_joint_edge_used']=True;break
+                     if pin_config.get('pin_gpu_route_before_hint',False):
+-                        shortcut=_pin_gpu_cubic_route_before_hint(checker,cmd[0,ids].copy(),q,.0105,paths['workpiece_pin'])
++                        shortcut=_pin_gpu_cubic_route_before_hint(checker,cmd[0,ids].copy(),q,carry_opening(),paths['workpiece_pin'])
+                         if shortcut is not None:
+                             report['pin_GPU_cubic_route_before_hint_used']=True;break
+                     from grasp_transfer_feasibility import robot_route_hint,hint_path_clear
+                     warm=robot_route_hint(ctx,'pin_direct_carry_to_preinsert',cmd[0,ids],q)
+-                    if warm is not None and getattr(warm,'verified_cubic',False) and hint_path_clear(checker,warm,.0105,paths['workpiece_pin']):shortcut=warm;report['warm_spline_robot_hint_used']=True;break
++                    if warm is not None and getattr(warm,'verified_cubic',False) and hint_path_clear(checker,warm,carry_opening(),paths['workpiece_pin']):shortcut=warm;report['warm_spline_robot_hint_used']=True;break
+                     hint=robot_hint_data.get('routes',{}).get('pin_direct_carry_to_preinsert')
+                     if hint:
+                         candidate=np.asarray(hint).copy();candidate[0]=cmd[0,ids];candidate[-1]=q
+-                        if checker.path(candidate,.0105,paths['workpiece_pin'])[0]:shortcut=candidate;report['validated_robot_route_hint_used']=True
+-                    if shortcut is None:shortcut=checker.route(cmd[0,ids],q,.0105,paths['workpiece_pin'],seconds=1.)
++                        if checker.path(candidate,carry_opening(),paths['workpiece_pin'])[0]:shortcut=candidate;report['validated_robot_route_hint_used']=True
++                    if shortcut is None:shortcut=checker.route(cmd[0,ids],q,carry_opening(),paths['workpiece_pin'],seconds=1.)
+                     if shortcut is not None:break
+                 if shortcut is not None:
+                     R=candidate_R;pre=candidate_pre;end=frame(goal,R)@np.linalg.inv(G)
+@@ -542,15 +604,15 @@
+             from grasp_transfer_feasibility import shorten_checked_route
+             checker.attach_payload(paths['workpiece_pin'],frame([0,0,.1034],np.eye(3))@payload_grasp())
+             try:
+-                if not getattr(shortcut,'verified_cubic',False):shortcut=shorten_checked_route(checker,shortcut,.0105,paths['workpiece_pin'])
++                if not getattr(shortcut,'verified_cubic',False):shortcut=shorten_checked_route(checker,shortcut,carry_opening(),paths['workpiece_pin'])
+             finally:checker.detach_payload()
+             report['pin_shortcut_nodes']=len(shortcut);motion(shortcut,.05,'pin_tail_direct_carry_to_preinsert');transports=[];report['direct_preinsert_shortcut']=True
+     for target,label in transports:
+         checker.attach_payload(paths['workpiece_pin'],frame([0,0,.1034],np.eye(3))@payload_grasp());route=None
+         for q in endpoint_candidates(target,[robot_seeds[label],cand['insert_waypoints'][0] if label=='pin_tail_carry_to_preinsert' else cmd[0,ids],cmd[0,ids]],label):
+-            clear,why=checker.clear(q,.0105,paths['workpiece_pin']);print('PIN_CARRY_GOAL_CLEAR',label,(clear,why),flush=True)
++            clear,why=checker.clear(q,carry_opening(),paths['workpiece_pin']);print('PIN_CARRY_GOAL_CLEAR',label,(clear,why),flush=True)
+             if not clear:continue
+-            route=checker.route(cmd[0,ids],q,.0105,paths['workpiece_pin'],seconds=2)
++            route=checker.route(cmd[0,ids],q,carry_opening(),paths['workpiece_pin'],seconds=2)
+             if route is not None:break
+         checker.detach_payload()
+         if route is None:raise RuntimeError('No collision-free carry '+label)

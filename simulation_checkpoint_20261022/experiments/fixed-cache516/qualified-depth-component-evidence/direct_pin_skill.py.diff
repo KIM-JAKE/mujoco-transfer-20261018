@@ -1,0 +1,38 @@
+--- /tmp/fixed512-camera-priority-full/overrides/direct_pin_skill.py
++++ /tmp/fixed515-pin-qualified-depth/overrides/direct_pin_skill.py
+@@ -137,6 +137,8 @@
+     if flat_tail_proposal is not None:report['pin_tail_flat_contact_target']=flat_tail_proposal;print('PIN_TAIL_FLAT_CONTACT_TARGET',flat_tail_proposal,flush=True)
+     body_goal=goal.copy();pin_config=ctx.get('config',{})
+     visual_preinsert=bool(pin_config.get('pin_visual_preinsert_alignment'))
++    qualified_full_depth=bool(pin_config.get('pin_full_depth_require_robust_circle'))
++    if qualified_full_depth and not(visual_preinsert and pin_config.get('robust_pin_cap_circle')):raise ValueError('Qualified PIN full-depth observation requires original visual preinsert and robust circle settings')
+     pin_axis_geometry=bool(pin_config.get('pin_axis_frame_consistent_geometry') or cand.get('pose_origin')=='RGB-D physical symmetry-axis midpoint')
+     pin_sensor_hold=bool(pin_config.get('pin_rgbd_sdk_hold_confirmation'))
+     pickup_opening_m=.024 if pin_config.get('pin_preclose_wide_opening')else.014
+@@ -234,8 +236,12 @@
+             error=value['result'].get('error');pose=value['result'].get('pose')
+             if not error and require_circle and (not pose or pose.get('lateral_from_previous_RGBD_grasp_and_encoders',True)):
+                 error='Pin precision alignment needs directly observed end-circle XY, not propagated XY'
++            if qualified_full_depth and label=='pin_full_depth_RGBD' and not(pose and pose.get('robust_cap_circle_from_pixels')is True):
++                error=error or 'PIN full-depth requires the original robust class-radius circular-cap proof'
+             if error:
+                 errors.append(str(error).splitlines()[-1]);continue
++            if qualified_full_depth and label=='pin_full_depth_RGBD':
++                report.setdefault('pin_full_depth_qualified_observations',[]).append(dict(view_index=view_index,captured_wall_s=captured,ready_wall_s=ready,delivered_wall_s=e['delivered_wall_s'],robust_cap_circle_from_pixels=True,original_cap_quality={key:pose.get(key)for key in ['cap_expected_radius_m','visible_end_radius_m','cap_edge_coverage_deg','cap_circular_edge_inliers','cap_total_hull_edge_points','cap_circular_edge_rms_m','cap_points','depth_points','plane_rms_m']},same_existing_camera_view_bank=True,original_depth_axis_precision_and_motor_gates_unchanged=True,uses_free_body_poses=False))
+             report['events'].append(dict(event=label,wall_s=e['delivered_wall_s'],result=value['result'],view_index=view_index));print('PIN_CONTACT_VISION',label,e['delivered_wall_s'],flush=True);return value
+         raise RuntimeError('No valid pin RGB-D view '+label+' '+str(errors))
+     def motion(qs,requested,label,checked_edges=True):
+@@ -578,11 +584,11 @@
+     if np.linalg.norm(Pobs[:2]-goal[:2])>=.0015 or not .035<remaining_depth<.055:raise RuntimeError('Preinsert RGB-D alignment/depth outside direct insertion range')
+     if not axial_inserted:
+         pre=arm.fk(cmd[0,ids]);end=pre.copy();end[2,3]+=remaining_depth;line(pre,end,.8,'pin_single_axial_insert')
+-    wait(.12,'pin_full_depth_hold');v=observe('pin_full_depth_RGBD',G);pose=v['result']['pose'];error=float(np.linalg.norm(np.array(pose['center_m'])-goal));ae=float(np.arccos(np.clip(np.array(pose['axis'])[2],-1,1)));report['RGBD_full_depth_check']=dict(position_error_m=error,axis_error_rad=ae)
++    wait(.12,'pin_full_depth_hold');v=observe('pin_full_depth_RGBD',G,require_circle=qualified_full_depth);pose=v['result']['pose'];error=float(np.linalg.norm(np.array(pose['center_m'])-goal));ae=float(np.arccos(np.clip(np.array(pose['axis'])[2],-1,1)));report['RGBD_full_depth_check']=dict(position_error_m=error,axis_error_rad=ae)
+     for correction_index in range(2):
+         remaining=float(goal[2]-pose['center_m'][2]);radial=float(np.linalg.norm(np.array(pose['center_m'])[:2]-goal[:2]))
+         if not (.0005<remaining<.006 and radial<.0015 and ae<.05):break
+-        H=arm.fk(cmd[0,ids]);end=H.copy();end[2,3]+=remaining;line(H,end,.25,'pin_axial_depth_correction');wait(.08,'pin_depth_check_hold');v=observe('pin_full_depth_RGBD',G);pose=v['result']['pose'];error=float(np.linalg.norm(np.array(pose['center_m'])-goal));ae=float(np.arccos(np.clip(np.array(pose['axis'])[2],-1,1)));report['RGBD_full_depth_check']=dict(position_error_m=error,axis_error_rad=ae);report['axial_visual_corrections_with_grip_closed']=correction_index+1
++        H=arm.fk(cmd[0,ids]);end=H.copy();end[2,3]+=remaining;line(H,end,.25,'pin_axial_depth_correction');wait(.08,'pin_depth_check_hold');v=observe('pin_full_depth_RGBD',G,require_circle=qualified_full_depth);pose=v['result']['pose'];error=float(np.linalg.norm(np.array(pose['center_m'])-goal));ae=float(np.arccos(np.clip(np.array(pose['axis'])[2],-1,1)));report['RGBD_full_depth_check']=dict(position_error_m=error,axis_error_rad=ae);report['axial_visual_corrections_with_grip_closed']=correction_index+1
+     if error>=.0015 or ae>=.05:raise RuntimeError('Full depth not confirmed by RGB-D; fingers remain closed')
+     for prim in stage.Traverse():
+         if ctx.get('close_pin_clamp',True) and prim.IsA(UsdPhysics.PrismaticJoint)and str(prim.GetPath()).startswith('/World/Clamps/pin/'):

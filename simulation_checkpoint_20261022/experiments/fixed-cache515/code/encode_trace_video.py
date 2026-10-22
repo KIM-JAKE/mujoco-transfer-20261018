@@ -1,0 +1,12 @@
+"""Caption and encode Isaac camera outputs. Does not simulate motion."""
+from pathlib import Path
+import json,sys,subprocess,shutil
+import imageio_ffmpeg
+from PIL import Image,ImageDraw,ImageFont
+HERE=Path(__file__).resolve().parent;root=HERE.parents[1]/'runs'/sys.argv[1];report=json.load(open(root/'video-frames.json'));source=HERE.parents[1]/'runs'/report['source_run'];result=json.load(open(source/'physx-pickup-results.json'));records=result.get('sequence',{}).get('records',[]);completed=result.get('sequence',{}).get('completed_parts',[]);folder=root/'annotated';folder.mkdir(exist_ok=True)
+try:font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',21)
+except OSError:font=ImageFont.load_default()
+sequence=result.get('sequence')or(json.load(open(source/'physx-sequence-results.json'))if(source/'physx-sequence-results.json').exists()else{});records=sequence.get('records',[]);completed=sequence.get('completed_parts',[]);baseline=2 if sequence.get('starts_with_rings_already_installed')else 0;resets=sequence.get('trial_resets',[])
+for i,row in enumerate(report['frames']):
+    image=Image.open(root/row['file']).resize((1280,480),Image.Resampling.LANCZOS);canvas=Image.new('RGB',(1280,590),(22,24,28));canvas.paste(image,(0,40));draw=ImageDraw.Draw(canvas);done=baseline+sum(any(r['event']==p+'_installed_hold'and r['time_s']<=row['sim_time_s']for r in records)for p in completed if not(baseline and p.startswith('ring')));draw.text((16,8),f"Isaac Sim | Installed {done}/3 | simulation t = {row['sim_time_s']:.1f} s",font=font,fill='white');draw.text((16,526),'Recorded states / KEYFRAME TIMELAPSE     Orange: large ring   Cyan: small ring   Yellow: pin',font=font,fill=(215,220,225));retries=sum(r['sim_time_s']<=row['sim_time_s']for r in resets);draw.text((16,558),('PIN checkpoint | Ideal poses | Simplified shaft: 0.2 mm radial clearance | Not a continuous cycle' if baseline else f'Ring pickup/insertion trial | Ideal poses | Manual pin restocks: {retries}'),font=font,fill=(245,197,111));canvas.save(folder/f'frame_{i:04d}.png')
+video=root/'isaac-three-part-demo-timelapse.mp4';subprocess.run([shutil.which('ffmpeg')or imageio_ffmpeg.get_ffmpeg_exe(),'-y','-loglevel','error','-framerate','2','-i',str(folder/'frame_%04d.png'),'-c:v','libx264','-crf','20','-r','24','-pix_fmt','yuv420p','-movflags','+faststart',str(video)],check=True);Image.open(folder/f'frame_{len(report["frames"])-1:04d}.png').save(root/'final-state.png');print(video)

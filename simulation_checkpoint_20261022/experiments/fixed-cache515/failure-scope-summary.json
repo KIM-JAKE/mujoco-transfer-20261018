@@ -1,0 +1,76 @@
+{
+  "run": 515,
+  "state": "failed",
+  "full_task_pass": false,
+  "vision_end_to_end_pass": false,
+  "hardware_tested": false,
+  "time_goal_met": false,
+  "wall_verified_elapsed_s": 193.99299310299102,
+  "physical_duration_not_reported_on_failure": true,
+  "error": "direct_pin_skill.PinCartesianPreflightBlocked: Pin Cartesian robot path obstructed pin_axial_depth_correction {'segment': 15, 'fraction': 1.0, 'collision': {'query': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_left_finger/tip', 'actor': '/World/Environment/m80/instance_0554', 'collider': '/World/Environment/m80/instance_0554'}}",
+  "PIN_only_component": false,
+  "ring_tasks_requested": true,
+  "early_prime_same_epoch_hit_seen": true,
+  "early_prime_events": [
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 6724,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": true,
+      "physics_epoch": 6724,
+      "part": "ring2",
+      "issued_samples": 744,
+      "exact_current_encoders_commands_payload_binding_model_world_and_placed_geometry": true,
+      "cache_survives_physics": false
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 10114,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 10379,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    }
+  ],
+  "preclose_alignment": [
+    {
+      "attempt": 0,
+      "translation_m": 0.00022185927168457114,
+      "axis_rotation_rad": 0.00030180977358153243,
+      "required_translation_m": 0.0003,
+      "required_rotation_rad": 0.01,
+      "source": "Fresh directly measured pin cap/axis + actual encoder FK before closure",
+      "uses_free_body_poses": false
+    }
+  ],
+  "qualified_depth_flag_enabled": false,
+  "qualified_depth_reached": null,
+  "relevant_trial_config": {
+    "pin_only_component": false,
+    "pin_visual_servo_gain": 0.65,
+    "pin_collar_flat_offset_m": -0.001,
+    "pin_reset_feedback_after_rebranch": true,
+    "pin_prefer_canonical_pickup_branch": true
+  },
+  "authoritative_source_files": 427,
+  "authoritative_Python_files": 420,
+  "exact_archived_source_bytes_verified": true,
+  "new517_gain_not_included": true,
+  "service_sources_from_archive495": true,
+  "raw_public_PIN_packets": 31,
+  "no_claim_of_speedup": true
+}

@@ -1,5 +1,5 @@
 {
-  "recorded_utc": "2026-10-22T08:37:31.065037+00:00",
+  "recorded_utc": "2026-10-22T10:00:22.225814+00:00",
   "implementation": "saved command fields + public RGBD approach/entry correction + current dynamic checks",
   "accepted_runs": {
     "446": 249.17807756795082,
@@ -30,7 +30,7 @@
     "513": 209.6988859899575
   },
   "latest_plus_stored_middle_qualified": false,
-  "unresolved": "Latest same420Python/427input build512NOMINAL PASS214.487s,513PLUS PASS209.699s,514MINUS FAIL188.131s: original path guard blocked PIN postinsert depth correction before issuing that correction. Three-case qualification/repeatability not achieved; selected default remains494(lastcompleted493-495cohort). Overall dramatic wait reduction and20s/30s targets remain unachieved. Latestpolicy fullSDK/hardware execution untested.",
+  "unresolved": "Latest complete same-source cohort512/513PASS,514FAIL;515exact-epoch duplicate proof elimination confirmed but whole task failed PIN depth-correction collision. PIN-only516preclose/517postcarry/518actualfingerspeed candidates failed original guards. Qualified full-depth alternative camera views and robust PIN insertion remain unqualified; default494 unchanged. Dramatic waiting-time reduction/20s/30s and whole SDK hardware validation remain unmet.",
   "hardware_tested": false,
   "under20": false,
   "under30": false,
@@ -38,7 +38,16 @@
   "latest_same_code_three_case_generalization_pass": false,
   "wall_time_reduction_established": false,
   "latest_exact_checkpoint": "494",
-  "latest_three_case_pending": null,
+  "latest_three_case_pending": {
+    "source_checkpoint": 522,
+    "runs": [
+      523,
+      524,
+      525
+    ],
+    "scope": "full3parts exactsame421PY/428sourceinputs, NOM/PLUS/MINUS fixedvariation",
+    "not_yet_qualified": true
+  },
   "arbitrary_random_layout_generalization_proven": false,
   "latest_single_nominal_checkpoint": "512",
   "latest_single_nominal_same_code_variations_qualified": false,
@@ -144,6 +153,70 @@
       "elapsed_until_failure_s": 188.13120343198534,
       "preinsert_precision_pass": true,
       "final_complete_command_audit_available": false
+    },
+    "515": {
+      "result": "FAIL_PIN_POSTINSERT_DEPTH_CORRECTION_COLLISION",
+      "elapsed_until_failure_s": 193.99299310299102,
+      "exact_epoch_prime_hit": true
+    },
+    "516": {
+      "component_only": true,
+      "result": "FAIL_PIN_PRECLOSE_300UM_GATE",
+      "elapsed_until_failure_s": 15.54764659400098
+    },
+    "517": {
+      "component_only": true,
+      "result": "FAIL_PIN_POSTCARRY_AXIS_RETENTION",
+      "elapsed_until_failure_s": 48.33148377202451,
+      "relative_axis_drift_rad": 0.08091714804552479
+    },
+    "518": {
+      "component_only": true,
+      "result": "FAIL_ACTUAL_FINGER_SPEED_LIMIT",
+      "elapsed_until_failure_s": 29.206472168909386,
+      "max_finger_fraction_of_reserved_limit": 2.487095092472277,
+      "candidate_rejected": true
+    },
+    "519": {
+      "component_only": true,
+      "result": "FAIL_FULL_DEPTH_CAP_OCCLUSION_ALL13VIEWS",
+      "elapsed_until_failure_s": 71.990428,
+      "entry_feedback_corrected_radial_bias_m": 0.00077374,
+      "shared_precision_images_used": 11,
+      "physical_end_error_evaluation_only_m": 8.927e-05,
+      "physical_axis_error_evaluation_only_rad": 0.017144,
+      "release_and_retention_reached": false,
+      "not_sensor_confirmed_success": true
+    },
+    "520": {
+      "component_only": true,
+      "result": "FAIL_PIN_PRECISION_16_IMAGE_BUDGET",
+      "elapsed_until_failure_s": 78.784069,
+      "final_radial_error_m": 0.00015134,
+      "full_depth_view_executed": false
+    },
+    "521": {
+      "component_only": true,
+      "result": "FAIL_PIN_PRECISION_16_IMAGE_BUDGET",
+      "elapsed_until_failure_s": 94.819147,
+      "final_radial_error_m": 8.4316e-05,
+      "full_measured_carry_aperture_guard_pass": true,
+      "carry_guard_wall_s": 26.915693
+    },
+    "522": {
+      "component_only": true,
+      "result": "PIN_COMPONENT_PASS",
+      "full_task_pass": false,
+      "pin_component_pass": true,
+      "elapsed_s": 106.5665273090126,
+      "simulation_elapsed_s": 32.168750000011826,
+      "precision_images_used": 14,
+      "final_precision_radial_error_m": 6.9723e-05,
+      "entry_remaining_depth_m": 0.024,
+      "full_depth_robust_circle_first_view_pass": true,
+      "full_measured_carry_aperture_guard_pass": true,
+      "carry_guard_wall_s": 27.0805,
+      "hardware_tested": false
     }
   },
   "repeat_success_established": false,
@@ -174,7 +247,7 @@
     "494": "PASS_NOMINAL",
     "495": "PASS_MINUS"
   },
-  "latest_experimental_checkpoint": "514",
+  "latest_experimental_checkpoint": 522,
   "latest_experimental_single_plus": {
     "checkpoint": "510",
     "result": "PASS_ALL3",
@@ -205,5 +278,37 @@
     "three_case_qualified": false,
     "default_checkpoint_promoted": false
   },
-  "default_qualification_scope_checkpoint": "494"
+  "default_qualification_scope_checkpoint": "494",
+  "latest_exact_epoch_prime_trial": {
+    "run": "515",
+    "whole_task_pass": false,
+    "same_epoch_full_proof_reused": true,
+    "physics_epoch": 6724,
+    "issued_samples": 744,
+    "duplicate_scope_removed": true,
+    "successful_whole_cycle_speed_gain_established": false
+  },
+  "pin_carry_aperture_audit": {
+    "discovered_utc": "2026-10-22",
+    "affected_historical_runs": "PIN carry through520 used10.5mm checker aperture while observed gap about12.55mm; terminal proof did not cover whole intervening carry",
+    "historical_pass_scope": "recorded physical task completion, not current complete carry-width collision qualification;494 retained for reproduction only",
+    "corrected_run": 521,
+    "corrected_scope": "full issued PIN carry at7 widths9.302083\u201313.697917mm with fresh opposite arm actual/command contexts and live width guards",
+    "corrected_guard_pass": true,
+    "guard_wall_s": 26.915693,
+    "whole_task_pass": false,
+    "component_pass": false,
+    "failure": "original16images exhausted; radial84.316um exceeds75um"
+  },
+  "pin_entry_geometry_correction": {
+    "physical_pin_half_length_m": 0.01775,
+    "prior_entry_remaining_m": 0.018,
+    "prior_tip_inside_fixture_m": 0.0025,
+    "candidate_entry_remaining_m": 0.024,
+    "candidate_tip_clearance_m": 0.0035,
+    "candidate_run": 522,
+    "native_result": "PINcomponentPASS; fulltaskpending523-525",
+    "limits_unchanged": true
+  },
+  "historical_qualification_limitation": "All historical fullpass records through520 lack current full PIN carry aperture coverage. Physical completion records preserved;494 reproduction default is not field execution qualification."
 }

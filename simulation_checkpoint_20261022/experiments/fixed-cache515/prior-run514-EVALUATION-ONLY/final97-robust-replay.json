@@ -1,0 +1,51 @@
+{
+  "EVALUATION_ONLY": true,
+  "no_control_changes": true,
+  "reconstructed_seed_from_same_capture_public_Hand_and_last_qualified_public_image": true,
+  "seed": [
+    -0.30252385357199235,
+    0.22672197967931154,
+    1.5287708061372192
+  ],
+  "axis": [
+    0.00144262835125016,
+    -0.00045930895257313025,
+    0.9999985922195838
+  ],
+  "results": {
+    "False": {
+      "accepted": true,
+      "pose": {
+        "part": "pin",
+        "center_m": [
+          -0.3016019642379634,
+          0.22657285190091242,
+          1.5246023645574402
+        ],
+        "axis": [
+          0.00010736095575401546,
+          9.470341277492168e-05,
+          0.9999999897524444
+        ],
+        "pose_origin": "Physical pin symmetry-axis midpoint",
+        "visible_end_radius_m": 0.005246902731634018,
+        "cap_points": 21,
+        "lateral_from_previous_RGBD_grasp_and_encoders": false,
+        "axial_depth_updated_from_current_RGBD": true,
+        "depth_points": 2468,
+        "plane_rms_m": 3.8697424316595625e-05,
+        "uses_depth_sensor": true,
+        "uses_simulator_body_poses": false,
+        "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+        "processing_ms": 32.2120520286262,
+        "neural_inference_this_frame": false
+      },
+      "CPU_component_s": 0.03257273300550878
+    },
+    "True": {
+      "accepted": false,
+      "error": "RuntimeError: Pin circular cap is occluded: no class-radius arc spanning240degrees",
+      "CPU_component_s": 0.1029306169366464
+    }
+  }
+}

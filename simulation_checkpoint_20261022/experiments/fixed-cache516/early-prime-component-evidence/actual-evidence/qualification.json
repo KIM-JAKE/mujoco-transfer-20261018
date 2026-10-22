@@ -1,0 +1,104 @@
+{
+  "run": "native-roas-table-fixed-front-v515-early-prime-nominal",
+  "full_task_pass": false,
+  "wall_s": 193.99299310299102,
+  "failure_scope": "Original PIN axial depth-correction preflight native fingertip vs0554; both rings completed",
+  "early_prime_exact_epoch_hit": [
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": true,
+      "physics_epoch": 6724,
+      "part": "ring2",
+      "issued_samples": 744,
+      "exact_current_encoders_commands_payload_binding_model_world_and_placed_geometry": true,
+      "cache_survives_physics": false
+    }
+  ],
+  "complete_epoch_proof_events": [
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 6724,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": true,
+      "physics_epoch": 6724,
+      "part": "ring2",
+      "issued_samples": 744,
+      "exact_current_encoders_commands_payload_binding_model_world_and_placed_geometry": true,
+      "cache_survives_physics": false
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 10114,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    },
+    {
+      "event": "loaded_LEFT_same_physics_epoch_full_proof_reuse",
+      "hit": false,
+      "physics_epoch": 10379,
+      "part": "ring2",
+      "reason": "different_exact_scope",
+      "cache_survives_physics": false
+    }
+  ],
+  "saved_middle720rows_found_exact_in_order": true,
+  "source_canonical_sha256": "e7144f74fc9b72651d28110b6614e0cc29e43dd989bcd3ff13e6d4d0fac5a2c3",
+  "first_last_matching_command_rows": [
+    7181,
+    7900
+  ],
+  "SDK_motor_limit_audit": {
+    "samples": 22199,
+    "max_fraction_of_95_percent_PBV": 0.9398166447923947,
+    "max_finger_fraction_of_47p5_mm_s": 0.6774792545720151,
+    "max_coupled_finger_difference_m": 5.029141902923584e-08,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  },
+  "FR3_command_audit": null,
+  "required_first_proof_scope_wall_s": 3.2952338471077383,
+  "duplicate_scope_omitted": true,
+  "fresh_paired_preflight_events": [
+    {
+      "event": "paired_exact_issued_overlap_preflight",
+      "right_label": "loose_ring_pregrasp",
+      "RIGHT_rows": 1067,
+      "LEFT_rows_advanced": 744,
+      "LEFT_chunk_rows_remaining": 744,
+      "LEFT_part": "ring2",
+      "LEFT_payload_RGBD": true,
+      "LEFT_lead_steps": 120,
+      "LEFT_lead_physics_s": 0.25,
+      "temporal_candidates_rejected": [
+        {
+          "LEFT_lead_steps": 0,
+          "LEFT_lead_physics_s": 0.0,
+          "collision": "Paired LEFT issued curve blocked before motion {'query': '/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/Palm', 'actor': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4', 'collider': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision', 'predictive_pair_box': True, 'minimum_pair_clearance_m': 0.001}"
+        }
+      ],
+      "drains_current_LEFT_chunk_before_RIGHT": false,
+      "checks": "Both original fixed/self/full payload and exact simultaneous opposite CAD at every issued row plus <=.005rad/1mm subdivisions and actual/command starts",
+      "crosses_LEFT_chunk_boundary": false,
+      "gripper_contact_phases_frozen": true,
+      "planning_s": 6.924482619040646,
+      "uses_free_body_poses": false
+    }
+  ],
+  "performance_caveat": "Different live RGB-D outcomes/fields and failedPIN prevent causal end-to-end speed comparison. Only exact-epoch reuse and absent repeated proof scope are qualified.",
+  "source_sha256": {
+    "pipeline-results.json": "aeb9f4c18f3c7cb5e5c6460040f54f92e4c9eda5e4d58c5e7ff7a654fb4f5f05",
+    "executed-actuator-commands.npz": "4195832e0c82681c935aada5f03b09c0b678d19622fb6f5dcaf3ccb29889ff6e",
+    "code_snapshot/loose_bin_task.py": "566dfb0ca93cbf9009fa8a30e6dfe66661eb9b40820e251f37ba8892396ca54f",
+    "code_snapshot/left_loaded_path_guard.py": "1038adcd6486fbee0aef5a2af2c20b265b7ad5e9658298b6da9abc69aadecbf1",
+    "code_snapshot/exact_loaded_left_proof.py": "6a4b2e2408388252c92a9281ae65a38d0074f4eb120fdfa4194d2ae1f03e9360",
+    "code_snapshot/paired_issued_overlap.py": "a33a03ef5ded73b0c7471ea7f9d8b9c26d6ca72f65401a8502ed2e40408f49d3"
+  }
+}

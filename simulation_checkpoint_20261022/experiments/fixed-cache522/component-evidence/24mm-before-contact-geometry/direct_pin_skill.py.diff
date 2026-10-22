@@ -1,0 +1,55 @@
+--- /tmp/fixed521-measured-entry-full/overrides/direct_pin_skill.py
++++ /tmp/fixed522-entry-before-contact/overrides/direct_pin_skill.py
+@@ -20,7 +20,7 @@
+ def _pin_visual_preinsert_target(command_H,actual_H,measured_G,goal,goal_axis,observed_z,gain=1.,translation_deadband_m=0.,axis_deadband_rad=0.,axis_gain=None,preinsert_depth_m=.045):
+     """Bounded geometric center/axis servo; only images, encoders and jig CAD."""
+     preinsert_depth_m=float(preinsert_depth_m)
+-    if preinsert_depth_m not in(.045,.018):raise ValueError('PIN feedback depth plane must be original45mm or explicit18mm entry')
++    if preinsert_depth_m not in(.045,.024):raise ValueError('PIN feedback depth plane must be original45mm or explicit24mm entry')
+     C,A,G=[np.asarray(x,float)for x in [command_H,actual_H,measured_G]]
+     goal=np.asarray(goal,float);goal_axis=np.asarray(goal_axis,float)
+     if any(T.shape!=(4,4)or not np.isfinite(T).all()for T in[C,A,G]) or goal.shape!=(3,) or goal_axis.shape!=(3,) or not np.isfinite(np.r_[goal,goal_axis,observed_z]).all():raise ValueError('Invalid pin visual-servo input')
+@@ -640,7 +640,7 @@
+         if pin_config.get('pin_engine_readonly_diagnostics',False):evidence['engine_diagnostics_only']=_pin_engine_readonly_diagnostics(stage,sim,arm)
+         report.setdefault('preinsert_visual_alignment',[]).append(evidence);print('PIN_VISUAL_PREALIGN',evidence,flush=True)
+         if entry_stage:
+-            if not .014<remaining_depth<.022:raise RuntimeError('Pin entry RGB-D must remain14–22mm below the calibrated jig target')
++            if not .022<remaining_depth<.028:raise RuntimeError('Pin entry RGB-D must remain22–28mm below the calibrated jig target')
+         elif not .035<remaining_depth<.055:raise RuntimeError('Pin visual prealignment must remain35–55mm below the calibrated jig target')
+         evidence['entry_stage']=entry_stage;evidence['original_shared_alignment_budget']=alignment_budget
+         measured=np.linalg.inv(v['H'])@frame(Pobs,axis_frame(pose['axis']))
+@@ -657,14 +657,14 @@
+                 if entry_feedback_enabled and not entry_stage:
+                     if alignment_index==alignment_budget-1:raise RuntimeError('PIN shared image budget exhausted before near-entry feedback; partial stroke blocked')
+                     far_preinsert_H=current_pre.copy();far_remaining_depth=remaining_depth
+-                    entry_target=current_pre.copy();entry_distance=remaining_depth-.018;entry_target[2,3]+=entry_distance
++                    entry_target=current_pre.copy();entry_distance=remaining_depth-.024;entry_target[2,3]+=entry_distance
+                     line(current_pre,entry_target,.8*entry_distance/remaining_depth,'pin_axial_move_to_entry')
+                     entry_stage=True
+                     if pin_config.get('pin_reset_feedback_at_entry',False):
+                         previous_entry_feedback=dict(gain=float(correction_gain),previous_radial_error_m=previous_radial_error,previous_normalized_error=previous_alignment_score,radial_improvement_streak=radial_improvement_streak)
+                         correction_gain=min(.65,float(recovery_ceiling));previous_radial_error=None;previous_alignment_score=None;radial_improvement_streak=0
+                         report['pin_entry_feedback_history_reset']=dict(reason='Completed FAR-to-ENTRY depth transition changes encoder tracking bias; previous phase feedback history is inapplicable',alignment_index=alignment_index,original_shared_alignment_budget=alignment_budget,remaining_original_images=alignment_budget-alignment_index-1,previous_state=previous_entry_feedback,new_state=dict(gain=correction_gain,previous_radial_error_m=None,previous_normalized_error=None,radial_improvement_streak=0),extra_images_or_motion=0,uses_free_body_poses=False)
+-                    report['pin_entry_feedback_transition']=dict(alignment_index=alignment_index,remaining_original_images=alignment_budget-alignment_index-1,far_preinsert_Hand=far_preinsert_H.tolist(),far_remaining_depth_m=far_remaining_depth,entry_remaining_depth_m=.018,shaft_tip_below_original_fixture_bottom_m=.00175,original_full_far_terminal_admitted=True,fresh_entry_RGBD_required=True,original_shared_alignment_budget_unchanged=True,adaptive_feedback_history_reset=bool(pin_config.get('pin_reset_feedback_at_entry',False)),uses_free_body_poses=False)
++                    report['pin_entry_feedback_transition']=dict(alignment_index=alignment_index,remaining_original_images=alignment_budget-alignment_index-1,far_preinsert_Hand=far_preinsert_H.tolist(),far_remaining_depth_m=far_remaining_depth,entry_remaining_depth_m=.024,physical_pin_axial_half_length_m=.01775,CAD_fixture_bottom_below_axis_goal_m=.00275,physical_pin_tip_below_original_fixture_bottom_m=.024-.01775-.00275,original_full_far_terminal_admitted=True,fresh_entry_RGBD_required=True,original_shared_alignment_budget_unchanged=True,adaptive_feedback_history_reset=bool(pin_config.get('pin_reset_feedback_at_entry',False)),uses_free_body_poses=False)
+                     continue
+                 pre=far_preinsert_H.copy()if entry_stage else current_pre
+                 end=current_pre.copy();end[2,3]+=remaining_depth
+@@ -708,7 +708,7 @@
+         previous_radial_error=radial
+         evidence.update(adaptive_gain_enabled=adaptive_pin_gain,alignment_budget=alignment_budget,normalized_error=alignment_score,previous_normalized_error=previous_alignment_score,selected_feedback_gain=correction_gain)
+         previous_alignment_score=alignment_score
+-        actual_H=arm.fk(art.get_dof_positions()[0,ids]);command_H=arm.fk(cmd[0,ids]);target,bias=_pin_visual_preinsert_target(command_H,actual_H,G,goal,R[:,2],float(Pobs[2]),gain=correction_gain,translation_deadband_m=.000075 if pin_config.get('pin_precision_component_deadband') else 0.,axis_deadband_rad=(.001 if bounded_component_recovery else .003) if pin_config.get('pin_precision_component_deadband') else 0.,axis_gain=(.65 if bounded_component_recovery else 1.) if independent_component_feedback else None,**(dict(preinsert_depth_m=.018)if entry_stage else{}));evidence.update(bias);evidence.update(bounded_component_recovery=bounded_component_recovery,radial_improvement_streak=radial_improvement_streak,XY_recovery_ceiling=recovery_ceiling)
++        actual_H=arm.fk(art.get_dof_positions()[0,ids]);command_H=arm.fk(cmd[0,ids]);target,bias=_pin_visual_preinsert_target(command_H,actual_H,G,goal,R[:,2],float(Pobs[2]),gain=correction_gain,translation_deadband_m=.000075 if pin_config.get('pin_precision_component_deadband') else 0.,axis_deadband_rad=(.001 if bounded_component_recovery else .003) if pin_config.get('pin_precision_component_deadband') else 0.,axis_gain=(.65 if bounded_component_recovery else 1.) if independent_component_feedback else None,**(dict(preinsert_depth_m=.024)if entry_stage else{}));evidence.update(bias);evidence.update(bounded_component_recovery=bounded_component_recovery,radial_improvement_streak=radial_improvement_streak,XY_recovery_ceiling=recovery_ceiling)
+         saved=(checker.payload_path,checker.payload_rows,checker.payload_boxes,checker.payload_relative)
+         checker.attach_payload(paths['workpiece_pin'],frame([0,0,.1034],np.eye(3))@payload_grasp())
+         try:line(command_H,target,.35,'pin_preinsert_visual_correction')
+@@ -716,7 +716,7 @@
+         wait(.08,'pin_preinsert_visual_hold')
+     report['preinsert_observed_center_m']=Pobs.tolist();report['RGBD_measured_remaining_axial_depth_m']=remaining_depth
+     if visual_preinsert:report['measured_grasp_after_preinsert_alignment']=G.tolist()
+-    depth_range_ok=.014<remaining_depth<.022 if entry_stage else .035<remaining_depth<.055
++    depth_range_ok=.022<remaining_depth<.028 if entry_stage else .035<remaining_depth<.055
+     if np.linalg.norm(Pobs[:2]-goal[:2])>=.0015 or not depth_range_ok:raise RuntimeError('Preinsert RGB-D alignment/depth outside explicit insertion state range')
+     if entry_feedback_enabled and not(entry_stage and axial_inserted):raise RuntimeError('Two-stage PIN entry did not qualify final insertion within original image budget')
+     if not axial_inserted:

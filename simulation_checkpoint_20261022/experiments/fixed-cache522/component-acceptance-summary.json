@@ -1,0 +1,104 @@
+{
+  "state": "pin_only_component_pass",
+  "PIN_component_pass": true,
+  "whole_task_pass": false,
+  "ring_tasks_executed": 0,
+  "wall_s": 106.5665273090126,
+  "physics_s": 32.168750000011826,
+  "preinsert_last": {
+    "iteration": 13,
+    "radial_error_m": 6.972347481221023e-05,
+    "axis_error_rad": 0.0004979311456027595,
+    "radial_limit_m": 7.5e-05,
+    "axis_limit_rad": 0.003,
+    "maximum_shaft_axis_radial_error_m": 7.572763464185423e-05,
+    "maximum_shaft_axis_radial_limit_m": 0.00015,
+    "source": "Fresh RGB-D end circle/plane plus encoder FK",
+    "uses_free_body_poses": false,
+    "engine_diagnostics_only": {
+      "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+      "used_for_control": false,
+      "scene_configuration": [
+        {
+          "path": "/PhysicsScene",
+          "enable_stabilization": false,
+          "authored": false,
+          "solver_type": "TGS",
+          "solver_type_authored": true
+        }
+      ],
+      "articulation_configuration": [
+        {
+          "path": "/World/Cell/Geometry/official_FR3_Duo",
+          "sleep_threshold": 4.999999873689376e-05,
+          "sleep_threshold_authored": false,
+          "stabilization_threshold": 9.999999747378752e-06,
+          "stabilization_threshold_authored": false
+        },
+        {
+          "path": "/World/RobotMountJoint",
+          "sleep_threshold": 4.999999873689376e-05,
+          "sleep_threshold_authored": false,
+          "stabilization_threshold": 9.999999747378752e-06,
+          "stabilization_threshold_authored": false
+        }
+      ],
+      "body_sleeping": {
+        "hand": {
+          "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+          "is_rigid_body": true,
+          "is_sleeping": false
+        },
+        "link7": {
+          "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+          "is_rigid_body": true,
+          "is_sleeping": false
+        }
+      },
+      "stage_id": 9223063
+    },
+    "entry_stage": true,
+    "original_shared_alignment_budget": 16
+  },
+  "ENTRYimages": 10,
+  "total_precision_images": 14,
+  "qualified_full_depth": {
+    "view_index": 13,
+    "captured_wall_s": 103.9882279180456,
+    "ready_wall_s": 104.16765645402484,
+    "delivered_wall_s": 104.17783521697856,
+    "robust_cap_circle_from_pixels": true,
+    "original_cap_quality": {
+      "cap_expected_radius_m": 0.00525,
+      "visible_end_radius_m": 0.005210548966553225,
+      "cap_edge_coverage_deg": 345.1290580046022,
+      "cap_circular_edge_inliers": 64,
+      "cap_total_hull_edge_points": 64,
+      "cap_circular_edge_rms_m": 2.078444745624719e-05,
+      "cap_points": 5877,
+      "depth_points": 13590,
+      "plane_rms_m": 1.8772752366184095e-08
+    },
+    "same_existing_camera_view_bank": true,
+    "original_depth_axis_precision_and_motor_gates_unchanged": true,
+    "uses_free_body_poses": false
+  },
+  "full_depth_errors": {
+    "position_error_m": 0.0002177567020046837,
+    "axis_error_rad": 0.0034691861159691405
+  },
+  "all_required_full_depth_public_values_fresh": true,
+  "retention_postrun_evaluation_only": {
+    "final_position_error_m": 0.0007028534585263008,
+    "final_axis_error_rad": 0.0016194458585232496,
+    "not_controller_sensor": true
+  },
+  "postrelease_RGBD_packet_captured": false,
+  "retention_robot_encoder_data": "public-retention-robot-encoder-window.npz",
+  "source_files": 428,
+  "source_PY": 421,
+  "width_proof_s": 27.080518254893832,
+  "hardware_tested": false,
+  "time_goal_met": false,
+  "timing_comparison_eligible": false
+}

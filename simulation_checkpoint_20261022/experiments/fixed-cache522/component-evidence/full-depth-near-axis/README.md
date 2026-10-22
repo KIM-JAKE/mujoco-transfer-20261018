@@ -1,0 +1,11 @@
+# Qualified full-depth camera views, default off
+
+Narrow patch over the exact520 GPU-route-first direct_pin_skill.py. Add `pin_full_depth_near_axis_views` to the existing driver configuration allowlist and set it true alongside `pin_full_depth_require_robust_circle=true`. No new import or source module is required. The flag only affects `pin_full_depth_RGBD`; preinsert and every other image/motion/servo policy remain unchanged.
+
+Two fresh camera proposals are prepended: offset `−0.25 * signed_axis`, then `−0.25 * signed_axis +0.04 * tangent`. Axis is current actual-SDK Hand FK times the last qualified public RGB-D grasp; tangent is the Hand-Z projection perpendicular to that signed axis. No free-body pose enters camera placement, seed, perception or control. Camera lenses remain about0.25m from the public target. Both proposals retain original768px/240degree robust class-cap evidence and the existing3s capture-to-ready ceiling. All13 original views follow with their original indices/order. A first new-view success consumes one fresh image; no extra images are requested.
+
+An isolated read-only frozen519 camera replay used all34 recorded body poses ONLY to form RGB-D images, never as detector input. Existing robust detector accepted offsets0,+20,+40,+60 and−40mm;−60mm safely failed. The selected0mm view gave349.3degree arc/5887plane pixels, cap radius5.217mm, fresh center159µm from calibrated goal and measured17.08mrad axis. +40mm also passed. These are camera-only component results, not a new physics/whole-task pass. New public images honestly reveal the pin tilt; no axis is copied from a prior.
+
+The original519 thirteen oblique views failed after mechanically successful entry because the end cap was occluded. No partial-arc estimator, lower coverage threshold, propagated-XY completion, object attachment, physical position write, contact/material change or hardware claim was introduced. The full-depth original1.5mm/50mrad acceptance and preinsert75µm/3mrad gates are unchanged.
+
+`view-lifecycle-tests.json` verifies default off, only full-depth activation, preservation of all13 fallbacks, one-frame first success, complete failure traversal and unchanged other nested sensor/motion/servo bodies. Parent owns review, integration and the next physical component launch.

@@ -1,0 +1,26 @@
+--- /tmp/fixed517-preclose-gain-full/overrides/direct_pin_skill.py
++++ /tmp/fixed518-pin-collar-tilt/overrides/direct_pin_skill.py
+@@ -116,6 +116,10 @@
+     return [(i,offsets[i])for i in order]
+ 
+ def execute(ctx):
++    tilt30_enabled=bool(ctx.get('config',{}).get('pin_collar_tilt30_target'))
++    if tilt30_enabled and not(ctx.get('config',{}).get('pin_collar_flat_contact_target') and ctx.get('config',{}).get('pin_collar_flat_offset_m',-.002)==-.001):
++        raise ValueError('PIN tilt30 target requires existing collar negative1mm mode')
++    tilt30_proposal=None
+     preclose_gain=float(ctx.get('config',{}).get('pin_preclose_servo_gain',.5))
+     if not np.isfinite(preclose_gain)or not .5<=preclose_gain<=.8:raise ValueError('PIN preclose gain must remain within0.5--0.8; original error and motion envelopes remain mandatory')
+     if ctx.get("config",{}).get("pin_prefer_canonical_pickup_branch") and not ctx.get("config",{}).get("fixed_supply_mode"):
+@@ -135,8 +139,12 @@
+     elif flat_tail_enabled:
+         from pin_tail_contact_target import retarget
+         cand,flat_tail_proposal=retarget(cand)
++    if tilt30_enabled:
++        from pin_collar_tilt_target import retarget as tilt30_retarget
++        cand,tilt30_proposal=tilt30_retarget(cand)
+     art=ctx['art'];arm=ctx['arm'];ids=ctx['ids'];fi=ctx['fi'];cmd=ctx['cmd'];idx=ctx['idx'];vision=ctx['vision'];checker=ctx['checker'];stage=ctx['stage'];sim=ctx['sim'];paths=ctx['paths'];goal=np.array(ctx['goal']);truth=ctx['truth'];started=ctx['started'];stiff=ctx['stiffness'];damping=ctx['damping'];DT=ctx['dt'];G=np.array(cand['grasp_transform']);pickupH=np.array(cand['pickup_H']);preH=pickupH.copy();preH[:3,3]+=[0,0,.07];preq=arm.solve(preH[:3,3],preH[:3,:3],cand['pickup_q']);phase='pin_start';report=ctx.setdefault('report',{});report.update(events=[],pin_single_stroke_pass=False)
+     if flat_tail_proposal is not None:report['pin_tail_flat_contact_target']=flat_tail_proposal;print('PIN_TAIL_FLAT_CONTACT_TARGET',flat_tail_proposal,flush=True)
++    if tilt30_proposal is not None:report['pin_collar_tilt30_target']=tilt30_proposal;print('PIN_COLLAR_TILT30_TARGET',tilt30_proposal,flush=True)
+     body_goal=goal.copy();pin_config=ctx.get('config',{})
+     visual_preinsert=bool(pin_config.get('pin_visual_preinsert_alignment'))
+     qualified_full_depth=bool(pin_config.get('pin_full_depth_require_robust_circle'))

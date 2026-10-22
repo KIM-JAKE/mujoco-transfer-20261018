@@ -1,0 +1,218 @@
+{
+  "run": "native-roas-table-fixed-front-v519-entry-feedback-pin-component",
+  "component_only": true,
+  "full_task_pass": false,
+  "pin_component_pass": false,
+  "wall_until_failure_s": 71.99042836902663,
+  "failure": "All13 existing full-depth views fail original robust class-radius circular-cap confidence; depth not observable by runtime policy",
+  "shared_precision_images": 11,
+  "original_precision_budget": 16,
+  "transition": {
+    "alignment_index": 5,
+    "remaining_original_images": 10,
+    "far_preinsert_Hand": [
+      [
+        -0.7663504811186881,
+        1.7737328661070242e-05,
+        -0.6424224975538095,
+        -0.3030828875335677
+      ],
+      [
+        -0.01746698056634612,
+        -0.9996307748756476,
+        0.020808978653362245,
+        0.22658499969600496
+      ],
+      [
+        -0.6421849901874305,
+        0.02716820124244822,
+        0.766067872361666,
+        1.4688112907506776
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "far_remaining_depth_m": 0.04500506295989659,
+    "entry_remaining_depth_m": 0.018,
+    "shaft_tip_below_original_fixture_bottom_m": 0.00175,
+    "original_full_far_terminal_admitted": true,
+    "fresh_entry_RGBD_required": true,
+    "no_budget_or_feedback_history_reset": true,
+    "uses_free_body_poses": false
+  },
+  "precision_sequence": [
+    {
+      "iteration": 0,
+      "entry_stage": false,
+      "radial_error_m": 0.000335536398082651,
+      "axis_error_rad": 0.0015401356186814461,
+      "maximum_shaft_axis_radial_error_m": 0.0003363432642196803
+    },
+    {
+      "iteration": 1,
+      "entry_stage": false,
+      "radial_error_m": 0.0003313521654181333,
+      "axis_error_rad": 0.0005675810894851358,
+      "maximum_shaft_axis_radial_error_m": 0.0003319885798132613
+    },
+    {
+      "iteration": 2,
+      "entry_stage": false,
+      "radial_error_m": 0.0002332333397675646,
+      "axis_error_rad": 0.0004592107294256686,
+      "maximum_shaft_axis_radial_error_m": 0.0002342789707693233
+    },
+    {
+      "iteration": 3,
+      "entry_stage": false,
+      "radial_error_m": 0.0001643871100514199,
+      "axis_error_rad": 0.0003198742279841918,
+      "maximum_shaft_axis_radial_error_m": 0.00016537172342172447
+    },
+    {
+      "iteration": 4,
+      "entry_stage": false,
+      "radial_error_m": 9.54770877095443e-05,
+      "axis_error_rad": 0.00027272882997178674,
+      "maximum_shaft_axis_radial_error_m": 9.640096168723309e-05
+    },
+    {
+      "iteration": 5,
+      "entry_stage": false,
+      "radial_error_m": 3.635149701356115e-05,
+      "axis_error_rad": 0.0002493025223020971,
+      "maximum_shaft_axis_radial_error_m": 3.705790612931436e-05
+    },
+    {
+      "iteration": 6,
+      "entry_stage": true,
+      "radial_error_m": 0.0007737429907709822,
+      "axis_error_rad": 4.665423641323466e-05,
+      "maximum_shaft_axis_radial_error_m": 0.0007739041201188296
+    },
+    {
+      "iteration": 7,
+      "entry_stage": true,
+      "radial_error_m": 0.0007343693561622544,
+      "axis_error_rad": 3.9906005209613936e-05,
+      "maximum_shaft_axis_radial_error_m": 0.0007345078676068416
+    },
+    {
+      "iteration": 8,
+      "entry_stage": true,
+      "radial_error_m": 0.00035057165766002967,
+      "axis_error_rad": 7.882784692617963e-06,
+      "maximum_shaft_axis_radial_error_m": 0.0003506566949996626
+    },
+    {
+      "iteration": 9,
+      "entry_stage": true,
+      "radial_error_m": 0.00015654778477458447,
+      "axis_error_rad": 3.643783356829401e-06,
+      "maximum_shaft_axis_radial_error_m": 0.00015659697567475424
+    },
+    {
+      "iteration": 10,
+      "entry_stage": true,
+      "radial_error_m": 7.146071967363558e-05,
+      "axis_error_rad": 6.561775017917959e-06,
+      "maximum_shaft_axis_radial_error_m": 7.154389100525452e-05
+    }
+  ],
+  "fresh_terminal_checks": [
+    {
+      "stage": "fresh_full_terminal_admitted",
+      "original_terminal": {
+        "reason": "full_nominal_stroke_release_withdraw_approved",
+        "minimum_joint_margin_rad": 0.9615711516436768,
+        "required_joint_margin_rad": 0.03,
+        "stroke_samples": 385,
+        "withdraw_samples": 385,
+        "stroke_geometry_sampling": {
+          "full_issued_samples": 385,
+          "issued_geometry_samples": 53,
+          "first_last_and_float32_extrema_preserved": true,
+          "maximum_retained_joint_step_rad": 0.003716588020324707
+        },
+        "withdraw_geometry_sampling": {
+          "full_issued_samples": 385,
+          "issued_geometry_samples": 53,
+          "first_last_and_float32_extrema_preserved": true,
+          "maximum_retained_joint_step_rad": 0.003735184669494629
+        },
+        "all_issued_FR3_array_checks_retained": true,
+        "uses_free_body_poses": false,
+        "robot_encoder_other_arm": true,
+        "actual_execution_not_performed": true,
+        "entry_stage": false,
+        "saved_far_withdrawal_checked": false
+      },
+      "exact_line_knots": 7,
+      "exact_issued_rows": 231,
+      "current_image_grasp": true,
+      "depth_m": 0.04500506295989659,
+      "issued_depth_m": 0.027005062959896593,
+      "partial_entry_approach": true,
+      "wall_s": 6.474743676953949,
+      "uses_free_body_poses": false
+    },
+    {
+      "stage": "fresh_full_terminal_admitted",
+      "original_terminal": {
+        "reason": "full_nominal_stroke_release_withdraw_approved",
+        "minimum_joint_margin_rad": 0.9595164603289795,
+        "required_joint_margin_rad": 0.03,
+        "stroke_samples": 156,
+        "withdraw_samples": 313,
+        "stroke_geometry_sampling": {
+          "full_issued_samples": 156,
+          "issued_geometry_samples": 23,
+          "first_last_and_float32_extrema_preserved": true,
+          "maximum_retained_joint_step_rad": 0.0037435293197631836
+        },
+        "withdraw_geometry_sampling": {
+          "full_issued_samples": 313,
+          "issued_geometry_samples": 52,
+          "first_last_and_float32_extrema_preserved": true,
+          "maximum_retained_joint_step_rad": 0.003965258598327637
+        },
+        "all_issued_FR3_array_checks_retained": true,
+        "uses_free_body_poses": false,
+        "robot_encoder_other_arm": true,
+        "actual_execution_not_performed": true,
+        "entry_stage": true,
+        "saved_far_withdrawal_checked": true
+      },
+      "exact_line_knots": 7,
+      "exact_issued_rows": 155,
+      "current_image_grasp": true,
+      "depth_m": 0.018057532322240277,
+      "issued_depth_m": 0.018057532322240277,
+      "partial_entry_approach": false,
+      "wall_s": 4.304238546988927,
+      "uses_free_body_poses": false
+    }
+  ],
+  "actual_encoder_motor_audit": {
+    "samples": 15329,
+    "max_fraction_of_95_percent_PBV": 0.8905121675692873,
+    "max_finger_fraction_of_47p5_mm_s": 0.6743624022132472,
+    "max_coupled_finger_difference_m": 2.0023435354232788e-08,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  },
+  "complete_final_command_audit_available": false,
+  "pin_released": false,
+  "clamp_completed": false,
+  "final_retention_qualified": false,
+  "part_attachments": false,
+  "workpiece_teleports_after_initialization": 0,
+  "public_packets": 82,
+  "final_failed_depth_views": 13,
+  "evaluator_source_for_control": false,
+  "physical_engine_end_is_not_runtime_acceptance": true
+}

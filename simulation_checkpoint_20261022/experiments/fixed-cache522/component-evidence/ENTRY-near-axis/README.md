@@ -1,0 +1,11 @@
+# ENTRY near-axis camera views, opt in
+
+Source is based exactly on `/tmp/fixed520-entry-axis-gpu-full/overrides/direct_pin_skill.py`. Add `pin_entry_near_axis_views` to the driver config allowlist and set it true. This extends ONLY the existing public H/G near-axis-view helper to `pin_entry_RGBD`; it requires the original two-stage entry feedback, qualified full-depth and robust class-circle policies. Every other function, including the entire execution/servo/physics-control body, is AST-identical to the base. Original preinsert75µm/3mrad gates and total16image budget are unchanged.
+
+The first camera is0.25m below the current public signed PIN axis; the second adds40mm of the public Hand-Z tangent. Existing13 fallback views, original240degree class-circle fit, finite depth support/quality and3s sensor deadline remain unchanged. No sensor frame or pose is cached. A first new-view success requests one fresh exposure. The optional fallback-order suggestion `[10,9]` is separate and not force-applied, so root can cheaply try the two formerly successful original views before the rest.
+
+Frozen520 ENTRY states at original616.94µm,91.94µm and151.34µm radial errors were replayed with both new views. All6 newly formed RGB-D images passed the unchanged robust class-cap gate:343.9–346.6degrees of arc and5778–5880cap-plane pixels. New image centers differed31–46µm from their original oblique estimates. New measured radial errors were588–591µm,92–102µm and181–182µm respectively; this improves visibility, not physical convergence by declaration.
+
+Camera placements/seeds use the PREVIOUS successful public RGB-D pose propagated through the current capture SDK Hand. They do not use the current image result or simulator pose. All34 recorded body poses were used only for image formation by the isolated camera. This is image-only evidence, not another physics/component/whole-task success. No live process/source or existing worker was changed; GPU probe finished.
+
+Observed520 original ENTRY overhead was71 raw captures for11good observations: six successes at originalview9 consumed11exposures each, five atview10 used one. The new first view passed all three frozen states, so it can avoid this failed-view traversal if it remains visible during the actual new physical trial. No whole-cycle speedup is claimed before that test.

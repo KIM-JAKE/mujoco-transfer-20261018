@@ -1,0 +1,15 @@
+--- /tmp/fixed520-entry-axis-gpu-full/overrides/direct_pin_skill.py
++++ /tmp/fixed521-pin-entry-axis-view/overrides/direct_pin_skill.py
+@@ -139,7 +139,11 @@
+ 
+ def _pin_full_depth_near_axis_views(H,grasp,offsets,label,config,require_circle):
+     """Two public-SDK/image-derived tail views; original quality stays mandatory."""
+-    if label!='pin_full_depth_RGBD' or not config.get('pin_full_depth_near_axis_views',False):return []
++    full_depth=label=='pin_full_depth_RGBD' and config.get('pin_full_depth_near_axis_views',False)
++    entry=label=='pin_entry_RGBD' and config.get('pin_entry_near_axis_views',False)
++    if not(full_depth or entry):return []
++    if entry and not config.get('pin_two_stage_entry_feedback'):
++        raise ValueError('Near-axis ENTRY views require the original two-stage entry feedback')
+     if not(config.get('fixed_supply_mode') and config.get('pin_full_depth_require_robust_circle') and config.get('robust_pin_cap_circle') and require_circle):
+         raise ValueError('Near-axis full-depth views require fixed mode and original qualified robust-circle gate')
+     if grasp is None:raise ValueError('Near-axis depth views require a fresh image/SDK grasp')

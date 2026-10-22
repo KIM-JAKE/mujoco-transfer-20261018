@@ -1,0 +1,39 @@
+from pathlib import Path
+import json,hashlib,shutil
+R=Path('/home/gpuadmin/workspace/jake/mujoco');P=R.parent/'mujoco-field-publish-20261022/simulation_checkpoint_20261022/experiments';D=P/'fixed-cache519';O=Path(__file__).parent;run=next((R/'isaac_port/runs').glob('*v519-*'));j=json.loads((run/'pipeline-results.json').read_text());pin=j['pin_skill_progress'];sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();assert not j['full_task_pass']and j['pin_only_component'];assert not pin.get('pin_single_stroke_pass',False)
+shutil.rmtree(D/'service-sources');shutil.copytree(P/'fixed-cache495/service-sources',D/'service-sources')
+Q=D/'two-stage-entry-qualification';Q.mkdir(exist_ok=True)
+for name in('INTEGRATION.md','source-manifest.json','direct_pin_skill.py.diff','pin_current_terminal.py.diff','pin_terminal_geometry.py.diff','state-tests.json','helper-tests.json','test_state.py','test_helpers.py','stage_helpers.py','stage_direct.py'):
+ shutil.copy2(O/name,Q/name)
+shutil.copytree(O/'evaluation-only',D/'evaluation-only')
+(D/'evaluation-only/README.md').write_text('''# Evaluation only — never a runtime sensor
+
+This directory uses recorded physical PIN actor poses only AFTER the run to audit the motion outcome. It is forbidden as an input to the controller, detector or runtime acceptance. Runtime519 stopped on all13 original robust-cap visibility failures; no component/whole-task pass is inferred from these actor measurements. At finalstroke physical center error89.27microns/axis17.144mrad; aftercamera retries159.34microns/17.075mrad. Fingers were not released and clamp/final retention were not completed. This is mechanical diagnosis only, not a completed task.
+''')
+obs=json.loads((run/'rgb-observations.json').read_text());out=[];packetdir=D/'pin-rgbd-packets';packetdir.mkdir(exist_ok=True)
+for i,x in enumerate(obs):
+ if x.get('part')!='pin':continue
+ name=Path(x['work']).name;src=run/'rgb-perception'/name/'rgbd.npz';assert src.exists();dst=packetdir/name/'rgbd.npz';dst.parent.mkdir(exist_ok=True);shutil.copy2(src,dst);row=dict(x);row['archived_packet']=str(dst.relative_to(D));row['packet_sha256']=sha(dst);row['original_observation_index_0based']=i;out.append(row)
+assert len(out)==82;assert all(not x['result'].get('pose')for x in out[-13:]);(D/'pin-public-RGBD-packets.json').write_text(json.dumps(out,indent=2)+'\n')
+last13=[dict(archived_packet=x['archived_packet'],sha256=x['packet_sha256'],original_index=x['original_observation_index_0based'],captured_wall_s=x['captured_wall_s'],error=x['result'].get('error'))for x in out[-13:]]
+(D/'last13-full-depth-packets.json').write_text(json.dumps(last13,indent=2)+'\n')
+b=pin['pin_entry_feedback_transition'];a=pin['preinsert_visual_alignment'];s=dict(run=run.name,component_only=True,full_task_pass=False,pin_component_pass=False,wall_until_failure_s=j['wall_verified_elapsed_s'],failure='All13 existing full-depth views fail original robust class-radius circular-cap confidence; depth not observable by runtime policy',shared_precision_images=len(a),original_precision_budget=16,transition=b,precision_sequence=[{k:x.get(k)for k in('iteration','entry_stage','radial_error_m','axis_error_rad','maximum_shaft_axis_radial_error_m')}for x in a],fresh_terminal_checks=pin['fresh_image_terminal_checks'],actual_encoder_motor_audit=j['encoder_motor_speed_audit'],complete_final_command_audit_available=bool(j.get('FR3_command_limit_audit')),pin_released=False,clamp_completed=False,final_retention_qualified=False,part_attachments=j['part_attachments'],workpiece_teleports_after_initialization=j['workpiece_teleports_after_initialization'],public_packets=82,final_failed_depth_views=13,evaluator_source_for_control=False,physical_engine_end_is_not_runtime_acceptance=True)
+(D/'actual519-failed-audit.json').write_text(json.dumps(s,indent=2)+'\n')
+(D/'README.md').write_text('''# 519: PIN two-stage entry component — qualified final image unavailable
+
+The PIN-only diagnostic stopped after71.99043wall seconds. `full_task_pass=false` and no PIN component pass is claimed. Rings remained stock; no whole three-part attempt was completed.
+
+Original−40degree/−1mm collar, canonical existing jointseed priority, preclose .8 gain capability and every original speed/force/material/geometry/hold/collision/precision gate were retained. The original shared16image precision loop used11images total: FAR passed at iteration5 (36.35microns/.2493mrad), then the fully checked27.005mm partial approach reached18mm remaining. A fresh ENTRY observation measured773.74microns lateral error. The same bounded servo corrected it by iteration10 to71.46microns/.00656mrad and originalshaft gate. The loop/budget/history was not reset on transition. No slower velocity cap was used: requested stroke durations stayed proportional to original.8s and both issued fields passed original full retiming/guard checks.
+
+The initial full45mm terminal proof was retained; the NEW exact partial issuedfield separately used fresh actual+command/allwidth/current payload+other checks. Before final18.058mm motion, fresh entry fullterminal/release/fullfar45mmwithdrawal planning passed. That finalstroke executed. Runtime then rejected ALL13 existing full-depth views because of occluded cap/insufficient metal/no observable axial surface. No low-quality depth estimate was accepted and no blind correction/release was issued. Fingers were never released; clamp/final retention were not completed.
+
+Postrun EVALUATOR-ONLY actortrace diagnosis finds physical PIN center error89.27microns/axis17.144mrad immediately after finalstroke, and159.34microns/17.075mrad after failed camera retries. Finalstroke physical Hand-relative center drift136.09microns instead of514's millimetres. These values diagnose mechanical improvement in this SINGLE component; they were NEVER runtime observations and DO NOT turn the failed component into a pass. Runtime confidence/observability still requires a solution.
+
+All82 captured public PIN RGB-D packets are retained under `pin-rgbd-packets/`: RGB image, depth, intrinsics and calibrated camera transform only. Last13 failed depth packets are indexed separately. Original public SDK/observations, exact source, original exception, actuator commands and evaluator traces are preserved.421Python/428source-and-fixed-input file hashes are verified; the unused tilt30helper is included in the snapshot but tilt was NOT selected. Current495 external-service sources are copied byte-for-byte. No20/30second/repeatability/three-case/hardware success is claimed.
+
+See `actual519-failed-audit.json`, `pin-public-RGBD-packets.json`, `last13-full-depth-packets.json`, `two-stage-entry-qualification/`, `evaluation-only/` and exact source manifests. Additional evidence and packet bytes are verified in `supplemental-source-evidence-manifest.json`. No main docs/defaults/Git index or worker source was changed by this archive.
+''')
+files={str(p.relative_to(D)):sha(p)for folder in('service-sources','two-stage-entry-qualification','evaluation-only','pin-rgbd-packets')for p in sorted((D/folder).rglob('*'))if p.is_file()};files.update({name:sha(D/name)for name in('pin-public-RGBD-packets.json','last13-full-depth-packets.json','actual519-failed-audit.json')});(D/'supplemental-source-evidence-manifest.json').write_text(json.dumps(files,indent=2)+'\n');source=json.loads((D/'exact-source-manifest.json').read_text());assert len(source)==428 and sum(x.endswith('.py')for x in source)==421
+for rel,want in source.items():assert sha(D/rel)==want,rel
+for rel,want in files.items():assert sha(D/rel)==want,rel
+print(json.dumps(dict(destination=str(D),source_files=len(source),python_files=421,public_PIN_packets=len(out),last_depth_views=len(last13),packet_bytes=sum(p.stat().st_size for p in packetdir.glob('*/rgbd.npz')),supplemental_files=len(files),full_task_pass=False),indent=2))

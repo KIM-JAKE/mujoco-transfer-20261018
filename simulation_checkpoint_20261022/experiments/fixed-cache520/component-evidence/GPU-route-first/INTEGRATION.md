@@ -1,0 +1,14 @@
+# Optional existing GPU route before PIN hint
+
+Stage base: `/tmp/fixed519-entry-feedback-full/overrides/direct_pin_skill.py`.
+Only this module changes. Root driver adds whitelist `pin_gpu_route_before_hint` and enables explicitly. Default false preserves the full original AST after removing the new helper and branch (tested). No protected geometry/model code changes, no scene/G/observations cached or changed.
+
+Exact order: original terminal-qualified endpoint and original direct-edge path first; optional existing GPU proposal; only a proposal passing ORIGINAL `cubic_geometry(...,step_rad=.010)` plus live native checker.path at resolution.010 is returned as existing VerifiedCubicRoute. Non-admitted proposal proceeds to SAME original warm spline, hardcoded hint and checker.route fallback. Full endpoint terminal proof, original subsequent route shortening/continuous admission, FR3 retiming and native controller guards stay. Native exceptions propagate; no fallback catch added around a failed physical execution or native fault.
+
+The GPU helper is the SAME `fr3_gpu_route.propose_route` currently used inside checker.route for PIN. Existing checker enable/socket/timeout applies; no new library/service/setup. Missing/disabled/unavailable proposal returns existing path. Only continuously admitted proposals are accepted in this early slot; raw polyline acceptance remains available through the original later fallback.
+
+Actual recorded evidence is copied from the read-only review.512 and517 each have ONE accepted terminal candidate;515 has four (first three original fixed/pair blocked). No individual terminal timers were recorded, so CPU seed priority was not implemented. Both original CPU seeds solve each exact public target in the FK-only probe, but that establishes neither native admission nor a latency win.
+
+517 accepted33-node hardcoded hint; physical carry4.752083s /7.427904wall, lift-confirm→first command17.037530wall.5123-node carry2.254167sim /6.799859wall;5151.318750sim /2.020268wall. These differ in actual G/branch and cannot support a causal speed comparison. GPU-first can propose a shorter or smoother route before committing to the old hint, but no actual proposal success or end-to-end speed gain has been tested in this stage.
+
+14 controlled tests passed: flag-off original order; direct edge prevents GPU query; continuous admission; proposal/curve/native rejection retains fallback; exact original start/goal/width/selected context; restored resolution after native exception; exception propagation; warm/hardcoded/CPU fallbacks; accepted cubic marker retained. Entire original AST restored exactly after deleting the added helper and opt-in branch. Synthetic lifecycle tests are not native collision validation. Parent may now perform the actual isolated component.

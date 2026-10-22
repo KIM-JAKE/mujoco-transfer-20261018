@@ -1,0 +1,58 @@
+--- /tmp/fixed517-preclose-gain-full/overrides/pin_current_terminal.py
++++ /tmp/fixed519-pin-entry-feedback/overrides/pin_current_terminal.py
+@@ -54,7 +54,7 @@
+     return np.asarray(knots)
+ 
+ 
+-def assess(ctx,body_G,depth,q=None):
++def assess(ctx,body_G,depth,q=None,*,entry_stage=False,withdraw_H=None,requested_s=.8,partial_entry=False):
+     """Original complete terminal policy at the LAST camera-qualified G."""
+     from pin_terminal_geometry import check_terminal
+     from predictive_pair_clearance import pair_clear
+@@ -63,18 +63,21 @@
+     arm,checker,art,ids,fi,cmd=[ctx[k]for k in ['arm','checker','art','ids','fi','cmd']]
+     actual=art.get_dof_positions()[0].copy();is_current=q is None;q=np.asarray(cmd[0,ids]if is_current else q,float)
+     widths=np.unique(np.linspace(min(float(actual[fi].sum()),float(cmd[0,fi].sum())),max(float(actual[fi].sum()),float(cmd[0,fi].sum())),5))
++    if partial_entry and(entry_stage or not .035<float(depth)<.055):raise ValueError('Partial entry approach requires original far depth state')
++    issued_depth=float(depth)-.018 if partial_entry else float(depth)
++    issued_requested=.8*issued_depth/float(depth) if partial_entry else requested_s
+     began=time.perf_counter();other,contexts=_other_contexts(ctx)
+     with _held(ctx,body_G):
+         with checker.other_arm_at(other,*contexts[0]):
+-            ok,evidence=check_terminal(ctx,arm,checker,q,float(depth),float(max(widths)),ctx['paths']['workpiece_pin'],margin=.03)
++            ok,evidence=check_terminal(ctx,arm,checker,q,float(depth),float(max(widths)),ctx['paths']['workpiece_pin'],margin=.03,**(dict(entry_stage=True,withdraw_H=withdraw_H,requested_s=requested_s)if entry_stage else{}))
+             if not ok:return False,dict(stage='original_full_terminal',evidence=evidence,wall_s=time.perf_counter()-began)
+-            knots=_line_knots(arm,q,depth)
++            knots=_line_knots(arm,q,issued_depth)
+             if knots is None:return False,dict(stage='original_single_line_IK')
+             # Same7knots/41curve as line(), not an earlier13-knot surrogate.
+             curve=CubicSpline(np.linspace(0,1,len(knots)),knots)(np.linspace(0,1,41))
+             # Nominal candidate q may differ from current q. Retiming must
+             # retain this proposed start instead of overwriting it with cmd.
+-            field,timing=_timed(ctx,knots,.8,False)
++            field,timing=_timed(ctx,knots,issued_requested,False)
+             full=np.vstack([actual[ids],q,field])if is_current else np.vstack([q,field])
+             for oq,ow in contexts:
+                 with checker.other_arm_at(other,oq,ow):
+@@ -89,10 +92,10 @@
+                     ok,why=path_other_contexts(checker,other,contexts,points,widths,ctx['paths']['workpiece_pin'])
+                     if not ok:return False,dict(stage=stage,collision=why,wall_s=time.perf_counter()-began)
+             finally:checker.payload_path,checker.payload_rows,checker.payload_boxes,checker.payload_relative=saved
+-    return True,dict(stage='fresh_full_terminal_admitted',original_terminal=evidence,exact_line_knots=len(knots),exact_issued_rows=len(field)-1,current_image_grasp=True,depth_m=float(depth),wall_s=time.perf_counter()-began,uses_free_body_poses=False)
++    return True,dict(stage='fresh_full_terminal_admitted',original_terminal=evidence,exact_line_knots=len(knots),exact_issued_rows=len(field)-1,current_image_grasp=True,depth_m=float(depth),issued_depth_m=issued_depth,partial_entry_approach=bool(partial_entry),wall_s=time.perf_counter()-began,uses_free_body_poses=False)
+ 
+ 
+-def plan_rebranch(ctx,body_G,depth):
++def plan_rebranch(ctx,body_G,depth,*,entry_stage=False,withdraw_H=None,requested_s=.8):
+     """Propose same-Hand-pose redundant IK, then admit full loaded issue field."""
+     from fr3_gpu_ik import propose_ik
+     from dual_aperture_path_check import path_other_contexts
+@@ -111,7 +114,7 @@
+         if np.linalg.norm(q-start)>.025 and all(np.linalg.norm(q-old)>.025 for old in unique):unique.append(np.asarray(q,float))
+     began=time.perf_counter();failures=[];other,contexts=_other_contexts(ctx)
+     for index,q in enumerate(unique[:10]):
+-        ok,terminal=assess(ctx,body_G,depth,q)
++        ok,terminal=assess(ctx,body_G,depth,q,**(dict(entry_stage=True,withdraw_H=withdraw_H,requested_s=requested_s)if entry_stage else{}))
+         if not ok:failures.append(dict(candidate=index,terminal=terminal));continue
+         with _held(ctx,body_G):
+             with checker.other_arm_at(other,*contexts[0]):

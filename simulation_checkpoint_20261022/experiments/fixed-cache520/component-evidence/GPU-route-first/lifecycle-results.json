@@ -1,0 +1,96 @@
+{
+  "original_AST_exact_after_removing_new_branch_and_helper": true,
+  "tests": [
+    {
+      "case": "disabled",
+      "PASS": true
+    },
+    {
+      "case": "goalblocked",
+      "PASS": true
+    },
+    {
+      "case": "no_proposal",
+      "PASS": true
+    },
+    {
+      "case": "no_continuous",
+      "PASS": true
+    },
+    {
+      "case": "nativeblocked",
+      "PASS": true
+    },
+    {
+      "case": "accepted",
+      "PASS": true
+    },
+    {
+      "case": "nativefault",
+      "PASS": true
+    },
+    {
+      "case": "flagoff_warm",
+      "calls": [
+        "path",
+        "warm"
+      ],
+      "PASS": true
+    },
+    {
+      "case": "GPUhit",
+      "calls": [
+        "path",
+        "GPU"
+      ],
+      "PASS": true
+    },
+    {
+      "case": "GPUmiss_warm",
+      "calls": [
+        "path",
+        "GPU",
+        "warm"
+      ],
+      "PASS": true
+    },
+    {
+      "case": "GPUmiss_hardhint",
+      "calls": [
+        "path",
+        "GPU",
+        "warm",
+        "path"
+      ],
+      "PASS": true
+    },
+    {
+      "case": "GPUmiss_CPU",
+      "calls": [
+        "path",
+        "GPU",
+        "warm",
+        "path",
+        "CPU"
+      ],
+      "PASS": true
+    },
+    {
+      "case": "directedge_first",
+      "calls": [
+        "path"
+      ],
+      "PASS": true
+    },
+    {
+      "case": "nativefault_propagates",
+      "calls": [
+        "path",
+        "GPU"
+      ],
+      "PASS": true
+    }
+  ],
+  "native_collision_equivalence_claim": false,
+  "no_jobs_or_actuation": true
+}

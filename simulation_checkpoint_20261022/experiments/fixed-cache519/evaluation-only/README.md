@@ -1,0 +1,3 @@
+# Evaluation only — never a runtime sensor
+
+This directory uses recorded physical PIN actor poses only AFTER the run to audit the motion outcome. It is forbidden as an input to the controller, detector or runtime acceptance. Runtime519 stopped on all13 original robust-cap visibility failures; no component/whole-task pass is inferred from these actor measurements. At finalstroke physical center error89.27microns/axis17.144mrad; aftercamera retries159.34microns/17.075mrad. Fingers were not released and clamp/final retention were not completed. This is mechanical diagnosis only, not a completed task.

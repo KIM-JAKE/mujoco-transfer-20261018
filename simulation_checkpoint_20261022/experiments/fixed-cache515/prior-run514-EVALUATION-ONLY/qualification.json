@@ -1,0 +1,566 @@
+{
+  "EVALUATION_ONLY": true,
+  "used_for_control": false,
+  "uses_privileged_groundtruth_for_POSTRUN_evaluation": true,
+  "controller_changes": false,
+  "sensor_changes": false,
+  "physical_commands_issued": 0,
+  "physics_steps": 0,
+  "conclusion": "Compare per-frame physical and observed axis/center; this is post-run evaluation only.",
+  "method": {
+    "match": "Nearest recorded monotonic wall-time sample to each successful PIN RGB-D capture",
+    "center": "body_position + body_rotation @ BODY_TO_AXIS_M",
+    "BODY_TO_AXIS_M": [
+      0.0,
+      -0.00025,
+      0.0
+    ],
+    "quaternion": "xyzw",
+    "axis": "body_rotation[:,2], signed toward observed visible-cap axis",
+    "yaw": "Not compared; axially symmetric pin",
+    "sampling_limitation": "Nearest trace samples differ by at most13.3ms; values describe saved simulation only, not real-camera accuracy."
+  },
+  "preinsert_observation_count": 7,
+  "all_successful_pin_observation_count": 13,
+  "preinsert_statistics": {
+    "axis_bias_mrad": {
+      "min": 0.011525699007502728,
+      "mean": 0.1554974322793095,
+      "median": 0.1742372651873971,
+      "max": 0.2218962513580811
+    },
+    "center_bias_norm_mm": {
+      "min": 0.016763622698631582,
+      "mean": 0.02230839871187939,
+      "median": 0.021875595056898456,
+      "max": 0.03359637117782741
+    },
+    "observed_z_tilt_mrad": {
+      "min": 0.4803508340634538,
+      "mean": 0.7870039588632682,
+      "median": 0.7005635065298856,
+      "max": 1.2767606196117416
+    },
+    "physical_z_tilt_mrad": {
+      "min": 0.5693922263120501,
+      "mean": 0.8549239402911305,
+      "median": 0.7354852332811334,
+      "max": 1.3124560624300994
+    },
+    "mean_center_bias_mm": [
+      -0.021392891502476048,
+      0.001520244479730997,
+      -0.001613125499939321
+    ],
+    "maximum_nearest_trace_delta_ms": 13.144375989213586
+  },
+  "rows": [
+    {
+      "observation_index": 56,
+      "captured_wall_s": 150.10771150095388,
+      "matched_trace_index": 3936,
+      "matched_trace_wall_s": 150.1136877880199,
+      "nearest_trace_delta_ms": 5.97628706600517,
+      "phase": "pin_start",
+      "preinsert": false,
+      "observed_center_m": [
+        0.22999432815028914,
+        -0.8547312125026701,
+        0.9160635280790408
+      ],
+      "evaluated_physical_axis_midpoint_m": [
+        0.2300001300391629,
+        -0.854750495910779,
+        0.9160635519195863
+      ],
+      "center_bias_mm": [
+        -0.0058018888737521035,
+        0.01928340810886109,
+        -2.38405455377233e-05
+      ],
+      "center_bias_norm_mm": 0.020137336248070885,
+      "observed_axis": [
+        -9.035083215279369e-06,
+        1.894982193197093e-05,
+        -0.9999999997796357
+      ],
+      "evaluated_physical_signed_axis": [
+        -9.380303502977131e-06,
+        1.9140997506619178e-05,
+        -0.9999999997728162
+      ],
+      "axis_bias_mrad": 0.0003945291726253573,
+      "observed_z_tilt_mrad": 0.02099353626168562,
+      "physical_z_tilt_mrad": 0.021315901450073522,
+      "circle_direct": true
+    },
+    {
+      "observation_index": 57,
+      "captured_wall_s": 157.86244556098245,
+      "matched_trace_index": 4380,
+      "matched_trace_wall_s": 157.8593497950351,
+      "nearest_trace_delta_ms": -3.0957659473642707,
+      "phase": "pin_tail_descend",
+      "preinsert": false,
+      "observed_center_m": [
+        0.2300064610805597,
+        -0.8547532537947183,
+        0.9160635333518321
+      ],
+      "evaluated_physical_axis_midpoint_m": [
+        0.2300001300391629,
+        -0.854750495910779,
+        0.9160635519195863
+      ],
+      "center_bias_mm": [
+        0.006331041396800963,
+        -0.002757883939330519,
+        -1.8567754223042243e-05
+      ],
+      "center_bias_norm_mm": 0.006905675474008432,
+      "observed_axis": [
+        -9.256486009300907e-06,
+        1.923158596255961e-05,
+        -0.9999999997722318
+      ],
+      "evaluated_physical_signed_axis": [
+        -9.380303502977131e-06,
+        1.9140997506619178e-05,
+        -0.9999999997728162
+      ],
+      "axis_bias_mrad": 0.00015269146510898485,
+      "observed_z_tilt_mrad": 0.02134330099655769,
+      "physical_z_tilt_mrad": 0.021315901450073522,
+      "circle_direct": true
+    },
+    {
+      "observation_index": 58,
+      "captured_wall_s": 159.6667747560423,
+      "matched_trace_index": 4521,
+      "matched_trace_wall_s": 159.6603141539963,
+      "nearest_trace_delta_ms": -6.460602045990527,
+      "phase": "pin_lift_settle",
+      "preinsert": false,
+      "observed_center_m": [
+        0.22997287623972373,
+        -0.8549477596925362,
+        0.9867143610921247
+      ],
+      "evaluated_physical_axis_midpoint_m": [
+        0.22999361463237658,
+        -0.8549198333191029,
+        0.9867122938337571
+      ],
+      "center_bias_mm": [
+        -0.02073839265284705,
+        -0.027926373433295737,
+        0.002067258367599578
+      ],
+      "center_bias_norm_mm": 0.034845901051887826,
+      "observed_axis": [
+        6.27509965555279e-05,
+        0.002092667264828239,
+        -0.999997808400614
+      ],
+      "evaluated_physical_signed_axis": [
+        -2.4628955125707412e-05,
+        0.002213358766175733,
+        -0.9999975502151927
+      ],
+      "axis_bias_mrad": 0.14900255413018118,
+      "observed_z_tilt_mrad": 2.0936094127073788,
+      "physical_z_tilt_mrad": 2.2134975977340874,
+      "circle_direct": true
+    },
+    {
+      "observation_index": 59,
+      "captured_wall_s": 160.01028296398,
+      "matched_trace_index": 4548,
+      "matched_trace_wall_s": 160.0068397410214,
+      "nearest_trace_delta_ms": -3.4432229585945606,
+      "phase": "pin_lift_independent_confirmation",
+      "preinsert": false,
+      "observed_center_m": [
+        0.2299855962675607,
+        -0.8549327762444433,
+        0.9867152012955877
+      ],
+      "evaluated_physical_axis_midpoint_m": [
+        0.22999356989604622,
+        -0.8549198333198779,
+        0.9867122941830452
+      ],
+      "center_bias_mm": [
+        -0.007973628485508089,
+        -0.012942924565439995,
+        0.002907112542471779
+      ],
+      "center_bias_norm_mm": 0.015477381912525541,
+      "observed_axis": [
+        -0.00028348482717643333,
+        0.002039806196408625,
+        -0.9999978794112685
+      ],
+      "evaluated_physical_signed_axis": [
+        -2.2010211240421864e-05,
+        0.0022147560392802757,
+        -0.9999975471826105
+      ],
+      "axis_bias_mrad": 0.3146053612731415,
+      "observed_z_tilt_mrad": 2.0594122855734946,
+      "physical_z_tilt_mrad": 2.214867215997647,
+      "circle_direct": true
+    },
+    {
+      "observation_index": 60,
+      "captured_wall_s": 160.80276139604393,
+      "matched_trace_index": 4610,
+      "matched_trace_wall_s": 160.79934457293712,
+      "nearest_trace_delta_ms": -3.416823106817901,
+      "phase": "pin_confirmed_postlift_preload_ramp",
+      "preinsert": false,
+      "observed_center_m": [
+        0.22998742942020975,
+        -0.8549250909059235,
+        0.9867147782091662
+      ],
+      "evaluated_physical_axis_midpoint_m": [
+        0.22999355530707055,
+        -0.8549198333197606,
+        0.9867122941367379
+      ],
+      "center_bias_mm": [
+        -0.006125886860802732,
+        -0.005257586162876748,
+        0.002484072428310391
+      ],
+      "center_bias_norm_mm": 0.008446260588007007,
+      "observed_axis": [
+        -0.00027858487087389786,
+        0.0020663943673892363,
+        -0.9999978262000314
+      ],
+      "evaluated_physical_signed_axis": [
+        -3.715292581187485e-05,
+        0.002214570136371534,
+        -0.9999975471463772
+      ],
+      "axis_bias_mrad": 0.2832764042580558,
+      "observed_z_tilt_mrad": 2.0850902887662923,
+      "physical_z_tilt_mrad": 2.2148835750525757,
+      "circle_direct": true
+    },
+    {
+      "observation_index": 65,
+      "captured_wall_s": 169.81881480501033,
+      "matched_trace_index": 4985,
+      "matched_trace_wall_s": 169.81341937894467,
+      "nearest_trace_delta_ms": -5.395426065661013,
+      "phase": "pin_precision_encoder_settle",
+      "preinsert": true,
+      "observed_center_m": [
+        -0.3016383225202395,
+        0.22799814981514985,
+        1.4831543787739865
+      ],
+      "evaluated_physical_axis_midpoint_m": [
+        -0.30161366418531144,
+        0.22799781262765567,
+        1.4831560085294444
+      ],
+      "center_bias_mm": [
+        -0.024658334928040482,
+        0.0003371874941759945,
+        -0.0016297554579214335
+      ],
+      "center_bias_norm_mm": 0.024714434642173683,
+      "observed_axis": [
+        0.00021080029768206292,
+        0.001259237876103426,
+        0.9999991849412708
+      ],
+      "evaluated_physical_signed_axis": [
+        0.0003693866385015142,
+        0.0012594020160829411,
+        0.9999991387296657
+      ],
+      "axis_bias_mrad": 0.1585864319864068,
+      "observed_z_tilt_mrad": 1.2767606196117416,
+      "physical_z_tilt_mrad": 1.3124560624300994,
+      "circle_direct": true
+    },
+    {
+      "observation_index": 70,
+      "captured_wall_s": 171.66376639599912,
+      "matched_trace_index": 5121,
+      "matched_trace_wall_s": 171.65988071402535,
+      "nearest_trace_delta_ms": -3.885681973770261,
+      "phase": "pin_precision_encoder_settle",
+      "preinsert": true,
+      "observed_center_m": [
+        -0.30176294914301555,
+        0.2276632611459688,
+        1.483361259823842
+      ],
+      "evaluated_physical_axis_midpoint_m": [
+        -0.30174049884455706,
+        0.2276688695866087,
+        1.4833628865522184
+      ],
+      "center_bias_mm": [
+        -0.02245029845848734,
+        -0.005608440639903733,
+        -0.001626728376447062
+      ],
+      "center_bias_norm_mm": 0.02319734365174644,
+      "observed_axis": [
+        0.00035019570054737703,
+        0.0010726901326357726,
+        0.9999993633492227
+      ],
+      "evaluated_physical_signed_axis": [
+        0.00048048935325071987,
+        0.0010598805186371467,
+        0.9999993228914047
+      ],
+      "axis_bias_mrad": 0.13092182197601462,
+      "observed_z_tilt_mrad": 1.128406704050691,
+      "physical_z_tilt_mrad": 1.163708444342128,
+      "circle_direct": true
+    },
+    {
+      "observation_index": 75,
+      "captured_wall_s": 173.4978125919588,
+      "matched_trace_index": 5257,
+      "matched_trace_wall_s": 173.50457152200397,
+      "nearest_trace_delta_ms": 6.758930045180023,
+      "phase": "pin_precision_encoder_settle",
+      "preinsert": true,
+      "observed_center_m": [
+        -0.30184652011807805,
+        0.22743002531321527,
+        1.4834154189455584
+      ],
+      "evaluated_physical_axis_midpoint_m": [
+        -0.30181296387572054,
+        0.2274296315508886,
+        1.4834170125911879
+      ],
+      "center_bias_mm": [
+        -0.03355624235751309,
+        0.00039376232666143984,
+        -0.0015936456294607382
+      ],
+      "center_bias_norm_mm": 0.03359637117782741,
+      "observed_axis": [
+        0.00038815493234429995,
+        0.0005785508599912843,
+        0.999999757307296
+      ],
+      "evaluated_physical_signed_axis": [
+        0.0006095082376352895,
+        0.0005630379636268751,
+        0.9999996557439206
+      ],
+      "axis_bias_mrad": 0.2218962513580811,
+      "observed_z_tilt_mrad": 0.69669607988139,
+      "physical_z_tilt_mrad": 0.8297663516592423,
+      "circle_direct": true
+    },
+    {
+      "observation_index": 80,
+      "captured_wall_s": 175.33333730394952,
+      "matched_trace_index": 5392,
+      "matched_trace_wall_s": 175.33690209896304,
+      "nearest_trace_delta_ms": 3.5647950135171413,
+      "phase": "pin_precision_encoder_settle",
+      "preinsert": true,
+      "observed_center_m": [
+        -0.30187505042262286,
+        0.22731419360588825,
+        1.4834457615071748
+      ],
+      "evaluated_physical_axis_midpoint_m": [
+        -0.3018591265886493,
+        0.2273191990545492,
+        1.4834473094223102
+      ],
+      "center_bias_mm": [
+        -0.015923833973585655,
+        -0.005005448660944101,
+        -0.0015479151354025333
+      ],
+      "center_bias_norm_mm": 0.016763622698631582,
+      "observed_axis": [
+        0.0005557987750453901,
+        0.0004905101041276221,
+        0.999999725243742
+      ],
+      "evaluated_physical_signed_axis": [
+        0.0005444213101556579,
+        0.000492352640073928,
+        0.999999730597121
+      ],
+      "axis_bias_mrad": 0.011525699007502728,
+      "observed_z_tilt_mrad": 0.7412911311344582,
+      "physical_z_tilt_mrad": 0.7340339107990039,
+      "circle_direct": true
+    },
+    {
+      "observation_index": 81,
+      "captured_wall_s": 176.5121951539768,
+      "matched_trace_index": 5477,
+      "matched_trace_wall_s": 176.52212585601956,
+      "nearest_trace_delta_ms": 9.930702042765915,
+      "phase": "pin_precision_encoder_settle",
+      "preinsert": true,
+      "observed_center_m": [
+        -0.30188134402181566,
+        0.22730342516753885,
+        1.483465914625437
+      ],
+      "evaluated_physical_axis_midpoint_m": [
+        -0.30186710067006994,
+        0.22729425451994417,
+        1.4834674788330617
+      ],
+      "center_bias_mm": [
+        -0.014243351745713007,
+        0.009170647594675119,
+        -0.0015642076247601722
+      ],
+      "center_bias_norm_mm": 0.017012365848146582,
+      "observed_axis": [
+        0.00048118239580712734,
+        0.000509168585329902,
+        0.9999997546053967
+      ],
+      "evaluated_physical_signed_axis": [
+        0.0006171026476461006,
+        0.00040015341104661514,
+        0.999999729530748
+      ],
+      "axis_bias_mrad": 0.1742372651873971,
+      "observed_z_tilt_mrad": 0.7005635065298856,
+      "physical_z_tilt_mrad": 0.7354852332811334,
+      "circle_direct": true
+    },
+    {
+      "observation_index": 86,
+      "captured_wall_s": 178.36008590599522,
+      "matched_trace_index": 5612,
+      "matched_trace_wall_s": 178.35239599598572,
+      "nearest_trace_delta_ms": -7.689910009503365,
+      "phase": "pin_precision_encoder_settle",
+      "preinsert": true,
+      "observed_center_m": [
+        -0.3019390462645395,
+        0.2272667604529734,
+        1.4834634310702375
+      ],
+      "evaluated_physical_axis_midpoint_m": [
+        -0.30192041089431915,
+        0.22726340912360296,
+        1.4834649981597636
+      ],
+      "center_bias_mm": [
+        -0.01863537022034345,
+        0.0033513293704323655,
+        -0.0015670895261443718
+      ],
+      "center_bias_norm_mm": 0.01899905790773157,
+      "observed_axis": [
+        0.00038014014064641867,
+        0.0003011287576146409,
+        0.9999998824074656
+      ],
+      "evaluated_physical_signed_axis": [
+        0.0005598924832633383,
+        0.0003092587007385028,
+        0.9999997954397107
+      ],
+      "axis_bias_mrad": 0.17993612152332802,
+      "observed_z_tilt_mrad": 0.4849588367712577,
+      "physical_z_tilt_mrad": 0.6396253532142556,
+      "circle_direct": true
+    },
+    {
+      "observation_index": 87,
+      "captured_wall_s": 179.54467811901122,
+      "matched_trace_index": 5698,
+      "matched_trace_wall_s": 179.55782249500044,
+      "nearest_trace_delta_ms": 13.144375989213586,
+      "phase": "pin_precision_encoder_settle",
+      "preinsert": true,
+      "observed_center_m": [
+        -0.3019812207690126,
+        0.2272611597996734,
+        1.483447505600251
+      ],
+      "evaluated_physical_axis_midpoint_m": [
+        -0.301960937960179,
+        0.22725315712580038,
+        1.4834492681370004
+      ],
+      "center_bias_mm": [
+        -0.020282808833649302,
+        0.008002673873019894,
+        -0.0017625367494389366
+      ],
+      "center_bias_norm_mm": 0.021875595056898456,
+      "observed_axis": [
+        0.00029986134103695937,
+        0.0003752600196669227,
+        0.9999998846315403
+      ],
+      "evaluated_physical_signed_axis": [
+        0.0004918607230343702,
+        0.00028684577996599894,
+        0.9999998378962507
+      ],
+      "axis_bias_mrad": 0.21137843491643607,
+      "observed_z_tilt_mrad": 0.4803508340634538,
+      "physical_z_tilt_mrad": 0.5693922263120501,
+      "circle_direct": true
+    },
+    {
+      "observation_index": 97,
+      "captured_wall_s": 188.05981670797337,
+      "matched_trace_index": 5842,
+      "matched_trace_wall_s": 188.05471474293154,
+      "nearest_trace_delta_ms": -5.101965041831136,
+      "phase": "pin_full_depth_hold",
+      "preinsert": false,
+      "observed_center_m": [
+        -0.3016019642379634,
+        0.22657285190091242,
+        1.5246023645574402
+      ],
+      "evaluated_physical_axis_midpoint_m": [
+        -0.30187985278043455,
+        0.226836627196893,
+        1.52202933747305
+      ],
+      "center_bias_mm": [
+        0.2778885424711275,
+        -0.26377529598056726,
+        2.5730270843902225
+      ],
+      "center_bias_norm_mm": 2.601397283348319,
+      "observed_axis": [
+        0.00010736095575401546,
+        9.470341277492168e-05,
+        0.9999999897524444
+      ],
+      "evaluated_physical_signed_axis": [
+        -0.017224709705573157,
+        0.017452204746536387,
+        0.9996993197582177
+      ],
+      "axis_bias_mrad": 24.53169599687731,
+      "observed_z_tilt_mrad": 0.14316113718030554,
+      "physical_z_tilt_mrad": 24.523266955767205,
+      "circle_direct": true
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+--- /tmp/fixed521-pin-entry-axis-view/overrides/direct_pin_skill.py
++++ /tmp/fixed521-entry-gain-reset/overrides/direct_pin_skill.py
+@@ -189,6 +189,7 @@
+     pin_axis_geometry=bool(pin_config.get('pin_axis_frame_consistent_geometry') or cand.get('pose_origin')=='RGB-D physical symmetry-axis midpoint')
+     pin_sensor_hold=bool(pin_config.get('pin_rgbd_sdk_hold_confirmation'))
+     entry_feedback_enabled=bool(pin_config.get('pin_two_stage_entry_feedback'))
++    if pin_config.get('pin_reset_feedback_at_entry') and not entry_feedback_enabled:raise ValueError('PIN entry feedback reset requires two-stage entry')
+     if entry_feedback_enabled and not(visual_preinsert and pin_sensor_hold and qualified_full_depth and pin_config.get('pin_terminal_stroke_preflight')):raise ValueError('Two-stage PIN entry needs original visual/hold/full-terminal and qualified-depth policies')
+     pickup_opening_m=.024 if pin_config.get('pin_preclose_wide_opening')else.014
+     if pin_sensor_hold and not pin_axis_geometry:raise ValueError('RGB-D/SDK pin hold confirmation requires consistent physical-axis geometry')
+@@ -597,7 +598,11 @@
+                     entry_target=current_pre.copy();entry_distance=remaining_depth-.018;entry_target[2,3]+=entry_distance
+                     line(current_pre,entry_target,.8*entry_distance/remaining_depth,'pin_axial_move_to_entry')
+                     entry_stage=True
+-                    report['pin_entry_feedback_transition']=dict(alignment_index=alignment_index,remaining_original_images=alignment_budget-alignment_index-1,far_preinsert_Hand=far_preinsert_H.tolist(),far_remaining_depth_m=far_remaining_depth,entry_remaining_depth_m=.018,shaft_tip_below_original_fixture_bottom_m=.00175,original_full_far_terminal_admitted=True,fresh_entry_RGBD_required=True,no_budget_or_feedback_history_reset=True,uses_free_body_poses=False)
++                    if pin_config.get('pin_reset_feedback_at_entry',False):
++                        previous_entry_feedback=dict(gain=float(correction_gain),previous_radial_error_m=previous_radial_error,previous_normalized_error=previous_alignment_score,radial_improvement_streak=radial_improvement_streak)
++                        correction_gain=min(.65,float(recovery_ceiling));previous_radial_error=None;previous_alignment_score=None;radial_improvement_streak=0
++                        report['pin_entry_feedback_history_reset']=dict(reason='Completed FAR-to-ENTRY depth transition changes encoder tracking bias; previous phase feedback history is inapplicable',alignment_index=alignment_index,original_shared_alignment_budget=alignment_budget,remaining_original_images=alignment_budget-alignment_index-1,previous_state=previous_entry_feedback,new_state=dict(gain=correction_gain,previous_radial_error_m=None,previous_normalized_error=None,radial_improvement_streak=0),extra_images_or_motion=0,uses_free_body_poses=False)
++                    report['pin_entry_feedback_transition']=dict(alignment_index=alignment_index,remaining_original_images=alignment_budget-alignment_index-1,far_preinsert_Hand=far_preinsert_H.tolist(),far_remaining_depth_m=far_remaining_depth,entry_remaining_depth_m=.018,shaft_tip_below_original_fixture_bottom_m=.00175,original_full_far_terminal_admitted=True,fresh_entry_RGBD_required=True,original_shared_alignment_budget_unchanged=True,adaptive_feedback_history_reset=bool(pin_config.get('pin_reset_feedback_at_entry',False)),uses_free_body_poses=False)
+                     continue
+                 pre=far_preinsert_H.copy()if entry_stage else current_pre
+                 end=current_pre.copy();end[2,3]+=remaining_depth

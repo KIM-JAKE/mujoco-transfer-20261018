@@ -1,0 +1,112 @@
+--- /tmp/fixed517-preclose-gain-full/overrides/direct_pin_skill.py
++++ /tmp/fixed519-pin-entry-feedback/overrides/direct_pin_skill.py
+@@ -17,8 +17,10 @@
+     """Geometry rejected before motion(); never a partial-stroke error."""
+ 
+ 
+-def _pin_visual_preinsert_target(command_H,actual_H,measured_G,goal,goal_axis,observed_z,gain=1.,translation_deadband_m=0.,axis_deadband_rad=0.,axis_gain=None):
++def _pin_visual_preinsert_target(command_H,actual_H,measured_G,goal,goal_axis,observed_z,gain=1.,translation_deadband_m=0.,axis_deadband_rad=0.,axis_gain=None,preinsert_depth_m=.045):
+     """Bounded geometric center/axis servo; only images, encoders and jig CAD."""
++    preinsert_depth_m=float(preinsert_depth_m)
++    if preinsert_depth_m not in(.045,.018):raise ValueError('PIN feedback depth plane must be original45mm or explicit18mm entry')
+     C,A,G=[np.asarray(x,float)for x in [command_H,actual_H,measured_G]]
+     goal=np.asarray(goal,float);goal_axis=np.asarray(goal_axis,float)
+     if any(T.shape!=(4,4)or not np.isfinite(T).all()for T in[C,A,G]) or goal.shape!=(3,) or goal_axis.shape!=(3,) or not np.isfinite(np.r_[goal,goal_axis,observed_z]).all():raise ValueError('Invalid pin visual-servo input')
+@@ -42,10 +44,10 @@
+         # around the grasp lever arm and break a previously qualified XY.
+         rotation=exp(axis_gain*log(rotation@A[:3,:3].T))@A[:3,:3]
+         target_xy=observed[:2,3] if translation_held else observed[:2,3]+gain*(goal[:2]-observed[:2,3])
+-        target_z=float(observed_z)+gain*(min(float(observed_z),float(goal[2]-.045))-float(observed_z))
++        target_z=float(observed_z)+gain*(min(float(observed_z),float(goal[2]-preinsert_depth_m))-float(observed_z))
+     else:
+         target_xy=observed[:2,3] if translation_held else goal[:2]
+-        target_z=min(float(observed_z),float(goal[2]-.045))
++        target_z=min(float(observed_z),float(goal[2]-preinsert_depth_m))
+     desired=frame(np.r_[target_xy,target_z]-rotation@G[:3,3],rotation)
+     bias_translation=float(np.linalg.norm(C[:3,3]-A[:3,3]));bias_angle=float(np.linalg.norm(log(C[:3,:3]@A[:3,:3].T)))
+     if bias_translation>.002 or bias_angle>.01:raise RuntimeError('Pin encoder tracking bias exceeds bounded2mm/.01rad prealignment correction')
+@@ -143,6 +145,8 @@
+     if qualified_full_depth and not(visual_preinsert and pin_config.get('robust_pin_cap_circle')):raise ValueError('Qualified PIN full-depth observation requires original visual preinsert and robust circle settings')
+     pin_axis_geometry=bool(pin_config.get('pin_axis_frame_consistent_geometry') or cand.get('pose_origin')=='RGB-D physical symmetry-axis midpoint')
+     pin_sensor_hold=bool(pin_config.get('pin_rgbd_sdk_hold_confirmation'))
++    entry_feedback_enabled=bool(pin_config.get('pin_two_stage_entry_feedback'))
++    if entry_feedback_enabled and not(visual_preinsert and pin_sensor_hold and qualified_full_depth and pin_config.get('pin_terminal_stroke_preflight')):raise ValueError('Two-stage PIN entry needs original visual/hold/full-terminal and qualified-depth policies')
+     pickup_opening_m=.024 if pin_config.get('pin_preclose_wide_opening')else.014
+     if pin_sensor_hold and not pin_axis_geometry:raise ValueError('RGB-D/SDK pin hold confirmation requires consistent physical-axis geometry')
+     if pin_axis_geometry:
+@@ -512,10 +516,10 @@
+     recovery_ceiling=min(.65,correction_gain);radial_improvement_streak=0
+     previous_alignment_score=None
+     previous_radial_error=None
+-    terminal_replans=0;axial_inserted=False
++    terminal_replans=0;axial_inserted=False;entry_stage=False;far_preinsert_H=None;far_remaining_depth=None
+     for alignment_index in range(alignment_budget if visual_preinsert else 1):
+         if visual_preinsert and pin_config.get('pin_precision_encoder_settle'):await_precision_encoder_window('pin_precision_encoder_settle')
+-        v=observe('pin_preinsert_RGBD',G,require_circle=visual_preinsert);pose=v['result']['pose'];Pobs=np.asarray(pose['center_m']);remaining_depth=float(goal[2]-Pobs[2])
++        v=observe('pin_entry_RGBD'if entry_stage else'pin_preinsert_RGBD',G,require_circle=visual_preinsert);pose=v['result']['pose'];Pobs=np.asarray(pose['center_m']);remaining_depth=float(goal[2]-Pobs[2])
+         if pin_sensor_hold:
+             current_G=measured_grasp(v,G);gap=float(art.get_dof_positions()[0,fi].sum());sensor_evidence=_pin_rgbd_sdk_hold_evidence(pose,pin_hold_reference_G,current_G,gap);sensor_evidence['alignment_index']=alignment_index;report.setdefault('pin_RGBD_SDK_postcarry',[]).append(sensor_evidence);print('PIN_RGBD_SDK_POSTCARRY',sensor_evidence,flush=True)
+             if not sensor_evidence['confirmed']:raise RuntimeError('Fresh RGB-D/SDK pin postcarry retention changed beyond2mm/.05rad; correction blocked')
+@@ -524,23 +528,37 @@
+         evidence=dict(iteration=alignment_index,radial_error_m=radial,axis_error_rad=axis_error,radial_limit_m=.000075,axis_limit_rad=.003,maximum_shaft_axis_radial_error_m=shaft_axis_max,maximum_shaft_axis_radial_limit_m=.00015,source='Fresh RGB-D end circle/plane plus encoder FK',uses_free_body_poses=False)
+         if pin_config.get('pin_engine_readonly_diagnostics',False):evidence['engine_diagnostics_only']=_pin_engine_readonly_diagnostics(stage,sim,arm)
+         report.setdefault('preinsert_visual_alignment',[]).append(evidence);print('PIN_VISUAL_PREALIGN',evidence,flush=True)
+-        if not .035<remaining_depth<.055:raise RuntimeError('Pin visual prealignment must remain35–55mm below the calibrated jig target')
++        if entry_stage:
++            if not .014<remaining_depth<.022:raise RuntimeError('Pin entry RGB-D must remain14–22mm below the calibrated jig target')
++        elif not .035<remaining_depth<.055:raise RuntimeError('Pin visual prealignment must remain35–55mm below the calibrated jig target')
++        evidence['entry_stage']=entry_stage;evidence['original_shared_alignment_budget']=alignment_budget
+         measured=np.linalg.inv(v['H'])@frame(Pobs,axis_frame(pose['axis']))
+         old_axis=G[:3,2];new_axis=measured[:3,2];cross=np.cross(old_axis,new_axis);length=np.linalg.norm(cross);measured[:3,:3]=exp(cross/max(length,1e-12)*np.arctan2(length,old_axis@new_axis))@G[:3,:3];G=measured
+         if radial<=.000075 and axis_error<=.003 and shaft_axis_max<=.00015:
+             if not pin_config.get('pin_terminal_stroke_preflight'):break
+             from pin_current_terminal import assess as assess_current_terminal,plan_rebranch
+             try:
+-                admitted,terminal=assess_current_terminal(ctx,payload_grasp(),remaining_depth)
++                entry_options=dict(entry_stage=True,withdraw_H=far_preinsert_H,requested_s=.8*remaining_depth/far_remaining_depth)if entry_stage else dict(partial_entry=True)if entry_feedback_enabled else{}
++                admitted,terminal=assess_current_terminal(ctx,payload_grasp(),remaining_depth,**entry_options)
+                 report.setdefault('fresh_image_terminal_checks',[]).append(terminal)
+                 if not admitted:raise PinCartesianPreflightBlocked('Last qualified RGB-D pin terminal obstructed '+str(terminal))
+-                pre=arm.fk(cmd[0,ids]);end=pre.copy();end[2,3]+=remaining_depth
+-                line(pre,end,.8,'pin_single_axial_insert')
++                current_pre=arm.fk(cmd[0,ids])
++                if entry_feedback_enabled and not entry_stage:
++                    if alignment_index==alignment_budget-1:raise RuntimeError('PIN shared image budget exhausted before near-entry feedback; partial stroke blocked')
++                    far_preinsert_H=current_pre.copy();far_remaining_depth=remaining_depth
++                    entry_target=current_pre.copy();entry_distance=remaining_depth-.018;entry_target[2,3]+=entry_distance
++                    line(current_pre,entry_target,.8*entry_distance/remaining_depth,'pin_axial_move_to_entry')
++                    entry_stage=True
++                    report['pin_entry_feedback_transition']=dict(alignment_index=alignment_index,remaining_original_images=alignment_budget-alignment_index-1,far_preinsert_Hand=far_preinsert_H.tolist(),far_remaining_depth_m=far_remaining_depth,entry_remaining_depth_m=.018,shaft_tip_below_original_fixture_bottom_m=.00175,original_full_far_terminal_admitted=True,fresh_entry_RGBD_required=True,no_budget_or_feedback_history_reset=True,uses_free_body_poses=False)
++                    continue
++                pre=far_preinsert_H.copy()if entry_stage else current_pre
++                end=current_pre.copy();end[2,3]+=remaining_depth
++                line(current_pre,end,.8*remaining_depth/far_remaining_depth if entry_stage else .8,'pin_single_axial_insert')
+             except PinCartesianPreflightBlocked as rejected:
+                 # Only known pre-motion geometry rejection can rebranch.
+                 # Original precision iterations are shared, never reset.
+                 if terminal_replans>=2 or alignment_index==alignment_budget-1:raise
+-                recovery=plan_rebranch(ctx,payload_grasp(),remaining_depth)
++                recovery=plan_rebranch(ctx,payload_grasp(),remaining_depth,**(dict(entry_stage=True,withdraw_H=far_preinsert_H,requested_s=.8*remaining_depth/far_remaining_depth)if entry_stage else{}))
+                 if not np.array_equal(cmd,recovery['source_command_all']) or not np.array_equal(art.get_dof_positions()[0],recovery['source_actual_all']):raise RuntimeError('PIN terminal rebranch source changed after full field proof')
+                 phase='pin_current_G_terminal_rebranch'
+                 for command in recovery['commands'][1:]:cmd[0,ids]=command;step()
+@@ -575,7 +593,7 @@
+         previous_radial_error=radial
+         evidence.update(adaptive_gain_enabled=adaptive_pin_gain,alignment_budget=alignment_budget,normalized_error=alignment_score,previous_normalized_error=previous_alignment_score,selected_feedback_gain=correction_gain)
+         previous_alignment_score=alignment_score
+-        actual_H=arm.fk(art.get_dof_positions()[0,ids]);command_H=arm.fk(cmd[0,ids]);target,bias=_pin_visual_preinsert_target(command_H,actual_H,G,goal,R[:,2],float(Pobs[2]),gain=correction_gain,translation_deadband_m=.000075 if pin_config.get('pin_precision_component_deadband') else 0.,axis_deadband_rad=(.001 if bounded_component_recovery else .003) if pin_config.get('pin_precision_component_deadband') else 0.,axis_gain=(.65 if bounded_component_recovery else 1.) if independent_component_feedback else None);evidence.update(bias);evidence.update(bounded_component_recovery=bounded_component_recovery,radial_improvement_streak=radial_improvement_streak,XY_recovery_ceiling=recovery_ceiling)
++        actual_H=arm.fk(art.get_dof_positions()[0,ids]);command_H=arm.fk(cmd[0,ids]);target,bias=_pin_visual_preinsert_target(command_H,actual_H,G,goal,R[:,2],float(Pobs[2]),gain=correction_gain,translation_deadband_m=.000075 if pin_config.get('pin_precision_component_deadband') else 0.,axis_deadband_rad=(.001 if bounded_component_recovery else .003) if pin_config.get('pin_precision_component_deadband') else 0.,axis_gain=(.65 if bounded_component_recovery else 1.) if independent_component_feedback else None,**(dict(preinsert_depth_m=.018)if entry_stage else{}));evidence.update(bias);evidence.update(bounded_component_recovery=bounded_component_recovery,radial_improvement_streak=radial_improvement_streak,XY_recovery_ceiling=recovery_ceiling)
+         saved=(checker.payload_path,checker.payload_rows,checker.payload_boxes,checker.payload_relative)
+         checker.attach_payload(paths['workpiece_pin'],frame([0,0,.1034],np.eye(3))@payload_grasp())
+         try:line(command_H,target,.35,'pin_preinsert_visual_correction')
+@@ -583,7 +601,9 @@
+         wait(.08,'pin_preinsert_visual_hold')
+     report['preinsert_observed_center_m']=Pobs.tolist();report['RGBD_measured_remaining_axial_depth_m']=remaining_depth
+     if visual_preinsert:report['measured_grasp_after_preinsert_alignment']=G.tolist()
+-    if np.linalg.norm(Pobs[:2]-goal[:2])>=.0015 or not .035<remaining_depth<.055:raise RuntimeError('Preinsert RGB-D alignment/depth outside direct insertion range')
++    depth_range_ok=.014<remaining_depth<.022 if entry_stage else .035<remaining_depth<.055
++    if np.linalg.norm(Pobs[:2]-goal[:2])>=.0015 or not depth_range_ok:raise RuntimeError('Preinsert RGB-D alignment/depth outside explicit insertion state range')
++    if entry_feedback_enabled and not(entry_stage and axial_inserted):raise RuntimeError('Two-stage PIN entry did not qualify final insertion within original image budget')
+     if not axial_inserted:
+         pre=arm.fk(cmd[0,ids]);end=pre.copy();end[2,3]+=remaining_depth;line(pre,end,.8,'pin_single_axial_insert')
+     wait(.12,'pin_full_depth_hold');v=observe('pin_full_depth_RGBD',G,require_circle=qualified_full_depth);pose=v['result']['pose'];error=float(np.linalg.norm(np.array(pose['center_m'])-goal));ae=float(np.arccos(np.clip(np.array(pose['axis'])[2],-1,1)));report['RGBD_full_depth_check']=dict(position_error_m=error,axis_error_rad=ae)

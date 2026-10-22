@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "scope": "New independent exact-dedup binary service integration only; OLDservice untouched. Native55950row fixture is public483 command/encoder path interpolation with originalCAD and recordedRGBDgrasp, not new task execution.",
+  "geometry_sha256": "b285366954e14589ac05552ccd2adbd7df9aa17b8cb9fbec839cb0f767059f3c",
+  "native_rows": 55950,
+  "native_masks_identical_to_offline_original_kernel": true,
+  "native_clear_rows": 55950,
+  "native_rpc_wall_s": 3.774624860030599,
+  "chunks": [
+    {
+      "first": 0,
+      "rows": 16000,
+      "unique": 8000,
+      "server_s": 1.8915352689800784,
+      "kernel_s": 1.8390703370096162,
+      "dedup_s": 0.008611134020611644
+    },
+    {
+      "first": 16000,
+      "rows": 16000,
+      "unique": 8000,
+      "server_s": 0.8703329609706998,
+      "kernel_s": 0.8441152649465948,
+      "dedup_s": 0.00933514698408544
+    },
+    {
+      "first": 32000,
+      "rows": 16000,
+      "unique": 8000,
+      "server_s": 0.5987400760641322,
+      "kernel_s": 0.5720954679418355,
+      "dedup_s": 0.009178804932162166
+    },
+    {
+      "first": 48000,
+      "rows": 7950,
+      "unique": 3975,
+      "server_s": 0.3129481979412958,
+      "kernel_s": 0.2910387000301853,
+      "dedup_s": 0.007322954945266247
+    }
+  ],
+  "boundary_rows": 28,
+  "boundary_masks_identical_to_offline_original_kernel": true,
+  "invalid_requests": [
+    {
+      "case": "last_original_index_negative",
+      "error": "ValueError: Invalid exact transform indices",
+      "no_partial_mask": true
+    },
+    {
+      "case": "bank_wrong_dtype",
+      "error": "ValueError: Invalid transform bank",
+      "no_partial_mask": true
+    },
+    {
+      "case": "wrong_margin",
+      "error": "ValueError: Original margin mismatch",
+      "no_partial_mask": true
+    },
+    {
+      "case": "used_transform_NaN",
+      "error": "ValueError: Transforms outside finite rigid certificate domain",
+      "no_partial_mask": true
+    }
+  ],
+  "changed_banks_with_same_indices_recomputed": true,
+  "source_sha256": "79b4337c1fdf748b5555c92751b9a801ce80ad4422af724b89829588fbd52453",
+  "original_kernel_sha256": "39c740a824f8861038519dd08fc5a3e49fba0caf7cb65985dc7b2684cab57096",
+  "reference_gpu_results_sha256": "434a1c1ba5d14caaeb6a98cdee1d95f2ba371ea8d5ba7faba8dd5366983a379e",
+  "reference_gpu_results_file": "offline-native-reference.json"
+}

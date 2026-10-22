@@ -1,0 +1,20 @@
+--- a/loose_bin_task.py
++++ b/loose_bin_task.py
+@@ -1389,7 +1389,16 @@
+                 next_opening=transfer.receiver_opening(c,ring_order[1])
+                 yield from rows([cmd[0,ids],cmd[0,ids]],.10,next_opening)
+         left_program=insert_program()
+-        if overlap is not None:overlap.awaiting_prime=True
++        if overlap is not None:
++            overlap.awaiting_prime=True
++            from fixed_small_left_executor import SavedCommandRoute
++            if isinstance(route,SavedCommandRoute):
++                # Reuse the just-passed exact epoch proof. Priming stops at the
++                # existing exposure yield; future paired guards stay fresh.
++                prime_epoch=control_steps;prime_command=cmd.copy()
++                prime_left_chunk()
++                if control_steps!=prime_epoch or not np.array_equal(cmd,prime_command):
++                    raise RuntimeError('Saved LEFT chunk exposure changed commands or advanced physics')
+         if c['config'].get('pin_between_rings') and part==ring_order[0] and not c['config'].get('one_ring_only'):
+             pin_report=run_pin()
+             next_initial=vision.request(initial_ring_event(),arms['right'].fk(art.get_dof_positions()[0,indices['right']]))

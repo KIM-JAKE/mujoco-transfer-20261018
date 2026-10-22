@@ -1,0 +1,36 @@
+--- /tmp/fixed520-pin-gpu-route-first/overrides/direct_pin_skill.py
++++ /tmp/fixed520-pin-depth-axis-view/overrides/direct_pin_skill.py
+@@ -135,6 +135,25 @@
+     checker.gpu_route_stats['PhysX_verified_continuous_proposals']=checker.gpu_route_stats.get('PhysX_verified_continuous_proposals',0)+1
+     print('PIN_GPU_ROUTE_BEFORE_HINT_NATIVE_VERIFIED',dict(curve_evidence,fixed_pair_payload_checked=True,issued_curve_and_FR3_retiming_still_required=True),flush=True)
+     return VerifiedCubicRoute(proposed)
++
++
++def _pin_full_depth_near_axis_views(H,grasp,offsets,label,config,require_circle):
++    """Two public-SDK/image-derived tail views; original quality stays mandatory."""
++    if label!='pin_full_depth_RGBD' or not config.get('pin_full_depth_near_axis_views',False):return []
++    if not(config.get('fixed_supply_mode') and config.get('pin_full_depth_require_robust_circle') and config.get('robust_pin_cap_circle') and require_circle):
++        raise ValueError('Near-axis full-depth views require fixed mode and original qualified robust-circle gate')
++    if grasp is None:raise ValueError('Near-axis depth views require a fresh image/SDK grasp')
++    H=np.asarray(H,float);G=np.asarray(grasp,float)
++    if H.shape!=(4,4)or G.shape!=(4,4)or not np.isfinite(H).all()or not np.isfinite(G).all():raise ValueError('Finite public Hand and image grasp required')
++    axis=(H@G)[:3,2];length=float(np.linalg.norm(axis))
++    if length<1e-8:raise ValueError('Invalid public signed PIN axis')
++    axis=axis/length;tangent=H[:3,2]-axis*(H[:3,2]@axis)
++    if np.linalg.norm(tangent)<1e-8:
++        reference=np.eye(3)[int(np.argmin(abs(axis)))];tangent=reference-axis*(reference@axis)
++    tangent=tangent/np.linalg.norm(tangent)
++    # The lens is0.25m below the signed tail axis. The second public Hand-Z
++    # projection provides a small alternative if that first view is occluded.
++    return [(len(offsets)+i,(-.25*axis+lateral*tangent).tolist())for i,lateral in enumerate([0.,.04])]
+ 
+ 
+ def execute(ctx):
+@@ -230,6 +249,7 @@
+             offsets += [(.20*sign*axis+.23*(np.cos(angle)*u+np.sin(angle)*v)).tolist() for sign in [1.,-1.] for angle in np.arange(6)*np.pi/3]
+         errors=[]
+         views=_pin_ordered_camera_views(offsets,label,pin_config)
++        views=_pin_full_depth_near_axis_views(H,grasp,offsets,label,pin_config,require_circle)+views
+         if pin_config.get('fixed_supply_mode') and label=='pin_holder_preclose_RGBD' and pin_config.get('fixed_pin_preclose_overhead_views',True):
+             # Public encoder Hand FK times the camera-measured/catalog grasp
+             # sets the target as before. Original443 branch occluded every

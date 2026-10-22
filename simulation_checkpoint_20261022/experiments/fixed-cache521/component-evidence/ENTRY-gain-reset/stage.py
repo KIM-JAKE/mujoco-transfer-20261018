@@ -1,0 +1,11 @@
+from pathlib import Path
+import ast,hashlib,difflib,json
+O=Path(__file__).parent;B=Path('/tmp/fixed521-pin-entry-axis-view/overrides/direct_pin_skill.py');old=B.read_text();s=old
+needle="    entry_feedback_enabled=bool(pin_config.get('pin_two_stage_entry_feedback'))\n";s=s.replace(needle,needle+"    if pin_config.get('pin_reset_feedback_at_entry') and not entry_feedback_enabled:raise ValueError('PIN entry feedback reset requires two-stage entry')\n",1)
+needle='                    entry_stage=True\n';patch=needle+'''                    if pin_config.get('pin_reset_feedback_at_entry',False):
+                        previous_entry_feedback=dict(gain=float(correction_gain),previous_radial_error_m=previous_radial_error,previous_normalized_error=previous_alignment_score,radial_improvement_streak=radial_improvement_streak)
+                        correction_gain=min(.65,float(recovery_ceiling));previous_radial_error=None;previous_alignment_score=None;radial_improvement_streak=0
+                        report['pin_entry_feedback_history_reset']=dict(reason='Completed FAR-to-ENTRY depth transition changes encoder tracking bias; previous phase feedback history is inapplicable',alignment_index=alignment_index,original_shared_alignment_budget=alignment_budget,remaining_original_images=alignment_budget-alignment_index-1,previous_state=previous_entry_feedback,new_state=dict(gain=correction_gain,previous_radial_error_m=None,previous_normalized_error=None,radial_improvement_streak=0),extra_images_or_motion=0,uses_free_body_poses=False)
+''';assert s.count(needle)==1;s=s.replace(needle,patch,1)
+s=s.replace('no_budget_or_feedback_history_reset=True','original_shared_alignment_budget_unchanged=True,adaptive_feedback_history_reset=bool(pin_config.get(\'pin_reset_feedback_at_entry\',False))',1)
+ast.parse(s);p=O/'overrides/direct_pin_skill.py';p.write_text(s);(O/'direct_pin_skill.py.diff').write_text(''.join(difflib.unified_diff(old.splitlines(True),s.splitlines(True),fromfile=str(B),tofile=str(p))));(O/'source-manifest.json').write_text(json.dumps(dict(base=str(B),base_sha256=hashlib.sha256(old.encode()).hexdigest(),runtime_file=str(p),sha256=hashlib.sha256(s.encode()).hexdigest(),flag='pin_reset_feedback_at_entry',requires='pin_two_stage_entry_feedback',fresh_imports=[]),indent=2)+'\n');print((O/'source-manifest.json').read_text())

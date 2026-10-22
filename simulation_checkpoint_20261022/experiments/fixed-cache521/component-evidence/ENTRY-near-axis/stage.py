@@ -1,0 +1,8 @@
+from pathlib import Path
+import ast,difflib,json,hashlib
+base=Path('/tmp/fixed520-entry-axis-gpu-full/overrides/direct_pin_skill.py');out=Path('/tmp/fixed521-pin-entry-axis-view');s=base.read_text();old="    if label!='pin_full_depth_RGBD' or not config.get('pin_full_depth_near_axis_views',False):return []\n";new="""    full_depth=label=='pin_full_depth_RGBD' and config.get('pin_full_depth_near_axis_views',False)
+    entry=label=='pin_entry_RGBD' and config.get('pin_entry_near_axis_views',False)
+    if not(full_depth or entry):return []
+    if entry and not config.get('pin_two_stage_entry_feedback'):
+        raise ValueError('Near-axis ENTRY views require the original two-stage entry feedback')
+""";assert s.count(old)==1;s=s.replace(old,new);ast.parse(s);target=out/'overrides/direct_pin_skill.py';target.write_text(s);(out/'direct_pin_skill.py.diff').write_text(''.join(difflib.unified_diff(base.read_text().splitlines(True),s.splitlines(True),fromfile=str(base),tofile=str(target))));(out/'config-delta.json').write_text(json.dumps(dict(pin_entry_near_axis_views=True),indent=2)+'\n');(out/'optional-fallback-view-order.json').write_text(json.dumps({'instruction':'Optional nested config update only; preserve all other phase orders. No frame/pose cache.','pin_rgbd_view_order_by_label.pin_entry_RGBD':[10,9]},indent=2)+'\n');(out/'source-manifest.json').write_text(json.dumps(dict(base=str(base),base_sha256=hashlib.sha256(base.read_bytes()).hexdigest(),source_sha256=hashlib.sha256(target.read_bytes()).hexdigest(),driver_config_whitelist_addition='pin_entry_near_axis_views',new_imports=[],whole_task_qualified=False),indent=2)+'\n');print(hashlib.sha256(target.read_bytes()).hexdigest())

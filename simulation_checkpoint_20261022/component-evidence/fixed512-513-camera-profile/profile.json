@@ -1,0 +1,216 @@
+{
+  "scope": "Read-only recorded camera timelines; interval union avoids double-counting concurrent outstanding camera requests. These intervals OVERLAP physics/planning and are not additive whole-cycle savings.",
+  "concurrent_physical_cases": true,
+  "cases": [
+    {
+      "run": 512,
+      "full_task_pass": true,
+      "wall_s": 214.48711021908093,
+      "physics_s": 48.487499999996984,
+      "observations": 74,
+      "groups": [
+        {
+          "mode": "initial",
+          "part": "ring2",
+          "count": 1,
+          "capture_s": 0.05496657302137464,
+          "processing_s": 0.3229618879267946,
+          "queue_s": 0.0006907649803906679,
+          "ready_to_delivery_s": 0.009316430077888072
+        },
+        {
+          "mode": "pregrasp_ring",
+          "part": "ring2",
+          "count": 7,
+          "capture_s": 0.15545842295978218,
+          "processing_s": 1.477299010148272,
+          "queue_s": 0.005212385905906558,
+          "ready_to_delivery_s": 4.16894547874108
+        },
+        {
+          "mode": "held",
+          "part": "ring2",
+          "count": 10,
+          "capture_s": 0.17303907324094325,
+          "processing_s": 1.7695541367866099,
+          "queue_s": 0.006861527799628675,
+          "ready_to_delivery_s": 0.08356169215403497
+        },
+        {
+          "mode": "held_left",
+          "part": "ring2",
+          "count": 10,
+          "capture_s": 0.42156443605199456,
+          "processing_s": 1.8705842850031331,
+          "queue_s": 0.09594763582572341,
+          "ready_to_delivery_s": 0.15776053199078888
+        },
+        {
+          "mode": "initial",
+          "part": "ring1",
+          "count": 1,
+          "capture_s": 0.2009471389465034,
+          "processing_s": 0.3278545980574563,
+          "queue_s": 0.000632337061688304,
+          "ready_to_delivery_s": 5.894235657993704
+        },
+        {
+          "mode": "pregrasp_ring",
+          "part": "ring1",
+          "count": 15,
+          "capture_s": 0.32650352688506246,
+          "processing_s": 5.182205192279071,
+          "queue_s": 0.007159157074056566,
+          "ready_to_delivery_s": 17.964988720836118
+        },
+        {
+          "mode": "held",
+          "part": "ring1",
+          "count": 9,
+          "capture_s": 0.19090700102970004,
+          "processing_s": 1.7954123551025987,
+          "queue_s": 0.18584857287351042,
+          "ready_to_delivery_s": 2.3546226578764617
+        },
+        {
+          "mode": "pin_initial",
+          "part": "pin",
+          "count": 1,
+          "capture_s": 0.009015297051519156,
+          "processing_s": 0.030003479914739728,
+          "queue_s": 0.000888093956746161,
+          "ready_to_delivery_s": 0.0025576340267434716
+        },
+        {
+          "mode": "held",
+          "part": "pin",
+          "count": 20,
+          "capture_s": 1.3225447720615193,
+          "processing_s": 2.719371726969257,
+          "queue_s": 0.006136440089903772,
+          "ready_to_delivery_s": 0.14175946090836078
+        }
+      ],
+      "worker_interval_union_s": 18.41459347610362,
+      "ready_to_delivery_union_s": 30.77774826460518,
+      "all_request_to_delivery_union_s": 49.17634037777316,
+      "CPU_operation_profile": {
+        "control_s": 6.703715865616687,
+        "physics_s": 103.7525589633733,
+        "clamp_flush_s": 0.0
+      },
+      "source_SHA256": {
+        "pipeline-results.json": "de6584542999102c0488166a3459355a7246f02b285d7c0571a6d945fd494abe",
+        "rgb-observations.json": "74a374b07107c5b3e03c3fa5b93018b7468fc6f874ee3f480fc8649d9b98ec65"
+      }
+    },
+    {
+      "run": 513,
+      "full_task_pass": true,
+      "wall_s": 209.6988859899575,
+      "physics_s": 47.487499999997894,
+      "observations": 62,
+      "groups": [
+        {
+          "mode": "initial",
+          "part": "ring2",
+          "count": 1,
+          "capture_s": 0.9233997369883582,
+          "processing_s": 1.1926855309866369,
+          "queue_s": 0.0009661100339144468,
+          "ready_to_delivery_s": 0.009067951003089547
+        },
+        {
+          "mode": "pregrasp_ring",
+          "part": "ring2",
+          "count": 7,
+          "capture_s": 1.7082366488175467,
+          "processing_s": 1.2300247270613909,
+          "queue_s": 0.0053759049624204636,
+          "ready_to_delivery_s": 4.254353555152193
+        },
+        {
+          "mode": "held",
+          "part": "ring2",
+          "count": 10,
+          "capture_s": 0.17320201301481575,
+          "processing_s": 1.6126725908834487,
+          "queue_s": 0.0067744930274784565,
+          "ready_to_delivery_s": 0.0985406800173223
+        },
+        {
+          "mode": "held_left",
+          "part": "ring2",
+          "count": 8,
+          "capture_s": 0.26793024805374444,
+          "processing_s": 1.5625800190027803,
+          "queue_s": 0.2004727718885988,
+          "ready_to_delivery_s": 0.12304976698942482
+        },
+        {
+          "mode": "initial",
+          "part": "ring1",
+          "count": 1,
+          "capture_s": 0.16556859388947487,
+          "processing_s": 0.32590006210375577,
+          "queue_s": 0.0005082050338387489,
+          "ready_to_delivery_s": 5.849242489901371
+        },
+        {
+          "mode": "pregrasp_ring",
+          "part": "ring1",
+          "count": 11,
+          "capture_s": 0.24058545124717057,
+          "processing_s": 4.450043627992272,
+          "queue_s": 0.008015466621145606,
+          "ready_to_delivery_s": 15.217054381035268
+        },
+        {
+          "mode": "held",
+          "part": "ring1",
+          "count": 11,
+          "capture_s": 0.21016449003946036,
+          "processing_s": 2.088030825019814,
+          "queue_s": 0.006949440808966756,
+          "ready_to_delivery_s": 0.12044190114829689
+        },
+        {
+          "mode": "pin_initial",
+          "part": "pin",
+          "count": 1,
+          "capture_s": 0.01010918093379587,
+          "processing_s": 0.033649747958406806,
+          "queue_s": 0.0009397710673511028,
+          "ready_to_delivery_s": 0.0025120991049334407
+        },
+        {
+          "mode": "held",
+          "part": "pin",
+          "count": 12,
+          "capture_s": 1.2811721311882138,
+          "processing_s": 1.9471918317722157,
+          "queue_s": 0.007450968958437443,
+          "ready_to_delivery_s": 0.10740190127398819
+        }
+      ],
+      "worker_interval_union_s": 19.47695726400707,
+      "ready_to_delivery_union_s": 25.781664725625888,
+      "all_request_to_delivery_union_s": 45.253028612583876,
+      "CPU_operation_profile": {
+        "control_s": 7.214882052270696,
+        "physics_s": 98.17091521830298,
+        "clamp_flush_s": 0.0
+      },
+      "source_SHA256": {
+        "pipeline-results.json": "d8ac2f99da4b58527dc1c196faed7980c08ec1d4288b5fe10e1646ae308a0026",
+        "rgb-observations.json": "43a3fd7c0ec3af91a9957e1fa4bd59f21456cc10a0cd383d19d0e0566b2357d3"
+      }
+    }
+  ],
+  "GPU14_tier_verdict": "NOT RECOMMENDED: existing budget6 already returns required class4/4 packets. Larger budget cannot remove CPU fallback on these packets because no fallback is needed.",
+  "ROI_compaction_candidate": "Unimplemented/unqualified: retain full original publicpacket and globalpixel_scale, compact detector plane arithmetic to exactmetal-bbox+derivativehalo, expandmasksback; original annular/class/sign/free-space gates unchanged. Component timing+mask/pose proof required. No demonstrated gain yet.",
+  "K_grid_microcache": "No >=1s demonstrated return; do not implement speculatively.",
+  "no_runtime_changes": true,
+  "no_new_services": true,
+  "no_controller_changes": true
+}

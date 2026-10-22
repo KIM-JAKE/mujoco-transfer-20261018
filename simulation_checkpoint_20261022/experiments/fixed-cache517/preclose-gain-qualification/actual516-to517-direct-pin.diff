@@ -1,0 +1,26 @@
+--- actual516/direct_pin_skill.py
++++ actual517/direct_pin_skill.py
+@@ -116,6 +116,8 @@
+     return [(i,offsets[i])for i in order]
+ 
+ def execute(ctx):
++    preclose_gain=float(ctx.get('config',{}).get('pin_preclose_servo_gain',.5))
++    if not np.isfinite(preclose_gain)or not .5<=preclose_gain<=.8:raise ValueError('PIN preclose gain must remain within0.5--0.8; original error and motion envelopes remain mandatory')
+     if ctx.get("config",{}).get("pin_prefer_canonical_pickup_branch") and not ctx.get("config",{}).get("fixed_supply_mode"):
+         raise ValueError("Canonical PIN pickup branch preference requires fixed_supply_mode")
+     HERE=Path(__file__).resolve().parent
+@@ -368,11 +370,11 @@
+             bias_translation=float(np.linalg.norm(C[:3,3]-A[:3,3]));bias_angle=float(np.linalg.norm(log(C[:3,:3]@A[:3,:3].T)))
+             if bias_translation>.002 or bias_angle>.01:raise RuntimeError('Pin holder preclose tracking bias exceeds2mm/.01rad')
+             target=C@np.linalg.inv(A)@desired
+-            target[:3,3]=C[:3,3]+.5*(target[:3,3]-C[:3,3])
+-            target[:3,:3]=exp(.5*log(target[:3,:3]@C[:3,:3].T))@C[:3,:3]
++            target[:3,3]=C[:3,3]+preclose_gain*(target[:3,3]-C[:3,3])
++            target[:3,:3]=exp(preclose_gain*log(target[:3,:3]@C[:3,:3].T))@C[:3,:3]
+             delta_p=float(np.linalg.norm(target[:3,3]-C[:3,3]));delta_r=float(np.linalg.norm(log(target[:3,:3]@C[:3,:3].T)))
+             if delta_p>.002 or delta_r>.05:raise RuntimeError('Pin holder preclose correction exceeds2mm/.05rad per-step envelope')
+-            evidence.update(issued_translation_m=delta_p,issued_rotation_rad=delta_r,encoder_bias_translation_m=bias_translation,encoder_bias_rotation_rad=bias_angle,gain=.5)
++            evidence.update(issued_translation_m=delta_p,issued_rotation_rad=delta_r,encoder_bias_translation_m=bias_translation,encoder_bias_rotation_rad=bias_angle,gain=preclose_gain)
+             line(A,target,.3,'pin_holder_regrasp_alignment');wait(.05,'pin_holder_preclose_settle')
+     def release_inside_existing_holder(label):
+         Hactual=arm.fk(art.get_dof_positions()[0,ids]);current_opening=float(art.get_dof_positions()[0,fi].sum())

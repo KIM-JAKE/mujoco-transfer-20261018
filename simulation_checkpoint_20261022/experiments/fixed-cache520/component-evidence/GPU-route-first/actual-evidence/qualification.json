@@ -1,0 +1,135 @@
+{
+  "run": "native-roas-table-fixed-front-v520-entry-axis-gpu-pin-component",
+  "full_task_pass": false,
+  "pin_only_component": true,
+  "wall_s": 78.7840687650023,
+  "error": "RuntimeError: Pin RGB-D precision center/axis alignment did not converge; insertion blocked",
+  "GPU_first_flag": true,
+  "actual_helper_AST_exact_staged": true,
+  "early_GPU_cubic_admitted": false,
+  "GPU_route_statistics": {
+    "right": {
+      "queries": 4,
+      "proposals": 1,
+      "CPU_fallbacks": 3,
+      "last_server_s": 0.17334473505616188,
+      "last_obstacle_boxes": 10,
+      "last_payload": true,
+      "last_wall_s": 0.1786463550524786,
+      "PhysX_rejected_proposals": 1,
+      "last_PhysX_rejection": {
+        "segment": 39,
+        "fraction": 0.1,
+        "collision": {
+          "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm",
+          "actor": "/World/Environment/m80/instance_0670",
+          "collider": "/World/Environment/m80/instance_0670"
+        }
+      },
+      "last_error": "ValueError: No coarse collision-aware GPU route; [] / []"
+    },
+    "left": {
+      "queries": 1,
+      "proposals": 1,
+      "CPU_fallbacks": 0,
+      "last_server_s": 0.17083670408464968,
+      "last_obstacle_boxes": 20,
+      "last_payload": false,
+      "reference_gauge_used": true,
+      "original_arm_model_sha256": "ccf8d9da12a90dd5ff6cfadf7bb6b603f4f640ce23ac7472efb0a553d425903c",
+      "last_wall_s": 0.18588072201237082,
+      "PhysX_verified_continuous_proposals": 1
+    }
+  },
+  "loaded_GPU_no_route_events": [
+    "GPU_ROUTE_CPU_FALLBACK ValueError: No coarse collision-aware GPU route; [] / [] 0.1873565160203725",
+    "GPU_ROUTE_CPU_FALLBACK ValueError: No coarse collision-aware GPU route; [] / [] 0.1665346820373088",
+    "GPU_ROUTE_CPU_FALLBACK ValueError: No coarse collision-aware GPU route; [] / [] 0.1786463550524786"
+  ],
+  "terminal_candidates": [
+    {
+      "reason": "full_nominal_stroke_release_withdraw_approved",
+      "minimum_joint_margin_rad": 0.9504420793533326,
+      "required_joint_margin_rad": 0.03,
+      "stroke_samples": 385,
+      "withdraw_samples": 385,
+      "stroke_geometry_sampling": {
+        "full_issued_samples": 385,
+        "issued_geometry_samples": 57,
+        "first_last_and_float32_extrema_preserved": true,
+        "maximum_retained_joint_step_rad": 0.0037190914154052734
+      },
+      "withdraw_geometry_sampling": {
+        "full_issued_samples": 385,
+        "issued_geometry_samples": 57,
+        "first_last_and_float32_extrema_preserved": true,
+        "maximum_retained_joint_step_rad": 0.0037026405334472656
+      },
+      "all_issued_FR3_array_checks_retained": true,
+      "uses_free_body_poses": false,
+      "robot_encoder_other_arm": true,
+      "actual_execution_not_performed": true,
+      "entry_stage": false,
+      "saved_far_withdrawal_checked": false,
+      "label": "pin_preinsert_carry",
+      "accepted": true
+    },
+    {
+      "reason": "full_nominal_stroke_release_withdraw_approved",
+      "minimum_joint_margin_rad": 0.9467901534136963,
+      "required_joint_margin_rad": 0.03,
+      "stroke_samples": 385,
+      "withdraw_samples": 385,
+      "stroke_geometry_sampling": {
+        "full_issued_samples": 385,
+        "issued_geometry_samples": 55,
+        "first_last_and_float32_extrema_preserved": true,
+        "maximum_retained_joint_step_rad": 0.0037343502044677734
+      },
+      "withdraw_geometry_sampling": {
+        "full_issued_samples": 385,
+        "issued_geometry_samples": 55,
+        "first_last_and_float32_extrema_preserved": true,
+        "maximum_retained_joint_step_rad": 0.0037262439727783203
+      },
+      "all_issued_FR3_array_checks_retained": true,
+      "uses_free_body_poses": false,
+      "robot_encoder_other_arm": true,
+      "actual_execution_not_performed": true,
+      "entry_stage": false,
+      "saved_far_withdrawal_checked": false,
+      "label": "pin_preinsert_carry",
+      "accepted": true
+    }
+  ],
+  "selected_hardcoded_robot_hint": true,
+  "selected_shortcut_nodes": 33,
+  "issued_carry_controls": 2243,
+  "issued_carry_physical_s": 4.672916666666667,
+  "issued_carry_first_last_wall_s": [
+    38.32283487205859,
+    45.548519299016334
+  ],
+  "issued_carry_wall_span_s": 7.225684426957741,
+  "last_lift_confirm_to_firstcarry_wall_s": 19.876597856055014,
+  "final_original_alignment": {
+    "iteration": 15,
+    "radial_error_m": 0.00015133615134513994,
+    "axis_error_rad": 5.3943026784085875e-06,
+    "radial_limit_m": 7.5e-05,
+    "axis_limit_rad": 0.003,
+    "maximum_shaft_axis_radial_error_m": 0.00015135501941207266,
+    "maximum_shaft_axis_radial_limit_m": 0.00015,
+    "source": "Fresh RGB-D end circle/plane plus encoder FK",
+    "uses_free_body_poses": false,
+    "entry_stage": true,
+    "original_shared_alignment_budget": 16
+  },
+  "source_sha256": {
+    "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v520-entry-axis-gpu-pin-component/code_snapshot/direct_pin_skill.py": "9b3f492c18bc0fe59614aeb2a0d9aec04e3ae8c11b23a64d3fa79ab6e639fa5a",
+    "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v520-entry-axis-gpu-pin-component/pipeline-results.json": "d9cf0d0d203ed9adb11f95b442e9636a11b592eb35560f8317da1388afcbeb7e",
+    "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v520-entry-axis-gpu-pin-component/trial-config.json": "050dfdf0fd338227d91f3fd7d18086499a1942f5f787901135e35b6e39488911",
+    "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v520-entry-axis-gpu-pin-component/executed-actuator-commands.npz": "fced0a45f4ed86b77506c5622166f8bd602f73bd3f27dd502b09b65290ed6931"
+  },
+  "qualification": "GPU branch exercised but no early proposal; no latency benefit or physical target/force/gate changes established. Runtime/source/queues untouched by this review."
+}
