@@ -1,0 +1,126 @@
+{
+  "run": "native-roas-table-fixed-front-v432-phase-offset-paired-native-all3",
+  "full_task_pass": true,
+  "wall_s": 302.65912084898446,
+  "controller_physics_s": 48.314583333330475,
+  "actual_physics_CPU_s": 93.24815201293677,
+  "controller_CPU_s": 7.032761150971055,
+  "no_command_gaps_over50ms_s": 201.29903071571607,
+  "regular_command_intervals_s": 101.32465148030315,
+  "highest_no_command_pockets": [
+    {
+      "no_command_gap_s": 54.766809214954264,
+      "first_command_wall_s": 219.96438712999225,
+      "phase": "ring1_right_carry_to_preinsert"
+    },
+    {
+      "no_command_gap_s": 46.74509343493264,
+      "first_command_wall_s": 105.39122498396318,
+      "phase": "paired_LEFT_lead_before_RIGHT_pickup"
+    },
+    {
+      "no_command_gap_s": 19.300091431941837,
+      "first_command_wall_s": 300.7119156999979,
+      "phase": "final_empty_RIGHT_clearance_retreat"
+    },
+    {
+      "no_command_gap_s": 17.178982293000445,
+      "first_command_wall_s": 37.45621769397985,
+      "phase": "ring2_carry_to_handover"
+    },
+    {
+      "no_command_gap_s": 7.678583213943057,
+      "first_command_wall_s": 267.68067723698914,
+      "phase": "pin_tail_direct_carry_to_preinsert"
+    },
+    {
+      "no_command_gap_s": 5.591476825997233,
+      "first_command_wall_s": 6.604501796071418,
+      "phase": "loose_ring_pregrasp"
+    },
+    {
+      "no_command_gap_s": 4.868802334996872,
+      "first_command_wall_s": 127.82571539503988,
+      "phase": "paired_receiver_finishes_before_new_donor_contact"
+    }
+  ],
+  "largest_physical_phase_durations": [
+    {
+      "phase": "paired_receiver_finishes_before_new_donor_contact",
+      "physics_s": 4.647916666666666
+    },
+    {
+      "phase": "loose_ring_pregrasp",
+      "physics_s": 4.25625
+    },
+    {
+      "phase": "pin_tail_direct_carry_to_preinsert",
+      "physics_s": 3.254166666666667
+    },
+    {
+      "phase": "ring1_right_carry_to_preinsert",
+      "physics_s": 2.9479166666666665
+    },
+    {
+      "phase": "loose_ring_descend_prior_contact",
+      "physics_s": 2.941666666666667
+    },
+    {
+      "phase": "ring2_carry_to_handover",
+      "physics_s": 2.225
+    },
+    {
+      "phase": "pin_tail_approach",
+      "physics_s": 1.6583333333333334
+    },
+    {
+      "phase": "loose_ring_descend_prior_free",
+      "physics_s": 1.64375
+    }
+  ],
+  "physical_corner_stop_motions": [
+    {
+      "event": "checked_joint_edge_execution",
+      "side": "left",
+      "duration_s": 0.9895833333333334,
+      "corner_stops": 10
+    },
+    {
+      "event": "checked_joint_edge_execution",
+      "side": "left",
+      "duration_s": 1.5,
+      "corner_stops": 2
+    },
+    {
+      "event": "right_ring_checked_executed_curve",
+      "label": "carry_to_preinsert",
+      "duration_s": 2.9479166666666665,
+      "corner_stops": 3
+    },
+    {
+      "event": "right_ring_checked_executed_curve",
+      "label": "preinsert_visual_correction",
+      "duration_s": 0.44375,
+      "corner_stops": 7
+    },
+    {
+      "event": "right_ring_checked_executed_curve",
+      "label": "axial_insert",
+      "duration_s": 0.80625,
+      "corner_stops": 7
+    },
+    {
+      "event": "right_ring_checked_executed_curve",
+      "label": "world_down_withdraw",
+      "duration_s": 1.0041666666666667,
+      "corner_stops": 7
+    },
+    {
+      "event": "checked_joint_edge_execution",
+      "side": "right",
+      "duration_s": 1.0354166666666667,
+      "corner_stops": 1
+    }
+  ],
+  "timing_caveat": "Physical phase durations include sensing and settling loops; camera and CPU costs overlap. No-command gaps identify places to profile, not an exhaustive attribution. No20s or hardware claim."
+}
