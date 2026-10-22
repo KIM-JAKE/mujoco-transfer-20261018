@@ -15,3 +15,7 @@
 ![실제 고정 배치 센서 영상](simulation_checkpoint_20261022/experiments/fixed-front430/actual-fixed-supply-RGBD.png)
 
 이 연구 checkpoint는 서버 CAD·Isaac·GPU 서비스가 필요합니다. 기존 [현장 패키지](FIELD_RGBD_20261022.md)는 별도의 실험용 RGB-D/실제 SDK 도구이며, 최신 동시 정책이 실기에 모두 포팅됐다는 뜻이 아닙니다. 현장은 보정·실제 연결·단품 시운전이 필요합니다.
+
+## 실제 RGB-D 카메라 입력 도구
+
+[고정 배치용 RealSense 인식 어댑터](fixed_front_rgbd_adapter_20261022/README.md)는 기존608 패키지를 별도 폴더로 복제한 뒤 설치합니다. 시뮬레이션에서 쓰던 링 크기·앞뒤·중심·축 검출기를 실제 RGB-D 픽셀·SDK 점군·보정한 외부 파라미터에 연결하는 opt-in 도구입니다. 네 개의 실제432 시뮬 촬영 입력을 설치된 CLI에 넣어 기존 결과와 일치함을 확인했습니다. 물리 카메라·로봇 연결 시험이나 전체 조립 성공을 뜻하지 않으며, 이 명령은 로봇·PLC를 움직이지 않습니다. 기존608 실행 파일은 수정하지 않습니다.

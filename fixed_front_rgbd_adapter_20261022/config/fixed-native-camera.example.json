@@ -1,0 +1,73 @@
+{
+  "schema_version": 2,
+  "units": "m",
+  "replay_only": false,
+  "calibration_id": null,
+  "camera_frame": null,
+  "camera_serial": null,
+  "cell_frame": null,
+  "T_cell_camera": null,
+  "measured": {
+    "verified": false,
+    "by": null,
+    "at_utc": null,
+    "method": null,
+    "evidence_file": null
+  },
+  "robots": {
+    "left": {
+      "base_frame": null,
+      "T_cell_base": null
+    },
+    "right": {
+      "base_frame": null,
+      "T_cell_base": null
+    }
+  },
+  "part_robot": {
+    "ring1": "right",
+    "ring2": "right",
+    "pin": "right"
+  },
+  "basket": {
+    "floor_origin_cell_m": null,
+    "basket_to_cell_R": null,
+    "outer_bounds_cell_m": null,
+    "unrecognized_scene_enclosure": null,
+    "measured": {
+      "verified": false,
+      "by": null,
+      "at_utc": null,
+      "method": null,
+      "evidence_file": null
+    },
+    "floor_fit_constraint": null
+  },
+  "held_workspace_bounds_cell_m": null,
+  "pin_holder": {
+    "enabled": false,
+    "T_cell_pin_seed": null,
+    "measured": {
+      "verified": false,
+      "by": null,
+      "at_utc": null,
+      "method": null,
+      "evidence_file": null
+    }
+  },
+  "max_observation_age_s": 0.5,
+  "notes": "No nominal ring poses or ring seeds. Measure named camera/base transforms and basket ROI/floor normal. p_cell=T_cell_camera@p_camera. Signed ring axis comes from current RGB-D tapered-face geometry; axial yaw is unobservable. Optional pin holder seed is fixture measurement, not ring object truth. Template cannot enable live motion.",
+  "residual_occupancy": {
+    "voxel_size_m": 0.008,
+    "depth_margin_m": 0.005,
+    "depth_uncertainty_m": null,
+    "max_voxels": 1000000
+  },
+  "pin_pose_backend": "cad_icp",
+  "fixed_native": {
+    "T_EE_hand": {
+      "left": null,
+      "right": null
+    }
+  }
+}
