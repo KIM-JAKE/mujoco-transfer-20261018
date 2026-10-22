@@ -4,6 +4,8 @@
 
 [기준 위치 정확한 코드·결과](simulation_checkpoint_20261022/experiments/fixed-cache460/README.md) · [기준 위치 실제 영상](simulation_checkpoint_20261022/media/fixed-cache460-nominal-all3-pass-excerpts-1x.mp4) · [서버 실행 방법](simulation_checkpoint_20261022/FIXED_CACHE_RUN.md)
 
+**남은 제한:** 최신3영역 코드의 다른 PLUS 시험462/463은 입구 또는 상대 팔 간섭으로 안전 정지했습니다. 위 성공 기록은 서로 다른 수정 단계의 사례이며, 동일 최신 빌드의 모든 위치에서 안정적으로 된다는 뜻은 아닙니다. [원본 실패와 적용 범위](simulation_checkpoint_20261022/experiments/fixed-cache-entry-failures/README.md).
+
 ## 동작 구조
 
 작업 시작 전 고정 CAD·로봇 모델·클램프 전체 스트로크·보정·허용 파지 범위를 확인해 경로와 검증 결과를 저장합니다. 실행 때 RGB-D로 링의 크기·중심·축·앞뒤를 구하고 집기/진입 구간을 새로 검사해 저장 운반 경로에 연결합니다. 작은 링 왼손720개, 큰 링 오른손1415개 명령을 재사용합니다.

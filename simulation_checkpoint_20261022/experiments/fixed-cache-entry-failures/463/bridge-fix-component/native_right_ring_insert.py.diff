@@ -1,0 +1,19 @@
+--- a/native_right_ring_insert.py
++++ b/native_right_ring_insert.py
+@@ -249,6 +249,16 @@
+     if approved.get('saved_canonical_field'):
+         from fixed_saved_executor import execute_carry
+         saved_carry_executed=execute_carry(c,G,query_context,move,step)
++        if not saved_carry_executed:
++            # An archived fixture's carry knots are NOT a current-start
++            # fallback route. Re-run the original complete planner with the
++            # saved-candidate proposal disabled; every guard remains active.
++            saved_state=c.get('fixed_prevalidated_routes')
++            c['fixed_prevalidated_routes']=None
++            try:approved=plan_current_fixture(G,width)
++            finally:c['fixed_prevalidated_routes']=saved_state
++            route=approved.get('carry_route')
++            if route is None:raise RuntimeError('Current-start fallback omitted its checked carry route')
+     if not saved_carry_executed:
+         move(route,.05 if c['config'].get('optimized_motion_timing') else 1.4,'carry_to_preinsert',G=G,smooth=bool(c['config'].get('right_direct_smooth_verified_carry') and approved.get('carry_route_verified_cubic')))
+     goal=np.asarray(c['goals'][part]['P']);clearance=float(approved['preinsert_clearance_m']);pre_position=goal-np.array([0.,0.,clearance])

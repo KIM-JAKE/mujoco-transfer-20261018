@@ -1,0 +1,21 @@
+--- a/fixed_saved_executor.py
++++ b/fixed_saved_executor.py
+@@ -201,7 +201,17 @@
+         return False
+     # This bridge is fully live-checked. Its geometry was changed by vision.
+     if not np.array_equal(c['cmd'][0, ids].astype(np.float32), rows[0].astype(np.float32)):
+-        move([c['cmd'][0, ids].copy(), rows[0]], .05, 'join_saved_carry', G=G)
++        start=c['cmd'][0,ids].copy()
++        # The unchanged current-context planner checks obstacles instead of
++        # assuming a straight joint bridge to an archived entry is reachable.
++        # This proposal still receives move()'s FULL actual/command aperture
++        # and exact retimed-curve admission before its first physical row.
++        with context(G):
++            bridge=checker.route(start,rows[0],float(max(widths)),seconds=3.)
++        if bridge is None:
++            c['planning_diagnostics'].append(dict(event='saved_carry_entry_bridge_unavailable',no_motion_issued=True,original_current_start_planner_required=True))
++            return False
++        move(bridge,.05,'join_saved_carry',G=G,smooth=bool(getattr(bridge,'verified_cubic',False)))
+     actual = c['art'].get_dof_positions()[0]
+     actual_q = actual[ids].copy()
+     widths = np.unique(np.linspace(min(float(actual[fi].sum()), float(c['cmd'][0, fi].sum())),
