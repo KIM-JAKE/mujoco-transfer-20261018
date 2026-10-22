@@ -7,3 +7,5 @@
 이것은 PIN 단독 진단입니다. 링 작업은0회, 링은 원래 공급 위치, 처음부터 설치/부착한 부품은 없으며 full_task_pass는 항상false입니다. 접촉 평가 기록4708개는 제어 입력이 아닙니다. 전체 작업은 유망한 후보가 나온 뒤 다시 검사해야 하며 실제 하드웨어는 미검증입니다.
 
 425개 소스·고정 입력은`exact-source-manifest.json`, 원래 후보 집합·제어 루프 동일성 검사는`yaw-order-qualification`입니다.
+
+실패 뒤 공개 RGB-D/Hand SDK로 선택 자세를 복원하니 실제로는yaw0으로 돌아간 것으로 확인됐습니다(일치 오차 약0.98mrad, yaw180과는 약π). 따라서 이 시험은yaw180 뒤집기를 실제 실행해 실패한 결과가 아닙니다. 분석은498의`pin-component-qualification/actual498499-public-yaw-inference.json`에 보존했습니다.

@@ -1,0 +1,131 @@
+{
+  "run": "native-roas-table-fixed-front-v506-pin-collar-flat-reset-component",
+  "run_path": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v506-pin-collar-flat-reset-component",
+  "result_sha256": "ea71ee2033fe0d902275816cf3297a6a0fad839b452681aa658ce18045e0a610",
+  "frozen_manifest_sha256": "45cd05f9c7b36084bc2add92ea151c24c886e5144f45fbe67af62f28333ac08a",
+  "relevant_frozen_source_files": {
+    "isaac_port/native_hand_layout/roas-table/direct_pin_skill.py": "0f4283442e18b3199bb60c84416a7c54fe4dbb761a6c631a33f184b05ec1b078",
+    "isaac_port/native_hand_layout/roas-table/loose_bin_task.py": "5b848c74c5234672f16881b8d615988e9671a92e3209c9f191941f44970fed61",
+    "isaac_port/native_hand_layout/roas-table/pin_collar_contact_target.py": "3a275ea11ff67e0efffa97132ab3339e9772d78b0236986f0914f33db8cc3d74",
+    "isaac_port/native_hand_layout/roas-table/pin_terminal_geometry.py": "fb63276cf3eeaeaed1c7e1610877973e54ebd699b0b3ba2cee4e956616eeb48d",
+    "isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py": "880b5a71464d1ce8952eac34e5c4e9f085d91600fdfd29d6cc054d3d3b555b14"
+  },
+  "full_task_pass": false,
+  "pin_component_pass": true,
+  "pin_only_component": true,
+  "wall_s": 38.761025378946215,
+  "physics_s": 13.708333333332716,
+  "reset_event_count": 0,
+  "reset_efficacy_qualified": false,
+  "precision_image_count": 5,
+  "original_total_image_budget": 16,
+  "precision_sequence": [
+    {
+      "iteration": 0,
+      "radial_error_m": 0.0002982994127374532,
+      "axis_error_rad": 0.0011240422906302712,
+      "maximum_shaft_axis_radial_error_m": 0.0003134725957405967,
+      "selected_feedback_gain": 0.65
+    },
+    {
+      "iteration": 1,
+      "radial_error_m": 0.0003700482946078188,
+      "axis_error_rad": 0.0008191185933670998,
+      "maximum_shaft_axis_radial_error_m": 0.00037767594808401695,
+      "selected_feedback_gain": 0.42250000000000004
+    },
+    {
+      "iteration": 2,
+      "radial_error_m": 0.00026802889584249704,
+      "axis_error_rad": 0.0005644703010859693,
+      "maximum_shaft_axis_radial_error_m": 0.0002714824530270271,
+      "selected_feedback_gain": 0.42250000000000004
+    },
+    {
+      "iteration": 3,
+      "radial_error_m": 0.0001090635600620246,
+      "axis_error_rad": 0.00040461365635858663,
+      "maximum_shaft_axis_radial_error_m": 0.00010993780551090681,
+      "selected_feedback_gain": 0.65
+    },
+    {
+      "iteration": 4,
+      "radial_error_m": 3.902859990525214e-05,
+      "axis_error_rad": 0.00042525266013665935,
+      "maximum_shaft_axis_radial_error_m": 3.919942791782641e-05,
+      "selected_feedback_gain": null
+    }
+  ],
+  "qualified_final_precision": {
+    "radial_error_m": 3.902859990525214e-05,
+    "radial_limit_m": 7.5e-05,
+    "axis_error_rad": 0.00042525266013665935,
+    "axis_limit_rad": 0.003,
+    "maximum_shaft_axis_radial_error_m": 3.919942791782641e-05,
+    "maximum_shaft_axis_radial_limit_m": 0.00015
+  },
+  "postcarry_max_center_drift_m": 4.402313971642966e-05,
+  "postcarry_max_axis_drift_rad": 0.0005141671292334343,
+  "postcarry_confirmations": 5,
+  "command_limit_audit": {
+    "samples": 6580,
+    "velocity_fraction_of_95_percent_PBV": 0.8626353485431103,
+    "max_acceleration_rad_s2": 8.89892578125,
+    "max_jerk_rad_s3": 1792.96875,
+    "acceleration_limit_rad_s2": 9.5,
+    "jerk_limit_rad_s3": 4750,
+    "command_limit_checks": true,
+    "complete_issued_field_checked_at_end": true,
+    "validated_sample_count": 6580
+  },
+  "actual_encoder_motor_audit": {
+    "samples": 6580,
+    "max_fraction_of_95_percent_PBV": 0.8589748575707925,
+    "max_finger_fraction_of_47p5_mm_s": 0.6736985162684792,
+    "max_coupled_finger_difference_m": 5.541369318962097e-08,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  },
+  "independent_saved_arrays": {
+    "command": {
+      "shape": [
+        6580,
+        18
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    "actual_dof_position": {
+      "shape": [
+        6580,
+        18
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    "actual_dof_velocity": {
+      "shape": [
+        6580,
+        18
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    }
+  },
+  "part_attachments": false,
+  "workpiece_teleports_after_initialization": 0,
+  "native_finger_target_speed_cap_m_s": 0.0475,
+  "finger_effort_caps_n": {
+    "left_per_finger": 30.0,
+    "right_per_finger": 30.0,
+    "left_final_insertion_per_finger": 15.0
+  },
+  "controller_hz": 480,
+  "physics_substeps_per_command": 4,
+  "final_acceptance_checks": null,
+  "caveats": [
+    "Simulation only; no physical-robot or repeatability qualification.",
+    "Reset branch did not execute: no evidence of actual reset efficacy.",
+    "Component506 has stock rings and cannot qualify the whole three-part task."
+  ]
+}

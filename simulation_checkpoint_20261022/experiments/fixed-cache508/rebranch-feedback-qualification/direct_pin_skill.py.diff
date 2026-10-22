@@ -1,0 +1,18 @@
+--- /home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v505-pin-collar-flat-1mm-component/code_snapshot/direct_pin_skill.py
++++ direct_pin_skill.py
+@@ -507,6 +507,15 @@
+                 phase='pin_current_G_terminal_rebranch'
+                 for command in recovery['commands'][1:]:cmd[0,ids]=command;step()
+                 terminal_replans+=1
++                if pin_config.get('pin_reset_feedback_after_rebranch',False):
++                    # A new elbow branch has a different command/SDK pose bias.
++                    # Old-branch errors must not damp the first NEW-branch image.
++                    # This is after complete original field proof AND execution;
++                    # shared image/rebranch budgets and every final gate stay.
++                    previous_feedback_state=dict(gain=float(correction_gain),previous_radial_error_m=previous_radial_error,previous_normalized_error=previous_alignment_score,radial_improvement_streak=int(radial_improvement_streak))
++                    correction_gain=min(.65,float(recovery_ceiling))
++                    previous_radial_error=None;previous_alignment_score=None;radial_improvement_streak=0
++                    report.setdefault('pin_feedback_resets_after_rebranch',[]).append(dict(reason='Fully admitted and executed new IK branch changes encoder tracking bias; old branch error history is inapplicable',rebranch=terminal_replans,alignment_index=alignment_index,previous_state=previous_feedback_state,new_state=dict(gain=correction_gain,previous_radial_error_m=None,previous_normalized_error=None,radial_improvement_streak=0),original_alignment_budget=alignment_budget,remaining_original_images=alignment_budget-alignment_index-1,extra_images_or_motion=0,all_original_precision_and_motor_gates_unchanged=True,uses_free_body_poses=False))
+                 entry=dict(event=phase,wall_s=time.perf_counter()-started,physical_duration_s=(len(recovery['commands'])-1)*DT)
+                 report['events'].append(entry)
+                 report.setdefault('fresh_image_terminal_replans',[]).append(dict(reason=str(rejected),replan=terminal_replans,alignment_index=alignment_index,candidate=recovery['candidate'],timing=recovery['timing'],terminal=recovery['terminal'],original_all_limits_and_collision_checks=True,fresh_precision_RGBD_required_before_insertion=True,extra_alignment_iterations=0,uses_free_body_poses=False))

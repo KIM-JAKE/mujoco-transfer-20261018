@@ -1,0 +1,386 @@
+{
+  "scope": "Read-only recorded public RGB-D and SDK-like joint commands/encoders only. No actor/body truth, GPU jobs, geometry checks or runtime modifications.",
+  "cases_concurrent": true,
+  "records": [
+    {
+      "run": 494,
+      "source_run": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v494-balanced-small-raw-cache-nominal",
+      "full_task_pass": true,
+      "wall_s": 196.6974354549311,
+      "sources": {
+        "pipeline-results.json": "23fd1106fdad3afd3b6d3a64e90323ba540587ce6218b5051185e44207d4bcb5",
+        "executed-actuator-commands.npz": "5ec8b02b780787e358325f415380bee05e5bc8785e35c0460a6c7024509fa3f2",
+        "rgb-observations.json": "ebd192324fb192fa139e62c548ecb643d0cfc1d3f8b2c91fc2d0278c933ede1c"
+      },
+      "public_postlift_confirmations": [
+        {
+          "delivered_wall_s": 166.2524303268874,
+          "capture_wall_s": 165.9723998529371,
+          "TCP_axis_G": [
+            [
+              0.7640808382038692,
+              0.019686906585376644,
+              -0.6448200511761177,
+              -0.0099711759023698
+            ],
+            [
+              4.032494758200602e-05,
+              0.9995327996092854,
+              0.030564372709455414,
+              0.00020530217594836092
+            ],
+            [
+              0.6451205089466393,
+              -0.023379653853779665,
+              0.7637230654642467,
+              0.01207009838708007
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        {
+          "delivered_wall_s": 167.06348586594686,
+          "capture_wall_s": 166.80057553492952,
+          "TCP_axis_G": [
+            [
+              0.7640721411900726,
+              0.019857619796601327,
+              -0.6448251220239727,
+              -0.009973868400963969
+            ],
+            [
+              4.0738967616207186e-05,
+              0.9995246728325318,
+              0.030828991864104323,
+              0.00020059813996303532
+            ],
+            [
+              0.6451308095243584,
+              -0.023581843334101772,
+              0.7637081479645295,
+              0.012067002758000142
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        }
+      ],
+      "collision_hand_body_G": [
+        [
+          0.7640721411900726,
+          0.019857619796601327,
+          -0.6448251220239727,
+          -0.009968903996014819
+        ],
+        [
+          4.0738967616207186e-05,
+          0.9995246728325318,
+          0.030828991864104323,
+          0.00045047930817116827
+        ],
+        [
+          0.6451308095243584,
+          -0.023581843334101772,
+          0.7637081479645295,
+          0.11546110729716662
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "carry": {
+        "first_issued_wall_s": 173.6858148969477,
+        "last_issued_wall_s": 175.7347803559387,
+        "issued_rows": 636,
+        "physical_duration_s": 1.325,
+        "command_start_q": [
+          1.7175837755203247,
+          1.7119203805923462,
+          1.8590810298919678,
+          -1.4762812852859497,
+          2.8494296073913574,
+          4.288756370544434,
+          2.902631998062134
+        ],
+        "command_end_q": [
+          -0.06679946184158325,
+          0.5724492073059082,
+          0.5701119899749756,
+          -1.2709643840789795,
+          1.5132007598876953,
+          2.4866576194763184,
+          1.8146671056747437
+        ],
+        "actual_start_q": [
+          1.7169485092163086,
+          1.7111982107162476,
+          1.859768033027649,
+          -1.4755876064300537,
+          2.8494417667388916,
+          4.289172649383545,
+          2.902594566345215
+        ],
+        "actual_start_width_m": 0.012555601075291634,
+        "command_width_m": 0.009499999694526196,
+        "joint_trajectory_wall_s": 2.048965458991006,
+        "shortcut_nodes": 81,
+        "warm_spline_hint_used": false,
+        "validated_robot_hint_used": false,
+        "direct_joint_edge_used": false,
+        "selected_axial_yaw_deg": 0.0
+      },
+      "timing": {
+        "last_confirmation_to_first_carry_row_s": 6.622329031000845,
+        "final_left_closure_row_wall_s": 170.75380594294984,
+        "post_closure_no_issued_row_gap_s": 2.9320089539978653,
+        "current_other_arm_full_terminal_park_proof_s": 1.7754267619457096,
+        "upper_bound_remaining_transport_planning_retiming_s": 1.1565821920521557,
+        "transport_GPU_IK_s": 0.02977410505991429
+      },
+      "park_performed": false,
+      "pre_transport_terminal_branch": [
+        {
+          "reason": "full_nominal_stroke_release_withdraw_approved",
+          "minimum_joint_margin_rad": 0.9573524540957642,
+          "required_joint_margin_rad": 0.03,
+          "stroke_samples": 385,
+          "withdraw_samples": 385,
+          "stroke_geometry_sampling": {
+            "full_issued_samples": 385,
+            "issued_geometry_samples": 54,
+            "first_last_and_float32_extrema_preserved": true,
+            "maximum_retained_joint_step_rad": 0.003733992576599121
+          },
+          "withdraw_geometry_sampling": {
+            "full_issued_samples": 385,
+            "issued_geometry_samples": 54,
+            "first_last_and_float32_extrema_preserved": true,
+            "maximum_retained_joint_step_rad": 0.0037276744842529297
+          },
+          "all_issued_FR3_array_checks_retained": true,
+          "uses_free_body_poses": false,
+          "robot_encoder_other_arm": true,
+          "actual_execution_not_performed": true,
+          "label": "pin_preinsert_carry",
+          "accepted": true
+        }
+      ],
+      "later_current_G_full_terminal": null
+    },
+    {
+      "run": 495,
+      "source_run": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v495-balanced-small-raw-cache-minus",
+      "full_task_pass": true,
+      "wall_s": 256.0858648510184,
+      "sources": {
+        "pipeline-results.json": "e582c438d56f9d886cb6d965d1ec4101dbac4af4ace19999fc1d812a519eda81",
+        "executed-actuator-commands.npz": "03c853ddbe98192c032fa466d61166d1e61e270c5f562f3dfb4e0185206361a2",
+        "rgb-observations.json": "554cdfb84712286c313c3017cad6314be2e01cc35cc5e04528e6011264308383"
+      },
+      "public_postlift_confirmations": [
+        {
+          "delivered_wall_s": 206.15890568809118,
+          "capture_wall_s": 205.90222847799305,
+          "TCP_axis_G": [
+            [
+              0.7648752259092216,
+              0.02064947437063964,
+              -0.6438474104929933,
+              -0.00990189410738103
+            ],
+            [
+              5.223668891134125e-05,
+              0.9994840983252917,
+              0.032117510274100605,
+              0.00020593671278577936
+            ],
+            [
+              0.6441784582409174,
+              -0.02459952038343275,
+              0.7644795468390634,
+              0.011768390883275831
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        {
+          "delivered_wall_s": 206.9489236570662,
+          "capture_wall_s": 206.6906150020659,
+          "TCP_axis_G": [
+            [
+              0.7627730701681565,
+              0.021093661404785562,
+              -0.6463221339817976,
+              -0.009917290249123842
+            ],
+            [
+              0.00015801969966625553,
+              0.9994617462983262,
+              0.03280537632881251,
+              0.00020824950608399736
+            ],
+            [
+              0.6466662342012448,
+              -0.025125189249849546,
+              0.7623591715255613,
+              0.011757177456654708
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        }
+      ],
+      "collision_hand_body_G": [
+        [
+          0.7627730701681565,
+          0.021093661404785562,
+          -0.6463221339817976,
+          -0.009912016833772646
+        ],
+        [
+          0.00015801969966625553,
+          0.9994617462983262,
+          0.03280537632881251,
+          0.00045811494265857893
+        ],
+        [
+          0.6466662342012448,
+          -0.025125189249849546,
+          0.7623591715255613,
+          0.11515089615934225
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "carry": {
+        "first_issued_wall_s": 216.79550632508472,
+        "last_issued_wall_s": 221.80545322806574,
+        "issued_rows": 920,
+        "physical_duration_s": 1.9166666666666667,
+        "command_start_q": [
+          1.7289971113204956,
+          1.7477551698684692,
+          1.9030276536941528,
+          -1.4797567129135132,
+          2.792926073074341,
+          4.298080921173096,
+          2.943878173828125
+        ],
+        "command_end_q": [
+          -0.296052485704422,
+          0.7034758925437927,
+          0.9802120923995972,
+          -1.2835769653320312,
+          1.2314345836639404,
+          2.647798538208008,
+          1.8571715354919434
+        ],
+        "actual_start_q": [
+          1.7283153533935547,
+          1.7470287084579468,
+          1.9037433862686157,
+          -1.4790977239608765,
+          2.7929863929748535,
+          4.298407077789307,
+          2.9436607360839844
+        ],
+        "actual_start_width_m": 0.012555839493870735,
+        "command_width_m": 0.009499999694526196,
+        "joint_trajectory_wall_s": 5.009946902981028,
+        "shortcut_nodes": 4,
+        "warm_spline_hint_used": false,
+        "validated_robot_hint_used": false,
+        "direct_joint_edge_used": false,
+        "selected_axial_yaw_deg": 0.0
+      },
+      "timing": {
+        "last_confirmation_to_first_carry_row_s": 9.846582668018527,
+        "final_left_closure_row_wall_s": 210.41205708601046,
+        "post_closure_no_issued_row_gap_s": 6.3834492390742525,
+        "current_other_arm_full_terminal_park_proof_s": 1.9629850450437516,
+        "upper_bound_remaining_transport_planning_retiming_s": 4.420464194030501,
+        "transport_GPU_IK_s": 0.02963744301814586
+      },
+      "park_performed": false,
+      "pre_transport_terminal_branch": [
+        {
+          "reason": "full_nominal_stroke_release_withdraw_approved",
+          "minimum_joint_margin_rad": 0.9751451558169556,
+          "required_joint_margin_rad": 0.03,
+          "stroke_samples": 385,
+          "withdraw_samples": 385,
+          "stroke_geometry_sampling": {
+            "full_issued_samples": 385,
+            "issued_geometry_samples": 53,
+            "first_last_and_float32_extrema_preserved": true,
+            "maximum_retained_joint_step_rad": 0.003740668296813965
+          },
+          "withdraw_geometry_sampling": {
+            "full_issued_samples": 385,
+            "issued_geometry_samples": 53,
+            "first_last_and_float32_extrema_preserved": true,
+            "maximum_retained_joint_step_rad": 0.0037044286727905273
+          },
+          "all_issued_FR3_array_checks_retained": true,
+          "uses_free_body_poses": false,
+          "robot_encoder_other_arm": true,
+          "actual_execution_not_performed": true,
+          "label": "pin_preinsert_carry",
+          "accepted": true
+        }
+      ],
+      "later_current_G_full_terminal": null
+    }
+  ],
+  "comparison": {
+    "full_collision_G_translation_difference_m": 0.00031547646849215477,
+    "full_collision_G_rotation_difference_rad": 0.002823068616166769,
+    "public_signed_axis_difference_rad": 0.002822566753245193,
+    "carry_start_max_joint_difference_rad": 0.0565035343170166,
+    "carry_end_max_joint_difference_rad": 0.4101001024246216
+  },
+  "interpretation": {
+    "candidate": "Prevalidated fixed PIN middle with fresh fully checked entry and exit bridges; exact-domain original payload model, static/own certificates only.",
+    "measured_gain": false,
+    "planning_upper_bound_only": true,
+    "admission_not_tested": true,
+    "geometry_not_qualified": true,
+    "terminal_joint_margin_rad": 0.03,
+    "preinsert_axis_gate_rad": 0.003,
+    "all_terminal_full_stroke_checks_retained": true,
+    "hardware_tested": false
+  }
+}

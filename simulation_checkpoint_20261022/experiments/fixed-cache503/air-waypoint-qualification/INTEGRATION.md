@@ -1,0 +1,7 @@
+Experimental tangent-direction flip at EXISTING free-space waypoint
+
+Narrow direct_pin_skill.py.diff against419sourcewithparallel/tailtargetandfixtureyawfeatures; no other files. Newwhitelistflag pin_tangent_flip_air_waypoint=true. No newmodule. For firstcomparison ORIGINALtilted+3 target:pin_tail_flat_contact_target=true,pin_parallel_tail_contact_target=false; for originalcollar leavebothtargetflagsfalse. ParallelG500/501hasNOyaw0fixtureadmissionandmustnotbeusedasthisbaseline.
+
+The existing FREEpartmidpoint[-.10,-.25,1.35] getsRgoal@Rz180; fixtureRgoal andpre/finish targets remain EXACToriginalyaw0. Directshortcutdisabled ONLY underflag; executeTWOoriginalguardedtransports viaunchangedoriginalendpoint/route/fullnative/retimedissuedloop andmotioncaps/labels. No object/G changes, speed/force/physics/thresholdchanges. Original finalfreshpostcarryRGBD/SDK2mm/50mrad holdgate remainsmandatory. No additional intermediateimage inthisminimumscope; originaltwo-segmentheldG assumptionsunchanged. Fullguard mayrejectairIK/path. FirstacceptedpincomponentdoesNOTestablishwhole3parttask.
+
+Geometryhypothesisonly: old actualendpointflipaboutclosingY≈.999996projection; tangentairorientation intendedotheraxisbeforefinalaxialspin. Actualjointpath maystillcontainclosingYrotation; diagnoseactualSDKcurve/contacttelemetry/retention. Sameorigintwo-segmentforloopASTidentical; all originalmotion/line/observe/endpoint/encoderfunctionsASTidentical; waypoint/fixture/defaultGmathtestsPASS. No actual physicalvalidation yet.

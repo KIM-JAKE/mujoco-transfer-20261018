@@ -1,0 +1,99 @@
+{
+  "pass": true,
+  "base_sha256": "5b848c74c5234672f16881b8d615988e9671a92e3209c9f191941f44970fed61",
+  "new_sha256": "ccb9d621b1e0d4c40a0d8008cca124197f248bd9065b64b1fd3ed80e98ef7c4c",
+  "request_assignment_AST_identical": true,
+  "flag_off_matches_original_order_and_future": true,
+  "same_single_request_args_and_count": true,
+  "failed_original_binding_leaves_no_deferred_future": true,
+  "original_wait_observe_and_loaded_binding_calls_identical": true,
+  "no_actual_physics_or_GPU_test_run": true,
+  "branch_cases": [
+    {
+      "flag": false,
+      "first_part": false,
+      "one_ring_only": false,
+      "requests": 0,
+      "lifecycle": [
+        "required_receiver_stable_hold_RGBD",
+        "original_LoadedContactAperture_completed"
+      ]
+    },
+    {
+      "flag": true,
+      "first_part": false,
+      "one_ring_only": false,
+      "requests": 0,
+      "lifecycle": [
+        "required_receiver_stable_hold_RGBD",
+        "original_LoadedContactAperture_completed"
+      ]
+    },
+    {
+      "flag": false,
+      "first_part": false,
+      "one_ring_only": true,
+      "requests": 0,
+      "lifecycle": [
+        "required_receiver_stable_hold_RGBD",
+        "original_LoadedContactAperture_completed"
+      ]
+    },
+    {
+      "flag": true,
+      "first_part": false,
+      "one_ring_only": true,
+      "requests": 0,
+      "lifecycle": [
+        "required_receiver_stable_hold_RGBD",
+        "original_LoadedContactAperture_completed"
+      ]
+    },
+    {
+      "flag": false,
+      "first_part": true,
+      "one_ring_only": false,
+      "requests": 1,
+      "lifecycle": [
+        "next_initial_requested",
+        "required_receiver_stable_hold_RGBD",
+        "original_LoadedContactAperture_completed"
+      ]
+    },
+    {
+      "flag": true,
+      "first_part": true,
+      "one_ring_only": false,
+      "requests": 1,
+      "lifecycle": [
+        "required_receiver_stable_hold_RGBD",
+        "original_LoadedContactAperture_completed",
+        "next_initial_requested"
+      ]
+    },
+    {
+      "flag": false,
+      "first_part": true,
+      "one_ring_only": true,
+      "requests": 0,
+      "lifecycle": [
+        "required_receiver_stable_hold_RGBD",
+        "original_LoadedContactAperture_completed"
+      ]
+    },
+    {
+      "flag": true,
+      "first_part": true,
+      "one_ring_only": true,
+      "requests": 0,
+      "lifecycle": [
+        "required_receiver_stable_hold_RGBD",
+        "original_LoadedContactAperture_completed"
+      ]
+    }
+  ],
+  "failure_case": [
+    "required_receiver_stable_hold_RGBD",
+    "original_binding_rejected"
+  ]
+}

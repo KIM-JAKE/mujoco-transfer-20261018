@@ -1,0 +1,129 @@
+{
+  "source_run": "native-roas-table-fixed-front-v507-collar-flat-reset-nominal",
+  "source_full_task_pass": true,
+  "vision_end_to_end_pass": true,
+  "source_state": "completed_over_budget",
+  "end_to_end_under20": false,
+  "end_to_end_under30": false,
+  "display_scope": "ALL3 PHYSX PASS | TIME TARGET NOT MET | HARDWARE UNTESTED",
+  "source_physics_elapsed_s": 48.937499999996575,
+  "source_total_wall_s": 190.70568123098928,
+  "segments": [
+    {
+      "start_wall_s": 4.6,
+      "end_wall_s": 15.8,
+      "part": "ring2",
+      "label": "SMALL: native pickup, close and supported lift"
+    },
+    {
+      "start_wall_s": 24.0,
+      "end_wall_s": 29.5,
+      "part": "ring2",
+      "label": "SMALL: carry to handover"
+    },
+    {
+      "start_wall_s": 34.2,
+      "end_wall_s": 45.9,
+      "part": "ring2",
+      "label": "SMALL: fresh RGB-D feedback and native handover"
+    },
+    {
+      "start_wall_s": 68.4,
+      "end_wall_s": 74.2,
+      "part": "ring2",
+      "label": "Paired LEFT advance / RIGHT LARGE approach"
+    },
+    {
+      "start_wall_s": 79.5,
+      "end_wall_s": 86.2,
+      "part": "ring1",
+      "label": "LARGE: native close, supported breakaway and lift"
+    },
+    {
+      "start_wall_s": 90.1,
+      "end_wall_s": 99.4,
+      "part": "ring2",
+      "label": "LEFT SMALL: fresh alignment, insertion and release"
+    },
+    {
+      "start_wall_s": 107.9,
+      "end_wall_s": 109.8,
+      "part": "ring2",
+      "label": "LEFT SMALL: withdrawal"
+    },
+    {
+      "start_wall_s": 124.5,
+      "end_wall_s": 131.6,
+      "part": "ring1",
+      "label": "RIGHT LARGE: admitted stored carry to preinsert"
+    },
+    {
+      "start_wall_s": 133.0,
+      "end_wall_s": 145.1,
+      "part": "ring1",
+      "label": "LARGE: fresh alignment, insertion, release and withdrawal"
+    },
+    {
+      "start_wall_s": 147.5,
+      "end_wall_s": 154.4,
+      "part": "pin",
+      "label": "PIN: holder pickup, lift and fresh native-hold confirmation"
+    },
+    {
+      "start_wall_s": 162.7,
+      "end_wall_s": 165.5,
+      "part": "pin",
+      "label": "PIN: actual carry to preinsert"
+    },
+    {
+      "start_wall_s": 166.6,
+      "end_wall_s": 176.7,
+      "part": "pin",
+      "label": "PIN: fresh RGB-D bounded precision corrections"
+    },
+    {
+      "start_wall_s": 183.3,
+      "end_wall_s": 190.70568123098928,
+      "part": "pin",
+      "label": "PIN: axial insertion, release and final all3 retention"
+    }
+  ],
+  "speed_multiplier": 1.0,
+  "wall_clock_replay": true,
+  "explicit_cut_cards": true,
+  "frame_count": 1082,
+  "cut_frames": 96,
+  "video_duration_s": 108.2,
+  "fps": 10,
+  "renderer": "Warp GPU ray camera of original CAD, notRTX",
+  "all_dynamic_bodies_replayed": true,
+  "render_only": true,
+  "new_physics_steps": 0,
+  "actor_poses_used_for_rendering_only": true,
+  "hardware_tested": false,
+  "source_case": "507 nominal ONLY; not a three-case qualification",
+  "three_case_qualified": false,
+  "source_authoritative_files_SHA256": {
+    "pipeline-results.json": "87eaf3ec97ce4f53253b2c30ffa9000c65cc17a5ca77e25d3dcc34d69ba7aed9",
+    "physx-sequence-trace.npz": "032b75992fdc946923a77e1983b49f69e7726182795c4346e196dc293491d699",
+    "camera-local-models.npz": "2f9fa90c4aab64f4aed7fec31090df1bca2df12aa11a1d25a76e21d7d1946c55",
+    "executed-actuator-commands.npz": "8932c8f0ad2e827972fb8365d46886f96efdec1d3b67702c8696d01427e6662b",
+    "frozen-source-manifest.json": "e896f2d9393a6f0e663ecd967ad922c257720891344212a26c82d6a72efc2d5c",
+    "render_all3_actual_excerpts_with_physics.py": "9e0355dca65f4522fd184393dec82d5ab0f3817eb7692a5264716a8a8413587c",
+    "actual507-excerpts.json": "8c81c2978ebd398c047b0203f3bd40bda57389223e507405e491fc13172c2a30"
+  },
+  "verification": {
+    "full_ffmpeg_decode_pass": true,
+    "ffmpeg_decode_exit_code": 0,
+    "last_PNG_visually_reviewed": true,
+    "actor_pose_usage": "Original recorded34body poses for rendering ONLY; never controller input",
+    "new_physics_steps": 0,
+    "RTX": false
+  },
+  "files": {
+    "video": "fixed-cache507-collar-flat-reset-nominal-all3-pass-excerpts-1x.mp4",
+    "video_SHA256": "7870512548a2686edf8ef149c01d43cef1169bb3396eff917d937e3cd47fd9f7",
+    "last_PNG": "fixed-cache507-collar-flat-reset-nominal-last.png",
+    "last_PNG_SHA256": "75f2c94eb8df317b8fe1312b186fc77783ad5b36743ef09d208b421f057fe120"
+  }
+}

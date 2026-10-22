@@ -1,16 +1,16 @@
 # 고정 공급 배치 · 저장 경로와 RGB-D 보정
 
-**저장 운반 경로 + RGB-D 집기/진입 보정을 구현했고, 같은 최신 코드로 세 고정 배치에서 링2개·핀1개 전체 작업을 통과했습니다. 전체 대기시간 대폭 감소와20/30초 목표는 아직 미달입니다. 실제 FR3 전체 실행은 미검증입니다.**
+**저장 운반 경로 + RGB-D 집기/진입 보정을 구현했고, 동일 코드493–495로 세 고정 배치에서 링2개·핀1개 전체 작업을 통과했습니다. 전체 대기시간 대폭 감소와20/30초 목표는 아직 미달입니다. 실제 FR3 전체 실행은 미검증입니다.**
 
-| 최신 시험 | 공급 위치 | 촬영·인식·계산부터 고정 유지 확인까지 |
+| 마지막 세 배치 통과 빌드 | 공급 위치 | 촬영·인식·계산부터 고정 유지 확인까지 |
 |---|---|---:|
 |[494](simulation_checkpoint_20261022/experiments/fixed-cache494/README.md)|기준 위치|196.70초 · 전체PASS|
 |[493](simulation_checkpoint_20261022/experiments/fixed-cache493/README.md)|큰 링(+10,−10)mm/작은 링(−10,+10)mm|212.54초 · 전체PASS|
 |[495](simulation_checkpoint_20261022/experiments/fixed-cache495/README.md)|큰 링(−10,+10)mm/작은 링(+10,−10)mm|256.09초 · 전체PASS|
 
-416개 Python/423개 소스·고정 입력의 SHA-256이 같은 빌드입니다.493은 단독,494/495는 GPU2·3 작업자에서 병렬로 실행했고 원래 센서/검사 제한을 유지했습니다. 전용 속도 벤치마크가 아니며 세 사례가 모든 자세·반복 성공률을 증명하지 않습니다. 초기40mrad 기울기는 원래3초 물리 정착 중 달라집니다. 무작위 바구니 적층 시험은 아닙니다.495는 이전491의232.29초보다 길어 모든 경우가 빨라졌다고 주장하지 않습니다.
+위493–495는416개 Python/423개 소스·고정 입력의 SHA-256이 같은 빌드입니다.493은 단독,494/495는 GPU2·3 작업자에서 병렬로 실행했고 원래 센서/검사 제한을 유지했습니다. 전용 속도 벤치마크가 아니며 세 사례가 모든 자세·반복 성공률을 증명하지 않습니다. 초기40mrad 기울기는 원래3초 물리 정착 중 달라집니다. 무작위 바구니 적층 시험은 아닙니다.495는 이전491의232.29초보다 길어 모든 경우가 빨라졌다고 주장하지 않습니다.
 
-[동일 최신 코드 세 배치 감사·해시](simulation_checkpoint_20261022/component-evidence/fixed493-495-same-source-audit/SAME_SOURCE_493_495.md) · [최신 기준 코드494](simulation_checkpoint_20261022/experiments/fixed-cache494/README.md) · [실패 배치를 수정한493 코드·접촉 근거](simulation_checkpoint_20261022/experiments/fixed-cache493/README.md) · [493 PLUS 실제 성공 영상](simulation_checkpoint_20261022/media/fixed-cache493-balanced-small-plus-all3-pass-excerpts-1x.mp4) · [서버 실행 방법](simulation_checkpoint_20261022/FIXED_CACHE_RUN.md)
+[493–495 동일 코드 세 배치 감사·해시](simulation_checkpoint_20261022/component-evidence/fixed493-495-same-source-audit/SAME_SOURCE_493_495.md) · [기본 기준 코드494](simulation_checkpoint_20261022/experiments/fixed-cache494/README.md) · [실패 배치를 수정한493 코드·접촉 근거](simulation_checkpoint_20261022/experiments/fixed-cache493/README.md) · [493 PLUS 실제 성공 영상](simulation_checkpoint_20261022/media/fixed-cache493-balanced-small-plus-all3-pass-excerpts-1x.mp4) · [서버 실행 방법](simulation_checkpoint_20261022/FIXED_CACHE_RUN.md)
 
 고정 운반 명령과 조건부 검증 결과를 저장하고, 실행 때 RGB-D로 큰/작은 링의 중심·축·앞뒤를 구해 바뀐 집기/진입 구간을 새로 검사합니다. **현재 반대 팔, 실제 파지·엔코더·손가락 폭, 이미 삽입한 부품, 접촉, FR3 한도는 계속 확인합니다.** 조건 밖에서는 원래 전체 검사/계획을 실행하거나 이동 전에 정지합니다. 실행 중 agent 호출은 없습니다. 작은 링 공여손과 큰 링 운반 저장 경로는493–495 모두 사용했습니다. 작은 링 왼손720명령은494/495에서 재사용했고,493에서는 현재 오른팔과 간섭해 원래 검사로 새 경로를 계획했습니다. 따라서 모든 배치에서 모든 운반 구간을 재사용한 것은 아닙니다.
 
@@ -22,6 +22,24 @@
 
 이번 결과는 Isaac Sim입니다. [현장 SDK 온보딩](FIELD_RGBD_20261022.md)은 별도 실험용 패키지이며 최신 시뮬 정책 전체가 실제 SDK에서 포팅·검증됐다는 뜻은 아닙니다. 실제 카메라/로봇/지그 보정·클램프/그리퍼·충돌 형상의 차이는 아래 현장 차이 항목을 확인하세요.
 
+## 최신 실험 결과 · 새 빌드 전체 안정성 미달
+
+|420개 Python/427개 소스·입력 동일 빌드|결과|촬영·인식·계산 포함|
+|---|---|---:|
+|[507 기준 배치](simulation_checkpoint_20261022/experiments/fixed-cache507/README.md)|세 부품 전체PASS|190.71초|
+|[508 PLUS](simulation_checkpoint_20261022/experiments/fixed-cache508/README.md)|PIN 정밀 기준 미달·전체FAIL|251.28초까지 실패|
+|[509 MINUS](simulation_checkpoint_20261022/experiments/fixed-cache509/README.md)|세 부품 전체PASS|202.62초|
+
+이전 기본 체크포인트494는 유지합니다. 새1mm 실제 칼라 파지는 PIN단독506/전체507·509에서 통과했지만508은 실패해 세 배치·반복 안정성을 검증하지 못했습니다. 재분기 후 보정 이력 초기화 코드도 시험했지만 성공 실행에서는 재분기가 없어 실제0회 적용됐습니다. 이 기능의 물리 효과를 입증한 것이 아닙니다.
+
+[507 실제 기록 영상](media/fixed-cache507-collar-flat-reset-nominal-all3-pass-excerpts-1x.mp4)은34개 바디 기록을 사용한 Warp 렌더링이며RTX가 아닙니다. 동작은원래wall1배속, 긴 대기는 명시적CUT이고 원래 전체190.71초·물리48.94초를 계속 표시합니다.20/30초 및 대기시간 대폭 감소 목표는 아직 미달이며 실제 하드웨어는 미검증입니다.
+
+## 핀 자세 분기와 촬영 대기 수정
+
+[510 PLUS](simulation_checkpoint_20261022/experiments/fixed-cache510/README.md)는 같은 RGB-D 집기 목표에서 기존에 저장한 핀 집기 관절 분기를 먼저 시도해 전체212.11초에 통과했습니다. 후보마다 기존 충돌·현재 양팔·FR3 검사를 유지하고, 막히면 원래 새 계획으로 돌아갑니다. [511 기준 배치](simulation_checkpoint_20261022/experiments/fixed-cache511/README.md)는 핀 집기 전에 작은 링 파지 확인 영상의 나이가 기존250ms 기준을 넘어 중단했습니다.
+
+511에서는 다음 링 미리 촬영이 현재 파지 확인 촬영을1.006초 막았습니다. 같은 촬영 요청을 현재 파지 확인 뒤로 옮긴 수정본은512 기준 배치214.49초,513 PLUS209.70초에 세 부품 전체를 완료했습니다.514 MINUS는 시험 중입니다. 촬영 수·오차 기준·힘·속도는 늘리거나 완화하지 않았습니다. 512/513의 물리 계산 자체는 각각103.75/98.17초를 차지합니다. 이 국소 대기 수정으로 전체 시간이 크게 줄었다고 주장하지 않습니다.
+
 ## 추가 신뢰성 진단
 
 [496 기준 정책 재시험](simulation_checkpoint_20261022/experiments/fixed-cache496/README.md)은 접촉 시간 계측만 추가했으나 핀 정밀 정렬16회 관측 예산에 수렴하지 않아189.28초에 전체FAIL로 중단했습니다. [497 핀3mm 파지 변경 후보](simulation_checkpoint_20261022/experiments/fixed-cache497/README.md)도 운반 뒤 원래 파지 유지 기준을 넘어197.40초에 전체FAIL입니다. 앞의493–495 세 통과가 반복 안정성을 입증하지 않으며, 새 후보는 기본 성공 체크포인트로 승격하지 않았습니다.
@@ -31,6 +49,10 @@
 [현재 설정 PIN 단독 진단498](simulation_checkpoint_20261022/experiments/fixed-cache498/README.md)과 [뒤집기 후보 순서 변경499](simulation_checkpoint_20261022/experiments/fixed-cache499/README.md)도 원래 운반 뒤 파지 유지 기준에서 정지했습니다. 두 링 재실행을 생략하는 개발 진단이며, 링은 원래 공급 위치에 있고 전체 작업 성공/완료 시간으로 세지 않습니다.
 
 [CPU 물리 스레드 비교](simulation_checkpoint_20261022/component-evidence/fixed-thread-0-vs2/README.md)는 같은2초 파지/리프트 명령에서 요청값0의 물리 계산5.52초,2의31.38초였습니다. 위치·속도·모든34개 물체 변환은 bit 단위로 같았습니다. 서버 전체가 격리된 속도 시험은 아니며 일부 다른 준비 작업과 겹쳤습니다. 더 느린 후보를 채택하지 않고 기존0 설정을 유지했습니다.
+
+[축 평행 파지500](simulation_checkpoint_20261022/experiments/fixed-cache500/README.md)·[501](simulation_checkpoint_20261022/experiments/fixed-cache501/README.md)은 집기/리프트 뒤 원래 터미널 기하 검사에서 정지했습니다. [자유 공간 경유502](simulation_checkpoint_20261022/experiments/fixed-cache502/README.md)는 실제 운반 뒤 유지 기준 미달, [503](simulation_checkpoint_20261022/experiments/fixed-cache503/README.md)은 경유 경로가 없어 이동 전 정지했습니다. 모두 PIN 단독 진단이며 전체 성공 버전으로 승격하지 않았습니다.499는 실제로yaw0을 선택했으므로yaw180 뒤집기 실패로 해석하지 않습니다.
+
+[칼라 접촉504](simulation_checkpoint_20261022/experiments/fixed-cache504/README.md)·[505](simulation_checkpoint_20261022/experiments/fixed-cache505/README.md)는 원래 정밀 관측 예산에서 실패했고, [506 PIN 단독](simulation_checkpoint_20261022/experiments/fixed-cache506/README.md)은 통과했습니다. PIN 단독은 링 작업을 수행하지 않아 전체 성공으로 세지 않습니다. [PIN 저장 운반 분석](simulation_checkpoint_20261022/component-evidence/fixed-pin-saved-transport-audit/README.md)은 추가 절감 상한1.16–4.42초만 확인했고 아직 구현하지 않았습니다. 현재 모든 PIN 운반을 저장 경로로 실행한다는 뜻이 아닙니다.
 
 ## 동작 구조
 

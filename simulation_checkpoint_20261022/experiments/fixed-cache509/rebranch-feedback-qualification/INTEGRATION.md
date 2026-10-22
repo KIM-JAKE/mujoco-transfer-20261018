@@ -1,0 +1,9 @@
+Opt-in feedback HISTORY reset after a fully admitted/executed PIN rebranch
+
+Narrow direct_pin_skill.py.diff againstcurrent420source34a827... . Whitelistpin_reset_feedback_after_rebranch=true; no newmodule. No branch/route/physics/grasp/gainlaw changes. Reset ONLY after originalplan_rebranch fullfieldproof, sourceall18actual+commandsnapshot check AND everyoriginalissuedrowhascompleted successfully. Partialstep/prooffault/stalesource propagatewithZEROreset.
+
+Setcorrection_gain=min(.65,recovery_ceiling), where recovery_ceiling is fixed ORIGINALinitialconfiguredgain capped.65. ClearoldpreviousXYerror, normalizedscore andimprovementstreak. This isbranch-localhistoryinvalidation: differentIKchangesactualSDKtrackingbias. Same16TOTALimagebudget/same2rebranchbudget, no loopcounterreset/extraimage/motion/wait. Nextiteration usesoriginalfreshRGBD SDK holdgate, original75um/3mrad/150umacceptance and originalboundedtarget/motorlimits/terminalstrokechecks. Disabledflagpreservesoriginalbehavior. Recordold/newstate+reason+remainingoriginalimages inpin_feedback_resets_after_rebranch.
+
+Concretepublic505cause: originalprecision passediter10(62.68um/.764mrad/65.17umshaft), but freshfullterminalproof blockedlink4↔0216. SamecommandedCartesianHand aftersafealternateIK, yetactualSDKposechanged1.051mm. Gchangedonly10.8um/.395mrad. Newimage998um incorrectlypenalizedagainstoldbranch95um, damping.4615→.3; finalsharedbudgetended87.6um. Existingconfiguredceiling.65 isalreadyallowed; resetnotmotor/speed/force/gatetoleranceincrease. Thiscandidate remainsunqualifieduntilphysicalcomponentandwhole3parttests.
+
+TestsPASS5lifecycles: enabled/disabled/fullprooferror/stale18DOFsource/partialissueerror; exactresetaftercompleted2rows only. Original7motion/sensor/endpoint/feedbacklawfunctionsASTidentical; budget16andindex10unchanged. No livejobs/sourceeditsbysubagent.

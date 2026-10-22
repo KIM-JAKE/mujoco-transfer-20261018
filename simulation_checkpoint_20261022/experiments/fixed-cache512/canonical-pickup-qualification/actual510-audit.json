@@ -1,0 +1,262 @@
+{
+  "run": "native-roas-table-fixed-front-v510-canonical-pin-plus",
+  "run_path": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v510-canonical-pin-plus",
+  "result_sha256": "192f60d908c11e0b2c37811454a15ed7586f18dc24158795aec612926644ba18",
+  "frozen_manifest_sha256": "7727f1ca03bae5d4dedc3a756b4ce238ed87f5ed9e4dac85bedb7d346964e3ee",
+  "relevant_frozen_source_files": {
+    "isaac_port/native_hand_layout/roas-table/direct_pin_skill.py": "5244ae81bd0161080848cfb11e1da864a571d99676f5f4de185bee756f6c48be",
+    "isaac_port/native_hand_layout/roas-table/loose_bin_task.py": "5b848c74c5234672f16881b8d615988e9671a92e3209c9f191941f44970fed61",
+    "isaac_port/native_hand_layout/roas-table/pin_collar_contact_target.py": "3a275ea11ff67e0efffa97132ab3339e9772d78b0236986f0914f33db8cc3d74",
+    "isaac_port/native_hand_layout/roas-table/pin_terminal_geometry.py": "fb63276cf3eeaeaed1c7e1610877973e54ebd699b0b3ba2cee4e956616eeb48d",
+    "isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py": "7d42b512d417ef508aa13261f0d01634b2951fbd17855bb25ec3fd85d5a36920"
+  },
+  "full_task_pass": true,
+  "pin_component_pass": null,
+  "pin_only_component": false,
+  "wall_s": 212.1102003470296,
+  "physics_s": 49.58333333332932,
+  "reset_event_count": 0,
+  "reset_efficacy_qualified": false,
+  "precision_image_count": 3,
+  "original_total_image_budget": 16,
+  "precision_sequence": [
+    {
+      "iteration": 0,
+      "radial_error_m": 0.0007105388216452515,
+      "axis_error_rad": 0.0014880243408183812,
+      "maximum_shaft_axis_radial_error_m": 0.0007299681831555831,
+      "selected_feedback_gain": 0.65
+    },
+    {
+      "iteration": 1,
+      "radial_error_m": 0.00037047398886936705,
+      "axis_error_rad": 0.001835122990141927,
+      "maximum_shaft_axis_radial_error_m": 0.0003931937735616736,
+      "selected_feedback_gain": 0.65
+    },
+    {
+      "iteration": 2,
+      "radial_error_m": 7.47418568585158e-05,
+      "axis_error_rad": 0.0015796047612527241,
+      "maximum_shaft_axis_radial_error_m": 7.633071993887736e-05,
+      "selected_feedback_gain": null
+    }
+  ],
+  "qualified_final_precision": {
+    "radial_error_m": 7.47418568585158e-05,
+    "radial_limit_m": 7.5e-05,
+    "axis_error_rad": 0.0015796047612527241,
+    "axis_limit_rad": 0.003,
+    "maximum_shaft_axis_radial_error_m": 7.633071993887736e-05,
+    "maximum_shaft_axis_radial_limit_m": 0.00015
+  },
+  "postcarry_max_center_drift_m": 6.330153237108959e-05,
+  "postcarry_max_axis_drift_rad": 0.001512500133302566,
+  "postcarry_confirmations": 3,
+  "command_limit_audit": {
+    "samples": 23800,
+    "velocity_fraction_of_95_percent_PBV": 0.9784261688931298,
+    "max_acceleration_rad_s2": 8.843994140625,
+    "max_jerk_rad_s3": 3164.0625,
+    "acceleration_limit_rad_s2": 9.5,
+    "jerk_limit_rad_s3": 4750,
+    "command_limit_checks": true,
+    "complete_issued_field_checked_at_end": true,
+    "validated_sample_count": 23800
+  },
+  "actual_encoder_motor_audit": {
+    "samples": 23800,
+    "max_fraction_of_95_percent_PBV": 0.9779171466635815,
+    "max_finger_fraction_of_47p5_mm_s": 0.6875090693172655,
+    "max_coupled_finger_difference_m": 4.6100467443466187e-08,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  },
+  "independent_saved_arrays": {
+    "command": {
+      "shape": [
+        23800,
+        18
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    "actual_dof_position": {
+      "shape": [
+        23800,
+        18
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    "actual_dof_velocity": {
+      "shape": [
+        23800,
+        18
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    }
+  },
+  "part_attachments": false,
+  "workpiece_teleports_after_initialization": 0,
+  "native_finger_target_speed_cap_m_s": 0.0475,
+  "finger_effort_caps_n": {
+    "left_per_finger": 30.0,
+    "right_per_finger": 30.0,
+    "left_final_insertion_per_finger": 30.0
+  },
+  "controller_hz": 480,
+  "physics_substeps_per_command": 4,
+  "final_acceptance_checks": {
+    "ring1": {
+      "position_error_m": 0.0007812108675785704,
+      "axis_error_rad": 0.005133414675449959
+    },
+    "ring2": {
+      "position_error_m": 0.0002904185959331043,
+      "axis_error_rad": 0.010313301701867653
+    },
+    "pin": {
+      "position_error_m": 0.0007985888599111561,
+      "axis_error_rad": 0.009459967946243852
+    }
+  },
+  "caveats": [
+    "Simulation only; no physical-robot or repeatability qualification.",
+    "Reset branch did not execute: no evidence of actual reset efficacy.",
+    "Component506 has stock rings and cannot qualify the whole three-part task.",
+    "One full PLUS success; NOM511 stopped beforePIN at original SMALL image-age gate. No three-case or repeatability claim."
+  ],
+  "canonical_branch": {
+    "requested": true,
+    "fixed_supply_only": true,
+    "same_fresh_RGBD_target": [
+      [
+        0.7660369371084058,
+        0.0,
+        0.6427965548955381,
+        0.23063694370861196
+      ],
+      [
+        3.905136023417783e-07,
+        -0.9999999999998155,
+        -4.653849519863731e-07,
+        -0.8547312035514507
+      ],
+      [
+        0.6427965548954194,
+        6.075228614211246e-07,
+        -0.766036937108265,
+        1.000797491140873
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "candidates": [
+      {
+        "source": "robot_seeds.pin_tail_approach",
+        "requested_seed": [
+          -1.8032544887750783,
+          -0.041379360636404246,
+          -2.1349274681213797,
+          -2.259977987827435,
+          1.14764249900318,
+          1.3966448473710373,
+          -1.3039344569767632
+        ],
+        "admitted": false,
+        "solved_q": [
+          -1.6684235054078527,
+          -0.34269558712424497,
+          -2.1018789504613573,
+          -2.1201622247213767,
+          1.2073970236086842,
+          1.587163812630249,
+          -1.2225938935763452
+        ],
+        "reason": "original_route_unavailable"
+      },
+      {
+        "source": "catalogue.pickup_q",
+        "requested_seed": [
+          -0.2736159774390373,
+          -0.08840124174097606,
+          2.7092279178931538,
+          -2.400226780387667,
+          1.376797022500781,
+          1.369246330994762,
+          -1.4654667102643635
+        ],
+        "admitted": true,
+        "solved_q": [
+          -0.30206349021044804,
+          -0.2097156819642782,
+          2.7014217687341735,
+          -2.103258590527248,
+          1.4345768647713986,
+          1.2815232185332963,
+          -1.2870404901749821
+        ],
+        "reason": "original_full_route_admitted"
+      },
+      {
+        "source": "catalogue.pre_q",
+        "requested_seed": [
+          -0.3341440959586242,
+          -0.07155828179784735,
+          2.652251668720108,
+          -2.302264870663841,
+          1.3089891503892828,
+          1.2710386129936264,
+          -1.3716438600842027
+        ],
+        "admitted": false,
+        "solved_q": [
+          -0.2995670273477551,
+          -0.20996222793134506,
+          2.6987372362764863,
+          -2.10324576415904,
+          1.4349327004425203,
+          1.2810261756675891,
+          -1.2870977688663074
+        ],
+        "reason": "duplicate_existing_candidate"
+      }
+    ],
+    "fallback_to_original_groups": false,
+    "uses_free_body_poses": false,
+    "selected_source": "catalogue.pickup_q",
+    "selected_pre_q": [
+      -0.30206349021044804,
+      -0.2097156819642782,
+      2.7014217687341735,
+      -2.103258590527248,
+      1.4345768647713986,
+      1.2815232185332963,
+      -1.2870404901749821
+    ],
+    "actual_pre_q": [
+      -0.301879346370697,
+      -0.20984908938407898,
+      2.701594591140747,
+      -2.1025302410125732,
+      1.4346892833709717,
+      1.281954288482666,
+      -1.2871414422988892
+    ],
+    "command_pre_q": [
+      -0.3020634949207306,
+      -0.20971567928791046,
+      2.7014217376708984,
+      -2.1032586097717285,
+      1.4345768690109253,
+      1.2815232276916504,
+      -1.2870404720306396
+    ]
+  }
+}

@@ -1,0 +1,4024 @@
+{
+  "full_task_pass": false,
+  "vision_end_to_end_pass": false,
+  "hardware_tested": false,
+  "part_attachments": false,
+  "workpiece_teleports_after_initialization": 0,
+  "wall_verified_elapsed_s": 54.11062185897026,
+  "simulation_elapsed_s": null,
+  "end_to_end_under20": false,
+  "end_to_end_under30": false,
+  "final_checks": null,
+  "FR3_command_limit_audit": null,
+  "encoder_motor_speed_audit": {
+    "samples": 11419,
+    "max_fraction_of_95_percent_PBV": 0.9789492720913916,
+    "max_finger_fraction_of_47p5_mm_s": 0.6736902814162404,
+    "max_coupled_finger_difference_m": 3.380700945854187e-07,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  },
+  "CPU_operation_profile": {
+    "control_s": 3.325709323049523,
+    "physics_s": 31.726019997615367,
+    "clamp_flush_s": 0.0
+  },
+  "fixed_saved_route_preparation": {
+    "ready": true,
+    "cache_hit": true,
+    "preparation_s": 2.864001252804883,
+    "canonical_rows": 1416,
+    "offline_proof": {
+      "exact_proof_rows_sha256": "c9842bba7468d4d53b98e5c9086393783f69986e67afb3e0c200ee314b0b3257",
+      "exact_proof_rows": 1864,
+      "saved_command_rows": 1416,
+      "proof_resolution_rad": 0.005,
+      "proof_sampling": "original_aperture_path_check._samples_float64_plus_unchanged_commands"
+    },
+    "static_certified_unique_rows": 1864,
+    "world_sha256": "24c82638ff88f8c8e6d9798b733aa7645338fbe8a3a02b20482699753da8b5f4",
+    "model_sha256": "94f04629058e023d90bf2a8adc6467e2c7a57079bbd895fd99ae36f800892cf1",
+    "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/0890ba974e3defc0b128bf533c2475546606dccf8a7ad499322687ab91ebca2c.json",
+    "compile_excluded_from_cycle": true,
+    "only_static_queries_reused": true,
+    "actual_start_counterpart_payload_contact_limits_remain_live": true,
+    "saved_command_limit_audit": {
+      "velocity_fraction_of_95_percent_PBV": 0.8877358580675749,
+      "max_acceleration_rad_s2": 8.5693359375,
+      "max_jerk_rad_s3": 1311.767578125
+    },
+    "own_envelope_preparation": {
+      "ready": true,
+      "cache_hit": true,
+      "preparation_s": 0.005601129960268736,
+      "canonical_rows": 1864,
+      "native_self_certified_unique_rows": 1864,
+      "own_payload_certified_unique_rows": 1864,
+      "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/own-25b665c1bc7214450856762ea71e6818e890ad6b91bd3174f010b88d01a6c938.json",
+      "compile_excluded_from_cycle": true,
+      "placed_opposite_entry_physics_checks_remain_live": true
+    },
+    "independently_compiled_public_G_domains": [
+      {
+        "ready": true,
+        "cache_hit": true,
+        "preparation_s": 0.9609277979470789,
+        "canonical_rows": 1416,
+        "offline_proof": {
+          "exact_proof_rows_sha256": "c9842bba7468d4d53b98e5c9086393783f69986e67afb3e0c200ee314b0b3257",
+          "exact_proof_rows": 1864,
+          "saved_command_rows": 1416,
+          "proof_resolution_rad": 0.005,
+          "proof_sampling": "original_aperture_path_check._samples_float64_plus_unchanged_commands"
+        },
+        "static_certified_unique_rows": 1864,
+        "world_sha256": "24c82638ff88f8c8e6d9798b733aa7645338fbe8a3a02b20482699753da8b5f4",
+        "model_sha256": "94f04629058e023d90bf2a8adc6467e2c7a57079bbd895fd99ae36f800892cf1",
+        "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/0890ba974e3defc0b128bf533c2475546606dccf8a7ad499322687ab91ebca2c.json",
+        "compile_excluded_from_cycle": true,
+        "only_static_queries_reused": true,
+        "actual_start_counterpart_payload_contact_limits_remain_live": true,
+        "saved_command_limit_audit": {
+          "velocity_fraction_of_95_percent_PBV": 0.8877358580675749,
+          "max_acceleration_rad_s2": 8.5693359375,
+          "max_jerk_rad_s3": 1311.767578125
+        },
+        "own_envelope_preparation": {
+          "ready": true,
+          "cache_hit": true,
+          "preparation_s": 0.005601129960268736,
+          "canonical_rows": 1864,
+          "native_self_certified_unique_rows": 1864,
+          "own_payload_certified_unique_rows": 1864,
+          "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/own-25b665c1bc7214450856762ea71e6818e890ad6b91bd3174f010b88d01a6c938.json",
+          "compile_excluded_from_cycle": true,
+          "placed_opposite_entry_physics_checks_remain_live": true
+        },
+        "domain_label": "nominal_public_G"
+      },
+      {
+        "ready": true,
+        "cache_hit": true,
+        "preparation_s": 0.9494502969319001,
+        "canonical_rows": 1416,
+        "offline_proof": {
+          "exact_proof_rows_sha256": "c9842bba7468d4d53b98e5c9086393783f69986e67afb3e0c200ee314b0b3257",
+          "exact_proof_rows": 1864,
+          "saved_command_rows": 1416,
+          "proof_resolution_rad": 0.005,
+          "proof_sampling": "original_aperture_path_check._samples_float64_plus_unchanged_commands"
+        },
+        "static_certified_unique_rows": 1864,
+        "world_sha256": "24c82638ff88f8c8e6d9798b733aa7645338fbe8a3a02b20482699753da8b5f4",
+        "model_sha256": "94f04629058e023d90bf2a8adc6467e2c7a57079bbd895fd99ae36f800892cf1",
+        "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/65418d170db75d4dce42db15d8791c3dbab53d48b856d680a0d2485f74f8c048.json",
+        "compile_excluded_from_cycle": true,
+        "only_static_queries_reused": true,
+        "actual_start_counterpart_payload_contact_limits_remain_live": true,
+        "saved_command_limit_audit": {
+          "velocity_fraction_of_95_percent_PBV": 0.8877358580675749,
+          "max_acceleration_rad_s2": 8.5693359375,
+          "max_jerk_rad_s3": 1311.767578125
+        },
+        "own_envelope_preparation": {
+          "ready": true,
+          "cache_hit": true,
+          "preparation_s": 0.005531726055778563,
+          "canonical_rows": 1864,
+          "native_self_certified_unique_rows": 1864,
+          "own_payload_certified_unique_rows": 1864,
+          "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/own-62969afd37daa4b2972e31879ccbfe09f38f910a538d9739f226867d8aeecf87.json",
+          "compile_excluded_from_cycle": true,
+          "placed_opposite_entry_physics_checks_remain_live": true
+        },
+        "domain_label": "public_G_half_turn_domain"
+      },
+      {
+        "ready": true,
+        "cache_hit": true,
+        "preparation_s": 0.9536231579259038,
+        "canonical_rows": 1416,
+        "offline_proof": {
+          "exact_proof_rows_sha256": "c9842bba7468d4d53b98e5c9086393783f69986e67afb3e0c200ee314b0b3257",
+          "exact_proof_rows": 1864,
+          "saved_command_rows": 1416,
+          "proof_resolution_rad": 0.005,
+          "proof_sampling": "original_aperture_path_check._samples_float64_plus_unchanged_commands"
+        },
+        "static_certified_unique_rows": 1864,
+        "world_sha256": "24c82638ff88f8c8e6d9798b733aa7645338fbe8a3a02b20482699753da8b5f4",
+        "model_sha256": "94f04629058e023d90bf2a8adc6467e2c7a57079bbd895fd99ae36f800892cf1",
+        "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/c6df636ad45ed27b8367bf36d95c694e3befadfcc4f28c53101405a5eeb76487.json",
+        "compile_excluded_from_cycle": true,
+        "only_static_queries_reused": true,
+        "actual_start_counterpart_payload_contact_limits_remain_live": true,
+        "saved_command_limit_audit": {
+          "velocity_fraction_of_95_percent_PBV": 0.8877358580675749,
+          "max_acceleration_rad_s2": 8.5693359375,
+          "max_jerk_rad_s3": 1311.767578125
+        },
+        "own_envelope_preparation": {
+          "ready": true,
+          "cache_hit": true,
+          "preparation_s": 0.00546971894800663,
+          "canonical_rows": 1864,
+          "native_self_certified_unique_rows": 1864,
+          "own_payload_certified_unique_rows": 1864,
+          "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/own-5e116ade4acb46f8fafb77b5e599e7a6eec53d8bc8420d6fb1dfb874fc286f60.json",
+          "compile_excluded_from_cycle": true,
+          "placed_opposite_entry_physics_checks_remain_live": true
+        },
+        "domain_label": "public459_six_mm_chord_RGBD_domain"
+      }
+    ],
+    "public_G_unchanged": true,
+    "class_symmetry_assumed": false
+  },
+  "fixed_saved_small_left_preparation": {
+    "ready": true,
+    "cache_hit": true,
+    "preparation_s": 0.9264161839382723,
+    "canonical_rows": 721,
+    "static_certified_unique_rows": 715,
+    "world_sha256": "24c82638ff88f8c8e6d9798b733aa7645338fbe8a3a02b20482699753da8b5f4",
+    "model_sha256": "7912eec61e5048560bd0a0c9523247cdaa7c6029f0cdafb90a8563f5ca893f8d",
+    "compile_excluded_from_cycle": true,
+    "saved_command_limit_audit": {
+      "velocity_fraction_of_95_percent_PBV": 0.7756429774160604,
+      "max_acceleration_rad_s2": 8.514404296875,
+      "max_jerk_rad_s3": 1081.0546875
+    },
+    "own_envelope_preparation": {
+      "ready": true,
+      "cache_hit": true,
+      "preparation_s": 0.006818883935920894,
+      "canonical_rows": 721,
+      "native_self_certified_unique_rows": 715,
+      "own_payload_certified_unique_rows": 0,
+      "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/own-6b07ed0abbde2ca7254709b69e10250304f21211c3a689a17368c60b57930a7f.json",
+      "compile_excluded_from_cycle": true,
+      "placed_opposite_entry_physics_checks_remain_live": true
+    },
+    "additional_own_domain_preparation": {
+      "own_only": true,
+      "original_full_width_interval_m": [
+        0.058,
+        0.064
+      ],
+      "original_proximal_contact_clipping_and_1mm_margin_preserved": true,
+      "domains": [
+        {
+          "name": "public460_SMALL_LEFT_stable_RGBD",
+          "source": "native-roas-table-fixed-front-v460-cached-stable-nominal",
+          "RGBD_job_index": 17,
+          "RGBD_event": null,
+          "translation_m": 0.00025,
+          "rotation_rad": 0.005,
+          "ready": true,
+          "cache_hit": true,
+          "preparation_s": 0.006729769986122847,
+          "canonical_rows": 721,
+          "native_self_certified_unique_rows": 715,
+          "own_payload_certified_unique_rows": 715,
+          "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/own-479f8ffffbbd36eb879c214fc7a3fec85acacd37d4592bed69850ee82e828d82.json",
+          "compile_excluded_from_cycle": true,
+          "placed_opposite_entry_physics_checks_remain_live": true
+        },
+        {
+          "name": "public461_SMALL_LEFT_stable_RGBD",
+          "source": "native-roas-table-fixed-front-v461-three-domain-cached-variation-minus",
+          "RGBD_job_index": 17,
+          "RGBD_event": null,
+          "translation_m": 0.00025,
+          "rotation_rad": 0.005,
+          "ready": true,
+          "cache_hit": true,
+          "preparation_s": 0.006589437951333821,
+          "canonical_rows": 721,
+          "native_self_certified_unique_rows": 715,
+          "own_payload_certified_unique_rows": 715,
+          "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/own-c44b5a5a3a42f3619089aafba9f9e508ff12bb5d48cf0684edf92f856e7da8b1.json",
+          "compile_excluded_from_cycle": true,
+          "placed_opposite_entry_physics_checks_remain_live": true
+        },
+        {
+          "name": "public468_SMALL_LEFT_stable_RGBD",
+          "source": "native-roas-table-fixed-front-v468-saved-small-donor-nominal",
+          "RGBD_job_index": null,
+          "RGBD_event": "ring2_receiver_final_stationary_contact",
+          "translation_m": 0.00025,
+          "rotation_rad": 0.005,
+          "ready": true,
+          "cache_hit": true,
+          "preparation_s": 0.006562846014276147,
+          "canonical_rows": 721,
+          "native_self_certified_unique_rows": 715,
+          "own_payload_certified_unique_rows": 715,
+          "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/own-e7088b0252511fb10a8b0ea3f2fecd9e947c8fa34f27e67f35c3c6ebddaf5615.json",
+          "compile_excluded_from_cycle": true,
+          "placed_opposite_entry_physics_checks_remain_live": true
+        },
+        {
+          "name": "public470_SMALL_LEFT_stable_RGBD",
+          "source": "native-roas-table-fixed-front-v470-dense-proof-serial-park-nominal",
+          "RGBD_job_index": null,
+          "RGBD_event": "ring2_receiver_final_stationary_contact",
+          "translation_m": 0.00025,
+          "rotation_rad": 0.005,
+          "ready": true,
+          "cache_hit": true,
+          "preparation_s": 0.006557777989655733,
+          "canonical_rows": 721,
+          "native_self_certified_unique_rows": 715,
+          "own_payload_certified_unique_rows": 715,
+          "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/own-e93a7f7b92c7ebcaabd2a038dd6d2dbefa5e823ee8e12f380aadf6874d9c6ed7.json",
+          "compile_excluded_from_cycle": true,
+          "placed_opposite_entry_physics_checks_remain_live": true
+        }
+      ]
+    }
+  },
+  "cache_events": [],
+  "timing_comparison_eligible": false,
+  "component_only": true,
+  "ring_tasks_executed": 0,
+  "error": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu2/snapshot/isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py\", line 552, in <module>\n    result=plugin.execute(task_ctx)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu2/snapshot/isaac_port/native_hand_layout/roas-table/loose_bin_task.py\", line 467, in execute\n    pin_component=run_pin()\n                  ^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu2/snapshot/isaac_port/native_hand_layout/roas-table/loose_bin_task.py\", line 455, in run_pin\n    pin_result=pin.execute(dict(c['pin_context'],step=step,config=c['config'],robot_route_hints=c['robot_route_hints'],prefetched_initial=prefetched,before_transport=clear_left_work_zone_for_pin,goal_aware_pickup=bool(c['config'].get('pin_first') or c['config'].get('pin_between_rings')),defer_retention_to_recipe=bool(c['config'].get('pin_first') or c['config'].get('pin_between_rings'))))\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu2/snapshot/isaac_port/native_hand_layout/roas-table/direct_pin_skill.py\", line 518, in execute\n    if alignment_index==alignment_budget-1:raise RuntimeError('Pin RGB-D precision center/axis alignment did not converge; insertion blocked')\n                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Pin RGB-D precision center/axis alignment did not converge; insertion blocked\n",
+  "pin_skill_progress": {
+    "events": [
+      {
+        "event": "pin_initial",
+        "wall_s": 0.08694765297695994,
+        "result": {
+          "pose": {
+            "part": "pin",
+            "center_m": [
+              0.22999432815028914,
+              -0.8547312125026701,
+              0.9160635280790408
+            ],
+            "axis": [
+              -9.035083215279369e-06,
+              1.894982193197093e-05,
+              -0.9999999997796357
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.005156882364595332,
+            "cap_points": 952,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 1396,
+            "plane_rms_m": 3.509642576342913e-08,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 18.5615069931373,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 0
+      },
+      {
+        "event": "pin_tail_approach",
+        "wall_s": 3.9445073950337246,
+        "physical_duration_s": 1.6125
+      },
+      {
+        "event": "pin_tail_descend",
+        "wall_s": 4.670543542015366,
+        "physical_duration_s": 0.6
+      },
+      {
+        "event": "pin_holder_preclose_RGBD",
+        "wall_s": 4.969510216964409,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 343.9373867448622,
+            "cap_circular_edge_inliers": 64,
+            "cap_total_hull_edge_points": 64,
+            "cap_circular_edge_rms_m": 1.754357685947278e-05,
+            "cap_expected_radius_m": 0.00525,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              0.23000141582372624,
+              -0.8547508645285788,
+              0.9160635213349867
+            ],
+            "axis": [
+              -9.164925723099136e-06,
+              1.897909574737238e-05,
+              -0.999999999777899
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.005212551655522587,
+            "cap_points": 5870,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 8186,
+            "plane_rms_m": 1.9278873630106608e-08,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 228.30893797799945,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 13
+      },
+      {
+        "event": "pin_tail_lift",
+        "wall_s": 6.225343878963031,
+        "physical_duration_s": 0.23333333333333334
+      },
+      {
+        "event": "pin_lift_RGBD",
+        "wall_s": 6.712794766994193,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 303.90911098306884,
+            "cap_circular_edge_inliers": 40,
+            "cap_total_hull_edge_points": 43,
+            "cap_circular_edge_rms_m": 1.6648316854425317e-05,
+            "cap_expected_radius_m": 0.0025,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              0.23003115991266093,
+              -0.8548971349505354,
+              0.9866974112210117
+            ],
+            "axis": [
+              -0.0036169862967004264,
+              0.0007801206093115408,
+              -0.9999931543875508
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.002471060170361686,
+            "cap_points": 780,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 12862,
+            "plane_rms_m": 9.69354024123608e-06,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 202.65502505935729,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 2
+      },
+      {
+        "event": "pin_lift_confirm_RGBD",
+        "wall_s": 7.037026391015388,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 307.7932350256945,
+            "cap_circular_edge_inliers": 41,
+            "cap_total_hull_edge_points": 42,
+            "cap_circular_edge_rms_m": 1.6779488762637256e-05,
+            "cap_expected_radius_m": 0.0025,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              0.22986788044862927,
+              -0.8548985474880316,
+              0.9866834007480464
+            ],
+            "axis": [
+              -0.027469845406076082,
+              0.00019531274663729626,
+              -0.9996226135128682
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.0024676115697697958,
+            "cap_points": 486,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 16086,
+            "plane_rms_m": 1.1362541724325318e-05,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 202.76546198874712,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 0
+      },
+      {
+        "event": "pin_lift_confirm_RGBD",
+        "wall_s": 7.828893119003624,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 330.37778538604573,
+            "cap_circular_edge_inliers": 45,
+            "cap_total_hull_edge_points": 45,
+            "cap_circular_edge_rms_m": 1.6843194459277925e-05,
+            "cap_expected_radius_m": 0.0025,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              0.22984237169341423,
+              -0.8548874442498936,
+              0.9866795913521137
+            ],
+            "axis": [
+              -0.03237051002340384,
+              -0.0006528119161872396,
+              -0.9994757245263273
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.0024743939287186984,
+            "cap_points": 495,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 16003,
+            "plane_rms_m": 1.0346889079297806e-05,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 207.20136002637446,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 0
+      },
+      {
+        "event": "pin_tail_direct_carry_to_preinsert",
+        "wall_s": 33.0679916619556,
+        "physical_duration_s": 1.7333333333333334
+      },
+      {
+        "event": "pin_preinsert_RGBD",
+        "wall_s": 34.01441275991965,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 333.15938752959613,
+            "cap_circular_edge_inliers": 49,
+            "cap_total_hull_edge_points": 49,
+            "cap_circular_edge_rms_m": 1.8175159029511986e-05,
+            "cap_expected_radius_m": 0.0025,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              -0.3016370148437555,
+              0.22820408976186007,
+              1.4837494493023138
+            ],
+            "axis": [
+              -0.003059965038890101,
+              -0.0370112560285287,
+              0.9993101638336076
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.0024677532580228284,
+            "cap_points": 803,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 16789,
+            "plane_rms_m": 8.3942770334423e-06,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 145.98018501419574,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 4
+      },
+      {
+        "event": "pin_preinsert_visual_correction",
+        "wall_s": 34.66254652198404,
+        "physical_duration_s": 0.35
+      },
+      {
+        "event": "pin_preinsert_RGBD",
+        "wall_s": 35.65080419299193,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 324.0640654297305,
+            "cap_circular_edge_inliers": 43,
+            "cap_total_hull_edge_points": 44,
+            "cap_circular_edge_rms_m": 2.0322331864391453e-05,
+            "cap_expected_radius_m": 0.0025,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              -0.30330878551952184,
+              0.22649372209986338,
+              1.4839187602074115
+            ],
+            "axis": [
+              -0.0019504194861402616,
+              -0.015688701587456732,
+              0.9998750224434692
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.002468451742966455,
+            "cap_points": 798,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 16751,
+            "plane_rms_m": 1.0758081461834722e-05,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 144.88934504333884,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 4
+      },
+      {
+        "event": "pin_preinsert_visual_correction",
+        "wall_s": 36.29485980793834,
+        "physical_duration_s": 0.35
+      },
+      {
+        "event": "pin_preinsert_RGBD",
+        "wall_s": 37.30414987495169,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 336.46695210506476,
+            "cap_circular_edge_inliers": 47,
+            "cap_total_hull_edge_points": 47,
+            "cap_circular_edge_rms_m": 1.5208128055847299e-05,
+            "cap_expected_radius_m": 0.0025,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              -0.30275021462503654,
+              0.22706220692660242,
+              1.4835977560901772
+            ],
+            "axis": [
+              0.0005767240867987666,
+              -0.00536759381797095,
+              0.9999854280567957
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.0024769942192359802,
+            "cap_points": 799,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 16704,
+            "plane_rms_m": 1.1684645094383577e-05,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 148.1506460113451,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 4
+      },
+      {
+        "event": "pin_preinsert_visual_correction",
+        "wall_s": 37.955510878004134,
+        "physical_duration_s": 0.35
+      },
+      {
+        "event": "pin_preinsert_RGBD",
+        "wall_s": 38.9603298639413,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 329.99066219093794,
+            "cap_circular_edge_inliers": 45,
+            "cap_total_hull_edge_points": 46,
+            "cap_circular_edge_rms_m": 1.6550248823070267e-05,
+            "cap_expected_radius_m": 0.0025,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              -0.30264765069233074,
+              0.2270366820114093,
+              1.4836384529844875
+            ],
+            "axis": [
+              0.000532684662732851,
+              -0.0019849259836268174,
+              0.9999978881557148
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.002469069906678175,
+            "cap_points": 800,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 16701,
+            "plane_rms_m": 9.964708538338007e-06,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 148.29712791834027,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 4
+      },
+      {
+        "event": "pin_preinsert_visual_correction",
+        "wall_s": 39.61424740299117,
+        "physical_duration_s": 0.35
+      },
+      {
+        "event": "pin_preinsert_RGBD",
+        "wall_s": 40.11322739103343,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 327.0459442995153,
+            "cap_circular_edge_inliers": 45,
+            "cap_total_hull_edge_points": 46,
+            "cap_circular_edge_rms_m": 1.8786544079214136e-05,
+            "cap_expected_radius_m": 0.0025,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              -0.3021344943332758,
+              0.22721721235540887,
+              1.4837154417726441
+            ],
+            "axis": [
+              0.0012313527685856316,
+              -0.0005143884980941372,
+              0.9999991095870199
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.0024705844643692345,
+            "cap_points": 798,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 15413,
+            "plane_rms_m": 9.410926566841581e-06,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 146.03564993012697,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 2
+      },
+      {
+        "event": "pin_preinsert_visual_correction",
+        "wall_s": 40.7607431509532,
+        "physical_duration_s": 0.35
+      },
+      {
+        "event": "pin_preinsert_RGBD",
+        "wall_s": 41.27125075599179,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 318.5812015995196,
+            "cap_circular_edge_inliers": 44,
+            "cap_total_hull_edge_points": 45,
+            "cap_circular_edge_rms_m": 1.4370834719362872e-05,
+            "cap_expected_radius_m": 0.0025,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              -0.30194487743847553,
+              0.22726210125676327,
+              1.4838160608218114
+            ],
+            "axis": [
+              0.001178258891065215,
+              -2.32119481030263e-05,
+              0.9999993055833545
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.002473660355317523,
+            "cap_points": 798,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 15398,
+            "plane_rms_m": 8.898507419979766e-06,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 149.73528101108968,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 2
+      },
+      {
+        "event": "pin_preinsert_visual_correction",
+        "wall_s": 41.9146455390146,
+        "physical_duration_s": 0.35
+      },
+      {
+        "event": "pin_preinsert_RGBD",
+        "wall_s": 42.40946324495599,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 321.36261176362797,
+            "cap_circular_edge_inliers": 46,
+            "cap_total_hull_edge_points": 47,
+            "cap_circular_edge_rms_m": 1.323258334498657e-05,
+            "cap_expected_radius_m": 0.0025,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              -0.3018133440679273,
+              0.22731030868186605,
+              1.4838654878168929
+            ],
+            "axis": [
+              0.001306319172744824,
+              0.0001976301355478411,
+              0.9999991272358933
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.0024743468980517117,
+            "cap_points": 800,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 15402,
+            "plane_rms_m": 1.0183761492283288e-05,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 145.11194895021617,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 2
+      },
+      {
+        "event": "pin_preinsert_visual_correction",
+        "wall_s": 43.05745246098377,
+        "physical_duration_s": 0.35
+      },
+      {
+        "event": "pin_preinsert_RGBD",
+        "wall_s": 43.545761424000375,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 332.838358267046,
+            "cap_circular_edge_inliers": 46,
+            "cap_total_hull_edge_points": 47,
+            "cap_circular_edge_rms_m": 2.0999347126775593e-05,
+            "cap_expected_radius_m": 0.0025,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              -0.3017443351595191,
+              0.22735714917399888,
+              1.4838493260378045
+            ],
+            "axis": [
+              0.0007938994690134784,
+              0.00023194339287834148,
+              0.9999996579628895
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.002469305921679084,
+            "cap_points": 799,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 15399,
+            "plane_rms_m": 9.162756370271032e-06,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 141.30984304938465,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 2
+      },
+      {
+        "event": "pin_preinsert_visual_correction",
+        "wall_s": 44.187686163932085,
+        "physical_duration_s": 0.35
+      },
+      {
+        "event": "pin_preinsert_RGBD",
+        "wall_s": 44.68138576496858,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 332.6885840823007,
+            "cap_circular_edge_inliers": 44,
+            "cap_total_hull_edge_points": 44,
+            "cap_circular_edge_rms_m": 2.0830919089272674e-05,
+            "cap_expected_radius_m": 0.0025,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              -0.3017521879852641,
+              0.22732665688737289,
+              1.4838755865351836
+            ],
+            "axis": [
+              0.0007589490863018148,
+              0.00023667567566740762,
+              0.9999996839904046
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.002472949185210504,
+            "cap_points": 798,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 15401,
+            "plane_rms_m": 8.878704186928926e-06,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 145.6993049941957,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 2
+      },
+      {
+        "event": "pin_preinsert_visual_correction",
+        "wall_s": 45.32094077800866,
+        "physical_duration_s": 0.35
+      },
+      {
+        "event": "pin_preinsert_RGBD",
+        "wall_s": 45.81678495998494,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 330.1339232215437,
+            "cap_circular_edge_inliers": 45,
+            "cap_total_hull_edge_points": 45,
+            "cap_circular_edge_rms_m": 2.0873204072109463e-05,
+            "cap_expected_radius_m": 0.0025,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              -0.3017621681261633,
+              0.22732024604471032,
+              1.4838720705803758
+            ],
+            "axis": [
+              0.0003400316950835004,
+              0.00019158151700897786,
+              0.9999999238374815
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.0024714920627724626,
+            "cap_points": 800,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 15395,
+            "plane_rms_m": 1.0388993742580338e-05,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 146.23426995240152,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 2
+      },
+      {
+        "event": "pin_preinsert_visual_correction",
+        "wall_s": 46.45662008202635,
+        "physical_duration_s": 0.35
+      },
+      {
+        "event": "pin_preinsert_RGBD",
+        "wall_s": 46.94827765203081,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 318.65257070865044,
+            "cap_circular_edge_inliers": 45,
+            "cap_total_hull_edge_points": 47,
+            "cap_circular_edge_rms_m": 1.6133119342683403e-05,
+            "cap_expected_radius_m": 0.0025,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              -0.30176474637454737,
+              0.2273281111653817,
+              1.4838535999954432
+            ],
+            "axis": [
+              0.0005092706810013642,
+              0.00024683138211789395,
+              0.9999998398588084
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.002470563710481572,
+            "cap_points": 798,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 15398,
+            "plane_rms_m": 9.05431374973276e-06,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 145.02456900663674,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 2
+      },
+      {
+        "event": "pin_preinsert_visual_correction",
+        "wall_s": 47.59094241098501,
+        "physical_duration_s": 0.35
+      },
+      {
+        "event": "pin_preinsert_RGBD",
+        "wall_s": 48.08287614793517,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 332.71451797156783,
+            "cap_circular_edge_inliers": 48,
+            "cap_total_hull_edge_points": 48,
+            "cap_circular_edge_rms_m": 1.990279398674829e-05,
+            "cap_expected_radius_m": 0.0025,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              -0.3017653785274372,
+              0.22733416741248785,
+              1.4838366459255163
+            ],
+            "axis": [
+              0.0005165047103832996,
+              0.0002761138230516662,
+              0.9999998284920059
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.002471264897857402,
+            "cap_points": 797,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 15396,
+            "plane_rms_m": 8.705582863774263e-06,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 145.5614420119673,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 2
+      },
+      {
+        "event": "pin_preinsert_visual_correction",
+        "wall_s": 48.72445510700345,
+        "physical_duration_s": 0.35
+      },
+      {
+        "event": "pin_preinsert_RGBD",
+        "wall_s": 49.21944892092142,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 327.002222305978,
+            "cap_circular_edge_inliers": 44,
+            "cap_total_hull_edge_points": 44,
+            "cap_circular_edge_rms_m": 1.5041980590407844e-05,
+            "cap_expected_radius_m": 0.0025,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              -0.30177062665322124,
+              0.22732954700361668,
+              1.4838286547622848
+            ],
+            "axis": [
+              0.00028780691506969855,
+              0.00030658580295152044,
+              0.9999999115861586
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.002475794231128152,
+            "cap_points": 800,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 15396,
+            "plane_rms_m": 1.0257912521357417e-05,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 146.84257295448333,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 2
+      },
+      {
+        "event": "pin_preinsert_visual_correction",
+        "wall_s": 49.86221948894672,
+        "physical_duration_s": 0.35
+      },
+      {
+        "event": "pin_preinsert_RGBD",
+        "wall_s": 50.83835667499807,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 332.9619870448552,
+            "cap_circular_edge_inliers": 41,
+            "cap_total_hull_edge_points": 42,
+            "cap_circular_edge_rms_m": 1.7550373138626788e-05,
+            "cap_expected_radius_m": 0.0025,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              -0.30178621235762726,
+              0.22732614438497709,
+              1.48382203517022
+            ],
+            "axis": [
+              0.0001975022616029313,
+              0.0002419565826395446,
+              0.9999999512249331
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.002466328160270974,
+            "cap_points": 799,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 16700,
+            "plane_rms_m": 1.1608401456521307e-05,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 145.45751991681755,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 4
+      },
+      {
+        "event": "pin_preinsert_visual_correction",
+        "wall_s": 51.4816128029488,
+        "physical_duration_s": 0.35
+      },
+      {
+        "event": "pin_preinsert_RGBD",
+        "wall_s": 52.46709445002489,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 318.4878049752622,
+            "cap_circular_edge_inliers": 43,
+            "cap_total_hull_edge_points": 44,
+            "cap_circular_edge_rms_m": 1.3059244244078101e-05,
+            "cap_expected_radius_m": 0.0025,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              -0.30177842371085345,
+              0.22733503571276859,
+              1.4838159410633756
+            ],
+            "axis": [
+              0.0002570144660484914,
+              0.000285456139135745,
+              0.9999999262291758
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.0024709511530027063,
+            "cap_points": 797,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 16705,
+            "plane_rms_m": 9.794308191024084e-06,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 147.36408810131252,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 4
+      },
+      {
+        "event": "pin_preinsert_visual_correction",
+        "wall_s": 53.11025143601,
+        "physical_duration_s": 0.35
+      },
+      {
+        "event": "pin_preinsert_RGBD",
+        "wall_s": 54.0826229529921,
+        "result": {
+          "pose": {
+            "cap_edge_coverage_deg": 335.77882761073414,
+            "cap_circular_edge_inliers": 45,
+            "cap_total_hull_edge_points": 45,
+            "cap_circular_edge_rms_m": 1.9019311253806273e-05,
+            "cap_expected_radius_m": 0.0025,
+            "robust_cap_circle_from_pixels": true,
+            "part": "pin",
+            "center_m": [
+              -0.3017905175699275,
+              0.22732954318692533,
+              1.4838111450576468
+            ],
+            "axis": [
+              0.00021970839095723202,
+              0.0003317322883125493,
+              0.9999999208409528
+            ],
+            "pose_origin": "Physical pin symmetry-axis midpoint",
+            "visible_end_radius_m": 0.002467521768522368,
+            "cap_points": 799,
+            "lateral_from_previous_RGBD_grasp_and_encoders": false,
+            "axial_depth_updated_from_current_RGBD": true,
+            "depth_points": 16702,
+            "plane_rms_m": 1.1488135280778525e-05,
+            "uses_depth_sensor": true,
+            "uses_simulator_body_poses": false,
+            "method": "RGB-D axial end plane; visible end-circle XY fit, encoder-propagated image grasp XY when the circle is occluded",
+            "processing_ms": 145.8092430839315,
+            "neural_inference_this_frame": false
+          },
+          "depth_sensor_input": true,
+          "simulator_body_pose_input": false
+        },
+        "view_index": 4
+      }
+    ],
+    "pin_single_stroke_pass": false,
+    "pin_tail_flat_contact_target": {
+      "kind": "collar_flat_physical_Hand_target",
+      "source": "Original public class catalogue; original freshinitialRGBD retarget remains mandatory",
+      "original_grasp": [
+        [
+          0.766044443118978,
+          0.0,
+          -0.6427876096865393,
+          -0.009963207950141358
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.6427876096865393,
+          0.0,
+          0.766044443118978,
+          0.011873688868344159
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "proposed_grasp": [
+        [
+          0.766044443118978,
+          0.0,
+          -0.6427876096865393,
+          -0.009963207950141358
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.6427876096865393,
+          0.0,
+          0.766044443118978,
+          0.009873688868344159
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "Hand_contact_z_offset_m": -0.002,
+      "physical_empty_Hand_target": true,
+      "physical_pickup_translation_m": 0.0019999999999999896,
+      "physical_pickup_world_delta_m": [
+        0.0012855931097910944,
+        -9.307699055938201e-10,
+        -0.0015320738742164997
+      ],
+      "original_part_world_target_unchanged": true,
+      "original_Hand_orientation_unchanged": true,
+      "all_original_holder_native_route_issued_retention_gates_required": true,
+      "original_force_physics_friction_mass_caps_unchanged": true,
+      "uses_free_body_poses": false,
+      "physical_grasp_tested": false
+    },
+    "pin_native_geometry_origin": "RGB-D physical axis; CADbody\u2212[0,\u2212.25mm,0]; no physical model change",
+    "body_origin_goal_world_m": [
+      -0.30203095783835754,
+      0.2274999961879461,
+      1.5287500000001608
+    ],
+    "physical_axis_midpoint_goal_world_m": [
+      -0.30203095784,
+      0.22724999619,
+      1.52875
+    ],
+    "control_pose_origin": "RGB-D physical symmetry-axis midpoint; fixed CAD jig calibration",
+    "pin_empty_preshape_sweep": {
+      "continuous_native_CAD_sweep_clear": true,
+      "current_and_command_pose_checked": true,
+      "opposite_actual_and_command_q_checked": true,
+      "other_apertures_m": [
+        0.07999999821186066
+      ],
+      "start_actual_opening_m": 0.07999999821186066,
+      "start_command_opening_m": 0.07999999821186066,
+      "target_opening_m": 0.024,
+      "own_sampled_openings_m": [
+        0.024,
+        0.028666666517655055,
+        0.03333333303531011,
+        0.037999999552965166,
+        0.042666666070620224,
+        0.047333332588275275,
+        0.05199999910593033,
+        0.05666666562358538,
+        0.06133333214124044,
+        0.0659999986588955,
+        0.07066666517655054,
+        0.07533333169420561,
+        0.07999999821186066
+      ],
+      "force_speed_contact_and_margin_unchanged": true,
+      "uses_free_body_poses": false
+    },
+    "pickup_retarget_origin_RGBD_m": [
+      0.19000387111393577,
+      -0.7897289286242213,
+      0.9160499607069958
+    ],
+    "pickup_retarget_delta_RGBD_m": [
+      0.03999045703635337,
+      -0.06500228387844886,
+      1.3567372044942516e-05
+    ],
+    "GPU_IK_queries": [
+      {
+        "event": "GPU_IK_endpoint_proposals",
+        "label": "pin_pregrasp",
+        "fallback_to_CPU": false,
+        "accepted": 15,
+        "client_model_sha256": "95e4a48eefd7f7db39a2b125d8b1c8d7675a1822099b40069d3c6a62af890002",
+        "reference_gauge_used": false,
+        "intrinsic_chain_and_original_arm_FK_required": true,
+        "model_sha256": "95e4a48eefd7f7db39a2b125d8b1c8d7675a1822099b40069d3c6a62af890002",
+        "server_s": 0.03425733803305775,
+        "joint_bounds_and_CPU_FK_checked": true,
+        "original_PhysX_pair_payload_and_retiming_required": true,
+        "wall_s": 0.03892509499564767
+      },
+      {
+        "event": "GPU_IK_endpoint_proposals",
+        "label": "pin_preinsert_carry",
+        "fallback_to_CPU": false,
+        "accepted": 7,
+        "client_model_sha256": "95e4a48eefd7f7db39a2b125d8b1c8d7675a1822099b40069d3c6a62af890002",
+        "reference_gauge_used": false,
+        "intrinsic_chain_and_original_arm_FK_required": true,
+        "model_sha256": "95e4a48eefd7f7db39a2b125d8b1c8d7675a1822099b40069d3c6a62af890002",
+        "server_s": 0.02190151799004525,
+        "joint_bounds_and_CPU_FK_checked": true,
+        "original_PhysX_pair_payload_and_retiming_required": true,
+        "wall_s": 0.024806361994706094
+      }
+    ],
+    "pregrasp_IK_solutions": 15,
+    "pin_holder_preclose_alignment": [
+      {
+        "attempt": 0,
+        "translation_m": 0.00021643538326930964,
+        "axis_rotation_rad": 0.00031260336356498373,
+        "required_translation_m": 0.0003,
+        "required_rotation_rad": 0.01,
+        "source": "Fresh directly measured pin cap/axis + actual encoder FK before closure",
+        "uses_free_body_poses": false
+      }
+    ],
+    "pin_SDK_postclose": [
+      {
+        "attempt": 0,
+        "encoder_position_plateau": true,
+        "actual_encoder_aperture_m": 0.012716391123831272,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "controlled_lift_allowed": true,
+        "transport_allowed": false,
+        "direct_pose_confirmation": "Deferred until pin is lifted clear of hand/holder occlusion",
+        "sensor_basis": "Simulated SDK-like aperture/encoder plateau after controlled close; field adapter uses gripper is_grasped; no force sensor",
+        "uses_free_body_poses": false
+      }
+    ],
+    "measured_grasp": [
+      [
+        0.7637730093794162,
+        -0.0010642329838407587,
+        -0.6454840490296151,
+        -0.010093668757633512
+      ],
+      [
+        -2.913065375416313e-06,
+        0.999998635143873,
+        -0.0016521809541652063,
+        7.65561435489559e-06
+      ],
+      [
+        0.6454849263422225,
+        0.001263771556635743,
+        0.7637719638389643,
+        0.0100305180524769
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "native_pin_postlift": {
+      "admitted": false,
+      "minimum_flat_pin_axis_span_m": 0.0007613567494189162,
+      "opening_m": 0.012706459499895573,
+      "jaws": [
+        {
+          "sign": -1,
+          "first_clearance_m": 0.0004393498156671036,
+          "active_flat_samples": 28,
+          "flat_pin_axis_span_m": 0.0011377455343927418
+        },
+        {
+          "sign": 1,
+          "first_clearance_m": -8.43569456701087e-05,
+          "active_flat_samples": 9,
+          "flat_pin_axis_span_m": 0.0007613567494189162
+        }
+      ],
+      "native_opposed_contact": {
+        "opposed_contact_compatible": false,
+        "both_hulls_near_CAD": true,
+        "actual_opening_m": 0.012706459499895573,
+        "contact_tolerance_m": 0.0008,
+        "jaws": [
+          {
+            "sign": -1,
+            "minimum_hull_clearance_m": 0.0004393498156671036,
+            "near_hull_samples": 44,
+            "distal_contact_samples": 44,
+            "opposed_wall_samples": 40,
+            "opposed_wall_normal_fraction": 0.9090909090909091,
+            "all_contact_normal": [
+              0.16457244809431268,
+              -0.9807097222226698,
+              -0.10547203452185025
+            ],
+            "mean_finger_surface_normal_opposition": 0.7454462846210166,
+            "opposed_finger_facet_fraction": 0.6590909090909091,
+            "contact_compatible": false
+          },
+          {
+            "sign": 1,
+            "minimum_hull_clearance_m": -8.43569456701087e-05,
+            "near_hull_samples": 81,
+            "distal_contact_samples": 78,
+            "opposed_wall_samples": 61,
+            "opposed_wall_normal_fraction": 0.782051282051282,
+            "all_contact_normal": [
+              0.3037768038142288,
+              0.9194197859172633,
+              -0.24977371905039442
+            ],
+            "mean_finger_surface_normal_opposition": 0.5079477082653572,
+            "opposed_finger_facet_fraction": 0.4230769230769231,
+            "contact_compatible": false
+          }
+        ],
+        "source": "Fresh RGB-D ring-to-receiver pose + actual finger encoder opening + fixed native finger CAD",
+        "uses_free_body_poses": false,
+        "force_contact_measured": false
+      },
+      "force_contact_measured": false,
+      "uses_free_body_poses": false,
+      "pose_origin": "RGB-D physical symmetry-axis midpoint",
+      "CAD_body_to_axis_offset_m": [
+        0.0,
+        -0.00025,
+        0.0
+      ]
+    },
+    "pin_RGBD_SDK_postlift": {
+      "confirmed": true,
+      "direct_class_end_circle": true,
+      "actual_encoder_aperture_m": 0.012706459499895573,
+      "required_aperture_band_m": [
+        0.0097,
+        0.0135
+      ],
+      "encoder_position_stationary": true,
+      "relative_center_drift_m": 0.00017281341101113982,
+      "relative_axis_drift_rad": 0.023856552454238813,
+      "center_drift_limit_m": 0.002,
+      "axis_drift_limit_rad": 0.05,
+      "unobservable_axial_yaw_used": false,
+      "native_sample_normals_advisory_only": true,
+      "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+      "uses_free_body_poses": false
+    },
+    "pin_qualified_postlift_preload": {
+      "target_velocity_preload_m_s": 0.015,
+      "ramp_s": 0.3,
+      "effort_cap_per_pad_n": 30.0,
+      "effort_cap_unchanged": true,
+      "actual_contact_force_measured": false,
+      "confirmation": {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012554200366139412,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 2.8082314029762836e-05,
+        "relative_axis_drift_rad": 0.004975685250044783,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false
+      },
+      "uses_free_body_poses": false
+    },
+    "left_work_zone_clearance": {
+      "empty_left_arm_parked": true,
+      "goal_aware": true,
+      "one_geometric_parking_target": true,
+      "actual_left_q": [
+        0.09005225449800491,
+        -1.8101260662078857,
+        -2.2682838439941406,
+        -2.0698843002319336,
+        0.9117715954780579,
+        1.838199257850647,
+        -0.5988268852233887
+      ],
+      "actual_left_openings_m": [
+        0.009999999776482582,
+        0.01000041957013309,
+        0.010000839363783598,
+        0.010001259157434106,
+        0.010001678951084614
+      ],
+      "terminal_proof": {
+        "right_preinsert_q": [
+          -0.2089620977640152,
+          0.6534205675125122,
+          0.8229756951332092,
+          -1.2562589645385742,
+          1.266576886177063,
+          2.573052167892456,
+          1.8856337070465088
+        ],
+        "checks": [
+          {
+            "left_opening_m": 0.009999999776482582,
+            "clear": true,
+            "evidence": {
+              "reason": "full_nominal_stroke_release_withdraw_approved",
+              "minimum_joint_margin_rad": 0.9409487790164185,
+              "required_joint_margin_rad": 0.03,
+              "stroke_samples": 385,
+              "withdraw_samples": 385,
+              "stroke_geometry_sampling": {
+                "full_issued_samples": 385,
+                "issued_geometry_samples": 55,
+                "first_last_and_float32_extrema_preserved": true,
+                "maximum_retained_joint_step_rad": 0.0037131309509277344
+              },
+              "withdraw_geometry_sampling": {
+                "full_issued_samples": 385,
+                "issued_geometry_samples": 55,
+                "first_last_and_float32_extrema_preserved": true,
+                "maximum_retained_joint_step_rad": 0.0037131309509277344
+              },
+              "all_issued_FR3_array_checks_retained": true,
+              "uses_free_body_poses": false,
+              "robot_encoder_other_arm": true,
+              "actual_execution_not_performed": true
+            }
+          },
+          {
+            "left_opening_m": 0.01000041957013309,
+            "clear": true,
+            "evidence": {
+              "reason": "full_nominal_stroke_release_withdraw_approved",
+              "minimum_joint_margin_rad": 0.9409487790164185,
+              "required_joint_margin_rad": 0.03,
+              "stroke_samples": 385,
+              "withdraw_samples": 385,
+              "stroke_geometry_sampling": {
+                "full_issued_samples": 385,
+                "issued_geometry_samples": 55,
+                "first_last_and_float32_extrema_preserved": true,
+                "maximum_retained_joint_step_rad": 0.0037131309509277344
+              },
+              "withdraw_geometry_sampling": {
+                "full_issued_samples": 385,
+                "issued_geometry_samples": 55,
+                "first_last_and_float32_extrema_preserved": true,
+                "maximum_retained_joint_step_rad": 0.0037131309509277344
+              },
+              "all_issued_FR3_array_checks_retained": true,
+              "uses_free_body_poses": false,
+              "robot_encoder_other_arm": true,
+              "actual_execution_not_performed": true
+            }
+          },
+          {
+            "left_opening_m": 0.010000839363783598,
+            "clear": true,
+            "evidence": {
+              "reason": "full_nominal_stroke_release_withdraw_approved",
+              "minimum_joint_margin_rad": 0.9409487790164185,
+              "required_joint_margin_rad": 0.03,
+              "stroke_samples": 385,
+              "withdraw_samples": 385,
+              "stroke_geometry_sampling": {
+                "full_issued_samples": 385,
+                "issued_geometry_samples": 55,
+                "first_last_and_float32_extrema_preserved": true,
+                "maximum_retained_joint_step_rad": 0.0037131309509277344
+              },
+              "withdraw_geometry_sampling": {
+                "full_issued_samples": 385,
+                "issued_geometry_samples": 55,
+                "first_last_and_float32_extrema_preserved": true,
+                "maximum_retained_joint_step_rad": 0.0037131309509277344
+              },
+              "all_issued_FR3_array_checks_retained": true,
+              "uses_free_body_poses": false,
+              "robot_encoder_other_arm": true,
+              "actual_execution_not_performed": true
+            }
+          },
+          {
+            "left_opening_m": 0.010001259157434106,
+            "clear": true,
+            "evidence": {
+              "reason": "full_nominal_stroke_release_withdraw_approved",
+              "minimum_joint_margin_rad": 0.9409487790164185,
+              "required_joint_margin_rad": 0.03,
+              "stroke_samples": 385,
+              "withdraw_samples": 385,
+              "stroke_geometry_sampling": {
+                "full_issued_samples": 385,
+                "issued_geometry_samples": 55,
+                "first_last_and_float32_extrema_preserved": true,
+                "maximum_retained_joint_step_rad": 0.0037131309509277344
+              },
+              "withdraw_geometry_sampling": {
+                "full_issued_samples": 385,
+                "issued_geometry_samples": 55,
+                "first_last_and_float32_extrema_preserved": true,
+                "maximum_retained_joint_step_rad": 0.0037131309509277344
+              },
+              "all_issued_FR3_array_checks_retained": true,
+              "uses_free_body_poses": false,
+              "robot_encoder_other_arm": true,
+              "actual_execution_not_performed": true
+            }
+          },
+          {
+            "left_opening_m": 0.010001678951084614,
+            "clear": true,
+            "evidence": {
+              "reason": "full_nominal_stroke_release_withdraw_approved",
+              "minimum_joint_margin_rad": 0.9409487790164185,
+              "required_joint_margin_rad": 0.03,
+              "stroke_samples": 385,
+              "withdraw_samples": 385,
+              "stroke_geometry_sampling": {
+                "full_issued_samples": 385,
+                "issued_geometry_samples": 55,
+                "first_last_and_float32_extrema_preserved": true,
+                "maximum_retained_joint_step_rad": 0.0037131309509277344
+              },
+              "withdraw_geometry_sampling": {
+                "full_issued_samples": 385,
+                "issued_geometry_samples": 55,
+                "first_last_and_float32_extrema_preserved": true,
+                "maximum_retained_joint_step_rad": 0.0037131309509277344
+              },
+              "all_issued_FR3_array_checks_retained": true,
+              "uses_free_body_poses": false,
+              "robot_encoder_other_arm": true,
+              "actual_execution_not_performed": true
+            }
+          }
+        ]
+      },
+      "current_right_and_held_pin_protected": true,
+      "model_and_actual_terminal_proof": true,
+      "uses_free_body_poses": false,
+      "elapsed_s": 16.07262991205789
+    },
+    "pin_axial_yaw_candidate_order_deg": [
+      0.0,
+      90.0,
+      -90.0,
+      180.0
+    ],
+    "pin_tangent_flip_yaw_first_requested": false,
+    "pin_terminal_branch_preflight": [
+      {
+        "reason": "terminal_robot_fixed_pair",
+        "collision": {
+          "segment": 52,
+          "fraction": 1.0,
+          "collision": {
+            "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision",
+            "actor": "/World/Environment/m80/instance_0216",
+            "collider": "/World/Environment/m80/instance_0216"
+          }
+        },
+        "label": "pin_preinsert_carry",
+        "accepted": false
+      },
+      {
+        "reason": "terminal_robot_fixed_pair",
+        "collision": {
+          "segment": 0,
+          "fraction": 0.0,
+          "collision": {
+            "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision",
+            "actor": "/World/Environment/m80/instance_0218",
+            "collider": "/World/Environment/m80/instance_0218"
+          }
+        },
+        "label": "pin_preinsert_carry",
+        "accepted": false
+      },
+      {
+        "reason": "terminal_robot_fixed_pair",
+        "collision": {
+          "segment": 0,
+          "fraction": 0.0,
+          "collision": {
+            "query": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/Contact/right_arm_fr3v2_link4_collision",
+            "actor": "/World/Environment/m80/instance_0218",
+            "collider": "/World/Environment/m80/instance_0218"
+          }
+        },
+        "label": "pin_preinsert_carry",
+        "accepted": false
+      },
+      {
+        "reason": "full_nominal_stroke_release_withdraw_approved",
+        "minimum_joint_margin_rad": 0.22147405509948737,
+        "required_joint_margin_rad": 0.03,
+        "stroke_samples": 385,
+        "withdraw_samples": 385,
+        "stroke_geometry_sampling": {
+          "full_issued_samples": 385,
+          "issued_geometry_samples": 58,
+          "first_last_and_float32_extrema_preserved": true,
+          "maximum_retained_joint_step_rad": 0.003690004348754883
+        },
+        "withdraw_geometry_sampling": {
+          "full_issued_samples": 385,
+          "issued_geometry_samples": 58,
+          "first_last_and_float32_extrema_preserved": true,
+          "maximum_retained_joint_step_rad": 0.003690004348754883
+        },
+        "all_issued_FR3_array_checks_retained": true,
+        "uses_free_body_poses": false,
+        "robot_encoder_other_arm": true,
+        "actual_execution_not_performed": true,
+        "label": "pin_preinsert_carry",
+        "accepted": true
+      }
+    ],
+    "selected_pin_axial_yaw_deg": 0.0,
+    "pin_axis_goal_unchanged_by_yaw": [
+      -0.30203095784,
+      0.22724999619,
+      1.52875
+    ],
+    "pin_shortcut_nodes": 3,
+    "direct_preinsert_shortcut": true,
+    "precision_encoder_windows": [
+      {
+        "control_steps": 67,
+        "physics_window_s": 0.1,
+        "translation_span_m": 2.4942920325753363e-05,
+        "rotation_span_rad": 3.6358828220869314e-05,
+        "source": "Actual encoder FK; no object truth; speeds/accuracy gates unchanged",
+        "maximum_actual_joint_speed_rad_s": 0.024919765070080757,
+        "actual_joint_speed_limit_rad_s": 0.0,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        }
+      },
+      {
+        "control_steps": 48,
+        "physics_window_s": 0.1,
+        "translation_span_m": 0.0,
+        "rotation_span_rad": 0.0,
+        "source": "Actual encoder FK; no object truth; speeds/accuracy gates unchanged",
+        "maximum_actual_joint_speed_rad_s": 0.02645997889339924,
+        "actual_joint_speed_limit_rad_s": 0.0,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        }
+      },
+      {
+        "control_steps": 48,
+        "physics_window_s": 0.1,
+        "translation_span_m": 0.0,
+        "rotation_span_rad": 0.0,
+        "source": "Actual encoder FK; no object truth; speeds/accuracy gates unchanged",
+        "maximum_actual_joint_speed_rad_s": 0.027868319302797318,
+        "actual_joint_speed_limit_rad_s": 0.0,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        }
+      },
+      {
+        "control_steps": 48,
+        "physics_window_s": 0.1,
+        "translation_span_m": 0.0,
+        "rotation_span_rad": 0.0,
+        "source": "Actual encoder FK; no object truth; speeds/accuracy gates unchanged",
+        "maximum_actual_joint_speed_rad_s": 0.026865996420383453,
+        "actual_joint_speed_limit_rad_s": 0.0,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        }
+      },
+      {
+        "control_steps": 48,
+        "physics_window_s": 0.1,
+        "translation_span_m": 0.0,
+        "rotation_span_rad": 0.0,
+        "source": "Actual encoder FK; no object truth; speeds/accuracy gates unchanged",
+        "maximum_actual_joint_speed_rad_s": 0.028518037870526314,
+        "actual_joint_speed_limit_rad_s": 0.0,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        }
+      },
+      {
+        "control_steps": 48,
+        "physics_window_s": 0.1,
+        "translation_span_m": 0.0,
+        "rotation_span_rad": 0.0,
+        "source": "Actual encoder FK; no object truth; speeds/accuracy gates unchanged",
+        "maximum_actual_joint_speed_rad_s": 0.02898227423429489,
+        "actual_joint_speed_limit_rad_s": 0.0,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        }
+      },
+      {
+        "control_steps": 48,
+        "physics_window_s": 0.1,
+        "translation_span_m": 0.0,
+        "rotation_span_rad": 0.0,
+        "source": "Actual encoder FK; no object truth; speeds/accuracy gates unchanged",
+        "maximum_actual_joint_speed_rad_s": 0.02916744351387024,
+        "actual_joint_speed_limit_rad_s": 0.0,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        }
+      },
+      {
+        "control_steps": 48,
+        "physics_window_s": 0.1,
+        "translation_span_m": 0.0,
+        "rotation_span_rad": 0.0,
+        "source": "Actual encoder FK; no object truth; speeds/accuracy gates unchanged",
+        "maximum_actual_joint_speed_rad_s": 0.029203571379184723,
+        "actual_joint_speed_limit_rad_s": 0.0,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        }
+      },
+      {
+        "control_steps": 48,
+        "physics_window_s": 0.1,
+        "translation_span_m": 0.0,
+        "rotation_span_rad": 0.0,
+        "source": "Actual encoder FK; no object truth; speeds/accuracy gates unchanged",
+        "maximum_actual_joint_speed_rad_s": 0.029178431257605553,
+        "actual_joint_speed_limit_rad_s": 0.0,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        }
+      },
+      {
+        "control_steps": 48,
+        "physics_window_s": 0.1,
+        "translation_span_m": 0.0,
+        "rotation_span_rad": 0.0,
+        "source": "Actual encoder FK; no object truth; speeds/accuracy gates unchanged",
+        "maximum_actual_joint_speed_rad_s": 0.029186809435486794,
+        "actual_joint_speed_limit_rad_s": 0.0,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        }
+      },
+      {
+        "control_steps": 48,
+        "physics_window_s": 0.1,
+        "translation_span_m": 2.718706718743075e-08,
+        "rotation_span_rad": 1.1920927720080686e-07,
+        "source": "Actual encoder FK; no object truth; speeds/accuracy gates unchanged",
+        "maximum_actual_joint_speed_rad_s": 0.029164353385567665,
+        "actual_joint_speed_limit_rad_s": 0.0,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        }
+      },
+      {
+        "control_steps": 48,
+        "physics_window_s": 0.1,
+        "translation_span_m": 0.0,
+        "rotation_span_rad": 0.0,
+        "source": "Actual encoder FK; no object truth; speeds/accuracy gates unchanged",
+        "maximum_actual_joint_speed_rad_s": 0.029203997924923897,
+        "actual_joint_speed_limit_rad_s": 0.0,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        }
+      },
+      {
+        "control_steps": 48,
+        "physics_window_s": 0.1,
+        "translation_span_m": 0.0,
+        "rotation_span_rad": 0.0,
+        "source": "Actual encoder FK; no object truth; speeds/accuracy gates unchanged",
+        "maximum_actual_joint_speed_rad_s": 0.029170675203204155,
+        "actual_joint_speed_limit_rad_s": 0.0,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        }
+      },
+      {
+        "control_steps": 48,
+        "physics_window_s": 0.1,
+        "translation_span_m": 0.0,
+        "rotation_span_rad": 0.0,
+        "source": "Actual encoder FK; no object truth; speeds/accuracy gates unchanged",
+        "maximum_actual_joint_speed_rad_s": 0.029170293360948563,
+        "actual_joint_speed_limit_rad_s": 0.0,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        }
+      },
+      {
+        "control_steps": 48,
+        "physics_window_s": 0.1,
+        "translation_span_m": 0.0,
+        "rotation_span_rad": 0.0,
+        "source": "Actual encoder FK; no object truth; speeds/accuracy gates unchanged",
+        "maximum_actual_joint_speed_rad_s": 0.029150938615202904,
+        "actual_joint_speed_limit_rad_s": 0.0,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        }
+      },
+      {
+        "control_steps": 48,
+        "physics_window_s": 0.1,
+        "translation_span_m": 0.0,
+        "rotation_span_rad": 0.0,
+        "source": "Actual encoder FK; no object truth; speeds/accuracy gates unchanged",
+        "maximum_actual_joint_speed_rad_s": 0.0291705671697855,
+        "actual_joint_speed_limit_rad_s": 0.0,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        }
+      }
+    ],
+    "pin_RGBD_SDK_postcarry": [
+      {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012501390650868416,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 0.0008911821293071297,
+        "relative_axis_drift_rad": 0.03889805743268769,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false,
+        "alignment_index": 0
+      },
+      {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.01250140368938446,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 0.0008889325302364342,
+        "relative_axis_drift_rad": 0.038792464884902136,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false,
+        "alignment_index": 1
+      },
+      {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012501111254096031,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 0.0008767842343437839,
+        "relative_axis_drift_rad": 0.03863856470316349,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false,
+        "alignment_index": 2
+      },
+      {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012500869110226631,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 0.0008814533301342546,
+        "relative_axis_drift_rad": 0.038668950898929126,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false,
+        "alignment_index": 3
+      },
+      {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.01250077411532402,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 0.0008783311514031621,
+        "relative_axis_drift_rad": 0.03853756824455699,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false,
+        "alignment_index": 4
+      },
+      {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012500695884227753,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 0.0008745588296486035,
+        "relative_axis_drift_rad": 0.03851919608863186,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false,
+        "alignment_index": 5
+      },
+      {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012500638142228127,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 0.0008729192965466246,
+        "relative_axis_drift_rad": 0.038513810637862564,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false,
+        "alignment_index": 6
+      },
+      {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012500712648034096,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 0.0008746483143361221,
+        "relative_axis_drift_rad": 0.03851812404335605,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false,
+        "alignment_index": 7
+      },
+      {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012500738725066185,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 0.0008738443565659375,
+        "relative_axis_drift_rad": 0.038497035944275,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false,
+        "alignment_index": 8
+      },
+      {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012500890530645847,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 0.0008772891781303097,
+        "relative_axis_drift_rad": 0.03856877528338533,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false,
+        "alignment_index": 9
+      },
+      {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012500356882810593,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 0.0008775162366072658,
+        "relative_axis_drift_rad": 0.038561469348136194,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false,
+        "alignment_index": 10
+      },
+      {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012501252815127373,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 0.0008764433911933075,
+        "relative_axis_drift_rad": 0.03858634896766398,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false,
+        "alignment_index": 11
+      },
+      {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012501180171966553,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 0.0008779123003861723,
+        "relative_axis_drift_rad": 0.03860238406834047,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false,
+        "alignment_index": 12
+      },
+      {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012501288205385208,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 0.0008871404432862235,
+        "relative_axis_drift_rad": 0.03870933462580251,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false,
+        "alignment_index": 13
+      },
+      {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012501291930675507,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 0.0008790167663093284,
+        "relative_axis_drift_rad": 0.03870387615090359,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false,
+        "alignment_index": 14
+      },
+      {
+        "confirmed": true,
+        "direct_class_end_circle": true,
+        "actual_encoder_aperture_m": 0.012501280754804611,
+        "required_aperture_band_m": [
+          0.0097,
+          0.0135
+        ],
+        "encoder_position_stationary": true,
+        "relative_center_drift_m": 0.0008853491360250001,
+        "relative_axis_drift_rad": 0.03869897405628071,
+        "center_drift_limit_m": 0.002,
+        "axis_drift_limit_rad": 0.05,
+        "unobservable_axial_yaw_used": false,
+        "native_sample_normals_advisory_only": true,
+        "source": "Fresh RGB-D end-circle size/center/axis and actual joint encoders; no force sensor or simulator pose",
+        "uses_free_body_poses": false,
+        "alignment_index": 15
+      }
+    ],
+    "preinsert_visual_alignment": [
+      {
+        "iteration": 0,
+        "radial_error_m": 0.0010322236328213098,
+        "axis_error_rad": 0.03714607632868864,
+        "radial_limit_m": 7.5e-05,
+        "axis_limit_rad": 0.003,
+        "maximum_shaft_axis_radial_error_m": 0.0011567213828703607,
+        "maximum_shaft_axis_radial_limit_m": 0.00015,
+        "source": "Fresh RGB-D end circle/plane plus encoder FK",
+        "uses_free_body_poses": false,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        },
+        "adaptive_gain_enabled": true,
+        "alignment_budget": 16,
+        "normalized_error": 13.762981770950798,
+        "previous_normalized_error": null,
+        "selected_feedback_gain": 0.65,
+        "command_vs_actual_translation_m": 0.0016368095382465369,
+        "command_vs_actual_rotation_rad": 0.002386928543524741,
+        "geometric_feedback_gain": 0.65,
+        "independent_axis_feedback_gain": 0.65,
+        "part_space_component_feedback": true,
+        "qualified_XY_preserved": false,
+        "qualified_axis_preserved": false,
+        "component_translation_deadband_m": 7.5e-05,
+        "component_axis_deadband_rad": 0.001,
+        "bounded_component_recovery": true,
+        "radial_improvement_streak": 0,
+        "XY_recovery_ceiling": 0.65
+      },
+      {
+        "iteration": 1,
+        "radial_error_m": 0.0014848549013166698,
+        "axis_error_rad": 0.01581013344973507,
+        "radial_limit_m": 7.5e-05,
+        "axis_limit_rad": 0.003,
+        "maximum_shaft_axis_radial_error_m": 0.0016241894996732009,
+        "maximum_shaft_axis_radial_limit_m": 0.00015,
+        "source": "Fresh RGB-D end circle/plane plus encoder FK",
+        "uses_free_body_poses": false,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        },
+        "adaptive_gain_enabled": true,
+        "alignment_budget": 16,
+        "normalized_error": 19.798065350888933,
+        "previous_normalized_error": 13.762981770950798,
+        "selected_feedback_gain": 0.42250000000000004,
+        "command_vs_actual_translation_m": 0.0006341906014356606,
+        "command_vs_actual_rotation_rad": 0.0024248731006889985,
+        "geometric_feedback_gain": 0.42250000000000004,
+        "independent_axis_feedback_gain": 0.65,
+        "part_space_component_feedback": true,
+        "qualified_XY_preserved": false,
+        "qualified_axis_preserved": false,
+        "component_translation_deadband_m": 7.5e-05,
+        "component_axis_deadband_rad": 0.001,
+        "bounded_component_recovery": true,
+        "radial_improvement_streak": 0,
+        "XY_recovery_ceiling": 0.65
+      },
+      {
+        "iteration": 2,
+        "radial_error_m": 0.0007433674261551278,
+        "axis_error_rad": 0.005398514350208495,
+        "radial_limit_m": 7.5e-05,
+        "axis_limit_rad": 0.003,
+        "maximum_shaft_axis_radial_error_m": 0.0007575763901020058,
+        "maximum_shaft_axis_radial_limit_m": 0.00015,
+        "source": "Fresh RGB-D end circle/plane plus encoder FK",
+        "uses_free_body_poses": false,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        },
+        "adaptive_gain_enabled": true,
+        "alignment_budget": 16,
+        "normalized_error": 9.911565682068371,
+        "previous_normalized_error": 19.798065350888933,
+        "selected_feedback_gain": 0.42250000000000004,
+        "command_vs_actual_translation_m": 0.0009069770578688399,
+        "command_vs_actual_rotation_rad": 0.002597093247666346,
+        "geometric_feedback_gain": 0.42250000000000004,
+        "independent_axis_feedback_gain": 0.65,
+        "part_space_component_feedback": true,
+        "qualified_XY_preserved": false,
+        "qualified_axis_preserved": false,
+        "component_translation_deadband_m": 7.5e-05,
+        "component_axis_deadband_rad": 0.001,
+        "bounded_component_recovery": true,
+        "radial_improvement_streak": 1,
+        "XY_recovery_ceiling": 0.65
+      },
+      {
+        "iteration": 3,
+        "radial_error_m": 0.0006525434950282161,
+        "axis_error_rad": 0.0020551618080039105,
+        "radial_limit_m": 7.5e-05,
+        "axis_limit_rad": 0.003,
+        "maximum_shaft_axis_radial_error_m": 0.0006550918639311913,
+        "maximum_shaft_axis_radial_limit_m": 0.00015,
+        "source": "Fresh RGB-D end circle/plane plus encoder FK",
+        "uses_free_body_poses": false,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        },
+        "adaptive_gain_enabled": true,
+        "alignment_budget": 16,
+        "normalized_error": 8.700579933709548,
+        "previous_normalized_error": 9.911565682068371,
+        "selected_feedback_gain": 0.65,
+        "command_vs_actual_translation_m": 0.0009520322337861051,
+        "command_vs_actual_rotation_rad": 0.001958033706009549,
+        "geometric_feedback_gain": 0.65,
+        "independent_axis_feedback_gain": 0.65,
+        "part_space_component_feedback": true,
+        "qualified_XY_preserved": false,
+        "qualified_axis_preserved": false,
+        "component_translation_deadband_m": 7.5e-05,
+        "component_axis_deadband_rad": 0.001,
+        "bounded_component_recovery": true,
+        "radial_improvement_streak": 0,
+        "XY_recovery_ceiling": 0.65
+      },
+      {
+        "iteration": 4,
+        "radial_error_m": 0.0001086028786467153,
+        "axis_error_rad": 0.0013344760112230971,
+        "radial_limit_m": 7.5e-05,
+        "axis_limit_rad": 0.003,
+        "maximum_shaft_axis_radial_error_m": 0.00011220866544128491,
+        "maximum_shaft_axis_radial_limit_m": 0.00015,
+        "source": "Fresh RGB-D end circle/plane plus encoder FK",
+        "uses_free_body_poses": false,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        },
+        "adaptive_gain_enabled": true,
+        "alignment_budget": 16,
+        "normalized_error": 1.4480383819562042,
+        "previous_normalized_error": 8.700579933709548,
+        "selected_feedback_gain": 0.65,
+        "command_vs_actual_translation_m": 0.0008424475107440056,
+        "command_vs_actual_rotation_rad": 0.0014637345087316904,
+        "geometric_feedback_gain": 0.65,
+        "independent_axis_feedback_gain": 0.65,
+        "part_space_component_feedback": true,
+        "qualified_XY_preserved": false,
+        "qualified_axis_preserved": false,
+        "component_translation_deadband_m": 7.5e-05,
+        "component_axis_deadband_rad": 0.001,
+        "bounded_component_recovery": true,
+        "radial_improvement_streak": 1,
+        "XY_recovery_ceiling": 0.65
+      },
+      {
+        "iteration": 5,
+        "radial_error_m": 8.692737294981986e-05,
+        "axis_error_rad": 0.0011784877817680281,
+        "radial_limit_m": 7.5e-05,
+        "axis_limit_rad": 0.003,
+        "maximum_shaft_axis_radial_error_m": 0.00010266631086402552,
+        "maximum_shaft_axis_radial_limit_m": 0.00015,
+        "source": "Fresh RGB-D end circle/plane plus encoder FK",
+        "uses_free_body_poses": false,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        },
+        "adaptive_gain_enabled": true,
+        "alignment_budget": 16,
+        "normalized_error": 1.1590316393309317,
+        "previous_normalized_error": 1.4480383819562042,
+        "selected_feedback_gain": 0.65,
+        "command_vs_actual_translation_m": 0.0007169609077837673,
+        "command_vs_actual_rotation_rad": 0.0010432003202912683,
+        "geometric_feedback_gain": 0.65,
+        "independent_axis_feedback_gain": 0.65,
+        "part_space_component_feedback": true,
+        "qualified_XY_preserved": false,
+        "qualified_axis_preserved": false,
+        "component_translation_deadband_m": 7.5e-05,
+        "component_axis_deadband_rad": 0.001,
+        "bounded_component_recovery": true,
+        "radial_improvement_streak": 0,
+        "XY_recovery_ceiling": 0.65
+      },
+      {
+        "iteration": 6,
+        "radial_error_m": 0.00022581707302769897,
+        "axis_error_rad": 0.0013211844940089399,
+        "radial_limit_m": 7.5e-05,
+        "axis_limit_rad": 0.003,
+        "maximum_shaft_axis_radial_error_m": 0.00024353372103778136,
+        "maximum_shaft_axis_radial_limit_m": 0.00015,
+        "source": "Fresh RGB-D end circle/plane plus encoder FK",
+        "uses_free_body_poses": false,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        },
+        "adaptive_gain_enabled": true,
+        "alignment_budget": 16,
+        "normalized_error": 3.0108943070359864,
+        "previous_normalized_error": 1.1590316393309317,
+        "selected_feedback_gain": 0.42250000000000004,
+        "command_vs_actual_translation_m": 0.0005901427159588075,
+        "command_vs_actual_rotation_rad": 0.0010544696454130574,
+        "geometric_feedback_gain": 0.42250000000000004,
+        "independent_axis_feedback_gain": 0.65,
+        "part_space_component_feedback": true,
+        "qualified_XY_preserved": false,
+        "qualified_axis_preserved": false,
+        "component_translation_deadband_m": 7.5e-05,
+        "component_axis_deadband_rad": 0.001,
+        "bounded_component_recovery": true,
+        "radial_improvement_streak": 0,
+        "XY_recovery_ceiling": 0.65
+      },
+      {
+        "iteration": 7,
+        "radial_error_m": 0.00030599725970329415,
+        "axis_error_rad": 0.0008270878188216994,
+        "radial_limit_m": 7.5e-05,
+        "axis_limit_rad": 0.003,
+        "maximum_shaft_axis_radial_error_m": 0.0003171338471452224,
+        "maximum_shaft_axis_radial_limit_m": 0.00015,
+        "source": "Fresh RGB-D end circle/plane plus encoder FK",
+        "uses_free_body_poses": false,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        },
+        "adaptive_gain_enabled": true,
+        "alignment_budget": 16,
+        "normalized_error": 4.079963462710589,
+        "previous_normalized_error": 3.0108943070359864,
+        "selected_feedback_gain": 0.3,
+        "command_vs_actual_translation_m": 0.0005655053864469461,
+        "command_vs_actual_rotation_rad": 0.00126448059671087,
+        "geometric_feedback_gain": 0.3,
+        "independent_axis_feedback_gain": 0.65,
+        "part_space_component_feedback": true,
+        "qualified_XY_preserved": false,
+        "qualified_axis_preserved": true,
+        "component_translation_deadband_m": 7.5e-05,
+        "component_axis_deadband_rad": 0.001,
+        "bounded_component_recovery": true,
+        "radial_improvement_streak": 0,
+        "XY_recovery_ceiling": 0.65
+      },
+      {
+        "iteration": 8,
+        "radial_error_m": 0.00028911847819047327,
+        "axis_error_rad": 0.0007949963673173984,
+        "radial_limit_m": 7.5e-05,
+        "axis_limit_rad": 0.003,
+        "maximum_shaft_axis_radial_error_m": 0.00029984497299520243,
+        "maximum_shaft_axis_radial_limit_m": 0.00015,
+        "source": "Fresh RGB-D end circle/plane plus encoder FK",
+        "uses_free_body_poses": false,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        },
+        "adaptive_gain_enabled": true,
+        "alignment_budget": 16,
+        "normalized_error": 3.854913042539644,
+        "previous_normalized_error": 4.079963462710589,
+        "selected_feedback_gain": 0.3,
+        "command_vs_actual_translation_m": 0.0005288801809477966,
+        "command_vs_actual_rotation_rad": 0.0012720359206360979,
+        "geometric_feedback_gain": 0.3,
+        "independent_axis_feedback_gain": 0.65,
+        "part_space_component_feedback": true,
+        "qualified_XY_preserved": false,
+        "qualified_axis_preserved": true,
+        "component_translation_deadband_m": 7.5e-05,
+        "component_axis_deadband_rad": 0.001,
+        "bounded_component_recovery": true,
+        "radial_improvement_streak": 0,
+        "XY_recovery_ceiling": 0.65
+      },
+      {
+        "iteration": 9,
+        "radial_error_m": 0.00027781820017997144,
+        "axis_error_rad": 0.00039028840485198893,
+        "radial_limit_m": 7.5e-05,
+        "axis_limit_rad": 0.003,
+        "maximum_shaft_axis_radial_error_m": 0.0002829166214161134,
+        "maximum_shaft_axis_radial_limit_m": 0.00015,
+        "source": "Fresh RGB-D end circle/plane plus encoder FK",
+        "uses_free_body_poses": false,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        },
+        "adaptive_gain_enabled": true,
+        "alignment_budget": 16,
+        "normalized_error": 3.704242669066286,
+        "previous_normalized_error": 3.854913042539644,
+        "selected_feedback_gain": 0.3,
+        "command_vs_actual_translation_m": 0.0005291576974643354,
+        "command_vs_actual_rotation_rad": 0.001261132915868553,
+        "geometric_feedback_gain": 0.3,
+        "independent_axis_feedback_gain": 0.65,
+        "part_space_component_feedback": true,
+        "qualified_XY_preserved": false,
+        "qualified_axis_preserved": true,
+        "component_translation_deadband_m": 7.5e-05,
+        "component_axis_deadband_rad": 0.001,
+        "bounded_component_recovery": true,
+        "radial_improvement_streak": 0,
+        "XY_recovery_ceiling": 0.65
+      },
+      {
+        "iteration": 10,
+        "radial_error_m": 0.00027743556678502086,
+        "axis_error_rad": 0.0005659349713791537,
+        "radial_limit_m": 7.5e-05,
+        "axis_limit_rad": 0.003,
+        "maximum_shaft_axis_radial_error_m": 0.000284973591866454,
+        "maximum_shaft_axis_radial_limit_m": 0.00015,
+        "source": "Fresh RGB-D end circle/plane plus encoder FK",
+        "uses_free_body_poses": false,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        },
+        "adaptive_gain_enabled": true,
+        "alignment_budget": 16,
+        "normalized_error": 3.699140890466945,
+        "previous_normalized_error": 3.704242669066286,
+        "selected_feedback_gain": 0.3,
+        "command_vs_actual_translation_m": 0.0005593453345577342,
+        "command_vs_actual_rotation_rad": 0.0012362080535040017,
+        "geometric_feedback_gain": 0.3,
+        "independent_axis_feedback_gain": 0.65,
+        "part_space_component_feedback": true,
+        "qualified_XY_preserved": false,
+        "qualified_axis_preserved": true,
+        "component_translation_deadband_m": 7.5e-05,
+        "component_axis_deadband_rad": 0.001,
+        "bounded_component_recovery": true,
+        "radial_improvement_streak": 0,
+        "XY_recovery_ceiling": 0.65
+      },
+      {
+        "iteration": 11,
+        "radial_error_m": 0.00027859857493613035,
+        "axis_error_rad": 0.0005856756765352419,
+        "radial_limit_m": 7.5e-05,
+        "axis_limit_rad": 0.003,
+        "maximum_shaft_axis_radial_error_m": 0.0002863753713601848,
+        "maximum_shaft_axis_radial_limit_m": 0.00015,
+        "source": "Fresh RGB-D end circle/plane plus encoder FK",
+        "uses_free_body_poses": false,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        },
+        "adaptive_gain_enabled": true,
+        "alignment_budget": 16,
+        "normalized_error": 3.7146476658150718,
+        "previous_normalized_error": 3.699140890466945,
+        "selected_feedback_gain": 0.3,
+        "command_vs_actual_translation_m": 0.0006024316719641801,
+        "command_vs_actual_rotation_rad": 0.0012150009970467255,
+        "geometric_feedback_gain": 0.3,
+        "independent_axis_feedback_gain": 0.65,
+        "part_space_component_feedback": true,
+        "qualified_XY_preserved": false,
+        "qualified_axis_preserved": true,
+        "component_translation_deadband_m": 7.5e-05,
+        "component_axis_deadband_rad": 0.001,
+        "bounded_component_recovery": true,
+        "radial_improvement_streak": 0,
+        "XY_recovery_ceiling": 0.65
+      },
+      {
+        "iteration": 12,
+        "radial_error_m": 0.0002722143617752655,
+        "axis_error_rad": 0.000420508840958437,
+        "radial_limit_m": 7.5e-05,
+        "axis_limit_rad": 0.003,
+        "maximum_shaft_axis_radial_error_m": 0.0002771540560372822,
+        "maximum_shaft_axis_radial_limit_m": 0.00015,
+        "source": "Fresh RGB-D end circle/plane plus encoder FK",
+        "uses_free_body_poses": false,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        },
+        "adaptive_gain_enabled": true,
+        "alignment_budget": 16,
+        "normalized_error": 3.629524823670207,
+        "previous_normalized_error": 3.7146476658150718,
+        "selected_feedback_gain": 0.3,
+        "command_vs_actual_translation_m": 0.0006480265865036019,
+        "command_vs_actual_rotation_rad": 0.0012014016187482772,
+        "geometric_feedback_gain": 0.3,
+        "independent_axis_feedback_gain": 0.65,
+        "part_space_component_feedback": true,
+        "qualified_XY_preserved": false,
+        "qualified_axis_preserved": true,
+        "component_translation_deadband_m": 7.5e-05,
+        "component_axis_deadband_rad": 0.001,
+        "bounded_component_recovery": true,
+        "radial_improvement_streak": 0,
+        "XY_recovery_ceiling": 0.65
+      },
+      {
+        "iteration": 13,
+        "radial_error_m": 0.00025631796413855886,
+        "axis_error_rad": 0.00031233016911846987,
+        "radial_limit_m": 7.5e-05,
+        "axis_limit_rad": 0.003,
+        "maximum_shaft_axis_radial_error_m": 0.00025984468538166615,
+        "maximum_shaft_axis_radial_limit_m": 0.00015,
+        "source": "Fresh RGB-D end circle/plane plus encoder FK",
+        "uses_free_body_poses": false,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        },
+        "adaptive_gain_enabled": true,
+        "alignment_budget": 16,
+        "normalized_error": 3.417572855180785,
+        "previous_normalized_error": 3.629524823670207,
+        "selected_feedback_gain": 0.3,
+        "command_vs_actual_translation_m": 0.0007009485454434771,
+        "command_vs_actual_rotation_rad": 0.0011927009418152166,
+        "geometric_feedback_gain": 0.3,
+        "independent_axis_feedback_gain": 0.65,
+        "part_space_component_feedback": true,
+        "qualified_XY_preserved": false,
+        "qualified_axis_preserved": true,
+        "component_translation_deadband_m": 7.5e-05,
+        "component_axis_deadband_rad": 0.001,
+        "bounded_component_recovery": true,
+        "radial_improvement_streak": 0,
+        "XY_recovery_ceiling": 0.65
+      },
+      {
+        "iteration": 14,
+        "radial_error_m": 0.0002664680221274537,
+        "axis_error_rad": 0.0003841115075967562,
+        "radial_limit_m": 7.5e-05,
+        "axis_limit_rad": 0.003,
+        "maximum_shaft_axis_radial_error_m": 0.00027099807322655486,
+        "maximum_shaft_axis_radial_limit_m": 0.00015,
+        "source": "Fresh RGB-D end circle/plane plus encoder FK",
+        "uses_free_body_poses": false,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        },
+        "adaptive_gain_enabled": true,
+        "alignment_budget": 16,
+        "normalized_error": 3.552906961699383,
+        "previous_normalized_error": 3.417572855180785,
+        "selected_feedback_gain": 0.3,
+        "command_vs_actual_translation_m": 0.0007556307082960997,
+        "command_vs_actual_rotation_rad": 0.0011852446892106335,
+        "geometric_feedback_gain": 0.3,
+        "independent_axis_feedback_gain": 0.65,
+        "part_space_component_feedback": true,
+        "qualified_XY_preserved": false,
+        "qualified_axis_preserved": true,
+        "component_translation_deadband_m": 7.5e-05,
+        "component_axis_deadband_rad": 0.001,
+        "bounded_component_recovery": true,
+        "radial_improvement_streak": 0,
+        "XY_recovery_ceiling": 0.65
+      },
+      {
+        "iteration": 15,
+        "radial_error_m": 0.0002532572766820125,
+        "axis_error_rad": 0.00039789206639582884,
+        "radial_limit_m": 7.5e-05,
+        "axis_limit_rad": 0.003,
+        "maximum_shaft_axis_radial_error_m": 0.0002575012778079943,
+        "maximum_shaft_axis_radial_limit_m": 0.00015,
+        "source": "Fresh RGB-D end circle/plane plus encoder FK",
+        "uses_free_body_poses": false,
+        "engine_diagnostics_only": {
+          "scope": "Privileged engine diagnostics only; NOT a controller sensor",
+          "used_for_control": false,
+          "scene_configuration": [
+            {
+              "path": "/PhysicsScene",
+              "enable_stabilization": false,
+              "authored": false,
+              "solver_type": "TGS",
+              "solver_type_authored": true
+            }
+          ],
+          "articulation_configuration": [
+            {
+              "path": "/World/Cell/Geometry/official_FR3_Duo",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            },
+            {
+              "path": "/World/RobotMountJoint",
+              "sleep_threshold": 4.999999873689376e-05,
+              "sleep_threshold_authored": false,
+              "stabilization_threshold": 9.999999747378752e-06,
+              "stabilization_threshold_authored": false
+            }
+          ],
+          "body_sleeping": {
+            "hand": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            },
+            "link7": {
+              "path": "/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7",
+              "is_rigid_body": true,
+              "is_sleeping": false
+            }
+          },
+          "stage_id": 9223016
+        }
+      }
+    ]
+  }
+}

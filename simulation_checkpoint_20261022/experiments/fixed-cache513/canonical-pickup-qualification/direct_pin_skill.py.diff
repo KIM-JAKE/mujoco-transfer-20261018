@@ -1,0 +1,64 @@
+--- /tmp/fixed506-rebranch-pin-component-full/overrides/direct_pin_skill.py
++++ /tmp/fixed510-pin-canonical-branch/overrides/direct_pin_skill.py
+@@ -116,6 +116,8 @@
+     return [(i,offsets[i])for i in order]
+ 
+ def execute(ctx):
++    if ctx.get("config",{}).get("pin_prefer_canonical_pickup_branch") and not ctx.get("config",{}).get("fixed_supply_mode"):
++        raise ValueError("Canonical PIN pickup branch preference requires fixed_supply_mode")
+     HERE=Path(__file__).resolve().parent
+     cand=ctx['candidate'];flat_tail_proposal=None
+     flat_tail_enabled=bool(ctx.get('config',{}).get('pin_tail_flat_contact_target',False))
+@@ -295,7 +297,25 @@
+     from fr3_gpu_ik import propose_ik
+     GPU_pre=propose_ik(ctx,arm,newpre[:3,3],newpre[:3,:3],art.get_dof_positions()[0,ids].copy(),'pin_pregrasp')
+     next_goal=np.asarray(robot_seeds.get('pin_direct_preinsert',cmd[0,ids]));joint_speed=np.array([2.62,2.62,2.62,2.62,5.26,4.18,5.26]);seen=[]
+-    for proposed in ([GPU_pre,None]if GPU_pre else[None]):
++    canonical=[];canonical_evidence=None
++    if pin_config.get('pin_prefer_canonical_pickup_branch'):
++        reference=np.asarray(robot_seeds.get('pin_tail_approach',cand['pickup_q']),float)
++        canonical_evidence=dict(requested=True,fixed_supply_only=True,same_fresh_RGBD_target=newpre.tolist(),candidates=[],fallback_to_original_groups=True,uses_free_body_poses=False)
++        # These three seeds already exist in the original CPU group. Only
++        # their priority changes; every candidate keeps the original gates.
++        for source,seed in [('robot_seeds.pin_tail_approach',robot_seeds.get('pin_tail_approach')),('catalogue.pickup_q',cand['pickup_q']),('catalogue.pre_q',preq)]:
++            entry=dict(source=source,requested_seed=None if seed is None else np.asarray(seed).tolist(),admitted=False)
++            canonical_evidence['candidates'].append(entry)
++            if seed is None:entry['reason']='existing_seed_unavailable';continue
++            q=arm.solve(newpre[:3,3],newpre[:3,:3],seed)
++            entry['solved_q']=None if q is None else q.tolist()
++            if q is None:entry['reason']='original_IK_no_solution';continue
++            if any(np.linalg.norm(q-old)<=.05 for old in canonical):entry['reason']='duplicate_existing_candidate';continue
++            canonical.append(q)
++        canonical.sort(key=lambda q:float(np.linalg.norm(q-reference)))
++        report['pin_canonical_pickup_branch']=canonical_evidence
++    groups=([canonical]if canonical else[])+([GPU_pre,None]if GPU_pre else[None])
++    for proposed in groups:
+         if proposed is None:
+             proposed=[]
+             for seed in seeds:
+@@ -305,13 +325,23 @@
+             proposed.sort(key=lambda q:float(np.max(abs(q-cmd[0,ids])/joint_speed)+np.max(abs(q-next_goal)/joint_speed)) if ctx.get('goal_aware_pickup') else np.linalg.norm(q-cmd[0,ids]))
+         solutions.extend(proposed);seen.extend(proposed)
+         for q in proposed:
++            canonical_entry=None
++            if canonical_evidence is not None and proposed is canonical:
++                canonical_entry=next(e for e in canonical_evidence['candidates']if e.get('solved_q') is not None and np.array_equal(e['solved_q'],q))
+             clear,why=checker.clear(q,opening,paths['workpiece_pin'])
+-            if not clear:rejections.append(why);continue
++            if not clear:
++                if canonical_entry is not None:canonical_entry.update(reason='original_endpoint_blocked',evidence=why)
++                rejections.append(why);continue
+             route=checker.route(cmd[0,ids],q,opening,paths['workpiece_pin'],seconds=.75)
+-            if route is not None:break
++            if canonical_entry is not None:canonical_entry.update(admitted=route is not None,reason='original_full_route_admitted'if route is not None else'original_route_unavailable')
++            if route is not None:
++                if canonical_evidence is not None:canonical_evidence.update(selected_source=canonical_entry['source']if canonical_entry is not None else'original_GPU_or_CPU_fallback',selected_pre_q=np.asarray(q).tolist(),fallback_to_original_groups=canonical_entry is None)
++                break
+         if route is not None:break
+     if route is None:raise RuntimeError('No pin pregrasp route across IK branches '+str(rejections[:3]))
++    if canonical_evidence is not None:print('PIN_CANONICAL_PICKUP_BRANCH',canonical_evidence,flush=True)
+     report['pregrasp_IK_solutions']=len(solutions);motion(route,1.1,'pin_tail_approach')
++    if canonical_evidence is not None:canonical_evidence.update(actual_pre_q=np.asarray(art.get_dof_positions()[0,ids]).tolist(),command_pre_q=cmd[0,ids].tolist())
+     H=arm.fk(art.get_dof_positions()[0,ids]);line(H,pickupH,.6,'pin_tail_descend')
+     planned_G=G.copy()
+     if pin_axis_geometry and pin_config.get('pin_preclose_visual_alignment'):

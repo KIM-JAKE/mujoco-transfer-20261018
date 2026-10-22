@@ -1,0 +1,7 @@
+Experimental REAL parallel-tail Hand target, no actual qualification
+
+Base current499 directskill (+3target/yawoptinfeatures available). Apply direct_pin_skill diff+new pin_parallel_tail_target helper, freshimport pin_parallel_tail_target; whitelist pin_parallel_tail_contact_target. Newtargetflagtrue requires OLDpin_tail_flat_contact_target=false (mutuallyexclusive BEFORErobotaccess). pin_tangent_flip_yaw_first remainsseparatelycontrolled, sameallowedyawset/fullguards.
+
+Originalcataloguebody tailpointaxisz=-15.5mm mapsHand[0,0,+3mm]:newG_R=I,newG_t[0,0,.0185]. Originalpartworldtarget remains EXACTH@G byREALemptyHandHnew=part@invGnew. Atoriginal−40°/contactz0 target thischangesHand40°/3mm; bounded≤45°/15mm withfinite/rigidinputchecks. No objectpose, syntheticheldG, physics, force, friction, mass, speed/cap or tolerance changes. ActualfreshRGBD/SDK heldG stillmeasured normally; staleoldcataloguecontactcert removed.
+
+OriginalIK/pregrasp/holder/continuouscurrentnativegeometry/retimedissuedfield/postlift/transport/terminal/precision/retentionfunctionsbodies unchanged; targetbeforeallthoseoriginaloperations. Ifnewgeometryimpossible, originalguardsstop. Localoriginalcontactmodel predictsTAILfirst/nativeproximal9.75mm and5.60mm axialspan atpreviousactual9.852mm aperture, BUT oldadvisorynormaloppositionstillfalse. Physicaltrialallowedonlyasquickdiagnostic, no claimitwillstabilize. Originalforceandallhardgatesunchanged. Componentresultsalwaysnotfulltask, finalsuccessfulcandidate mustwhole3parts.

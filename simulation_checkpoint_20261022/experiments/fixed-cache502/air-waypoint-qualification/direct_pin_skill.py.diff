@@ -1,0 +1,20 @@
+--- /tmp/fixed500-pin-parallel-tail/overrides/direct_pin_skill.py
++++ direct_pin_skill.py
+@@ -397,7 +397,16 @@
+     R=np.array(cand['goal_part_R']);safe=frame([-.10,-.25,1.35],R)@np.linalg.inv(G);pre=frame(goal-[0,0,.045],R)@np.linalg.inv(G);end=frame(goal,R)@np.linalg.inv(G)
+     robot_seeds=json.loads((HERE/'bin-picking/direct-pin-robot-seeds.json').read_text())['seeds']
+     transports=[(safe,'pin_tail_orient_free'),(pre,'pin_tail_carry_to_preinsert')]
+-    if ctx.get('optimized_motion_timing'):
++    air_tangent_flip=bool(pin_config.get('pin_tangent_flip_air_waypoint',False))
++    if air_tangent_flip:
++        # Keep the original fixture yaw0. Use the existing FREE-space waypoint
++        # for the tangent-direction flip, then rotate axial yaw before approach.
++        # These are TWO original fully guarded motions, no unverified shortcut.
++        tangent_R=R@exp(np.array([0.,0.,np.pi]))
++        safe=frame([-.10,-.25,1.35],tangent_R)@np.linalg.inv(G)
++        transports=[(safe,'pin_tail_orient_free'),(pre,'pin_tail_carry_to_preinsert')]
++        report['pin_tangent_air_flip']=dict(enabled=True,free_part_midpoint_world_m=[-.10,-.25,1.35],free_part_R=tangent_R.tolist(),fixture_part_R_unchanged=R.tolist(),original_two_fully_guarded_segments=True,direct_shortcut_disabled=True,force_speed_caps_unchanged=True,uses_free_body_poses=False,physical_retention_qualified=False)
++    if ctx.get('optimized_motion_timing') and not air_tangent_flip:
+         checker.attach_payload(paths['workpiece_pin'],frame([0,0,.1034],np.eye(3))@payload_grasp());shortcut=None
+         try:
+             # The shaft/cap are axially symmetric. Keep the calibrated physical

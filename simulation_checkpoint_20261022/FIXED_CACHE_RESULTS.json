@@ -22,21 +22,34 @@
     "491": 232.2948861779878,
     "493": 212.53978356905282,
     "494": 196.6974354549311,
-    "495": 256.0858648510184
+    "495": 256.0858648510184,
+    "507": 190.70568123098928,
+    "509": 202.6162391549442,
+    "510": 212.1102003470296,
+    "512": 214.48711021908093,
+    "513": 209.6988859899575
   },
   "latest_plus_stored_middle_qualified": true,
-  "unresolved": "Same416Python/423source-input493PLUS/494NOMINAL/495MINUS allfullPASS. Initialtilts settle; these3cases are not repeat-success/random-stack/generalpose proof. Overall dramatic wait reduction/20s/30s goals remain unachieved;495slower thanolder491. Latestpolicy fullSDK/hardware execution untested. Additional496 samephysicalpolicy+timerFAILprecisionbudget;497PIN3mmcandidateFAILpostcarryretention; candidate notpromoted. Original threecase passes do not establishrepeatability.",
+  "unresolved": "Latest canonical PIN build510PLUS passed all3,511NOMINAL failed current SMALL receiver image-age gate beforePIN. New512-514 same-code camera-priority cohort pending. Last completed three-case build493/494/495 remains default494; repeat-success/random-stack/generalpose/full hardware execution unproven. Dramatic wait reduction/20s/30s goals remain unachieved.",
   "hardware_tested": false,
   "under20": false,
   "under30": false,
   "latest_same_code_minus_qualified": true,
-  "latest_same_code_three_case_generalization_pass": true,
+  "latest_same_code_three_case_generalization_pass": false,
   "wall_time_reduction_established": false,
   "latest_exact_checkpoint": "494",
-  "latest_three_case_pending": null,
+  "latest_three_case_pending": {
+    "build": "camera-priority",
+    "runs": [
+      "512",
+      "513",
+      "514"
+    ],
+    "status": "RUNNING"
+  },
   "arbitrary_random_layout_generalization_proven": false,
-  "latest_single_nominal_checkpoint": "494",
-  "latest_single_nominal_same_code_variations_qualified": true,
+  "latest_single_nominal_checkpoint": "512",
+  "latest_single_nominal_same_code_variations_qualified": false,
   "latest_same_source_three_case_checkpoint": "494",
   "last_three_case_qualified_checkpoint": "494",
   "latest_same_source_three_case_results": {
@@ -79,7 +92,59 @@
       "ring_tasks_executed": 0,
       "result": "FAIL_PIN_POSTCARRY_RETENTION",
       "elapsed_until_failure_s": 18.308435154962353,
+      "candidate_promoted": false,
+      "actual_yaw_inferred_from_public_SDK_RGBD_deg": 0,
+      "tangent_flip_180_physically_executed": false
+    },
+    "500": {
+      "component_only": true,
+      "ring_tasks_executed": 0,
+      "result": "FAIL_ORIGINAL_TERMINAL_GEOMETRY",
+      "elapsed_until_failure_s": 16.993486792081967,
       "candidate_promoted": false
+    },
+    "501": {
+      "component_only": true,
+      "ring_tasks_executed": 0,
+      "result": "FAIL_ORIGINAL_TERMINAL_GEOMETRY",
+      "elapsed_until_failure_s": 14.607652466977015,
+      "candidate_promoted": false
+    },
+    "502": {
+      "component_only": true,
+      "ring_tasks_executed": 0,
+      "result": "FAIL_PIN_POSTCARRY_RETENTION",
+      "elapsed_until_failure_s": 34.355228613945656,
+      "candidate_promoted": false
+    },
+    "503": {
+      "component_only": true,
+      "ring_tasks_executed": 0,
+      "result": "FAIL_FREE_WAYPOINT_ROUTE",
+      "elapsed_until_failure_s": 14.650440981029533,
+      "candidate_promoted": false
+    },
+    "504": {
+      "component_only": true,
+      "result": "FAIL_PIN_PRECISION_BUDGET",
+      "elapsed_until_failure_s": 54.11062185897026
+    },
+    "505": {
+      "component_only": true,
+      "result": "FAIL_PIN_PRECISION_BUDGET",
+      "elapsed_until_failure_s": 57.516277389018796
+    },
+    "506": {
+      "component_only": true,
+      "pin_component_pass": true,
+      "full_task_pass": false,
+      "elapsed_s": 38.761025378946215,
+      "feedback_reset_exercised": false
+    },
+    "511": {
+      "result": "FAIL_SMALL_BINDING_IMAGE_AGE_BEFORE_PIN",
+      "elapsed_until_failure_s": 51.047473776037805,
+      "canonical_pickup_exercised": false
     }
   },
   "repeat_success_established": false,
@@ -92,5 +157,53 @@
     "keep_requested_threads": 0,
     "whole_cycle_speedup_proven": false,
     "server_isolated": false
+  },
+  "latest_experimental_three_case": {
+    "source_python_files": 420,
+    "source_and_fixed_input_files": 427,
+    "507": "PASS_NOMINAL",
+    "508": "FAIL_PLUS_PIN_PRECISION_BUDGET",
+    "509": "PASS_MINUS",
+    "three_case_qualified": false,
+    "default_checkpoint_promoted": false,
+    "feedback_reset_physically_exercised_in_passes": false
+  },
+  "latest_experimental_video": "../media/fixed-cache507-collar-flat-reset-nominal-all3-pass-excerpts-1x.mp4",
+  "last_qualified_three_case_checkpoint": "494",
+  "last_qualified_three_case_results": {
+    "493": "PASS_PLUS",
+    "494": "PASS_NOMINAL",
+    "495": "PASS_MINUS"
+  },
+  "latest_experimental_checkpoint": "513",
+  "latest_experimental_single_plus": {
+    "checkpoint": "510",
+    "result": "PASS_ALL3",
+    "wall_s": 212.1102,
+    "canonical_pin_pickup_branch_used": true,
+    "not_three_case_qualification": true
+  },
+  "latest_experimental_single_nominal": {
+    "checkpoint": "511",
+    "result": "FAIL_SMALL_RECEIVER_IMAGE_AGE_BEFORE_PIN",
+    "canonical_pin_not_reached": true
+  },
+  "qualification_scope_checkpoint": "494",
+  "latest_canonical_pickup_trial": {
+    "510": "PASS_PLUS",
+    "511": "FAIL_NOMINAL_BEFORE_PIN",
+    "source_python_files": 420,
+    "source_and_fixed_input_files": 427,
+    "three_case_qualified": false,
+    "default_checkpoint_promoted": false
+  },
+  "latest_camera_priority_trials": {
+    "512": "PASS_NOMINAL",
+    "513": "PASS_PLUS",
+    "514": "RUNNING_MINUS",
+    "source_python_files": 420,
+    "source_and_fixed_input_files": 427,
+    "three_case_qualified": false,
+    "default_checkpoint_promoted": false
   }
 }
