@@ -1,0 +1,220 @@
+{
+  "status": "2_PASS_1_FAIL",
+  "full_successes": 2,
+  "cases": 3,
+  "all_414_Python_source_hashes_match": true,
+  "source_file_map_sha256": "7a7bbf82e49d35d9c0e6b13adaec12c5f2d9ec4682b3e4a58e02f80b244ca7f9",
+  "scope": "Fixed existing shelf supply, native FR3 Hand, RGB-D feedback. Nominal and two opposed \u00b110mm initial XY shifts with \u00b1.04rad initialization tilts. This is not random-bin, stacked-ring, broad reliability or real hardware qualification.",
+  "settling_caveat": "Requested initial tilts physically settle before observations; measured settled axes are included. Do not claim all requested .04rad tilts persist or that a full tilt envelope was tested.",
+  "speed_caveat": "Both passing complete cycles exceed20/30seconds. Physics and whole wall times are different. No causal whole-cycle latency claim across differing paths/corrections.",
+  "failure": "PLUS492 correctly stopped at SMALL receiver ongoing relative-axis motion:31.253mrad exceeds25mrad original gate; next19.343mrad exceeds5mrad reconfirmation gate. CPU image-only replay and cap pointcloud SVD match recordedGPU axes, no threshold relaxation.",
+  "cases_summary": [
+    {
+      "run": 490,
+      "source_run": "native-roas-table-fixed-front-v490-width-memo-placed-broadphase-nominal",
+      "state": "completed_over_budget",
+      "full_task_pass": true,
+      "vision_end_to_end_pass": true,
+      "wall_elapsed_s": 238.17224171303678,
+      "physics_elapsed_s": 48.16666666666394,
+      "under20": false,
+      "under30": false,
+      "source_matches490": true,
+      "requested_initialization_variation": null,
+      "settled_public_initial_observations": {
+        "ring1": {
+          "source": "First accepted public initial RGB-D cap observation; not privileged body pose",
+          "frame": 17,
+          "captured_wall_s": 56.974511021981016,
+          "center_world_m": [
+            0.22999599704830434,
+            -0.5750528571616497,
+            0.8920611478820013
+          ],
+          "signed_axis_world": [
+            -1.209547188470976e-06,
+            -8.718016642000339e-06,
+            -0.9999999999612665
+          ],
+          "tilt_from_vertical_rad": 8.801529512916776e-06
+        },
+        "ring2": {
+          "source": "First accepted public initial RGB-D cap observation; not privileged body pose",
+          "frame": 1,
+          "captured_wall_s": 0.09090223500970751,
+          "center_world_m": [
+            0.19879948405072131,
+            -0.7145313616184643,
+            0.8898728296081854
+          ],
+          "signed_axis_world": [
+            0.050999623449118694,
+            6.154181245257211e-06,
+            0.9986986724584018
+          ],
+          "tilt_from_vertical_rad": 0.05102175774728799
+        }
+      },
+      "artifact_SHA256": {
+        "pipeline-results.json": "9934f6e958450ba788a6b445c7f4b966a4e80b6ac980633b2aebb82b7af92a6d",
+        "trial-config.json": "43d913806961c67927d0e95f380f0c04641b6696cc7ca0bfcf1ae70dc76d2d17",
+        "frozen-source-manifest.json": "546be13831c70d55286db39d498bd8c290530ac4eb10b06fbe31e13636e588c6",
+        "rgb-observations.json": "e8aad24a58106a31138f8eeb374bf3fbc6145f650f73828a27d6d308525f3a82",
+        "fixed-supply-initialization.json": "0e796d1d1c32c7fd47c8d31e1fcd5211ea6d27093a7204785e09535383c37f0c",
+        "physx-sequence-trace.npz": "f6673cee918903fd8c3c6cce4062d6d412c23ff19b5c12879b5a4b6daecef688"
+      }
+    },
+    {
+      "run": 491,
+      "source_run": "native-roas-table-fixed-front-v491-width-memo-placed-broadphase-minus",
+      "state": "completed_over_budget",
+      "full_task_pass": true,
+      "vision_end_to_end_pass": true,
+      "wall_elapsed_s": 232.2948861779878,
+      "physics_elapsed_s": 46.78749999999853,
+      "under20": false,
+      "under30": false,
+      "source_matches490": true,
+      "requested_initialization_variation": {
+        "ring1": {
+          "translation_xy_m": [
+            -0.01,
+            0.01
+          ],
+          "tilt_xy_rad": [
+            -0.04,
+            0
+          ]
+        },
+        "ring2": {
+          "translation_xy_m": [
+            0.01,
+            -0.01
+          ],
+          "tilt_xy_rad": [
+            0,
+            0.04
+          ]
+        }
+      },
+      "settled_public_initial_observations": {
+        "ring1": {
+          "source": "First accepted public initial RGB-D cap observation; not privileged body pose",
+          "frame": 17,
+          "captured_wall_s": 54.14858139201533,
+          "center_world_m": [
+            0.22055599952925325,
+            -0.5656005055655193,
+            0.8914481091519636
+          ],
+          "signed_axis_world": [
+            -0.018716548074168046,
+            6.613053655910963e-06,
+            -0.9998248300499718
+          ],
+          "tilt_from_vertical_rad": 0.018717642178027256
+        },
+        "ring2": {
+          "source": "First accepted public initial RGB-D cap observation; not privileged body pose",
+          "frame": 1,
+          "captured_wall_s": 0.07163199502974749,
+          "center_world_m": [
+            0.2096925251982539,
+            -0.7249970272411699,
+            0.891308800417987
+          ],
+          "signed_axis_world": [
+            -3.3001678801555856e-05,
+            3.7757769261439296e-05,
+            0.99999999874262
+          ],
+          "tilt_from_vertical_rad": 5.0147382348000035e-05
+        }
+      },
+      "artifact_SHA256": {
+        "pipeline-results.json": "e5039efe9c3ec02b4cfbf5e69d07e0e29bfa34c4b906dde2847464548062e96f",
+        "trial-config.json": "59f0270c1219eec5d40d028230747c9832c308f856913a6d0b45b13b1a3238ca",
+        "frozen-source-manifest.json": "546be13831c70d55286db39d498bd8c290530ac4eb10b06fbe31e13636e588c6",
+        "rgb-observations.json": "1e921ca1975df99142af3c4aaf43e2ce3c2a4c099146802aed6cc88c6aca18ae",
+        "fixed-supply-initialization.json": "f6954b567ed0add7df4eb05dbf00ea70c494092de0ae78c5a7b8f4161a7bff74",
+        "physx-sequence-trace.npz": "3eda7f4b58cfbacd8ae4efc0b89b3155755b56d66126ef6f39d2e2e8f1d7fd32"
+      }
+    },
+    {
+      "run": 492,
+      "source_run": "native-roas-table-fixed-front-v492-width-memo-placed-broadphase-plus",
+      "state": "failed",
+      "full_task_pass": false,
+      "vision_end_to_end_pass": false,
+      "wall_elapsed_s": 62.907383736921474,
+      "physics_elapsed_s": null,
+      "under20": false,
+      "under30": false,
+      "source_matches490": true,
+      "requested_initialization_variation": {
+        "ring1": {
+          "translation_xy_m": [
+            0.01,
+            -0.01
+          ],
+          "tilt_xy_rad": [
+            0.04,
+            0
+          ]
+        },
+        "ring2": {
+          "translation_xy_m": [
+            -0.01,
+            0.01
+          ],
+          "tilt_xy_rad": [
+            0,
+            -0.04
+          ]
+        }
+      },
+      "settled_public_initial_observations": {
+        "ring1": {
+          "source": "First accepted public initial RGB-D cap observation; not privileged body pose",
+          "frame": 17,
+          "captured_wall_s": 61.77094921900425,
+          "center_world_m": [
+            0.2400044211051422,
+            -0.5847020924361542,
+            0.8920608739063364
+          ],
+          "signed_axis_world": [
+            -1.2043463338693227e-05,
+            8.229367409029463e-06,
+            -0.9999999998936163
+          ],
+          "tilt_from_vertical_rad": 1.4586547202488705e-05
+        },
+        "ring2": {
+          "source": "First accepted public initial RGB-D cap observation; not privileged body pose",
+          "frame": 1,
+          "captured_wall_s": 0.09796291496604681,
+          "center_world_m": [
+            0.19032537520882978,
+            -0.7050236766211713,
+            0.8913088563063768
+          ],
+          "signed_axis_world": [
+            7.660147917558347e-05,
+            3.333902786495447e-05,
+            0.9999999965103614
+          ],
+          "tilt_from_vertical_rad": 8.354206820676716e-05
+        }
+      },
+      "artifact_SHA256": {
+        "pipeline-results.json": "136d0c72dd3a9ed3f8a0d0a27319070016f20a9030e196169040067cbdb424bd",
+        "trial-config.json": "fecfad90a7be784ac1587c23316d4fb01aaa106411276944a586565be30a38a3",
+        "frozen-source-manifest.json": "546be13831c70d55286db39d498bd8c290530ac4eb10b06fbe31e13636e588c6",
+        "rgb-observations.json": "000581ec539000d5304b89912ae2e4d54b536e0caf956b4374df9c04bd458919",
+        "fixed-supply-initialization.json": "52af8a6e050b6b1d8615e824f4d6d89cffd1aec53c6a124e5a8d354ffc2df3f9",
+        "physx-sequence-trace.npz": "6c27f26888e6aecaf92d789584877d9b2badd91ce578070744aab879912746c1"
+      }
+    }
+  ]
+}

@@ -1,0 +1,337 @@
+{
+  "run": 492,
+  "source_run": "native-roas-table-fixed-front-v492-width-memo-placed-broadphase-plus",
+  "state": "failed",
+  "full_task_pass": false,
+  "vision_end_to_end_pass": false,
+  "wall_elapsed_s": 62.907383736921474,
+  "physics_elapsed_s": null,
+  "under20": false,
+  "under30": false,
+  "source_file_count": 414,
+  "source_PY_count": 414,
+  "source_matches490": true,
+  "source_file_map_sha256": "7a7bbf82e49d35d9c0e6b13adaec12c5f2d9ec4682b3e4a58e02f80b244ca7f9",
+  "source_differences": [],
+  "config_differences_from490": {
+    "fixed_supply_pose_variation": {
+      "reference": null,
+      "current": {
+        "ring1": {
+          "translation_xy_m": [
+            0.01,
+            -0.01
+          ],
+          "tilt_xy_rad": [
+            0.04,
+            0
+          ]
+        },
+        "ring2": {
+          "translation_xy_m": [
+            -0.01,
+            0.01
+          ],
+          "tilt_xy_rad": [
+            0,
+            -0.04
+          ]
+        }
+      }
+    }
+  },
+  "requested_initialization_variation": {
+    "ring1": {
+      "translation_xy_m": [
+        0.01,
+        -0.01
+      ],
+      "tilt_xy_rad": [
+        0.04,
+        0
+      ]
+    },
+    "ring2": {
+      "translation_xy_m": [
+        -0.01,
+        0.01
+      ],
+      "tilt_xy_rad": [
+        0,
+        -0.04
+      ]
+    }
+  },
+  "setup": {
+    "setup_before_physics_and_first_capture": true,
+    "online_pose_writes": 0,
+    "original_physical_settle_unchanged": true,
+    "extra_tables_or_ring_holders": 0,
+    "holder": {
+      "path": "/World/ProposedThreePinHolder",
+      "origin_world_m": [
+        0.17,
+        -0.8725,
+        0.884313439
+      ],
+      "yaw_deg": 0,
+      "size_m": [
+        0.12,
+        0.035,
+        0.018
+      ],
+      "status": "existing_photo_derived_proxy_not_field_verified",
+      "new_holder_added": false
+    }
+  },
+  "settled_public_initial_observations": {
+    "ring1": {
+      "source": "First accepted public initial RGB-D cap observation; not privileged body pose",
+      "frame": 17,
+      "captured_wall_s": 61.77094921900425,
+      "center_world_m": [
+        0.2400044211051422,
+        -0.5847020924361542,
+        0.8920608739063364
+      ],
+      "signed_axis_world": [
+        -1.2043463338693227e-05,
+        8.229367409029463e-06,
+        -0.9999999998936163
+      ],
+      "tilt_from_vertical_rad": 1.4586547202488705e-05
+    },
+    "ring2": {
+      "source": "First accepted public initial RGB-D cap observation; not privileged body pose",
+      "frame": 1,
+      "captured_wall_s": 0.09796291496604681,
+      "center_world_m": [
+        0.19032537520882978,
+        -0.7050236766211713,
+        0.8913088563063768
+      ],
+      "signed_axis_world": [
+        7.660147917558347e-05,
+        3.333902786495447e-05,
+        0.9999999965103614
+      ],
+      "tilt_from_vertical_rad": 8.354206820676716e-05
+    }
+  },
+  "safety": {
+    "part_attachments": false,
+    "workpiece_teleports_after_initialization": 0,
+    "finger_effort_caps_n": {
+      "left_per_finger": 30.0,
+      "right_per_finger": 30.0,
+      "left_final_insertion_per_finger": 30.0
+    },
+    "native_finger_target_speed_cap_m_s": 0.0475,
+    "hardware_tested": false,
+    "hard_realtime_controller_validated": false,
+    "FR3_command_limit_audit": null,
+    "encoder_motor_speed_audit": {
+      "samples": 6483,
+      "max_fraction_of_95_percent_PBV": 0.9288184785088008,
+      "max_finger_fraction_of_47p5_mm_s": 0.6758907123615867,
+      "max_coupled_finger_difference_m": 1.4528632164001465e-07,
+      "enforced": true,
+      "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+    },
+    "complete_final_issued_command_audit_available": false
+  },
+  "GPU_groups": [
+    {
+      "event": "GPU_exact_pair_schedule_certificate",
+      "scopes": 3,
+      "inclusive_wall_s": 16.213597457041033,
+      "rows": 85129,
+      "clear_rows": 85129,
+      "CPU_fallback_rows": 0,
+      "context_misses": 0,
+      "transport_counts": {
+        "numpy_pickle5_exact_transform_bank": 3
+      },
+      "error_counts": {
+        "None": 3
+      },
+      "service_source_counts": {
+        "79b4337c1fdf748b5555c92751b9a801ce80ad4422af724b89829588fbd52453": 3
+      },
+      "RPC_timing_s": {
+        "client_wall_s": 5.5363036239286885,
+        "server_s": 4.388784762937576,
+        "kernel_s": 4.231482791830786
+      },
+      "original_policy_receipts": true
+    },
+    {
+      "event": "GPU_native_width_sweep_pair_certificate",
+      "scopes": 0,
+      "inclusive_wall_s": 0,
+      "rows": 0,
+      "clear_rows": 0,
+      "CPU_fallback_rows": 0,
+      "context_misses": 0,
+      "transport_counts": {},
+      "error_counts": {},
+      "service_source_counts": {},
+      "RPC_timing_s": {
+        "client_wall_s": 0,
+        "server_s": 0,
+        "kernel_s": 0
+      },
+      "original_policy_receipts": true
+    }
+  ],
+  "co_moving_reuse": {
+    "left": {
+      "fast_attempts": 0,
+      "fast_returns": 0,
+      "clear_queries": 0,
+      "proofs": 0,
+      "unknown": 0,
+      "relative_misses": 0
+    },
+    "right": {
+      "fast_attempts": 765,
+      "fast_returns": 355,
+      "clear_queries": 405,
+      "proofs": 5,
+      "unknown": 0,
+      "relative_misses": 0
+    }
+  },
+  "saved_route_events": [
+    {
+      "event": "saved_SMALL_donor_admitted",
+      "original_actual_encoders_all_widths_both_other_contexts_and_payload_guards": true,
+      "static_certificate_hits": 5345,
+      "static_certificate_misses": 765,
+      "native_self_certificate_hits": 5345,
+      "own_payload_certificate_hits": 5345,
+      "own_certificate_misses": 765
+    }
+  ],
+  "camera": {
+    "frames": 19,
+    "capture_to_ready_max_s": 1.1622086529387161,
+    "capture_to_ready_median_s": 0.23684050794690847,
+    "capture_to_ready_p95_s": 0.4209063278976828,
+    "over3s_count": 0,
+    "inference_s": 4.803425402962603
+  },
+  "guard_profile": {
+    "scope": "Inclusive instance guard timers only; no actuation, collision or sensor changes",
+    "timing_basis": "Wall, calling-thread CPU, and whole-process CPU. Nested methods overlap; DO NOT sum them. Outermost counters remove same-instance-method recursion only. Process CPU can include concurrent simulator threads.",
+    "methods": {
+      "right.checker.clear": {
+        "calls": 6206,
+        "exceptions": 0,
+        "max_recursion_depth": 2,
+        "inclusive_wall_s": 14.904447466484271,
+        "inclusive_thread_cpu_s": 14.897410790017602,
+        "inclusive_process_cpu_s": 16.864084399987405,
+        "outermost_calls": 4011,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 10.845213031279854,
+        "outermost_thread_cpu_s": 10.838909562979097,
+        "outermost_process_cpu_s": 12.256849227020211
+      },
+      "right.checker._clear_transforms": {
+        "calls": 3591,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 2.101881259935908,
+        "inclusive_thread_cpu_s": 2.097237254056381,
+        "inclusive_process_cpu_s": 2.3965517780197843,
+        "outermost_calls": 3591,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 2.101881259935908,
+        "outermost_thread_cpu_s": 2.097237254056381,
+        "outermost_process_cpu_s": 2.3965517780197843
+      },
+      "right.own_payload_clearance.clear": {
+        "calls": 3554,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 6.45663141051773,
+        "inclusive_thread_cpu_s": 6.456062218039733,
+        "inclusive_process_cpu_s": 7.282011600964324,
+        "outermost_calls": 3554,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 6.45663141051773,
+        "outermost_thread_cpu_s": 6.456062218039733,
+        "outermost_process_cpu_s": 7.282011600964324
+      },
+      "left.checker.clear": {
+        "calls": 1299,
+        "exceptions": 0,
+        "max_recursion_depth": 2,
+        "inclusive_wall_s": 1.5252312949160114,
+        "inclusive_thread_cpu_s": 1.523684760035394,
+        "inclusive_process_cpu_s": 1.736374735028221,
+        "outermost_calls": 1298,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 1.5236669778823853,
+        "outermost_thread_cpu_s": 1.522120720035673,
+        "outermost_process_cpu_s": 1.7346159130283922
+      },
+      "left.checker._clear_transforms": {
+        "calls": 3214,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 0.6684956509852782,
+        "inclusive_thread_cpu_s": 0.6677115179845714,
+        "inclusive_process_cpu_s": 0.7642979519641813,
+        "outermost_calls": 3214,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 0.6684956509852782,
+        "outermost_thread_cpu_s": 0.6677115179845714,
+        "outermost_process_cpu_s": 0.7642979519641813
+      },
+      "left.own_payload_clearance.clear": {
+        "calls": 3214,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 0.010463718674145639,
+        "inclusive_thread_cpu_s": 0.010127451952939737,
+        "inclusive_process_cpu_s": 0.01082237700575206,
+        "outermost_calls": 3214,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 0.010463718674145639,
+        "outermost_thread_cpu_s": 0.010127451952939737,
+        "outermost_process_cpu_s": 0.01082237700575206
+      },
+      "placed_part_clearance.clear": {
+        "calls": 12113,
+        "exceptions": 0,
+        "max_recursion_depth": 1,
+        "inclusive_wall_s": 0.0381425708765164,
+        "inclusive_thread_cpu_s": 0.037633853093211656,
+        "inclusive_process_cpu_s": 0.041957696972531267,
+        "outermost_calls": 12113,
+        "outermost_exceptions": 0,
+        "outermost_wall_s": 0.0381425708765164,
+        "outermost_thread_cpu_s": 0.037633853093211656,
+        "outermost_process_cpu_s": 0.041957696972531267
+      }
+    },
+    "wrapped_instances": 7,
+    "detached": true,
+    "restoration_error_count": 0,
+    "restoration_errors": [],
+    "protected_proof_method_identity_unchanged": true,
+    "same_arm_clearance_clear_wrapped": false,
+    "arm_bodies_wrapped": false
+  },
+  "failure_traceback": "Traceback (most recent call last):\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/run_realtime_recipe.py\", line 516, in <module>\n    result=plugin.execute(task_ctx)\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/native_hand_layout/roas-table/loose_bin_task.py\", line 972, in execute\n    raise RuntimeError('Small receiver continues changing during one-shot settled reconfirmation')\nRuntimeError: Small receiver continues changing during one-shot settled reconfirmation\n",
+  "artifact_SHA256": {
+    "pipeline-results.json": "136d0c72dd3a9ed3f8a0d0a27319070016f20a9030e196169040067cbdb424bd",
+    "trial-config.json": "fecfad90a7be784ac1587c23316d4fb01aaa106411276944a586565be30a38a3",
+    "frozen-source-manifest.json": "546be13831c70d55286db39d498bd8c290530ac4eb10b06fbe31e13636e588c6",
+    "rgb-observations.json": "000581ec539000d5304b89912ae2e4d54b536e0caf956b4374df9c04bd458919",
+    "fixed-supply-initialization.json": "52af8a6e050b6b1d8615e824f4d6d89cffd1aec53c6a124e5a8d354ffc2df3f9",
+    "physx-sequence-trace.npz": "6c27f26888e6aecaf92d789584877d9b2badd91ce578070744aab879912746c1"
+  }
+}
