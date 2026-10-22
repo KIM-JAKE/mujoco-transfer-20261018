@@ -1,0 +1,240 @@
+{
+  "scope": "Read-only public RGB-D+encoder calibratedFK seed solvability. No collision/native/terminal checks or actuation. No runtime/source changes. Individual native terminal timers not instrumented.",
+  "numeric_library_sha256": "efaaa4965137f12bd60de206612217e3271a7b702c02ca6105479e9fbf470234",
+  "runs": [
+    {
+      "run": 532,
+      "source_run": "native-roas-table-fixed-front-v532-robust-canonical-rgbd-nominal",
+      "whole_task_pass": false,
+      "terminal_candidates_checked": 1,
+      "terminal_acceptance": [
+        true
+      ],
+      "terminal_individual_timers_recorded": false,
+      "GPU_preinsert": [],
+      "shortcut_nodes": null,
+      "physical_carry_s": 1.9354166666666666,
+      "recorded_carry_wall_s": 8.013852524920367,
+      "lift_confirm_to_carry_first_command_wall_s": 17.888426330056973,
+      "first_carry_command_gap_s": 14.301019345060922,
+      "postlift_RGBD_packets": [
+        "/workspace/project/mujoco/.local/warm-worker-gpu2/snapshot/isaac_port/runs/native-roas-table-fixed-front-v532-robust-canonical-rgbd-nominal/rgb-perception/observation-054-held",
+        "/workspace/project/mujoco/.local/warm-worker-gpu2/snapshot/isaac_port/runs/native-roas-table-fixed-front-v532-robust-canonical-rgbd-nominal/rgb-perception/observation-055-held"
+      ],
+      "public_G": [
+        [
+          0.7660856988784303,
+          -0.0019760328816188855,
+          -0.6427354022208498,
+          -0.010060755548291556
+        ],
+        [
+          -3.88787970698684e-07,
+          0.9999952726067108,
+          -0.0030748600095929714,
+          -7.5541264925281515e-06
+        ],
+        [
+          0.6427384397823083,
+          0.0023558561671950897,
+          0.7660820765217805,
+          0.01104793346264421
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "same_public_hand_target": [
+        [
+          -0.7660856988784303,
+          3.887879705699068e-07,
+          -0.6427384397823084,
+          -0.30263742726592235
+        ],
+        [
+          0.0019760328816189753,
+          -0.9999952726067112,
+          -0.0023558561671950164,
+          0.22728834982517887
+        ],
+        [
+          -0.6427354022208503,
+          -0.003074860009592973,
+          0.7660820765217811,
+          1.4688199491998049
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "original_CPU_seed_IK": [
+        {
+          "source": "robot_seeds.pin_direct_preinsert",
+          "solve_wall_s": 0.00011031294707208872,
+          "solved": true,
+          "q": [
+            -0.19040300901161722,
+            0.6408820408055312,
+            0.7776648917324606,
+            -1.258009692333704,
+            1.3520090443470356,
+            2.532937947514306,
+            1.829800966360739
+          ],
+          "translation_residual_m": 5.077975998007426e-06,
+          "rotation_residual_rad": 1.638842733149908e-05,
+          "joint_distance_from_entry_rad": 4.054344142808311,
+          "joint_distance_from_actual_endpoint_rad": 0.2799328684767598
+        },
+        {
+          "source": "robot_seeds.pin_tail_carry_to_preinsert",
+          "solve_wall_s": 5.0788046792149544e-05,
+          "solved": true,
+          "q": [
+            -2.512949888479178,
+            -0.5657215704501154,
+            2.6587152024168903,
+            -1.268667168715294,
+            1.9528948966910673,
+            2.1444876625539653,
+            1.862362048371686
+          ],
+          "translation_residual_m": 6.050600935774176e-07,
+          "rotation_residual_rad": 1.9346944900684305e-06,
+          "joint_distance_from_entry_rad": 4.079448997673597,
+          "joint_distance_from_actual_endpoint_rad": 3.1963418290404055
+        },
+        {
+          "source": "current_encoder",
+          "solve_wall_s": 0.00022204697597771883,
+          "solved": false
+        }
+      ],
+      "actual_endpoint_residual_m": 1.765593277125066e-07,
+      "native_collision_or_route_admission_proven": false
+    },
+    {
+      "run": 533,
+      "source_run": "native-roas-table-fixed-front-v533-robust-canonical-rgbd-plus",
+      "whole_task_pass": true,
+      "terminal_candidates_checked": 1,
+      "terminal_acceptance": [
+        true
+      ],
+      "terminal_individual_timers_recorded": false,
+      "GPU_preinsert": [],
+      "shortcut_nodes": null,
+      "physical_carry_s": 1.8625,
+      "recorded_carry_wall_s": 3.142212492064573,
+      "lift_confirm_to_carry_first_command_wall_s": 15.278235772973858,
+      "first_carry_command_gap_s": 11.665902316919528,
+      "postlift_RGBD_packets": [
+        "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v533-robust-canonical-rgbd-plus/rgb-perception/observation-051-held",
+        "/workspace/project/mujoco/.local/warm-worker-gpu3/snapshot/isaac_port/runs/native-roas-table-fixed-front-v533-robust-canonical-rgbd-plus/rgb-perception/observation-052-held"
+      ],
+      "public_G": [
+        [
+          0.7657891234250161,
+          0.018595713098507882,
+          -0.642822851101533,
+          -0.010077120984207988
+        ],
+        [
+          9.127648731766171e-06,
+          0.9995815274297628,
+          0.028926975954431878,
+          0.0001856276116105805
+        ],
+        [
+          0.6430917651164813,
+          -0.022157831020662516,
+          0.7654684919471397,
+          0.011038834477263837
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "same_public_hand_target": [
+        [
+          -0.7657891234250159,
+          -9.127648731896055e-06,
+          -0.6430917651164813,
+          -0.3026489222419886
+        ],
+        [
+          -0.018595713098507785,
+          -0.999581527429763,
+          0.022157831020662593,
+          0.22700355824185328
+        ],
+        [
+          -0.6428228511015327,
+          0.02892697595443189,
+          0.7654684919471396,
+          1.4688169467324137
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "original_CPU_seed_IK": [
+        {
+          "source": "robot_seeds.pin_direct_preinsert",
+          "solve_wall_s": 9.167194366455078e-05,
+          "solved": true,
+          "q": [
+            -0.19320559263967935,
+            0.6343450045785278,
+            0.7871224413530061,
+            -1.270100750236398,
+            1.3812579682306871,
+            2.56335474580046,
+            1.8244831593346569
+          ],
+          "translation_residual_m": 4.405703657486745e-06,
+          "rotation_residual_rad": 1.5619549188448506e-05,
+          "joint_distance_from_entry_rad": 4.050721819447912,
+          "joint_distance_from_actual_endpoint_rad": 0.283101952473976
+        },
+        {
+          "source": "robot_seeds.pin_tail_carry_to_preinsert",
+          "solve_wall_s": 4.537194035947323e-05,
+          "solved": true,
+          "q": [
+            -2.5041111572287376,
+            -0.5550180091849644,
+            2.6624300235460088,
+            -1.2838616376952534,
+            1.9671572823810908,
+            2.174690185609564,
+            1.8667602039740352
+          ],
+          "translation_residual_m": 1.4000969361390083e-06,
+          "rotation_residual_rad": 5.119367299315281e-06,
+          "joint_distance_from_entry_rad": 4.082266771612929,
+          "joint_distance_from_actual_endpoint_rad": 3.1741110680859825
+        },
+        {
+          "source": "current_encoder",
+          "solve_wall_s": 0.00023151899222284555,
+          "solved": false
+        }
+      ],
+      "actual_endpoint_residual_m": 2.6550170796138212e-08,
+      "native_collision_or_route_admission_proven": false
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+--- /tmp/fixed529-fast-canonical-terminal-full/overrides/loose_bin_task.py
++++ /tmp/fixed533-small-wide-proof/overrides/loose_bin_task.py
+@@ -1057,7 +1057,10 @@
+                     payload_path=c['part_collision_templates'][part],
+                     encoder_samples=small_finger_window,sample_times_s=small_window_times,
+                     contact=contact,measured_grasp=left_G,control_dt_s=dt,
+-                    capture_age_physics_s=(control_steps-last_annular_observation_steps[('left',part)])*dt)
++                    capture_age_physics_s=(control_steps-last_annular_observation_steps[('left',part)])*dt,
++                    # Expand the PROVED swept CAD interval before any route
++                    # proof; never add epsilon to encoder acceptance itself.
++                    half_interval_m=.0005 if c['config'].get('small_loaded_contact_wide_proof',False)else .00025)
+                 checkers['left'].loaded_contact_aperture=binding;loaded_contact_bindings['left']=binding
+                 evidence=dict(event='small_loaded_receiver_encoder_geometry_bound',**binding.record)
+                 c['planning_diagnostics'].append(evidence);print('LOOSE_SMALL_LOADED_APERTURE_BOUND',evidence,flush=True)

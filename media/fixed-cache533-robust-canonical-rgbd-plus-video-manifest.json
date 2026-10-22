@@ -1,0 +1,72 @@
+{
+  "source_run": "native-roas-table-fixed-front-v533-robust-canonical-rgbd-plus",
+  "source_full_task_pass": true,
+  "vision_end_to_end_pass": true,
+  "source_state": "completed_over_budget",
+  "end_to_end_under20": false,
+  "end_to_end_under30": false,
+  "display_scope": "ALL3 PHYSX PASS | TIME TARGET NOT MET | HARDWARE UNTESTED",
+  "source_physics_elapsed_s": 50.35208333332862,
+  "source_total_wall_s": 216.79911665804684,
+  "segments": [
+    {
+      "start_wall_s": 0.0,
+      "end_wall_s": 216.79911665804684,
+      "part": null,
+      "label": "Complete original wall-clock replay; all3 RGB-D / PhysX PASS"
+    }
+  ],
+  "speed_multiplier": 1.0,
+  "wall_clock_replay": true,
+  "full_original_wall_replay": true,
+  "explicit_cut_cards": false,
+  "source_PIN_postrelease_RGBD_confirmed": true,
+  "frame_count": 2168,
+  "cut_frames": 0,
+  "video_duration_s": 216.8,
+  "fps": 10,
+  "renderer": "Warp GPU ray camera of original CAD, notRTX",
+  "all_dynamic_bodies_replayed": true,
+  "render_only": true,
+  "new_physics_steps": 0,
+  "actor_poses_used_for_rendering_only": true,
+  "hardware_tested": false,
+  "source_only_not_multi_case_qualification": true,
+  "source_files_sha256": {
+    "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v533-robust-canonical-rgbd-plus/pipeline-results.json": "edf879e3a2fa36c0f86adcca237656bec4b0d30943eaf70302fb8a676fc1857c",
+    "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v533-robust-canonical-rgbd-plus/physx-sequence-trace.npz": "ca979a4eeff1e592edf58ac6fc1bf8addeb260fcae6d1f5cb8f2da418f1f18df",
+    "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v533-robust-canonical-rgbd-plus/executed-actuator-commands.npz": "72e46a23c00e86ca41e68582c227ac900e36e9348a5927873875b64d5ac411ba",
+    "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v533-robust-canonical-rgbd-plus/camera-local-models.npz": "d144a59ce94052f33457cff960eb62fb0b5f222bfd768fb69feb48b255ee13d7",
+    "/home/gpuadmin/workspace/jake/mujoco/isaac_port/runs/native-roas-table-fixed-front-v533-robust-canonical-rgbd-plus/frozen-source-manifest.json": "d5917016e6e2d9d94d09b7cf9d0c7764f7324dac3d16f49099894fe64912a559",
+    "/home/gpuadmin/workspace/jake/mujoco/.local/render-current/next-full-pass/native-roas-table-fixed-front-v533-robust-canonical-rgbd-plus/render_all3_actual_excerpts_with_physics.py": "2c1e3850c20de302b2e76eb0fa1ec62e3244852c46fdbcab5d654857d97b6fd1",
+    "/home/gpuadmin/workspace/jake/mujoco/.local/render-current/next-full-pass/native-roas-table-fixed-front-v533-robust-canonical-rgbd-plus/actual-excerpts.json": "db68547a378619ead47969f241621e82052c8743a87eeb016ba7ecb5998f31fa"
+  },
+  "decoded_verification": {
+    "return_code": 0,
+    "decoded_frames": 2168,
+    "duration_s": 216.8,
+    "duplicate_frames": 0,
+    "dropped_frames": 0,
+    "method": "ffmpeg full MP4 decode to null; no error output"
+  },
+  "PNG_visually_inspected": true,
+  "video_sha256": "9a65742607de9341fa807bdcc064a5a9ae13f08369af877f9b553ef307dab7d4",
+  "last_png_sha256": "194d833a457df96287b5481f4be7353b1095c610cd9ea619382de84411701d5a",
+  "media_files": {
+    "video": "fixed-cache533-robust-canonical-rgbd-plus-all3-pass-full-wall-1x.mp4",
+    "last_png": "fixed-cache533-robust-canonical-rgbd-plus-last.png"
+  },
+  "recorded_camera_body_count": 34,
+  "public_postrelease_sensor_scope": "Fresh world-anchored RGB-D and public SDK after release and withdrawal,7mm class-plane ROI proposal actuallyexecuted; original240degree cap/1.5mm/50mrad final gates. CPU geometric PIN perception, no GPU-inference claim.",
+  "source_postrelease_observation": {
+    "index": 65,
+    "captured_wall_s": 213.24359731702134,
+    "ready_wall_s": 213.4254048030125,
+    "position_error_m": 0.0003909994175359443,
+    "axis_error_rad": 0.015041551336254667,
+    "cap_edge_coverage_deg": 344.91883707734235,
+    "cap_circular_edge_inliers": 69,
+    "original_fallback": false
+  },
+  "qualification_limits": "SinglePLUS FULLPASS; same-source NOM532 and MINUS534 did not complete. Time goal unmet; hardware untested. Concurrent532/533 wall comparisons are not isolated performance benchmarks."
+}

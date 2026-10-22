@@ -1,0 +1,158 @@
+{
+  "version": 533,
+  "run": "native-roas-table-fixed-front-v533-robust-canonical-rgbd-plus",
+  "feature_configured": true,
+  "physical_jobs_launched_by_auditor": 0,
+  "status": "completed_over_budget",
+  "full_task_pass": true,
+  "vision_end_to_end_pass": true,
+  "hardware_tested": false,
+  "wall_s": 216.79911665804684,
+  "physics_s": 50.35208333332862,
+  "time_goal_met": false,
+  "source_manifest_SHA256": "d5917016e6e2d9d94d09b7cf9d0c7764f7324dac3d16f49099894fe64912a559",
+  "result_SHA256": "edf879e3a2fa36c0f86adcca237656bec4b0d30943eaf70302fb8a676fc1857c",
+  "public_postrelease": {
+    "confirmed": true,
+    "direct_class_end_circle": true,
+    "position_error_m": 0.0003909994175359443,
+    "axis_error_rad": 0.015041551336254667,
+    "position_limit_m": 0.0015,
+    "axis_limit_rad": 0.05,
+    "cap_edge_coverage_deg": 344.91883707734235,
+    "cap_circular_edge_inliers": 69,
+    "cap_total_hull_edge_points": 69,
+    "cap_circular_edge_rms_m": 1.579275869285396e-05,
+    "center_m": [
+      -0.302021532580953,
+      0.22728969001004307,
+      1.5283611348438653
+    ],
+    "axis": [
+      -0.00022512194563023108,
+      -0.015039299334288565,
+      0.9998868779995282
+    ],
+    "source": "New postrelease RGB-D pixels, original class-radius cap/plane gates and calibrated jig goal",
+    "uses_free_body_poses": false,
+    "captured_wall_s": 213.24359731702134,
+    "ready_wall_s": 213.4254048030125,
+    "after_release_withdraw_and_original_retention_wait": true,
+    "camera_world_anchor_from_last_qualified_RGBD": [
+      [
+        0.9999930950636303,
+        0.0,
+        0.003716157297680514,
+        -0.30200530318840074
+      ],
+      [
+        5.642848013349125e-05,
+        0.999884706832875,
+        -0.015184526912691988,
+        0.22730054050018095
+      ],
+      [
+        -0.0037157288501361296,
+        0.015184631761608098,
+        0.9998778026925974,
+        1.528359901277699
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "robot_Hand_does_not_move_world_anchor": true,
+    "original_retention_wait_s": 0.5,
+    "one_observation_operation": true
+  },
+  "postrelease_SDK": {
+    "confirmed": true,
+    "release_confirmed": true,
+    "withdraw_confirmed": true,
+    "actual_fingers_m": [
+      0.008998480625450611,
+      0.008998480625450611
+    ],
+    "command_fingers_m": [
+      0.008999999612569809,
+      0.008999999612569809
+    ],
+    "release_target_per_finger_m": 0.009,
+    "release_per_finger_tolerance_m": 0.0005,
+    "actual_withdraw_translation_m": 0.0005041479360375097,
+    "command_withdraw_translation_m": 6.397003843139301e-08,
+    "actual_withdraw_rotation_rad": 0.0019354652673504882,
+    "command_withdraw_rotation_rad": 0.0005893965495772388,
+    "withdraw_translation_limit_m": 0.0015,
+    "withdraw_rotation_limit_rad": 0.05,
+    "source": "Current public gripper encoders, commanded positions and encoder FK only",
+    "uses_free_body_poses": false
+  },
+  "completion_source": "Fresh postrelease RGB-D and public robot SDK only",
+  "postrelease_qualified_observations": [
+    {
+      "view_index": 13,
+      "captured_wall_s": 213.24359731702134,
+      "ready_wall_s": 213.4254048030125,
+      "delivered_wall_s": 213.43288246996235,
+      "robust_cap_circle_from_pixels": true,
+      "original_cap_quality": {
+        "cap_expected_radius_m": 0.00525,
+        "visible_end_radius_m": 0.005216643125899305,
+        "cap_edge_coverage_deg": 344.91883707734235,
+        "cap_circular_edge_inliers": 69,
+        "cap_total_hull_edge_points": 69,
+        "cap_circular_edge_rms_m": 1.579275869285396e-05,
+        "cap_points": 5884,
+        "depth_points": 8690,
+        "plane_rms_m": 1.880333589954754e-08
+      },
+      "same_existing_camera_view_bank": true,
+      "original_depth_axis_precision_and_motor_gates_unchanged": true,
+      "uses_free_body_poses": false
+    }
+  ],
+  "actual_fresh_ROI_frames": [
+    {
+      "index": 65,
+      "capture_wall_s": 213.24359731702134,
+      "ready_wall_s": 213.4254048030125,
+      "delivery_wall_s": 213.43288246996235,
+      "capture_to_ready_s": 0.1818074859911576,
+      "circle_from_pixels": true,
+      "propagated_XY": false,
+      "coverage_deg": 344.91883707734235,
+      "edge_inliers": 69,
+      "edge_RMS_m": 1.579275869285396e-05,
+      "center_m": [
+        -0.302021532580953,
+        0.22728969001004307,
+        1.5283611348438653
+      ],
+      "axis": [
+        -0.00022512194563023108,
+        -0.015039299334288565,
+        0.9998868779995282
+      ],
+      "proposal": {
+        "proposal_radius_m": 0.007,
+        "original_radius_m": 0.01,
+        "proposal_accepted": true,
+        "original_fallback": false,
+        "original_circle_quality_unchanged": true,
+        "source": "Fresh RGB-D pixels and last qualified public world pose; CPU geometric fit"
+      },
+      "packet_path": "observation-065-held/rgbd.npz"
+    }
+  ],
+  "actual_branch_exercised": true,
+  "source_files": {
+    "direct_pin_skill.py": "d52f8169030c9385351cf636c913af60d2ba52fbcd00eeb5c39688bb02aa12ae",
+    "process_vision.py": "700353c95d4c50a75661fb95a31854208196be16a1f118d4546d7fc2ed63e0e0",
+    "realtime_camera_worker.py": "bed6eba7f5b52d9f1e1fff8ccd7dd8db1d378549e3969b6e52b4b6c5a7a4fae5",
+    "rgbd_fast_tracker.py": "291039463d28744dc4132cb1bb99b0e8c0a69ace5fce58c3310500df9ba74b2b"
+  }
+}

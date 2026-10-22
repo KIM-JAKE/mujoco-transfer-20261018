@@ -1,0 +1,34 @@
+--- a/rgbd_fast_tracker.py
++++ b/rgbd_fast_tracker.py
+@@ -24,7 +24,21 @@
+ 
+ class FastRGBDTracker:
+     def __init__(self,estimator):self.estimator=estimator
+-    def estimate(self,packet,part,seed,axis,initial_pin=False,robust_pin_cap_circle=False):
++    def estimate(self,packet,part,seed,axis,initial_pin=False,robust_pin_cap_circle=False,postrelease_cap_plane_roi=False):
++        if not isinstance(postrelease_cap_plane_roi,bool):raise ValueError('Postrelease cap ROI flag must be boolean')
++        if not postrelease_cap_plane_roi:return self._estimate_original(packet,part,seed,axis,initial_pin,robust_pin_cap_circle)
++        if part!='pin' or initial_pin or not robust_pin_cap_circle:raise ValueError('Postrelease cap ROI requires held PIN and original robust-circle quality')
++        if any(key in packet for key in ['body_poses','render_snapshot','actor_poses','free_body_poses']):raise ValueError('Private geometry is not a detector input')
++        try:
++            pose,mask=self._estimate_original(packet,part,seed,axis,initial_pin,robust_pin_cap_circle,pin_radial_roi_m=.007)
++            pose=dict(pose,postrelease_known_class_plane_roi=dict(proposal_radius_m=.007,original_radius_m=.010,proposal_accepted=True,original_fallback=False,original_circle_quality_unchanged=True,source='Fresh RGB-D pixels and last qualified public world pose; CPU geometric fit'))
++            return pose,mask
++        except RuntimeError as error:
++            pose,mask=self._estimate_original(packet,part,seed,axis,initial_pin,robust_pin_cap_circle)
++            pose=dict(pose,postrelease_known_class_plane_roi=dict(proposal_radius_m=.007,original_radius_m=.010,proposal_accepted=False,original_fallback=True,proposal_error=str(error),original_circle_quality_unchanged=True,source='Unchanged original CPU tracker fallback on same fresh pixels'))
++            return pose,mask
++
++    def _estimate_original(self,packet,part,seed,axis,initial_pin=False,robust_pin_cap_circle=False,pin_radial_roi_m=.010):
+         started=time.perf_counter();original_shape=packet['rgb'].shape[:2];seed=np.asarray(seed,float)
+         # Crop before backprojection, retaining original pixel precision.
+         T=packet['T_cell_camera'];camera=(seed-T[:3,3])@T[:3,:3];K=packet['K'].copy();radius=.055 if part!='pin'else .035
+@@ -41,7 +55,7 @@
+         if 'fixture_depth_m'in packet:
+             fixture=packet['fixture_depth_m'];mask&=(~np.isfinite(fixture))|(packet['depth_m']<fixture-.0003)
+         if part=='pin':
+-            relative=P-seed;axial=np.einsum('ijk,k->ij',relative,axis);radial=np.linalg.norm(relative-axial[:,:,None]*axis,axis=2);mask&=(abs(axial)<.022)&(radial<.010)
++            relative=P-seed;axial=np.einsum('ijk,k->ij',relative,axis);radial=np.linalg.norm(relative-axial[:,:,None]*axis,axis=2);mask&=(abs(axial)<.022)&(radial<pin_radial_roi_m)
+         if part!='pin':
+             relative=P-seed;axial=np.einsum('ijk,k->ij',relative,axis);radial=np.linalg.norm(relative-axial[:,:,None]*axis,axis=2)
+             mask&=(abs(axial)<.028)&(radial<(.040 if part=='ring1'else .034))&(radial>(.030 if part=='ring1'else .023))

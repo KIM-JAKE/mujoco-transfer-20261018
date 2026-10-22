@@ -1,5 +1,5 @@
 {
-  "recorded_utc": "2026-10-22T10:46:06.236240+00:00",
+  "recorded_utc": "2026-10-22T10:59:11.783682+00:00",
   "implementation": "saved command fields + public RGBD approach/entry correction + current dynamic checks",
   "accepted_runs": {
     "446": 249.17807756795082,
@@ -37,38 +37,43 @@
   "latest_same_code_minus_qualified": false,
   "latest_same_code_three_case_generalization_pass": false,
   "wall_time_reduction_established": false,
-  "latest_exact_checkpoint": 531,
-  "latest_three_case_pending": {
-    "source": "new423PY robustcanonical+wideproof+postreleaseclassROI",
-    "runs": [
-      532,
-      533
-    ],
-    "MINUS": "next",
-    "not_yet_qualified": true
-  },
+  "latest_exact_checkpoint": 533,
+  "latest_three_case_pending": null,
   "arbitrary_random_layout_generalization_proven": false,
   "latest_single_nominal_checkpoint": "512",
   "latest_single_nominal_same_code_variations_qualified": false,
-  "latest_same_source_three_case_checkpoint": 529,
+  "latest_same_source_three_case_checkpoint": 532,
   "last_three_case_qualified_checkpoint": "494",
   "latest_same_source_three_case_results": {
-    "529_MINUS": {
+    "532_NOMINAL": {
+      "run": 532,
+      "case": "nominal",
       "full_task_pass": false,
-      "wall_until_failure_s": 230.61451407603454,
-      "PINsavedcarry_executed": true,
-      "failure": "postreleaseRGBD originalcirclequality failed allviews"
+      "wall_s": 193.70287071994971,
+      "PIN_savedcarry_executed": true,
+      "postrelease_RGBD_confirmed": false,
+      "same_exact_source": true,
+      "hardware_tested": false
     },
-    "530_PLUS": {
-      "full_task_pass": false,
-      "wall_until_failure_s": 67.87085848802235,
-      "failure": "smallLEFToriginalnexttickwidth beyond250um proofdomain; PINnotreached"
-    },
-    "531_NOMINAL": {
+    "533_PLUS": {
+      "run": 533,
+      "case": "plus",
       "full_task_pass": true,
-      "wall_s": 214.30518595594913,
-      "publicpostreleaseRGBDcompletion": true,
-      "PINsavedcarry_executed": false
+      "wall_s": 216.79911665804684,
+      "PIN_savedcarry_executed": true,
+      "postrelease_RGBD_confirmed": true,
+      "same_exact_source": true,
+      "hardware_tested": false
+    },
+    "534_MINUS": {
+      "run": 534,
+      "case": "minus",
+      "full_task_pass": false,
+      "wall_s": 206.77785548893735,
+      "PIN_savedcarry_executed": true,
+      "postrelease_RGBD_confirmed": false,
+      "same_exact_source": true,
+      "hardware_tested": false
     }
   },
   "concurrency": {
@@ -78,12 +83,16 @@
     "controlled_latency_benchmark": false
   },
   "latest_saved_route_usage": {
-    "SMALL_donor": "512/513 admitted",
-    "SMALL_LEFT_720": "512/513 admitted",
-    "LARGE_canonical_carry": "512 admitted;513 original fresh fallback",
-    "PIN_transport": "not cached; current planning and guards remain"
+    "scope_checkpoint": 533,
+    "PIN_savedmiddle846byteexact": true,
+    "native_static_self_own_hits_each": 5929,
+    "other_checks_remain_live": true,
+    "native_preparation_cache_hit": true,
+    "preparation_insidecycle_s": 0.94289,
+    "guard_wall_s": 7.85866,
+    "total_admission_wall_s": 9.849
   },
-  "latest_same_source_audit": "component-evidence/fixed529-531-same-source-audit/matrix.json",
+  "latest_same_source_audit": "component-evidence/fixed532-534-same-source-audit/matrix.json",
   "latest_diagnostic_trials": {
     "496": {
       "result": "FAIL_PIN_PRECISION_BUDGET",
@@ -253,14 +262,23 @@
     "default_checkpoint_promoted": false,
     "feedback_reset_physically_exercised_in_passes": false
   },
-  "latest_experimental_video": "../media/fixed-cache507-collar-flat-reset-nominal-all3-pass-excerpts-1x.mp4",
+  "latest_experimental_video": {
+    "checkpoint": 533,
+    "path": "../media/fixed-cache533-robust-canonical-rgbd-plus-all3-pass-full-wall-1x.mp4",
+    "full_wall": true,
+    "playback_multiplier": 1,
+    "cuts": false,
+    "renderer": "Warp GPU, not RTX",
+    "source_wholepass": true,
+    "three_case_qualification": false
+  },
   "last_qualified_three_case_checkpoint": "494",
   "last_qualified_three_case_results": {
     "493": "PASS_PLUS",
     "494": "PASS_NOMINAL",
     "495": "PASS_MINUS"
   },
-  "latest_experimental_checkpoint": 531,
+  "latest_experimental_checkpoint": 534,
   "latest_experimental_single_plus": {
     "checkpoint": "510",
     "result": "PASS_ALL3",
@@ -292,7 +310,7 @@
     "three_case_qualified": false,
     "default_checkpoint_promoted": false
   },
-  "default_qualification_scope_checkpoint": 531,
+  "default_qualification_scope_checkpoint": 533,
   "latest_exact_epoch_prime_trial": {
     "run": "515",
     "whole_task_pass": false,
@@ -327,17 +345,21 @@
   "historical_qualification_limitation": "All historical fullpass records through520 lack current full PIN carry aperture coverage. Physical completion records preserved;494 reproduction default is not field execution qualification.",
   "latest_same_source_three_case_generalization_pass": false,
   "latest_public_sensor_complete": {
-    "checkpoint": 531,
-    "case": "NOMINAL",
+    "checkpoint": 533,
+    "case": "PLUS",
     "full_task_pass": true,
-    "wall_s": 214.30518595594913,
-    "simulation_elapsed_s": 51.97499999999381,
+    "wall_s": 216.799117,
+    "simulation_elapsed_s": 50.352083,
     "source_python_count": 423,
     "source_input_count": 430,
-    "postrelease_RGBD_completion": true,
-    "postrelease_RGBD_position_error_m": 0.0001164023,
-    "PIN_saved_carry_executed": false,
-    "PIN_cache_miss": "public grasp outside independentlyproveddomain; rejectedbeforecoldprepare/motion",
+    "PIN_savedcarry_executed": true,
+    "exact_saved_middle_commands": 846,
+    "fresh_entry_commands": 24,
+    "fresh_exit_commands": 24,
+    "public_postrelease_RGBD_confirmed": true,
+    "postrelease_capture_to_ready_s": 0.181807,
+    "final_public_position_error_m": 0.000390999,
+    "final_public_axis_error_rad": 0.01504155,
     "hardware_tested": false,
     "repeat_or_three_case_qualification": false
   },
@@ -353,5 +375,6 @@
     "cold_preparation_s_included": 3.196303,
     "whole_task_pass": false,
     "speedup_causal_established": false
-  }
+  },
+  "remaining_primary_failure": "532/534 actual PIN slips/undertravels2\u20133mm during insertion; original nativeguard blocks additional correction. FinalfreshRGBDgate notrelaxed."
 }

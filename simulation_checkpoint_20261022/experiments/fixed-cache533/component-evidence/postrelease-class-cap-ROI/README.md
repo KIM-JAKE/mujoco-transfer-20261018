@@ -1,0 +1,11 @@
+# Postrelease PIN cap-plane proposal (component-qualified only)
+
+Default-off config: `pin_postrelease_cap_plane_roi: true`. Add this key to the existing driver task-config whitelist. Merge all FOUR staged files/diffs: direct_pin_skill.py, process_vision.py, realtime_camera_worker.py, rgbd_fast_tracker.py. Base is the exact actual529 frozen source; no live source was modified.
+
+Only the fresh world-anchored postrelease PIN observation requests a 7mm known-class radial ROI proposal. Larger fixture planes dominated the original 10mm plane proposal on529, causing its 100µm cap slice to clip the tilted physical PIN. The narrower proposal selects the cap's own plane; original class-radius/240degree arc/inliers/RMS/final1.5mm/50mrad/freshness/3s deadline remain mandatory. If the proposal cannot qualify, the entire original10mm tracker runs on the SAME fresh pixels. No image/pose reuse, geometry IDs, private object pose, native motion, force, or physical phase changes.
+
+PIN tracking is CPU geometric processing in the existing isolated camera worker. GPU ring-detection service/source/socket remains unchanged; do not describe this as GPU inference acceleration. The four-file frozen worker/source manifest selects and identifies the implementation.
+
+CPU component replay on exact original captured packets:529postrelease96 originallyFAIL→proposalPASS348.07degree/70edge/20.11µm RMS.527/531 existingPASS remainPASS346.78/345.88degree. Default-off poses/masks are exact (except processing timing). Enabled estimates differ from former fixture-Z-biased estimates by115/126µm and6.49/7.09mrad, within the same final gates; no exact-pose-equivalence claim. Original freshness and final checks are literal unchanged. Invalid class/initial phase/nonrobust/private-snapshot/nonboolean requests are rejected. Exact fallback delegation tested. Full physical end-to-end run has NOT been performed with this stage.
+
+Read-only529 frozen nine-view camera proposals all failed original circle confidence, so no camera-only view patch was staged. Recorded body poses were used only to form those diagnostic images. Evaluation-only physical529postrelease pose is inside the old limits; never consumed by this detector or controller.

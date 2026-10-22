@@ -1,0 +1,238 @@
+{
+  "run": "native-roas-table-fixed-front-v533-robust-canonical-rgbd-plus",
+  "full_task_pass": true,
+  "wall_verified_elapsed_s": 216.79911665804684,
+  "simulation_elapsed_s": 50.35208333332862,
+  "whole_error": null,
+  "saved_execution": {
+    "executed": true,
+    "exact_middle_rows": 846,
+    "entry_rows": 24,
+    "exit_rows": 24,
+    "admission_wall_s": 9.848996652057394,
+    "proof_reuse": {
+      "native_self_certificate_hits": 5929,
+      "own_payload_certificate_hits": 5929,
+      "own_certificate_misses": 350,
+      "static_certificate_hits": 5929,
+      "static_certificate_misses": 350
+    },
+    "original_terminal": {
+      "reason": "full_nominal_stroke_release_withdraw_approved",
+      "minimum_joint_margin_rad": 0.969588453203125,
+      "required_joint_margin_rad": 0.03,
+      "stroke_samples": 385,
+      "withdraw_samples": 385,
+      "stroke_geometry_sampling": {
+        "full_issued_samples": 385,
+        "issued_geometry_samples": 53,
+        "first_last_and_float32_extrema_preserved": true,
+        "maximum_retained_joint_step_rad": 0.0036928653717041016
+      },
+      "withdraw_geometry_sampling": {
+        "full_issued_samples": 385,
+        "issued_geometry_samples": 53,
+        "first_last_and_float32_extrema_preserved": true,
+        "maximum_retained_joint_step_rad": 0.00372922420501709
+      },
+      "all_issued_FR3_array_checks_retained": true,
+      "uses_free_body_poses": false,
+      "robot_encoder_other_arm": true,
+      "actual_execution_not_performed": true,
+      "entry_stage": false,
+      "saved_far_withdrawal_checked": false
+    },
+    "command_limit_audit": {
+      "fraction_of_95_percent_PBV": 0.8726982095242505,
+      "maximum_acceleration_rad_s2": 8.7890625,
+      "maximum_jerk_rad_s3": 817.3828125
+    },
+    "no_middle_retiming": true,
+    "all_current_pair_placed_G_width_checks_retained": true,
+    "uses_free_body_poses": false
+  },
+  "preparation": {
+    "ready": true,
+    "cache_hit": true,
+    "preparation_s": 0.9428904929663986,
+    "canonical_rows": 847,
+    "proof_rows": 1151,
+    "static_rows": 1151,
+    "proof_domain": {
+      "translation_m": 0.001,
+      "rotation_rad": 0.05,
+      "entry_bridge_rad": 0.01,
+      "exit_bridge_rad": 0.05
+    },
+    "own": {
+      "ready": true,
+      "cache_hit": true,
+      "preparation_s": 0.0007416890002787113,
+      "canonical_rows": 1151,
+      "native_self_certified_unique_rows": 1151,
+      "own_payload_certified_unique_rows": 1151,
+      "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/own-76017cf37830d777d32522622aa5c3d2f569128809ef4dc6ef6dee224ef66f7b.json",
+      "compile_excluded_from_cycle": false,
+      "placed_opposite_entry_physics_checks_remain_live": true
+    },
+    "proof_file": "/workspace/project/mujoco/.local/fixed-route-cache/pin-ce7eca350df3ce9c951b14a0d8adb51d9e832133ea05c8ce67a8240a2868bc96.json",
+    "command_limit_audit": {
+      "fraction_of_95_percent_PBV": 0.8726982095242505,
+      "maximum_acceleration_rad_s2": 8.7890625,
+      "maximum_jerk_rad_s3": 817.3828125
+    },
+    "compile_excluded_from_cycle": false,
+    "current_pairs_placed_width_G_and_bridges_remain_live": true
+  },
+  "current_measured_aperture_admissions": [
+    {
+      "label": "pin_tail_direct_carry_to_preinsert",
+      "issued_rows": 894,
+      "actual_command_start_rows_added": 2,
+      "other_contexts": 10,
+      "full_payload_current_RGBD_G": true,
+      "uses_free_body_poses": false,
+      "wall_s": 7.858662834041752,
+      "lower_m": 0.009302083027859528,
+      "upper_m": 0.013697916666666667,
+      "one_tick_total_reach_m": 0.00019791666666666666,
+      "actual_hold_band_m": [
+        0.0097,
+        0.0135
+      ],
+      "actual_at_admission_m": 0.012555596884340048,
+      "command_at_admission_m": 0.009499999694526196,
+      "widths_m": [
+        0.009302083027859528,
+        0.009499999694526196,
+        0.010401041437561313,
+        0.011499999847263097,
+        0.012555596884340048,
+        0.012598958256964882,
+        0.013697916666666667
+      ],
+      "guard": {
+        "full_reference_other_contexts": 1,
+        "full_fallback_other_contexts": 0,
+        "changed_other_bodies": [
+          "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1",
+          "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2",
+          "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3",
+          "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4",
+          "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5",
+          "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6",
+          "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7",
+          "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand",
+          "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/left_left_finger",
+          "/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/left_right_finger"
+        ],
+        "pair_only_queries": 56511,
+        "unchanged_other_contexts_reused": 0,
+        "other_context_count": 10,
+        "own_apertures_m": [
+          0.009302083027859528,
+          0.009499999694526196,
+          0.010401041437561313,
+          0.011499999847263097,
+          0.012555596884340048,
+          0.012598958256964882,
+          0.013697916666666667
+        ],
+        "cross_joint_context_reuse": true
+      }
+    }
+  ],
+  "exact_846_middle_SDK_command_rows_match": true,
+  "exact_middle_SHA256": "fb0138cce60db33147db9ace29690970dc73c608de97146b82e74569ede29b5a",
+  "public_G_delta": {
+    "translation_m": 1.0076394579103538e-05,
+    "rotation_rad": 0.00018053530935713488
+  },
+  "public_pin_postrelease_retention": {
+    "confirmed": true,
+    "direct_class_end_circle": true,
+    "position_error_m": 0.0003909994175359443,
+    "axis_error_rad": 0.015041551336254667,
+    "position_limit_m": 0.0015,
+    "axis_limit_rad": 0.05,
+    "cap_edge_coverage_deg": 344.91883707734235,
+    "cap_circular_edge_inliers": 69,
+    "cap_total_hull_edge_points": 69,
+    "cap_circular_edge_rms_m": 1.579275869285396e-05,
+    "center_m": [
+      -0.302021532580953,
+      0.22728969001004307,
+      1.5283611348438653
+    ],
+    "axis": [
+      -0.00022512194563023108,
+      -0.015039299334288565,
+      0.9998868779995282
+    ],
+    "source": "New postrelease RGB-D pixels, original class-radius cap/plane gates and calibrated jig goal",
+    "uses_free_body_poses": false,
+    "captured_wall_s": 213.24359731702134,
+    "ready_wall_s": 213.4254048030125,
+    "after_release_withdraw_and_original_retention_wait": true,
+    "camera_world_anchor_from_last_qualified_RGBD": [
+      [
+        0.9999930950636303,
+        0.0,
+        0.003716157297680514,
+        -0.30200530318840074
+      ],
+      [
+        5.642848013349125e-05,
+        0.999884706832875,
+        -0.015184526912691988,
+        0.22730054050018095
+      ],
+      [
+        -0.0037157288501361296,
+        0.015184631761608098,
+        0.9998778026925974,
+        1.528359901277699
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "robot_Hand_does_not_move_world_anchor": true,
+    "original_retention_wait_s": 0.5,
+    "one_observation_operation": true
+  },
+  "public_completion_source": "Fresh postrelease RGB-D and public robot SDK only",
+  "encoder_motor_speed_audit": {
+    "samples": 24169,
+    "max_fraction_of_95_percent_PBV": 0.9401586900566341,
+    "max_finger_fraction_of_47p5_mm_s": 0.6851173545184889,
+    "max_coupled_finger_difference_m": 4.330649971961975e-08,
+    "enforced": true,
+    "velocity_cap_basis": "93% of conservative position-dependent bounds with one control-step lookahead; 95% acceptance reserve"
+  },
+  "FR3_command_limit_audit": {
+    "samples": 24169,
+    "velocity_fraction_of_95_percent_PBV": 0.9467500603776701,
+    "max_acceleration_rad_s2": 8.8165283203125,
+    "max_jerk_rad_s3": 2953.125,
+    "acceleration_limit_rad_s2": 9.5,
+    "jerk_limit_rad_s3": 4750,
+    "command_limit_checks": true,
+    "complete_issued_field_checked_at_end": true,
+    "validated_sample_count": 24169
+  },
+  "physics_hz": 1920,
+  "controller_hz": 480,
+  "hardware_tested": false,
+  "no_workpiece_teleports": true,
+  "source_result_sha256": "edf879e3a2fa36c0f86adcca237656bec4b0d30943eaf70302fb8a676fc1857c",
+  "source_command_sha256": "72e46a23c00e86ca41e68582c227ac900e36e9348a5927873875b64d5ac411ba",
+  "certificate_files": {
+    "pin-ce7eca350df3ce9c951b14a0d8adb51d9e832133ea05c8ce67a8240a2868bc96.json": "2ac2720a5ddcce4e7b80c863dabdbc1250897b89dabe8ef2bafcca671e1aa86c",
+    "own-76017cf37830d777d32522622aa5c3d2f569128809ef4dc6ef6dee224ef66f7b.json": "058c130dc27a124971da4c7bc3e26857b2780cbeb5e40cb3b418895dcb509271"
+  },
+  "scope": "Literal native actual trial and public observation evidence. Fulltask verdict remains authoritative; no isolated causal speedup or hardware generalization claim."
+}

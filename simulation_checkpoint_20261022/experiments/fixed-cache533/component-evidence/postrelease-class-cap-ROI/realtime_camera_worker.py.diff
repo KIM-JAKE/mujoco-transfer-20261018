@@ -1,0 +1,14 @@
+--- a/realtime_camera_worker.py
++++ b/realtime_camera_worker.py
+@@ -77,7 +77,10 @@
+                 if translation>.003 or angle>.06:raise RuntimeError('Refined partial preclose pose exceeded image-prior confidence bounds '+str(dict(translation_m=translation,axis_angle_rad=angle)))
+                 pose.update(partial_tracking_translation_from_image_prior_m=translation,partial_tracking_axis_from_image_prior_rad=angle,partial_tracking_final_confidence_checked=True)
+             result=dict(pose=pose,depth_sensor_input=True,simulator_body_pose_input=False)
+-        else:pose,mask=tracker.estimate(packet,request['part'],request['seed'],request['axis'],initial_pin=request['mode']=='pin_initial',robust_pin_cap_circle=bool(request.get('robust_pin_cap_circle')));result=dict(pose=pose,depth_sensor_input=True,simulator_body_pose_input=False)
++        else:
++            cap_roi=request.get('postrelease_cap_plane_roi',False)
++            if cap_roi and not(request['mode']=='held' and request['part']=='pin' and request.get('sensor_phase_label')=='pin_postrelease_retention_RGBD' and request.get('robust_pin_cap_circle')is True):raise ValueError('Class cap ROI is restricted to fresh robust postrelease PIN observation')
++            pose,mask=tracker.estimate(packet,request['part'],request['seed'],request['axis'],initial_pin=request['mode']=='pin_initial',robust_pin_cap_circle=bool(request.get('robust_pin_cap_circle')),postrelease_cap_plane_roi=cap_roi);result=dict(pose=pose,depth_sensor_input=True,simulator_body_pose_input=False)
+         done=time.perf_counter();conn.send(dict(id=request['id'],result=result,packet=packet,mask=mask,H=request['H'],captured_wall_s=request['snapshot_monotonic']-request['cycle_started'],ready_wall_s=done-request['cycle_started'],capture_s=captured-render_start,processing_s=done-captured,queue_wait_s=render_start-request['snapshot_monotonic'],camera_profile=dict(camera.last_profile)))
+     except Exception:
+         value=dict(id=request['id'],result=dict(error=traceback.format_exc()))

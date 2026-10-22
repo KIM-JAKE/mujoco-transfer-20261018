@@ -1,0 +1,10 @@
+--- a/direct_pin_skill.py
++++ b/direct_pin_skill.py
+@@ -373,6 +373,7 @@
+         for view_index,offset in views:
+             e=dict(mode='pin_initial'if grasp is None else'held',part='pin',label=label,view_index=view_index,robust_pin_cap_circle=bool(require_circle and pin_config.get('robust_pin_cap_circle')))
+             if grasp is not None:e.update(tracked_grasp=grasp.tolist(),camera_eye_offset=offset)
++            if anchored_world is not None and pin_config.get('pin_postrelease_cap_plane_roi',False):e['postrelease_cap_plane_roi']=True
+             if require_circle and visual_preinsert and pin_config.get('pin_precision_image_width_px') is not None:e['pin_precision_image_width_px']=int(pin_config['pin_precision_image_width_px'])
+             if prefetched is not None:e,f=prefetched;prefetched=None
+             else:
