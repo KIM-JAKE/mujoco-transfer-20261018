@@ -1,0 +1,3 @@
+# Portable test adaptations
+
+Original common API and audit tests were copied. Two tests requiring server-local preserved simulation archives were excluded from the portable suite; original tests and archives remain unchanged. The adversarial fixture audit checks remain. Hardware boundary tests generate their configuration fixture with `capx_deploy.initialize` in a temporary directory instead of loading a server-local development manifest. The lightweight-import test removes PYTHONPATH so its subprocess checks the installed distribution. Task integration receives the actual installed package root in CAPX_HARDWARE_BACKEND_ROOT. No physical test or device result is substituted by these changes.

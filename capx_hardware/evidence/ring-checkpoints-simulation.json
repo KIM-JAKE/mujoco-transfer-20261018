@@ -1,0 +1,465 @@
+{
+  "schema": "retrospective-ring-checkpoints-in-frozen-whole3/v1",
+  "utc": "2026-10-23T02:04:34.521500+00:00",
+  "counts": {
+    "NOM": {
+      "attempts": 5,
+      "small_final": 5,
+      "both_ring_final": 4,
+      "whole3": 4
+    },
+    "PLUS": {
+      "attempts": 5,
+      "small_final": 5,
+      "both_ring_final": 3,
+      "whole3": 3
+    },
+    "MINUS": {
+      "attempts": 5,
+      "small_final": 5,
+      "both_ring_final": 1,
+      "whole3": 0
+    }
+  },
+  "both_ring_total": 8,
+  "attempts": 15,
+  "whole3_total": 7,
+  "all_attempts_preserved": true,
+  "same_source": "3f77d778a288d7783c2ba68e7e94d8669c1849d5c47ba4f78c46da015f1cad7c",
+  "trials": [
+    {
+      "trial_id": "capx-full3-optional-nominal-guard-v090-nominal-repeat1",
+      "condition": "NOM",
+      "small_final_check_pass": true,
+      "large_final_check_pass": false,
+      "both_ring_checkpoints_pass": false,
+      "whole3_pass": false,
+      "ring_recovery_events": 1,
+      "terminal_phase": "grasp",
+      "failure_category_advisory": "UNKNOWN",
+      "failure": {
+        "code": null,
+        "details": null,
+        "exception_type": "RuntimeError",
+        "message": "Fresh RGB-D pickup Cartesian path blocked: {'segment': 259, 'fraction': 1.0, 'collision': {'query': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/Contact/right_arm_fr3v2_link3_collision', 'actor': '/World/Environment/m80/instance_0160', 'collider': '/World/Environment/m80/instance_0160'}}",
+        "phase": "grasp"
+      },
+      "fresh_final_ring_observations": {
+        "ring2": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-nominal-repeat1:observation-034",
+          "captured_wall_s": 116.2438456750242,
+          "position_error_m": 0.00035195767696745737,
+          "axis_error_rad": 0.0012209933762930398
+        }
+      }
+    },
+    {
+      "trial_id": "capx-full3-optional-nominal-guard-v090-minus-repeat1",
+      "condition": "MINUS",
+      "small_final_check_pass": true,
+      "large_final_check_pass": false,
+      "both_ring_checkpoints_pass": false,
+      "whole3_pass": false,
+      "ring_recovery_events": 0,
+      "terminal_phase": "grasp",
+      "failure_category_advisory": "UNKNOWN",
+      "failure": {
+        "code": null,
+        "details": null,
+        "exception_type": "RuntimeError",
+        "message": "Physical pickup recovery path blocked: {'segment': 37, 'fraction': 1.0, 'collision': {'query': '/World/Cell/Geometry/workpiece_ring1/CPUConvexContact/ring1_0', 'actor': '/World/Environment/m80/instance_0641', 'collider': '/World/Environment/m80/instance_0641'}}",
+        "phase": "grasp"
+      },
+      "fresh_final_ring_observations": {
+        "ring2": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-minus-repeat1:observation-028",
+          "captured_wall_s": 95.50211696501356,
+          "position_error_m": 0.00037136317753408004,
+          "axis_error_rad": 0.010823715120161162
+        }
+      }
+    },
+    {
+      "trial_id": "capx-full3-optional-nominal-guard-v090-minus-repeat2",
+      "condition": "MINUS",
+      "small_final_check_pass": true,
+      "large_final_check_pass": false,
+      "both_ring_checkpoints_pass": false,
+      "whole3_pass": false,
+      "ring_recovery_events": 1,
+      "terminal_phase": "grasp",
+      "failure_category_advisory": "UNKNOWN",
+      "failure": {
+        "code": null,
+        "details": null,
+        "exception_type": "RuntimeError",
+        "message": "Fresh RGB-D pickup Cartesian path blocked: {'segment': 268, 'fraction': 1.0, 'collision': {'query': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/Contact/right_arm_fr3v2_link3_collision', 'actor': '/World/Environment/m80/instance_0160', 'collider': '/World/Environment/m80/instance_0160'}}",
+        "phase": "grasp"
+      },
+      "fresh_final_ring_observations": {
+        "ring2": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-minus-repeat2:observation-034",
+          "captured_wall_s": 122.14511220308486,
+          "position_error_m": 0.00035259060987426666,
+          "axis_error_rad": 0.000208416509319044
+        }
+      }
+    },
+    {
+      "trial_id": "capx-full3-optional-nominal-guard-v090-plus-repeat1",
+      "condition": "PLUS",
+      "small_final_check_pass": true,
+      "large_final_check_pass": false,
+      "both_ring_checkpoints_pass": false,
+      "whole3_pass": false,
+      "ring_recovery_events": 5,
+      "terminal_phase": null,
+      "failure_category_advisory": "insertion_correction_PREISSUE_geometry_refusal",
+      "failure": {
+        "code": null,
+        "details": null,
+        "exception_type": "ExecutedCurvePreflightBlocked",
+        "message": "Right ring executed curve hits fixed structure axial_depth_correction {'opening_index': 0, 'opening_m': 0.07199864089488983, 'segment': 67, 'fraction': 1.0, 'collision': {'query': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/right_right_finger/tip', 'actor': '/World/Environment/m80/instance_0540', 'collider': '/World/Environment/m80/instance_0540'}}",
+        "phase": null
+      },
+      "fresh_final_ring_observations": {
+        "ring2": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-plus-repeat1:observation-034",
+          "captured_wall_s": 111.19045918795746,
+          "position_error_m": 0.0002785396817289888,
+          "axis_error_rad": 0.002733680686151832
+        }
+      }
+    },
+    {
+      "trial_id": "capx-full3-optional-nominal-guard-v090-nominal-repeat2",
+      "condition": "NOM",
+      "small_final_check_pass": true,
+      "large_final_check_pass": true,
+      "both_ring_checkpoints_pass": true,
+      "whole3_pass": true,
+      "ring_recovery_events": 4,
+      "terminal_phase": null,
+      "failure_category_advisory": "after_rings_or_whole_complete",
+      "failure": null,
+      "fresh_final_ring_observations": {
+        "ring2": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-nominal-repeat2:observation-037",
+          "captured_wall_s": 107.96933816594537,
+          "position_error_m": 0.00030302484818843875,
+          "axis_error_rad": 0.0020615437521368904
+        },
+        "ring1": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-nominal-repeat2:observation-055",
+          "captured_wall_s": 195.77709159394726,
+          "position_error_m": 0.000529001399091542,
+          "axis_error_rad": 0.013955238630172227
+        }
+      }
+    },
+    {
+      "trial_id": "capx-full3-optional-nominal-guard-v090-plus-repeat2",
+      "condition": "PLUS",
+      "small_final_check_pass": true,
+      "large_final_check_pass": true,
+      "both_ring_checkpoints_pass": true,
+      "whole3_pass": true,
+      "ring_recovery_events": 6,
+      "terminal_phase": null,
+      "failure_category_advisory": "after_rings_or_whole_complete",
+      "failure": null,
+      "fresh_final_ring_observations": {
+        "ring2": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-plus-repeat2:observation-040",
+          "captured_wall_s": 129.41028369008563,
+          "position_error_m": 0.0003149986790915464,
+          "axis_error_rad": 0.0023461629792705333
+        },
+        "ring1": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-plus-repeat2:observation-059",
+          "captured_wall_s": 223.4501011860557,
+          "position_error_m": 0.00072714520455685,
+          "axis_error_rad": 0.012297327494111093
+        }
+      }
+    },
+    {
+      "trial_id": "capx-full3-optional-nominal-guard-v090-minus-repeat3",
+      "condition": "MINUS",
+      "small_final_check_pass": true,
+      "large_final_check_pass": true,
+      "both_ring_checkpoints_pass": true,
+      "whole3_pass": false,
+      "ring_recovery_events": 2,
+      "terminal_phase": "carry",
+      "failure_category_advisory": "after_rings_or_whole_complete",
+      "failure": {
+        "code": null,
+        "details": null,
+        "exception_type": "RuntimeError",
+        "message": "Native PIN phase coordinator refused completion: {'schema': 'fr3-capx-pipeline/v1', 'run_id': '899b4211e67a4ace87de71d246839637', 'domain': 'simulation', 'scope': 'component', 'binding': {'scene_sha256': 'b5a6cbcea993d2b713ca73a4fa07c2dbdc7efb7750d0aea0ca64c1b6326d196f', 'config_sha256': '22e10b460bebdede93dd696f6ef34a8abfd3022347f12e1d57555c4c0e180260', 'source_sha256': '3f77d778a288d7783c2ba68e7e94d8669c1849d5c47ba4f78c46da015f1cad7c'}, 'expected_parts': ('pin',), 'parts': ({'part_name': 'pin', 'completed': False, 'recovery_used': False, 'outcome': 'failed', 'completed_phases': ('perception', 'grasp'), 'history_path': '/workspace/project/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-minus-repeat3/capx-components/899b4211e67a4ace87de71d246839637/components/pin/execution_history_block_0.json', 'failure': {'code': 'operation_exception', 'message': \"Common checkpoint refused next native action {'kind': 'finished', 'completed': False, 'run_token': 'ecbc22c319f445a89288a9fcca32b793', 'error': None}\", 'retryable': False, 'details': {'exception_type': 'SessionStopped'}}},), 'completed': False, 'recovery_used': False, 'fresh_final_check_passed': False, 'outcome': 'failed', 'history_path': '/workspace/project/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-minus-repeat3/capx-components/899b4211e67a4ace87de71d246839637/coordinator/execution_history_block_0.json', 'artifact_path': '/workspace/project/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-minus-repeat3/capx-components/899b4211e67a4ace87de71d246839637/pipeline-result.json', 'failure': {'code': 'operation_exception', 'message': \"Common checkpoint refused next native action {'kind': 'finished', 'completed': False, 'run_token': 'ecbc22c319f445a89288a9fcca32b793', 'error': None}\", 'retryable': False, 'details': {'exception_type': 'SessionStopped'}}, 'completed_part_count': 0, 'normal_success': False, 'full_task_success': False, 'native_path_qualification': False, 'hardware_qualification': False}",
+        "phase": "carry"
+      },
+      "fresh_final_ring_observations": {
+        "ring2": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-minus-repeat3:observation-028",
+          "captured_wall_s": 94.88238077401184,
+          "position_error_m": 0.000382603844257201,
+          "axis_error_rad": 0.00925614546597256
+        },
+        "ring1": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-minus-repeat3:observation-058",
+          "captured_wall_s": 187.06923164299224,
+          "position_error_m": 0.0003966489076703046,
+          "axis_error_rad": 0.01112845842654582
+        }
+      }
+    },
+    {
+      "trial_id": "capx-full3-optional-nominal-guard-v090-nominal-repeat3",
+      "condition": "NOM",
+      "small_final_check_pass": true,
+      "large_final_check_pass": true,
+      "both_ring_checkpoints_pass": true,
+      "whole3_pass": true,
+      "ring_recovery_events": 6,
+      "terminal_phase": null,
+      "failure_category_advisory": "after_rings_or_whole_complete",
+      "failure": null,
+      "fresh_final_ring_observations": {
+        "ring2": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-nominal-repeat3:observation-040",
+          "captured_wall_s": 127.60655767202843,
+          "position_error_m": 0.0002799627958302429,
+          "axis_error_rad": 0.008453655678371112
+        },
+        "ring1": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-nominal-repeat3:observation-059",
+          "captured_wall_s": 220.79503163893241,
+          "position_error_m": 0.0005526657529708591,
+          "axis_error_rad": 0.0134160447293451
+        }
+      }
+    },
+    {
+      "trial_id": "capx-full3-optional-nominal-guard-v090-minus-repeat4",
+      "condition": "MINUS",
+      "small_final_check_pass": true,
+      "large_final_check_pass": false,
+      "both_ring_checkpoints_pass": false,
+      "whole3_pass": false,
+      "ring_recovery_events": 9,
+      "terminal_phase": "withdraw",
+      "failure_category_advisory": "withdrawal_PREISSUE_geometry_refusal",
+      "failure": {
+        "code": null,
+        "details": null,
+        "exception_type": "RuntimeError",
+        "message": "No full-current-context empty RIGHT withdrawal to the original world-down target {'original': \"Right ring executed curve hits fixed structure world_down_withdraw {'opening_index': 0, 'opening_m': 0.07998722046613693, 'segment': 267, 'fraction': 1.0, 'collision': {'query': '/World/Cell/Geometry/official_FR3_Duo/right_arm_base/right_arm_fr3v2_link0/right_arm_fr3v2_link1/right_arm_fr3v2_link2/right_arm_fr3v2_link3/right_arm_fr3v2_link4/right_arm_fr3v2_link5/right_arm_fr3v2_link6/right_arm_fr3v2_link7/right_arm_fr3v2_link8/right_NativeHand/Palm', 'actor': '/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/left_left_finger', 'collider': '/World/Cell/Geometry/official_FR3_Duo/left_arm_base/left_arm_fr3v2_link0/left_arm_fr3v2_link1/left_arm_fr3v2_link2/left_arm_fr3v2_link3/left_arm_fr3v2_link4/left_arm_fr3v2_link5/left_arm_fr3v2_link6/left_arm_fr3v2_link7/left_arm_fr3v2_link8/left_NativeHand/left_left_finger/tip', 'predictive_pair_box': True, 'minimum_pair_clearance_m': 0.001}}\", 'rejections': [{'candidate': 0, 'stage': 'current_full_endpoint'}, {'candidate': 1, 'stage': 'current_full_endpoint'}, {'candidate': 2, 'stage': 'current_full_endpoint'}, {'candidate': 3, 'stage': 'current_full_endpoint'}, {'candidate': 4, 'stage': 'current_full_endpoint'}, {'candidate': 5, 'stage': 'current_full_endpoint'}, {'candidate': 6, 'stage': 'current_full_endpoint'}, {'candidate': 7, 'stage': 'current_full_endpoint'}]}",
+        "phase": "withdraw"
+      },
+      "fresh_final_ring_observations": {
+        "ring2": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-minus-repeat4:observation-037",
+          "captured_wall_s": 119.04576242889743,
+          "position_error_m": 0.00027526705734864704,
+          "axis_error_rad": 0.004664398006762845
+        }
+      }
+    },
+    {
+      "trial_id": "capx-full3-optional-nominal-guard-v090-minus-repeat5",
+      "condition": "MINUS",
+      "small_final_check_pass": true,
+      "large_final_check_pass": false,
+      "both_ring_checkpoints_pass": false,
+      "whole3_pass": false,
+      "ring_recovery_events": 1,
+      "terminal_phase": null,
+      "failure_category_advisory": "camera_or_acquisition_deadline",
+      "failure": {
+        "code": null,
+        "details": null,
+        "exception_type": "RuntimeError",
+        "message": "Right ring RGB-D deadline preinsert_RGBD",
+        "phase": null
+      },
+      "fresh_final_ring_observations": {
+        "ring2": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-minus-repeat5:observation-034",
+          "captured_wall_s": 112.89208030409645,
+          "position_error_m": 0.00040311391631669486,
+          "axis_error_rad": 0.010010745328648398
+        }
+      }
+    },
+    {
+      "trial_id": "capx-full3-optional-nominal-guard-v090-plus-repeat3",
+      "condition": "PLUS",
+      "small_final_check_pass": true,
+      "large_final_check_pass": true,
+      "both_ring_checkpoints_pass": true,
+      "whole3_pass": true,
+      "ring_recovery_events": 4,
+      "terminal_phase": null,
+      "failure_category_advisory": "after_rings_or_whole_complete",
+      "failure": null,
+      "fresh_final_ring_observations": {
+        "ring2": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-plus-repeat3:observation-034",
+          "captured_wall_s": 102.01234168000519,
+          "position_error_m": 0.0004019324735421577,
+          "axis_error_rad": 0.011844542644718048
+        },
+        "ring1": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-plus-repeat3:observation-053",
+          "captured_wall_s": 194.6092173929792,
+          "position_error_m": 0.0003558341902902645,
+          "axis_error_rad": 0.004278084630439297
+        }
+      }
+    },
+    {
+      "trial_id": "capx-full3-optional-nominal-guard-v090-nominal-repeat4",
+      "condition": "NOM",
+      "small_final_check_pass": true,
+      "large_final_check_pass": true,
+      "both_ring_checkpoints_pass": true,
+      "whole3_pass": true,
+      "ring_recovery_events": 4,
+      "terminal_phase": null,
+      "failure_category_advisory": "after_rings_or_whole_complete",
+      "failure": null,
+      "fresh_final_ring_observations": {
+        "ring2": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-nominal-repeat4:observation-034",
+          "captured_wall_s": 140.55807841999922,
+          "position_error_m": 0.0003128551648784658,
+          "axis_error_rad": 0.009541606229679218
+        },
+        "ring1": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-nominal-repeat4:observation-053",
+          "captured_wall_s": 243.6853143760236,
+          "position_error_m": 0.0010092731545571349,
+          "axis_error_rad": 0.00160966440200494
+        }
+      }
+    },
+    {
+      "trial_id": "capx-full3-optional-nominal-guard-v090-plus-repeat4",
+      "condition": "PLUS",
+      "small_final_check_pass": true,
+      "large_final_check_pass": false,
+      "both_ring_checkpoints_pass": false,
+      "whole3_pass": false,
+      "ring_recovery_events": 1,
+      "terminal_phase": "grasp",
+      "failure_category_advisory": "camera_or_acquisition_deadline",
+      "failure": {
+        "code": null,
+        "details": null,
+        "exception_type": "RuntimeError",
+        "message": "Alternate RGB-D pickup camera timeout",
+        "phase": "grasp"
+      },
+      "fresh_final_ring_observations": {
+        "ring2": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-plus-repeat4:observation-034",
+          "captured_wall_s": 113.96459950204007,
+          "position_error_m": 0.0004481823709788264,
+          "axis_error_rad": 0.011244857403443003
+        }
+      }
+    },
+    {
+      "trial_id": "capx-full3-optional-nominal-guard-v090-plus-repeat5",
+      "condition": "PLUS",
+      "small_final_check_pass": true,
+      "large_final_check_pass": true,
+      "both_ring_checkpoints_pass": true,
+      "whole3_pass": true,
+      "ring_recovery_events": 4,
+      "terminal_phase": null,
+      "failure_category_advisory": "after_rings_or_whole_complete",
+      "failure": null,
+      "fresh_final_ring_observations": {
+        "ring2": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-plus-repeat5:observation-037",
+          "captured_wall_s": 140.27790394308977,
+          "position_error_m": 0.0002715696395445843,
+          "axis_error_rad": 0.005319368873363934
+        },
+        "ring1": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-plus-repeat5:observation-055",
+          "captured_wall_s": 249.85065933002625,
+          "position_error_m": 0.0004816808704725552,
+          "axis_error_rad": 0.012528757297601039
+        }
+      }
+    },
+    {
+      "trial_id": "capx-full3-optional-nominal-guard-v090-nominal-repeat5",
+      "condition": "NOM",
+      "small_final_check_pass": true,
+      "large_final_check_pass": true,
+      "both_ring_checkpoints_pass": true,
+      "whole3_pass": true,
+      "ring_recovery_events": 3,
+      "terminal_phase": null,
+      "failure_category_advisory": "after_rings_or_whole_complete",
+      "failure": null,
+      "fresh_final_ring_observations": {
+        "ring2": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-nominal-repeat5:observation-028",
+          "captured_wall_s": 115.8749049869366,
+          "position_error_m": 0.0004141237076996912,
+          "axis_error_rad": 0.009223355076375664
+        },
+        "ring1": {
+          "observation_id": "capx-full3-optional-nominal-guard-v090-nominal-repeat5:observation-047",
+          "captured_wall_s": 231.44040817196947,
+          "position_error_m": 0.0005523912929956147,
+          "axis_error_rad": 0.006493636153107183
+        }
+      }
+    }
+  ],
+  "inputs_sha256": {
+    "/home/gpuadmin/workspace/jake/capx-fr3-adapter-20261023/qualification/v090-frozen15-independent-final.json": "b1975b7bce6a2cb1acb9f5e1425e2538656deb7b2680c399b0a6b9058b80904e",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/variants/full3-optional-nominal-guard-v090/native_phase_evidence.py": "d851f7695a92ec3f5a6fb779f5fa80073935fb1a4946bbcf66b8647598efedf1",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-nominal-repeat1/native-phase-session-final.json": "c8f261eb248be06b7cf07f49144a21b1525ef2bd61d6ffe625c3b0ca57d5dbd2",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-nominal-repeat1/task-source-binding.json": "c774b830dedb695984a16d9ce0e3b7645209a7adf7b297e24b2b1dbb332b2086",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-minus-repeat1/native-phase-session-final.json": "ff4d71e475d8894f56564101141fe01fca4b3aa12621085054511dbe2fa0b45a",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-minus-repeat1/task-source-binding.json": "2b094bfa800e30fc0c2db15076114cb98c8cf8f3e08ee442d3baa32dfeef1a64",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-minus-repeat2/native-phase-session-final.json": "2ba8c2146e1e73f3b9fd00603ca8caa9cc712ff17f01880f886c6741335e2ee7",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-minus-repeat2/task-source-binding.json": "2b094bfa800e30fc0c2db15076114cb98c8cf8f3e08ee442d3baa32dfeef1a64",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-plus-repeat1/native-phase-session-final.json": "e5a08b08b269b9c5b4306e1937446105091a56c46b43716fb69dfeea2e76e5f5",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-plus-repeat1/task-source-binding.json": "5192400458496403fff881ad5d14340bbeb288bbccd2f8e4d44de1054c94d250",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-nominal-repeat2/native-phase-session-final.json": "82954c68d1e959b4ca5eb55e4247bcd287d94da4c3bbfc5b04ecaeaa2a5288ae",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-nominal-repeat2/task-source-binding.json": "c774b830dedb695984a16d9ce0e3b7645209a7adf7b297e24b2b1dbb332b2086",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-plus-repeat2/native-phase-session-final.json": "472bdd121d28bbc407c5cd202895710f001b3a8549c758af6c97579bd434092f",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-plus-repeat2/task-source-binding.json": "5192400458496403fff881ad5d14340bbeb288bbccd2f8e4d44de1054c94d250",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-minus-repeat3/native-phase-session-final.json": "20752d40d4f81b52dd02db391ff15ca1a0ab8560c3f2af7a51acb6bc2b41e980",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-minus-repeat3/task-source-binding.json": "2b094bfa800e30fc0c2db15076114cb98c8cf8f3e08ee442d3baa32dfeef1a64",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-nominal-repeat3/native-phase-session-final.json": "2ba9d8a8f950941c1c65f7272c56332883c51b88f6291217d242f2d8a2b36b0a",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-nominal-repeat3/task-source-binding.json": "c774b830dedb695984a16d9ce0e3b7645209a7adf7b297e24b2b1dbb332b2086",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-minus-repeat4/native-phase-session-final.json": "e26bf77d6ff3b47a017714015ecd941d2b1c19ed5a15e0f05319348dd5bf39cd",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-minus-repeat4/task-source-binding.json": "2b094bfa800e30fc0c2db15076114cb98c8cf8f3e08ee442d3baa32dfeef1a64",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-minus-repeat5/native-phase-session-final.json": "951f1ab7f1d145a478f8ebcfd363af2bc2efea75d4edfc8027001fe7ef2f9885",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-minus-repeat5/task-source-binding.json": "2b094bfa800e30fc0c2db15076114cb98c8cf8f3e08ee442d3baa32dfeef1a64",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-plus-repeat3/native-phase-session-final.json": "58530e3e950be456d299d62ab978a9d06e2b2c6ca8f6a33db38040446fbce68b",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-plus-repeat3/task-source-binding.json": "5192400458496403fff881ad5d14340bbeb288bbccd2f8e4d44de1054c94d250",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-nominal-repeat4/native-phase-session-final.json": "85fb3c487e9ad3e2c4fcab651997df6d606953ed728c8f15f126fc8a75e8030a",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-nominal-repeat4/task-source-binding.json": "c774b830dedb695984a16d9ce0e3b7645209a7adf7b297e24b2b1dbb332b2086",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-plus-repeat4/native-phase-session-final.json": "2564d01913a3becc3bec9548b07f6d5f44f8c0330de5593f3fc4e03d4a22f411",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-plus-repeat4/task-source-binding.json": "5192400458496403fff881ad5d14340bbeb288bbccd2f8e4d44de1054c94d250",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-plus-repeat5/native-phase-session-final.json": "59261c15e5ba6b339c9b6b3edcf7d09beeb5a9d8a1e92713cdd971ba0062a624",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-plus-repeat5/task-source-binding.json": "5192400458496403fff881ad5d14340bbeb288bbccd2f8e4d44de1054c94d250",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-nominal-repeat5/native-phase-session-final.json": "c998278ed5fe016d2f6779bafd2f796040ebdd35d23ced85cb9f58a356273740",
+    "/home/gpuadmin/workspace/jake/capx-fr3-skills-20261023/runs/capx-full3-optional-nominal-guard-v090-nominal-repeat5/task-source-binding.json": "c774b830dedb695984a16d9ce0e3b7645209a7adf7b297e24b2b1dbb332b2086"
+  },
+  "scope": "Retrospective original native checkpoint evaluation WITHIN whole3 trials, corrections/recoveries included. NOT independent rings-only validation or evidence of stable generalization/hardware. Both ring checkpoint completion does not imply later simultaneous final retained rings/whole3. Failure mechanism beyond exact exception is UNKNOWN.",
+  "controller_or_source_modified": false,
+  "actual_device_operations": false,
+  "script_sha256": "93b3084f1898d462db3a66856dcfa12292a26b304dbaddcc5826bbb5a784d767"
+}

@@ -1,0 +1,60 @@
+{
+  "schema": "root-release-source-boundary-independent-review/v1",
+  "utc": "2026-10-23T02:08:51.719708+00:00",
+  "release": "/home/gpuadmin/workspace/jake/capx-fr3-hardware-release-20261023/capx_hardware",
+  "actual_test_commands": [
+    {
+      "pattern": "test_hardware_boundary.py",
+      "passed": 6,
+      "exit_code": 0
+    },
+    {
+      "pattern": "test_portable_install.py",
+      "passed": 6,
+      "exit_code": 0
+    },
+    {
+      "pattern": "test_task*.py",
+      "passed": 9,
+      "exit_code": 0
+    }
+  ],
+  "total": 21,
+  "passed": 21,
+  "executed_python": "/tmp/m80-nlp-plan-venv/bin/python -B",
+  "working_directory": "/tmp",
+  "PYTHONPATH": "/home/gpuadmin/workspace/jake/capx-fr3-hardware-release-20261023/capx_hardware",
+  "scope": "Actual combined RELEASE source imports, cross-package registration, portable relative vendor manifests, local initialization, no side effects and disabled actuation. Not independent installed-wheel validation or actual hardware/geometry/SDK commissioning.",
+  "root_runtime_matches_stable_v2": {
+    "backend.py": true,
+    "config.py": true,
+    "__main__.py": true,
+    "drivers.py": true,
+    "__init__.py": true
+  },
+  "task_runtime_matches_latest_explicit_side_r4": {
+    "bridge.py": true,
+    "__main__.py": true,
+    "__init__.py": true
+  },
+  "input_sha256": {
+    "tests/test_hardware_boundary.py": "f1ae98696fa0420b88bc44b188c2992d6f75f1ec9fccce07e7905aff1947fa6e",
+    "tests/test_portable_install.py": "6dd045360786e5a5750845ed63a2776be8aa3ebfc3623534c8c6e089de227b12",
+    "tests/test_task_bridge.py": "6b26269e6cfde6089b45a6f0843b917c02a72f4f7d19dbd27d2b690a7947d3c9",
+    "tests/test_task_concrete_backend_offline.py": "ec96a53d67637dd84c646e42e6970162da4a83da7827efe1161823164b84e195",
+    "hardware_v1/backend.py": "efabd84a08374882501457020fa584e4cdd2ab147859645c4bbcd67cf55b9d49",
+    "hardware_v1/config.py": "c17aa42311415fc15129804f303fa3c4f044fe5f12f116e2355487e73a32d51c",
+    "hardware_v1/__main__.py": "90f5d7028054aee8f29c459791f1c7d87a12de71c42b4f38ab5cc8ca4fb61722",
+    "hardware_v1/drivers.py": "630bfa17263661f3c704ee53fbb23e65b518cde28aee74c50b02473ad99227a0",
+    "hardware_v1/__init__.py": "f7ae1ed7ab367e003f3416b0d15307d7494ad21d21b163c6a0c67b62d4ec307f",
+    "capx_ring_tasks/bridge.py": "560621bd3fae3d7af918540ac5d2660dbe5bd70edb35594935a66bbd21ef3a16",
+    "capx_ring_tasks/__main__.py": "b93eb1ea3d6f12ae80eb8657976cb153dd191a4e11bbb08071a7919cea3ab6ff",
+    "capx_ring_tasks/__init__.py": "ab69c93c334de2c98c11351b04051dc38f6c9b7eba50b4d7f09c4b3e72f720cc",
+    "capx_deploy/cli.py": "7a5cf305786c080a62484c4a600e940992214fc8fa35ce9a5916814e62adee4a",
+    "pyproject.toml": "06a326ee3cf0c47cc51ec8daca0e7ba53901003de0ebb342e0914896dc35da71"
+  },
+  "release_read_only": true,
+  "peer_checkout_or_index_modified": false,
+  "device_connected_or_motor_actions": false,
+  "git_push_verified": false
+}

@@ -1,0 +1,39 @@
+name: CaP FR3 hardware package
+
+on:
+  push:
+    paths:
+      - 'capx_hardware/**'
+      - '.github/workflows/capx-hardware.yml'
+  pull_request:
+    paths:
+      - 'capx_hardware/**'
+      - '.github/workflows/capx-hardware.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  installed-package:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: capx_hardware
+          filter: blob:none
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install the distribution
+        run: python -m pip install ./capx_hardware
+      - name: Verify installed imports, contracts, CLI and incomplete site
+        run: python capx_hardware/tools/verify_installed.py --output /tmp/capx-installed-report.json
+      - name: Compile and run standalone native offline tests
+        working-directory: capx_hardware/capx_vendor/fieldkit
+        run: |
+          g++ -std=c++17 -O2 -pthread test_servo_core.cpp -o /tmp/capx-servo-test
+          g++ -std=c++17 -O2 -pthread test_site_watchdog.cpp -o /tmp/capx-watchdog-test
+          g++ -std=c++17 -O2 -pthread test_telemetry.cpp -o /tmp/capx-telemetry-test
+          /tmp/capx-servo-test
+          /tmp/capx-watchdog-test
+          /tmp/capx-telemetry-test

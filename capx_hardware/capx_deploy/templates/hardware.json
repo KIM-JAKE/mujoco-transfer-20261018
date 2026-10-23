@@ -1,0 +1,74 @@
+{
+  "schema": "capx-fr3-hardware/v1",
+  "units": "m_rad_s_N",
+  "motion_enabled": false,
+  "simulation_bias_enabled": false,
+  "site_config": "site.template.json",
+  "site_config_sha256": "014519e277b6e1ae2eb911e17b60295ac297745441e69613fa4369585ece1191",
+  "driver_manifest": {
+    "path": "drivers.local.json",
+    "sha256": "ea0cfcb89e33ec6889837ae4e15255c0ef435a5280a383112afe6d338df24459"
+  },
+  "tools": {
+    "left": {
+      "T_flange_tcp": null,
+      "measurement": {
+        "path": null,
+        "sha256": null
+      }
+    },
+    "right": {
+      "T_flange_tcp": null,
+      "measurement": {
+        "path": null,
+        "sha256": null
+      }
+    }
+  },
+  "T_cell_fixture": null,
+  "geometry_record": {
+    "path": null,
+    "sha256": null
+  },
+  "binaries": {
+    "state": {
+      "path": null,
+      "sha256": null
+    },
+    "motion": {
+      "path": null,
+      "sha256": null
+    },
+    "hand": {
+      "path": null,
+      "sha256": null
+    }
+  },
+  "camera": {
+    "type": null,
+    "calibration": null,
+    "calibration_sha256": null,
+    "K": null,
+    "width": null,
+    "height": null,
+    "fps": null,
+    "max_age_s": null,
+    "intrinsic_tolerance_px": null
+  },
+  "max_sensor_age_s": null,
+  "max_state_age_s": null,
+  "admission": {
+    "hardware_qualified": false,
+    "executable": {
+      "path": null,
+      "sha256": null
+    }
+  },
+  "limitations": [
+    "Site hardware values are unknown. No IP/TCP/K/T/force/PLC mapping inferred from simulation.",
+    "Original Hand force5..20N differs from simulation30N/pad; task policy must be qualified on hardware.",
+    "Current exact hardware full-world admission executable unavailable; arm/hand/clamp actuation blocked.",
+    "Default preflight is local-only. No automatic home, reset, release or network/device probe."
+  ],
+  "task_source_sha256": null
+}
