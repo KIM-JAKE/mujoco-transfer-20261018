@@ -2,7 +2,7 @@
 
 양팔 FR3의 CaP 공통 API, 링 작업 경계, 실제 libfranka·Franka Hand·PLC·RealSense 연결 코드를 한 설치본으로 제공합니다. **카메라와 로봇 좌표를 현장 설정으로 분리**했으며 Isaac Sim 없이 설치·설정 검사·상태 읽기·카메라 취득을 준비할 수 있습니다.
 
-현재 상태는 **실기 연결 및 commissioning 준비본**입니다. 실제 장비에서 전체 링 조립은 검증하지 않았으며, 현재 실측 장면의 전체 충돌 승인기가 제공되지 않아 자동 조립 구동은 차단됩니다. `motion_enabled` 하나를 바꿔 이 조건을 대체할 수 없습니다. 시뮬레이션에서 성공한 관절 배열을 실기에서 재생하는 패키지가 아닙니다.
+현재 상태는 **자동 두 링 실행기 포함·현장 commissioning 전**입니다. 실제 장비에서 전체 링 조립은 검증하지 않았으며, 현재 실측 장면의 전체 충돌 승인기가 제공되지 않아 자동 조립 구동은 차단됩니다. `motion_enabled` 하나를 바꿔 이 조건을 대체할 수 없습니다. 시뮬레이션에서 성공한 관절 배열을 실기에서 재생하는 패키지가 아닙니다.
 
 ## 설치와 첫 점검
 
@@ -97,5 +97,15 @@ cuRobo는 설치된 현장 모델에 맞춰 IK/경로 **후보**를 계산하는
 
 실기 자동 운전을 위해 남은 핵심은 **현장 실측값, 실제 전체 장면 승인기, 해당 장비에서의 commissioning**입니다. 특히 시뮬레이션의 30 N/pad 설정을 현재 실제 Hand wrapper의 5–20 N 설정으로 그대로 쓰거나 조용히 잘라내지 않습니다. 실제 그리퍼 정책을 검증해야 합니다.
 
-이번 버전은 실제 요청·I/O 연결 경계와 설치 도구를 제공합니다. 완성된 실기 자율 링 계획기 및 전체 단계 coordinator를 제공하거나 검증한 버전은 아닙니다. 남은 시뮬레이션 함수별 이식 지점은 [링 이식 표](docs/RING_HARDWARE_PORT_MAP_v1.md)에 정리했습니다.
+이번 버전은 실제 RGB-D/SDK 기반 자동 SMALL→LARGE 실행기 `capx-rings`를 포함합니다. 인식·파지 후보/IK·전달·삽입·놓기·철수·새 두 링 final을 연결했으며, 설정·충돌 승인 누락 시 구동 전에 차단합니다. [자동 실행기 설치·무동작 확인·현장 연결 안내](docs/AUTOMATIC_RINGS.md)를 보세요. 기존 어댑터의 [링 이식 표](docs/RING_HARDWARE_PORT_MAP_v1.md)는 v0.1의 경계 기록으로 보존합니다. 실제 하드웨어 완료·접촉 안정성·반복 성공은 아직 검증하지 않았습니다.
 
+
+## 자동 링 집기 비구동 확인
+
+```sh
+capx-rings init ./NEW-auto-site --hardware ../site-local/hardware.json
+capx-rings preflight --config ./NEW-auto-site/autoring.json
+capx-rings self-test --output ./NEW-offline-ring-run
+```
+
+빈 현장 설정의 preflight는 누락을 보고하고 exit 2가 정상입니다. self-test는 실제 production 상태흐름에 명시적 모의 장치만 연결하며 실기 성공으로 기록하지 않습니다. 상세 설정·재생·승인기 계약은 [자동 두 링 안내](docs/AUTOMATIC_RINGS.md)를 따르세요.

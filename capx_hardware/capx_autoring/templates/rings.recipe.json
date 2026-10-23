@@ -1,0 +1,296 @@
+{
+  "schema_version": 2,
+  "recognition": "seed_free_rgbd",
+  "site_config": "site.json",
+  "camera_config": "rings.camera.json",
+  "planner_config": "rings.planner.json",
+  "camera_configs": {
+    "basket": null,
+    "held_right": null,
+    "held_left": null,
+    "fixture": null
+  },
+  "commissioning": {
+    "verified": null,
+    "by": null,
+    "at_utc": null,
+    "evidence_file": null
+  },
+  "feedback_timeout_s": null,
+  "feedback_dwell_s": null,
+  "max_task_s": null,
+  "max_observation_age_s": null,
+  "held_roi_radius_m": null,
+  "target_position_tolerance_m": null,
+  "target_angle_tolerance_rad": null,
+  "release_width_tolerance_m": null,
+  "insert_pose_confirmation_tolerance_m": null,
+  "insertion_targets": {
+    "ring1": null,
+    "ring2": null
+  },
+  "parts": [
+    {
+      "part": "ring2",
+      "pickup_side": null,
+      "insert_side": null,
+      "grasp_families": [
+        {
+          "name": null,
+          "T_part_tcp": null,
+          "measurement": {
+            "verified": null,
+            "by": null,
+            "at_utc": null,
+            "evidence_file": null
+          }
+        }
+      ],
+      "payload_dimensions": {
+        "radius_m": null,
+        "length_m": null,
+        "measurement": {
+          "verified": null,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        }
+      },
+      "pregrasp_offset_part_m": null,
+      "lift_offsets_cell_m": [],
+      "insert_entry_offset_part_m": null,
+      "withdraw_offset_cell_m": null,
+      "min_tcp_clearance_m": null,
+      "handover": {
+        "donor_T_cell_tcp": null,
+        "donor_waypoints_cell_tcp": [],
+        "receiver_T_part_tcp": null,
+        "receiver_approach_offset_part_m": null,
+        "donor_retreat_offset_cell_m": null,
+        "donor_grasped_signal": null,
+        "receiver_grasped_signal": null,
+        "receiver_open": {
+          "width_m": null,
+          "speed_m_s": null
+        },
+        "receiver_grasp": {
+          "width_m": null,
+          "speed_m_s": null,
+          "force_n": null,
+          "epsilon_inner_m": null,
+          "epsilon_outer_m": null
+        },
+        "donor_release": {
+          "width_m": null,
+          "speed_m_s": null
+        },
+        "receiver_release": {
+          "width_m": null,
+          "speed_m_s": null
+        }
+      },
+      "capsules_part_m": null
+    },
+    {
+      "part": "ring1",
+      "pickup_side": null,
+      "insert_side": null,
+      "grasp_families": [
+        {
+          "name": null,
+          "T_part_tcp": null,
+          "measurement": {
+            "verified": null,
+            "by": null,
+            "at_utc": null,
+            "evidence_file": null
+          }
+        }
+      ],
+      "payload_dimensions": {
+        "radius_m": null,
+        "length_m": null,
+        "measurement": {
+          "verified": null,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        }
+      },
+      "pregrasp_offset_part_m": null,
+      "lift_offsets_cell_m": [],
+      "insert_entry_offset_part_m": null,
+      "withdraw_offset_cell_m": null,
+      "min_tcp_clearance_m": null,
+      "handover": {
+        "donor_T_cell_tcp": null,
+        "donor_waypoints_cell_tcp": [],
+        "receiver_T_part_tcp": null,
+        "receiver_approach_offset_part_m": null,
+        "donor_retreat_offset_cell_m": null,
+        "donor_grasped_signal": null,
+        "receiver_grasped_signal": null,
+        "receiver_open": {
+          "width_m": null,
+          "speed_m_s": null
+        },
+        "receiver_grasp": {
+          "width_m": null,
+          "speed_m_s": null,
+          "force_n": null,
+          "epsilon_inner_m": null,
+          "epsilon_outer_m": null
+        },
+        "donor_release": {
+          "width_m": null,
+          "speed_m_s": null
+        },
+        "receiver_release": {
+          "width_m": null,
+          "speed_m_s": null
+        }
+      },
+      "capsules_part_m": null
+    }
+  ],
+  "notes": "Fill measured real hand grasp transforms, conservative payload geometry, actual insertion fixtures, independently observed grasp inputs and fixed calibrated camera views. Rings use no nominal object pose seeds. Every live movement requires fresh actual pixels, real SDK model and commissioned collision-envelope proof. No simulated camera relocation. Dry-run requires recorded/synthetic-labelled RGB-D manifest and uses fake devices only. TCP clearance is not a whole-hand collision certificate. Optional capsules_part_m is a measured part-frame enclosing shell list [{a:[x,y,z],b:[x,y,z],radius_m:r}]; verified enclosing annular shell capsules preserve physical holes. A solid radius/length fallback deliberately fills holes and may reject stacking or pin insertion. Never invent smaller radii or disable collision checks to get a pass.",
+  "payload_profile": "rings.payload.json",
+  "payload_profile_sha256": null,
+  "experimental_not_field_ready": true,
+  "clamp_control": {
+    "mode": null,
+    "allowed_modes": [
+      "actual_PLC",
+      "operator_manual"
+    ]
+  },
+  "retention_observation_dwell_s": 0.3,
+  "inventory_inspection": {
+    "native_hand_mount": {
+      "left": {
+        "T_flange_hand": null,
+        "measurement": {
+          "verified": null,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        }
+      },
+      "right": {
+        "T_flange_hand": null,
+        "measurement": {
+          "verified": null,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        }
+      }
+    },
+    "relative_tcp_views": {
+      "left": [
+        {
+          "T_tcp_inspection": null,
+          "measurement": {
+            "verified": null,
+            "by": null,
+            "at_utc": null,
+            "evidence_file": null
+          }
+        }
+      ],
+      "right": [
+        {
+          "T_tcp_inspection": null,
+          "measurement": {
+            "verified": null,
+            "by": null,
+            "at_utc": null,
+            "evidence_file": null
+          }
+        }
+      ]
+    },
+    "uncertain_payload_dimensions": {
+      "radius_m": null,
+      "length_m": null,
+      "measurement": {
+        "verified": null,
+        "by": null,
+        "at_utc": null,
+        "evidence_file": null
+      }
+    },
+    "return_over_bin": {
+      "left": {
+        "T_cell_tcp": null,
+        "measurement": {
+          "verified": null,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        },
+        "release_region": {
+          "T_cell_box": null,
+          "half_extents_m": null,
+          "measurement": {
+            "verified": null,
+            "by": null,
+            "at_utc": null,
+            "evidence_file": null
+          }
+        },
+        "held_extent_radius_m": null,
+        "release_action": {
+          "width_m": 0.08,
+          "speed_m_s": 0.005
+        },
+        "empty_hand_views": [
+          {
+            "T_tcp_inspection": null,
+            "measurement": {
+              "verified": null,
+              "by": null,
+              "at_utc": null,
+              "evidence_file": null
+            }
+          }
+        ]
+      },
+      "right": {
+        "T_cell_tcp": null,
+        "measurement": {
+          "verified": null,
+          "by": null,
+          "at_utc": null,
+          "evidence_file": null
+        },
+        "release_region": {
+          "T_cell_box": null,
+          "half_extents_m": null,
+          "measurement": {
+            "verified": null,
+            "by": null,
+            "at_utc": null,
+            "evidence_file": null
+          }
+        },
+        "held_extent_radius_m": null,
+        "release_action": {
+          "width_m": 0.08,
+          "speed_m_s": 0.005
+        },
+        "empty_hand_views": [
+          {
+            "T_tcp_inspection": null,
+            "measurement": {
+              "verified": null,
+              "by": null,
+              "at_utc": null,
+              "evidence_file": null
+            }
+          }
+        ]
+      }
+    }
+  }
+}

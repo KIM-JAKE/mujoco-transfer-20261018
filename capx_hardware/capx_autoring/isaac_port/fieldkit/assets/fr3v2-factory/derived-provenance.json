@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "frame": "original class-local CAD; historical world placements excluded",
+  "body_geometry": "All original official collision vertices/triangles retained in conservative column cover; inherited official Hand hull and original M80 CAD sectors are copied as fixed numeric geometry, never runtime pose truth.",
+  "sources": [
+    {
+      "name": "native-official-finger.npz",
+      "source_path": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/native_hand_layout/roas-table/native-official-finger.npz",
+      "sha256": "7cb3dc1385332c4ebae6aa76438ac699258fdc34ff12ab952e4fbb1931d5c6dd"
+    },
+    {
+      "name": "hand.stl",
+      "source_path": "/home/gpuadmin/workspace/jake/field-demo-random-starter-20261022/src/isaac_port/fieldkit/assets/native-hand/hand.stl",
+      "sha256": "94493e94f30fe940f2c8ca2f155c3bbe67bbff406d3edf5e261670d2f0f6e2ed"
+    },
+    {
+      "name": "collision.npz",
+      "source_path": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/generated/contact_task/collision.npz",
+      "sha256": "6f25e9ba216f1750fbd64cf0465c6d318335008297f479e3a54ab43a97a94860"
+    },
+    {
+      "name": "contact-source.json",
+      "source_path": "/home/gpuadmin/workspace/jake/mujoco/isaac_port/generated/contact_task/contact-source.json",
+      "sha256": "273bbe48021cd3ca4a98f41a17ba66658b049c71d7313a12406358703bd9da8b"
+    }
+  ],
+  "part_loads": "Explicit accepted nominal CAD-body model masses, zero body COM and original diagonal body COM inertia; NOT physically measured mass properties.",
+  "column_generation": "Sutherland-Hodgman clip every original triangle against8x8 cross-section rectangles, bound full axial boundary range; enclose rectangle extruded over that range in capsule. Additional2um numeric skin; actual cable allowance added onsite.",
+  "outputs": {
+    "collision-models.npz": "70fd59da267a0a36f4dc4ce80a0bc585c4b1f77d0c225edb555d8c23b9d74a36",
+    "arm-columns.json": "8e1bcd346816deb05a39d8841dade394a8efd5d00756547038a60d9a920197b5",
+    "enclosure-proof.json": "182ded4b016d4257faefa7ddaa15d7db1ce275ec752f5e5156a97d7d7b13a42b"
+  }
+}

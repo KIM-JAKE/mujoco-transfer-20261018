@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "model": "official_fr3_duo_mount_v0_3",
+  "robot_model": "fr3v2",
+  "repository": "https://github.com/frankarobotics/franka_description",
+  "commit": "7aeeddc449edf8d62b594f9e36a81da53e7796f9",
+  "T_left_base_right_base": [
+    [
+      0.6125346519098793,
+      -0.440358394458041,
+      0.656418909416829,
+      0.04417352828036723
+    ],
+    [
+      0.4403583944580412,
+      -0.49952810870570846,
+      -0.7460269117419521,
+      -0.050203673920706335
+    ],
+    [
+      0.656418909416829,
+      0.7460269117419519,
+      -0.11206276061558773,
+      -0.07483595475523105
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "relative_position_match_tolerance_m": 0.0005,
+  "relative_rotation_match_tolerance_rad": 0.002,
+  "derivation": "URDF fixed mount left/right origins from pinned kinematics.yaml, Rz(yaw)Ry(pitch)Rx(roll); common origin cancels",
+  "source_sha256": {
+    "LICENSE": "4b25434e6ec2012e28a484f1d7924a0fd1a8bf232c2be2d50d584d299d04d6d6",
+    "fr3_duo.xacro": "0c8d2046fb03095f7711b3632856935173567d6b880fd9c182b9e1142320cec9",
+    "fr3_duo_mount.xacro": "a8f85ad1f35354db372cce7b20833653ca125465703baaa125f4f77769a37af1",
+    "kinematics.yaml": "4b7930ba5901e5dab9cfcfa7228b20c9140ca942380015ef4cb7fa3134a1f08e",
+    "provenance.json": "247a693e7315becb035086de39e0276afe73b8720285ed79ed3962ab00d280e7"
+  }
+}

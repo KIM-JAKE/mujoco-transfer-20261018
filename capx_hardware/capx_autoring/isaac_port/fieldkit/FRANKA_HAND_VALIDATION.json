@@ -1,0 +1,56 @@
+{
+  "created_utc": "2026-10-19T08:24:09.352785+00:00",
+  "scope": "native_franka_hand_field_cap",
+  "hardware_ready": false,
+  "hardware_connected": false,
+  "physical_assembly_tested": false,
+  "toolchain": {
+    "cpp_sdk": "Official libfranka 0.18.1",
+    "build": "Ubuntu 20.04 Release / C++17",
+    "python": "CPython 3.10, standard library"
+  },
+  "validation": {
+    "cpp_ctest": 8,
+    "python_unittest": 27,
+    "isolated_index_export": true
+  },
+  "features": [
+    "Native Hand status/homing/move/grasp/stop",
+    "Measured is_grasped confirmation",
+    "READY watchdog and PLC fault cancellation",
+    "Measured pose capture and stationary-knot C2 field trajectories",
+    "Sequential CaP with seat/clamp/retained/button feedback"
+  ],
+  "remaining": [
+    "Actual robot and Hand connection/stop commissioning",
+    "Measured TCP/base transforms/tool and payload properties",
+    "Native Hand field path review including continuous collisions, assembled parts and both arms",
+    "PLC signal mapping and measured button stroke",
+    "Real grasp/friction/insertion/contact validation; no automatic live contact-search controller"
+  ],
+  "source_sha256": {
+    "README.md": "4143e20cc657b8a5730d8a1ec6f61c6d240a56832b6c2531abcfb1b3fe4b87eb",
+    "isaac_port/fieldkit/CMakeLists.txt": "e56849f62a66c1ab3fce2272b682c99c9e2477bfc4026fc855005c463e6fc098",
+    "isaac_port/fieldkit/FRANKA_HAND_QUICKSTART.md": "144333d29a124b97fa67d63e577a67a4d4c7cfa1e5b005666f23c924c1e93cc3",
+    "isaac_port/fieldkit/ONBOARDING_FR3.md": "32915923cf306f2a4611734793a0a3b7220ef97f777cfe85d041e8bbdea53c19",
+    "isaac_port/fieldkit/README.md": "91166dfc9782e9daf48f497afdc931e62689cebc8703699deda4f8e135dfd2bd",
+    "isaac_port/fieldkit/check_hand_cli.cmake": "d673267945c6965a3f8fae45daa70993bdd81eaa5647097e73f55a5aaef91d99",
+    "isaac_port/fieldkit/check_site_cli.cmake": "afaedf9e86cb33d004817af43fb6352e6ec5962682ecf8a1ca569e23b261fc9a",
+    "isaac_port/fieldkit/devices.py": "6b0987d9f91476439b026e9f3242a34f6c38073045eea6d73ba729dd242cd576",
+    "isaac_port/fieldkit/franka_hand.cpp": "f1da263165bfcbee6fa3357cea8b35e0b84a3de836982343ad025caf65912a60",
+    "isaac_port/fieldkit/hand.py": "f085049a0cbeea69f26509293c5c8b14fa74839ab54055f3adbc911a9fca7f1f",
+    "isaac_port/fieldkit/libfranka_stage.cpp": "f61dee77f4fa9752800b705ca3f2165a364ccba7d45261e83892034e9ef987cb",
+    "isaac_port/fieldkit/libfranka_stage.hpp": "4149dde9712d950b0bf90651a7a778fa210eb74a1329bbbea267a7912bba2228",
+    "isaac_port/fieldkit/modbus.py": "e432b621d5c9385de5e9ab903420caac9e3a6c6e68c087e2202ddc06df69a2e8",
+    "isaac_port/fieldkit/site.example.json": "359d0e7e46bce364dee8d150bd879dd113518c550e8fca3c27705efdd8809939",
+    "isaac_port/fieldkit/site.franka.example.json": "a10ae9b0bff839cd07a280d1aeb8e4444fc3b4650b05f1fdf8e024e4f5de2fa6",
+    "isaac_port/fieldkit/site.py": "719ccb83a7aac87a7dec31c8cf8a3b2053f4ee47150cc4afbfea34dfbde866df",
+    "isaac_port/fieldkit/site_motion.cpp": "80b5b34384d02829ccbe2e22ed1633cf318eaa2d481e20b88de0ec0af0933106",
+    "isaac_port/fieldkit/site_watchdog.hpp": "9a4272c23f58597a2a11457b2beef4b15ec69cdf5032139e1109581a892f5f22",
+    "isaac_port/fieldkit/teach.py": "9ea2d6b977aa50642e73183ea3c39ec894697c2ad0868e919d6dcd5b28f5e0cb",
+    "isaac_port/fieldkit/test_devices.py": "c4fd43f88a3ac7d8eff80bf6acde05fb0071438cc405507dac7b9a8eb80efb14",
+    "isaac_port/fieldkit/test_field_context.cpp": "892fd3bc051e2009552a0c71a20428cd3693527670f911d80ccc013daf3df4bd",
+    "isaac_port/fieldkit/test_hand.py": "33ed9168a260efdb2bd5ccd862f24a758bb4e19d726db079686d3a5061063116",
+    "isaac_port/fieldkit/test_site_watchdog.cpp": "9d3ea69d3f6df3eabec4adcd131a032885a7e540af7de7f76d38273e4db48e16"
+  }
+}

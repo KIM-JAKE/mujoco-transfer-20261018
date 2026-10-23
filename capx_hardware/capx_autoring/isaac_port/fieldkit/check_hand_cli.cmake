@@ -1,0 +1,6 @@
+foreach(args IN ITEMS "--execute-move;192.0.2.1;0.081;0.005" "--execute-move;192.0.2.1;0.04;0.03" "--execute-grasp;192.0.2.1;0.04;0.005;21;0.0005;0.0005" "--execute-grasp;192.0.2.1;0.04;0.005;5;0;0.0005" "move;192.0.2.1" "--execute-move;192.0.2.1;nan;0.005")
+  execute_process(COMMAND "${PROGRAM}" ${args} RESULT_VARIABLE result ERROR_VARIABLE error TIMEOUT 2)
+  if(NOT result EQUAL 2)
+    message(FATAL_ERROR "Invalid hand command was not rejected before network connection: ${args}: ${error}")
+  endif()
+endforeach()

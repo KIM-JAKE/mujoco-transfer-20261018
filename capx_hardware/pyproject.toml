@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "capx-fr3-hardware"
-version = "0.1.0"
+version = "0.2.0"
 description = "Portable FR3 CaP APIs, measured ring task boundary and field device commissioning tools"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -13,17 +13,24 @@ license-files = ["THIRD_PARTY_LICENSES/*.txt", "THIRD_PARTY_NOTICES.md"]
 
 [project.optional-dependencies]
 camera = ["pyrealsense2"]
+autoring = ["opencv-python-headless", "python-fcl"]
 
 [project.scripts]
+capx-rings = "capx_autoring.__main__:main"
 capx-fr3 = "capx_deploy.cli:main"
 capx-hardware = "hardware_v1.__main__:main"
 capx-ring-task = "capx_ring_tasks.__main__:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["capx_deploy*", "capx_vendor*", "fr3_capx*", "hardware_v1*", "capx_ring_tasks*"]
+include = ["capx_deploy*", "capx_vendor*", "fr3_capx*", "hardware_v1*", "capx_ring_tasks*", "capx_autoring*"]
 
 [tool.setuptools.package-data]
 capx_deploy = ["templates/*.json", "data/*.json"]
 "capx_vendor.fieldkit" = ["*.cpp", "*.hpp", "*.cmake", "CMakeLists.txt"]
 
+
+capx_autoring = ["engine-manifest.json", "templates/*.json"]
+"capx_autoring.isaac_port.fieldkit" = ["*.cpp", "*.hpp", "*.cmake", "CMakeLists.txt", "*.json", "assets/*", "assets/**/*"]
+
+"capx_autoring.field_demo.stabilized" = ["*.json"]

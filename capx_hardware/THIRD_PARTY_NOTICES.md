@@ -10,3 +10,10 @@ relative source paths and SHA-256 values appear in `evidence/vendor-provenance.j
 This addition does not relicense the original repository or its device SDKs.
 libfranka and librealsense are external build/runtime dependencies; their binaries
 are not redistributed here.
+
+The `capx_autoring` policy and native assets are ported from the same existing
+workspace/repository `field_demo_random_20261022/src`. Source/asset hashes and
+namespace/phase instrumentation changes are listed in
+`evidence/autoring-upstream-port.json`. Original asset licenses/provenance are
+retained beside the assets. No libfranka/librealsense binaries or external model
+weights are bundled. Geometry NPZs are class CAD assets, not runtime truth poses.

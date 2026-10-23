@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "motion_binary": "/tmp/m80-field-build/m80_site_motion",
+  "state_binary": "/tmp/m80-field-build/m80_read_state",
+  "calibration_record": "calibration.md",
+  "commissioning_record": "commissioning.md",
+  "commissioning": {
+    "workspace_checked": false,
+    "stop_tested": false,
+    "tool_and_payload_checked": false,
+    "single_arm_test_area_clear": false
+  },
+  "robots": {
+    "left": {
+      "ip": null,
+      "T_cell_base": null,
+      "tool_mass_kg": null,
+      "load_mass_kg": null
+    },
+    "right": {
+      "ip": null,
+      "T_cell_base": null,
+      "tool_mass_kg": null,
+      "load_mass_kg": null
+    }
+  },
+  "grippers": {
+    "left": {
+      "endpoint": {
+        "host": null,
+        "port": 502,
+        "unit": 9,
+        "timeout_s": 0.15
+      },
+      "read_kind": "input",
+      "status_address": 2000,
+      "command_address": 1000
+    },
+    "right": {
+      "endpoint": {
+        "host": null,
+        "port": 502,
+        "unit": 9,
+        "timeout_s": 0.15
+      },
+      "read_kind": "input",
+      "status_address": 2000,
+      "command_address": 1000
+    }
+  },
+  "plc": {
+    "endpoint": {
+      "host": null,
+      "port": 502,
+      "unit": 1,
+      "timeout_s": 0.15
+    },
+    "signals": {
+      "cell_ready": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "cell_fault": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "cell_stop": {
+        "kind": "coil",
+        "address": null,
+        "active": true
+      },
+      "button_pressed": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "ring1_grasped": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "ring1_seated": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "ring1_clamped": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "ring1_retained": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "ring1_clamp_command": {
+        "kind": "coil",
+        "address": null,
+        "active": true
+      },
+      "ring2_grasped": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "ring2_seated": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "ring2_clamped": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "ring2_retained": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "ring2_clamp_command": {
+        "kind": "coil",
+        "address": null,
+        "active": true
+      },
+      "pin_grasped": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "pin_seated": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "pin_clamped": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "pin_retained": {
+        "kind": "discrete",
+        "address": null,
+        "active": true
+      },
+      "pin_clamp_command": {
+        "kind": "coil",
+        "address": null,
+        "active": true
+      }
+    }
+  },
+  "assembly_commissioned": false,
+  "button_verified_travel_m": null,
+  "stages": {},
+  "gripper_actions": {
+    "ring1": {
+      "grasp": {
+        "position": null,
+        "speed": 16,
+        "force": 16
+      },
+      "release": {
+        "position": null,
+        "speed": 16,
+        "force": 16
+      }
+    },
+    "ring2": {
+      "grasp": {
+        "position": null,
+        "speed": 16,
+        "force": 16
+      },
+      "release": {
+        "position": null,
+        "speed": 16,
+        "force": 16
+      }
+    },
+    "pin": {
+      "grasp": {
+        "position": null,
+        "speed": 16,
+        "force": 16
+      },
+      "release": {
+        "position": null,
+        "speed": 16,
+        "force": 16
+      }
+    }
+  }
+}

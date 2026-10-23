@@ -23,7 +23,7 @@ def main():
         code = r'''
 import importlib,json,os,pathlib,sys,unittest
 project=pathlib.Path(sys.argv[1]).resolve()
-modules=[importlib.import_module(n)for n in ('hardware_v1.backend','capx_ring_tasks.bridge','capx_deploy.cli','fr3_capx')]
+modules=[importlib.import_module(n)for n in ('hardware_v1.backend','capx_ring_tasks.bridge','capx_deploy.cli','fr3_capx','capx_autoring.runner')]
 paths={m.__name__:str(pathlib.Path(m.__file__).resolve())for m in modules}
 assert all(not pathlib.Path(p).is_relative_to(project)for p in paths.values()),paths
 installed=pathlib.Path(modules[0].__file__).resolve().parents[1]
