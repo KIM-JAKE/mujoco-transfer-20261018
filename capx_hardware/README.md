@@ -27,6 +27,26 @@ capx-fr3 preflight --config ./site-local/hardware.json
 
 `capx-fr3 init`은 기존 디렉터리를 덮어쓰지 않습니다. 새 폴더의 설정·보정 기록·실행 로그는 저장소에 포함하지 마세요. 설치 위치에서 생성한 드라이버 manifest는 소스 해시를 확인하며, 설치본을 이동한 경우 새 site 디렉터리를 생성합니다.
 
+## 현장 인터넷이 없는 경우
+
+외부망 가능한 PC에서 코드를 받은 뒤 USB로 옮길 수 있습니다. **현장과 Python 버전·OS·CPU 아키텍처가 일치하는 환경**에서, 저장소 루트를 기준으로 Python 의존성까지 준비합니다.
+
+```bash
+python -m pip wheel ./capx_hardware --wheel-dir wheelhouse
+# 실제 RealSense 카메라를 쓸 경우 같은 호환 환경에서 추가 준비
+python -m pip wheel './capx_hardware[camera]' --wheel-dir wheelhouse
+```
+
+`wheelhouse`를 현장 PC로 옮긴 뒤 해당 환경에서 설치합니다.
+
+```bash
+python -m pip install --no-index --find-links wheelhouse capx-fr3-hardware
+# camera extra도 준비했다면
+python -m pip install --no-index --find-links wheelhouse 'capx-fr3-hardware[camera]'
+```
+
+서버의 바이너리가 현장 PC에서도 맞는다고 가정하지 않습니다. wheelhouse는 libfranka·Eigen·fmt·Poco 등의 C++ SDK/시스템 라이브러리, RealSense 장치 권한·USB 설정을 해결하지 않습니다. 이 의존성은 같은 현장 환경에 맞춰 별도로 준비해야 합니다. 이번 서버에서 완전한 오프라인 현장 SDK 묶음을 검증한 것은 아니며, 대용량 외부 바이너리는 저장소에 포함하지 않았습니다.
+
 ## 현장에서 채울 것
 
 | 파일 | 현장 입력 |
